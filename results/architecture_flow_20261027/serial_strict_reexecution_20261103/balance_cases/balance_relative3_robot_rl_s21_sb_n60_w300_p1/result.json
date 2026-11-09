@@ -1,0 +1,120 @@
+{
+  "utc": "2026-11-09T08:08:45.375756+00:00",
+  "job": {
+    "circuit": "robot_rl",
+    "split": "heldout",
+    "seed": 21,
+    "width": 300,
+    "family": "sb",
+    "placement_arm": "relative3",
+    "partition_argument": 1.5,
+    "routers": [
+      "A0",
+      "R1",
+      "B2"
+    ]
+  },
+  "status": "completed",
+  "placement": "balance_relative3_robot_rl_s21_sb_n60_w300_p1_place",
+  "balance": {
+    "vertices": 2468,
+    "edges": 12979,
+    "parts": 2,
+    "balance_argument": 1.5,
+    "partition_weights": [
+      1217.0,
+      1251.0
+    ],
+    "lower_each": 1196.98,
+    "upper_each": 1271.02,
+    "balanced": true,
+    "unit_weight_integer_feasible": true,
+    "graph_sha256": "769d1bd1a58446aa861a118848d440c5175ff7262ad1666ed6d77c8785009dca",
+    "assignment_sha256": "187eb962f19d4f0a07ddfe4ad16467280cbe6b64143d448d2f0e9b90cd5bd8d6"
+  },
+  "roles": {
+    "A0": "balance_relative3_robot_rl_s21_sb_n60_w300_p1_a0",
+    "R1": "balance_relative3_robot_rl_s21_sb_n60_w300_p1_critical_c7",
+    "B2": "balance_relative3_robot_rl_s21_sb_n60_w300_p1_b2"
+  },
+  "route_audit": {
+    "utc": "2026-11-09T08:18:06.126172+00:00",
+    "passed": true,
+    "registered_route_count": 3,
+    "legal_count": 3,
+    "failed_count": 0,
+    "legal": [
+      {
+        "name": "balance_relative3_robot_rl_s21_sb_n60_w300_p1_a0",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 12.474,
+          "wirelength": 245646,
+          "router_seconds": 6.86,
+          "iterations": 13,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 245646,
+          "sb_pairs_used": 5135,
+          "sb_pair_net_occupancy": 5135,
+          "cb_crossing_output_sources_used": 0,
+          "cb_crossing_output_source_net_occupancy": 0,
+          "actual_crossing_edge_traversals": {
+            "CHANX->CHANX": 5135
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      },
+      {
+        "name": "balance_relative3_robot_rl_s21_sb_n60_w300_p1_critical_c7",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 12.474,
+          "wirelength": 245495,
+          "router_seconds": 11.26,
+          "iterations": 13,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 245495,
+          "sb_pairs_used": 5137,
+          "sb_pair_net_occupancy": 5137,
+          "cb_crossing_output_sources_used": 0,
+          "cb_crossing_output_source_net_occupancy": 0,
+          "actual_crossing_edge_traversals": {
+            "CHANX->CHANX": 5137
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      },
+      {
+        "name": "balance_relative3_robot_rl_s21_sb_n60_w300_p1_b2",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 12.474,
+          "wirelength": 230395,
+          "router_seconds": 24.76,
+          "iterations": 12,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 230395,
+          "sb_pairs_used": 5134,
+          "sb_pair_net_occupancy": 5134,
+          "cb_crossing_output_sources_used": 0,
+          "cb_crossing_output_source_net_occupancy": 0,
+          "actual_crossing_edge_traversals": {
+            "CHANX->CHANX": 5134
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      }
+    ],
+    "failed": [],
+    "graph_sha256": "52a5586d4e8a00b0bb5979eca43388a013200066344da0b9ce4d7c781265125b"
+  }
+}

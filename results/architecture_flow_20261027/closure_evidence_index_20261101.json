@@ -1,0 +1,290 @@
+{
+  "utc": "2026-11-01T17:59:55.438591+00:00",
+  "purpose": "Final closure evidence index; does not alter frozen protocol, execution or acceptance criteria",
+  "requirements_sha256": "fcd26f5e448d359e9b04d277c60a7830e715c4ef9a8889f614373ecfe407ff7d",
+  "acceptance": {
+    "provenance": {
+      "requirement": "Pin paper/native/LaZagna tools, dependencies, integration patches and binary hashes",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/registered_study_continuation_20261029/registration.json",
+          "exists_now": true
+        },
+        {
+          "path": "results/architecture_flow_20261027/owner_recovery_20261030/preflight.json",
+          "exists_now": true
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    },
+    "physical_audit": {
+      "requirement": "SB, CB-O, Hybrid-O: count grid capacities, pin exits, cross-layer resources, directions and full path delays",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/graph_audits_v2",
+          "exists_now": true
+        },
+        {
+          "path": "results/architecture_flow_20261027/capacity_selection.json",
+          "exists_now": true
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    },
+    "compatibility": {
+      "requirement": "Prove packed netlist / placement / RRG compatibility before any cross-tool paired claim",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/crossflow_validation",
+          "exists_now": true
+        },
+        {
+          "path": "results/architecture_flow_20261027/adapter_validation",
+          "exists_now": true
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    },
+    "dual_baseline": {
+      "requirement": "Matched 2D denominator and same-architecture 3D denominator, with exact resource matching or explicit residual differences",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/evaluation_analysis/summary.json",
+          "exists_now": false
+        },
+        {
+          "path": "results/architecture_flow_20261027/benchmark_protocol.json",
+          "exists_now": true
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    },
+    "placement_routing": {
+      "requirement": "Both placement flows crossed with baseline and our routing, fixed inputs within every route pair",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/evaluation_analysis/summary.json",
+          "exists_now": false
+        },
+        {
+          "path": "results/architecture_flow_20261027/evaluation_cases",
+          "exists_now": true
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    },
+    "hyperparameters": {
+      "requirement": "criticality, K, delay budget and guide weights; disjoint circuit/seed tuning and held-out evaluation",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/selected_configs.json",
+          "exists_now": true
+        },
+        {
+          "path": "results/architecture_flow_20261027/training_selection_review_20261030.json",
+          "exists_now": true
+        },
+        {
+          "path": "results/architecture_flow_20261027/training_analysis/summary.json",
+          "exists_now": true
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    },
+    "ablations": {
+      "requirement": "Fixed parameters and equally budgeted per-variant tuning; keep failures in denominators",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/evaluation_analysis/summary.json",
+          "exists_now": false
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    },
+    "architecture_ranking": {
+      "requirement": "Rank by absolute final CPD/common 2D normalization; seed stability and costs; allow no reversal",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/evaluation_analysis/summary.json",
+          "exists_now": false
+        },
+        {
+          "path": "results/architecture_flow_20261027/figures",
+          "exists_now": false
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    },
+    "external_baselines": {
+      "requirement": "Keep paper VTR8.1, modern LaZagna port and official native VTR9 distinct; no unsupported ratios",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/published_reference_analysis.json",
+          "exists_now": true
+        },
+        {
+          "path": "results/architecture_flow_20261027/evaluation_analysis/summary.json",
+          "exists_now": false
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    },
+    "timing": {
+      "requirement": "Serial repeats including official A0 and modern LaZagna where comparable; include setup/partition costs",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/serial_analysis/summary.json",
+          "exists_now": false
+        },
+        {
+          "path": "results/architecture_flow_20261027/serial_protocol.json",
+          "exists_now": false
+        },
+        {
+          "path": "results/architecture_flow_20261027/p1_thread_envelope_review_20261031.json",
+          "exists_now": true
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    },
+    "validation": {
+      "requirement": "VPR FULL plus independent directed-edge/switch/tree/capacity audit; evidence/trace checks",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/evaluation_cases",
+          "exists_now": true
+        },
+        {
+          "path": "results/architecture_flow_20261027/training_cases",
+          "exists_now": true
+        },
+        {
+          "path": "results/architecture_flow_20261027/balance_analysis/summary.json",
+          "exists_now": false
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    },
+    "closure": {
+      "requirement": "Preserve historical hashes, register all attempts, archive analysis, sources and acceptance audit",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/historical_integrity_checkpoint.json",
+          "exists_now": true
+        },
+        {
+          "path": "results/architecture_flow_20261027/owner_recovery_20261030/recovery_applied.json",
+          "exists_now": true
+        },
+        {
+          "path": "results/architecture_flow_20261027/python_execution_sources_20261029",
+          "exists_now": true
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    },
+    "partition_balance_sensitivity": {
+      "requirement": "Execute registered literal versus relative-3-percent P1 sensitivity; independently audit balance and separate placement effects from routing effects",
+      "completion": "unproven_pending_final_scope_review",
+      "candidate_evidence": [
+        {
+          "path": "results/architecture_flow_20261027/partition_balance_sensitivity_protocol.json",
+          "exists_now": true
+        },
+        {
+          "path": "results/architecture_flow_20261027/balance_analysis/summary.json",
+          "exists_now": false
+        }
+      ],
+      "gate": "Inspect contents and actual coverage; existence or a passed receipt alone does not prove this requirement."
+    }
+  },
+  "completed_heldout_cases_snapshot": 168,
+  "interpretation_gates": [
+    "Use legal routes only for QoR; preserve all registered failures and coverage.",
+    "Use the same complete paired circuit cohort for 3D and parenthesized 2D improvements; bind maximum figures to one identical sample.",
+    "Keep training selection separate from heldout conclusions; no retuning.",
+    "Rank absolute CPD or common-2D normalized CPD on common architecture/flow/seed cohort; no required reversal.",
+    "Keep B1 literature separate from controlled B2 and official A0 comparisons.",
+    "Inspect all terminal logs once at closure for allocation-exception signatures alongside primary timeout/exit classification.",
+    "Reconcile observed P1 threads with threads_per_vpr=1 constraint explicitly; disclosure alone cannot prove the contradicted invariant.",
+    "Serial execution is not an exclusive-host claim; review setup-work differences and actual thread scope.",
+    "Verify full frozen source and historical artifact integrity at closure; this index performs no such broad verification."
+  ],
+  "known_contradiction": {
+    "constraint": "threads_per_vpr=1",
+    "observation": "P1 placement observed 128 threads, including nonmain CPU work",
+    "evidence": "results/architecture_flow_20261027/p1_thread_envelope_review_20261031.json",
+    "status": "unresolved_for_acceptance; no silent pass or redefinition"
+  },
+  "supplemental_evidence": [
+    {
+      "path": "results/architecture_flow_20261027/conv_layer_failure_diagnostics_20261031.json",
+      "sha256": "7502f023878fc091b986d33dc8663361b1ecf56953b2f6030d8be5af63fa474a"
+    },
+    {
+      "path": "results/architecture_flow_20261027/conv_layer_hls_guidance_diagnostics_20261031.json",
+      "sha256": "ba909ca4af4d0557d376afa03c75e1f4175b54c30a574b5b2ca96b48cf50347a"
+    },
+    {
+      "path": "results/architecture_flow_20261027/dla_hybrid_selected_allocation_failures_20261031.json",
+      "sha256": "589c8579b2575cf83dd5125a2e8fff84ae92e07e1ef1081271f42d46e6cf815b"
+    },
+    {
+      "path": "results/architecture_flow_20261027/dla_medium_seed21_sb_timeout_diagnostics_20261031.json",
+      "sha256": "881d9c89edacb06ea4b96d4d47163213676b4308187d6bec0e61ee1c7032d301"
+    },
+    {
+      "path": "results/architecture_flow_20261027/dla_sb_planning_cost_review_20261031.json",
+      "sha256": "eb5ee6d3641cb3097b963a6bc4156df57755ec9950ed280cf3c5c726bfd1f6a7"
+    },
+    {
+      "path": "results/architecture_flow_20261027/p1_thread_envelope_review_20261031.json",
+      "sha256": "4bc17ab4d1864e02ef88c8dd35acf16fbfc94e921d259dc9c3a6be92ff0b6a1b"
+    },
+    {
+      "path": "results/architecture_flow_20261027/preclosure_frozen_input_review_20261101.json",
+      "sha256": "435083fd7c433fccbd2b3473c85cb50d59fa8c37d4520dc214d05314307a86e3"
+    },
+    {
+      "path": "results/architecture_flow_20261027/tpu_large_os_completed_family_review_20261101.json",
+      "sha256": "86eb1086082bd4cf1afc6bc097db8ab7e8ffcb28f804754b85b008307578cb28"
+    },
+    {
+      "path": "results/architecture_flow_20261027/tpu_large_os_seed21_p1_allocation_failures_20261101.json",
+      "sha256": "74dc8dd9e24003b16ec8e77f5025b329d2bd79dce2547c4daf28fac46df5ff49"
+    },
+    {
+      "path": "results/architecture_flow_20261027/tpu_large_ws_seed21_sb_d0_mixed_failure_review_20261101.json",
+      "sha256": "24b682338365f21d934f3376554f0a17631e5705dcf85ac1e67a49926ce6ee82"
+    },
+    {
+      "path": "results/architecture_flow_20261027/tpu_large_ws_completed_family_review_20261101.json",
+      "sha256": "a143c42173fce961412b3e57dab01e90c40e13cb7b0697546d5dd511ebff987a"
+    },
+    {
+      "path": "results/architecture_flow_20261027/tpu_small_os_completed_family_review_20261101.json",
+      "sha256": "48aff45d55f5e5ac3378825d229950ff3d24d3796be3077c1352f87ee509b3da"
+    },
+    {
+      "path": "results/architecture_flow_20261027/tpu_small_ws_completed_family_review_20261102.json",
+      "sha256": "972e3fb6b3a77d9d39b9e8cf504b4cf164f9e7e981111912c0e3aed7dcb9b775"
+    }
+  ],
+  "goal_complete": false,
+  "solver_reruns": 0,
+  "frozen_source_changes": 0,
+  "latest_index_update_utc": "2026-11-02T01:51:25.114896+00:00"
+}

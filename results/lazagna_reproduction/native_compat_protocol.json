@@ -1,0 +1,6 @@
+{
+  "utc": "2026-10-23T15:06:47.787436+00:00",
+  "reason": "New VPR defaults merge_constant_generators=true, unlike paper-era VPR; it merges $undef into $false before reading the unchanged .net, causing an unknown-net input error.",
+  "change": "Set --merge_constant_generators off in separately named native retry arms only. Preserve BLIF, packed.net, fixed.place, RRG, clock=ideal, all routing options and binary bytes.",
+  "scope": "Compatibility control for the exact old packed netlist; this is not evidence of a routing algorithm failure. Original failed attempts remain retained."
+}

@@ -1,0 +1,22 @@
+{
+  "defined_utc": "2026-10-22T15:08:19.492256+00:00",
+  "cases": [
+    "ex5p_balanced",
+    "conv_layer_hls"
+  ],
+  "repetitions": 3,
+  "settings": 15,
+  "total_runs": 90,
+  "order_seed": 20261022,
+  "ordering": "shuffle settings per case/repetition with Python random.Random",
+  "configuration_sources": [
+    "configs/variants_all.json",
+    "configs/variants_prune_controls.json",
+    "configs/variants_tuned.json (all selected settings)"
+  ],
+  "extra_control": "a0_instrumented",
+  "timing_csv": "on for all settings",
+  "selection_note": "All already selected A1/A3/A4 parameters are measured. Selected A1 has the same weight but a different archived binary than early a1_w2; both are timed. Final protocol fixed before timing starts; no selection on timing results.",
+  "scope": "Sequential after own routing/audit queues; shared host, no frequency/exclusive-CPU isolation",
+  "revised_before_start_utc": "2026-10-22T15:48:53.693613+00:00"
+}

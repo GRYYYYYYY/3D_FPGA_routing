@@ -1,0 +1,125 @@
+{
+  "utc": "2026-11-08T22:36:28.679359+00:00",
+  "job": {
+    "circuit": "spmv",
+    "split": "training",
+    "seed": 11,
+    "width": 300,
+    "family": "hybrid_o",
+    "placement_arm": "literal",
+    "partition_argument": 0.03,
+    "routers": [
+      "A0",
+      "R1",
+      "B2"
+    ]
+  },
+  "status": "completed",
+  "placement": "balance_literal_spmv_s11_hybrid_o_n40_w300_p1_place",
+  "balance": {
+    "vertices": 1337,
+    "edges": 8317,
+    "parts": 2,
+    "balance_argument": 0.03,
+    "partition_weights": [
+      1057.0,
+      280.0
+    ],
+    "lower_each": 668.0989,
+    "upper_each": 668.9010999999999,
+    "balanced": false,
+    "unit_weight_integer_feasible": false,
+    "graph_sha256": "6319e665779380fbfdcd8c2e61cfcad93e56581dc395c29932cd3d96600d1d0e",
+    "assignment_sha256": "13bfe20fc35faf4a2da6e6570ecbe722c2b20059e170be819891336d5b64bfba"
+  },
+  "roles": {
+    "A0": "balance_literal_spmv_s11_hybrid_o_n40_w300_p1_a0",
+    "R1": "balance_literal_spmv_s11_hybrid_o_n40_w300_p1_delay_critical_c6",
+    "B2": "balance_literal_spmv_s11_hybrid_o_n40_w300_p1_b2"
+  },
+  "route_audit": {
+    "utc": "2026-11-08T22:40:25.825731+00:00",
+    "passed": true,
+    "registered_route_count": 3,
+    "legal_count": 3,
+    "failed_count": 0,
+    "legal": [
+      {
+        "name": "balance_literal_spmv_s11_hybrid_o_n40_w300_p1_a0",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 6.41043,
+          "wirelength": 126796,
+          "router_seconds": 1.64,
+          "iterations": 13,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 126796,
+          "sb_pairs_used": 11,
+          "sb_pair_net_occupancy": 11,
+          "cb_crossing_output_sources_used": 2657,
+          "cb_crossing_output_source_net_occupancy": 2657,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANY": 1093,
+            "OPIN->CHANX": 1694,
+            "CHANX->CHANX": 11
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      },
+      {
+        "name": "balance_literal_spmv_s11_hybrid_o_n40_w300_p1_delay_critical_c6",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 6.41043,
+          "wirelength": 126796,
+          "router_seconds": 11.06,
+          "iterations": 13,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 126796,
+          "sb_pairs_used": 11,
+          "sb_pair_net_occupancy": 11,
+          "cb_crossing_output_sources_used": 2657,
+          "cb_crossing_output_source_net_occupancy": 2657,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANY": 1093,
+            "OPIN->CHANX": 1694,
+            "CHANX->CHANX": 11
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      },
+      {
+        "name": "balance_literal_spmv_s11_hybrid_o_n40_w300_p1_b2",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 6.41043,
+          "wirelength": 119706,
+          "router_seconds": 1.55,
+          "iterations": 11,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 119706,
+          "sb_pairs_used": 0,
+          "sb_pair_net_occupancy": 0,
+          "cb_crossing_output_sources_used": 2661,
+          "cb_crossing_output_source_net_occupancy": 2661,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANY": 1111,
+            "OPIN->CHANX": 1707
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      }
+    ],
+    "failed": [],
+    "graph_sha256": "65370440f841350e106fcdd6a1cc23b311f1cebad287b9b3d4042514bf25d539"
+  }
+}

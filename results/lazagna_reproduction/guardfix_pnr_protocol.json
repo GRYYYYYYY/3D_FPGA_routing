@@ -1,0 +1,10 @@
+{
+  "utc": "2026-10-23T15:48:50.959699+00:00",
+  "reason": "Historical VTR commit af5b6a4434 replaces valid-coordinate assertions with inverted !=OPEN rejection guards in two placement search-range functions.",
+  "patch": "Only those two if guards are corrected to ==OPEN in a separately linked one-object build. Original sources and binaries retained unchanged.",
+  "controls": {
+    "bnn": "Identical to strict original primary, including clock_modeling=route; only placement guard code changes.",
+    "conv_layer,dla_like.small": "Identical to clock-only repaired full PnR, including clock_modeling=ideal; only placement guard code changes."
+  },
+  "scope": "Causal software-defect controls on the same source revision, not a claim that the authors paper used the defective public snapshot or that every previous native-VTR failure was a tool bug."
+}

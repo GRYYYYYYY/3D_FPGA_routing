@@ -1,0 +1,13 @@
+{
+  "utc": "2026-10-27T23:53:49.929039+00:00",
+  "source_sha256": "aee8ee5e7dd5339e8637fe04d6fe3d8c8fc66ed9edcc7a0ba74578a6b81e5720",
+  "wrapper_sha256": "2da7c125b1135d1441c2a672460392dd63614eea0e22f7b7f049f8e386500c6b",
+  "gate_source_sha256": "d49dfb1e51168396486bdbbf19ec252bf09d0bbd7744046a211641a90758f321",
+  "sizes": [
+    80,
+    125
+  ],
+  "width": 300,
+  "gate": "Wait for all three softmax cases to complete their audit; the remaining attention cases and subsequent frozen training batches use at most three VPR slots.",
+  "concurrency": "One preparation at a time: at most two graph VPRs plus three training VPRs plus one P1 preflight. Hold evaluation and serial locks until finished."
+}

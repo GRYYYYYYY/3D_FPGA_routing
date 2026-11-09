@@ -1,0 +1,101 @@
+{
+  "utc": "2026-10-27T10:28:23.055972+00:00",
+  "requested_baselines": [
+    {
+      "id": "B1_published",
+      "meaning": "LaZagna paper Table IV reported results, VTR 8.1; literature reference only"
+    },
+    {
+      "id": "B2_modern",
+      "meaning": "2026 LaZagna VTR9-code port, pinned 5abd3aca plus documented build-only patch"
+    },
+    {
+      "id": "B3_native",
+      "meaning": "Pristine official VTR 9.0.0-dev+0b91233, the exact parent of our algorithm"
+    }
+  ],
+  "treatment": "A3 static H3D-inspired planning with SCC reachability, archived a4scc binary",
+  "binaries": {
+    "modern": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/lazagna-vtr9-port-buildfix/vpr",
+      "sha256": "8b956740f97e12b6ea84071aa1f52809c8ecd413c4901c45970b34935f52bc45",
+      "manifest": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/lazagna-vtr9-port-buildfix/manifest.json"
+    },
+    "a0": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/baseline/vpr",
+      "sha256": "37cc22c8b1b5d9d378e25379e85afcb7e56b5f1f6f72e3e9186e5e107ed5ce62",
+      "manifest": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/baseline/manifest.json"
+    },
+    "a3": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/a4scc/vpr",
+      "sha256": "538b2750fcdc4acc902a95dc9d06c844a333cd79bc7d61353177dda7b109cc12",
+      "manifest": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/a4scc/manifest.json"
+    }
+  },
+  "architectures": {
+    "modern": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/architectures/modern_100.xml",
+      "sha256": "15a354f937ad8f9178efba3aad5bee0b902b6521bd412c0a8eaa0ab880de141b",
+      "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/lazagna_reproduction/architectures/paper_100.xml"
+    },
+    "native": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/architectures/native_100.xml",
+      "sha256": "77bae591da42990777f70f11a76b40fb56d0e3658949c7e67ba530c3851863f8",
+      "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/lazagna_reproduction/architectures/native_100.xml"
+    }
+  },
+  "cases": [
+    "attention_layer",
+    "conv_layer",
+    "dla_like.small",
+    "dla_like.medium",
+    "bnn",
+    "lstm",
+    "tpu_like.small.ws",
+    "tpu_like.large.ws",
+    "clstm_like.small",
+    "robot_rl",
+    "conv_layer_hls"
+  ],
+  "grid": [
+    100,
+    100,
+    2
+  ],
+  "width": 300,
+  "graph_generation_clock": "route for both families",
+  "route_clock": "ideal for all measured arms",
+  "clock_reason": "Separate disclosed diagnostic: released spram.clk Fc=0 is incompatible with routed BRAM clocks. Strict historical failures remain in the original study.",
+  "routing": {
+    "seed": 1,
+    "workers_per_vpr": 1,
+    "max_iterations": 200,
+    "predictor": "off",
+    "timeout_seconds": 3600
+  },
+  "reporting": "timing_report_npaths=0 in every arm, to avoid the known CHANZ detailed-report defect without changing routing/STA",
+  "modern_stage": "pack, place, route, analysis on its own newly generated full-size graph; cube_bb and inner_num0.5",
+  "native_stages": "route-only on modern packed netlist and placement with private copies, native graph; merge_constant_generators=off and verify_file_digests=off with exact models/tiles compatibility proof",
+  "comparisons": {
+    "A3_vs_A0": "algorithm comparison: same packed netlist, placement, graph, settings",
+    "A3_vs_modern": "system comparison conditional on the same placement and netlist; graph model and toolchain differ",
+    "A3_vs_published": "reference comparison; ratio unavailable without a common 2D denominator and identical author inputs"
+  },
+  "selection": "All 11 pre-existing LaZagna diagnostic cases, not a claim that these are the exact author synthesized inputs. Include failures and missing placements.",
+  "preserved_sources": {
+    "results/analysis.json": "e1f73957b2225db1784b9559381612a4653c437304cb742321952568502e1e53",
+    "results/failure_diagnosis/analysis_native.json": "41970b32895124d4c2b3eff052cc1e9a8cb37c2140763eb23b30363eb0d7cbec",
+    "configs/sources.lock.json": "43ef9c53e8f5909c8115b7d6c929e42df5a72db768b0ec434c72e0fcb3d4b6e1",
+    "configs/failure_diagnosis_native.json": "f84fd341f48d3fd52b766029c096ba532129d71b5489ed25831da4ff65df7825",
+    "configs/architectures/koios_native3d_n6_f16_d1_v3.xml": "b19507fc7eeb0f87208a8565fe09b6313aafd1d6006b057c1e284ae2c549ef60",
+    "results/lazagna_reproduction/analysis.json": "28b87a260f4f96722e7e164fb804d81aa35d84bd117427e1c6de8a4207fc05a7",
+    "results/lazagna_reproduction/report.html": "44566df6d2f7c83695bf2d1592002d4d65504b1f44d9ecee8852f04405007eb7",
+    "results/lazagna_reproduction/validation.json": "289826327eb95c7c1d36f36d645ba04d6f2569267ac81efc6232546352da687d",
+    "results/lazagna_reproduction/finalization.json": "74a9376a4204ae381a8aff199f55e579297655b295ea376542a0c0d5e1d9b80a",
+    "results/lazagna_vtr9_port/validation.json": "23f9c80cab8c1e4c0206fb0cb16cb92d03001cbe23c405da7b6561236cc67675",
+    "results/lazagna_vtr9_port/finalization.json": "07af84f5da9bd6806302bd0bfe439ead5e1f4750ba50d055f8c64de62d09295a",
+    "docs/LaZagna后续分支验证_2026-10-25.md": "e6df61479d5a8948644bbc78a8b6dd1ca3deacd394f981bb398c0dd870029872"
+  },
+  "hardware_timing": "Concurrent wall/router times are diagnostic, not speedup comparisons",
+  "status": "registered"
+}

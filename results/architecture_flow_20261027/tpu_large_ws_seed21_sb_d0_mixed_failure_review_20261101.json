@@ -1,0 +1,74 @@
+{
+  "utc": "2026-11-01T15:49:56.716905+00:00",
+  "scope": "One terminal TPU large.ws seed21 SB P1 D0 run with a timeout receipt and allocation-exception text; supplementary diagnostic only",
+  "run": "heldout_tpu_like.large.ws_s21_sb_n100_w100_p1_delay_c0",
+  "recorded_status": "timeout",
+  "recorded_wrapper_returncode": -15,
+  "wall_seconds": 1800.0077858753502,
+  "start_utc": "2026-11-01T15:17:39.380360+00:00",
+  "finish_utc": "2026-11-01T15:47:39.390276+00:00",
+  "timeout_seconds": 1800,
+  "execution_limit": {
+    "address_space_bytes": 68719476736,
+    "enforcement": "/usr/bin/prlimit --as=soft:hard, inherited by children"
+  },
+  "observations": {
+    "stdout_contains_std_bad_alloc": true,
+    "printed_iteration_rows": 0,
+    "gnu_time_report_empty": true,
+    "routing_success_reported": false,
+    "native_full_check_passed": false,
+    "stdout_tail": [
+      "",
+      "# Load Timing Constraints took 0.00 seconds (max_rss 567.3 MiB, delta_rss +0.0 MiB)",
+      "terminate called after throwing an instance of 'std::bad_alloc'",
+      "  what():  std::bad_alloc"
+    ]
+  },
+  "supervisor_semantics": {
+    "source": "scripts/flatland_experiment_io.py",
+    "subprocess": "GNU time supervises prlimit and VPR in a new process group",
+    "timeout": "After proc.wait(timeout) expires, sends process-group SIGTERM, waits 10 seconds, then SIGKILL if required; records timeout and wrapper return code.",
+    "native_vpr_exit_status": "Not independently recoverable from this empty GNU-time report."
+  },
+  "interpretation": {
+    "preserve_primary_classification": "Keep the original timeout / -15 receipt unchanged.",
+    "retain_secondary_evidence": "Retain std::bad_alloc as observed allocation-exception text in the same terminal run.",
+    "limits": [
+      "No allocation call stack or independent native VPR final exit code is available.",
+      "The last stdout file modification precedes the supervisor finish, but is not a timestamp of the exception itself.",
+      "The 64 GiB virtual-address limit does not establish physical-RAM exhaustion.",
+      "No printed iteration does not prove absence of internal routing work.",
+      "The evidence does not establish the precise causal sequence between the exception and supervisor termination."
+    ]
+  },
+  "files": [
+    {
+      "path": "results/architecture_flow_20261027/runs/heldout_tpu_like.large.ws_s21_sb_n100_w100_p1_delay_c0/manifest.json",
+      "sha256": "b69fa731c2c5a4fa53cfb7d37042a35fd980ad19b66ba2aa1bd518bf8bc84bcf",
+      "bytes": 8212,
+      "mtime_utc": "2026-11-01T15:47:39.930642+00:00"
+    },
+    {
+      "path": "results/architecture_flow_20261027/runs/heldout_tpu_like.large.ws_s21_sb_n100_w100_p1_delay_c0/stdout.log",
+      "sha256": "5e8f4519e3570538ddeebbadb7098d5e60f876d5e886746ea76dbea043a0ca55",
+      "bytes": 11619,
+      "mtime_utc": "2026-11-01T15:47:37.478264+00:00"
+    },
+    {
+      "path": "results/architecture_flow_20261027/runs/heldout_tpu_like.large.ws_s21_sb_n100_w100_p1_delay_c0/time.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mtime_utc": "2026-11-01T15:17:39.388081+00:00"
+    },
+    {
+      "path": "scripts/flatland_experiment_io.py",
+      "sha256": "4fb46c12dcbb0ec66a49fcea6e036cd119cf57b934dd75eebca6f1e5618390b3",
+      "bytes": 4938,
+      "mtime_utc": "2026-10-27T22:12:15.968033+00:00"
+    }
+  ],
+  "solver_reruns": 0,
+  "frozen_source_changes": 0,
+  "acceptance_complete": false
+}

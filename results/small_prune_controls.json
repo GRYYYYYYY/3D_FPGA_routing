@@ -1,0 +1,1620 @@
+{
+  "owner_pid": 1931780,
+  "workers": 2,
+  "started_epoch": 1792676331.577739,
+  "timing_scope": "concurrent screening; controlled sequential repeats required",
+  "prepared_list": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/small_all_prepare.json",
+  "variants": [
+    {
+      "name": "a0_prune",
+      "binary": "artifacts/bin/controls/vpr",
+      "extra": [
+        "--min_incremental_reroute_fanout",
+        "1"
+      ],
+      "env": {
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a1_w2_prune",
+      "binary": "artifacts/bin/controls/vpr",
+      "extra": [
+        "--min_incremental_reroute_fanout",
+        "1"
+      ],
+      "env": {
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_VERTICAL_WEIGHT": "2"
+      }
+    },
+    {
+      "name": "a3_prune",
+      "binary": "artifacts/bin/controls/vpr",
+      "extra": [
+        "--min_incremental_reroute_fanout",
+        "1"
+      ],
+      "env": {
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc"
+      }
+    }
+  ],
+  "jobs": [
+    {
+      "circuit": "ex5p_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_reference_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_reference_a0_prune",
+      "metrics": {
+        "critical_path_ns": 5.49647,
+        "wirelength": 19812,
+        "router_seconds": 0.49,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.225172806531191,
+      "peak_rss_kib": 406044
+    },
+    {
+      "circuit": "ex5p_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_reference_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_reference_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 5.46893,
+        "wirelength": 19716,
+        "router_seconds": 0.59,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.5255246758461,
+      "peak_rss_kib": 405936
+    },
+    {
+      "circuit": "ex5p_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_reference_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_reference_a3_prune",
+      "metrics": {
+        "critical_path_ns": 5.51032,
+        "wirelength": 19653,
+        "router_seconds": 0.79,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.977358918637037,
+      "peak_rss_kib": 405996
+    },
+    {
+      "circuit": "ex5p_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density3_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_density3_a0_prune",
+      "metrics": {
+        "critical_path_ns": 5.55388,
+        "wirelength": 20561,
+        "router_seconds": 0.52,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.175565455108881,
+      "peak_rss_kib": 384780
+    },
+    {
+      "circuit": "ex5p_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density3_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_density3_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 5.46893,
+        "wirelength": 20639,
+        "router_seconds": 0.5,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.024876840412617,
+      "peak_rss_kib": 384644
+    },
+    {
+      "circuit": "ex5p_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density3_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_density3_a3_prune",
+      "metrics": {
+        "critical_path_ns": 5.60116,
+        "wirelength": 20667,
+        "router_seconds": 0.8,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.275416560471058,
+      "peak_rss_kib": 384780
+    },
+    {
+      "circuit": "ex5p_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density12_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_density12_a0_prune",
+      "metrics": {
+        "critical_path_ns": 5.53505,
+        "wirelength": 19516,
+        "router_seconds": 0.57,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.026330851018429,
+      "peak_rss_kib": 447516
+    },
+    {
+      "circuit": "ex5p_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density12_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_density12_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 5.46893,
+        "wirelength": 19761,
+        "router_seconds": 0.54,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.826301883906126,
+      "peak_rss_kib": 447524
+    },
+    {
+      "circuit": "ex5p_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density12_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_density12_a3_prune",
+      "metrics": {
+        "critical_path_ns": 5.46893,
+        "wirelength": 19629,
+        "router_seconds": 0.9,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.577615533024073,
+      "peak_rss_kib": 447484
+    },
+    {
+      "circuit": "ex5p_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access8_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_access8_a0_prune",
+      "metrics": {
+        "critical_path_ns": 5.7265,
+        "wirelength": 21640,
+        "router_seconds": 0.56,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.140008348971605,
+      "peak_rss_kib": 385768
+    },
+    {
+      "circuit": "ex5p_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access8_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_access8_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 5.69836,
+        "wirelength": 21745,
+        "router_seconds": 0.6,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.225945398211479,
+      "peak_rss_kib": 385728
+    },
+    {
+      "circuit": "ex5p_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access8_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_access8_a3_prune",
+      "metrics": {
+        "critical_path_ns": 5.79713,
+        "wirelength": 21868,
+        "router_seconds": 1.0,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.626426808536053,
+      "peak_rss_kib": 385824
+    },
+    {
+      "circuit": "ex5p_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access32_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_access32_a0_prune",
+      "metrics": {
+        "critical_path_ns": 5.46694,
+        "wirelength": 18121,
+        "router_seconds": 0.5,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.026201698929071,
+      "peak_rss_kib": 444700
+    },
+    {
+      "circuit": "ex5p_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access32_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_access32_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 5.4642,
+        "wirelength": 18122,
+        "router_seconds": 0.43,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.178955607116222,
+      "peak_rss_kib": 444724
+    },
+    {
+      "circuit": "ex5p_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access32_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_access32_a3_prune",
+      "metrics": {
+        "critical_path_ns": 5.4642,
+        "wirelength": 18135,
+        "router_seconds": 0.8,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.477948687970638,
+      "peak_rss_kib": 444824
+    },
+    {
+      "circuit": "ex5p_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay0p5_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_delay0p5_a0_prune",
+      "metrics": {
+        "critical_path_ns": 5.10416,
+        "wirelength": 19717,
+        "router_seconds": 0.58,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.928063575178385,
+      "peak_rss_kib": 405864
+    },
+    {
+      "circuit": "ex5p_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay0p5_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_delay0p5_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 5.0654,
+        "wirelength": 19676,
+        "router_seconds": 0.54,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.676325749605894,
+      "peak_rss_kib": 405964
+    },
+    {
+      "circuit": "ex5p_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay0p5_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_delay0p5_a3_prune",
+      "metrics": {
+        "critical_path_ns": 5.10416,
+        "wirelength": 19736,
+        "router_seconds": 0.88,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.226068340241909,
+      "peak_rss_kib": 406000
+    },
+    {
+      "circuit": "ex5p_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay2_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_delay2_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.34788,
+        "wirelength": 19779,
+        "router_seconds": 0.42,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.375488165766001,
+      "peak_rss_kib": 405880
+    },
+    {
+      "circuit": "ex5p_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay2_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_delay2_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.34788,
+        "wirelength": 19497,
+        "router_seconds": 0.42,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.375127326697111,
+      "peak_rss_kib": 405944
+    },
+    {
+      "circuit": "ex5p_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay2_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_delay2_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.34788,
+        "wirelength": 19642,
+        "router_seconds": 0.74,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.575781609863043,
+      "peak_rss_kib": 405824
+    },
+    {
+      "circuit": "ex5p_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_perimeter_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_perimeter_a0_prune",
+      "metrics": {
+        "critical_path_ns": 7.82614,
+        "wirelength": 31304,
+        "router_seconds": 9.75,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 14.143841747194529,
+      "peak_rss_kib": 369832
+    },
+    {
+      "circuit": "ex5p_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_perimeter_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_perimeter_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 7.82888,
+        "wirelength": 31007,
+        "router_seconds": 10.06,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 14.443150948733091,
+      "peak_rss_kib": 369900
+    },
+    {
+      "circuit": "ex5p_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_perimeter_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_perimeter_a3_prune",
+      "metrics": {
+        "critical_path_ns": 7.92491,
+        "wirelength": 30849,
+        "router_seconds": 11.85,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 16.59869435057044,
+      "peak_rss_kib": 369968
+    },
+    {
+      "circuit": "diffeq_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_reference_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_reference_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.34238,
+        "wirelength": 20853,
+        "router_seconds": 0.42,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.325843837112188,
+      "peak_rss_kib": 409032
+    },
+    {
+      "circuit": "diffeq_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_reference_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_reference_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.34238,
+        "wirelength": 20819,
+        "router_seconds": 0.41,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.327598638832569,
+      "peak_rss_kib": 409092
+    },
+    {
+      "circuit": "diffeq_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_reference_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_reference_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.34238,
+        "wirelength": 21002,
+        "router_seconds": 1.61,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.778457134962082,
+      "peak_rss_kib": 409016
+    },
+    {
+      "circuit": "diffeq_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density3_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_density3_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.34238,
+        "wirelength": 21941,
+        "router_seconds": 0.48,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.3282731883227825,
+      "peak_rss_kib": 388784
+    },
+    {
+      "circuit": "diffeq_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density3_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_density3_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.34238,
+        "wirelength": 22082,
+        "router_seconds": 0.43,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.328396048396826,
+      "peak_rss_kib": 388872
+    },
+    {
+      "circuit": "diffeq_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density3_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_density3_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.34238,
+        "wirelength": 22022,
+        "router_seconds": 0.76,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.4270644672214985,
+      "peak_rss_kib": 388892
+    },
+    {
+      "circuit": "diffeq_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density12_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_density12_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.34238,
+        "wirelength": 20858,
+        "router_seconds": 0.43,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.876555286347866,
+      "peak_rss_kib": 450536
+    },
+    {
+      "circuit": "diffeq_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density12_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_density12_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.34238,
+        "wirelength": 20851,
+        "router_seconds": 0.43,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.827124543488026,
+      "peak_rss_kib": 450624
+    },
+    {
+      "circuit": "diffeq_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density12_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_density12_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.34238,
+        "wirelength": 20941,
+        "router_seconds": 0.76,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.177107349038124,
+      "peak_rss_kib": 450572
+    },
+    {
+      "circuit": "diffeq_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access8_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_access8_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.75019,
+        "wirelength": 23121,
+        "router_seconds": 0.44,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.0762012749910355,
+      "peak_rss_kib": 389276
+    },
+    {
+      "circuit": "diffeq_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access8_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_access8_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.75019,
+        "wirelength": 23069,
+        "router_seconds": 0.7,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.626664977520704,
+      "peak_rss_kib": 389384
+    },
+    {
+      "circuit": "diffeq_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access8_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_access8_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.75019,
+        "wirelength": 23028,
+        "router_seconds": 0.8,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.878066699951887,
+      "peak_rss_kib": 389312
+    },
+    {
+      "circuit": "diffeq_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access32_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_access32_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.39428,
+        "wirelength": 19368,
+        "router_seconds": 0.63,
+        "iterations": 14,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.377222701907158,
+      "peak_rss_kib": 447884
+    },
+    {
+      "circuit": "diffeq_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access32_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_access32_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.39428,
+        "wirelength": 19376,
+        "router_seconds": 0.42,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.076145101338625,
+      "peak_rss_kib": 447888
+    },
+    {
+      "circuit": "diffeq_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access32_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_access32_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.39428,
+        "wirelength": 19286,
+        "router_seconds": 0.74,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.377648461610079,
+      "peak_rss_kib": 447848
+    },
+    {
+      "circuit": "diffeq_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay0p5_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_delay0p5_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.19216,
+        "wirelength": 21065,
+        "router_seconds": 0.46,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.584224086254835,
+      "peak_rss_kib": 409008
+    },
+    {
+      "circuit": "diffeq_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay0p5_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_delay0p5_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.19216,
+        "wirelength": 20889,
+        "router_seconds": 0.49,
+        "iterations": 23,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.576650828123093,
+      "peak_rss_kib": 408988
+    },
+    {
+      "circuit": "diffeq_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay0p5_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_delay0p5_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.12938,
+        "wirelength": 20993,
+        "router_seconds": 0.78,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.926076173782349,
+      "peak_rss_kib": 409004
+    },
+    {
+      "circuit": "diffeq_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay2_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_delay2_a0_prune",
+      "metrics": {
+        "critical_path_ns": 7.01284,
+        "wirelength": 21181,
+        "router_seconds": 0.44,
+        "iterations": 14,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.52727073058486,
+      "peak_rss_kib": 408992
+    },
+    {
+      "circuit": "diffeq_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay2_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_delay2_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 7.01284,
+        "wirelength": 21197,
+        "router_seconds": 0.39,
+        "iterations": 14,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.375328917056322,
+      "peak_rss_kib": 408944
+    },
+    {
+      "circuit": "diffeq_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay2_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_delay2_a3_prune",
+      "metrics": {
+        "critical_path_ns": 7.01284,
+        "wirelength": 20991,
+        "router_seconds": 0.95,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.976877558976412,
+      "peak_rss_kib": 408980
+    },
+    {
+      "circuit": "diffeq_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_perimeter_v4",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_perimeter_a0_prune",
+      "metrics": {
+        "critical_path_ns": 8.7724,
+        "wirelength": 33371,
+        "router_seconds": 9.62,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 14.54528834298253,
+      "peak_rss_kib": 373948
+    },
+    {
+      "circuit": "diffeq_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_perimeter_v4",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_perimeter_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 8.76834,
+        "wirelength": 33169,
+        "router_seconds": 10.0,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 14.696124952286482,
+      "peak_rss_kib": 374012
+    },
+    {
+      "circuit": "diffeq_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_perimeter_v4",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_perimeter_a3_prune",
+      "metrics": {
+        "critical_path_ns": 8.7724,
+        "wirelength": 32987,
+        "router_seconds": 11.49,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 16.301601376384497,
+      "peak_rss_kib": 373924
+    },
+    {
+      "circuit": "alu4_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_alu4_balanced1",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_alu4_seed1_a0_prune",
+      "metrics": {
+        "critical_path_ns": 4.51255,
+        "wirelength": 19395,
+        "router_seconds": 0.51,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.727393113076687,
+      "peak_rss_kib": 419648
+    },
+    {
+      "circuit": "alu4_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_alu4_balanced1",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_alu4_seed1_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 4.43861,
+        "wirelength": 19180,
+        "router_seconds": 0.49,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.627263806760311,
+      "peak_rss_kib": 419664
+    },
+    {
+      "circuit": "alu4_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_alu4_balanced1",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_alu4_seed1_a3_prune",
+      "metrics": {
+        "critical_path_ns": 4.52663,
+        "wirelength": 19419,
+        "router_seconds": 0.85,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.026609893888235,
+      "peak_rss_kib": 419612
+    },
+    {
+      "circuit": "alu4_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_alu4_balanced2",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_alu4_seed2_a0_prune",
+      "metrics": {
+        "critical_path_ns": 4.80845,
+        "wirelength": 19191,
+        "router_seconds": 0.47,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.625872552394867,
+      "peak_rss_kib": 419668
+    },
+    {
+      "circuit": "alu4_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_alu4_balanced2",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_alu4_seed2_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 4.82269,
+        "wirelength": 19301,
+        "router_seconds": 0.45,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.675699602812529,
+      "peak_rss_kib": 419604
+    },
+    {
+      "circuit": "alu4_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_alu4_balanced2",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_alu4_seed2_a3_prune",
+      "metrics": {
+        "critical_path_ns": 4.80904,
+        "wirelength": 19333,
+        "router_seconds": 0.78,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.128209885209799,
+      "peak_rss_kib": 419588
+    },
+    {
+      "circuit": "alu4_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_alu4_balanced3",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_alu4_seed3_a0_prune",
+      "metrics": {
+        "critical_path_ns": 4.91331,
+        "wirelength": 18955,
+        "router_seconds": 0.42,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.776288535445929,
+      "peak_rss_kib": 419592
+    },
+    {
+      "circuit": "alu4_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_alu4_balanced3",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_alu4_seed3_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 4.91331,
+        "wirelength": 18789,
+        "router_seconds": 0.39,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.475332118570805,
+      "peak_rss_kib": 419556
+    },
+    {
+      "circuit": "alu4_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_alu4_balanced3",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_alu4_seed3_a3_prune",
+      "metrics": {
+        "critical_path_ns": 4.91331,
+        "wirelength": 19120,
+        "router_seconds": 0.75,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.876445312052965,
+      "peak_rss_kib": 419724
+    },
+    {
+      "circuit": "ex5p_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced1",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_seed1_a0_prune",
+      "metrics": {
+        "critical_path_ns": 5.58332,
+        "wirelength": 19451,
+        "router_seconds": 0.47,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.826575484126806,
+      "peak_rss_kib": 417812
+    },
+    {
+      "circuit": "ex5p_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced1",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_seed1_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 5.46893,
+        "wirelength": 19471,
+        "router_seconds": 0.47,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.575999841094017,
+      "peak_rss_kib": 417688
+    },
+    {
+      "circuit": "ex5p_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced1",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_seed1_a3_prune",
+      "metrics": {
+        "critical_path_ns": 5.51917,
+        "wirelength": 19381,
+        "router_seconds": 0.82,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.027417279779911,
+      "peak_rss_kib": 417732
+    },
+    {
+      "circuit": "ex5p_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced2",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_seed2_a0_prune",
+      "metrics": {
+        "critical_path_ns": 5.64398,
+        "wirelength": 19245,
+        "router_seconds": 0.49,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.577504187822342,
+      "peak_rss_kib": 417864
+    },
+    {
+      "circuit": "ex5p_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced2",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_seed2_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 5.64398,
+        "wirelength": 19282,
+        "router_seconds": 0.45,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.575557358562946,
+      "peak_rss_kib": 417788
+    },
+    {
+      "circuit": "ex5p_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced2",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_seed2_a3_prune",
+      "metrics": {
+        "critical_path_ns": 5.63717,
+        "wirelength": 19190,
+        "router_seconds": 0.85,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.227222763001919,
+      "peak_rss_kib": 417688
+    },
+    {
+      "circuit": "ex5p_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced3",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_seed3_a0_prune",
+      "metrics": {
+        "critical_path_ns": 5.21001,
+        "wirelength": 19658,
+        "router_seconds": 0.46,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.626038271933794,
+      "peak_rss_kib": 417832
+    },
+    {
+      "circuit": "ex5p_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced3",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_seed3_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 5.24387,
+        "wirelength": 19538,
+        "router_seconds": 0.84,
+        "iterations": 30,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.875051483511925,
+      "peak_rss_kib": 417756
+    },
+    {
+      "circuit": "ex5p_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced3",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_ex5p_seed3_a3_prune",
+      "metrics": {
+        "critical_path_ns": 5.21001,
+        "wirelength": 19425,
+        "router_seconds": 0.78,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.87658628821373,
+      "peak_rss_kib": 417860
+    },
+    {
+      "circuit": "diffeq_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_diffeq_balanced1",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_seed1_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.34238,
+        "wirelength": 20855,
+        "router_seconds": 0.59,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.925980471074581,
+      "peak_rss_kib": 420776
+    },
+    {
+      "circuit": "diffeq_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_diffeq_balanced1",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_seed1_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.34238,
+        "wirelength": 20742,
+        "router_seconds": 0.41,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.783204972743988,
+      "peak_rss_kib": 420648
+    },
+    {
+      "circuit": "diffeq_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_diffeq_balanced1",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_seed1_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.34238,
+        "wirelength": 20611,
+        "router_seconds": 0.78,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.926724903285503,
+      "peak_rss_kib": 420816
+    },
+    {
+      "circuit": "diffeq_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_diffeq_balanced2",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_seed2_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.918,
+        "wirelength": 20608,
+        "router_seconds": 0.42,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.8260074853897095,
+      "peak_rss_kib": 420780
+    },
+    {
+      "circuit": "diffeq_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_diffeq_balanced2",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_seed2_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.918,
+        "wirelength": 20744,
+        "router_seconds": 0.4,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.775017909705639,
+      "peak_rss_kib": 420792
+    },
+    {
+      "circuit": "diffeq_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_diffeq_balanced2",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_seed2_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.918,
+        "wirelength": 20628,
+        "router_seconds": 0.9,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.1271005384624,
+      "peak_rss_kib": 420704
+    },
+    {
+      "circuit": "diffeq_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_diffeq_balanced3",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_seed3_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.36242,
+        "wirelength": 20970,
+        "router_seconds": 0.43,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.776352111250162,
+      "peak_rss_kib": 420864
+    },
+    {
+      "circuit": "diffeq_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_diffeq_balanced3",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_seed3_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.36242,
+        "wirelength": 21117,
+        "router_seconds": 0.44,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 6.076733596622944,
+      "peak_rss_kib": 420816
+    },
+    {
+      "circuit": "diffeq_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_diffeq_balanced3",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_diffeq_seed3_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.36242,
+        "wirelength": 20978,
+        "router_seconds": 0.74,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.875433173030615,
+      "peak_rss_kib": 420796
+    },
+    {
+      "circuit": "elliptic_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_elliptic_w100_seed1",
+      "variant": "a0_prune",
+      "state": "failed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_elliptic_seed1_a0_prune",
+      "metrics": {
+        "critical_path_ns": 10.1349,
+        "wirelength": 95510,
+        "router_seconds": 59.22,
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      },
+      "process_wall_seconds": 64.65580478683114,
+      "peak_rss_kib": 436004
+    },
+    {
+      "circuit": "elliptic_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_elliptic_w100_seed1",
+      "variant": "a1_w2_prune",
+      "state": "failed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_elliptic_seed1_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 10.3093,
+        "wirelength": 94195,
+        "router_seconds": 58.81,
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      },
+      "process_wall_seconds": 64.38591852039099,
+      "peak_rss_kib": 436112
+    },
+    {
+      "circuit": "elliptic_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_elliptic_w100_seed1",
+      "variant": "a3_prune",
+      "state": "failed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_elliptic_seed1_a3_prune",
+      "metrics": {
+        "critical_path_ns": 11.2093,
+        "wirelength": 95778,
+        "router_seconds": 68.38,
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      },
+      "process_wall_seconds": 74.10028083249927,
+      "peak_rss_kib": 436036
+    },
+    {
+      "circuit": "elliptic_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_elliptic_w100_seed2",
+      "variant": "a0_prune",
+      "state": "failed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_elliptic_seed2_a0_prune",
+      "metrics": {
+        "critical_path_ns": 9.49412,
+        "wirelength": 81567,
+        "router_seconds": 66.8,
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      },
+      "process_wall_seconds": 72.49404375627637,
+      "peak_rss_kib": 436024
+    },
+    {
+      "circuit": "elliptic_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_elliptic_w100_seed2",
+      "variant": "a1_w2_prune",
+      "state": "failed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_elliptic_seed2_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 9.68631,
+        "wirelength": 80078,
+        "router_seconds": 40.43,
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      },
+      "process_wall_seconds": 46.24832567945123,
+      "peak_rss_kib": 436036
+    },
+    {
+      "circuit": "elliptic_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_elliptic_w100_seed2",
+      "variant": "a3_prune",
+      "state": "failed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_elliptic_seed2_a3_prune",
+      "metrics": {
+        "critical_path_ns": 9.2651,
+        "wirelength": 84421,
+        "router_seconds": 59.18,
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      },
+      "process_wall_seconds": 64.68052071332932,
+      "peak_rss_kib": 436024
+    },
+    {
+      "circuit": "elliptic_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_elliptic_w100_seed3",
+      "variant": "a0_prune",
+      "state": "failed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_elliptic_seed3_a0_prune",
+      "metrics": {
+        "critical_path_ns": 9.77887,
+        "wirelength": 96640,
+        "router_seconds": 84.86,
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      },
+      "process_wall_seconds": 90.37368862330914,
+      "peak_rss_kib": 436100
+    },
+    {
+      "circuit": "elliptic_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_elliptic_w100_seed3",
+      "variant": "a1_w2_prune",
+      "state": "failed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_elliptic_seed3_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 10.1291,
+        "wirelength": 95914,
+        "router_seconds": 68.6,
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      },
+      "process_wall_seconds": 74.2487518005073,
+      "peak_rss_kib": 436100
+    },
+    {
+      "circuit": "elliptic_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_elliptic_w100_seed3",
+      "variant": "a3_prune",
+      "state": "failed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_elliptic_seed3_a3_prune",
+      "metrics": {
+        "critical_path_ns": 9.51896,
+        "wirelength": 96021,
+        "router_seconds": 68.07,
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      },
+      "process_wall_seconds": 73.74927721917629,
+      "peak_rss_kib": 436064
+    },
+    {
+      "circuit": "tseng_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_tseng_balanced1",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_tseng_seed1_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.19702,
+        "wirelength": 14726,
+        "router_seconds": 0.28,
+        "iterations": 14,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.324616566300392,
+      "peak_rss_kib": 418608
+    },
+    {
+      "circuit": "tseng_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_tseng_balanced1",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_tseng_seed1_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.19702,
+        "wirelength": 14848,
+        "router_seconds": 0.27,
+        "iterations": 14,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.225254192948341,
+      "peak_rss_kib": 418624
+    },
+    {
+      "circuit": "tseng_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_tseng_balanced1",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_tseng_seed1_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.19702,
+        "wirelength": 14670,
+        "router_seconds": 0.57,
+        "iterations": 14,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.47594179213047,
+      "peak_rss_kib": 418500
+    },
+    {
+      "circuit": "tseng_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_tseng_balanced2",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_tseng_seed2_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.27308,
+        "wirelength": 14611,
+        "router_seconds": 0.28,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.275558695197105,
+      "peak_rss_kib": 418516
+    },
+    {
+      "circuit": "tseng_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_tseng_balanced2",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_tseng_seed2_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.30475,
+        "wirelength": 14705,
+        "router_seconds": 0.29,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.2749041095376015,
+      "peak_rss_kib": 418500
+    },
+    {
+      "circuit": "tseng_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_tseng_balanced2",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_tseng_seed2_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.27308,
+        "wirelength": 14666,
+        "router_seconds": 0.6,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.625497970730066,
+      "peak_rss_kib": 418548
+    },
+    {
+      "circuit": "tseng_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_tseng_balanced3",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_tseng_seed3_a0_prune",
+      "metrics": {
+        "critical_path_ns": 6.05713,
+        "wirelength": 14710,
+        "router_seconds": 0.58,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.624707955867052,
+      "peak_rss_kib": 418484
+    },
+    {
+      "circuit": "tseng_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_tseng_balanced3",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_tseng_seed3_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 6.05713,
+        "wirelength": 14800,
+        "router_seconds": 0.27,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.57756195217371,
+      "peak_rss_kib": 418528
+    },
+    {
+      "circuit": "tseng_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_tseng_balanced3",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/small_prune_controls_tseng_seed3_a3_prune",
+      "metrics": {
+        "critical_path_ns": 6.12008,
+        "wirelength": 14769,
+        "router_seconds": 0.67,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 5.7876416221261024,
+      "peak_rss_kib": 418484
+    }
+  ],
+  "finished_epoch": 1792676954.5877705
+}

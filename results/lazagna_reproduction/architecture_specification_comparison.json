@@ -1,0 +1,91 @@
+{
+  "created_utc": "2026-10-23T14:28:36.763039+00:00",
+  "sources": [
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/LaZagna-paper/arch_files/templates/dsp_bram/vtr_arch_dsp_bram.xml",
+      "sha256": "4db97df7d66cefb795fd6e18ed63c438cc67e8f287550c311f65abd82ad8b66c"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/sb_architecture.xml",
+      "sha256": "c39324c6544cbed2a21649a93d6bc8d10d7ac4c509737d0c7cdebd331bd8f46a"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/configs/architectures/koios_native3d_n6_f16_d1_v3.xml",
+      "sha256": "b19507fc7eeb0f87208a8565fe09b6313aafd1d6006b057c1e284ae2c549ef60"
+    }
+  ],
+  "equalities": {
+    "models": {
+      "paper_equals_beyond": true,
+      "paper_equals_native": true
+    },
+    "complexblocklist": {
+      "paper_equals_beyond": true,
+      "paper_equals_native": true
+    },
+    "tiles": {
+      "paper_equals_beyond": true,
+      "paper_equals_native": false
+    },
+    "tiles_ignoring_explicit_zero_direct_Z_Fc": true
+  },
+  "removed_zero_z_fc_overrides": 4,
+  "paper_template_segments": [
+    {
+      "name": "L4",
+      "freq": "280",
+      "length": "4",
+      "type": "unidir",
+      "Rmetal": "0.0",
+      "Cmetal": "0.0"
+    },
+    {
+      "name": "L16",
+      "freq": "40",
+      "length": "16",
+      "type": "unidir",
+      "Rmetal": "0.0",
+      "Cmetal": "0.0"
+    },
+    {
+      "name": "3D_SB_connection",
+      "freq": "0",
+      "length": "1",
+      "type": "unidir",
+      "Rmetal": "0.0",
+      "Cmetal": "0.0"
+    }
+  ],
+  "native_segments": [
+    {
+      "name": "L4",
+      "freq": "280",
+      "length": "4",
+      "type": "unidir",
+      "Rmetal": "0.0",
+      "Cmetal": "0.0"
+    },
+    {
+      "name": "L16",
+      "freq": "40",
+      "length": "16",
+      "type": "unidir",
+      "Rmetal": "0.0",
+      "Cmetal": "0.0"
+    },
+    {
+      "name": "z_segment",
+      "freq": "0",
+      "length": "1",
+      "axis": "z",
+      "type": "unidir",
+      "Rmetal": "0.0",
+      "Cmetal": "0.0"
+    }
+  ],
+  "paper_table_segments": {
+    "L4_tracks": 260,
+    "L16_tracks": 40
+  },
+  "warning": "Paper table states 260:40 while published XML segment frequency weights are 280:40. Keep as-released XML primary and report this discrepancy; inspect generated counts."
+}

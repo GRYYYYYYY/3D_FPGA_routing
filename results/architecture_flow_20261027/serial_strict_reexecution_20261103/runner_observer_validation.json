@@ -1,0 +1,21 @@
+{
+  "utc": "2026-11-03T06:38:31.571853+00:00",
+  "passed": true,
+  "command": "PYTHONPATH=<project>/scripts .venv-lazagna/bin/python <execution_scripts>/test_isolated_runner.py",
+  "source_sha256": {
+    "process_tree_observer.py": "eea49788c003d73ed41c7f4edecec4158b8882c9a35c3a0ba609d35659a16cfe",
+    "flatland_experiment_io.py": "6c40f5965a5f28e881a7f16fdfaa388d87e7a2d21e4b67934f28c51cf693e99c",
+    "test_isolated_runner.py": "6aff1bda2ebe4c1f5b10f753cc848d89ded1ab746c43205f400fba00445aba47"
+  },
+  "checks": [
+    "descendant process multi-thread detected",
+    "existing receipt cannot be overwritten",
+    "failure and timeout receipts retained",
+    "single-process observation"
+  ],
+  "limits": [
+    "synthetic tests only",
+    "polling cannot prove no transient threads",
+    "monitor overhead affects elapsed time"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "utc": "2026-11-03T07:56:15.409041+00:00",
+  "scope": "Bounded interim triage of completed failed training receipts; counts may increase as training continues.",
+  "failure_counts": {
+    "routing_failure": 28,
+    "allocation_failure": 2
+  },
+  "allocation_cases": [
+    {
+      "name": "training_bnn_s11_hybrid_o_n125_w100_p0_geometry_c0",
+      "status": "failed",
+      "returncode": 134,
+      "manifest_sha256": "25d24294de7dfd65a5ef65939c52cb85c43476d1f38111bd2c4a3a886db53ee4",
+      "stdout_sha256": "7247b2120df08caca5bbe73c51c7986add869b60f108fcb1b99186f5e3ea9305",
+      "historical_status": "failed",
+      "historical_returncode": 134
+    },
+    {
+      "name": "training_bnn_s11_sb_n125_w100_p0_geometry_c0",
+      "status": "failed",
+      "returncode": 134,
+      "manifest_sha256": "0a524e23512777593180ac4760b5aafc2a999ad3e78ab84d1da78ac94ade2b65",
+      "stdout_sha256": "0f6b59b01bce40490330c613958615a88a084051d8a9d6ba37fcf952d79284ca",
+      "historical_status": "failed",
+      "historical_returncode": 134
+    }
+  ],
+  "interpretation": "Allocation failures occur under preregistered 64 GiB address-space limit; logs do not alone establish exact allocation mechanism. Preserve registered failures and do not retry with a larger limit."
+}

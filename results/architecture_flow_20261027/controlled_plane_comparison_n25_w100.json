@@ -1,0 +1,55 @@
+{
+  "utc": "2026-10-27T21:37:01.921662+00:00",
+  "paths": {
+    "sb": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/controlled_graph_sb_n25_w100_ideal/rr_graph.xml",
+      "sha256": "effee8d4b1d1eae04734a8d0d632c7bbce9f92229203c87d1cd81d145b06f8ae"
+    },
+    "cb_o": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/controlled_graph_cb_o_n25_w100_ideal/rr_graph.xml",
+      "sha256": "457f4732005cc57007db40ed18d8a8a414d8ffcb4e40628ce8a875e8cf5905f3"
+    },
+    "hybrid_o": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/controlled_graph_hybrid_o_n25_w100_ideal/rr_graph.xml",
+      "sha256": "f7e2a626b98001fa33b65408ff5d710e4e1d571fc2f6931a5466985d56648618"
+    }
+  },
+  "comparison": "Exact physical ordinary-node identities and directed same-layer edges including switch name/type/all timing fields; CHANX/NONE SB half-nodes and all inter-layer edges excluded",
+  "reference": {
+    "ordinary_nodes": 178414,
+    "planar_edges": 1349424,
+    "crossing_edges": {
+      "SB->SB": 106712
+    }
+  },
+  "results": {
+    "cb_o": {
+      "same_ordinary_nodes": true,
+      "ordinary_nodes": 178414,
+      "unknown_nodes": 0,
+      "same_planar_edges": false,
+      "planar_edges": 1349424,
+      "missing_vs_sb": 129798,
+      "added_vs_sb": 129798,
+      "crossing_edges": {
+        "OPIN->CHANY": 154836,
+        "OPIN->CHANX": 62376
+      }
+    },
+    "hybrid_o": {
+      "same_ordinary_nodes": true,
+      "ordinary_nodes": 178414,
+      "unknown_nodes": 0,
+      "same_planar_edges": false,
+      "planar_edges": 1349424,
+      "missing_vs_sb": 129798,
+      "added_vs_sb": 129798,
+      "crossing_edges": {
+        "OPIN->CHANY": 154836,
+        "OPIN->CHANX": 62376,
+        "SB->SB": 106712
+      }
+    }
+  },
+  "passed": false
+}

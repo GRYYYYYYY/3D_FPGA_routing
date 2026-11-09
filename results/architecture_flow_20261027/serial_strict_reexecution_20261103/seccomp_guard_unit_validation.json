@@ -1,0 +1,27 @@
+{
+  "utc": "2026-11-03T07:20:15.384183+00:00",
+  "status": "unit_tests_passed_not_approved_for_formal_timing",
+  "kernel": "5.15.0-119-generic",
+  "architecture": "x86_64",
+  "checks": [
+    "ordinary subprocess succeeds",
+    "pthread creation terminates caller with SIGSYS",
+    "direct clone with CLONE_THREAD terminates caller",
+    "descendant inherits guard",
+    "clone3 returns ENOSYS",
+    "x32 syscall ABI denied",
+    "no tracer and no-new-privileges verified"
+  ],
+  "source_sha256": {
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/seccomp_thread_guard.c": "52642b31d0b70bdb98f800c3bb3f41fe7d27087a966b361722cdcb718c0f9479",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/seccomp_thread_guard": "e1a990f2884c3b332d8561bfb3decc1bdb8a9affc5db6f9d672506c591fbf877",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/test_seccomp_thread_guard.py": "f2f1d9971596ad588008bb2151f06670fc5ff436090fb9deaa9c09d9ca58fbc5"
+  },
+  "limitations": [
+    "Linux x86-64 only",
+    "clone3 denied for all uses, including process creation",
+    "thread-creation attempt kills the calling process; parent process may handle failure",
+    "BPF filter overhead remains; VPR and partition workload pilot and separate registered timing runner remain required",
+    "unit test does not establish whole-system timing neutrality"
+  ]
+}

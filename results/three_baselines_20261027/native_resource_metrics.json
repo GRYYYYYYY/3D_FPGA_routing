@@ -1,0 +1,142 @@
+{
+  "utc": "2026-10-27T11:10:04.620807+00:00",
+  "summary_sha256": "1ae0c62a7837797b75ef64f72a4b7c7bd2ff4d402f6144e2d03f7c1e2feac7a3",
+  "metrics": {
+    "horizontal_track_length": {
+      "paired_cases": 10,
+      "geomean_ratio": 0.9980829090367002,
+      "change_percent": -0.1917090963299839,
+      "pairs": [
+        {
+          "case": "attention_layer",
+          "a0": 366416,
+          "a3": 366271,
+          "ratio": 0.9996042749224925
+        },
+        {
+          "case": "conv_layer",
+          "a0": 314938,
+          "a3": 314848,
+          "ratio": 0.9997142294673872
+        },
+        {
+          "case": "dla_like.small",
+          "a0": 1036883,
+          "a3": 1034189,
+          "ratio": 0.9974018283644346
+        },
+        {
+          "case": "bnn",
+          "a0": 1642411,
+          "a3": 1638027,
+          "ratio": 0.9973307533863327
+        },
+        {
+          "case": "lstm",
+          "a0": 1730033,
+          "a3": 1726443,
+          "ratio": 0.9979248950742559
+        },
+        {
+          "case": "tpu_like.small.ws",
+          "a0": 369889,
+          "a3": 369032,
+          "ratio": 0.9976830887103969
+        },
+        {
+          "case": "tpu_like.large.ws",
+          "a0": 1269582,
+          "a3": 1266978,
+          "ratio": 0.9979489312230324
+        },
+        {
+          "case": "clstm_like.small",
+          "a0": 204488,
+          "a3": 203898,
+          "ratio": 0.997114745119518
+        },
+        {
+          "case": "robot_rl",
+          "a0": 200544,
+          "a3": 200488,
+          "ratio": 0.9997207595340674
+        },
+        {
+          "case": "conv_layer_hls",
+          "a0": 77604,
+          "a3": 77324,
+          "ratio": 0.9963919385598681
+        }
+      ]
+    },
+    "vertical_channel_net_occupancy": {
+      "paired_cases": 10,
+      "geomean_ratio": 0.9894938457280624,
+      "change_percent": -1.0506154271937573,
+      "pairs": [
+        {
+          "case": "attention_layer",
+          "a0": 3070,
+          "a3": 3015,
+          "ratio": 0.9820846905537459
+        },
+        {
+          "case": "conv_layer",
+          "a0": 2056,
+          "a3": 2014,
+          "ratio": 0.9795719844357976
+        },
+        {
+          "case": "dla_like.small",
+          "a0": 9968,
+          "a3": 9853,
+          "ratio": 0.9884630818619583
+        },
+        {
+          "case": "bnn",
+          "a0": 17274,
+          "a3": 17062,
+          "ratio": 0.9877272200995716
+        },
+        {
+          "case": "lstm",
+          "a0": 17045,
+          "a3": 16699,
+          "ratio": 0.9797007920211206
+        },
+        {
+          "case": "tpu_like.small.ws",
+          "a0": 3185,
+          "a3": 3164,
+          "ratio": 0.9934065934065934
+        },
+        {
+          "case": "tpu_like.large.ws",
+          "a0": 11596,
+          "a3": 11375,
+          "ratio": 0.9809417040358744
+        },
+        {
+          "case": "clstm_like.small",
+          "a0": 1638,
+          "a3": 1635,
+          "ratio": 0.9981684981684982
+        },
+        {
+          "case": "robot_rl",
+          "a0": 886,
+          "a3": 875,
+          "ratio": 0.9875846501128668
+        },
+        {
+          "case": "conv_layer_hls",
+          "a0": 391,
+          "a3": 398,
+          "ratio": 1.0179028132992327
+        }
+      ]
+    }
+  },
+  "formula": "exp(mean(log(A3/A0))) over common independently audited successes only",
+  "scope": "Same native graph; horizontal_track_length excludes CHANZ and vertical occupancy counts each physical resource once per net. No cross-family wirelength ratio is inferred."
+}

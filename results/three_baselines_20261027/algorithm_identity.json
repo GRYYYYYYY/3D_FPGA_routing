@@ -1,0 +1,87 @@
+{
+  "utc": "2026-10-27T11:01:00.665618+00:00",
+  "passed": true,
+  "original_variant": {
+    "name": "a3",
+    "binary": "artifacts/bin/a4scc/vpr",
+    "env": {
+      "VPR_H3D_MODE": "static",
+      "VPR_H3D_REACHABILITY": "scc",
+      "VPR_H3D_STATS": "1"
+    }
+  },
+  "variant_config_sha256": "1b76cf66b429f5b31dcafc386d63129249fdf0abfce8c4883ea7448191017491",
+  "runs": [
+    {
+      "name": "a3_attention_layer",
+      "init": "reachability=scc channels=60000 init_seconds=8.575515",
+      "last_plan": "plans=25719 groups=2606 bfs_nodes=0 cache_entries=0 no_candidate=0 fallback=0 planning_seconds=11.996316",
+      "last_tree": "guided_paths=20789 preferred_paths=623 rollbacks=0",
+      "log_sha256": "132f4463c41f107e6fe911d1f11ff14fac7b536fa51d7c16e634f907f9a1fc46"
+    },
+    {
+      "name": "a3_bnn",
+      "init": "reachability=scc channels=60000 init_seconds=8.751248",
+      "last_plan": "plans=87678 groups=15143 bfs_nodes=0 cache_entries=0 no_candidate=0 fallback=0 planning_seconds=30.261243",
+      "last_tree": "guided_paths=392975 preferred_paths=9273 rollbacks=0",
+      "log_sha256": "5c979c48aafffeeb59ac59c3d4352a28618ce6a4f7863978505d50db5169e76e"
+    },
+    {
+      "name": "a3_clstm_like.small",
+      "init": "reachability=scc channels=60000 init_seconds=8.303752",
+      "last_plan": "plans=14461 groups=1474 bfs_nodes=0 cache_entries=0 no_candidate=0 fallback=0 planning_seconds=10.351528",
+      "last_tree": "guided_paths=23333 preferred_paths=860 rollbacks=0",
+      "log_sha256": "60b416e331e31c4c09c27b6a5024e2f337041e17b0ef1b75c209291c78585d88"
+    },
+    {
+      "name": "a3_conv_layer",
+      "init": "reachability=scc channels=60000 init_seconds=8.647548",
+      "last_plan": "plans=22315 groups=1517 bfs_nodes=0 cache_entries=0 no_candidate=0 fallback=0 planning_seconds=10.948227",
+      "last_tree": "guided_paths=27701 preferred_paths=549 rollbacks=0",
+      "log_sha256": "f92e4860ee452a915704da9675448adc149d0514dbe2ef8f6c2d671331898a28"
+    },
+    {
+      "name": "a3_conv_layer_hls",
+      "init": "reachability=scc channels=60000 init_seconds=8.522589",
+      "last_plan": "plans=5858 groups=301 bfs_nodes=0 cache_entries=0 no_candidate=0 fallback=0 planning_seconds=8.923496",
+      "last_tree": "guided_paths=2770 preferred_paths=64 rollbacks=0",
+      "log_sha256": "d95dde7be64203007171af28d2be6c4e5e0f9fd3e2574713ce924152098a1cda"
+    },
+    {
+      "name": "a3_dla_like.small",
+      "init": "reachability=scc channels=60000 init_seconds=8.553645",
+      "last_plan": "plans=71864 groups=9004 bfs_nodes=0 cache_entries=0 no_candidate=0 fallback=0 planning_seconds=20.905841",
+      "last_tree": "guided_paths=120067 preferred_paths=5470 rollbacks=0",
+      "log_sha256": "4b4c4b149058d3a2b24c0c840177cf887ed452cab5af93e4587702124bed7088"
+    },
+    {
+      "name": "a3_lstm",
+      "init": "reachability=scc channels=60000 init_seconds=8.472748",
+      "last_plan": "plans=121904 groups=12120 bfs_nodes=0 cache_entries=0 no_candidate=0 fallback=0 planning_seconds=24.952878",
+      "last_tree": "guided_paths=127181 preferred_paths=2116 rollbacks=0",
+      "log_sha256": "78bd168aaba668590b63636ab7734357c10f52248e69be48209898ca1fbdef42"
+    },
+    {
+      "name": "a3_robot_rl",
+      "init": "reachability=scc channels=60000 init_seconds=8.545989",
+      "last_plan": "plans=13954 groups=519 bfs_nodes=0 cache_entries=0 no_candidate=0 fallback=0 planning_seconds=9.563368",
+      "last_tree": "guided_paths=12222 preferred_paths=685 rollbacks=0",
+      "log_sha256": "4557c4661aa5c9ae79a0cda5b4c00e7bc1cc3a0fa19e978795cacc4cba01d777"
+    },
+    {
+      "name": "a3_tpu_like.large.ws",
+      "init": "reachability=scc channels=60000 init_seconds=8.507526",
+      "last_plan": "plans=77958 groups=9296 bfs_nodes=0 cache_entries=0 no_candidate=0 fallback=0 planning_seconds=23.180016",
+      "last_tree": "guided_paths=220099 preferred_paths=4171 rollbacks=0",
+      "log_sha256": "6cc1d81adc4196b427a2a48ba6532d27c8d38dee3ecf96e8ab712574978f6300"
+    },
+    {
+      "name": "a3_tpu_like.small.ws",
+      "init": "reachability=scc channels=60000 init_seconds=8.623882",
+      "last_plan": "plans=23651 groups=2775 bfs_nodes=0 cache_entries=0 no_candidate=0 fallback=0 planning_seconds=12.851273",
+      "last_tree": "guided_paths=55310 preferred_paths=2068 rollbacks=0",
+      "log_sha256": "6218531ea58119784b4fd50310ac20f7e20b2a3b6d5001d59140fc6ef2d1bb76"
+    }
+  ],
+  "note": "Every A3 receipt matches the original archived binary and environment; planner logs demonstrate active SCC planning. Final legality still depends on validation.json."
+}

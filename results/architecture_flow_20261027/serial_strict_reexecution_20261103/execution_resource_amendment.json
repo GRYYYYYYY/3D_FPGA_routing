@@ -1,0 +1,21 @@
+{
+  "utc": "2026-11-03T07:05:30.980032+00:00",
+  "protocol_sha256": "91dcd6f8948c97c87700a615aec67baaf345ea13498f119a925ffa8ef88dce93",
+  "original_amendment_sha256": "f846f96c1ce4cde91c1a71d99be26ee0b30fd678e42ba3efef8084d261884e56",
+  "original_amendment": {
+    "utc": "2026-10-27T22:12:16.129510+00:00",
+    "protocol_sha256": "a21af6c1a5d9462d9baaeef60d606913e0aa9b441166b4dfded7f1ba891beb74",
+    "scope": "Before first formal placement/routing",
+    "change": "All formal A0,R1,B2,P0,P1 child processes receive identical64GiB virtual-address-space soft/hard limit via prlimit; process timeouts remain registered; at most6 active VPR jobs including concurrent preparation",
+    "reason": "Bound large-graph candidate caches and avoid uncontrolled aggregate memory consumption on shared host",
+    "failure_policy": "Keep memory-limit terminations as resource failures in registered denominator; no silent retry with extra memory"
+  },
+  "scope": "Independent strict-thread reexecution before formal training; historical inputs and outcomes remain separate.",
+  "limits": "Preserve inherited 64 GiB address-space limit, registered timeouts and at most six owned concurrent VPR processes.",
+  "thread_observation": "strace follows descendants and records clone/clone3; flag any CLONE_THREAD attempt, supplemented by 10 ms /proc process-tree sampling. Report missing observations as infrastructure failures.",
+  "instrumentation_timing": "ptrace can perturb wall time and timeouts; traced durations are diagnostic only and do not establish uninstrumented speedup. Independently specify and qualify non-ptrace serial timing before use.",
+  "selection": "Select only from new training data before heldout; preserve all failed and unstarted outcomes.",
+  "input_provenance": "Pre-existing packed census and models are reused as frozen inputs; this reexecution is not a strict-thread reproduction of upstream preprocessing.",
+  "core_dump_policy": "Disable child core dumps with prlimit core=0:0; preserve logs, status and other outputs. Historical two 64 GiB core files remain unchanged.",
+  "training_free_space_guard": "Check shared filesystem free space before each training placement and route; stop and preserve receipts below 80 GiB. Active jobs drain; this is a guard, not a guarantee against concurrent external consumption."
+}

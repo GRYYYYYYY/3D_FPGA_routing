@@ -1,0 +1,838 @@
+{
+  "utc": "2026-11-08T10:46:38.101985+00:00",
+  "scope": "Only closed W300 spmv seed11 SB/CB-O/Hybrid-O cohort under P0/P1. Not whole W300 stage or study.",
+  "case_count": 3,
+  "distinct_route_attempts": 18,
+  "legal_routes": 18,
+  "failed_routes": 0,
+  "evaluation_jobs_sha256": "efbc5f6d7fd682a44afbca64ccbe72f9c9c53bb92ef908b5d43cb02a0c878fcf",
+  "bridge_manifest": "benchmark_models/n40_w300/manifest.json",
+  "bridge_manifest_sha256": "5b7a2a60a4928b60140db8e769e53a8a414d0a1faf8bbff8b8197698d024d824",
+  "cases": [
+    {
+      "family": "sb",
+      "result": "evaluation_cases/width300_spmv_s11_sb_w300/result.json",
+      "result_sha256": "140886fdb41b996be4285ceb6eab4b41301eda50fba1bd473ef5267e49ca9f84",
+      "matches_frozen_job": true,
+      "existing_semantic_bridge": {
+        "passed": true,
+        "exact_compared_lines": 22540769,
+        "unused_segment_id": 3,
+        "method": "All XML lines exactly equal, except location attributes normalized by independent XML parser and one verified unused segment; reject any node referencing the unused segment"
+      },
+      "flows": [
+        {
+          "flow": "p0",
+          "role_to_run": {
+            "A0": "width300_spmv_s11_sb_n40_w300_p0_a0",
+            "R1": "width300_spmv_s11_sb_n40_w300_p0_critical_c7",
+            "B2": "width300_spmv_s11_sb_n40_w300_p0_b2"
+          },
+          "audit_summary": "evaluation_cases/width300_spmv_s11_sb_w300/p0_audit_summary.json",
+          "audit_summary_sha256": "f485830f1c81dc5a27d6258739e2b6b2dbbb5518603cbbf7030d53066897db99",
+          "legal_count": 3,
+          "failed_count": 0,
+          "runs": [
+            {
+              "role": "A0",
+              "name": "width300_spmv_s11_sb_n40_w300_p0_a0",
+              "manifest": "runs/width300_spmv_s11_sb_n40_w300_p0_a0/manifest.json",
+              "manifest_sha256": "1a63104ab53f3eec229b1845cdd5e52f894ab71349bcdf0dd43f78a27ac9018f",
+              "independent_audit": "runs/width300_spmv_s11_sb_n40_w300_p0_a0/independent_audit.json",
+              "independent_audit_sha256": "51bf99de14a235fbe7689408335b7b62feb39032e4be5b4dbe919321e3a647a1",
+              "route": "runs/width300_spmv_s11_sb_n40_w300_p0_a0/routed.route",
+              "fresh_route_sha256": "7bad8ef53925ae1e075c8856c34d1449d71f3dd7f40f381525177b5f289a9d70",
+              "critical_path_ns": 6.52937,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "fbe770f980c9df8ea5dffdd00bf8e38f4a15e6787127d893c741d55146b3d64c",
+                "placed.place": "72f117be4ea5483686813b8a630da6706a77dfd98143799f6813daec342deb39"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "a3a4537bf9e0cb6283f8224b283b2bd298ef6485e977a9221029e36cb05e3a59",
+              "tool_architecture_recorded_sha256": "97730f1b2ff5059f7cd87849284c323a3c3df96a561f56fca23e09d1fc8cdb13",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            },
+            {
+              "role": "R1",
+              "name": "width300_spmv_s11_sb_n40_w300_p0_critical_c7",
+              "manifest": "runs/width300_spmv_s11_sb_n40_w300_p0_critical_c7/manifest.json",
+              "manifest_sha256": "028cafd4e70f45b146a2494f261582e996873fade27bdb77898080fe2eaa8495",
+              "independent_audit": "runs/width300_spmv_s11_sb_n40_w300_p0_critical_c7/independent_audit.json",
+              "independent_audit_sha256": "54a2cf42a89c52111f0bcd3416c1a1001a3705248230e457a7b9e8e16d6b948e",
+              "route": "runs/width300_spmv_s11_sb_n40_w300_p0_critical_c7/routed.route",
+              "fresh_route_sha256": "2303c5b6aea5804197f3523035ec5440563a5dff363b9cdbeb56f4b3a46e638a",
+              "critical_path_ns": 6.51872,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "fbe770f980c9df8ea5dffdd00bf8e38f4a15e6787127d893c741d55146b3d64c",
+                "placed.place": "72f117be4ea5483686813b8a630da6706a77dfd98143799f6813daec342deb39"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "a3a4537bf9e0cb6283f8224b283b2bd298ef6485e977a9221029e36cb05e3a59",
+              "tool_architecture_recorded_sha256": "97730f1b2ff5059f7cd87849284c323a3c3df96a561f56fca23e09d1fc8cdb13",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            },
+            {
+              "role": "B2",
+              "name": "width300_spmv_s11_sb_n40_w300_p0_b2",
+              "manifest": "runs/width300_spmv_s11_sb_n40_w300_p0_b2/manifest.json",
+              "manifest_sha256": "df430dba62f1acec23f4b0c84ca43d6f0a44188e643d59e256104c4113aef80d",
+              "independent_audit": "runs/width300_spmv_s11_sb_n40_w300_p0_b2/independent_audit.json",
+              "independent_audit_sha256": "767991549e7252cfe0d96c7ed33a4fc9f00cc19f98d442550655a246e5789a13",
+              "route": "runs/width300_spmv_s11_sb_n40_w300_p0_b2/routed.route",
+              "fresh_route_sha256": "50f3a30eb7b4ea940898b2bbb46ea07f070f81989230c5d33dc76cd8fa35beaa",
+              "critical_path_ns": 6.60691,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "fbe770f980c9df8ea5dffdd00bf8e38f4a15e6787127d893c741d55146b3d64c",
+                "placed.place": "72f117be4ea5483686813b8a630da6706a77dfd98143799f6813daec342deb39"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "85153b8c178392bd32821448acdf8db611c8f60a00fb266fb924fb7d63eedbf8",
+              "tool_architecture_recorded_sha256": "a02a28962a9474ca7dac12553dff28fd890a1fa24b22a6f979109e22f407a554",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            }
+          ],
+          "critical_path_ns": {
+            "A0": 6.52937,
+            "R1": 6.51872,
+            "B2": 6.60691
+          },
+          "r1_improvement_percent": {
+            "A0": 0.1631091514188972,
+            "B2": 1.3348146107635792
+          }
+        },
+        {
+          "flow": "p1",
+          "role_to_run": {
+            "A0": "width300_spmv_s11_sb_n40_w300_p1_a0",
+            "R1": "width300_spmv_s11_sb_n40_w300_p1_critical_c7",
+            "B2": "width300_spmv_s11_sb_n40_w300_p1_b2"
+          },
+          "audit_summary": "evaluation_cases/width300_spmv_s11_sb_w300/p1_audit_summary.json",
+          "audit_summary_sha256": "3c21d5db37e3ef77329afb1852bbaf511810c649ef482a4633a6237718134713",
+          "legal_count": 3,
+          "failed_count": 0,
+          "runs": [
+            {
+              "role": "A0",
+              "name": "width300_spmv_s11_sb_n40_w300_p1_a0",
+              "manifest": "runs/width300_spmv_s11_sb_n40_w300_p1_a0/manifest.json",
+              "manifest_sha256": "03f747c08fbd2d0501ee3fe22a36ae2335f23e5d261f89a9bf6d72a8cde4eb37",
+              "independent_audit": "runs/width300_spmv_s11_sb_n40_w300_p1_a0/independent_audit.json",
+              "independent_audit_sha256": "21ec44f77194a45d55f0ad3a98aa93c213b743e7ae3e23c638f18a4c1541776b",
+              "route": "runs/width300_spmv_s11_sb_n40_w300_p1_a0/routed.route",
+              "fresh_route_sha256": "ed939a472b0f85c150f80a3385c140dfb2209b7948476aaea0dcee99f5b13fc3",
+              "critical_path_ns": 6.34354,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "28c209cc2c2f4bc3afa11e690f1f09f581213b253e696900d87ca6d1727369fd",
+                "placed.place": "0e7de3c5f480b033c900892ca14048263c2e80d24106d4204c60e08aef55ecc4"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "a3a4537bf9e0cb6283f8224b283b2bd298ef6485e977a9221029e36cb05e3a59",
+              "tool_architecture_recorded_sha256": "97730f1b2ff5059f7cd87849284c323a3c3df96a561f56fca23e09d1fc8cdb13",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            },
+            {
+              "role": "R1",
+              "name": "width300_spmv_s11_sb_n40_w300_p1_critical_c7",
+              "manifest": "runs/width300_spmv_s11_sb_n40_w300_p1_critical_c7/manifest.json",
+              "manifest_sha256": "ba3cc03b221f8dcfaa70fa71b734b2cab92c9cec3297ebc62f5150d71cbd4f98",
+              "independent_audit": "runs/width300_spmv_s11_sb_n40_w300_p1_critical_c7/independent_audit.json",
+              "independent_audit_sha256": "c46c7bb6c550d843248514ddcf5507dff4f7b3e2dd8281b4a9f2794773d85ff4",
+              "route": "runs/width300_spmv_s11_sb_n40_w300_p1_critical_c7/routed.route",
+              "fresh_route_sha256": "692e6e4ccb9327b7917e492579357f90119a8fbe3a1c0153e0a0961e115321ab",
+              "critical_path_ns": 6.3216,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "28c209cc2c2f4bc3afa11e690f1f09f581213b253e696900d87ca6d1727369fd",
+                "placed.place": "0e7de3c5f480b033c900892ca14048263c2e80d24106d4204c60e08aef55ecc4"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "a3a4537bf9e0cb6283f8224b283b2bd298ef6485e977a9221029e36cb05e3a59",
+              "tool_architecture_recorded_sha256": "97730f1b2ff5059f7cd87849284c323a3c3df96a561f56fca23e09d1fc8cdb13",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            },
+            {
+              "role": "B2",
+              "name": "width300_spmv_s11_sb_n40_w300_p1_b2",
+              "manifest": "runs/width300_spmv_s11_sb_n40_w300_p1_b2/manifest.json",
+              "manifest_sha256": "35a86fd54c490c8682085a302e2de18081ac9d0ffa746201442164861761680f",
+              "independent_audit": "runs/width300_spmv_s11_sb_n40_w300_p1_b2/independent_audit.json",
+              "independent_audit_sha256": "ec79fd4c2326c29d9c210f04e00fc9e2a74b92eed484d7f0961fefd1d9093dde",
+              "route": "runs/width300_spmv_s11_sb_n40_w300_p1_b2/routed.route",
+              "fresh_route_sha256": "09467820cc9d3bffac7e204f2223984ab53bdff50661e3c0cb34b8738edb486b",
+              "critical_path_ns": 6.3216,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "28c209cc2c2f4bc3afa11e690f1f09f581213b253e696900d87ca6d1727369fd",
+                "placed.place": "0e7de3c5f480b033c900892ca14048263c2e80d24106d4204c60e08aef55ecc4"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "85153b8c178392bd32821448acdf8db611c8f60a00fb266fb924fb7d63eedbf8",
+              "tool_architecture_recorded_sha256": "a02a28962a9474ca7dac12553dff28fd890a1fa24b22a6f979109e22f407a554",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            }
+          ],
+          "critical_path_ns": {
+            "A0": 6.34354,
+            "R1": 6.3216,
+            "B2": 6.3216
+          },
+          "r1_improvement_percent": {
+            "A0": 0.34586366602874496,
+            "B2": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "family": "cb_o",
+      "result": "evaluation_cases/width300_spmv_s11_cb_o_w300/result.json",
+      "result_sha256": "80a645c5d4dda9306c19befea27319c84791838aa2f1d7c9177b6d52304ec0b9",
+      "matches_frozen_job": true,
+      "existing_semantic_bridge": {
+        "passed": true,
+        "exact_compared_lines": 15041137,
+        "unused_segment_id": 3,
+        "method": "All XML lines exactly equal, except location attributes normalized by independent XML parser and one verified unused segment; reject any node referencing the unused segment"
+      },
+      "flows": [
+        {
+          "flow": "p0",
+          "role_to_run": {
+            "A0": "width300_spmv_s11_cb_o_n40_w300_p0_a0",
+            "R1": "width300_spmv_s11_cb_o_n40_w300_p0_critical_c4",
+            "B2": "width300_spmv_s11_cb_o_n40_w300_p0_b2"
+          },
+          "audit_summary": "evaluation_cases/width300_spmv_s11_cb_o_w300/p0_audit_summary.json",
+          "audit_summary_sha256": "f3697c58a0d4e0f5381e33ee18cbb1e9bf31694c2b117065481ec281ee6fab9b",
+          "legal_count": 3,
+          "failed_count": 0,
+          "runs": [
+            {
+              "role": "A0",
+              "name": "width300_spmv_s11_cb_o_n40_w300_p0_a0",
+              "manifest": "runs/width300_spmv_s11_cb_o_n40_w300_p0_a0/manifest.json",
+              "manifest_sha256": "434186f6cc79d9189344e7ea806db5d110a2a890235c0bd5c5eda29cca844f2a",
+              "independent_audit": "runs/width300_spmv_s11_cb_o_n40_w300_p0_a0/independent_audit.json",
+              "independent_audit_sha256": "5ae275b6eac1ce266152ca5ecc030c972991e321aabf2b5edc6115c01d9381e2",
+              "route": "runs/width300_spmv_s11_cb_o_n40_w300_p0_a0/routed.route",
+              "fresh_route_sha256": "cb7a7361569d2a899a1fddac767fa352fdaa72f00af06b925eb5e0d6092f73f0",
+              "critical_path_ns": 6.89436,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "fbe770f980c9df8ea5dffdd00bf8e38f4a15e6787127d893c741d55146b3d64c",
+                "placed.place": "9b3f9678fdfb417ba5ce45e14d064836fba1580a3d96c96a5965b90b80bc38ac"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "e504ef3d192435005840b723be2cf12b0a628e3791ac9230bf3f139accf059b0",
+              "tool_architecture_recorded_sha256": "ef1f056e2ed60d0693b20cba261a3d590036960a45a2d0704a67e701354ad283",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            },
+            {
+              "role": "R1",
+              "name": "width300_spmv_s11_cb_o_n40_w300_p0_critical_c4",
+              "manifest": "runs/width300_spmv_s11_cb_o_n40_w300_p0_critical_c4/manifest.json",
+              "manifest_sha256": "3ffbc1fb4ec2fea0428adf5561b93b099adc65735de4b478a9b075387bcc38ef",
+              "independent_audit": "runs/width300_spmv_s11_cb_o_n40_w300_p0_critical_c4/independent_audit.json",
+              "independent_audit_sha256": "68470e4acc7bf6b29d6421b0498b78f5e82936b8d3fb8ac13c98ecd4ecacbd92",
+              "route": "runs/width300_spmv_s11_cb_o_n40_w300_p0_critical_c4/routed.route",
+              "fresh_route_sha256": "ff8945819a17b7b7830b77347542d7f708db8e4631bfc0e29e05eef8af758e10",
+              "critical_path_ns": 6.89436,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "fbe770f980c9df8ea5dffdd00bf8e38f4a15e6787127d893c741d55146b3d64c",
+                "placed.place": "9b3f9678fdfb417ba5ce45e14d064836fba1580a3d96c96a5965b90b80bc38ac"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "e504ef3d192435005840b723be2cf12b0a628e3791ac9230bf3f139accf059b0",
+              "tool_architecture_recorded_sha256": "ef1f056e2ed60d0693b20cba261a3d590036960a45a2d0704a67e701354ad283",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            },
+            {
+              "role": "B2",
+              "name": "width300_spmv_s11_cb_o_n40_w300_p0_b2",
+              "manifest": "runs/width300_spmv_s11_cb_o_n40_w300_p0_b2/manifest.json",
+              "manifest_sha256": "0c63f2dae805f40fc15c1a65ef8de1b5cc3a20089785319c7c03ab88dbaadef9",
+              "independent_audit": "runs/width300_spmv_s11_cb_o_n40_w300_p0_b2/independent_audit.json",
+              "independent_audit_sha256": "6f4ddd3755eaf8a8620123dcaa86a7a021614e7f9087358171857f36ca02747d",
+              "route": "runs/width300_spmv_s11_cb_o_n40_w300_p0_b2/routed.route",
+              "fresh_route_sha256": "e0b58d7b65915863f783f36f1df2929fdd3086931e651207cfbaf3b663d64ff4",
+              "critical_path_ns": 6.89436,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "fbe770f980c9df8ea5dffdd00bf8e38f4a15e6787127d893c741d55146b3d64c",
+                "placed.place": "9b3f9678fdfb417ba5ce45e14d064836fba1580a3d96c96a5965b90b80bc38ac"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "62d6fc2f1be8f87ca92980ffe2f65425ec01cd599bfeb361273a91a9caf99cc0",
+              "tool_architecture_recorded_sha256": "07943747eeff6a2900a524d801b538e30437942dc602fea82581f312152e12a9",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            }
+          ],
+          "critical_path_ns": {
+            "A0": 6.89436,
+            "R1": 6.89436,
+            "B2": 6.89436
+          },
+          "r1_improvement_percent": {
+            "A0": 0.0,
+            "B2": 0.0
+          }
+        },
+        {
+          "flow": "p1",
+          "role_to_run": {
+            "A0": "width300_spmv_s11_cb_o_n40_w300_p1_a0",
+            "R1": "width300_spmv_s11_cb_o_n40_w300_p1_critical_c4",
+            "B2": "width300_spmv_s11_cb_o_n40_w300_p1_b2"
+          },
+          "audit_summary": "evaluation_cases/width300_spmv_s11_cb_o_w300/p1_audit_summary.json",
+          "audit_summary_sha256": "501bcc75608d7191854acee0541cccb0fe99922988db829d9b2d5eb2e3688347",
+          "legal_count": 3,
+          "failed_count": 0,
+          "runs": [
+            {
+              "role": "A0",
+              "name": "width300_spmv_s11_cb_o_n40_w300_p1_a0",
+              "manifest": "runs/width300_spmv_s11_cb_o_n40_w300_p1_a0/manifest.json",
+              "manifest_sha256": "2bc359753400806b234f7056b75f0af7c4b8f4f73ca96a3d36f1c07947eb7ec6",
+              "independent_audit": "runs/width300_spmv_s11_cb_o_n40_w300_p1_a0/independent_audit.json",
+              "independent_audit_sha256": "3c7282922f1efe7013f564e595b4baca49e5f007a5bcad3d2687450ed3bfef6d",
+              "route": "runs/width300_spmv_s11_cb_o_n40_w300_p1_a0/routed.route",
+              "fresh_route_sha256": "a12c90fb3056fd155c7d53084c1962befcdf7fdef7e6b913155a198d8203ec6a",
+              "critical_path_ns": 6.41043,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "2f93b161c9344e7f753f3bd92f3ed4a4ba61ddff723c305cebe53f7e4b99f99c",
+                "placed.place": "6e7a7f2da501d294f66afc14ab35edd2f10cbe25df460fd23a8c78dfbd1ab482"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "e504ef3d192435005840b723be2cf12b0a628e3791ac9230bf3f139accf059b0",
+              "tool_architecture_recorded_sha256": "ef1f056e2ed60d0693b20cba261a3d590036960a45a2d0704a67e701354ad283",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            },
+            {
+              "role": "R1",
+              "name": "width300_spmv_s11_cb_o_n40_w300_p1_critical_c4",
+              "manifest": "runs/width300_spmv_s11_cb_o_n40_w300_p1_critical_c4/manifest.json",
+              "manifest_sha256": "ecc8545e0ec92ea0ba09ac74cc299541c409d0dbcf40735414ef88b4efd1ef6e",
+              "independent_audit": "runs/width300_spmv_s11_cb_o_n40_w300_p1_critical_c4/independent_audit.json",
+              "independent_audit_sha256": "64629c3c8ee56599f498d89f171b6c5e1b0ff9d19e0e902e1bd5f9280153c698",
+              "route": "runs/width300_spmv_s11_cb_o_n40_w300_p1_critical_c4/routed.route",
+              "fresh_route_sha256": "c967c3c41e8963a035a1f2bb90c90c8bcb4330e9ffda815cc861558a5c0d908f",
+              "critical_path_ns": 6.41043,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "2f93b161c9344e7f753f3bd92f3ed4a4ba61ddff723c305cebe53f7e4b99f99c",
+                "placed.place": "6e7a7f2da501d294f66afc14ab35edd2f10cbe25df460fd23a8c78dfbd1ab482"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "e504ef3d192435005840b723be2cf12b0a628e3791ac9230bf3f139accf059b0",
+              "tool_architecture_recorded_sha256": "ef1f056e2ed60d0693b20cba261a3d590036960a45a2d0704a67e701354ad283",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            },
+            {
+              "role": "B2",
+              "name": "width300_spmv_s11_cb_o_n40_w300_p1_b2",
+              "manifest": "runs/width300_spmv_s11_cb_o_n40_w300_p1_b2/manifest.json",
+              "manifest_sha256": "5ef2ab5c714de5a6b50e08b9650faa1e7caf2e951bd16f4351fbbbe09240c4dc",
+              "independent_audit": "runs/width300_spmv_s11_cb_o_n40_w300_p1_b2/independent_audit.json",
+              "independent_audit_sha256": "2112f59c3a5726f8997ead47aa73f0d9c2677e47e0d42586c8d1b53854080e02",
+              "route": "runs/width300_spmv_s11_cb_o_n40_w300_p1_b2/routed.route",
+              "fresh_route_sha256": "97f6cb97b5f2c5d77e6e1bb6c8a110f2da763d06e407c18499120a69ec01bb10",
+              "critical_path_ns": 6.41043,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "2f93b161c9344e7f753f3bd92f3ed4a4ba61ddff723c305cebe53f7e4b99f99c",
+                "placed.place": "6e7a7f2da501d294f66afc14ab35edd2f10cbe25df460fd23a8c78dfbd1ab482"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "62d6fc2f1be8f87ca92980ffe2f65425ec01cd599bfeb361273a91a9caf99cc0",
+              "tool_architecture_recorded_sha256": "07943747eeff6a2900a524d801b538e30437942dc602fea82581f312152e12a9",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            }
+          ],
+          "critical_path_ns": {
+            "A0": 6.41043,
+            "R1": 6.41043,
+            "B2": 6.41043
+          },
+          "r1_improvement_percent": {
+            "A0": 0.0,
+            "B2": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "family": "hybrid_o",
+      "result": "evaluation_cases/width300_spmv_s11_hybrid_o_w300/result.json",
+      "result_sha256": "a0a09f1526110e71206065d0264633a2b85ac47f160dfb90083cee213d480f26",
+      "matches_frozen_job": true,
+      "existing_semantic_bridge": {
+        "passed": true,
+        "exact_compared_lines": 24283601,
+        "unused_segment_id": 3,
+        "method": "All XML lines exactly equal, except location attributes normalized by independent XML parser and one verified unused segment; reject any node referencing the unused segment"
+      },
+      "flows": [
+        {
+          "flow": "p0",
+          "role_to_run": {
+            "A0": "width300_spmv_s11_hybrid_o_n40_w300_p0_a0",
+            "R1": "width300_spmv_s11_hybrid_o_n40_w300_p0_delay_critical_c6",
+            "B2": "width300_spmv_s11_hybrid_o_n40_w300_p0_b2"
+          },
+          "audit_summary": "evaluation_cases/width300_spmv_s11_hybrid_o_w300/p0_audit_summary.json",
+          "audit_summary_sha256": "96ef2f6e5d4fc45211d85d9c0946ae86ad3bebe0680103348ab5a043726ffcea",
+          "legal_count": 3,
+          "failed_count": 0,
+          "runs": [
+            {
+              "role": "A0",
+              "name": "width300_spmv_s11_hybrid_o_n40_w300_p0_a0",
+              "manifest": "runs/width300_spmv_s11_hybrid_o_n40_w300_p0_a0/manifest.json",
+              "manifest_sha256": "c6ccf2bddbfa972fa098c0fc58981ed98b4c2d4c3824213fe68a70b7e0831616",
+              "independent_audit": "runs/width300_spmv_s11_hybrid_o_n40_w300_p0_a0/independent_audit.json",
+              "independent_audit_sha256": "86e1f111c9d5e317f153b8c908156b0391802d33d1948329a07ff5686e5853e0",
+              "route": "runs/width300_spmv_s11_hybrid_o_n40_w300_p0_a0/routed.route",
+              "fresh_route_sha256": "24eaa9685e4927f490f5424131d2cc15c55aeb1abc2fe52ab9dd764172720d36",
+              "critical_path_ns": 7.62238,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "fbe770f980c9df8ea5dffdd00bf8e38f4a15e6787127d893c741d55146b3d64c",
+                "placed.place": "a522e5760bad191f82696e499f737a690debd38472722432d02c16da393c31ef"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "24cd1de8179de6c388d348e4fd00538031045f89eef4912ab8b6c6f1d02d58a3",
+              "tool_architecture_recorded_sha256": "ef1f056e2ed60d0693b20cba261a3d590036960a45a2d0704a67e701354ad283",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            },
+            {
+              "role": "R1",
+              "name": "width300_spmv_s11_hybrid_o_n40_w300_p0_delay_critical_c6",
+              "manifest": "runs/width300_spmv_s11_hybrid_o_n40_w300_p0_delay_critical_c6/manifest.json",
+              "manifest_sha256": "ff5ee24521336826e228fbbad9efa4973aee6019a4c122312718b398174adff6",
+              "independent_audit": "runs/width300_spmv_s11_hybrid_o_n40_w300_p0_delay_critical_c6/independent_audit.json",
+              "independent_audit_sha256": "9d7c8ae898b64c4715593fe3bafcafbb7be8c9713207e3b29de97136f7804a74",
+              "route": "runs/width300_spmv_s11_hybrid_o_n40_w300_p0_delay_critical_c6/routed.route",
+              "fresh_route_sha256": "27ee401ff53585616f0462f1ac8b5ba98f967fac499fb45e5cd8ed28a8f612f6",
+              "critical_path_ns": 7.62238,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "fbe770f980c9df8ea5dffdd00bf8e38f4a15e6787127d893c741d55146b3d64c",
+                "placed.place": "a522e5760bad191f82696e499f737a690debd38472722432d02c16da393c31ef"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "24cd1de8179de6c388d348e4fd00538031045f89eef4912ab8b6c6f1d02d58a3",
+              "tool_architecture_recorded_sha256": "ef1f056e2ed60d0693b20cba261a3d590036960a45a2d0704a67e701354ad283",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            },
+            {
+              "role": "B2",
+              "name": "width300_spmv_s11_hybrid_o_n40_w300_p0_b2",
+              "manifest": "runs/width300_spmv_s11_hybrid_o_n40_w300_p0_b2/manifest.json",
+              "manifest_sha256": "63382cbf285fa4ab6a151f0788b47850d79647b5142c87b6e229327247912652",
+              "independent_audit": "runs/width300_spmv_s11_hybrid_o_n40_w300_p0_b2/independent_audit.json",
+              "independent_audit_sha256": "5a602cfeaaee168b59ebe11e91f1e17e95b6c388a1d7f5d37c970ebf01c83cce",
+              "route": "runs/width300_spmv_s11_hybrid_o_n40_w300_p0_b2/routed.route",
+              "fresh_route_sha256": "a430d82cf7b2f3b7d0c260fa85088010316610bceb546d549ca11b58c0f2643d",
+              "critical_path_ns": 7.63766,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "fbe770f980c9df8ea5dffdd00bf8e38f4a15e6787127d893c741d55146b3d64c",
+                "placed.place": "a522e5760bad191f82696e499f737a690debd38472722432d02c16da393c31ef"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "65370440f841350e106fcdd6a1cc23b311f1cebad287b9b3d4042514bf25d539",
+              "tool_architecture_recorded_sha256": "bc95b858c3b7208493d39257eff0bcb60e541a9b41d93d70882399b9a49605e9",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            }
+          ],
+          "critical_path_ns": {
+            "A0": 7.62238,
+            "R1": 7.62238,
+            "B2": 7.63766
+          },
+          "r1_improvement_percent": {
+            "A0": 0.0,
+            "B2": 0.2000612753120802
+          }
+        },
+        {
+          "flow": "p1",
+          "role_to_run": {
+            "A0": "width300_spmv_s11_hybrid_o_n40_w300_p1_a0",
+            "R1": "width300_spmv_s11_hybrid_o_n40_w300_p1_delay_critical_c6",
+            "B2": "width300_spmv_s11_hybrid_o_n40_w300_p1_b2"
+          },
+          "audit_summary": "evaluation_cases/width300_spmv_s11_hybrid_o_w300/p1_audit_summary.json",
+          "audit_summary_sha256": "cbf33407a7e92824a24b12ce93803d3273cd47fee4478d518b3aec7a3849d8a2",
+          "legal_count": 3,
+          "failed_count": 0,
+          "runs": [
+            {
+              "role": "A0",
+              "name": "width300_spmv_s11_hybrid_o_n40_w300_p1_a0",
+              "manifest": "runs/width300_spmv_s11_hybrid_o_n40_w300_p1_a0/manifest.json",
+              "manifest_sha256": "c73801919fa658f6f6c3494625300015d58b629b450ffe7734ac35287c5b53cc",
+              "independent_audit": "runs/width300_spmv_s11_hybrid_o_n40_w300_p1_a0/independent_audit.json",
+              "independent_audit_sha256": "08c6f0c4174b155e277f1c5ebc7f60898b5eb9bdafea126637e8f87c3f06b5fa",
+              "route": "runs/width300_spmv_s11_hybrid_o_n40_w300_p1_a0/routed.route",
+              "fresh_route_sha256": "46e6444b95ebf49d61f4db420d89cd5672a4b19060d4feed32a1918d40dc7324",
+              "critical_path_ns": 6.41043,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "b87ea6bbf40d49823642d59768a21feb851228aabd0e436777ffeefcec7b9946",
+                "placed.place": "19b2cef30e372fc7c77c89d215b8f4a1307e083419e7e76d4665ad11b75cda26"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "24cd1de8179de6c388d348e4fd00538031045f89eef4912ab8b6c6f1d02d58a3",
+              "tool_architecture_recorded_sha256": "ef1f056e2ed60d0693b20cba261a3d590036960a45a2d0704a67e701354ad283",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            },
+            {
+              "role": "R1",
+              "name": "width300_spmv_s11_hybrid_o_n40_w300_p1_delay_critical_c6",
+              "manifest": "runs/width300_spmv_s11_hybrid_o_n40_w300_p1_delay_critical_c6/manifest.json",
+              "manifest_sha256": "ef14f11f595a0d87f25c00e491ca411ac694da35f6f85c70df57acef06c11cf4",
+              "independent_audit": "runs/width300_spmv_s11_hybrid_o_n40_w300_p1_delay_critical_c6/independent_audit.json",
+              "independent_audit_sha256": "cb3bd6ae05c530075d1b45d918db71bed595c102f13f41b8255b421e929fd6f3",
+              "route": "runs/width300_spmv_s11_hybrid_o_n40_w300_p1_delay_critical_c6/routed.route",
+              "fresh_route_sha256": "5c0a3c6e78341b7c52ca0480c39b14c7e2aac0e987fc3d2a44256baa68dd3098",
+              "critical_path_ns": 6.41043,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "b87ea6bbf40d49823642d59768a21feb851228aabd0e436777ffeefcec7b9946",
+                "placed.place": "19b2cef30e372fc7c77c89d215b8f4a1307e083419e7e76d4665ad11b75cda26"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "24cd1de8179de6c388d348e4fd00538031045f89eef4912ab8b6c6f1d02d58a3",
+              "tool_architecture_recorded_sha256": "ef1f056e2ed60d0693b20cba261a3d590036960a45a2d0704a67e701354ad283",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            },
+            {
+              "role": "B2",
+              "name": "width300_spmv_s11_hybrid_o_n40_w300_p1_b2",
+              "manifest": "runs/width300_spmv_s11_hybrid_o_n40_w300_p1_b2/manifest.json",
+              "manifest_sha256": "dc4969a7551f3322065fd2c07b9d0cdd26220100ba8593af86a97c9013134df9",
+              "independent_audit": "runs/width300_spmv_s11_hybrid_o_n40_w300_p1_b2/independent_audit.json",
+              "independent_audit_sha256": "76a47ad0f453360cabc48a36587399b849b414e6a8dd8d0d8886e047e47fc4a1",
+              "route": "runs/width300_spmv_s11_hybrid_o_n40_w300_p1_b2/routed.route",
+              "fresh_route_sha256": "3669a7b752729ec674eda654d14bbf8849ff6280eae5b2f22a93e7f1d353695e",
+              "critical_path_ns": 6.41043,
+              "private_packed_place_recorded_hashes": {
+                "packed.net": "b87ea6bbf40d49823642d59768a21feb851228aabd0e436777ffeefcec7b9946",
+                "placed.place": "19b2cef30e372fc7c77c89d215b8f4a1307e083419e7e76d4665ad11b75cda26"
+              },
+              "blif_recorded_sha256": "3d81e01b91075f6d505a293ba6ab60f06b6a7ac943765f22432ffa50be6cf010",
+              "tool_rr_graph_recorded_sha256": "65370440f841350e106fcdd6a1cc23b311f1cebad287b9b3d4042514bf25d539",
+              "tool_architecture_recorded_sha256": "bc95b858c3b7208493d39257eff0bcb60e541a9b41d93d70882399b9a49605e9",
+              "audit_not_checked": [
+                "netlist/placement endpoint identity",
+                "local OPIN reservations",
+                "nonconfigurable edge closure",
+                "bus-mux shared selection"
+              ]
+            }
+          ],
+          "critical_path_ns": {
+            "A0": 6.41043,
+            "R1": 6.41043,
+            "B2": 6.41043
+          },
+          "r1_improvement_percent": {
+            "A0": 0.0,
+            "B2": 0.0
+          }
+        }
+      ]
+    }
+  ],
+  "architecture_ranking_by_absolute_cpd": {
+    "p0": {
+      "A0": [
+        {
+          "family": "sb",
+          "critical_path_ns": 6.52937
+        },
+        {
+          "family": "cb_o",
+          "critical_path_ns": 6.89436
+        },
+        {
+          "family": "hybrid_o",
+          "critical_path_ns": 7.62238
+        }
+      ],
+      "R1": [
+        {
+          "family": "sb",
+          "critical_path_ns": 6.51872
+        },
+        {
+          "family": "cb_o",
+          "critical_path_ns": 6.89436
+        },
+        {
+          "family": "hybrid_o",
+          "critical_path_ns": 7.62238
+        }
+      ],
+      "B2": [
+        {
+          "family": "sb",
+          "critical_path_ns": 6.60691
+        },
+        {
+          "family": "cb_o",
+          "critical_path_ns": 6.89436
+        },
+        {
+          "family": "hybrid_o",
+          "critical_path_ns": 7.63766
+        }
+      ]
+    },
+    "p1": {
+      "A0": [
+        {
+          "family": "sb",
+          "critical_path_ns": 6.34354
+        },
+        {
+          "family": "cb_o",
+          "critical_path_ns": 6.41043
+        },
+        {
+          "family": "hybrid_o",
+          "critical_path_ns": 6.41043
+        }
+      ],
+      "R1": [
+        {
+          "family": "sb",
+          "critical_path_ns": 6.3216
+        },
+        {
+          "family": "cb_o",
+          "critical_path_ns": 6.41043
+        },
+        {
+          "family": "hybrid_o",
+          "critical_path_ns": 6.41043
+        }
+      ],
+      "B2": [
+        {
+          "family": "sb",
+          "critical_path_ns": 6.3216
+        },
+        {
+          "family": "cb_o",
+          "critical_path_ns": 6.41043
+        },
+        {
+          "family": "hybrid_o",
+          "critical_path_ns": 6.41043
+        }
+      ]
+    }
+  },
+  "registered_width300_spmv_matched2d_cases": 0,
+  "verification": "Rechecked all three frozen job/result bindings; all role and audit counts; native FULL/success flags; existing directed-tree/capacity audit scope and limitations; common per-placement private packed/place recorded hashes against shared source records and common BLIF; tool-specific graph/architecture bindings through existing semantic bridges; fresh actual-route hashes for all18 routes. No fresh large-graph/packed/place rehash.",
+  "interpretation": [
+    "Within each architecture and placement, R1 gains are compared separately with A0 and B2. Architecture orders use absolute CPD and one common circuit/seed only.",
+    "A single W300 circuit/seed does not establish overall benefit, stable ranking reversal, width causality, or runtime acceleration.",
+    "P0/P1 placement differences and cross-architecture resource differences remain part of the registered protocol; do not attribute their full effects to routing.",
+    "No unregistered matched2D denominator is created; do not borrow W100 matched2D for a W300 normalization.",
+    "Remaining W300 circuits, formal timing, balance sensitivity, paired-width diagnosis and13-requirement final closure remain pending.",
+    "All three tools rank SB first: P0 SB<CB-O<Hybrid-O; P1 SB<CB-O=Hybrid-O at reported CPD precision. No ranking reversal is observed in this single circuit/seed; tied families are not strictly ordered."
+  ],
+  "full_study_complete": false,
+  "architecture_order_tie_groups": {
+    "p0": {
+      "A0": [
+        {
+          "critical_path_ns": 6.52937,
+          "families": [
+            "sb"
+          ]
+        },
+        {
+          "critical_path_ns": 6.89436,
+          "families": [
+            "cb_o"
+          ]
+        },
+        {
+          "critical_path_ns": 7.62238,
+          "families": [
+            "hybrid_o"
+          ]
+        }
+      ],
+      "R1": [
+        {
+          "critical_path_ns": 6.51872,
+          "families": [
+            "sb"
+          ]
+        },
+        {
+          "critical_path_ns": 6.89436,
+          "families": [
+            "cb_o"
+          ]
+        },
+        {
+          "critical_path_ns": 7.62238,
+          "families": [
+            "hybrid_o"
+          ]
+        }
+      ],
+      "B2": [
+        {
+          "critical_path_ns": 6.60691,
+          "families": [
+            "sb"
+          ]
+        },
+        {
+          "critical_path_ns": 6.89436,
+          "families": [
+            "cb_o"
+          ]
+        },
+        {
+          "critical_path_ns": 7.63766,
+          "families": [
+            "hybrid_o"
+          ]
+        }
+      ]
+    },
+    "p1": {
+      "A0": [
+        {
+          "critical_path_ns": 6.34354,
+          "families": [
+            "sb"
+          ]
+        },
+        {
+          "critical_path_ns": 6.41043,
+          "families": [
+            "cb_o",
+            "hybrid_o"
+          ]
+        }
+      ],
+      "R1": [
+        {
+          "critical_path_ns": 6.3216,
+          "families": [
+            "sb"
+          ]
+        },
+        {
+          "critical_path_ns": 6.41043,
+          "families": [
+            "cb_o",
+            "hybrid_o"
+          ]
+        }
+      ],
+      "B2": [
+        {
+          "critical_path_ns": 6.3216,
+          "families": [
+            "sb"
+          ]
+        },
+        {
+          "critical_path_ns": 6.41043,
+          "families": [
+            "cb_o",
+            "hybrid_o"
+          ]
+        }
+      ]
+    }
+  },
+  "ties_equal_at_reported_precision": true
+}

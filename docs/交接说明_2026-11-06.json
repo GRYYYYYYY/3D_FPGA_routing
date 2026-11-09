@@ -1,0 +1,185 @@
+{
+  "snapshot_utc": "2026-11-06T20:19:59.449490+00:00",
+  "objective": "执行已接受的 Flatland 启发研究方案；完整范围由 requirements.json 的13项验收要求及登记协议确定。当前目标仍在进行。",
+  "root": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing",
+  "strict_results": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103",
+  "historical_results": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027",
+  "requirements": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/requirements.json",
+  "old_handoff": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/docs/交接说明_2026-10-25.md",
+  "latest_snapshot_is_not_live_state": true,
+  "resume_instructions": [
+    "先阅读本文件与旧交接说明，再以当前文件、进程和队列重新核验状态。新账号还需要共享盘和同一计算环境的访问权限。",
+    "核验 /proc/PID/stat 的 start_ticks 与 command；PID不存在或被复用时不能假设旧任务仍活跃。扫描所有 /proc/PID/task/*/children 追踪工作线程启动的子进程。",
+    "优先读取 parallel_continuation_v1/state.json 和其 launch.log、heldout.log，保留唯一恢复队列所有者。不要重复提交任务或另开竞争恢复队列。",
+    "已向旧提交进程1450297发送一次SIGINT以停止后续用例提交；当前用例会继续完整执行。不要再次发送SIGINT、终止进程组或重启该用例。",
+    "旧队列及旧下游协调器随后出现 needs_diagnosis 是这次受控交接的预期状态；新协调器负责核验记录、重建缺失输入封存、以3并发接续未完成用例。若新协调器 needs_diagnosis，则检查其 traceback 后处理实际原因。",
+    "算法、参数、输入、种子、超时和实验范围已冻结；测试集结果用于评价，不得据此重新调参。正式串行计时独占运行。",
+    "完成所有后续实验及分析后，逐项核验13项需求、全量完整性、科学结论和归档，才可以宣布目标完成。"
+  ],
+  "processes": [
+    {
+      "pid": 1450297,
+      "start_ticks": 1873640141,
+      "state": "S",
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/recover_unstarted_heldout_v1.py --workers 1 "
+    },
+    {
+      "pid": 2474184,
+      "start_ticks": 1871502713,
+      "state": "S",
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/queue_heldout_disk_recovery_v2.py "
+    },
+    {
+      "pid": 2887558,
+      "start_ticks": 1876284418,
+      "state": "S",
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/continue_after_heldout_recovery_v1.py --owner-pid 2474184 --owner-start-ticks 1871502713 "
+    },
+    {
+      "pid": 3764138,
+      "start_ticks": 1876532964,
+      "state": "S",
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/continue_parallel_heldout_v1.py "
+    }
+  ],
+  "queue_state": {
+    "utc": "2026-11-06T19:16:02.075702+00:00",
+    "supervisor_pid": 3764138,
+    "status": "waiting_controlled_drain",
+    "completed_stages": []
+  },
+  "current_case": "heldout_reduction_layer_s21_sb_w100",
+  "current_geometry_manifest": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_reduction_layer_s21_sb_n125_w100_p1_geometry_c0/manifest.json",
+  "completion_counts": {
+    "heldout_terminal_cases": 96,
+    "heldout_planned": 168,
+    "training_attempts": 594,
+    "training_legal": 414
+  },
+  "remaining_scope": {
+    "heldout": "完成168个登记用例，包括失败分母和独立审计",
+    "width300": "12个用例",
+    "serial": "36次正式串行重复及登记控制",
+    "balance": "48个用例/144个路由角色",
+    "paired_width": "24个用例/144个角色；固定同一布局诊断W100/W300",
+    "closure": "生成统计、图表、报告，完整科学解释、13项验收及证据归档"
+  },
+  "downstream_stages": [
+    [
+      "width300",
+      [
+        "run_flatland_evaluation_import_fix_v1.py",
+        "--phase",
+        "width300",
+        "--workers",
+        "3"
+      ]
+    ],
+    [
+      "serial",
+      [
+        "run_flatland_serial_candidate.py"
+      ]
+    ],
+    [
+      "balance",
+      [
+        "run_flatland_balance_sensitivity.py"
+      ]
+    ],
+    [
+      "evaluation_analysis",
+      [
+        "analyze_flatland_evaluation.py"
+      ]
+    ],
+    [
+      "serial_analysis",
+      [
+        "analyze_flatland_serial_candidate.py"
+      ]
+    ],
+    [
+      "balance_analysis",
+      [
+        "analyze_flatland_balance_sensitivity.py"
+      ]
+    ],
+    [
+      "figures",
+      [
+        "render_flatland_figures.py"
+      ]
+    ],
+    [
+      "report",
+      [
+        "render_flatland_report.py"
+      ]
+    ],
+    [
+      "paired_width",
+      [
+        "run_paired_width_diagnostic.py"
+      ]
+    ],
+    [
+      "paired_width_analysis",
+      [
+        "analyze_paired_width_diagnostic.py"
+      ]
+    ]
+  ],
+  "algorithm": {
+    "base": "官方VTR9开发版本0b912334fdd83bb754b302146ac0d1ec9edc9a0e的派生代码",
+    "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/vtr-architecture-src/vpr/src/route",
+    "core": "真实有向RRG可达候选筛选；空间候选压缩与多样性；固定树层次上跨层连接共享/拆分动态规划；关键度与有限预算延迟估计评分；软代价引导详细路由",
+    "mode": "当前主实验static：首次规划后复用",
+    "limits": "当前主要为双层；有限候选和估计代价，不保证全局最优或最终关键路径改善；共享思想有H3D启发，不将SCC、DP等现有工具宣称为首创。"
+  },
+  "baseline_rules": [
+    "LaZagna论文时期VTR8.1的发表结果单列",
+    "现代LaZagna VTR9迁移版本5abd3aca已完成构建和受控对照；不能再沿用仅源码核查的旧状态",
+    "官方VTR9派生A0基线；严格串行重建二进制与历史二进制身份分开",
+    "同时报告相对同架构3D和匹配2D；所有比值须满足输入配对与成功交集条件"
+  ],
+  "scientific_limits": [
+    "历史12/20共同成功样本约1.39%改善与另一组W300十样本无改善属于不同条件，不可仅归因于宽度。已登记固定布局宽度诊断。",
+    "严格训练594次完成，414合法；当前heldout尚未完成，不声称总体优势或架构排名反转。",
+    "现有G/D/C/D+C变体都保留DP，不能隔离DP独立贡献；机制归因限制详见mechanism_attribution_review_20261106.json。",
+    "LSTM已完整尝试，绝大多数失败，缺乏三种子共同合法配对；失败保留分母。",
+    "已审计reduction_layer seed21 SB P0：R1关键路径增加约2.87%，线长降低约0.71%；纳入最终统计。",
+    "已有少量改善与退化样本，收益适用条件尚待完整分析。",
+    "strace观测运行时间用于诊断；正式加速比以独立串行重复为准。"
+  ],
+  "runtime_estimate": "前次粗估：三并发顺利接管后主测试约1–2天，全方案约2–4天；这是估计，不是实测并发吞吐率承诺，交接后需重新估计。",
+  "immutable_reference_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/parallel_resumption_amendment_20261106.json": "2bf317140cd25b342534d819bce8dac37e1aedd226a2e6c07322ea518fed8bfd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/parallel_resumption_signal_20261106.json": "e953f793541d8feab046f48727cb7142eea0cd4ea2aa103b8065a6d84b467064",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/controlled_drain_validation_20261106.json": "197debc7d5807771ca3de5c1f939fba067d37d3e02af9145d22e30bd273e6c72",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/parallel_continuation_v1/registration.json": "9921e9b1078d671fcf7789d291dbf5d4436b92d8e3ff61153ac3237eed88a804",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/selected_configs.json": "711c73aa27648919b1a8c20e235374f4f493949d8be0f0f7b7b63dad8c4ed4af",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/evaluation_jobs.json": "efbc5f6d7fd682a44afbca64ccbe72f9c9c53bb92ef908b5d43cb02a0c878fcf",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/benchmark_protocol.json": "91dcd6f8948c97c87700a615aec67baaf345ea13498f119a925ffa8ef88dce93",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/preparation_registration.json": "4c3ae09e068ca698b26b5f22b4f69aa262cb4da4432c4d8cc97b4c1d4a17b1fb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/measurement_interpretation.md": "028a68cf00728040aaea62c3e1cea4a1d44e9ad072b2f9b7c74962d28a095041",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/paired_width_diagnostic_protocol.json": "4e2a8d6ada1b3c0e80dec409c6d8766a28061afb42f223091799ad38f4783c77",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/interim_paper_evidence_20261106.json": "0622ab1d042558a28f013dee76e3a991aa9834a7576bc0aa227537d1ac7528c8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/mechanism_attribution_review_20261106.json": "797b65d791643db7f0a28f2723656e5cf3e677aac92ad5d9025a57182ed4cd4a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/heldout_lstm_closed_review_20261106.json": "6b1b092f30080e6a67598b8f3a3e29203b5b988d4272b913f15c4eeeba74f44f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/heldout_reduction_layer_s21_sb_p0_review_20261106.json": "9d503e1b7e0a2fbc388ba30824e82d77d16edb4c599c0388cb7ddeb24aa1e708"
+  },
+  "resource_rules": {
+    "disk_reserve_gib": 80,
+    "vpr_threads": 1,
+    "non_timing_workers_after_registered_transition": 3,
+    "per_vpr_address_space_gib": 64,
+    "cgroup_memory_gib": 300
+  },
+  "environment": {
+    "python": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+    "timezone": "UTC",
+    "supervision_skill": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/skills/long-run-supervision/SKILL.md",
+    "luna": "当前未提供可切换到luna的接口；已披露，继续确定性后台协调器。纯VTR算法工作无需启动Vivado。"
+  }
+}

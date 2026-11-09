@@ -1,0 +1,25 @@
+{
+  "utc": "2026-11-03T07:31:52.787670+00:00",
+  "status": "synthetic_checks_passed_not_formally_approved",
+  "source_sha256": {
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/flatland_timing_io_candidate.py": "a96722441be7cba4163eb747c5130bb0aea6ba5d1de86740d75a56f3f4584043",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/seccomp_thread_guard": "e1a990f2884c3b332d8561bfb3decc1bdb8a9affc5db6f9d672506c591fbf877",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/seccomp_thread_guard.c": "52642b31d0b70bdb98f800c3bb3f41fe7d27087a966b361722cdcb718c0f9479",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/seccomp_guard_unit_validation.json": "e4a7f16757c73d34aba7c41b85bf2b70c30796d2276169d41d68f36c5d6ff7ce"
+  },
+  "checks": [
+    "single-thread process completes under guard",
+    "recorded launch command contains guard",
+    "time and prlimit wrappers bound by hash",
+    "thread attempt fails",
+    "timeout and failed receipt retained",
+    "core dumps disabled",
+    "input seal passes"
+  ],
+  "limitations": [
+    "No real VPR or P1 partition workload validated yet",
+    "No quantitative measurement of filter timing overhead",
+    "clone3 denied including process creation; code may take alternate paths",
+    "timing runner not yet connected to formal serial driver"
+  ]
+}

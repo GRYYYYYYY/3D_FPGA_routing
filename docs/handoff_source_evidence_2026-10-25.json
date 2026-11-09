@@ -1,0 +1,170 @@
+{
+  "schema": 1,
+  "captured_utc": "2026-10-25T13:47:51.310674+00:00",
+  "workspace": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing",
+  "scope": "Read-only Git/source inspection and handoff. No migrated-LaZagna VTR build or PnR experiment performed.",
+  "latest_lazagna": {
+    "repo_path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/LaZagna",
+    "commit": "44acf9d27ed01d4a7496773aa8663266c9b5a73b",
+    "commit_metadata": "44acf9d27ed01d4a7496773aa8663266c9b5a73b\n2026-06-21T18:39:15-07:00\n2026-06-21T18:39:15-07:00\nModify hierarchy command to auto-detect top module",
+    "remotes": "origin\thttps://github.com/sharc-lab/LaZagna.git (fetch)\norigin\thttps://github.com/sharc-lab/LaZagna.git (push)"
+  },
+  "latest_openfpga": {
+    "repo_path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/LaZagna/OpenFPGA",
+    "commit": "9f473f97921cd9e870c6ea9c418bd3d4cb6f4360",
+    "commit_metadata": "9f473f97921cd9e870c6ea9c418bd3d4cb6f4360\n2026-01-23T22:43:33-05:00\n2026-01-23T22:43:33-05:00\nUpdated run_task to avoid crashes that owuld occasionally happen.",
+    "remotes": "origin\thttps://github.com/IY2002/OpenFPGA.git (fetch)\norigin\thttps://github.com/IY2002/OpenFPGA.git (push)"
+  },
+  "latest_lazagna_openfpga_gitlink": "160000 commit 9f473f97921cd9e870c6ea9c418bd3d4cb6f4360\tOpenFPGA",
+  "latest_openfpga_vtr_gitlink": "160000 commit 5abd3acaa603e037ec390fa545b04301f13d57e0\tvtr-verilog-to-routing",
+  "migrated_vtr": {
+    "repo_path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/LaZagna-paper/OpenFPGA/vtr-verilog-to-routing",
+    "commit": "5abd3acaa603e037ec390fa545b04301f13d57e0",
+    "commit_metadata": "5abd3acaa603e037ec390fa545b04301f13d57e0\n2026-01-23T21:32:49-05:00\n2026-01-23T21:32:49-05:00\nSlight modifications to VPR testing and a few APIs to make VTR 9 work with LaZagna and OpenFPGA.",
+    "remotes": "origin\tgit@github.com:IY2002/vtr-verilog-to-routing.git (fetch)\norigin\tgit@github.com:IY2002/vtr-verilog-to-routing.git (push)"
+  },
+  "migration_commit": {
+    "repo_path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/LaZagna",
+    "commit": "c9520a131bd19707df3cef49a2489858d6432b9e",
+    "commit_metadata": "c9520a131bd19707df3cef49a2489858d6432b9e\n2026-01-23T22:47:08-05:00\n2026-01-23T22:47:08-05:00\nUpdated OpenFPGA and its VTR to use VTR 9. Better QoR, and support for 2 layer heterogenous FPGAs now available (not fully tested).",
+    "remotes": "origin\thttps://github.com/sharc-lab/LaZagna.git (fetch)\norigin\thttps://github.com/sharc-lab/LaZagna.git (push)"
+  },
+  "native_vtr": {
+    "repo_path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/vtr",
+    "commit": "0b912334fdd83bb754b302146ac0d1ec9edc9a0e",
+    "commit_metadata": "0b912334fdd83bb754b302146ac0d1ec9edc9a0e\n2026-10-21T16:45:37-04:00\n2026-10-21T16:45:37-04:00\nMerge pull request #3924 from verilog-to-routing/flat_pin_node_lookup",
+    "remotes": "origin\thttps://github.com/verilog-to-routing/vtr-verilog-to-routing.git (fetch)\norigin\thttps://github.com/verilog-to-routing/vtr-verilog-to-routing.git (push)"
+  },
+  "baseline_manifest": {
+    "schema": 1,
+    "utc": "2026-10-22T11:58:22.114721+00:00",
+    "commit": "0b912334fdd83bb754b302146ac0d1ec9edc9a0e",
+    "source_status": "",
+    "command": [
+      "make",
+      "-j16",
+      "vpr",
+      "CMAKE_PARAMS=-DVPR_USE_EZGL=off -DVPR_USE_SERVER=OFF -DWITH_PARMYS=ON -DWITH_MOSAIC=OFF -DSLANG_SYSTEMVERILOG=OFF -DWITH_ABC=OFF -DVTR_IPO_BUILD=off -DVPR_ENABLE_INTERCHANGE=ON"
+    ],
+    "cwd": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/vtr",
+    "binary_sha256": "37cc22c8b1b5d9d378e25379e85afcb7e56b5f1f6f72e3e9186e5e107ed5ce62",
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cache_sha256": "6ab92d51412aa6afeb1cc28fdffefce254122e8c133eb5068e419af942be2f34",
+    "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "cmake": "cmake version 3.22.1",
+    "submodules": "3147391d946bb4b6c68edd901f2add6ac1f31f8c libs/EXTERNAL/eigen (3147391)\n 317ac1ed4c0bb6e6b91eafc817e05c488feffcb3 libs/EXTERNAL/libcatch2 (317ac1e)\n-6ddd7881631aa664b84668dfd712647c1b481599 libs/EXTERNAL/libezgl\n 7a49e2c9ad469d314aa7ec07d3e893ecabd7d9dc libs/EXTERNAL/libsdcparse (heads/master)\n-599f750c8b6532950d4bb43b2b756700e41dbae9 libs/EXTERNAL/sockpp\n 356643ba267039367d87fa70ce3d8f87144f55e9 libs/EXTERNAL/yaml-cpp (356643b)\n 60f126cd00c94892782470192d6c9f7abebe7c05 libs/EXTERNAL/yosys (60f126c)\n-55e3a2ad5b9dcdc8cf86918fb0a110fb6356def8 libs/EXTERNAL/yosys-slang",
+    "build_wall_seconds": null,
+    "log": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/logs/vtr-baseline-build.log",
+    "archived_existing_build": true
+  },
+  "paper_lazagna": {
+    "repo_path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/LaZagna-paper",
+    "commit": "16fa62c9385843144f9d00c3827e1d87accec4fb",
+    "commit_metadata": "16fa62c9385843144f9d00c3827e1d87accec4fb\n2025-05-08T17:16:33+00:00\n2025-05-08T17:16:33+00:00\nUpdated README and gitignore.",
+    "remotes": "origin\thttps://github.com/sharc-lab/LaZagna.git (fetch)\norigin\thttps://github.com/sharc-lab/LaZagna.git (push)"
+  },
+  "paper_openfpga": {
+    "repo_path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/LaZagna-paper/OpenFPGA",
+    "commit": "729e6187fe9e88b8c24399cfe852bcd3b3fb9291",
+    "commit_metadata": "729e6187fe9e88b8c24399cfe852bcd3b3fb9291\n2025-04-29T14:46:25+00:00\n2025-04-29T14:46:25+00:00\nVTR Commit Update",
+    "remotes": "origin\thttps://github.com/IY2002/OpenFPGA.git (fetch)\norigin\thttps://github.com/IY2002/OpenFPGA.git (push)"
+  },
+  "paper_vtr": {
+    "repo_path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/LaZagna-paper/OpenFPGA/vtr-verilog-to-routing",
+    "commit": "a80511e8f96d560e680d2ebe9c18272a759ce493",
+    "commit_metadata": "a80511e8f96d560e680d2ebe9c18272a759ce493\n2025-04-29T14:45:53+00:00\n2025-04-29T14:45:53+00:00\nAdded CHANZ node but it's use is none exsistent right now. Maybe to be done later, currently 'CHANZ is just a 'CHANX' node with a none direction.",
+    "remotes": "origin\tgit@github.com:IY2002/vtr-verilog-to-routing.git (fetch)\norigin\tgit@github.com:IY2002/vtr-verilog-to-routing.git (push)"
+  },
+  "notes": [
+    "migrated_vtr.repo_path is the populated paper-era Git object store used with git show <commit>:<path>; its working tree remains at the paper-era commit.",
+    "vendor/LaZagna/OpenFPGA/vtr-verilog-to-routing is not initialized. git -C there rev-parse HEAD may walk up and return the OpenFPGA parent HEAD.",
+    "The migrated VTR has VTR-9 code migration commits but CMake version metadata still says 8.1.0-dev.",
+    "The migrated VTR RR-node type enum has no CHANZ; current LaZagna 3d_sb_creator still inserts paired CHANX/NONE nodes.",
+    "The two old inverted valid-coordinate early-return guards are absent in migrated VTR; valid-coordinate assertions appear instead.",
+    "The original A3 -1.39% is versus native A0 on 12 jointly successful samples, not versus either LaZagna generation.",
+    "Repository status contains existing untracked project files and modified native VTR implementation; preserve these."
+  ],
+  "source_evidence": [
+    {
+      "path": "CMakeLists.txt",
+      "commit": "5abd3acaa603e037ec390fa545b04301f13d57e0",
+      "source_sha256": "84771def23ac9d40c7609ab2dbfb5ae3821f0d58fdb622191f7127eaa778f4a5",
+      "first_line": 72,
+      "last_line": 75,
+      "text": "72: \n73: \n74: #\n75: #"
+    },
+    {
+      "path": "libs/librrgraph/src/base/rr_node_types.h",
+      "commit": "5abd3acaa603e037ec390fa545b04301f13d57e0",
+      "source_sha256": "04710e1c39416259e06edd7e060a12cdf811cba1fd1c379b7ff51fcea9b04db5",
+      "first_line": 23,
+      "last_line": 35,
+      "text": "23: typedef enum e_rr_type : unsigned char {\n24:     SOURCE = 0, ///<A dummy node that is a logical output within a block -- i.e., the gate that generates a signal.\n25:     SINK,       ///<A dummy node that is a logical input within a block -- i.e. the gate that needs a signal.\n26:     IPIN,       ///Input pin to a block\n27:     OPIN,       ///Output pin of a block\n28:     CHANX,      ///x-directed routing wire, or an x-directed segment of a channel for global routing\n29:     CHANY,      ///y-directed routing wire, or a y-directed segment of a channel for global routing\n30:     NUM_RR_TYPES\n31: } t_rr_type;\n32: \n33: constexpr std::array<t_rr_type, NUM_RR_TYPES> RR_TYPES = {{SOURCE, SINK, IPIN, OPIN, CHANX, CHANY}};\n34: constexpr std::array<const char*, NUM_RR_TYPES> rr_node_typename{{\"SOURCE\", \"SINK\", \"IPIN\", \"OPIN\", \"CHANX\", \"CHANY\"}};\n35: "
+    },
+    {
+      "path": "vpr/src/place/move_utils.cpp",
+      "commit": "5abd3acaa603e037ec390fa545b04301f13d57e0",
+      "source_sha256": "89e59c0db886fba52f94cbabe800e19e7c44978ac87a4c762b0686a3bff76b78",
+      "first_line": 1196,
+      "last_line": 1234,
+      "text": "1196: }\n1197: \n1198: t_bb get_compressed_grid_target_search_range(const t_compressed_block_grid& compressed_block_grid,\n1199:                                              const t_physical_tile_loc& compressed_loc,\n1200:                                              float rlim) {\n1201:     t_bb search_ranges;\n1202:     int layer_num = compressed_loc.layer_num;\n1203:     VTR_ASSERT(compressed_loc.x != OPEN && compressed_loc.y != OPEN && compressed_loc.layer_num != OPEN);\n1204: \n1205:     int rlim_x_max_range = std::min<int>((int)compressed_block_grid.get_num_columns(layer_num), rlim);\n1206:     int rlim_y_max_range = std::min<int>((int)compressed_block_grid.get_num_rows(layer_num), rlim); /* for aspect_ratio != 1 case. */\n1207: \n1208:     search_ranges.xmin = std::max(0, compressed_loc.x - rlim_x_max_range);\n1209:     search_ranges.xmax = std::min<int>(compressed_block_grid.get_num_columns(layer_num) - 1, compressed_loc.x + rlim_x_max_range);\n1210: \n1211:     search_ranges.ymin = std::max(0, compressed_loc.y - rlim_y_max_range);\n1212:     search_ranges.ymax = std::min<int>(compressed_block_grid.get_num_rows(layer_num) - 1, compressed_loc.y + rlim_y_max_range);\n1213: \n1214:     search_ranges.layer_min = compressed_loc.layer_num;\n1215:     search_ranges.layer_max = compressed_loc.layer_num;\n1216: \n1217:     return search_ranges;\n1218: }\n1219: \n1220: t_bb get_compressed_grid_bounded_search_range(const t_compressed_block_grid& compressed_block_grid,\n1221:                                               const t_physical_tile_loc& from_compressed_loc,\n1222:                                               const t_physical_tile_loc& target_compressed_loc,\n1223:                                               float rlim) {\n1224:     t_bb search_range;\n1225: \n1226:     int min_cx, max_cx, min_cy, max_cy;\n1227: \n1228:     //TODO: This if condition is added because blocks are only moved in the same layer. After the update, this condition should be replaced with an assertion\n1229:     VTR_ASSERT(from_compressed_loc.x != OPEN && from_compressed_loc.y != OPEN && from_compressed_loc.layer_num != OPEN);\n1230:     VTR_ASSERT(target_compressed_loc.x != OPEN && target_compressed_loc.y != OPEN && target_compressed_loc.layer_num != OPEN);\n1231: \n1232:     int layer_num = target_compressed_loc.layer_num;\n1233:     int rlim_x_max_range = std::min<int>(compressed_block_grid.get_num_columns(layer_num), rlim);\n1234:     int rlim_y_max_range = std::min<int>(compressed_block_grid.get_num_rows(layer_num), rlim); /* for aspect_ratio != 1 case. */"
+    },
+    {
+      "path": "scripts/3d_sb_creator.py",
+      "commit": "44acf9d27ed01d4a7496773aa8663266c9b5a73b",
+      "source_sha256": "6cb9c5a242b5ce2a84a774baceac0037182d10c7ed3a2b01ec724179536f6a7e",
+      "first_line": 609,
+      "last_line": 642,
+      "text": "609: def connect_sb_nodes_combined(input_nodes, output_nodes, x, y, input_layer, output_layer):\n610:     global max_node_id\n611:     global segment_id\n612: \n613:     new_edges = [None] * (len(input_nodes) + len(output_nodes) + 1)\n614:     edge_idx = 0\n615: \n616:     key = (int(input_layer), int(x), int(y))\n617:     ptc_val = ptc_counter[key]\n618:     ptc_val += 1\n619:     input_layer_none_nodes =[create_node(max_node_id + 1, \"CHANX\", input_layer, x, x, y, y, \"\", \"NONE\", ptc_val, segment_id)]\n620:     ptc_counter[key] = ptc_val\n621: \n622:     key = (int(output_layer), int(x), int(y))\n623:     ptc_val = ptc_counter[key]\n624:     ptc_val += 1\n625:     output_layer_none_nodes = [create_node(max_node_id + 2, \"CHANX\", output_layer, x, x, y, y, \"\", \"NONE\", ptc_val, segment_id)]\n626:     ptc_counter[key] = ptc_val\n627:     \n628:     max_node_id += 2\n629: \n630:     # connect the input nodes to the none node\n631:     for input_node in input_nodes:\n632:         new_edges[edge_idx] = create_edge(input_node.id, input_layer_none_nodes[0].id, input_node.layer, input_layer_none_nodes[0].layer, input_layer_none_nodes[0].segment)\n633:         edge_idx += 1\n634:     \n635:     # connect the none node to the output nodes\n636:     for output_node in output_nodes:\n637:         new_edges[edge_idx] = create_edge(output_layer_none_nodes[0].id, output_node.id, output_layer_none_nodes[0].layer, output_node.layer, output_node.segment)\n638:         edge_idx += 1\n639: \n640:     # connect the two none nodes\n641:     new_edges[edge_idx] = create_edge(input_layer_none_nodes[0].id, output_layer_none_nodes[0].id, input_layer_none_nodes[0].layer, output_layer_none_nodes[0].layer, output_layer_none_nodes[0].segment)\n642: "
+    },
+    {
+      "path": "lazagna/run_flow.py",
+      "commit": "44acf9d27ed01d4a7496773aa8663266c9b5a73b",
+      "source_sha256": "bb17665872cdc089fed3b4aa4602bec81a0ce1135261554a7f6e1fefd965f80f",
+      "first_line": 298,
+      "last_line": 321,
+      "text": "298: def create_base_rrg(original_dir:str, path_to_arch:str, channel_width=2, path_to_write_rrg=\"/base_rrg/rr_graph.xml\", path_to_benchmark=and2_blif_path):\n299:     \n300:     # Make sure the output directory exists\n301:     os.makedirs(os.path.dirname(original_dir + path_to_write_rrg), exist_ok=True)\n302: \n303:     command = [original_dir + \"/OpenFPGA/build/vtr-verilog-to-routing/vpr/vpr\", \n304:                       original_dir + path_to_arch, \n305:                       original_dir + path_to_benchmark, \n306:                       \"--route_chan_width\", \n307:                       str(channel_width), \n308:                       \"--write_rr_graph\", \n309:                       original_dir + path_to_write_rrg,\n310:                       \"--clock_modeling\",\n311:                       \"route\",\n312:                       \"--pack\"]\n313:     \n314:     print_verbose(f\"Creating Base RRG with command: {' '.join(command)}\")\n315:     \n316:     run_command_in_temp_dir(command, original_dir, handle_error=False, verbose=False)\n317: \n318: def create_custom_3d_rrg(base_arch_path, output_file_path, original_dir, percent_connectivity=0.5, connection_type=\"subset\", arch_file =\"\", vertical_connectivity=1, sb_switch_name=\"\", sb_segment_name=\"\", sb_input_pattern=[], sb_output_pattern=[], sb_location_pattern=\"repeated_interval\", sb_grid_csv_path=\"\"):\n319: \n320:     # Make sure the output directory exists\n321:     os.makedirs(os.path.dirname(original_dir + output_file_path), exist_ok=True)"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "commit": "0b912334fdd83bb754b302146ac0d1ec9edc9a0e",
+      "source_sha256": "a609475537ec418907116a442664bb10a8f5d30e18f9eb182a21a7157c01c73b",
+      "first_line": 75,
+      "last_line": 78,
+      "text": "75: set(VTR_VERSION_MAJOR 9)\n76: set(VTR_VERSION_MINOR 0)\n77: set(VTR_VERSION_PATCH 0)\n78: set(VTR_VERSION_PRERELEASE \"dev\")"
+    },
+    {
+      "path": "libs/librrgraph/src/base/rr_node_types.h",
+      "commit": "0b912334fdd83bb754b302146ac0d1ec9edc9a0e",
+      "source_sha256": "ba59403b03e37d60720bdaf4dabb0e02f6e9ebff9812cb2727914440772a8c7d",
+      "first_line": 25,
+      "last_line": 40,
+      "text": "25:  */\n26: enum class e_rr_type : unsigned char {\n27:     SOURCE = 0, ///<A dummy node that is a logical output within a block -- i.e., the gate that generates a signal.\n28:     SINK,       ///<A dummy node that is a logical input within a block -- i.e. the gate that needs a signal.\n29:     IPIN,       ///<Input pin to a block\n30:     OPIN,       ///<Output pin of a block\n31:     CHANX,      ///<x-directed routing wire, or an x-directed segment of a channel for global routing\n32:     CHANY,      ///<y-directed routing wire, or a y-directed segment of a channel for global routing\n33:     CHANZ,      ///<z-directed routing wire used to connect two different layers.\n34:                 ///< For CHANZ nodes, xlow == xhigh and yhigh == ylow\n35:     MUX,        ///<a routing multiplexer that does not traverse a significant distance before feeding\n36:                 /// other rr-nodes. E.g. the first node in a 2-stage mux in a switch block.\n37:     NUM_RR_TYPES\n38: };\n39: \n40: constexpr bool is_pin(e_rr_type type) { return (type == e_rr_type::IPIN || type == e_rr_type::OPIN); }"
+    }
+  ],
+  "migration_log": "5abd3acaa603e037ec390fa545b04301f13d57e0 2026-01-23T21:32:49-05:00 Slight modifications to VPR testing and a few APIs to make VTR 9 work with LaZagna and OpenFPGA.\n8899af92cecc75d82f4f8e23e11f1bad14ff9b8f 2026-01-23T21:31:55-05:00 Updated VPR Draw and Analytical Placement Directory to match VTR while keep support for OpenFPGA and LaZagna.\n860cded708651cc1d22d793932f6e74a0ff2b964 2026-01-23T21:30:53-05:00 Updated CMake and route_diag to compile correctly.\nb6ff0601fb39fb24c0769e8f4f1c547876da4acc 2026-01-23T18:55:37-05:00 Updated VPR Route directory to match VTR 9's while keeping LaZagna and OpenFPGA compatibility.\n0eaa2433d812594f82c459a0ab64d7c3fcd732cb 2026-01-23T16:12:09-05:00 Updated VPR Pack directory to match VTR 9's while keeping LaZagna and OpenFPGA compatibility.\n97f3668c2e632663b5e911197bb06a9f9d131dcb 2026-01-23T14:34:29-05:00 Updated Arch FPGA for string conversion error (string to C string).\n7b4048b6af386e80802c7c9eb419a94360478e1a 2026-01-23T14:24:31-05:00 Updated VPR Util directory to match VTR 9's while keeping LaZagna and OpenFPGA compatibility.\nb0bbceadf3dd850e7131a324072381b0b94f1094 2026-01-23T14:08:22-05:00 Updated VPR Place directory to match VTR 9 while maintaining LaZagna and OpenFPGA capabilites.\n495cc909b8f30e32b5841768372e7c96b86e3d78 2026-01-23T13:12:30-05:00 Updated VPR Timing directory to match VTR 9's while maintaining LaZagna and OpenFPGA compatibility\nc519069b737e48326e0a2d66390c7e7c238c11df 2026-01-23T12:50:28-05:00 Updated 'Base' directory of vpr to match that of VTR 9 while keeping the functionality of OpenFPGA and LaZagna\ne61b913c476c149ed77bef7741b3120a97973314 2026-01-23T12:49:48-05:00 Updated CMake File to add vtr interface for use with my libtatum path writer, I need to make this more robust eventually\n0b11e0938838ab1fd14857d04df3fc0bd3418363 2026-01-23T12:49:02-05:00 Updated VTR Util library to work with VTR 9\n2ee9e85076e277ddfdc35c358820b1d80151fa0d 2026-01-23T12:45:44-05:00 Updated VTR RRG library to work with VTR 9\n401860d69dfbed17a597554c15ff6b7eff408249 2026-01-23T12:45:18-05:00 Updated VTR architecture library to work with VTR 9\nc2806c03b2e64dd780ad109dca388c47ed7fad1a 2026-01-23T12:44:45-05:00 Updated External VTR libraries to work with VTR 9\na80511e8f96d560e680d2ebe9c18272a759ce493 2025-04-29T14:45:53+00:00 Added CHANZ node but it's use is none exsistent right now. Maybe to be done later, currently 'CHANZ is just a 'CHANX' node with a none direction.\naf5b6a44340e69e4c2c9e44713626888a4b6bd5a 2025-04-08T15:04:37+00:00 Modified Placement to work with heterogenous 3D FPGA layers. Essentially instead of throwing an error a location is deemed unfit, a hacky solution but appears to be working.\n5edf537e0e4e4e38ff466e584ebf21974b58fca1 2025-04-04T15:11:03+00:00 Added some errors messages to help with debugging.",
+  "root_git_status": "?? .gitignore\n?? LICENSES/\n?? README.md\n?? benchmarks/\n?? configs/\n?? docs/\n?? patches/\n?? results/\n?? scripts/\n?? tests/\n?? vpr_stdout.log",
+  "native_worktree_git_status": "M vpr/src/route/SerialNetlistRouter.tpp\n M vpr/src/route/connection_based_routing.h\n M vpr/src/route/connection_router.tpp\n M vpr/src/route/connection_router_interface.h\n M vpr/src/route/route_net.cpp\n M vpr/src/route/route_net.tpp\n M vpr/src/timing/VprTimingGraphResolver.cpp\n M vtr_flow/tasks/regression_tests/vtr_reg_strong/task_list.txt\n?? vpr/src/route/h3d_controls.cpp\n?? vpr/src/route/h3d_controls.h\n?? vpr/src/route/h3d_fast_plan.cpp\n?? vpr/src/route/h3d_fast_plan.h\n?? vpr/src/route/h3d_flute.cpp\n?? vpr/src/route/h3d_flute.h\n?? vpr/src/route/h3d_partition_dp.h\n?? vpr/src/route/h3d_reachability.h\n?? vpr/src/route/h3d_routing.cpp\n?? vpr/src/route/h3d_routing.h\n?? vtr_flow/tasks/regression_tests/vtr_reg_strong/strong_h3d_vertical/",
+  "frozen_evidence_sha256": {
+    "results/analysis.json": "e1f73957b2225db1784b9559381612a4653c437304cb742321952568502e1e53",
+    "results/failure_diagnosis/analysis_native.json": "41970b32895124d4c2b3eff052cc1e9a8cb37c2140763eb23b30363eb0d7cbec",
+    "configs/sources.lock.json": "43ef9c53e8f5909c8115b7d6c929e42df5a72db768b0ec434c72e0fcb3d4b6e1",
+    "configs/failure_diagnosis_native.json": "f84fd341f48d3fd52b766029c096ba532129d71b5489ed25831da4ff65df7825",
+    "configs/architectures/koios_native3d_n6_f16_d1_v3.xml": "b19507fc7eeb0f87208a8565fe09b6313aafd1d6006b057c1e284ae2c549ef60",
+    "results/lazagna_reproduction/analysis.json": "28b87a260f4f96722e7e164fb804d81aa35d84bd117427e1c6de8a4207fc05a7",
+    "results/lazagna_reproduction/report.html": "44566df6d2f7c83695bf2d1592002d4d65504b1f44d9ecee8852f04405007eb7",
+    "results/lazagna_reproduction/validation.json": "289826327eb95c7c1d36f36d645ba04d6f2569267ac81efc6232546352da687d",
+    "results/lazagna_reproduction/finalization.json": "74a9376a4204ae381a8aff199f55e579297655b295ea376542a0c0d5e1d9b80a"
+  },
+  "study_finalization": {
+    "utc": "2026-10-23T16:54:29.517608+00:00",
+    "passed": true,
+    "all_registered_owners_terminal": true,
+    "validation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/lazagna_reproduction/validation.json"
+  },
+  "external_sources": [
+    "https://github.com/sharc-lab/LaZagna/commit/c9520a131bd19707df3cef49a2489858d6432b9e",
+    "https://github.com/IY2002/vtr-verilog-to-routing/commit/5abd3acaa603e037ec390fa545b04301f13d57e0",
+    "https://github.com/verilog-to-routing/vtr-verilog-to-routing/commit/0b912334fdd83bb754b302146ac0d1ec9edc9a0e"
+  ]
+}

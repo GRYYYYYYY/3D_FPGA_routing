@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "description": "Adapt the published Koios hard-block architecture to explicit native CHANZ.\n\nPreserve source primitives, local timing and planar switchblocks. Replace its\nlegacy inter-layer encoding with the pinned VTR Hecate scatter/gather model.\nThis is a documented hybrid research architecture, not the original paper's\nfabric or a claim of process-calibrated physical equivalence.\n",
+  "source_architecture": {
+    "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/sb_architecture.xml",
+    "sha256": "c39324c6544cbed2a21649a93d6bc8d10d7ac4c509737d0c7cdebd331bd8f46a",
+    "commit": "84ba44acf1bad597bc5a9d1f615415870e178a86"
+  },
+  "native_vertical_model": {
+    "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/vtr/vtr_flow/arch/multi_die/hecate/3d/hecate_3d_sb_10um_bidir_fanin_16_fanout_16_with_esd_7nm.xml",
+    "sha256": "1e9d59fb5d6d3a39b1f95e0eee7b0d528e67d3c763cd6e1c99e649c63da4ce54"
+  },
+  "output_sha256": "b19507fc7eeb0f87208a8565fe09b6313aafd1d6006b057c1e284ae2c549ef60",
+  "parameters": {
+    "channels": 6,
+    "fanin": 16,
+    "fanout": 16,
+    "delay_scale": 1.0,
+    "location": "EVERYWHERE"
+  },
+  "preserved_sections": [
+    "models",
+    "complexblocklist",
+    "planar switchblocks"
+  ],
+  "tile_change": "Preserve local pins/capacities; add Fc=0 override for direct pin-to-CHANZ edges",
+  "limitations": [
+    "mixed-source timing model; no process-equivalence claim",
+    "zero wire RC in source models; fanout/load sensitivity limited",
+    "new vertical topology, not reproduction of original Beyond-Flatland routing"
+  ]
+}

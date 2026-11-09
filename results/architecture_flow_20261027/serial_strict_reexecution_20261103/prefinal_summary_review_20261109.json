@@ -1,0 +1,417 @@
+{
+  "utc": "2026-11-09T12:56:41.440880+00:00",
+  "status": "summary_arithmetic_checked_final_raw_evidence_audit_pending",
+  "source_bindings": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/evaluation_analysis/summary.json": "cbdab2fcb92b2d355c0957692c077e02c65b2333425a9a6c82f96d8c26c111f4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/serial_analysis/summary.json": "3dceb72f5c102c308a371cb0d8a7f5070649a263ffcb749da97bb03e18af1df2",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/balance_analysis/summary.json": "13267eb59767e1cf4565698a4140d3d714dfbac64942bb3aff6e881d1d3500b8"
+  },
+  "verification_scope": "Recomputed geometric means from recorded per-circuit means, dual maximum ratios from recorded CPDs and timing ratios from recorded medians. This does not revalidate raw routes, all input hashes, physical provenance or final acceptance.",
+  "panels": [
+    {
+      "family": "sb",
+      "flow": "p0",
+      "dual_common_complete_circuits": [
+        "clstm_like.medium",
+        "conv_layer_hls",
+        "reduction_layer"
+      ],
+      "registered_circuits": 14,
+      "registered_seed_samples": 42,
+      "vs3d_paired_legal_seed_samples": 23,
+      "vs3d_improvement_percent": -0.6384909844168618,
+      "vs2d_improvement_percent": -7.1702837943429465,
+      "modern_lazagna_improvement_percent": 0.6683102390302009,
+      "modern_lazagna_complete_circuits": [
+        "clstm_like.large",
+        "clstm_like.medium",
+        "conv_layer_hls",
+        "reduction_layer",
+        "robot_rl",
+        "tpu_like.large.os",
+        "tpu_like.small.os"
+      ],
+      "maximum_same_sample_dual": {
+        "circuit": "tpu_like.small.os",
+        "seed": 21,
+        "cpd_ns": 7.89393,
+        "baseline_3d_cpd_ns": 8.09503,
+        "baseline_2d_cpd_ns": 8.11795,
+        "improvement_vs_3d_percent": 2.4842403301778893,
+        "improvement_vs_2d_percent": 2.7595636829495174,
+        "numerator_run": "heldout_tpu_like.small.os_s21_sb_n60_w100_p0_critical_c7",
+        "baseline_3d_run": "heldout_tpu_like.small.os_s21_sb_n60_w100_p0_a0",
+        "baseline_2d_run": "heldout_tpu_like.small.os_s21_matched_2d_n60_w100_p0_a0"
+      }
+    },
+    {
+      "family": "sb",
+      "flow": "p1",
+      "dual_common_complete_circuits": [
+        "clstm_like.medium",
+        "clstm_like.small",
+        "conv_layer_hls",
+        "reduction_layer"
+      ],
+      "registered_circuits": 14,
+      "registered_seed_samples": 42,
+      "vs3d_paired_legal_seed_samples": 24,
+      "vs3d_improvement_percent": 0.4104558674321468,
+      "vs2d_improvement_percent": 0.885883190838177,
+      "modern_lazagna_improvement_percent": -1.6014490638556644,
+      "modern_lazagna_complete_circuits": [
+        "clstm_like.large",
+        "clstm_like.medium",
+        "clstm_like.small",
+        "conv_layer_hls",
+        "reduction_layer",
+        "robot_rl",
+        "tpu_like.large.os",
+        "tpu_like.small.os"
+      ],
+      "maximum_same_sample_dual": {
+        "circuit": "reduction_layer",
+        "seed": 21,
+        "cpd_ns": 10.2747,
+        "baseline_3d_cpd_ns": 11.1889,
+        "baseline_2d_cpd_ns": 11.3006,
+        "improvement_vs_3d_percent": 8.170597645881195,
+        "improvement_vs_2d_percent": 9.078279029432068,
+        "numerator_run": "heldout_reduction_layer_s21_sb_n125_w100_p1_critical_c7",
+        "baseline_3d_run": "heldout_reduction_layer_s21_sb_n125_w100_p1_a0",
+        "baseline_2d_run": "heldout_reduction_layer_s21_matched_2d_n125_w100_p0_a0"
+      }
+    },
+    {
+      "family": "cb_o",
+      "flow": "p0",
+      "dual_common_complete_circuits": [
+        "conv_layer_hls",
+        "reduction_layer"
+      ],
+      "registered_circuits": 14,
+      "registered_seed_samples": 42,
+      "vs3d_paired_legal_seed_samples": 11,
+      "vs3d_improvement_percent": 0.0,
+      "vs2d_improvement_percent": 3.051658900040366,
+      "modern_lazagna_improvement_percent": -0.6708968397806103,
+      "modern_lazagna_complete_circuits": [
+        "conv_layer_hls",
+        "reduction_layer"
+      ],
+      "maximum_same_sample_dual": {
+        "circuit": "clstm_like.medium",
+        "seed": 21,
+        "cpd_ns": 7.32599,
+        "baseline_3d_cpd_ns": 7.32599,
+        "baseline_2d_cpd_ns": 6.59032,
+        "improvement_vs_3d_percent": 0.0,
+        "improvement_vs_2d_percent": -11.162887386348451,
+        "numerator_run": "heldout_clstm_like.medium_s21_cb_o_n80_w100_p0_critical_c4",
+        "baseline_3d_run": "heldout_clstm_like.medium_s21_cb_o_n80_w100_p0_a0",
+        "baseline_2d_run": "heldout_clstm_like.medium_s21_matched_2d_n80_w100_p0_a0"
+      }
+    },
+    {
+      "family": "cb_o",
+      "flow": "p1",
+      "dual_common_complete_circuits": [
+        "conv_layer_hls",
+        "reduction_layer"
+      ],
+      "registered_circuits": 14,
+      "registered_seed_samples": 42,
+      "vs3d_paired_legal_seed_samples": 12,
+      "vs3d_improvement_percent": 0.0,
+      "vs2d_improvement_percent": 4.283634087717658,
+      "modern_lazagna_improvement_percent": 0.5732975633263471,
+      "modern_lazagna_complete_circuits": [
+        "conv_layer_hls",
+        "reduction_layer"
+      ],
+      "maximum_same_sample_dual": {
+        "circuit": "clstm_like.medium",
+        "seed": 23,
+        "cpd_ns": 6.59796,
+        "baseline_3d_cpd_ns": 6.59796,
+        "baseline_2d_cpd_ns": 6.76851,
+        "improvement_vs_3d_percent": 0.0,
+        "improvement_vs_2d_percent": 2.519756933209827,
+        "numerator_run": "heldout_clstm_like.medium_s23_cb_o_n80_w100_p1_critical_c4",
+        "baseline_3d_run": "heldout_clstm_like.medium_s23_cb_o_n80_w100_p1_a0",
+        "baseline_2d_run": "heldout_clstm_like.medium_s23_matched_2d_n80_w100_p0_a0"
+      }
+    },
+    {
+      "family": "hybrid_o",
+      "flow": "p0",
+      "dual_common_complete_circuits": [
+        "clstm_like.medium",
+        "clstm_like.small",
+        "conv_layer_hls"
+      ],
+      "registered_circuits": 14,
+      "registered_seed_samples": 42,
+      "vs3d_paired_legal_seed_samples": 23,
+      "vs3d_improvement_percent": 1.3169333918943593,
+      "vs2d_improvement_percent": 0.34682938483097114,
+      "modern_lazagna_improvement_percent": 1.608547710574848,
+      "modern_lazagna_complete_circuits": [
+        "clstm_like.medium",
+        "clstm_like.small",
+        "conv_layer_hls",
+        "robot_rl",
+        "tpu_like.large.os",
+        "tpu_like.small.os"
+      ],
+      "maximum_same_sample_dual": {
+        "circuit": "clstm_like.small",
+        "seed": 23,
+        "cpd_ns": 6.2215,
+        "baseline_3d_cpd_ns": 7.1478,
+        "baseline_2d_cpd_ns": 6.95434,
+        "improvement_vs_3d_percent": 12.959232211309779,
+        "improvement_vs_2d_percent": 10.537879942597005,
+        "numerator_run": "heldout_clstm_like.small_s23_hybrid_o_n60_w100_p0_delay_critical_c6",
+        "baseline_3d_run": "heldout_clstm_like.small_s23_hybrid_o_n60_w100_p0_a0",
+        "baseline_2d_run": "heldout_clstm_like.small_s23_matched_2d_n60_w100_p0_a0"
+      }
+    },
+    {
+      "family": "hybrid_o",
+      "flow": "p1",
+      "dual_common_complete_circuits": [
+        "clstm_like.medium",
+        "clstm_like.small",
+        "conv_layer_hls",
+        "reduction_layer"
+      ],
+      "registered_circuits": 14,
+      "registered_seed_samples": 42,
+      "vs3d_paired_legal_seed_samples": 24,
+      "vs3d_improvement_percent": 1.077204432003076,
+      "vs2d_improvement_percent": 1.0451469485528997,
+      "modern_lazagna_improvement_percent": -2.270921470806253,
+      "modern_lazagna_complete_circuits": [
+        "clstm_like.large",
+        "clstm_like.medium",
+        "clstm_like.small",
+        "conv_layer_hls",
+        "reduction_layer",
+        "robot_rl",
+        "tpu_like.large.os",
+        "tpu_like.small.os"
+      ],
+      "maximum_same_sample_dual": {
+        "circuit": "clstm_like.medium",
+        "seed": 21,
+        "cpd_ns": 6.67151,
+        "baseline_3d_cpd_ns": 7.51181,
+        "baseline_2d_cpd_ns": 6.59032,
+        "improvement_vs_3d_percent": 11.186385172148928,
+        "improvement_vs_2d_percent": -1.2319583874531137,
+        "numerator_run": "heldout_clstm_like.medium_s21_hybrid_o_n80_w100_p1_delay_critical_c6",
+        "baseline_3d_run": "heldout_clstm_like.medium_s21_hybrid_o_n80_w100_p1_a0",
+        "baseline_2d_run": "heldout_clstm_like.medium_s21_matched_2d_n80_w100_p0_a0"
+      }
+    }
+  ],
+  "timing": {
+    "method": "seccomp_guard_no_ptrace",
+    "registered_groups": 12,
+    "groups_with_three_legal_repeats": 10,
+    "r1_slower_than_a0_groups": 10,
+    "per_group": [
+      {
+        "circuit": "spmv",
+        "family": "sb",
+        "flow": "p0",
+        "router_time_ratio": 1.349005424954792,
+        "route_process_time_ratio": 1.1197182804448542
+      },
+      {
+        "circuit": "spmv",
+        "family": "sb",
+        "flow": "p1",
+        "router_time_ratio": 1.1881051175656985,
+        "route_process_time_ratio": 1.049804649648925
+      },
+      {
+        "circuit": "spmv",
+        "family": "cb_o",
+        "flow": "p0",
+        "router_time_ratio": 1.1287878787878787,
+        "route_process_time_ratio": 1.0472160682184246
+      },
+      {
+        "circuit": "spmv",
+        "family": "cb_o",
+        "flow": "p1",
+        "router_time_ratio": 1.5761316872427982,
+        "route_process_time_ratio": 1.1558246283848639
+      },
+      {
+        "circuit": "spmv",
+        "family": "hybrid_o",
+        "flow": "p0",
+        "router_time_ratio": 2.0932475884244375,
+        "route_process_time_ratio": 1.2114734811663197
+      },
+      {
+        "circuit": "spmv",
+        "family": "hybrid_o",
+        "flow": "p1",
+        "router_time_ratio": 2.8085106382978724,
+        "route_process_time_ratio": 1.3127381522568113
+      },
+      {
+        "circuit": "robot_rl",
+        "family": "sb",
+        "flow": "p0",
+        "router_time_ratio": 2.804347826086956,
+        "route_process_time_ratio": 1.2949697381643748
+      },
+      {
+        "circuit": "robot_rl",
+        "family": "sb",
+        "flow": "p1",
+        "router_time_ratio": 1.3233779608650873,
+        "route_process_time_ratio": 1.07454230430077
+      },
+      {
+        "circuit": "robot_rl",
+        "family": "hybrid_o",
+        "flow": "p0",
+        "router_time_ratio": 3.3819188191881917,
+        "route_process_time_ratio": 1.3065234321187393
+      },
+      {
+        "circuit": "robot_rl",
+        "family": "hybrid_o",
+        "flow": "p1",
+        "router_time_ratio": 2.815068493150685,
+        "route_process_time_ratio": 1.215492143962743
+      }
+    ],
+    "isolation": {
+      "passed": true,
+      "checked_serial_processes": 180,
+      "scope": "No overlapping registered study process intervals; this does not establish exclusive use of the shared host."
+    }
+  },
+  "architecture_ranking": {
+    "common_complete_circuits": [
+      "conv_layer_hls"
+    ],
+    "strict_pairwise_reversal_count": 0,
+    "by_flow": {
+      "p0_A0": {
+        "absolute_geomean_cpd_ns": {
+          "sb": 14.474899999999998,
+          "cb_o": 14.12316666666667,
+          "hybrid_o": 14.476299999999997
+        },
+        "common_2d_geomean_ratio": {
+          "sb": 1.0447067824011702,
+          "cb_o": 1.0193208937988376,
+          "hybrid_o": 1.0448078255514068
+        },
+        "rank_groups": [
+          [
+            "cb_o"
+          ],
+          [
+            "sb"
+          ],
+          [
+            "hybrid_o"
+          ]
+        ]
+      },
+      "p0_R1": {
+        "absolute_geomean_cpd_ns": {
+          "sb": 14.474899999999998,
+          "cb_o": 14.12316666666667,
+          "hybrid_o": 14.476299999999997
+        },
+        "common_2d_geomean_ratio": {
+          "sb": 1.0447067824011702,
+          "cb_o": 1.0193208937988376,
+          "hybrid_o": 1.0448078255514068
+        },
+        "rank_groups": [
+          [
+            "cb_o"
+          ],
+          [
+            "sb"
+          ],
+          [
+            "hybrid_o"
+          ]
+        ]
+      },
+      "p1_A0": {
+        "absolute_geomean_cpd_ns": {
+          "sb": 14.227099999999997,
+          "cb_o": 14.188699999999999,
+          "hybrid_o": 14.230899999999998
+        },
+        "common_2d_geomean_ratio": {
+          "sb": 1.0268221448092691,
+          "cb_o": 1.024050675545633,
+          "hybrid_o": 1.027096404788483
+        },
+        "rank_groups": [
+          [
+            "cb_o"
+          ],
+          [
+            "sb"
+          ],
+          [
+            "hybrid_o"
+          ]
+        ]
+      },
+      "p1_R1": {
+        "absolute_geomean_cpd_ns": {
+          "sb": 14.227099999999997,
+          "cb_o": 14.188699999999999,
+          "hybrid_o": 14.230899999999998
+        },
+        "common_2d_geomean_ratio": {
+          "sb": 1.0268221448092691,
+          "cb_o": 1.024050675545633,
+          "hybrid_o": 1.027096404788483
+        },
+        "rank_groups": [
+          [
+            "cb_o"
+          ],
+          [
+            "sb"
+          ],
+          [
+            "hybrid_o"
+          ]
+        ]
+      }
+    }
+  },
+  "conclusions_zh": [
+    "当前不能宣称R1普遍优于A0或现代LaZagna；收益随架构和布局而变化。",
+    "R1相对A0的10组可用串行路由计时均更慢；另2组缺少三次合法配对，不得按加速或持平处理。",
+    "双基线几何均值限于各面板2至4个共同完整测试电路；现代LaZagna的比较集合可能不同，不可跨集合相减或混为同一总体。",
+    "最大同一样本双基线改善为Hybrid-O/P0的clstm_like.small/seed23：约12.96%（相对2D约10.54%）；这是单样本极值，不能代表总体。",
+    "架构排序共同完整电路只有conv_layer_hls，四种布局/路由组合均CB-O优于SB优于Hybrid-O；没有观察到严格排序反转，不能外推为普遍架构结论。",
+    "P1字面分区参数、非等物理资源模型、失败覆盖和历史数据暴露等限制继续适用。"
+  ],
+  "remaining": [
+    "paired_width execution and analysis",
+    "raw evidence integrity and all 13 requirement acceptance checks",
+    "incorporate paired-width and scientific interpretation into final report",
+    "archive complete provenance, attempts, analyses and acceptance record"
+  ],
+  "full_study_complete": false
+}

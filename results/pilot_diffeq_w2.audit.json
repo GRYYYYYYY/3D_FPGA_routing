@@ -1,0 +1,6555 @@
+{
+  "schema": 1,
+  "scope": "directed_edges_tree_routed_resource_capacity",
+  "passed": true,
+  "full_legality_requires": [
+    "VPR --check_route full",
+    "independent endpoint mapping for standalone certification"
+  ],
+  "not_checked": [
+    "netlist/placement endpoint identity",
+    "local OPIN reservations",
+    "nonconfigurable edge closure",
+    "bus-mux shared selection"
+  ],
+  "errors": [],
+  "inputs": {
+    "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_diffeq_w100_seed1/rr_graph.xml",
+    "rr_graph_sha256": "6ed35333d25d5c08af7d77706de9cb1764529349649cbe70005fc6c19cf50317",
+    "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/pilot_diffeq_w2/routed.route",
+    "route_sha256": "4d60688874c74a82923fe02bc1e65e23a17b79cc8ce60fe160071df72c2515e5",
+    "resource_map_sha256": null
+  },
+  "graph": {
+    "nodes_by_type": {
+      "SINK": 27064,
+      "SOURCE": 29200,
+      "IPIN": 76312,
+      "OPIN": 42880,
+      "CHANX": 41440,
+      "CHANY": 41440,
+      "CHANZ": 6658
+    },
+    "edges": 2366014,
+    "switches_by_type": {
+      "mux": 6
+    },
+    "physical_vertical_channels": 6658
+  },
+  "route": {
+    "routed_nets": 1084,
+    "sink_terminals": 2376,
+    "directed_edges": 11271,
+    "overused_rr_nodes": 0,
+    "vertical_channel_net_occupancy": 362,
+    "unique_used_vertical_channels": 362,
+    "horizontal_track_length": 20244
+  },
+  "nets": {
+    "0": {
+      "name": "[7384]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "1": {
+      "name": "[7502]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "2": {
+      "name": "[7381]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "3": {
+      "name": "n_n2963",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "4": {
+      "name": "n_n3602",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "5": {
+      "name": "n_n4198",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "6": {
+      "name": "n_n3912",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 60
+    },
+    "7": {
+      "name": "n_n3925",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 20
+    },
+    "8": {
+      "name": "n_n3027",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "9": {
+      "name": "[797]",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 60
+    },
+    "10": {
+      "name": "[1983]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "11": {
+      "name": "[7170]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "12": {
+      "name": "[7389]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "13": {
+      "name": "[1366]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "14": {
+      "name": "n_n4145",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 68
+    },
+    "15": {
+      "name": "[2022]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "16": {
+      "name": "n_n3859",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "17": {
+      "name": "n_n4228",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "18": {
+      "name": "[1974]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "19": {
+      "name": "n_n4196",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "20": {
+      "name": "[1349]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "21": {
+      "name": "[813]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40
+    },
+    "22": {
+      "name": "[1361]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 36
+    },
+    "23": {
+      "name": "[7173]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "24": {
+      "name": "[7149]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 40
+    },
+    "25": {
+      "name": "[7501]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "26": {
+      "name": "n_n4069",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "27": {
+      "name": "[841]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "28": {
+      "name": "[1037]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "29": {
+      "name": "n_n3403",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "30": {
+      "name": "n_n4083",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 56
+    },
+    "31": {
+      "name": "[1216]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "32": {
+      "name": "n_n4144",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "33": {
+      "name": "n_n3949",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 96
+    },
+    "34": {
+      "name": "n_n3948",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "35": {
+      "name": "n_n4082",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28
+    },
+    "36": {
+      "name": "n_n3974",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 68
+    },
+    "37": {
+      "name": "n_n4227",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 96
+    },
+    "38": {
+      "name": "n_n4197",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 60
+    },
+    "40": {
+      "name": "n_n3884",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "41": {
+      "name": "preset",
+      "vertical_channels": 6,
+      "native_layer_hops": 6,
+      "horizontal_track_length": 395
+    },
+    "42": {
+      "name": "[7441]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "43": {
+      "name": "n_n3487",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "44": {
+      "name": "n_n3396",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "45": {
+      "name": "[7439]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "46": {
+      "name": "n_n4053",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "47": {
+      "name": "n_n3488",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "48": {
+      "name": "n_n3817",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "49": {
+      "name": "[7451]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "50": {
+      "name": "[7440]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "51": {
+      "name": "[7449]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "52": {
+      "name": "[7455]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "53": {
+      "name": "[7447]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "54": {
+      "name": "n_n3489",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "55": {
+      "name": "n_n3513",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 40
+    },
+    "56": {
+      "name": "n_n3882",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "57": {
+      "name": "n_n3762",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "58": {
+      "name": "[1304]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "59": {
+      "name": "[7438]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "60": {
+      "name": "[7442]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "61": {
+      "name": "[7454]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "62": {
+      "name": "[1297]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "63": {
+      "name": "n_n3818",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "64": {
+      "name": "n_n4054",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "65": {
+      "name": "[939]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "66": {
+      "name": "nak3_9",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "67": {
+      "name": "nlak3_9",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "68": {
+      "name": "[2017]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "69": {
+      "name": "n_n3992",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 64
+    },
+    "70": {
+      "name": "nrq5_2",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 164
+    },
+    "71": {
+      "name": "n_n4120",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32
+    },
+    "72": {
+      "name": "n_n3707",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "73": {
+      "name": "n_n3895",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 20
+    },
+    "74": {
+      "name": "[2009]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "75": {
+      "name": "[2011]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "76": {
+      "name": "n_n4027",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 68
+    },
+    "77": {
+      "name": "[1990]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "78": {
+      "name": "nsr5_4",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 192
+    },
+    "79": {
+      "name": "n_n3996",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 80
+    },
+    "80": {
+      "name": "nsr5_8",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 128
+    },
+    "81": {
+      "name": "[2010]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "82": {
+      "name": "n_n3971",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 44
+    },
+    "83": {
+      "name": "nsr5_7",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 236
+    },
+    "84": {
+      "name": "n_n2988",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "85": {
+      "name": "n_n3174",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "86": {
+      "name": "n_n3965",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 68
+    },
+    "87": {
+      "name": "nsr5_3",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 132
+    },
+    "88": {
+      "name": "nrq5_5",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 80
+    },
+    "89": {
+      "name": "nsr5_2",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 160
+    },
+    "90": {
+      "name": "[7152]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "91": {
+      "name": "n_n4018",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 48
+    },
+    "92": {
+      "name": "[7167]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "93": {
+      "name": "[1999]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "94": {
+      "name": "nsr5_5",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 140
+    },
+    "95": {
+      "name": "n_n3500",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36
+    },
+    "96": {
+      "name": "[7164]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "97": {
+      "name": "[2008]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "98": {
+      "name": "n_n2989",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "99": {
+      "name": "n_n3175",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "100": {
+      "name": "[7158]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "101": {
+      "name": "n_n3966",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "102": {
+      "name": "n_n3708",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "103": {
+      "name": "n_n3837",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "104": {
+      "name": "n_n3991",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "105": {
+      "name": "n_n3888",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 20
+    },
+    "106": {
+      "name": "[7155]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "107": {
+      "name": "n_n4017",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "108": {
+      "name": "n_n3913",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "109": {
+      "name": "n_n3705",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "110": {
+      "name": "[7424]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "111": {
+      "name": "[7430]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "112": {
+      "name": "[7427]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "113": {
+      "name": "n_n3322",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "114": {
+      "name": "[1317]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "115": {
+      "name": "[7425]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "116": {
+      "name": "[7429]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "117": {
+      "name": "[7431]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "118": {
+      "name": "[7423]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "119": {
+      "name": "[7432]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "120": {
+      "name": "[7436]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "121": {
+      "name": "[1313]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "122": {
+      "name": "[975]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "123": {
+      "name": "[843]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "124": {
+      "name": "[7426]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "125": {
+      "name": "n_n3908",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "126": {
+      "name": "n_n4015",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "127": {
+      "name": "n_n3832",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "128": {
+      "name": "n_n3778",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "129": {
+      "name": "n_n3454",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "130": {
+      "name": "[7417]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "131": {
+      "name": "[7414]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "132": {
+      "name": "n_n3595",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 16
+    },
+    "133": {
+      "name": "n_n3915",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "134": {
+      "name": "n_n3559",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "135": {
+      "name": "n_n3163",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "136": {
+      "name": "[7415]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "137": {
+      "name": "n_n3535",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 40
+    },
+    "138": {
+      "name": "[7412]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "139": {
+      "name": "n_n3797",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "140": {
+      "name": "n_n3794",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "141": {
+      "name": "n_n4110",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "142": {
+      "name": "[7408]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "143": {
+      "name": "n_n3574",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "144": {
+      "name": "[7410]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "145": {
+      "name": "n_n3733",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "146": {
+      "name": "n_n3916",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "147": {
+      "name": "n_n4111",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "148": {
+      "name": "[7411]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "149": {
+      "name": "[1320]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "150": {
+      "name": "[1322]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "151": {
+      "name": "n_n3523",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "152": {
+      "name": "n_n3284",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "153": {
+      "name": "[2136]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 27
+    },
+    "154": {
+      "name": "n_n3543",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "155": {
+      "name": "[811]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 56
+    },
+    "156": {
+      "name": "[850]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "157": {
+      "name": "[1045]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "158": {
+      "name": "nrq5_6",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 120
+    },
+    "159": {
+      "name": "[2137]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "160": {
+      "name": "n_n3025",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "161": {
+      "name": "n_n3980",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "162": {
+      "name": "n_n3086",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "163": {
+      "name": "[851]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "164": {
+      "name": "n_n3635",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "165": {
+      "name": "n_n3981",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "166": {
+      "name": "n_n3955",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "167": {
+      "name": "[2104]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "168": {
+      "name": "[860]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "169": {
+      "name": "n_n4146",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "170": {
+      "name": "n_n3903",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 72
+    },
+    "171": {
+      "name": "[955]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "172": {
+      "name": "[1388]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "173": {
+      "name": "n_n3838",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32
+    },
+    "174": {
+      "name": "n_n4214",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32
+    },
+    "175": {
+      "name": "n_n3999",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32
+    },
+    "176": {
+      "name": "[7472]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "177": {
+      "name": "n_n3460",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40
+    },
+    "178": {
+      "name": "[1405]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 16
+    },
+    "179": {
+      "name": "[1406]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "180": {
+      "name": "[7375]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "181": {
+      "name": "n_n3106",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "182": {
+      "name": "[6974]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "183": {
+      "name": "[7372]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "184": {
+      "name": "[2075]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "185": {
+      "name": "n_n3578",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "186": {
+      "name": "[6973]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28
+    },
+    "187": {
+      "name": "n_n3833",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 76
+    },
+    "188": {
+      "name": "n_n4000",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "189": {
+      "name": "n_n3549",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 20
+    },
+    "190": {
+      "name": "[2074]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32
+    },
+    "191": {
+      "name": "n_n3439",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "192": {
+      "name": "[1250]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "193": {
+      "name": "[6977]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "194": {
+      "name": "n_n3620",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "195": {
+      "name": "preset_0_0_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 35
+    },
+    "196": {
+      "name": "pdn",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 39
+    },
+    "197": {
+      "name": "ndn3_8",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 144
+    },
+    "198": {
+      "name": "[6976]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "199": {
+      "name": "pready_0_0_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "200": {
+      "name": "n_n3811",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "201": {
+      "name": "[7467]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "202": {
+      "name": "nld3_9",
+      "vertical_channels": 6,
+      "native_layer_hops": 6,
+      "horizontal_track_length": 180
+    },
+    "203": {
+      "name": "nsr3_2",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 172
+    },
+    "204": {
+      "name": "nlc1_2",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28
+    },
+    "205": {
+      "name": "[806]",
+      "vertical_channels": 5,
+      "native_layer_hops": 5,
+      "horizontal_track_length": 148
+    },
+    "206": {
+      "name": "nsr3_9",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "207": {
+      "name": "n_n3332",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "208": {
+      "name": "[2247]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "209": {
+      "name": "[6930]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "210": {
+      "name": "[1248]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "211": {
+      "name": "n_n43",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "212": {
+      "name": "[7205]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36
+    },
+    "213": {
+      "name": "[1804]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "214": {
+      "name": "[1805]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "215": {
+      "name": "n_n3142",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "216": {
+      "name": "[6969]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "217": {
+      "name": "[1251]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "218": {
+      "name": "n_n3325",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "219": {
+      "name": "[2268]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "220": {
+      "name": "[2248]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "221": {
+      "name": "[7462]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "222": {
+      "name": "[6963]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "223": {
+      "name": "n_n4131",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 24
+    },
+    "224": {
+      "name": "[7511]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "225": {
+      "name": "[1249]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "226": {
+      "name": "[1008]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "227": {
+      "name": "n_n3462",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "228": {
+      "name": "n_n3575",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "229": {
+      "name": "[7241]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "230": {
+      "name": "[7246]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "231": {
+      "name": "[7224]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "232": {
+      "name": "[7221]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "233": {
+      "name": "n_n3359",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32
+    },
+    "234": {
+      "name": "[809]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 52
+    },
+    "235": {
+      "name": "[7229]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "236": {
+      "name": "[7240]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "237": {
+      "name": "[934]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "238": {
+      "name": "[7245]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "239": {
+      "name": "[914]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "240": {
+      "name": "n_n3857",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "241": {
+      "name": "[7233]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "242": {
+      "name": "[7228]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "243": {
+      "name": "[7239]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "244": {
+      "name": "[7232]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "245": {
+      "name": "n_n3118",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32
+    },
+    "246": {
+      "name": "[7231]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "247": {
+      "name": "[947]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "248": {
+      "name": "[953]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "249": {
+      "name": "[7230]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "250": {
+      "name": "[946]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28
+    },
+    "251": {
+      "name": "[7223]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "252": {
+      "name": "n_n4123",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "253": {
+      "name": "[1736]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "254": {
+      "name": "n_n4168",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "255": {
+      "name": "n_n3799",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "256": {
+      "name": "ndn5_10",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 92
+    },
+    "257": {
+      "name": "[6999]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "258": {
+      "name": "nrq5_9",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 149
+    },
+    "259": {
+      "name": "n_n4024",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "260": {
+      "name": "[948]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32
+    },
+    "261": {
+      "name": "n_n3956",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "262": {
+      "name": "n_n3204",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "263": {
+      "name": "n_n3967",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "264": {
+      "name": "n_n3958",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "265": {
+      "name": "[952]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32
+    },
+    "266": {
+      "name": "n_n3957",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "267": {
+      "name": "[933]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "268": {
+      "name": "[7002]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "269": {
+      "name": "[7003]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "270": {
+      "name": "[945]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "271": {
+      "name": "n_n3976",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "272": {
+      "name": "[951]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "273": {
+      "name": "[7004]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "274": {
+      "name": "[7005]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "275": {
+      "name": "[7000]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "276": {
+      "name": "[2181]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "277": {
+      "name": "n_n3281",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 36
+    },
+    "278": {
+      "name": "n_n3968",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "279": {
+      "name": "[950]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "280": {
+      "name": "n_n3205",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "281": {
+      "name": "[7008]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "282": {
+      "name": "nrq5_10",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "283": {
+      "name": "[2202]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "284": {
+      "name": "[949]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "285": {
+      "name": "n_n3959",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "286": {
+      "name": "n_n3434",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "287": {
+      "name": "[1937]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "288": {
+      "name": "n_n3897",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "289": {
+      "name": "[883]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "290": {
+      "name": "n_n3892",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "291": {
+      "name": "[1729]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "292": {
+      "name": "[878]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "293": {
+      "name": "[935]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "294": {
+      "name": "[7013]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "295": {
+      "name": "[2195]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "296": {
+      "name": "n_n4062",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "297": {
+      "name": "[886]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "298": {
+      "name": "n_n3521",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "299": {
+      "name": "[890]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "300": {
+      "name": "n_n4051",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "301": {
+      "name": "[816]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 64
+    },
+    "302": {
+      "name": "n_n4129",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "303": {
+      "name": "n_n3779",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "304": {
+      "name": "n_n4184",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "305": {
+      "name": "n_n3484",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "306": {
+      "name": "[7012]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "307": {
+      "name": "n_n4202",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28
+    },
+    "308": {
+      "name": "[2185]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "309": {
+      "name": "[2186]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "310": {
+      "name": "n_n4008",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "311": {
+      "name": "[1133]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "312": {
+      "name": "[869]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "313": {
+      "name": "[1730]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "314": {
+      "name": "n_n3827",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "315": {
+      "name": "[1938]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "316": {
+      "name": "[1656]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 20
+    },
+    "317": {
+      "name": "n_n4189",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "318": {
+      "name": "n_n3499",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "319": {
+      "name": "n_n3801",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "320": {
+      "name": "n_n3683",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "321": {
+      "name": "ndn5_9",
+      "vertical_channels": 8,
+      "native_layer_hops": 8,
+      "horizontal_track_length": 256
+    },
+    "322": {
+      "name": "n_n3558",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "323": {
+      "name": "[796]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 144
+    },
+    "324": {
+      "name": "n_n3796",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "325": {
+      "name": "n_n3684",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "326": {
+      "name": "n_n3626",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "327": {
+      "name": "ndn_latch5_7",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 32
+    },
+    "328": {
+      "name": "[2236]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "329": {
+      "name": "nen5_9",
+      "vertical_channels": 9,
+      "native_layer_hops": 9,
+      "horizontal_track_length": 208
+    },
+    "330": {
+      "name": "[1341]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "331": {
+      "name": "n_n3975",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "332": {
+      "name": "n_n3625",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "333": {
+      "name": "n_n4085",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "334": {
+      "name": "nrq2_2",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32
+    },
+    "335": {
+      "name": "n_n3266",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "336": {
+      "name": "n_n3103",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "337": {
+      "name": "n_n4007",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "338": {
+      "name": "n_n3037",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "339": {
+      "name": "[1535]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "340": {
+      "name": "n_n4086",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36
+    },
+    "341": {
+      "name": "n_n4057",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 44
+    },
+    "342": {
+      "name": "n_n3480",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 37
+    },
+    "343": {
+      "name": "[1032]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "344": {
+      "name": "n_n3346",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "345": {
+      "name": "n_n3344",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "346": {
+      "name": "n_n3481",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "347": {
+      "name": "n_n3611",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "348": {
+      "name": "n_n4038",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "349": {
+      "name": "[916]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "350": {
+      "name": "n_n4074",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "351": {
+      "name": "[6996]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "352": {
+      "name": "[880]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "353": {
+      "name": "[6997]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "354": {
+      "name": "n_n4039",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 24
+    },
+    "355": {
+      "name": "n_n3612",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "356": {
+      "name": "n_n4075",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "357": {
+      "name": "n_n3482",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "358": {
+      "name": "n_n3194",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "359": {
+      "name": "n_n2957",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "360": {
+      "name": "n_n37",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "361": {
+      "name": "n_n4084",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32
+    },
+    "362": {
+      "name": "n_n3191",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "363": {
+      "name": "n_n3156",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "364": {
+      "name": "n_n2997",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "365": {
+      "name": "[7175]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "366": {
+      "name": "[1971]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "367": {
+      "name": "[1968]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "368": {
+      "name": "[1969]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "369": {
+      "name": "n_n4133",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "370": {
+      "name": "n_n4136",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 60
+    },
+    "371": {
+      "name": "n_n4132",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 48
+    },
+    "372": {
+      "name": "n_n4135",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "373": {
+      "name": "n_n4134",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "374": {
+      "name": "n_n2955",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "375": {
+      "name": "n_n3695",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "376": {
+      "name": "n_n3592",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "377": {
+      "name": "n_n3918",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "378": {
+      "name": "[7077]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "379": {
+      "name": "[7084]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "380": {
+      "name": "n_n3569",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "381": {
+      "name": "n_n3793",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "382": {
+      "name": "[970]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "383": {
+      "name": "[802]",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 108
+    },
+    "384": {
+      "name": "n_n3919",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36
+    },
+    "385": {
+      "name": "n_n3821",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "386": {
+      "name": "[1477]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "387": {
+      "name": "n_n3363",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "388": {
+      "name": "n_n3111",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "389": {
+      "name": "[845]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "390": {
+      "name": "n_n3748",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "391": {
+      "name": "[846]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "392": {
+      "name": "[2103]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "393": {
+      "name": "[1626]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "394": {
+      "name": "[844]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "395": {
+      "name": "n_n4052",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "396": {
+      "name": "n_n3950",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "397": {
+      "name": "n_n3532",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "398": {
+      "name": "[1639]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "399": {
+      "name": "[1276]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "400": {
+      "name": "[1638]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "401": {
+      "name": "[849]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "402": {
+      "name": "[857]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "403": {
+      "name": "n_n3236",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "404": {
+      "name": "[1157]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "405": {
+      "name": "n_n3713",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "406": {
+      "name": "n_n4079",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "407": {
+      "name": "n_n4158",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "408": {
+      "name": "n_n3336",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32
+    },
+    "409": {
+      "name": "[998]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "410": {
+      "name": "n_n3472",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "411": {
+      "name": "n_n3034",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "412": {
+      "name": "[1354]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "413": {
+      "name": "n_n3051",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "414": {
+      "name": "[1754]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "415": {
+      "name": "[6957]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "416": {
+      "name": "[6960]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "417": {
+      "name": "[1355]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "418": {
+      "name": "n_n4194",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "419": {
+      "name": "[7387]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "420": {
+      "name": "n_n3473",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "421": {
+      "name": "n_n3470",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "422": {
+      "name": "n_n3274",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "423": {
+      "name": "n_n3259",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "424": {
+      "name": "n_n3202",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "425": {
+      "name": "n_n3157",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 28
+    },
+    "426": {
+      "name": "[7090]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "427": {
+      "name": "n_n3048",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "428": {
+      "name": "n_n4020",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "429": {
+      "name": "n_n2977",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "430": {
+      "name": "n_n3049",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "431": {
+      "name": "[2156]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "432": {
+      "name": "n_n3701",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "433": {
+      "name": "[7088]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "434": {
+      "name": "n_n4119",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "435": {
+      "name": "n_n4118",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 24
+    },
+    "436": {
+      "name": "n_n3035",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "437": {
+      "name": "n_n3081",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "438": {
+      "name": "n_n3203",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 16
+    },
+    "439": {
+      "name": "n_n4021",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "440": {
+      "name": "n_n3679",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "441": {
+      "name": "n_n3700",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 20
+    },
+    "442": {
+      "name": "[1694]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "443": {
+      "name": "n_n3190",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "444": {
+      "name": "n_n3315",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "445": {
+      "name": "[2209]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "446": {
+      "name": "[7186]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "447": {
+      "name": "[6989]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "448": {
+      "name": "n_n3404",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "449": {
+      "name": "n_n3113",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "450": {
+      "name": "[2211]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "451": {
+      "name": "[1657]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "452": {
+      "name": "[2208]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "453": {
+      "name": "n_n3875",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "454": {
+      "name": "n_n3844",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 44
+    },
+    "455": {
+      "name": "n_n3529",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "456": {
+      "name": "n_n4183",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 44
+    },
+    "457": {
+      "name": "[1929]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "458": {
+      "name": "n_n3909",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "459": {
+      "name": "[1180]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "460": {
+      "name": "n_n3263",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "461": {
+      "name": "[1003]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "462": {
+      "name": "[1950]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "463": {
+      "name": "ndn_latch5_5",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 52
+    },
+    "464": {
+      "name": "n_n3003",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "465": {
+      "name": "n_n4153",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "466": {
+      "name": "[1179]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "467": {
+      "name": "[1002]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "468": {
+      "name": "[7108]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "469": {
+      "name": "[1398]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "470": {
+      "name": "[862]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "471": {
+      "name": "n_n3910",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28
+    },
+    "472": {
+      "name": "n_n3940",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28
+    },
+    "473": {
+      "name": "n_n3939",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "474": {
+      "name": "n_n3906",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "475": {
+      "name": "[7107]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "476": {
+      "name": "n_n4041",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "477": {
+      "name": "n_n3456",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "478": {
+      "name": "n_n3028",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "479": {
+      "name": "[923]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "480": {
+      "name": "[1745]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "481": {
+      "name": "n_n3823",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "482": {
+      "name": "[1867]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "483": {
+      "name": "n_n4042",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "484": {
+      "name": "n_n3015",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "485": {
+      "name": "n_n4140",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32
+    },
+    "486": {
+      "name": "ndn_latch5_8",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 36
+    },
+    "487": {
+      "name": "[7247]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "488": {
+      "name": "n_n4248",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "489": {
+      "name": "[1578]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "490": {
+      "name": "[7250]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "491": {
+      "name": "[1737]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "492": {
+      "name": "[930]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "493": {
+      "name": "n_n3824",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "494": {
+      "name": "n_n3736",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "495": {
+      "name": "n_n3100",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "496": {
+      "name": "n_n3585",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "497": {
+      "name": "n_n3735",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "498": {
+      "name": "n_n3540",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "499": {
+      "name": "n_n3586",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "500": {
+      "name": "n_n4221",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "501": {
+      "name": "n_n4220",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 36
+    },
+    "502": {
+      "name": "n_n3314",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "503": {
+      "name": "[938]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "504": {
+      "name": "n_n4224",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "505": {
+      "name": "[954]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "506": {
+      "name": "[7302]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "507": {
+      "name": "n_n3829",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "508": {
+      "name": "[1526]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32
+    },
+    "509": {
+      "name": "n_n4223",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "510": {
+      "name": "[6990]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "511": {
+      "name": "[1967]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "512": {
+      "name": "[1058]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "513": {
+      "name": "n_n3464",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "514": {
+      "name": "n_n3119",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "515": {
+      "name": "n_n3570",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "516": {
+      "name": "n_n4165",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 52
+    },
+    "517": {
+      "name": "n_n3320",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "518": {
+      "name": "n_n3690",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "519": {
+      "name": "[1443]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "520": {
+      "name": "n_n3241",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "521": {
+      "name": "[6993]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "522": {
+      "name": "[1991]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "523": {
+      "name": "n_n3890",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36
+    },
+    "524": {
+      "name": "n_n3323",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "525": {
+      "name": "n_n3509",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "526": {
+      "name": "[7360]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "527": {
+      "name": "n_n3324",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "528": {
+      "name": "n_n3691",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "529": {
+      "name": "[2023]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "530": {
+      "name": "n_n2966",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "531": {
+      "name": "n_n3987",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "532": {
+      "name": "n_n3483",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "533": {
+      "name": "n_n4178",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "534": {
+      "name": "n_n3630",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40
+    },
+    "535": {
+      "name": "[1669]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "536": {
+      "name": "[1670]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "537": {
+      "name": "[1672]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "538": {
+      "name": "n_n4206",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 60
+    },
+    "539": {
+      "name": "n_n3312",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "540": {
+      "name": "n_n3988",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "541": {
+      "name": "[7021]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "542": {
+      "name": "n_n3946",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "543": {
+      "name": "n_n3316",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "544": {
+      "name": "n_n3052",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 20
+    },
+    "545": {
+      "name": "[1365]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "546": {
+      "name": "[1364]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "547": {
+      "name": "[1363]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "548": {
+      "name": "[1505]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "549": {
+      "name": "[1735]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "550": {
+      "name": "n_n3810",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "551": {
+      "name": "[2303]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "552": {
+      "name": "n_n4242",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "553": {
+      "name": "n_n3947",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "554": {
+      "name": "n_n3524",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "555": {
+      "name": "n_n3941",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "556": {
+      "name": "n_n3136",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "557": {
+      "name": "n_n3409",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "558": {
+      "name": "n_n3227",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "559": {
+      "name": "[2267]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "560": {
+      "name": "[7070]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "561": {
+      "name": "n_n3924",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "562": {
+      "name": "n_n3923",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "563": {
+      "name": "[2129]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "564": {
+      "name": "[7060]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "565": {
+      "name": "[7063]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "566": {
+      "name": "n_n3921",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "567": {
+      "name": "[6936]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "568": {
+      "name": "n_n3143",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "569": {
+      "name": "[1427]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "570": {
+      "name": "[7192]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "571": {
+      "name": "[7191]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "572": {
+      "name": "n_n2992",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "573": {
+      "name": "[1372]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "574": {
+      "name": "[1057]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "575": {
+      "name": "n_n4055",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "576": {
+      "name": "n_n3117",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "577": {
+      "name": "ndn3_3",
+      "vertical_channels": 6,
+      "native_layer_hops": 6,
+      "horizontal_track_length": 216
+    },
+    "578": {
+      "name": "n_n3914",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "579": {
+      "name": "paport_5_5_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "580": {
+      "name": "paport_6_6_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 23
+    },
+    "581": {
+      "name": "n_n3872",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "582": {
+      "name": "n_n3862",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "583": {
+      "name": "n_n3761",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "584": {
+      "name": "n_n3201",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "585": {
+      "name": "[1227]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "586": {
+      "name": "[6966]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "587": {
+      "name": "[6933]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "588": {
+      "name": "n_n3192",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "589": {
+      "name": "[6948]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "590": {
+      "name": "[6967]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "591": {
+      "name": "n_n3144",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "592": {
+      "name": "n_n3671",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "593": {
+      "name": "[2306]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "594": {
+      "name": "[2298]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "595": {
+      "name": "n_n3800",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28
+    },
+    "596": {
+      "name": "n_n4046",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "597": {
+      "name": "[6968]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "598": {
+      "name": "n_n4252",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32
+    },
+    "599": {
+      "name": "[6945]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 26
+    },
+    "600": {
+      "name": "n_n3164",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 28
+    },
+    "601": {
+      "name": "n_n4237",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "602": {
+      "name": "n_n4047",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "603": {
+      "name": "[1827]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "604": {
+      "name": "n_n3277",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "605": {
+      "name": "[1826]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "606": {
+      "name": "n_n3920",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "607": {
+      "name": "[7478]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "608": {
+      "name": "[7495]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "609": {
+      "name": "n_n4115",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "610": {
+      "name": "n_n4126",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "611": {
+      "name": "n_n3053",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "612": {
+      "name": "n_n4125",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "613": {
+      "name": "[7483]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "614": {
+      "name": "[1646]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "615": {
+      "name": "n_n3565",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "616": {
+      "name": "n_n3099",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "617": {
+      "name": "n_n3961",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "618": {
+      "name": "[7196]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "619": {
+      "name": "[2071]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "620": {
+      "name": "[2073]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "621": {
+      "name": "n_n3283",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "622": {
+      "name": "n_n4004",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "623": {
+      "name": "[7486]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "624": {
+      "name": "[1418]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "625": {
+      "name": "n_n4219",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "626": {
+      "name": "[1419]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "627": {
+      "name": "n_n4019",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "628": {
+      "name": "n_n4098",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "629": {
+      "name": "n_n3423",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "630": {
+      "name": "n_n3146",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "631": {
+      "name": "n_n3614",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "632": {
+      "name": "n_n2956",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "633": {
+      "name": "[2251]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "634": {
+      "name": "n_n3868",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "635": {
+      "name": "[2118]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "636": {
+      "name": "[2249]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "637": {
+      "name": "[7056]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "638": {
+      "name": "n_n4099",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "639": {
+      "name": "[7049]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "640": {
+      "name": "[2252]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "641": {
+      "name": "n_n3424",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "642": {
+      "name": "n_n3776",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "643": {
+      "name": "n_n2952",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "644": {
+      "name": "n_n45",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "645": {
+      "name": "n_n3070",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "646": {
+      "name": "[2294]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "647": {
+      "name": "[1590]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "648": {
+      "name": "[1589]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "649": {
+      "name": "n_n3871",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "650": {
+      "name": "[2107]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "651": {
+      "name": "[2297]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "652": {
+      "name": "n_n3071",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "653": {
+      "name": "n_n4179",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 52
+    },
+    "654": {
+      "name": "[6951]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "655": {
+      "name": "n_n2958",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "656": {
+      "name": "[2058]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "657": {
+      "name": "n_n3390",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "658": {
+      "name": "n_n3160",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "659": {
+      "name": "[2057]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "660": {
+      "name": "[1857]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "661": {
+      "name": "[7125]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "662": {
+      "name": "n_n3334",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "663": {
+      "name": "n_n4180",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "664": {
+      "name": "[7126]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "665": {
+      "name": "[1987]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "666": {
+      "name": "n_n4182",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "667": {
+      "name": "n_n4181",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "668": {
+      "name": "ndn5_2",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40
+    },
+    "669": {
+      "name": "ndn_latch5_2",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 64
+    },
+    "670": {
+      "name": "n_n3596",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "671": {
+      "name": "[7130]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "672": {
+      "name": "n_n3093",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "673": {
+      "name": "n_n3276",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "674": {
+      "name": "n_n3389",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "675": {
+      "name": "[918]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "676": {
+      "name": "n_n4093",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "677": {
+      "name": "n_n3599",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "678": {
+      "name": "n_n3165",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "679": {
+      "name": "n_n47",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "680": {
+      "name": "[2068]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "681": {
+      "name": "n_n4170",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "682": {
+      "name": "n_n4060",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 40
+    },
+    "683": {
+      "name": "n_n4036",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "684": {
+      "name": "n_n3369",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "685": {
+      "name": "[839]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "686": {
+      "name": "n_n4246",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "687": {
+      "name": "[940]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "688": {
+      "name": "n_n4212",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "689": {
+      "name": "n_n4171",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "690": {
+      "name": "n_n3431",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "691": {
+      "name": "n_n3075",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "692": {
+      "name": "n_n3435",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "693": {
+      "name": "n_n4238",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "694": {
+      "name": "n_n3133",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "695": {
+      "name": "n_n3840",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "696": {
+      "name": "n_n4239",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "697": {
+      "name": "n_n3436",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "698": {
+      "name": "n_n3842",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32
+    },
+    "699": {
+      "name": "[2279]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "700": {
+      "name": "[2255]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "701": {
+      "name": "n_n3153",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "702": {
+      "name": "n_n3843",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "703": {
+      "name": "n_n3813",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32
+    },
+    "704": {
+      "name": "[6942]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "705": {
+      "name": "n_n3188",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "706": {
+      "name": "n_n3841",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "707": {
+      "name": "[6939]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "708": {
+      "name": "n_n3506",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "709": {
+      "name": "n_n3406",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "710": {
+      "name": "[2066]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "711": {
+      "name": "[1787]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "712": {
+      "name": "ndn5_4",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 44
+    },
+    "713": {
+      "name": "n_n3969",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 12
+    },
+    "714": {
+      "name": "[6954]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "715": {
+      "name": "[2274]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "716": {
+      "name": "ndn_latch5_3",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 68
+    },
+    "717": {
+      "name": "ndn_latch5_4",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 64
+    },
+    "718": {
+      "name": "n_n4116",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "719": {
+      "name": "n_n4117",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "720": {
+      "name": "n_n3193",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "721": {
+      "name": "n_n3349",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "722": {
+      "name": "n_n3310",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "723": {
+      "name": "n_n3173",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "724": {
+      "name": "n_n3129",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "725": {
+      "name": "n_n3132",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "726": {
+      "name": "[1636]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "727": {
+      "name": "[1631]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "728": {
+      "name": "[7288]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "729": {
+      "name": "n_n3311",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 36
+    },
+    "730": {
+      "name": "n_n3807",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "731": {
+      "name": "n_n3808",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "732": {
+      "name": "[2301]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "733": {
+      "name": "[7283]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "734": {
+      "name": "n_n4070",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32
+    },
+    "735": {
+      "name": "n_n3805",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "736": {
+      "name": "n_n3806",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "737": {
+      "name": "n_n4028",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "738": {
+      "name": "n_n3130",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "739": {
+      "name": "n_n3503",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "740": {
+      "name": "[1564]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "741": {
+      "name": "[7335]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "742": {
+      "name": "[2291]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "743": {
+      "name": "n_n4236",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "744": {
+      "name": "n_n4209",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "745": {
+      "name": "[1534]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "746": {
+      "name": "[2101]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "747": {
+      "name": "[7336]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "748": {
+      "name": "[2290]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "749": {
+      "name": "n_n3659",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "750": {
+      "name": "n_n4208",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28
+    },
+    "751": {
+      "name": "n_n3433",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "752": {
+      "name": "n_n3720",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "753": {
+      "name": "n_n3087",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "754": {
+      "name": "[1081]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "755": {
+      "name": "[7308]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "756": {
+      "name": "[7310]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "757": {
+      "name": "n_n4044",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "758": {
+      "name": "[2284]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "759": {
+      "name": "n_n3479",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "760": {
+      "name": "[1500]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "761": {
+      "name": "[1432]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "762": {
+      "name": "[2286]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "763": {
+      "name": "[7317]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "764": {
+      "name": "n_n4045",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "765": {
+      "name": "n_n4177",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "766": {
+      "name": "n_n4193",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "767": {
+      "name": "n_n4176",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32
+    },
+    "768": {
+      "name": "n_n3457",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "769": {
+      "name": "[983]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "770": {
+      "name": "n_n3041",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "771": {
+      "name": "n_n3366",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "772": {
+      "name": "[1816]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "773": {
+      "name": "[1034]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "774": {
+      "name": "n_n3209",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "775": {
+      "name": "[2260]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "776": {
+      "name": "[2261]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "777": {
+      "name": "n_n3221",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "778": {
+      "name": "ndn5_3",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 40
+    },
+    "779": {
+      "name": "n_n3367",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "780": {
+      "name": "[2080]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "781": {
+      "name": "n_n3413",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "782": {
+      "name": "n_n3668",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "783": {
+      "name": "n_n3069",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "784": {
+      "name": "[2085]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "785": {
+      "name": "[1256]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "786": {
+      "name": "n_n3212",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "787": {
+      "name": "[7526]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "788": {
+      "name": "n_n3210",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "789": {
+      "name": "n_n3101",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "790": {
+      "name": "[7529]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "791": {
+      "name": "[964]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "792": {
+      "name": "[2269]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "793": {
+      "name": "[7272]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "794": {
+      "name": "n_n3304",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "795": {
+      "name": "n_n3303",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "796": {
+      "name": "[7018]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "797": {
+      "name": "[1282]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "798": {
+      "name": "[1700]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "799": {
+      "name": "[1063]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "800": {
+      "name": "[7207]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "801": {
+      "name": "[1446]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "802": {
+      "name": "nak5_2",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "803": {
+      "name": "n_n3944",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "804": {
+      "name": "[1000]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "805": {
+      "name": "n_n2975",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "806": {
+      "name": "[999]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "807": {
+      "name": "[1454]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "808": {
+      "name": "[7132]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "809": {
+      "name": "[1814]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "810": {
+      "name": "n_n3607",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20
+    },
+    "811": {
+      "name": "[7209]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "812": {
+      "name": "[1815]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "813": {
+      "name": "[7136]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "814": {
+      "name": "n_n3137",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "815": {
+      "name": "n_n3183",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "816": {
+      "name": "[799]",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 120
+    },
+    "817": {
+      "name": "puport_4_4_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 13
+    },
+    "818": {
+      "name": "tin_puport_4_4_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 15
+    },
+    "819": {
+      "name": "[1859]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "820": {
+      "name": "[987]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "821": {
+      "name": "n_n3019",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "822": {
+      "name": "n_n3486",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "823": {
+      "name": "[1124]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "824": {
+      "name": "n_n3491",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "825": {
+      "name": "n_n4105",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "826": {
+      "name": "tin_puport_3_3_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 15
+    },
+    "827": {
+      "name": "n_n3798",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "828": {
+      "name": "[1125]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "829": {
+      "name": "puport_3_3_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "830": {
+      "name": "n_n3338",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "831": {
+      "name": "n_n3206",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "832": {
+      "name": "n_n4139",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "833": {
+      "name": "n_n3615",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "834": {
+      "name": "[1367]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "835": {
+      "name": "[1517]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24
+    },
+    "836": {
+      "name": "n_n4071",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "837": {
+      "name": "n_n4072",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "838": {
+      "name": "n_n4073",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "839": {
+      "name": "[1959]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "840": {
+      "name": "n_n3726",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "841": {
+      "name": "[1960]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "842": {
+      "name": "[1783]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "843": {
+      "name": "tin_puport_6_6_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18
+    },
+    "844": {
+      "name": "puport_6_6_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18
+    },
+    "845": {
+      "name": "pdxport_8_8_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 18
+    },
+    "846": {
+      "name": "[1041]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28
+    },
+    "847": {
+      "name": "n_n4023",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "848": {
+      "name": "ndn5_7",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 52
+    },
+    "849": {
+      "name": "ndn5_8",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36
+    },
+    "850": {
+      "name": "n_n39",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "851": {
+      "name": "ndn5_5",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "852": {
+      "name": "[1270]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "853": {
+      "name": "[1687]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "854": {
+      "name": "[1205]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "855": {
+      "name": "[1873]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "856": {
+      "name": "[1078]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "857": {
+      "name": "[1511]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "858": {
+      "name": "[1223]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "859": {
+      "name": "[1614]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 20
+    },
+    "860": {
+      "name": "[1697]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "861": {
+      "name": "[1613]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "862": {
+      "name": "[1503]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "863": {
+      "name": "pdxport_10_10_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "864": {
+      "name": "n_n2969",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "865": {
+      "name": "[1152]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "866": {
+      "name": "[1898]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "867": {
+      "name": "n_n3429",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "868": {
+      "name": "tin_puport_10_10_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "869": {
+      "name": "n_n3555",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "870": {
+      "name": "pdxport_11_11_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "871": {
+      "name": "n_n3430",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "872": {
+      "name": "tin_pxport_10_10_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 14
+    },
+    "873": {
+      "name": "n_n3822",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "874": {
+      "name": "puport_10_10_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 14
+    },
+    "875": {
+      "name": "[1146]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "876": {
+      "name": "pxport_10_10_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 17
+    },
+    "877": {
+      "name": "[1674]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "878": {
+      "name": "n_n3197",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "879": {
+      "name": "tin_pxport_3_3_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "880": {
+      "name": "[1675]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "881": {
+      "name": "pxport_3_3_",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 24
+    },
+    "882": {
+      "name": "[1375]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "883": {
+      "name": "n_n2990",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "884": {
+      "name": "tin_pyport_4_4_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "885": {
+      "name": "n_n3326",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "886": {
+      "name": "n_n2978",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "887": {
+      "name": "pyport_4_4_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 15
+    },
+    "888": {
+      "name": "[991]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "889": {
+      "name": "n_n3498",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "890": {
+      "name": "[1643]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "891": {
+      "name": "[1642]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 12
+    },
+    "892": {
+      "name": "n_n3009",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "893": {
+      "name": "tin_pxport_9_9_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "894": {
+      "name": "[1194]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "895": {
+      "name": "[1195]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "896": {
+      "name": "[1794]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "897": {
+      "name": "pxport_9_9_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "898": {
+      "name": "[993]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "899": {
+      "name": "n_n3155",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "900": {
+      "name": "n_n3904",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "901": {
+      "name": "[1378]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "902": {
+      "name": "n_n4166",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "903": {
+      "name": "[1379]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "904": {
+      "name": "[7500]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "905": {
+      "name": "[1043]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "906": {
+      "name": "[1044]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "907": {
+      "name": "n_n4114",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "908": {
+      "name": "n_n3905",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "909": {
+      "name": "n_n3445",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "910": {
+      "name": "n_n3663",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "911": {
+      "name": "n_n2953",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "912": {
+      "name": "[1460]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "913": {
+      "name": "n_n3416",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "914": {
+      "name": "n_n3452",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "915": {
+      "name": "pxport_2_2_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 26
+    },
+    "916": {
+      "name": "tin_pxport_2_2_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 14
+    },
+    "917": {
+      "name": "[1436]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "918": {
+      "name": "n_n4014",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "919": {
+      "name": "n_n3244",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "920": {
+      "name": "n_n3899",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "921": {
+      "name": "[1145]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "922": {
+      "name": "n_n4063",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "923": {
+      "name": "[971]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "924": {
+      "name": "[1169]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "925": {
+      "name": "tin_puport_8_8_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "926": {
+      "name": "n_n4064",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "927": {
+      "name": "n_n3475",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "928": {
+      "name": "puport_8_8_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18
+    },
+    "929": {
+      "name": "n_n3901",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "930": {
+      "name": "n_n2959",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "931": {
+      "name": "[1588]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "932": {
+      "name": "[2031]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "933": {
+      "name": "[1467]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "934": {
+      "name": "n_n2962",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "935": {
+      "name": "tin_puport_9_9_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 15
+    },
+    "936": {
+      "name": "n_n3715",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "937": {
+      "name": "puport_9_9_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 14
+    },
+    "938": {
+      "name": "n_n3214",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "939": {
+      "name": "[1866]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "940": {
+      "name": "[1507]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "941": {
+      "name": "[1233]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "942": {
+      "name": "n_n4231",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "943": {
+      "name": "n_n3178",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "944": {
+      "name": "n_n3059",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "945": {
+      "name": "[1645]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "946": {
+      "name": "[1232]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "947": {
+      "name": "tin_pyport_1_1_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 21
+    },
+    "948": {
+      "name": "pyport_1_1_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 21
+    },
+    "949": {
+      "name": "[1136]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "950": {
+      "name": "n_n3399",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "951": {
+      "name": "pyport_5_5_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 14
+    },
+    "952": {
+      "name": "[2238]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "953": {
+      "name": "tin_pyport_5_5_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18
+    },
+    "954": {
+      "name": "[1243]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "955": {
+      "name": "n_n3299",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "956": {
+      "name": "tin_pyport_6_6_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 23
+    },
+    "957": {
+      "name": "pxport_6_6_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 15
+    },
+    "958": {
+      "name": "[1831]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "959": {
+      "name": "[1062]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "960": {
+      "name": "tin_pxport_6_6_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 17
+    },
+    "961": {
+      "name": "n_n3300",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "962": {
+      "name": "pyport_6_6_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18
+    },
+    "963": {
+      "name": "n_n2968",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "964": {
+      "name": "n_n3032",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "965": {
+      "name": "n_n3926",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "966": {
+      "name": "n_n4217",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "967": {
+      "name": "n_n3073",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "968": {
+      "name": "tin_pyport_0_0_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "969": {
+      "name": "n_n3627",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "970": {
+      "name": "n_n3740",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "971": {
+      "name": "tin_pxport_0_0_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 27
+    },
+    "972": {
+      "name": "n_n3928",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "973": {
+      "name": "pyport_0_0_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "974": {
+      "name": "n_n3033",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "975": {
+      "name": "pxport_0_0_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "976": {
+      "name": "tin_pxport_4_4_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 22
+    },
+    "977": {
+      "name": "pxport_4_4_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18
+    },
+    "978": {
+      "name": "[1440]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "979": {
+      "name": "pyport_10_10_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 23
+    },
+    "980": {
+      "name": "n_n3008",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "981": {
+      "name": "tin_puport_0_0_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "982": {
+      "name": "puport_0_0_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "983": {
+      "name": "n_n3065",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "984": {
+      "name": "n_n3447",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "985": {
+      "name": "tin_pxport_7_7_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "986": {
+      "name": "tin_pxport_8_8_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24
+    },
+    "987": {
+      "name": "n_n3150",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "988": {
+      "name": "[1240]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "989": {
+      "name": "[1258]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "990": {
+      "name": "[1465]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "991": {
+      "name": "pxport_7_7_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18
+    },
+    "992": {
+      "name": "pxport_8_8_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 35
+    },
+    "993": {
+      "name": "n_n3448",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "994": {
+      "name": "tin_pyport_7_7_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "995": {
+      "name": "pyport_7_7_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "996": {
+      "name": "[1253]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "997": {
+      "name": "pyport_11_11_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 30
+    },
+    "998": {
+      "name": "pyport_8_8_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 23
+    },
+    "999": {
+      "name": "n_n3579",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1000": {
+      "name": "n_n3397",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "1001": {
+      "name": "tin_pxport_1_1_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "1002": {
+      "name": "paport_0_0_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 23
+    },
+    "1003": {
+      "name": "pxport_1_1_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 19
+    },
+    "1004": {
+      "name": "[1161]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "1005": {
+      "name": "n_n3318",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1006": {
+      "name": "n_n3046",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1007": {
+      "name": "tin_puport_5_5_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 14
+    },
+    "1008": {
+      "name": "pxport_11_11_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 23
+    },
+    "1009": {
+      "name": "[1162]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "1010": {
+      "name": "[976]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8
+    },
+    "1011": {
+      "name": "n_n4205",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "1012": {
+      "name": "puport_5_5_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 21
+    },
+    "1013": {
+      "name": "n_n3287",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "1014": {
+      "name": "pxport_5_5_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 27
+    },
+    "1015": {
+      "name": "n_n3061",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "1016": {
+      "name": "puport_7_7_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 30
+    },
+    "1017": {
+      "name": "n_n3530",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "1018": {
+      "name": "[1391]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1019": {
+      "name": "[1870]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "1020": {
+      "name": "[1650]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "1021": {
+      "name": "pover_0_0_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 22
+    },
+    "1022": {
+      "name": "n_n3517",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "1023": {
+      "name": "[1060]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16
+    },
+    "1024": {
+      "name": "[1061]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "1025": {
+      "name": "[1775]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1026": {
+      "name": "[1776]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12
+    },
+    "1027": {
+      "name": "tin_pyport_9_9_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "1028": {
+      "name": "tin_pyport_3_3_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "1029": {
+      "name": "n_n3622",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "1030": {
+      "name": "n_n3609",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1031": {
+      "name": "[1105]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1032": {
+      "name": "[1104]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1033": {
+      "name": "n_n3235",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12
+    },
+    "1034": {
+      "name": "n_n3170",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1035": {
+      "name": "pyport_9_9_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 22
+    },
+    "1036": {
+      "name": "pyport_3_3_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18
+    },
+    "1037": {
+      "name": "paport_9_9_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "1038": {
+      "name": "paport_8_8_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 15
+    },
+    "1039": {
+      "name": "paport_10_10_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 15
+    },
+    "1040": {
+      "name": "pdxport_7_7_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 15
+    },
+    "1041": {
+      "name": "paport_11_11_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "1042": {
+      "name": "paport_7_7_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "1043": {
+      "name": "[1385]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1044": {
+      "name": "[1666]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1045": {
+      "name": "pnext_0_0_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "1046": {
+      "name": "n_n3621",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1047": {
+      "name": "tin_pyport_10_10_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "1048": {
+      "name": "[1087]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1049": {
+      "name": "n_n3566",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "1050": {
+      "name": "[1475]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "1051": {
+      "name": "tin_pyport_11_11_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 15
+    },
+    "1052": {
+      "name": "n_n3689",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "1053": {
+      "name": "n_n3012",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "1054": {
+      "name": "pyport_2_2_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 27
+    },
+    "1055": {
+      "name": "tin_puport_1_1_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 17
+    },
+    "1056": {
+      "name": "[1809]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "1057": {
+      "name": "n_n3024",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4
+    },
+    "1058": {
+      "name": "puport_1_1_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18
+    },
+    "1059": {
+      "name": "tin_puport_2_2_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 15
+    },
+    "1060": {
+      "name": "n_n3851",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1061": {
+      "name": "n_n3356",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1062": {
+      "name": "puport_2_2_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 17
+    },
+    "1063": {
+      "name": "n_n3866",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1064": {
+      "name": "tin_puport_11_11_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "1065": {
+      "name": "puport_11_11_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 23
+    },
+    "1066": {
+      "name": "pdxport_1_1_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18
+    },
+    "1067": {
+      "name": "pdxport_9_9_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "1068": {
+      "name": "pdxport_0_0_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 23
+    },
+    "1069": {
+      "name": "paport_2_2_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "1070": {
+      "name": "pdxport_5_5_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20
+    },
+    "1071": {
+      "name": "pdxport_4_4_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "1072": {
+      "name": "paport_1_1_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "1073": {
+      "name": "tin_puport_7_7_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 15
+    },
+    "1074": {
+      "name": "n_n3754",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "1075": {
+      "name": "tin_pxport_5_5_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 15
+    },
+    "1076": {
+      "name": "n_n3309",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8
+    },
+    "1077": {
+      "name": "tin_pyport_2_2_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "1078": {
+      "name": "tin_pxport_11_11_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "1079": {
+      "name": "tin_pyport_8_8_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16
+    },
+    "1080": {
+      "name": "pdxport_6_6_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18
+    },
+    "1081": {
+      "name": "pdxport_2_2_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 15
+    },
+    "1082": {
+      "name": "paport_3_3_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "1083": {
+      "name": "pdxport_3_3_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19
+    },
+    "1084": {
+      "name": "paport_4_4_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 17
+    }
+  },
+  "audit_wall_seconds": 7.623950190842152
+}

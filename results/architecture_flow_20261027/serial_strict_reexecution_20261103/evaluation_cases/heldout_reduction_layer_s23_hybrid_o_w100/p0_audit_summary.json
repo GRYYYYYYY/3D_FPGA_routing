@@ -1,0 +1,70 @@
+{
+  "utc": "2026-11-07T01:22:10.209872+00:00",
+  "passed": true,
+  "registered_route_count": 3,
+  "legal_count": 2,
+  "failed_count": 1,
+  "legal": [
+    {
+      "name": "heldout_reduction_layer_s23_hybrid_o_n125_w100_p0_a0",
+      "passed": true,
+      "metrics": {
+        "critical_path_ns": 12.3824,
+        "wirelength": 1269695,
+        "router_seconds": 76.14,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 1269695,
+        "sb_pairs_used": 364,
+        "sb_pair_net_occupancy": 364,
+        "cb_crossing_output_sources_used": 3816,
+        "cb_crossing_output_source_net_occupancy": 3816,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 2000,
+          "OPIN->CHANX": 1916,
+          "CHANX->CHANX": 364
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      }
+    },
+    {
+      "name": "heldout_reduction_layer_s23_hybrid_o_n125_w100_p0_b2",
+      "passed": true,
+      "metrics": {
+        "critical_path_ns": 12.7616,
+        "wirelength": 1220952,
+        "router_seconds": 25.73,
+        "iterations": 15,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 1220952,
+        "sb_pairs_used": 435,
+        "sb_pair_net_occupancy": 435,
+        "cb_crossing_output_sources_used": 3845,
+        "cb_crossing_output_source_net_occupancy": 3845,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 2006,
+          "OPIN->CHANX": 1936,
+          "CHANX->CHANX": 435
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      }
+    }
+  ],
+  "failed": [
+    {
+      "name": "heldout_reduction_layer_s23_hybrid_o_n125_w100_p0_delay_critical_c6",
+      "status": "failed",
+      "metrics": {
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      }
+    }
+  ],
+  "graph_sha256": "88e988e675727794903e76976f2775e26dcc95ca2d457affa9be31f381739b7f"
+}

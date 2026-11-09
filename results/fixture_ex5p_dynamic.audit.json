@@ -1,0 +1,4808 @@
+{
+  "schema": 1,
+  "scope": "directed_edges_tree_routed_resource_capacity",
+  "passed": true,
+  "full_legality_requires": [
+    "VPR --check_route full",
+    "independent endpoint mapping for standalone certification"
+  ],
+  "not_checked": [
+    "netlist/placement endpoint identity",
+    "local OPIN reservations",
+    "nonconfigurable edge closure",
+    "bus-mux shared selection"
+  ],
+  "errors": [],
+  "inputs": {
+    "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced1/rr_graph.xml",
+    "rr_graph_sha256": "6ed35333d25d5c08af7d77706de9cb1764529349649cbe70005fc6c19cf50317",
+    "route": "results/runs/fixture_ex5p_dynamic/routed.route",
+    "route_sha256": "b3c0226effad2bff95c618db0e54178bcdd2dc096f7a8a9b468ce6f191a1f7c3",
+    "resource_map_sha256": null
+  },
+  "graph": {
+    "nodes_by_type": {
+      "SINK": 27064,
+      "SOURCE": 29200,
+      "IPIN": 76312,
+      "OPIN": 42880,
+      "CHANX": 41440,
+      "CHANY": 41440,
+      "CHANZ": 6658
+    },
+    "edges": 2366014,
+    "switches_by_type": {
+      "mux": 6
+    },
+    "physical_vertical_channels": 6658,
+    "native_chanz_with_fanin_and_fanout": 6254,
+    "native_chanz_without_fanin": 404,
+    "native_chanz_without_fanout": 404
+  },
+  "route": {
+    "routed_nets": 679,
+    "sink_terminals": 1979,
+    "cross_layer_sink_connections": 1016,
+    "directed_edges": 10206,
+    "overused_rr_nodes": 0,
+    "vertical_channel_net_occupancy": 645,
+    "unique_used_vertical_channels": 645,
+    "horizontal_track_length": 19691
+  },
+  "nets": {
+    "0": {
+      "name": "i_6_",
+      "vertical_channels": 11,
+      "native_layer_hops": 11,
+      "horizontal_track_length": 462,
+      "cross_layer_sink_connections": 34
+    },
+    "1": {
+      "name": "n_n2",
+      "vertical_channels": 9,
+      "native_layer_hops": 9,
+      "horizontal_track_length": 220,
+      "cross_layer_sink_connections": 18
+    },
+    "2": {
+      "name": "[132]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 2
+    },
+    "3": {
+      "name": "[318]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "4": {
+      "name": "[3345]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "5": {
+      "name": "n_n858",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 56,
+      "cross_layer_sink_connections": 3
+    },
+    "6": {
+      "name": "n_n1334",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 2
+    },
+    "7": {
+      "name": "[4093]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "8": {
+      "name": "n_n1268",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 56,
+      "cross_layer_sink_connections": 2
+    },
+    "9": {
+      "name": "n_n7",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 232,
+      "cross_layer_sink_connections": 20
+    },
+    "10": {
+      "name": "[319]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "11": {
+      "name": "[3614]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "12": {
+      "name": "[3464]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "13": {
+      "name": "n_n427",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 2
+    },
+    "14": {
+      "name": "[4091]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "15": {
+      "name": "[3605]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "16": {
+      "name": "n_n573",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 64,
+      "cross_layer_sink_connections": 3
+    },
+    "17": {
+      "name": "[3355]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 2
+    },
+    "18": {
+      "name": "i_7_",
+      "vertical_channels": 10,
+      "native_layer_hops": 10,
+      "horizontal_track_length": 486,
+      "cross_layer_sink_connections": 40
+    },
+    "19": {
+      "name": "n_n930",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 2
+    },
+    "20": {
+      "name": "[3462]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 2
+    },
+    "21": {
+      "name": "[3344]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "22": {
+      "name": "[3296]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 1
+    },
+    "23": {
+      "name": "[4084]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "24": {
+      "name": "[4092]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "25": {
+      "name": "[3615]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "26": {
+      "name": "[128]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 92,
+      "cross_layer_sink_connections": 3
+    },
+    "27": {
+      "name": "[3381]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "28": {
+      "name": "o_32_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 19,
+      "cross_layer_sink_connections": 1
+    },
+    "29": {
+      "name": "n_n563",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 1
+    },
+    "30": {
+      "name": "o_61_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "31": {
+      "name": "[182]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "32": {
+      "name": "[3973]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "33": {
+      "name": "o_25_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "34": {
+      "name": "n_n8",
+      "vertical_channels": 7,
+      "native_layer_hops": 7,
+      "horizontal_track_length": 280,
+      "cross_layer_sink_connections": 21
+    },
+    "35": {
+      "name": "n_n0",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 196,
+      "cross_layer_sink_connections": 15
+    },
+    "36": {
+      "name": "[107]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 64,
+      "cross_layer_sink_connections": 4
+    },
+    "37": {
+      "name": "[505]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "38": {
+      "name": "[71]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 76,
+      "cross_layer_sink_connections": 2
+    },
+    "39": {
+      "name": "[3875]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "40": {
+      "name": "[184]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "41": {
+      "name": "n_n805",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "42": {
+      "name": "[3843]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "43": {
+      "name": "n_n9",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 220,
+      "cross_layer_sink_connections": 15
+    },
+    "44": {
+      "name": "n_n742",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "45": {
+      "name": "[183]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 1
+    },
+    "46": {
+      "name": "[3844]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "47": {
+      "name": "n_n1034",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "48": {
+      "name": "[3312]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "49": {
+      "name": "n_n744",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 2
+    },
+    "50": {
+      "name": "n_n1197",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 56,
+      "cross_layer_sink_connections": 3
+    },
+    "51": {
+      "name": "n_n1243",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "52": {
+      "name": "n_n813",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 2
+    },
+    "53": {
+      "name": "n_n825",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "54": {
+      "name": "n_n5",
+      "vertical_channels": 7,
+      "native_layer_hops": 7,
+      "horizontal_track_length": 164,
+      "cross_layer_sink_connections": 13
+    },
+    "55": {
+      "name": "[207]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 1
+    },
+    "56": {
+      "name": "[88]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 68,
+      "cross_layer_sink_connections": 2
+    },
+    "57": {
+      "name": "[3847]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "58": {
+      "name": "[104]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 2
+    },
+    "59": {
+      "name": "n_n581",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "60": {
+      "name": "[3885]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "61": {
+      "name": "[253]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "62": {
+      "name": "[270]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 5
+    },
+    "63": {
+      "name": "o_12_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 19,
+      "cross_layer_sink_connections": 1
+    },
+    "64": {
+      "name": "[93]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 68,
+      "cross_layer_sink_connections": 3
+    },
+    "65": {
+      "name": "[3221]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "66": {
+      "name": "[333]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 0
+    },
+    "67": {
+      "name": "n_n1061",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "68": {
+      "name": "n_n1083",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 2
+    },
+    "69": {
+      "name": "n_n19",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 128,
+      "cross_layer_sink_connections": 13
+    },
+    "70": {
+      "name": "[70]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 76,
+      "cross_layer_sink_connections": 6
+    },
+    "71": {
+      "name": "[3222]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "72": {
+      "name": "[3418]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "73": {
+      "name": "n_n3",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 246,
+      "cross_layer_sink_connections": 11
+    },
+    "74": {
+      "name": "n_n1009",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 68,
+      "cross_layer_sink_connections": 4
+    },
+    "75": {
+      "name": "[285]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 4
+    },
+    "76": {
+      "name": "[345]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "77": {
+      "name": "[186]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 0
+    },
+    "78": {
+      "name": "[3417]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "79": {
+      "name": "[3424]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "80": {
+      "name": "n_n11",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 248,
+      "cross_layer_sink_connections": 22
+    },
+    "81": {
+      "name": "[3405]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "82": {
+      "name": "n_n864",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 1
+    },
+    "83": {
+      "name": "n_n13",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 156,
+      "cross_layer_sink_connections": 15
+    },
+    "84": {
+      "name": "[341]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "85": {
+      "name": "[3404]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "86": {
+      "name": "n_n895",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 4
+    },
+    "87": {
+      "name": "[324]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "88": {
+      "name": "n_n1257",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "89": {
+      "name": "[343]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "90": {
+      "name": "[64]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 48,
+      "cross_layer_sink_connections": 5
+    },
+    "91": {
+      "name": "[173]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "92": {
+      "name": "o_37_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18,
+      "cross_layer_sink_connections": 0
+    },
+    "93": {
+      "name": "[3744]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "94": {
+      "name": "[209]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "95": {
+      "name": "[154]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 2
+    },
+    "96": {
+      "name": "[116]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "97": {
+      "name": "[461]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "98": {
+      "name": "n_n1245",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 2
+    },
+    "99": {
+      "name": "[197]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 3
+    },
+    "100": {
+      "name": "n_n1223",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "101": {
+      "name": "[3638]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 2
+    },
+    "102": {
+      "name": "[238]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 52,
+      "cross_layer_sink_connections": 2
+    },
+    "103": {
+      "name": "[3342]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "104": {
+      "name": "[3481]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "105": {
+      "name": "[322]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "106": {
+      "name": "[3480]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "107": {
+      "name": "[177]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 3
+    },
+    "108": {
+      "name": "[3743]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "109": {
+      "name": "n_n1244",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "110": {
+      "name": "n_n802",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 2
+    },
+    "111": {
+      "name": "[3482]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "112": {
+      "name": "[3502]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "113": {
+      "name": "n_n809",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 1
+    },
+    "114": {
+      "name": "[3341]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "115": {
+      "name": "[137]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "116": {
+      "name": "[3503]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "117": {
+      "name": "[277]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 3
+    },
+    "118": {
+      "name": "[112]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 2
+    },
+    "119": {
+      "name": "[3745]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "120": {
+      "name": "n_n883",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 3
+    },
+    "121": {
+      "name": "[263]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "122": {
+      "name": "[3641]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "123": {
+      "name": "o_44_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 21,
+      "cross_layer_sink_connections": 1
+    },
+    "124": {
+      "name": "o_35_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 22,
+      "cross_layer_sink_connections": 1
+    },
+    "125": {
+      "name": "o_36_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "126": {
+      "name": "n_n16",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 56,
+      "cross_layer_sink_connections": 4
+    },
+    "127": {
+      "name": "[200]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "128": {
+      "name": "n_n4",
+      "vertical_channels": 5,
+      "native_layer_hops": 5,
+      "horizontal_track_length": 192,
+      "cross_layer_sink_connections": 9
+    },
+    "129": {
+      "name": "[217]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 2
+    },
+    "130": {
+      "name": "[3922]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "131": {
+      "name": "n_n574",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 52,
+      "cross_layer_sink_connections": 2
+    },
+    "132": {
+      "name": "[138]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "133": {
+      "name": "n_n12",
+      "vertical_channels": 7,
+      "native_layer_hops": 7,
+      "horizontal_track_length": 228,
+      "cross_layer_sink_connections": 24
+    },
+    "134": {
+      "name": "n_n909",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "135": {
+      "name": "[3749]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 2
+    },
+    "136": {
+      "name": "[3782]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "137": {
+      "name": "[3789]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "138": {
+      "name": "n_n10",
+      "vertical_channels": 6,
+      "native_layer_hops": 6,
+      "horizontal_track_length": 196,
+      "cross_layer_sink_connections": 16
+    },
+    "139": {
+      "name": "[284]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 3
+    },
+    "140": {
+      "name": "[3925]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "141": {
+      "name": "[3921]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "142": {
+      "name": "o_10_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 3
+    },
+    "143": {
+      "name": "o_47_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 17,
+      "cross_layer_sink_connections": 0
+    },
+    "144": {
+      "name": "[261]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "145": {
+      "name": "[3795]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "146": {
+      "name": "[67]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 60,
+      "cross_layer_sink_connections": 2
+    },
+    "147": {
+      "name": "n_n1215",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "148": {
+      "name": "o_27_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "149": {
+      "name": "[218]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 48,
+      "cross_layer_sink_connections": 2
+    },
+    "150": {
+      "name": "n_n1301",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "151": {
+      "name": "[109]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "152": {
+      "name": "o_9_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 55,
+      "cross_layer_sink_connections": 1
+    },
+    "153": {
+      "name": "n_n1287",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 2
+    },
+    "154": {
+      "name": "[348]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "155": {
+      "name": "n_n1316",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 2
+    },
+    "156": {
+      "name": "[271]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 2
+    },
+    "157": {
+      "name": "n_n1300",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 2
+    },
+    "158": {
+      "name": "[259]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "159": {
+      "name": "n_n1315",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "160": {
+      "name": "n_n814",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 48,
+      "cross_layer_sink_connections": 3
+    },
+    "161": {
+      "name": "[3328]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "162": {
+      "name": "[3327]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "163": {
+      "name": "[3332]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "164": {
+      "name": "[293]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "165": {
+      "name": "[3687]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "166": {
+      "name": "n_n15",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 0
+    },
+    "167": {
+      "name": "o_14_",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "168": {
+      "name": "[354]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "169": {
+      "name": "[160]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 2
+    },
+    "170": {
+      "name": "[3350]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "171": {
+      "name": "[286]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "172": {
+      "name": "n_n6",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 160,
+      "cross_layer_sink_connections": 11
+    },
+    "173": {
+      "name": "[222]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "174": {
+      "name": "n_n609",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "175": {
+      "name": "n_n1163",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 0
+    },
+    "176": {
+      "name": "[78]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "177": {
+      "name": "n_n1147",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 2
+    },
+    "178": {
+      "name": "[187]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "179": {
+      "name": "[92]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "180": {
+      "name": "[3436]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 2
+    },
+    "181": {
+      "name": "[342]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "182": {
+      "name": "n_n901",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "183": {
+      "name": "[99]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 2
+    },
+    "184": {
+      "name": "n_n1166",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "185": {
+      "name": "[564]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "186": {
+      "name": "[191]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 0
+    },
+    "187": {
+      "name": "[309]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "188": {
+      "name": "o_28_",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 43,
+      "cross_layer_sink_connections": 1
+    },
+    "189": {
+      "name": "n_n953",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 3
+    },
+    "190": {
+      "name": "n_n1008",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 1
+    },
+    "191": {
+      "name": "[3278]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "192": {
+      "name": "[273]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "193": {
+      "name": "n_n1",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 224,
+      "cross_layer_sink_connections": 16
+    },
+    "194": {
+      "name": "[306]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 3
+    },
+    "195": {
+      "name": "n_n955",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 60,
+      "cross_layer_sink_connections": 2
+    },
+    "196": {
+      "name": "n_n961",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 1
+    },
+    "197": {
+      "name": "n_n1203",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 2
+    },
+    "198": {
+      "name": "[237]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 0
+    },
+    "199": {
+      "name": "n_n973",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 2
+    },
+    "200": {
+      "name": "[3178]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "201": {
+      "name": "[111]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "202": {
+      "name": "[3279]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 3
+    },
+    "203": {
+      "name": "[3250]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "204": {
+      "name": "[3210]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "205": {
+      "name": "n_n14",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 100,
+      "cross_layer_sink_connections": 7
+    },
+    "206": {
+      "name": "o_21_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 51,
+      "cross_layer_sink_connections": 1
+    },
+    "207": {
+      "name": "[483]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "208": {
+      "name": "n_n18",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 152,
+      "cross_layer_sink_connections": 16
+    },
+    "209": {
+      "name": "o_7_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 63,
+      "cross_layer_sink_connections": 2
+    },
+    "210": {
+      "name": "n_n554",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "211": {
+      "name": "n_n1216",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "212": {
+      "name": "n_n948",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "213": {
+      "name": "[3467]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "214": {
+      "name": "o_15_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "215": {
+      "name": "[3621]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 3
+    },
+    "216": {
+      "name": "[130]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 3
+    },
+    "217": {
+      "name": "[226]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 0
+    },
+    "218": {
+      "name": "n_n1275",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "219": {
+      "name": "[77]",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 72,
+      "cross_layer_sink_connections": 3
+    },
+    "220": {
+      "name": "n_n923",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 3
+    },
+    "221": {
+      "name": "[257]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 2
+    },
+    "222": {
+      "name": "[83]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 4
+    },
+    "223": {
+      "name": "[247]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 2
+    },
+    "224": {
+      "name": "n_n387",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 3
+    },
+    "225": {
+      "name": "[300]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "226": {
+      "name": "n_n1226",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "227": {
+      "name": "[254]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 2
+    },
+    "228": {
+      "name": "[3639]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "229": {
+      "name": "n_n1258",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 0
+    },
+    "230": {
+      "name": "[229]",
+      "vertical_channels": 4,
+      "native_layer_hops": 4,
+      "horizontal_track_length": 48,
+      "cross_layer_sink_connections": 3
+    },
+    "231": {
+      "name": "[3660]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "232": {
+      "name": "[250]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 1
+    },
+    "233": {
+      "name": "n_n845",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 76,
+      "cross_layer_sink_connections": 4
+    },
+    "234": {
+      "name": "o_56_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "235": {
+      "name": "n_n215",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "236": {
+      "name": "[228]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "237": {
+      "name": "o_18_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 38,
+      "cross_layer_sink_connections": 1
+    },
+    "238": {
+      "name": "[3632]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "239": {
+      "name": "[139]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "240": {
+      "name": "[153]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 2
+    },
+    "241": {
+      "name": "n_n921",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 2
+    },
+    "242": {
+      "name": "[551]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 2
+    },
+    "243": {
+      "name": "n_n950",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 3
+    },
+    "244": {
+      "name": "[331]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "245": {
+      "name": "[3623]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "246": {
+      "name": "[180]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "247": {
+      "name": "n_n931",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 2
+    },
+    "248": {
+      "name": "[249]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "249": {
+      "name": "[426]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "250": {
+      "name": "n_n1208",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 2
+    },
+    "251": {
+      "name": "[320]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 0
+    },
+    "252": {
+      "name": "o_6_",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 69,
+      "cross_layer_sink_connections": 3
+    },
+    "253": {
+      "name": "[3393]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "254": {
+      "name": "o_31_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19,
+      "cross_layer_sink_connections": 0
+    },
+    "255": {
+      "name": "n_n817",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "256": {
+      "name": "n_n803",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "257": {
+      "name": "[3506]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "258": {
+      "name": "[3790]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "259": {
+      "name": "o_20_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 56,
+      "cross_layer_sink_connections": 1
+    },
+    "260": {
+      "name": "[164]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "261": {
+      "name": "[321]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "262": {
+      "name": "[189]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "263": {
+      "name": "n_n1211",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "264": {
+      "name": "[279]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "265": {
+      "name": "[3519]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "266": {
+      "name": "n_n1204",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "267": {
+      "name": "[288]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "268": {
+      "name": "[97]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 2
+    },
+    "269": {
+      "name": "o_41_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 22,
+      "cross_layer_sink_connections": 0
+    },
+    "270": {
+      "name": "i_2_",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 78,
+      "cross_layer_sink_connections": 2
+    },
+    "271": {
+      "name": "n_n1238",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 2
+    },
+    "272": {
+      "name": "i_1_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 52,
+      "cross_layer_sink_connections": 2
+    },
+    "273": {
+      "name": "[3871]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "274": {
+      "name": "[268]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "275": {
+      "name": "n_n1049",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 48,
+      "cross_layer_sink_connections": 2
+    },
+    "276": {
+      "name": "[3876]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "277": {
+      "name": "[434]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "278": {
+      "name": "[314]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 1
+    },
+    "279": {
+      "name": "i_0_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 51,
+      "cross_layer_sink_connections": 2
+    },
+    "280": {
+      "name": "[135]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 1
+    },
+    "281": {
+      "name": "[3877]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "282": {
+      "name": "[283]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "283": {
+      "name": "[3408]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "284": {
+      "name": "n_n1239",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 64,
+      "cross_layer_sink_connections": 3
+    },
+    "285": {
+      "name": "[3388]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "286": {
+      "name": "[3359]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "287": {
+      "name": "o_42_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "288": {
+      "name": "[85]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 4
+    },
+    "289": {
+      "name": "n_n859",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 52,
+      "cross_layer_sink_connections": 1
+    },
+    "290": {
+      "name": "[4109]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "291": {
+      "name": "[347]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 1
+    },
+    "292": {
+      "name": "[4101]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "293": {
+      "name": "[86]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "294": {
+      "name": "[4108]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "295": {
+      "name": "[4020]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "296": {
+      "name": "[267]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "297": {
+      "name": "n_n1321",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 2
+    },
+    "298": {
+      "name": "[3801]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "299": {
+      "name": "[265]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 2
+    },
+    "300": {
+      "name": "[3465]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "301": {
+      "name": "[3554]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "302": {
+      "name": "o_62_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 17,
+      "cross_layer_sink_connections": 0
+    },
+    "303": {
+      "name": "[95]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "304": {
+      "name": "[69]",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 3
+    },
+    "305": {
+      "name": "[3317]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "306": {
+      "name": "n_n1189",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 1
+    },
+    "307": {
+      "name": "[148]",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 56,
+      "cross_layer_sink_connections": 4
+    },
+    "308": {
+      "name": "n_n1017",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 3
+    },
+    "309": {
+      "name": "[193]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 60,
+      "cross_layer_sink_connections": 3
+    },
+    "310": {
+      "name": "[198]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "311": {
+      "name": "[264]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "312": {
+      "name": "[165]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 3
+    },
+    "313": {
+      "name": "[3430]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "314": {
+      "name": "n_n1010",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 72,
+      "cross_layer_sink_connections": 4
+    },
+    "315": {
+      "name": "[150]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "316": {
+      "name": "[3983]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "317": {
+      "name": "n_n476",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "318": {
+      "name": "[4117]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "319": {
+      "name": "n_n1320",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 68,
+      "cross_layer_sink_connections": 3
+    },
+    "320": {
+      "name": "[3982]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "321": {
+      "name": "[114]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "322": {
+      "name": "n_n989",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "323": {
+      "name": "[136]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "324": {
+      "name": "n_n1322",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "325": {
+      "name": "[76]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "326": {
+      "name": "o_49_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 18,
+      "cross_layer_sink_connections": 1
+    },
+    "327": {
+      "name": "o_48_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 18,
+      "cross_layer_sink_connections": 1
+    },
+    "328": {
+      "name": "[568]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "329": {
+      "name": "[115]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "330": {
+      "name": "[110]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "331": {
+      "name": "[298]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 48,
+      "cross_layer_sink_connections": 4
+    },
+    "332": {
+      "name": "[3736]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "333": {
+      "name": "[303]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "334": {
+      "name": "n_n745",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "335": {
+      "name": "n_n906",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 2
+    },
+    "336": {
+      "name": "[325]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "337": {
+      "name": "[66]",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 1
+    },
+    "338": {
+      "name": "o_45_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 22,
+      "cross_layer_sink_connections": 0
+    },
+    "339": {
+      "name": "[236]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 0
+    },
+    "340": {
+      "name": "[346]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "341": {
+      "name": "i_3_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 42,
+      "cross_layer_sink_connections": 4
+    },
+    "342": {
+      "name": "o_8_",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 56,
+      "cross_layer_sink_connections": 2
+    },
+    "343": {
+      "name": "i_5_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 35,
+      "cross_layer_sink_connections": 3
+    },
+    "344": {
+      "name": "i_4_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 45,
+      "cross_layer_sink_connections": 3
+    },
+    "345": {
+      "name": "[471]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "346": {
+      "name": "[473]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "347": {
+      "name": "[3274]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "348": {
+      "name": "[133]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "349": {
+      "name": "[140]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 0
+    },
+    "350": {
+      "name": "[3938]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "351": {
+      "name": "[3842]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "352": {
+      "name": "[163]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "353": {
+      "name": "n_n17",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 116,
+      "cross_layer_sink_connections": 10
+    },
+    "354": {
+      "name": "n_n1298",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "355": {
+      "name": "[3218]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "356": {
+      "name": "n_n1025",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 2
+    },
+    "357": {
+      "name": "n_n1029",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "358": {
+      "name": "[3758]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "359": {
+      "name": "n_n1024",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 1
+    },
+    "360": {
+      "name": "[106]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "361": {
+      "name": "n_n1022",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 48,
+      "cross_layer_sink_connections": 3
+    },
+    "362": {
+      "name": "n_n1302",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 52,
+      "cross_layer_sink_connections": 0
+    },
+    "363": {
+      "name": "[281]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "364": {
+      "name": "[215]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 2
+    },
+    "365": {
+      "name": "[3764]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "366": {
+      "name": "[3763]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "367": {
+      "name": "n_n1032",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 2
+    },
+    "368": {
+      "name": "n_n1274",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "369": {
+      "name": "[146]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 1
+    },
+    "370": {
+      "name": "o_58_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18,
+      "cross_layer_sink_connections": 0
+    },
+    "371": {
+      "name": "[181]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "372": {
+      "name": "[4074]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "373": {
+      "name": "[72]",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 90,
+      "cross_layer_sink_connections": 6
+    },
+    "374": {
+      "name": "[87]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 2
+    },
+    "375": {
+      "name": "n_n1033",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "376": {
+      "name": "[4014]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "377": {
+      "name": "[4013]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "378": {
+      "name": "[4016]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "379": {
+      "name": "o_19_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "380": {
+      "name": "o_54_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 19,
+      "cross_layer_sink_connections": 1
+    },
+    "381": {
+      "name": "[155]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 2
+    },
+    "382": {
+      "name": "[308]",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 2
+    },
+    "383": {
+      "name": "n_n1181",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "384": {
+      "name": "[94]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 79,
+      "cross_layer_sink_connections": 2
+    },
+    "385": {
+      "name": "[507]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "386": {
+      "name": "[3775]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "387": {
+      "name": "[466]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "388": {
+      "name": "[3774]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "389": {
+      "name": "[129]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 2
+    },
+    "390": {
+      "name": "[194]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "391": {
+      "name": "[3899]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "392": {
+      "name": "n_n962",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "393": {
+      "name": "n_n1180",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "394": {
+      "name": "n_n823",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 3
+    },
+    "395": {
+      "name": "[327]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "396": {
+      "name": "n_n904",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "397": {
+      "name": "[134]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 2
+    },
+    "398": {
+      "name": "n_n1121",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 0
+    },
+    "399": {
+      "name": "n_n1256",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "400": {
+      "name": "[127]",
+      "vertical_channels": 3,
+      "native_layer_hops": 3,
+      "horizontal_track_length": 56,
+      "cross_layer_sink_connections": 3
+    },
+    "401": {
+      "name": "[323]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 56,
+      "cross_layer_sink_connections": 3
+    },
+    "402": {
+      "name": "n_n797",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "403": {
+      "name": "[3363]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "404": {
+      "name": "[231]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "405": {
+      "name": "n_n786",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "406": {
+      "name": "[4160]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "407": {
+      "name": "[3238]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "408": {
+      "name": "[3361]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "409": {
+      "name": "[195]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "410": {
+      "name": "[3941]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "411": {
+      "name": "[3266]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "412": {
+      "name": "[3269]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "413": {
+      "name": "[3268]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "414": {
+      "name": "o_60_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 21,
+      "cross_layer_sink_connections": 0
+    },
+    "415": {
+      "name": "[3950]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "416": {
+      "name": "n_n1133",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "417": {
+      "name": "[158]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "418": {
+      "name": "[3340]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "419": {
+      "name": "n_n1168",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "420": {
+      "name": "[3453]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "421": {
+      "name": "n_n1319",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "422": {
+      "name": "[3196]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "423": {
+      "name": "[3454]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "424": {
+      "name": "[3455]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "425": {
+      "name": "n_n1076",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 1
+    },
+    "426": {
+      "name": "[468]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 2
+    },
+    "427": {
+      "name": "n_n996",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "428": {
+      "name": "o_50_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "429": {
+      "name": "n_n459",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "430": {
+      "name": "[4144]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "431": {
+      "name": "[3203]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "432": {
+      "name": "n_n911",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 2
+    },
+    "433": {
+      "name": "[108]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "434": {
+      "name": "[4008]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "435": {
+      "name": "n_n1020",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "436": {
+      "name": "[297]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 2
+    },
+    "437": {
+      "name": "n_n1021",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 48,
+      "cross_layer_sink_connections": 0
+    },
+    "438": {
+      "name": "[337]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 3
+    },
+    "439": {
+      "name": "n_n1170",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 2
+    },
+    "440": {
+      "name": "n_n826",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 2
+    },
+    "441": {
+      "name": "[235]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "442": {
+      "name": "[3435]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "443": {
+      "name": "n_n1169",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 1
+    },
+    "444": {
+      "name": "n_n1006",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 3
+    },
+    "445": {
+      "name": "[274]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 2
+    },
+    "446": {
+      "name": "[3195]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "447": {
+      "name": "[291]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "448": {
+      "name": "[500]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "449": {
+      "name": "[310]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 2
+    },
+    "450": {
+      "name": "n_n821",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "451": {
+      "name": "[3569]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "452": {
+      "name": "[3437]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "453": {
+      "name": "n_n822",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "454": {
+      "name": "[3557]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "455": {
+      "name": "[3546]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "456": {
+      "name": "o_13_",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 54,
+      "cross_layer_sink_connections": 2
+    },
+    "457": {
+      "name": "[3797]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "458": {
+      "name": "[588]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "459": {
+      "name": "[3545]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "460": {
+      "name": "n_n1040",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 1
+    },
+    "461": {
+      "name": "[3556]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "462": {
+      "name": "[3560]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "463": {
+      "name": "[196]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 2
+    },
+    "464": {
+      "name": "[305]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "465": {
+      "name": "[295]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 48,
+      "cross_layer_sink_connections": 3
+    },
+    "466": {
+      "name": "n_n1253",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 2
+    },
+    "467": {
+      "name": "o_40_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "468": {
+      "name": "[4006]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "469": {
+      "name": "n_n642",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 2
+    },
+    "470": {
+      "name": "[515]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "471": {
+      "name": "[152]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "472": {
+      "name": "n_n673",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 4
+    },
+    "473": {
+      "name": "[3283]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "474": {
+      "name": "n_n756",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 2
+    },
+    "475": {
+      "name": "[4042]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "476": {
+      "name": "n_n616",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "477": {
+      "name": "n_n1261",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 2
+    },
+    "478": {
+      "name": "[147]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 68,
+      "cross_layer_sink_connections": 4
+    },
+    "479": {
+      "name": "[3829]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "480": {
+      "name": "[3831]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "481": {
+      "name": "[3821]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "482": {
+      "name": "[3830]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "483": {
+      "name": "[3827]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "484": {
+      "name": "[3798]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "485": {
+      "name": "o_17_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19,
+      "cross_layer_sink_connections": 0
+    },
+    "486": {
+      "name": "o_57_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "487": {
+      "name": "[592]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "488": {
+      "name": "[156]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 2
+    },
+    "489": {
+      "name": "[269]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 32,
+      "cross_layer_sink_connections": 1
+    },
+    "490": {
+      "name": "[3612]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "491": {
+      "name": "n_n1283",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "492": {
+      "name": "n_n580",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "493": {
+      "name": "[260]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "494": {
+      "name": "n_n1167",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "495": {
+      "name": "[208]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "496": {
+      "name": "[3305]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "497": {
+      "name": "[3304]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "498": {
+      "name": "[3497]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "499": {
+      "name": "[3487]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "500": {
+      "name": "[84]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "501": {
+      "name": "[3521]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "502": {
+      "name": "[216]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 1
+    },
+    "503": {
+      "name": "n_n553",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "504": {
+      "name": "[159]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 1
+    },
+    "505": {
+      "name": "[219]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 44,
+      "cross_layer_sink_connections": 2
+    },
+    "506": {
+      "name": "[4046]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "507": {
+      "name": "[4047]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "508": {
+      "name": "[4044]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "509": {
+      "name": "[243]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "510": {
+      "name": "[162]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 68,
+      "cross_layer_sink_connections": 2
+    },
+    "511": {
+      "name": "[3548]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "512": {
+      "name": "n_n1028",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 2
+    },
+    "513": {
+      "name": "[4056]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "514": {
+      "name": "n_n949",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "515": {
+      "name": "n_n1225",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "516": {
+      "name": "[3313]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "517": {
+      "name": "[3472]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "518": {
+      "name": "[3216]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "519": {
+      "name": "[3373]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "520": {
+      "name": "[3366]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "521": {
+      "name": "[315]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 2
+    },
+    "522": {
+      "name": "[3370]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "523": {
+      "name": "[4162]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "524": {
+      "name": "o_38_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 14,
+      "cross_layer_sink_connections": 0
+    },
+    "525": {
+      "name": "[242]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "526": {
+      "name": "[3360]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "527": {
+      "name": "n_n1196",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "528": {
+      "name": "[3485]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 1
+    },
+    "529": {
+      "name": "n_n1254",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 2
+    },
+    "530": {
+      "name": "n_n1056",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "531": {
+      "name": "[3486]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 2
+    },
+    "532": {
+      "name": "[3225]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "533": {
+      "name": "n_n1229",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "534": {
+      "name": "[292]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "535": {
+      "name": "[3460]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "536": {
+      "name": "n_n935",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "537": {
+      "name": "[4166]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "538": {
+      "name": "n_n1138",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 2
+    },
+    "539": {
+      "name": "[3955]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "540": {
+      "name": "n_n1135",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 64,
+      "cross_layer_sink_connections": 3
+    },
+    "541": {
+      "name": "n_n1136",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 40,
+      "cross_layer_sink_connections": 2
+    },
+    "542": {
+      "name": "n_n1134",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "543": {
+      "name": "n_n711",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "544": {
+      "name": "[287]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "545": {
+      "name": "[3717]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "546": {
+      "name": "[4003]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "547": {
+      "name": "[3716]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "548": {
+      "name": "[3810]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "549": {
+      "name": "[545]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "550": {
+      "name": "[3432]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "551": {
+      "name": "[546]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "552": {
+      "name": "[3732]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "553": {
+      "name": "[3724]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "554": {
+      "name": "[3585]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "555": {
+      "name": "[3510]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "556": {
+      "name": "[3586]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "557": {
+      "name": "[476]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "558": {
+      "name": "[3601]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "559": {
+      "name": "[3600]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "560": {
+      "name": "[221]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "561": {
+      "name": "[3517]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "562": {
+      "name": "o_33_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "563": {
+      "name": "[3998]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "564": {
+      "name": "[3993]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "565": {
+      "name": "[332]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 52,
+      "cross_layer_sink_connections": 2
+    },
+    "566": {
+      "name": "[3686]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "567": {
+      "name": "[4005]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "568": {
+      "name": "[3945]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "569": {
+      "name": "n_n937",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "570": {
+      "name": "[3257]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "571": {
+      "name": "[192]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "572": {
+      "name": "[301]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 2
+    },
+    "573": {
+      "name": "n_n936",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 38,
+      "cross_layer_sink_connections": 1
+    },
+    "574": {
+      "name": "[330]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "575": {
+      "name": "[276]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "576": {
+      "name": "[3244]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "577": {
+      "name": "n_n1137",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 1
+    },
+    "578": {
+      "name": "[3441]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "579": {
+      "name": "[4138]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "580": {
+      "name": "[3520]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "581": {
+      "name": "n_n1213",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "582": {
+      "name": "n_n136",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "583": {
+      "name": "[4145]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "584": {
+      "name": "[3526]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "585": {
+      "name": "n_n137",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "586": {
+      "name": "o_34_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 17,
+      "cross_layer_sink_connections": 0
+    },
+    "587": {
+      "name": "[3691]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "588": {
+      "name": "[4149]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "589": {
+      "name": "[4151]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "590": {
+      "name": "n_n1074",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "591": {
+      "name": "[3935]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "592": {
+      "name": "[255]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "593": {
+      "name": "[316]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "594": {
+      "name": "[3669]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "595": {
+      "name": "[3722]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "596": {
+      "name": "[3668]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "597": {
+      "name": "[3890]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "598": {
+      "name": "[3292]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "599": {
+      "name": "[3290]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "600": {
+      "name": "n_n1122",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "601": {
+      "name": "[326]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "602": {
+      "name": "[4053]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "603": {
+      "name": "[3892]",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 2
+    },
+    "604": {
+      "name": "[3667]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "605": {
+      "name": "o_39_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 21,
+      "cross_layer_sink_connections": 0
+    },
+    "606": {
+      "name": "n_n1165",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "607": {
+      "name": "n_n1013",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "608": {
+      "name": "n_n1023",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 2
+    },
+    "609": {
+      "name": "n_n602",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "610": {
+      "name": "[3857]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "611": {
+      "name": "[3475]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "612": {
+      "name": "[3533]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "613": {
+      "name": "[3679]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "614": {
+      "name": "[3710]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "615": {
+      "name": "[161]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 28,
+      "cross_layer_sink_connections": 2
+    },
+    "616": {
+      "name": "n_n872",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "617": {
+      "name": "[3966]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "618": {
+      "name": "[3967]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "619": {
+      "name": "[3968]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "620": {
+      "name": "o_51_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18,
+      "cross_layer_sink_connections": 0
+    },
+    "621": {
+      "name": "[3188]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "622": {
+      "name": "[3719]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "623": {
+      "name": "n_n1077",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 2
+    },
+    "624": {
+      "name": "[3713]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "625": {
+      "name": "o_55_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 21,
+      "cross_layer_sink_connections": 0
+    },
+    "626": {
+      "name": "n_n660",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 1
+    },
+    "627": {
+      "name": "n_n963",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "628": {
+      "name": "n_n1014",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "629": {
+      "name": "[3671]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "630": {
+      "name": "[3474]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "631": {
+      "name": "[3751]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "632": {
+      "name": "[4069]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "633": {
+      "name": "[3619]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "634": {
+      "name": "o_46_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19,
+      "cross_layer_sink_connections": 0
+    },
+    "635": {
+      "name": "o_23_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "636": {
+      "name": "n_n1154",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "637": {
+      "name": "n_n1288",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "638": {
+      "name": "o_30_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 27,
+      "cross_layer_sink_connections": 0
+    },
+    "639": {
+      "name": "[3277]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "640": {
+      "name": "[532]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "641": {
+      "name": "o_11_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 27,
+      "cross_layer_sink_connections": 0
+    },
+    "642": {
+      "name": "[211]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "643": {
+      "name": "o_24_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "644": {
+      "name": "[3690]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "645": {
+      "name": "[3706]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "646": {
+      "name": "o_43_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 25,
+      "cross_layer_sink_connections": 1
+    },
+    "647": {
+      "name": "o_52_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 18,
+      "cross_layer_sink_connections": 1
+    },
+    "648": {
+      "name": "[225]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "649": {
+      "name": "n_n468",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "650": {
+      "name": "[141]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "651": {
+      "name": "o_53_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 21,
+      "cross_layer_sink_connections": 1
+    },
+    "652": {
+      "name": "[3273]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 0
+    },
+    "653": {
+      "name": "o_2_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 17,
+      "cross_layer_sink_connections": 1
+    },
+    "654": {
+      "name": "[4153]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "655": {
+      "name": "[3714]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "656": {
+      "name": "[3715]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "657": {
+      "name": "o_59_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 17,
+      "cross_layer_sink_connections": 0
+    },
+    "658": {
+      "name": "[3205]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "659": {
+      "name": "o_0_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 0
+    },
+    "660": {
+      "name": "n_n582",
+      "vertical_channels": 2,
+      "native_layer_hops": 2,
+      "horizontal_track_length": 36,
+      "cross_layer_sink_connections": 2
+    },
+    "661": {
+      "name": "[3439]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "662": {
+      "name": "[3760]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 8,
+      "cross_layer_sink_connections": 0
+    },
+    "663": {
+      "name": "[3440]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "664": {
+      "name": "[4169]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 0
+    },
+    "665": {
+      "name": "[3813]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 24,
+      "cross_layer_sink_connections": 1
+    },
+    "666": {
+      "name": "o_22_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 19,
+      "cross_layer_sink_connections": 0
+    },
+    "667": {
+      "name": "o_26_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 23,
+      "cross_layer_sink_connections": 0
+    },
+    "668": {
+      "name": "[3807]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 1
+    },
+    "669": {
+      "name": "[4119]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "670": {
+      "name": "n_n1119",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "671": {
+      "name": "o_1_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 22,
+      "cross_layer_sink_connections": 1
+    },
+    "672": {
+      "name": "[73]",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 12,
+      "cross_layer_sink_connections": 0
+    },
+    "673": {
+      "name": "[4127]",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 16,
+      "cross_layer_sink_connections": 1
+    },
+    "674": {
+      "name": "o_5_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 14,
+      "cross_layer_sink_connections": 0
+    },
+    "675": {
+      "name": "o_4_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 18,
+      "cross_layer_sink_connections": 0
+    },
+    "676": {
+      "name": "o_29_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 18,
+      "cross_layer_sink_connections": 1
+    },
+    "677": {
+      "name": "o_16_",
+      "vertical_channels": 1,
+      "native_layer_hops": 1,
+      "horizontal_track_length": 20,
+      "cross_layer_sink_connections": 1
+    },
+    "678": {
+      "name": "o_3_",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 17,
+      "cross_layer_sink_connections": 0
+    }
+  },
+  "audit_wall_seconds": 7.912451665848494
+}

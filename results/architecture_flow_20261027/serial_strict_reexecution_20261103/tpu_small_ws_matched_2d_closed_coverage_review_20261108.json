@@ -1,0 +1,37 @@
+{
+  "utc": "2026-11-08T09:00:11.456099+00:00",
+  "scope": "Only the three heldout tpu_like.small.ws matched-2D W100 baselines, seeds 21/23/25. The 3D case cohort and full study remain incomplete.",
+  "case_count": 3,
+  "distinct_route_attempts": 3,
+  "failed_count": 3,
+  "legal_count": 0,
+  "reviews": [
+    {
+      "seed": 21,
+      "review": "tpu_small_ws_seed21_matched_2d_closed_review_20261108.json",
+      "sha256": "8c89c58c5b0bc8711608174f1cbd3d5d9b91ea6d4c614c236d9782c758dd0e19",
+      "result": "evaluation_cases/heldout_tpu_like.small.ws_s21_matched_2d_w100/result.json",
+      "result_sha256": "023c95f0ea3df9c6965850e0588f83dc7a0ef856ad1364df6d06bad3c3005baf"
+    },
+    {
+      "seed": 23,
+      "review": "tpu_small_ws_seed23_matched_2d_closed_review_20261108.json",
+      "sha256": "f8b2e65fbb20d41890be25f9ef39274075ffe4b1f871f839b7b88711a7edd6b9",
+      "result": "evaluation_cases/heldout_tpu_like.small.ws_s23_matched_2d_w100/result.json",
+      "result_sha256": "76f9997c2628a6118dfb41f590577fe9d45700ff2a792f0400f8d30cf542b371"
+    },
+    {
+      "seed": 25,
+      "review": "tpu_small_ws_seed25_matched_2d_closed_review_20261108.json",
+      "sha256": "de8ff98aa348d0bbdb4922be92154a856598d54ace8e075cc2e890ca25b250a6",
+      "result": "evaluation_cases/heldout_tpu_like.small.ws_s25_matched_2d_w100/result.json",
+      "result_sha256": "dffb0f5d3c93366aeef29e5420900c333db293e39c86e40e083df805050ba155"
+    }
+  ],
+  "verification": "Rechecked all three linked result, audit-summary and route-manifest small-file hashes from per-case reviews. No fresh physical audit or large graph hashing.",
+  "interpretation": [
+    "All three registered matched-2D baseline attempts failed. No heldout small.ws seed has a legal matched-2D W100 timing denominator.",
+    "Do not calculate relative-to-2D timing ratios from failed residual metrics. Keep all three seeds in coverage denominators; no replacement rerun."
+  ],
+  "full_study_complete": false
+}

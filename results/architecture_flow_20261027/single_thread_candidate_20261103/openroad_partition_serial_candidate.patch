@@ -1,0 +1,176 @@
+diff --git a/src/drt/include/triton_route/TritonRoute.h b/src/drt/include/triton_route/TritonRoute.h
+index 3d0c8c1..4d7111a 100644
+--- a/src/drt/include/triton_route/TritonRoute.h
++++ b/src/drt/include/triton_route/TritonRoute.h
+@@ -220,7 +220,8 @@ class TritonRoute
+   std::mutex results_mutex_;
+   int results_sz_{0};
+   unsigned int cloud_sz_{0};
+-  boost::asio::thread_pool dist_pool_{1};
++  // Partition-only diagnostic build: distributed detailed routing is unsupported.
++  boost::asio::thread_pool dist_pool_{0};
+ 
+   void initDesign();
+   void gr();
+diff --git a/src/par/src/KWayFMRefine.cpp b/src/par/src/KWayFMRefine.cpp
+index dd20acb..7961899 100644
+--- a/src/par/src/KWayFMRefine.cpp
++++ b/src/par/src/KWayFMRefine.cpp
+@@ -134,23 +134,10 @@ float KWayFMRefine::Pass(
+     std::vector<int> neighbors
+         = FindNeighbors(hgraph, vertex, visited_vertices_flag);
+     // update the neighbors of v for all gain buckets in parallel
+-    std::vector<std::thread> threads;
+-    threads.reserve(num_parts_);
+     for (int to_pid = 0; to_pid < num_parts_; to_pid++) {
+-      threads.emplace_back(&KWayFMRefine::UpdateSingleGainBucket,
+-                           this,
+-                           to_pid,
+-                           std::ref(buckets),
+-                           hgraph,
+-                           std::ref(neighbors),
+-                           std::ref(net_degs),
+-                           std::ref(cur_paths_cost),
+-                           std::ref(solution));
++      UpdateSingleGainBucket(to_pid, buckets, hgraph, neighbors, net_degs,
++                             cur_paths_cost, solution);
+     }
+-    for (auto& t : threads) {
+-      t.join();  // wait for all threads to finish
+-    }
+-    threads.clear();
+     if (total_delta_gain >= best_gain) {
+       best_gain = total_delta_gain;
+       best_vertex_id = vertex;
+@@ -196,25 +183,11 @@ void KWayFMRefine::InitializeGainBucketsKWay(
+     const std::vector<float>& cur_paths_cost,
+     const Partitions& solution) const
+ {
+-  std::vector<std::thread> threads;  // for parallel updating
+-  threads.reserve(num_parts_);
+   // parallel initialize the num_parts gain_buckets
+   for (int to_pid = 0; to_pid < num_parts_; to_pid++) {
+-    threads.emplace_back(
+-        &KWayFMRefine::InitializeSingleGainBucket,
+-        this,
+-        std::ref(buckets),
+-        to_pid,
+-        hgraph,
+-        std::ref(boundary_vertices),  // we only consider boundary vertices
+-        std::ref(net_degs),
+-        std::ref(cur_paths_cost),
+-        std::ref(solution));
+-  }
+-  for (auto& t : threads) {
+-    t.join();  // wait for all threads to finish
++    InitializeSingleGainBucket(buckets, to_pid, hgraph, boundary_vertices,
++                               net_degs, cur_paths_cost, solution);
+   }
+-  threads.clear();
+ }
+ 
+ // Initialize the single bucket
+@@ -324,17 +297,8 @@ void KWayFMRefine::AcceptKWayMove(const std::shared_ptr<VertexGain>& gain_cell,
+                    curr_block_balance,
+                    net_degs);
+   // Remove vertex from all buckets where vertex is present
+-  std::vector<std::thread> deletion_threads;
+-  deletion_threads.reserve(num_parts_);
+   for (int i = 0; i < num_parts_; ++i) {
+-    deletion_threads.emplace_back(&par::KWayFMRefine::HeapEleDeletion,
+-                                  this,
+-                                  vertex_id,
+-                                  i,
+-                                  std::ref(gain_buckets));
+-  }
+-  for (auto& th : deletion_threads) {
+-    th.join();
++    HeapEleDeletion(vertex_id, i, gain_buckets);
+   }
+ }
+ 
+diff --git a/src/par/src/KWayPMRefine.cpp b/src/par/src/KWayPMRefine.cpp
+index ffa9481..953358a 100644
+--- a/src/par/src/KWayPMRefine.cpp
++++ b/src/par/src/KWayPMRefine.cpp
+@@ -266,23 +266,10 @@ float KWayPMRefine::PerformPairFM(
+     const std::vector<int> neighbors = FindNeighbors(
+         hgraph, vertex, visited_vertices_flag, solution, partition_pair);
+     // update the neighbors of v for all gain buckets in parallel
+-    std::vector<std::thread> threads;
+-    threads.reserve(blocks.size());
+     for (auto& to_pid : blocks) {
+-      threads.emplace_back(&KWayFMRefine::UpdateSingleGainBucket,
+-                           this,
+-                           to_pid,
+-                           std::ref(buckets),
+-                           hgraph,
+-                           std::ref(neighbors),
+-                           std::ref(net_degs),
+-                           std::ref(paths_cost),
+-                           std::ref(solution));
++      UpdateSingleGainBucket(to_pid, buckets, hgraph, neighbors, net_degs,
++                             paths_cost, solution);
+     }
+-    for (auto& t : threads) {
+-      t.join();  // wait for all threads to finish
+-    }
+-    threads.clear();
+     if (total_delta_gain >= best_gain) {
+       best_gain = total_delta_gain;
+       best_vertex_id = vertex;
+@@ -328,26 +315,12 @@ void KWayPMRefine::InitializeGainBucketsPM(
+     const std::pair<int, int>& partition_pair) const
+ {
+   std::vector<int> blocks_id{partition_pair.first, partition_pair.second};
+-  std::vector<std::thread> threads;  // for parallel updating
+-  threads.reserve(blocks_id.size());
+ 
+   // parallel initialize the num_parts gain_buckets
+   for (const auto to_pid : blocks_id) {
+-    threads.emplace_back(
+-        &KWayFMRefine::InitializeSingleGainBucket,
+-        this,
+-        std::ref(buckets),
+-        to_pid,
+-        hgraph,
+-        std::ref(boundary_vertices),  // we only consider boundary vertices
+-        std::ref(net_degs),
+-        std::ref(cur_paths_cost),
+-        std::ref(solution));
+-  }
+-  for (auto& t : threads) {
+-    t.join();  // wait for all threads to finish
++    InitializeSingleGainBucket(buckets, to_pid, hgraph, boundary_vertices,
++                               net_degs, cur_paths_cost, solution);
+   }
+-  threads.clear();
+ }
+ 
+ }  // namespace par
+diff --git a/src/par/src/Multilevel.cpp b/src/par/src/Multilevel.cpp
+index 3bf40a8..a2599b6 100644
+--- a/src/par/src/Multilevel.cpp
++++ b/src/par/src/Multilevel.cpp
+@@ -519,20 +519,9 @@ void MultilevelPartitioner::RefinePartition(
+     }
+ 
+     // Parallel refine all the solutions
+-    std::vector<std::thread> threads;
+-    threads.reserve(top_solutions.size());
+     for (auto& top_solution : top_solutions) {
+-      threads.emplace_back(&par::MultilevelPartitioner::CallRefiner,
+-                           this,
+-                           hgraph,
+-                           std::ref(upper_block_balance),
+-                           std::ref(lower_block_balance),
+-                           std::ref(top_solution));
++      CallRefiner(hgraph, upper_block_balance, lower_block_balance, top_solution);
+     }
+-    for (auto& th : threads) {
+-      th.join();
+-    }
+-    threads.clear();
+ 
+     // update the best_solution_id
+     float best_cost = std::numeric_limits<float>::max();

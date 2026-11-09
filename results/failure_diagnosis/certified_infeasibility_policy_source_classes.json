@@ -1,0 +1,58 @@
+{
+  "utc": "2026-10-23T05:07:21.827674+00:00",
+  "cases": {
+    "conv_layer": {
+      "evidence": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/cuts/925882e29b7d7c43.json",
+      "evidence_sha256": "409acdef9879f51e2fc68968609caebe32491f54844fc78556a2d9f51598fe83",
+      "verification": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/cuts/925882e29b7d7c43.verified.json",
+      "verification_sha256": "89a722cddd20683b990426567cb00001de20d919ff5ae6a59617eb5f101cc27f",
+      "certificate_index": 0,
+      "rr_graph_sha256": "925882e29b7d7c432fc4e35046e93bb11290585faef785c54edf6bf41bee4da6",
+      "packed_netlist_sha256": "5b6f6b0bfdddd676026b33aca1c7e171b02147c5865bbdc04b7b8134513d86ac",
+      "placement_sha256": "a0e634625e1469667024136a17e74dfdfd5df4e46d314d767819116603dacb01",
+      "demand": 64,
+      "capacity": 44
+    },
+    "dla_like.small": {
+      "evidence": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/cuts/d41912de6219d86c.json",
+      "evidence_sha256": "9a74c06bda3b2848624b2246e5b9f8769a40468569ec25e55f4a8b1d3e91555c",
+      "verification": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/cuts/d41912de6219d86c.verified.json",
+      "verification_sha256": "4064e98196b5277b14c304fde983c0bdf18d2212b722d8be78ab7c9dfb49ec2e",
+      "certificate_index": 0,
+      "rr_graph_sha256": "d41912de6219d86c349dfe81a3ee3afbb2cdc42bdbd7a8cc24d92b380f3c05b1",
+      "packed_netlist_sha256": "3da982dc184c614cdafc1d9a3fb04c8c6c9c74cd239cc760bc9de807516ee7ed",
+      "placement_sha256": "0acaafada6c3d6aa709e826268a9c6a8251d99c220ea0875852469ba5ebb8235",
+      "demand": 48,
+      "capacity": 44
+    },
+    "dla_like.medium": {
+      "evidence": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/cuts/7dc10d20b32d8a62.json",
+      "evidence_sha256": "05d71b1fc37bc0b141c5f9101da150df51ee5f72a154d66ed4f7772b0f237034",
+      "verification": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/cuts/7dc10d20b32d8a62.verified.json",
+      "verification_sha256": "2c98c21f962f8f6022fd1f58fbcc8dc1566ae5b6830064865534086cc6b85934",
+      "certificate_index": 0,
+      "rr_graph_sha256": "7dc10d20b32d8a622160c107f2c2c72580aee323f8dac3b4b57ad148d1dcd2a7",
+      "packed_netlist_sha256": "2e574ff1a3334811aed4225d01df7f32fff98468334c85613d24c24495a4d662",
+      "placement_sha256": "c96412fe3504b36586eedb90544d6998765dfdae1b44103e76656b82f316a82c",
+      "demand": 48,
+      "capacity": 44
+    },
+    "attention_layer": {
+      "evidence": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/cuts_source_classes/925882e29b7d7c43.json",
+      "evidence_sha256": "cad297ac7a41ea6e71e50ced831d2921438030226206817c3aeff9d4e456d5cc",
+      "verification": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/cuts_source_classes/925882e29b7d7c43.verified.json",
+      "verification_sha256": "c2ca89d1452bf059b72faf29ee042c35bf1e49dbfa94a30f9d58d1ce7f9df112",
+      "certificate_index": 43,
+      "rr_graph_sha256": "925882e29b7d7c432fc4e35046e93bb11290585faef785c54edf6bf41bee4da6",
+      "packed_netlist_sha256": "febdc4b0e65291643a9b335b8bf925a192034aa0d79f06808a9d3aee9e459a9e",
+      "placement_sha256": "440ca7bef9ce631dcb1c611678006fe496210d769130c2db47e889633c5a8409",
+      "demand": 28,
+      "capacity": 22
+    }
+  },
+  "action": "Keep complete native 200-iteration runs and all width scans. Do not extend mathematically certified-infeasible W100 cases to 500; retain them as proved resource infeasibility, never as solved or omitted failures.",
+  "scope": "Applies only when graph, packed netlist and placement hashes match the verified certificate.",
+  "supersedes": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/certified_infeasibility_policy.json",
+  "superseded_policy_sha256": "5fc4369d6582c7e11bbd9ea3706e21a86bdceee4d84acd034fc27c23f1280b5d",
+  "refinement": "Independent literal-boundary verification of finer SOURCE-class cuts additionally proves attention_layer infeasible at W100; whole-block aggregate capacity had hidden this constraint."
+}

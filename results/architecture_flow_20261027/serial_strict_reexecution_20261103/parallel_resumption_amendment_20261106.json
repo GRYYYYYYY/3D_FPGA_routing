@@ -1,0 +1,33 @@
+{
+  "utc": "2026-11-06T19:16:01.927770+00:00",
+  "status": "registered_before_scheduling_change",
+  "workers": 3,
+  "drain_pid": 1450297,
+  "processes": [
+    {
+      "pid": 1450297,
+      "start_ticks": 1873640141,
+      "script": "recover_unstarted_heldout_v1.py"
+    },
+    {
+      "pid": 2474184,
+      "start_ticks": 1871502713,
+      "script": "queue_heldout_disk_recovery_v2.py"
+    },
+    {
+      "pid": 2887558,
+      "start_ticks": 1876284418,
+      "script": "continue_after_heldout_recovery_v1.py"
+    }
+  ],
+  "parent_protocol_sha256": "91dcd6f8948c97c87700a615aec67baaf345ea13498f119a925ffa8ef88dce93",
+  "evaluation_jobs_sha256": "efbc5f6d7fd682a44afbca64ccbe72f9c9c53bb92ef908b5d43cb02a0c878fcf",
+  "selection_sha256": "711c73aa27648919b1a8c20e235374f4f493949d8be0f0f7b7b63dad8c4ed4af",
+  "cgroup_memory_limit_bytes": 322122547200,
+  "vpr_address_space_limit_bytes": 68719476736,
+  "change": "Non-timing heldout remainder and W300 use at most three concurrent cases, within the original cap of six. Serial timing and registered algorithms, seeds, layouts policy, timeouts and iteration limits are unchanged.",
+  "reason": "Shared disk capacity has recovered; one-case scheduling unnecessarily serialized independent non-timing evaluation. Three 64-GiB VPR address-space limits leave nominal headroom within the 300-GiB cgroup for supervisors, audits and reclaimable file cache.",
+  "transition": "One SIGINT to the Python submission owner only; ThreadPoolExecutor shutdown waits for its active complete case. No signals to VPR groups, no retries of completed runs, no changes to frozen source files. Preserve predecessor errors and reconstruct its missing input seal before resume.",
+  "qualification": "Changing concurrency can alter shared-host contention and traced timeout outcomes; retain this scheduling amendment with results. Traced wall time is not speedup evidence.",
+  "validation_sha256": "197debc7d5807771ca3de5c1f939fba067d37d3e02af9145d22e30bd273e6c72"
+}

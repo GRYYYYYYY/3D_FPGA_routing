@@ -1,0 +1,116 @@
+{
+  "utc": "2026-11-07T20:43:55.511003+00:00",
+  "scope": "Only completed SB tpu_like.large.ws seed23 W100 case; no full-study or heldout-stage closure.",
+  "registered_job_matches": true,
+  "case_result": {
+    "path": "evaluation_cases/heldout_tpu_like.large.ws_s23_sb_w100/result.json",
+    "sha256": "7bf82bd7d8da006307c24e8acd958f679d4e8d120ddb494dfef496dc8d93933e"
+  },
+  "evaluation_jobs": {
+    "path": "evaluation_jobs.json",
+    "sha256": "efbc5f6d7fd682a44afbca64ccbe72f9c9c53bb92ef908b5d43cb02a0c878fcf"
+  },
+  "registered_routes": 6,
+  "legal_routes": 0,
+  "status_counts": {
+    "timeout": 6
+  },
+  "flows": [
+    {
+      "flow": "p0",
+      "audit_summary": {
+        "path": "evaluation_cases/heldout_tpu_like.large.ws_s23_sb_w100/p0_audit_summary.json",
+        "sha256": "5d0af98d4350d777b2a9b7c552eb685df6fc72f74cec386c0b731a03219f5abb"
+      },
+      "legal_count": 0,
+      "failed_count": 3,
+      "runs": [
+        {
+          "role": "A0",
+          "name": "heldout_tpu_like.large.ws_s23_sb_n100_w100_p0_a0",
+          "manifest": {
+            "path": "runs/heldout_tpu_like.large.ws_s23_sb_n100_w100_p0_a0/manifest.json",
+            "sha256": "88ac092478dc751a2d8f803844ee24c3dd950a38451c1a25ec5d0a9775f69ba5"
+          },
+          "status": "timeout",
+          "returncode": -15,
+          "timeout_seconds": 1800,
+          "wall_seconds": 1800.2491236664355
+        },
+        {
+          "role": "R1",
+          "name": "heldout_tpu_like.large.ws_s23_sb_n100_w100_p0_critical_c7",
+          "manifest": {
+            "path": "runs/heldout_tpu_like.large.ws_s23_sb_n100_w100_p0_critical_c7/manifest.json",
+            "sha256": "293f6888206d83a1865ae8afded80fe327e1a5b21f5802c7f46b542ffc2097a7"
+          },
+          "status": "timeout",
+          "returncode": -15,
+          "timeout_seconds": 1800,
+          "wall_seconds": 1800.7516430281103
+        },
+        {
+          "role": "B2",
+          "name": "heldout_tpu_like.large.ws_s23_sb_n100_w100_p0_b2",
+          "manifest": {
+            "path": "runs/heldout_tpu_like.large.ws_s23_sb_n100_w100_p0_b2/manifest.json",
+            "sha256": "51415f3a05bed30f12f759805fb400f5e1ddd59e464fc0ebbf852dae3b311d90"
+          },
+          "status": "timeout",
+          "returncode": -15,
+          "timeout_seconds": 1800,
+          "wall_seconds": 1800.3504432179034
+        }
+      ]
+    },
+    {
+      "flow": "p1",
+      "audit_summary": {
+        "path": "evaluation_cases/heldout_tpu_like.large.ws_s23_sb_w100/p1_audit_summary.json",
+        "sha256": "05069ed513e670173f03e66a50353ed074d0c50410f21c499be39db490fa16a5"
+      },
+      "legal_count": 0,
+      "failed_count": 3,
+      "runs": [
+        {
+          "role": "A0",
+          "name": "heldout_tpu_like.large.ws_s23_sb_n100_w100_p1_a0",
+          "manifest": {
+            "path": "runs/heldout_tpu_like.large.ws_s23_sb_n100_w100_p1_a0/manifest.json",
+            "sha256": "c61b2c983cdc73897f13a9d0ecd141a30c303b708206047a1ee9c8fe4c83aebf"
+          },
+          "status": "timeout",
+          "returncode": -15,
+          "timeout_seconds": 1800,
+          "wall_seconds": 1800.2506081163883
+        },
+        {
+          "role": "R1",
+          "name": "heldout_tpu_like.large.ws_s23_sb_n100_w100_p1_critical_c7",
+          "manifest": {
+            "path": "runs/heldout_tpu_like.large.ws_s23_sb_n100_w100_p1_critical_c7/manifest.json",
+            "sha256": "b0dd7b450dd24da7576bae4e12d0677ab3ba51b926b687e77b1f34387a89736e"
+          },
+          "status": "timeout",
+          "returncode": -15,
+          "timeout_seconds": 1800,
+          "wall_seconds": 1800.3542533442378
+        },
+        {
+          "role": "B2",
+          "name": "heldout_tpu_like.large.ws_s23_sb_n100_w100_p1_b2",
+          "manifest": {
+            "path": "runs/heldout_tpu_like.large.ws_s23_sb_n100_w100_p1_b2/manifest.json",
+            "sha256": "917ec3cfacea3414f1f93b534f5489a796667ed01e10515cbf19540855bcaf54"
+          },
+          "status": "timeout",
+          "returncode": -15,
+          "timeout_seconds": 1800,
+          "wall_seconds": 1800.2512404508889
+        }
+      ]
+    }
+  ],
+  "interpretation": "No legal within-flow A0/R1/B2 timing pairs and no valid timing-based comparison of P0 versus P1; preserve all registered attempts. Matched 2D is outside this review.",
+  "full_study_complete": false
+}

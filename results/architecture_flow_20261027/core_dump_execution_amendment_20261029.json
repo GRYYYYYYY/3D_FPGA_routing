@@ -1,0 +1,35 @@
+{
+  "utc": "2026-10-29T20:07:22.053952+00:00",
+  "status": "applied_and_verified",
+  "scope": "Future children of the current training and registered-study continuation owners only",
+  "change": "Set RLIMIT_CORE soft=0; preserve hard limit. No change to address-space, threads, routing iteration, process timeout or hyperparameters.",
+  "reason": "Two observed allocation failures generate over 100GiB of growing diagnostic core data. Preserve both current cores for diagnosis; avoid new core-file writes exhausting experiment storage.",
+  "before": {
+    "349333": {
+      "start_ticks": 1807534048,
+      "core_limits": [
+        -1,
+        -1
+      ]
+    },
+    "900575": {
+      "start_ticks": 1807659424,
+      "core_limits": [
+        -1,
+        -1
+      ]
+    }
+  },
+  "interpretation": "This operational change affects post-crash diagnostic writing and time to reap failed processes. Failure runtimes are not performance samples; all registered attempts remain in denominators. Already running VPR children keep their original limits.",
+  "after": {
+    "349333": [
+      0,
+      -1
+    ],
+    "900575": [
+      0,
+      -1
+    ]
+  },
+  "verification_utc": "2026-10-29T20:07:22.055606+00:00"
+}

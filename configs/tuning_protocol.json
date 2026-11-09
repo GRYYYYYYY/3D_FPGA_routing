@@ -1,0 +1,196 @@
+{
+  "training": [
+    "ex5p balanced seed1",
+    "diffeq balanced seed1"
+  ],
+  "held_out": "other paired placements/seeds; the 20-circuit sweep remains a fixed-default study",
+  "criterion": "Require successful native FULL checks on both training cases and wirelength <=1.05 baseline in each; select smallest geometric mean CPD ratio, then geometric mean wirelength ratio, then parameter order. Runtime is reported, not selected from concurrent runs.",
+  "parameters": [
+    {
+      "name": "a0",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a1_w0",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_VERTICAL_WEIGHT": "0"
+      }
+    },
+    {
+      "name": "a1_w0p5",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_VERTICAL_WEIGHT": "0.5"
+      }
+    },
+    {
+      "name": "a1_w1",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_VERTICAL_WEIGHT": "1"
+      }
+    },
+    {
+      "name": "a1_w2",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_VERTICAL_WEIGHT": "2"
+      }
+    },
+    {
+      "name": "a1_w4",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_VERTICAL_WEIGHT": "4"
+      }
+    },
+    {
+      "name": "a3_default",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a3_k4",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_CANDIDATES": "4"
+      }
+    },
+    {
+      "name": "a3_k16",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_CANDIDATES": "16"
+      }
+    },
+    {
+      "name": "a3_miss1",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_MISS_WEIGHT": "1"
+      }
+    },
+    {
+      "name": "a3_miss4",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_MISS_WEIGHT": "4"
+      }
+    },
+    {
+      "name": "a3_opening4",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_OPENING_WEIGHT": "4"
+      }
+    },
+    {
+      "name": "a3_opening16",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_OPENING_WEIGHT": "16"
+      }
+    },
+    {
+      "name": "a4_default",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "dynamic_subtree",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a4_k4",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "dynamic_subtree",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_CANDIDATES": "4"
+      }
+    },
+    {
+      "name": "a4_k16",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "dynamic_subtree",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_CANDIDATES": "16"
+      }
+    },
+    {
+      "name": "a4_miss1",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "dynamic_subtree",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_MISS_WEIGHT": "1"
+      }
+    },
+    {
+      "name": "a4_miss4",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "dynamic_subtree",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_MISS_WEIGHT": "4"
+      }
+    },
+    {
+      "name": "a4_opening4",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "dynamic_subtree",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_OPENING_WEIGHT": "4"
+      }
+    },
+    {
+      "name": "a4_opening16",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "dynamic_subtree",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_OPENING_WEIGHT": "16"
+      }
+    }
+  ],
+  "warning": "Selection is an explicitly exploratory follow-up; no preregistration or unbiased paper-level claim."
+}

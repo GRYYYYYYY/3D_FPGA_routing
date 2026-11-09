@@ -1,0 +1,61 @@
+diff --git a/libs/EXTERNAL/libtatum/libtatum/tatum/TimingReporter.hpp b/libs/EXTERNAL/libtatum/libtatum/tatum/TimingReporter.hpp
+index a84c61f..51e897e 100644
+--- a/libs/EXTERNAL/libtatum/libtatum/tatum/TimingReporter.hpp
++++ b/libs/EXTERNAL/libtatum/libtatum/tatum/TimingReporter.hpp
+@@ -9,8 +9,8 @@
+ #include "tatum/report/TimingPath.hpp"
+ #include "tatum/report/TimingPathCollector.hpp"
+ #include "tatum/report/TimingReportTagRetriever.hpp"
+-#include "/path/to/vpr/src/base/vpr_context.h"
+-#include "/path/to/vpr/src/pack/prepack.h"
++#include "vpr_context.h"
++#include "prepack.h"
+ 
+ namespace tatum { namespace detail {
+ 
+diff --git a/vpr/CMakeLists.txt b/vpr/CMakeLists.txt
+index b135960..cfde161 100644
+--- a/vpr/CMakeLists.txt
++++ b/vpr/CMakeLists.txt
+@@ -76,6 +76,16 @@ add_library(libvpr STATIC
+ 
+ target_include_directories(libvpr PUBLIC ${LIB_INCLUDE_DIRS})
+ 
++# The published TimingReporter uses VPR's Prepacker. Supply its headers and
++# transitive library includes without introducing a libtatum/libvpr cycle.
++add_library(vpr_interface INTERFACE)
++target_include_directories(vpr_interface INTERFACE ${LIB_INCLUDE_DIRS})
++target_link_libraries(vpr_interface INTERFACE libarchfpga libvtrutil librrgraph)
++target_link_libraries(libtatum vpr_interface)
++if(NOT VPR_USE_SERVER)
++    target_compile_definitions(libtatum PRIVATE NO_SERVER)
++endif()
++
+ 
+ # Find if Eigen is installed. Eigen is used within the Analytical Solver of the
+ # Analytical Placement flow. If Eigen is not installed, certain solvers cannot
+diff --git a/vpr/src/base/partition_creator.cpp b/vpr/src/base/partition_creator.cpp
+index a32239d..c549eb4 100644
+--- a/vpr/src/base/partition_creator.cpp
++++ b/vpr/src/base/partition_creator.cpp
+@@ -11,6 +11,7 @@
+ #include "PreClusterDelayCalculator.h"
+ #include "concrete_timing_info.h"
+ #include "vtr_time.h"
++#include "vpr_error.h"
+ 
+ 
+ 
+@@ -97,8 +98,10 @@ void PartitionCreator::create_partition_constraints_post_pack(
+     
+     // Run partitioning
+     ClusterPartitioningEngine engine(hypergraph, num_partitions, imbalance_rate, cost_alpha, cost_beta, config_file);
+-    std::string triton_path = "/path/to/tritonpart_run_script.sh";
+-    engine.partition_with_triton(triton_path,1, atom_criticality, atoms_lookup);
++    std::string triton_path = "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/scripts/run_flatland_triton.py";
++    if (!engine.partition_with_triton(triton_path, 1, atom_criticality, atoms_lookup)) {
++        VPR_FATAL_ERROR(VPR_ERROR_PLACE, "TritonPart failed; refusing unpartitioned fallback");
++    }
+     // engine.partition(atom_criticality, atoms_lookup);
+     
+     //Create Vector of Partition objects

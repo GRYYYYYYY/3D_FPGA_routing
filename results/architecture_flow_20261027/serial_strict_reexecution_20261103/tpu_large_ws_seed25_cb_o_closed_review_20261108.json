@@ -1,0 +1,90 @@
+{
+  "utc": "2026-11-08T00:13:58.825959+00:00",
+  "scope": "Closed CB-O case for tpu_like.large.ws seed25 W100, P0 and P1 only; not whole circuit-seed, heldout stage or full study closure.",
+  "result": "evaluation_cases/heldout_tpu_like.large.ws_s25_cb_o_w100/result.json",
+  "result_sha256": "6f437f466553511ce7f0b24466c3d7cfd06663544f03ee42a0ace6fc70a2bf63",
+  "result_status": "completed",
+  "matches_frozen_job": true,
+  "evaluation_jobs_sha256": "efbc5f6d7fd682a44afbca64ccbe72f9c9c53bb92ef908b5d43cb02a0c878fcf",
+  "registered_routes": 6,
+  "status_counts": {
+    "timeout": 6
+  },
+  "legal_routes": 0,
+  "flows": [
+    {
+      "flow": "p0",
+      "audit_summary": "evaluation_cases/heldout_tpu_like.large.ws_s25_cb_o_w100/p0_audit_summary.json",
+      "audit_summary_sha256": "9820da566e38013864416ec9be5c80e149994eb9f1aec066fbb026170ca720b2",
+      "legal_count": 0,
+      "failed_count": 3,
+      "runs": [
+        {
+          "name": "heldout_tpu_like.large.ws_s25_cb_o_n100_w100_p0_a0",
+          "manifest": "runs/heldout_tpu_like.large.ws_s25_cb_o_n100_w100_p0_a0/manifest.json",
+          "sha256": "bf9fdc0aeff4edb48fab8a5412b1a8e835a62110deebbd88708fb135f780163c",
+          "status": "timeout",
+          "returncode": -15,
+          "wall_seconds": 1800.2517211548984,
+          "timeout_seconds": 1800
+        },
+        {
+          "name": "heldout_tpu_like.large.ws_s25_cb_o_n100_w100_p0_b2",
+          "manifest": "runs/heldout_tpu_like.large.ws_s25_cb_o_n100_w100_p0_b2/manifest.json",
+          "sha256": "f2e486535d96cce1ccaf67b7a8fb082922f0d26bb0f9d85d4852f0c7245cb95c",
+          "status": "timeout",
+          "returncode": -15,
+          "wall_seconds": 1800.2505381852388,
+          "timeout_seconds": 1800
+        },
+        {
+          "name": "heldout_tpu_like.large.ws_s25_cb_o_n100_w100_p0_critical_c4",
+          "manifest": "runs/heldout_tpu_like.large.ws_s25_cb_o_n100_w100_p0_critical_c4/manifest.json",
+          "sha256": "0f845ce923f93640648142cb95e162e245bc4685850de46c6f0a60ec3791bd06",
+          "status": "timeout",
+          "returncode": -15,
+          "wall_seconds": 1800.2507974877954,
+          "timeout_seconds": 1800
+        }
+      ]
+    },
+    {
+      "flow": "p1",
+      "audit_summary": "evaluation_cases/heldout_tpu_like.large.ws_s25_cb_o_w100/p1_audit_summary.json",
+      "audit_summary_sha256": "eb7274aef4e2d03ad786e262111329937110af0c7f02d0001fd42a4be0f66aec",
+      "legal_count": 0,
+      "failed_count": 3,
+      "runs": [
+        {
+          "name": "heldout_tpu_like.large.ws_s25_cb_o_n100_w100_p1_a0",
+          "manifest": "runs/heldout_tpu_like.large.ws_s25_cb_o_n100_w100_p1_a0/manifest.json",
+          "sha256": "81f2cefd552064ae0ad42a187e7d405d815ace6ac08649945aae045ab7836ff4",
+          "status": "timeout",
+          "returncode": -15,
+          "wall_seconds": 1800.2010223567486,
+          "timeout_seconds": 1800
+        },
+        {
+          "name": "heldout_tpu_like.large.ws_s25_cb_o_n100_w100_p1_b2",
+          "manifest": "runs/heldout_tpu_like.large.ws_s25_cb_o_n100_w100_p1_b2/manifest.json",
+          "sha256": "0aeb04172bb99126e667b9d5b14ee14aaae7293fc5645afba801c370331f8159",
+          "status": "timeout",
+          "returncode": -15,
+          "wall_seconds": 1800.21960952878,
+          "timeout_seconds": 1800
+        },
+        {
+          "name": "heldout_tpu_like.large.ws_s25_cb_o_n100_w100_p1_critical_c4",
+          "manifest": "runs/heldout_tpu_like.large.ws_s25_cb_o_n100_w100_p1_critical_c4/manifest.json",
+          "sha256": "8572ae1f40faaf2e71efd99208c076201ce106781a0f679fc95aaa59b6a1787e",
+          "status": "timeout",
+          "returncode": -15,
+          "wall_seconds": 1800.2025836631656,
+          "timeout_seconds": 1800
+        }
+      ]
+    }
+  ],
+  "interpretation": "All six registered routes timed out. Retain failures and denominators. No legal A0/R1/B2 timing pairs or placement timing comparison for this case. Audit passed is processing verification, not routing success.",
+  "full_study_complete": false
+}

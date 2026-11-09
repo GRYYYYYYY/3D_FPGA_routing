@@ -1,0 +1,692 @@
+{
+  "utc": "2026-10-28T00:22:26.046678+00:00",
+  "status": "registered_before_heldout",
+  "parent_protocol_sha256": "a21af6c1a5d9462d9baaeef60d606913e0aa9b441166b4dfded7f1ba891beb74",
+  "diagnostic_validation_sha256": "a13d2eb5a618fa1ec3f0cfea3a29cdb4149c6e65728f07b69399c9082e0f1f50",
+  "source_semantics_sha256": "de8f15f1d627348b999e8379b80fdf6a83504cc154b86f55886a925323c693aa",
+  "policy": "Preserve original frozen literal P1 matrix. Add separately labelled relative-to-equal-partition 3 percent sensitivity; never pool arms or attribute placement repair to routing.",
+  "selection": "Transfer frozen per-architecture R1 selections; no retuning and no choosing placement arm based on QoR.",
+  "sampling": "Reuse the four preregistered width-sensitivity circuits and seeds, at both W100 and W300; training and heldout strata remain separate.",
+  "balance": "For k=2 uniform target, argument=100*0.03/k=1.5. Audit actual partition weights independently. Literal assignments may be imbalanced; report rather than silently treating as balanced.",
+  "controls": "Within each placement arm, A0/R1/B2 share exact packed netlist, coordinates and graph. Compare placement arms separately within each router. Preserve placement/route failures and independent routing audits.",
+  "statistics": "Per-architecture paired effects only; two circuits per split cannot support broad architecture-ranking or generalization claims. Report both individual circuit results and common-legal-pair summary.",
+  "timing": "Sensitivity concurrent timings are descriptive only; no speedup claim.",
+  "execution": "Wait for training selection and model readiness; exclusive evaluation/serial locks; at most six VPRs; one thread; inherited frozen route budgets.",
+  "jobs": [
+    {
+      "circuit": "spmv",
+      "split": "training",
+      "seed": 11,
+      "width": 100,
+      "family": "sb",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "spmv",
+      "split": "training",
+      "seed": 11,
+      "width": 100,
+      "family": "sb",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "spmv",
+      "split": "training",
+      "seed": 11,
+      "width": 100,
+      "family": "cb_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "spmv",
+      "split": "training",
+      "seed": 11,
+      "width": 100,
+      "family": "cb_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "spmv",
+      "split": "training",
+      "seed": 11,
+      "width": 100,
+      "family": "hybrid_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "spmv",
+      "split": "training",
+      "seed": 11,
+      "width": 100,
+      "family": "hybrid_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "spmv",
+      "split": "training",
+      "seed": 11,
+      "width": 300,
+      "family": "sb",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "spmv",
+      "split": "training",
+      "seed": 11,
+      "width": 300,
+      "family": "sb",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "spmv",
+      "split": "training",
+      "seed": 11,
+      "width": 300,
+      "family": "cb_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "spmv",
+      "split": "training",
+      "seed": 11,
+      "width": 300,
+      "family": "cb_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "spmv",
+      "split": "training",
+      "seed": 11,
+      "width": 300,
+      "family": "hybrid_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "spmv",
+      "split": "training",
+      "seed": 11,
+      "width": 300,
+      "family": "hybrid_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "split": "training",
+      "seed": 11,
+      "width": 100,
+      "family": "sb",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "split": "training",
+      "seed": 11,
+      "width": 100,
+      "family": "sb",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "split": "training",
+      "seed": 11,
+      "width": 100,
+      "family": "cb_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "split": "training",
+      "seed": 11,
+      "width": 100,
+      "family": "cb_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "split": "training",
+      "seed": 11,
+      "width": 100,
+      "family": "hybrid_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "split": "training",
+      "seed": 11,
+      "width": 100,
+      "family": "hybrid_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "split": "training",
+      "seed": 11,
+      "width": 300,
+      "family": "sb",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "split": "training",
+      "seed": 11,
+      "width": 300,
+      "family": "sb",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "split": "training",
+      "seed": 11,
+      "width": 300,
+      "family": "cb_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "split": "training",
+      "seed": 11,
+      "width": 300,
+      "family": "cb_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "split": "training",
+      "seed": 11,
+      "width": 300,
+      "family": "hybrid_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "split": "training",
+      "seed": 11,
+      "width": 300,
+      "family": "hybrid_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "robot_rl",
+      "split": "heldout",
+      "seed": 21,
+      "width": 100,
+      "family": "sb",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "robot_rl",
+      "split": "heldout",
+      "seed": 21,
+      "width": 100,
+      "family": "sb",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "robot_rl",
+      "split": "heldout",
+      "seed": 21,
+      "width": 100,
+      "family": "cb_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "robot_rl",
+      "split": "heldout",
+      "seed": 21,
+      "width": 100,
+      "family": "cb_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "robot_rl",
+      "split": "heldout",
+      "seed": 21,
+      "width": 100,
+      "family": "hybrid_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "robot_rl",
+      "split": "heldout",
+      "seed": 21,
+      "width": 100,
+      "family": "hybrid_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "robot_rl",
+      "split": "heldout",
+      "seed": 21,
+      "width": 300,
+      "family": "sb",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "robot_rl",
+      "split": "heldout",
+      "seed": 21,
+      "width": 300,
+      "family": "sb",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "robot_rl",
+      "split": "heldout",
+      "seed": 21,
+      "width": 300,
+      "family": "cb_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "robot_rl",
+      "split": "heldout",
+      "seed": 21,
+      "width": 300,
+      "family": "cb_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "robot_rl",
+      "split": "heldout",
+      "seed": 21,
+      "width": 300,
+      "family": "hybrid_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "robot_rl",
+      "split": "heldout",
+      "seed": 21,
+      "width": 300,
+      "family": "hybrid_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "split": "heldout",
+      "seed": 21,
+      "width": 100,
+      "family": "sb",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "split": "heldout",
+      "seed": 21,
+      "width": 100,
+      "family": "sb",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "split": "heldout",
+      "seed": 21,
+      "width": 100,
+      "family": "cb_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "split": "heldout",
+      "seed": 21,
+      "width": 100,
+      "family": "cb_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "split": "heldout",
+      "seed": 21,
+      "width": 100,
+      "family": "hybrid_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "split": "heldout",
+      "seed": 21,
+      "width": 100,
+      "family": "hybrid_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "split": "heldout",
+      "seed": 21,
+      "width": 300,
+      "family": "sb",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "split": "heldout",
+      "seed": 21,
+      "width": 300,
+      "family": "sb",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "split": "heldout",
+      "seed": 21,
+      "width": 300,
+      "family": "cb_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "split": "heldout",
+      "seed": 21,
+      "width": 300,
+      "family": "cb_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "split": "heldout",
+      "seed": 21,
+      "width": 300,
+      "family": "hybrid_o",
+      "placement_arm": "literal",
+      "partition_argument": 0.03,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "split": "heldout",
+      "seed": 21,
+      "width": 300,
+      "family": "hybrid_o",
+      "placement_arm": "relative3",
+      "partition_argument": 1.5,
+      "routers": [
+        "A0",
+        "R1",
+        "B2"
+      ]
+    }
+  ],
+  "placement_attempts": 48,
+  "registered_route_roles": 144,
+  "implementation_status": "pending_runner_and_analysis"
+}

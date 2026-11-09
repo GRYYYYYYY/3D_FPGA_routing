@@ -1,0 +1,564 @@
+<?xml version='1.0' encoding='utf-8'?>
+<architecture>
+  <models>
+    <model name="io">
+      <input_ports>
+        <port name="outpad" />
+      </input_ports>
+      <output_ports>
+        <port name="inpad" />
+      </output_ports>
+    </model>
+    <model name="spram512x40">
+      <input_ports>
+        <port name="we" clock="clk" combinational_sink_ports="dataout" />
+        <port name="addr" clock="clk" combinational_sink_ports="dataout" />
+        <port name="datain" clock="clk" combinational_sink_ports="dataout" />
+        <port name="clk" is_clock="1" />
+      </input_ports>
+      <output_ports>
+        <port name="dataout" clock="clk" />
+      </output_ports>
+    </model>
+    <model name="spram1024x20">
+      <input_ports>
+        <port name="we" clock="clk" combinational_sink_ports="dataout" />
+        <port name="addr" clock="clk" combinational_sink_ports="dataout" />
+        <port name="datain" clock="clk" combinational_sink_ports="dataout" />
+        <port name="clk" is_clock="1" />
+      </input_ports>
+      <output_ports>
+        <port name="dataout" clock="clk" />
+      </output_ports>
+    </model>
+    <model name="spram2048x10">
+      <input_ports>
+        <port name="we" clock="clk" combinational_sink_ports="dataout" />
+        <port name="addr" clock="clk" combinational_sink_ports="dataout" />
+        <port name="datain" clock="clk" combinational_sink_ports="dataout" />
+        <port name="clk" is_clock="1" />
+      </input_ports>
+      <output_ports>
+        <port name="dataout" clock="clk" />
+      </output_ports>
+    </model>
+    <model name="spram">
+      <input_ports>
+        <port name="we" clock="clk" combinational_sink_ports="dataout" />
+        <port name="addr" clock="clk" combinational_sink_ports="dataout" />
+        <port name="datain" clock="clk" combinational_sink_ports="dataout" />
+        <port name="clk" is_clock="1" />
+      </input_ports>
+      <output_ports>
+        <port name="dataout" clock="clk" />
+      </output_ports>
+    </model>
+    <model name="two_mult_18x19">
+      <input_ports>
+        <port name="A" combinational_sink_ports="Y" />
+        <port name="B" combinational_sink_ports="Y" />
+      </input_ports>
+      <output_ports>
+        <port name="Y" />
+      </output_ports>
+    </model>
+    <model name="one_mult_27x27">
+      <input_ports>
+        <port name="A" combinational_sink_ports="Y" />
+        <port name="B" combinational_sink_ports="Y" />
+      </input_ports>
+      <output_ports>
+        <port name="Y" />
+      </output_ports>
+    </model>
+    <model name="dsp">
+      <input_ports>
+        <port name="I" />
+      </input_ports>
+      <output_ports>
+        <port name="result" />
+      </output_ports>
+    </model>
+  </models>
+  <tiles>
+    <tile name="io" area="0">
+      <sub_tile name="io" capacity="8">
+        <equivalent_sites>
+          <site pb_type="io" />
+        </equivalent_sites>
+        <input name="outpad" num_pins="1" />
+        <output name="inpad" num_pins="1" />
+        <fc in_type="frac" in_val="0.15" out_type="frac" out_val="0.10" />
+        <pinlocations pattern="custom">
+          <loc side="left">io.outpad</loc>
+          <loc side="left" layer_offset="1">io.inpad</loc>
+          <loc side="top">io.outpad</loc>
+          <loc side="top" layer_offset="1">io.inpad</loc>
+          <loc side="right">io.outpad</loc>
+          <loc side="right" layer_offset="1">io.inpad</loc>
+          <loc side="bottom">io.outpad</loc>
+          <loc side="bottom" layer_offset="1">io.inpad</loc>
+        </pinlocations>
+      </sub_tile>
+    </tile>
+    <tile name="clb" area="53894">
+      <sub_tile name="clb">
+        <equivalent_sites>
+          <site pb_type="clb" />
+        </equivalent_sites>
+        <input name="I" num_pins="40" equivalent="full" />
+        <output name="O" num_pins="10" equivalent="none" />
+        <clock name="clk" num_pins="1" />
+        <fc in_type="frac" in_val="0.15" out_type="frac" out_val="0.10" />
+        <pinlocations pattern="custom">
+          <loc side="left">clb.clk clb.I[0:9]</loc>
+          <loc side="left" layer_offset="1">clb.O[0:2]</loc>
+          <loc side="top">clb.I[10:19]</loc>
+          <loc side="top" layer_offset="1">clb.O[3:5]</loc>
+          <loc side="right">clb.I[20:29]</loc>
+          <loc side="right" layer_offset="1">clb.O[6:7]</loc>
+          <loc side="bottom">clb.I[30:39]</loc>
+          <loc side="bottom" layer_offset="1">clb.O[8:9]</loc>
+        </pinlocations>
+      </sub_tile>
+    </tile>
+    <tile name="spram" height="1" width="1" area="137668">
+      <sub_tile name="spram">
+        <equivalent_sites>
+          <site pb_type="spram" pin_mapping="direct" />
+        </equivalent_sites>
+        <input name="addr" num_pins="11" />
+        <input name="din" num_pins="40" />
+        <input name="we1" num_pins="1" />
+        <output name="dout" num_pins="40" />
+        <clock name="clk" num_pins="1" />
+        <fc in_type="frac" in_val="0.15" out_type="frac" out_val="0.10">
+          <fc_override fc_type="frac" fc_val="0" port_name="clk" />
+        </fc>
+        <pinlocations pattern="custom">
+          <loc side="top"> spram.addr[0] spram.addr[8] spram.din[2] spram.din[10] spram.din[18] spram.din[26] spram.din[34] spram.clk spram.addr[1] spram.addr[9] spram.din[3] spram.din[11] spram.din[19] spram.din[27] spram.din[35]</loc>
+          <loc side="top" layer_offset="1">spram.dout[0] spram.dout[8] spram.dout[16] spram.dout[24] spram.dout[32] spram.dout[1] spram.dout[9] spram.dout[17] spram.dout[25] spram.dout[33]</loc>
+          <loc side="right"> spram.addr[2] spram.addr[10] spram.din[4] spram.din[12] spram.din[20] spram.din[28] spram.din[36] spram.addr[3] spram.din[5] spram.din[13] spram.din[21] spram.din[29] spram.din[37]</loc>
+          <loc side="right" layer_offset="1">spram.dout[2] spram.dout[10] spram.dout[18] spram.dout[26] spram.dout[34] spram.dout[3] spram.dout[11] spram.dout[19] spram.dout[27] spram.dout[35] </loc>
+          <loc side="bottom"> spram.addr[4] spram.din[6] spram.din[14] spram.din[22] spram.din[30] spram.din[38] spram.addr[5] spram.din[7] spram.din[15] spram.din[23] spram.din[31] spram.din[39]</loc>
+          <loc side="bottom" layer_offset="1"> spram.dout[4] spram.dout[12] spram.dout[20] spram.dout[28] spram.dout[36] spram.dout[5] spram.dout[13] spram.dout[21] spram.dout[29] spram.dout[37]</loc>
+          <loc side="left"> spram.addr[6] spram.din[0] spram.din[8] spram.din[16] spram.din[24] spram.din[32] spram.we1 spram.addr[7] spram.din[1] spram.din[9] spram.din[17] spram.din[25] spram.din[33]</loc>
+          <loc side="left" layer_offset="1"> spram.dout[6] spram.dout[14] spram.dout[22] spram.dout[30] spram.dout[38] spram.dout[7] spram.dout[15] spram.dout[23] spram.dout[31] spram.dout[39]</loc>
+        </pinlocations>
+      </sub_tile>
+    </tile>
+    <tile name="complex_dsp" height="1" width="1" area="253779">
+      <sub_tile name="complex_dsp">
+        <equivalent_sites>
+          <site pb_type="complex_dsp" pin_mapping="direct" />
+        </equivalent_sites>
+        <input name="I" num_pins="74" />
+        <output name="result" num_pins="74" />
+        <fc in_type="frac" in_val="0.15" out_type="frac" out_val="0.10">
+
+        </fc>
+        <pinlocations pattern="custom">
+          <loc side="left">complex_dsp.I[0:36]</loc>
+          <loc side="right">complex_dsp.I[37:73]</loc>
+          <loc side="right" layer_offset="1">complex_dsp.result[36:0]</loc>
+          <loc side="left" layer_offset="1">complex_dsp.result[73:37]</loc>
+        </pinlocations>
+      </sub_tile>
+    </tile>
+  </tiles>
+  <layout>
+    <fixed_layout name="probe25" width="25" height="25">
+      <layer die="0">
+        <perimeter type="io" priority="100" />
+        <corners type="EMPTY" priority="101" />
+        <fill type="clb" priority="10" />
+        <col type="complex_dsp" startx="2" starty="1" repeatx="8" priority="20" />
+        <col type="spram" startx="4" starty="1" repeatx="8" priority="20" />
+      </layer>
+      <layer die="1">
+        <perimeter type="io" priority="100" />
+        <corners type="EMPTY" priority="101" />
+        <fill type="clb" priority="10" />
+        <col type="complex_dsp" startx="2" starty="1" repeatx="8" priority="20" />
+        <col type="spram" startx="4" starty="1" repeatx="8" priority="20" />
+      </layer>
+    </fixed_layout>
+  </layout>
+  <device>
+    <sizing R_minW_nmos="8926" R_minW_pmos="16067" />
+    <area grid_logic_tile_area="0" />
+    <chan_width_distr>
+      <x distr="uniform" peak="1.000000" />
+      <y distr="uniform" peak="1.000000" />
+    </chan_width_distr>
+    <switch_block type="wilton" fs="3" />
+    <connection_block input_switch_name="ipin_cblock" input_inter_die_switch_name="ipin_inter_layer_cblock" />
+  </device>
+  <switchlist>
+    <switch type="mux" name="L4_driver" R="0.0" Cin="0.0" Cout="0.0" Tdel="185.8258e-12" mux_trans_size="2.6482996805637553" buf_size="18.744014602932605" />
+    <switch type="mux" name="L4_inter_layer_driver" R="0.0" Cin="0.0" Cout="0.0" Tdel="3.2315106619999997e-10" mux_trans_size="2.6482996805637553" buf_size="18.744014602932605" />
+    <switch type="mux" name="L16_driver" R="0.0" Cin="0.0" Cout="0.0" Tdel="379.2906e-12" mux_trans_size="3.1851297470059468" buf_size="39.327334265524485" />
+    <switch type="mux" name="L16_inter_layer_driver" R="0.0" Cin="0.0" Cout="0.0" Tdel="5.166158661999999e-10" mux_trans_size="3.1851297470059468" buf_size="39.327334265524485" />
+    <switch type="mux" name="ipin_cblock" R="0.0" Cout="0.0" Cin="0.0" Tdel="106.0361e-12" mux_trans_size="2.008" buf_size="9.624436045683868" />
+    <switch type="mux" name="ipin_inter_layer_cblock" R="0.0" Cout="0.0" Cin="0.0" Tdel="2.4336136619999997e-10" mux_trans_size="1.508" buf_size="11.71" />
+    <switch type="mux" name="3D_SB_switch" R="0.0" Cout="0.0" Cin="0.0" Tdel="6.86626331e-11" mux_trans_size="0.0" buf_size="0.0" />
+  </switchlist>
+  <segmentlist>
+    <segment name="L4" freq="260" length="4" type="unidir" Rmetal="0.0" Cmetal="0.0">
+      <mux name="L4_driver" />
+      <mux_inter_die name="L4_inter_layer_driver" />
+      <sb type="pattern">1 1 1 1 1</sb>
+      <cb type="pattern">1 1 1 1</cb>
+    </segment>
+    <segment name="L16" freq="40" length="16" type="unidir" Rmetal="0.0" Cmetal="0.0">
+      <mux name="L16_driver" />
+      <mux_inter_die name="L16_inter_layer_driver" />
+      <sb type="pattern">1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</sb>
+      <cb type="pattern">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</cb>
+    </segment>
+    <segment name="3D_SB_connection" freq="0" length="1" type="unidir" Rmetal="0.0" Cmetal="0.0">
+      <mux name="3D_SB_switch" />
+      <mux_inter_die name="3D_SB_switch" />
+      <sb type="pattern">1 1</sb>
+      <cb type="pattern">1</cb>
+    </segment>
+  </segmentlist>
+  <complexblocklist>
+    <pb_type name="io">
+      <input name="outpad" num_pins="1" />
+      <output name="inpad" num_pins="1" />
+      <mode name="physical" disable_packing="true">
+        <pb_type name="iopad" blif_model=".subckt io" num_pb="1">
+          <input name="outpad" num_pins="1" />
+          <output name="inpad" num_pins="1" />
+        </pb_type>
+        <interconnect>
+          <direct name="outpad" input="io.outpad" output="iopad.outpad">
+            <delay_constant max="26.2256e-12" in_port="io.outpad" out_port="iopad.outpad" />
+          </direct>
+          <direct name="inpad" input="iopad.inpad" output="io.inpad">
+            <delay_constant max="79.8279e-12" in_port="iopad.inpad" out_port="io.inpad" />
+          </direct>
+        </interconnect>
+      </mode>
+      <mode name="inpad">
+        <pb_type name="inpad" blif_model=".input" num_pb="1">
+          <output name="inpad" num_pins="1" />
+        </pb_type>
+        <interconnect>
+          <direct name="inpad" input="inpad.inpad" output="io.inpad">
+            <delay_constant max="79.8279e-12" in_port="inpad.inpad" out_port="io.inpad" />
+          </direct>
+        </interconnect>
+      </mode>
+      <mode name="outpad">
+        <pb_type name="outpad" blif_model=".output" num_pb="1">
+          <input name="outpad" num_pins="1" />
+        </pb_type>
+        <interconnect>
+          <direct name="outpad" input="io.outpad" output="outpad.outpad">
+            <delay_constant max="26.2256e-12" in_port="io.outpad" out_port="outpad.outpad" />
+          </direct>
+        </interconnect>
+      </mode>
+      <power method="ignore" />
+    </pb_type>
+    <pb_type name="clb">
+      <input name="I" num_pins="40" equivalent="full" />
+      <output name="O" num_pins="10" equivalent="none" />
+      <clock name="clk" num_pins="1" />
+      <pb_type name="fle" num_pb="10">
+        <input name="in" num_pins="6" />
+        <output name="out" num_pins="1" />
+        <clock name="clk" num_pins="1" />
+        <mode name="n1_lut6">
+          <pb_type name="ble6" num_pb="1">
+            <input name="in" num_pins="6" />
+            <output name="out" num_pins="1" />
+            <clock name="clk" num_pins="1" />
+            <pb_type name="lut6" blif_model=".names" num_pb="1" class="lut">
+              <input name="in" num_pins="6" port_class="lut_in" />
+              <output name="out" num_pins="1" port_class="lut_out" />
+              <delay_matrix type="max" in_port="lut6.in" out_port="lut6.out">
+                261e-12
+                261e-12
+                261e-12
+                261e-12
+                261e-12
+                261e-12
+              </delay_matrix>
+            </pb_type>
+            <pb_type name="ff" blif_model=".latch" num_pb="1" class="flipflop">
+              <input name="D" num_pins="1" port_class="D" />
+              <output name="Q" num_pins="1" port_class="Q" />
+              <clock name="clk" num_pins="1" port_class="clock" />
+              <T_setup value="80.2421e-12" port="ff.D" clock="clk" />
+              <T_clock_to_Q max="150.7579e-12" port="ff.Q" clock="clk" />
+            </pb_type>
+            <interconnect>
+              <direct name="direct1" input="ble6.in" output="lut6[0:0].in" />
+              <direct name="direct2" input="lut6.out" output="ff.D">
+                <pack_pattern name="ble6" in_port="lut6.out" out_port="ff.D" />
+              </direct>
+              <direct name="direct3" input="ble6.clk" output="ff.clk" />
+              <mux name="mux1" input="ff.Q lut6.out" output="ble6.out">
+                <delay_constant max="25e-12" in_port="lut6.out" out_port="ble6.out" />
+                <delay_constant max="45e-12" in_port="ff.Q" out_port="ble6.out" />
+              </mux>
+            </interconnect>
+          </pb_type>
+          <interconnect>
+            <direct name="direct1" input="fle.in" output="ble6.in" />
+            <direct name="direct2" input="ble6.out" output="fle.out[0:0]" />
+            <direct name="direct3" input="fle.clk" output="ble6.clk" />
+          </interconnect>
+        </mode>
+      </pb_type>
+      <interconnect>
+        <complete name="crossbar" input="clb.I fle[9:0].out" output="fle[9:0].in">
+          <delay_constant max="95e-12" in_port="clb.I" out_port="fle[9:0].in" />
+          <delay_constant max="75e-12" in_port="fle[9:0].out" out_port="fle[9:0].in" />
+        </complete>
+        <complete name="clks" input="clb.clk" output="fle[9:0].clk">
+        </complete>
+        <direct name="clbouts1" input="fle[9:0].out" output="clb.O" />
+      </interconnect>
+    </pb_type>
+    <pb_type name="complex_dsp">
+      <input name="I" num_pins="74" />
+      <output name="result" num_pins="74" />
+      <mode name="physical" disable_packing="true">
+        <pb_type name="dsp_physical" blif_model=".subckt dsp" num_pb="1">
+          <input name="I" num_pins="74" />
+          <output name="result" num_pins="74" />
+        </pb_type>
+        <interconnect>
+          <direct name="datain2dsp1" input="complex_dsp.I" output="dsp_physical.I">
+            </direct>
+          <direct name="out2result" input="dsp_physical.result" output="complex_dsp.result">
+            </direct>
+        </interconnect>
+      </mode>
+      <mode name="one_mult_27x27">
+        <pb_type name="mult_27x27_top" num_pb="1">
+          <input name="I" num_pins="74" />
+          <output name="result" num_pins="74" />
+          <pb_type name="mult_27x27" blif_model=".subckt one_mult_27x27" num_pb="1">
+            <input name="A" num_pins="27" />
+            <input name="B" num_pins="27" />
+            <output name="Y" num_pins="54" />
+            <delay_constant max="2.7654e-9" in_port="mult_27x27.A" out_port="mult_27x27.Y" />
+            <delay_constant max="2.7654e-9" in_port="mult_27x27.B" out_port="mult_27x27.Y" />
+          </pb_type>
+          <interconnect>
+            <direct name="a2a" input="mult_27x27_top.I[26:0]" output="mult_27x27.A">
+                </direct>
+            <direct name="b2b" input="mult_27x27_top.I[53:27]" output="mult_27x27.B">
+                </direct>
+            <direct name="out2out" input="mult_27x27.Y" output="mult_27x27_top.result[53:0]">
+                </direct>
+          </interconnect>
+        </pb_type>
+        <interconnect>
+          <direct name="I2A" input="complex_dsp.I" output="mult_27x27_top.I" />
+          <direct name="out2result" input="mult_27x27_top.result" output="complex_dsp.result" />
+        </interconnect>
+      </mode>
+      <mode name="two_mult_18x19">
+        <pb_type name="mult_18x19_top" num_pb="1">
+          <input name="I" num_pins="74" />
+          <output name="result" num_pins="74" />
+          <pb_type name="two_mult_18x19" num_pb="2">
+            <input name="A" num_pins="18" />
+            <input name="B" num_pins="19" />
+            <output name="Y" num_pins="37" />
+            <pb_type name="mult_18x19" blif_model=".subckt two_mult_18x19" num_pb="1">
+              <input name="A" num_pins="18" />
+              <input name="B" num_pins="19" />
+              <output name="Y" num_pins="37" />
+              <delay_constant max="2.7654e-9" in_port="mult_18x19.A" out_port="mult_18x19.Y" />
+              <delay_constant max="2.7654e-9" in_port="mult_18x19.B" out_port="mult_18x19.Y" />
+            </pb_type>
+            <interconnect>
+              <direct name="a2a" input="two_mult_18x19.A" output="mult_18x19.A">
+                  </direct>
+              <direct name="b2b" input="two_mult_18x19.B" output="mult_18x19.B">
+                  </direct>
+              <direct name="out2out" input="mult_18x19.Y" output="two_mult_18x19.Y">
+                  </direct>
+            </interconnect>
+          </pb_type>
+          <interconnect>
+            <direct name="datain2a1" input="mult_18x19_top.I[17:0]" output="two_mult_18x19[0].A">
+              </direct>
+            <direct name="I2b1" input="mult_18x19_top.I[36:18]" output="two_mult_18x19[0].B">
+              </direct>
+            <direct name="I2a2" input="mult_18x19_top.I[54:37]" output="two_mult_18x19[1].A">
+              </direct>
+            <direct name="I2b2" input="mult_18x19_top.I[73:55]" output="two_mult_18x19[1].B">
+              </direct>
+            <direct name="out2result1" input="two_mult_18x19[0].Y" output="mult_18x19_top.result[36:0]">
+              </direct>
+            <direct name="out2result2" input="two_mult_18x19[1].Y" output="mult_18x19_top.result[73:37]">
+              </direct>
+          </interconnect>
+        </pb_type>
+        <interconnect>
+          <direct name="I2A" input="complex_dsp.I" output="mult_18x19_top.I" />
+          <direct name="out2result" input="mult_18x19_top.result" output="complex_dsp.result" />
+        </interconnect>
+      </mode>
+    </pb_type>
+    <pb_type name="spram">
+      <input name="addr" num_pins="11" />
+      <input name="din" num_pins="40" />
+      <input name="we1" num_pins="1" />
+      <output name="dout" num_pins="40" />
+      <clock name="clk" num_pins="1" />
+      <mode name="physical" disable_packing="true">
+        <pb_type name="physical" blif_model=".subckt spram" num_pb="1">
+          <input name="addr" num_pins="11" port_class="address" />
+          <input name="datain" num_pins="40" port_class="data_in" />
+          <input name="we" num_pins="1" port_class="write_en" />
+          <output name="dataout" num_pins="40" port_class="data_out" />
+          <clock name="clk" num_pins="1" port_class="clock" />
+          <T_setup value="-65.8482e-12" port="physical.addr" clock="clk" />
+          <T_setup value="-65.8482e-12" port="physical.datain" clock="clk" />
+          <T_setup value="-65.8482e-12" port="physical.we" clock="clk" />
+          <T_setup value="-65.8482e-12" port="physical.dataout" clock="clk" />
+          <T_hold value="139.2236e-12" port="physical.addr" clock="clk" />
+          <T_hold value="139.2236e-12" port="physical.datain" clock="clk" />
+          <T_hold value="139.2236e-12" port="physical.we" clock="clk" />
+          <T_hold value="139.2236e-12" port="physical.dataout" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="physical.addr" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="physical.datain" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="physical.we" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="physical.dataout" clock="clk" />
+          <delay_constant max="0" in_port="physical.addr" out_port="physical.dataout" />
+          <delay_constant max="0" in_port="physical.datain" out_port="physical.dataout" />
+          <delay_constant max="0" in_port="physical.we" out_port="physical.dataout" />
+        </pb_type>
+        <interconnect>
+          <direct name="address1" input="spram.addr" output="physical.addr">
+          </direct>
+          <direct name="data1" input="spram.din" output="physical.datain">
+          </direct>
+          <direct name="writeen1" input="spram.we1" output="physical.we">
+          </direct>
+          <direct name="dataout1" input="physical.dataout" output="spram.dout">
+          </direct>
+          <direct name="clk" input="spram.clk" output="physical.clk">
+          </direct>
+        </interconnect>
+      </mode>
+      <mode name="mem_512x40_sp">
+        <pb_type name="mem_512x40_sp" blif_model=".subckt spram512x40" num_pb="1">
+          <input name="addr" num_pins="9" port_class="address" />
+          <input name="datain" num_pins="40" port_class="data_in" />
+          <input name="we" num_pins="1" port_class="write_en" />
+          <output name="dataout" num_pins="40" port_class="data_out" />
+          <clock name="clk" num_pins="1" port_class="clock" />
+          <T_setup value="-65.8482e-12" port="mem_512x40_sp.addr" clock="clk" />
+          <T_setup value="-65.8482e-12" port="mem_512x40_sp.datain" clock="clk" />
+          <T_setup value="-65.8482e-12" port="mem_512x40_sp.we" clock="clk" />
+          <T_setup value="-65.8482e-12" port="mem_512x40_sp.dataout" clock="clk" />
+          <T_hold value="139.2236e-12" port="mem_512x40_sp.addr" clock="clk" />
+          <T_hold value="139.2236e-12" port="mem_512x40_sp.datain" clock="clk" />
+          <T_hold value="139.2236e-12" port="mem_512x40_sp.we" clock="clk" />
+          <T_hold value="139.2236e-12" port="mem_512x40_sp.dataout" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="mem_512x40_sp.addr" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="mem_512x40_sp.datain" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="mem_512x40_sp.we" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="mem_512x40_sp.dataout" clock="clk" />
+          <delay_constant max="0" in_port="mem_512x40_sp.addr" out_port="mem_512x40_sp.dataout" />
+          <delay_constant max="0" in_port="mem_512x40_sp.datain" out_port="mem_512x40_sp.dataout" />
+          <delay_constant max="0" in_port="mem_512x40_sp.we" out_port="mem_512x40_sp.dataout" />
+        </pb_type>
+        <interconnect>
+          <direct name="address1" input="spram.addr[8:0]" output="mem_512x40_sp.addr">
+          </direct>
+          <direct name="data1" input="spram.din" output="mem_512x40_sp.datain">
+          </direct>
+          <direct name="writeen1" input="spram.we1" output="mem_512x40_sp.we">
+          </direct>
+          <direct name="dataout1" input="mem_512x40_sp.dataout" output="spram.dout">
+          </direct>
+          <direct name="clk" input="spram.clk" output="mem_512x40_sp.clk">
+          </direct>
+        </interconnect>
+      </mode>
+      <mode name="mem_1024x20_sp">
+        <pb_type name="mem_1024x20_sp" blif_model=".subckt spram1024x20" num_pb="1">
+          <input name="addr" num_pins="10" port_class="address" />
+          <input name="datain" num_pins="20" port_class="data_in" />
+          <input name="we" num_pins="1" port_class="write_en" />
+          <output name="dataout" num_pins="20" port_class="data_out" />
+          <clock name="clk" num_pins="1" port_class="clock" />
+          <T_setup value="-65.8482e-12" port="mem_1024x20_sp.addr" clock="clk" />
+          <T_setup value="-65.8482e-12" port="mem_1024x20_sp.datain" clock="clk" />
+          <T_setup value="-65.8482e-12" port="mem_1024x20_sp.we" clock="clk" />
+          <T_setup value="-65.8482e-12" port="mem_1024x20_sp.dataout" clock="clk" />
+          <T_hold value="139.2236e-12" port="mem_1024x20_sp.addr" clock="clk" />
+          <T_hold value="139.2236e-12" port="mem_1024x20_sp.datain" clock="clk" />
+          <T_hold value="139.2236e-12" port="mem_1024x20_sp.we" clock="clk" />
+          <T_hold value="139.2236e-12" port="mem_1024x20_sp.dataout" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="mem_1024x20_sp.addr" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="mem_1024x20_sp.datain" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="mem_1024x20_sp.we" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="mem_1024x20_sp.dataout" clock="clk" />
+          <delay_constant max="0" in_port="mem_1024x20_sp.addr" out_port="mem_1024x20_sp.dataout" />
+          <delay_constant max="0" in_port="mem_1024x20_sp.datain" out_port="mem_1024x20_sp.dataout" />
+          <delay_constant max="0" in_port="mem_1024x20_sp.we" out_port="mem_1024x20_sp.dataout" />
+        </pb_type>
+        <interconnect>
+          <direct name="address1" input="spram.addr[9:0]" output="mem_1024x20_sp.addr[9:0]">
+          </direct>
+          <direct name="data1" input="spram.din[19:0]" output="mem_1024x20_sp.datain[19:0]">
+          </direct>
+          <direct name="writeen1" input="spram.we1" output="mem_1024x20_sp.we">
+          </direct>
+          <direct name="dataout1" input="mem_1024x20_sp.dataout[19:0]" output="spram.dout[19:0]">
+          </direct>
+          <direct name="clk" input="spram.clk" output="mem_1024x20_sp.clk">
+          </direct>
+        </interconnect>
+      </mode>
+      <mode name="mem_2048x10_sp">
+        <pb_type name="mem_2048x10_sp" blif_model=".subckt spram2048x10" num_pb="1">
+          <input name="addr" num_pins="11" port_class="address" />
+          <input name="datain" num_pins="10" port_class="data_in" />
+          <input name="we" num_pins="1" port_class="write_en" />
+          <output name="dataout" num_pins="10" port_class="data_out" />
+          <clock name="clk" num_pins="1" port_class="clock" />
+          <T_setup value="-65.8482e-12" port="mem_2048x10_sp.addr" clock="clk" />
+          <T_setup value="-65.8482e-12" port="mem_2048x10_sp.datain" clock="clk" />
+          <T_setup value="-65.8482e-12" port="mem_2048x10_sp.we" clock="clk" />
+          <T_setup value="-65.8482e-12" port="mem_2048x10_sp.dataout" clock="clk" />
+          <T_hold value="139.2236e-12" port="mem_2048x10_sp.addr" clock="clk" />
+          <T_hold value="139.2236e-12" port="mem_2048x10_sp.datain" clock="clk" />
+          <T_hold value="139.2236e-12" port="mem_2048x10_sp.we" clock="clk" />
+          <T_hold value="139.2236e-12" port="mem_2048x10_sp.dataout" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="mem_2048x10_sp.addr" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="mem_2048x10_sp.datain" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="mem_2048x10_sp.we" clock="clk" />
+          <T_clock_to_Q max="696.118e-12" port="mem_2048x10_sp.dataout" clock="clk" />
+          <delay_constant max="0" in_port="mem_2048x10_sp.addr" out_port="mem_2048x10_sp.dataout" />
+          <delay_constant max="0" in_port="mem_2048x10_sp.datain" out_port="mem_2048x10_sp.dataout" />
+          <delay_constant max="0" in_port="mem_2048x10_sp.we" out_port="mem_2048x10_sp.dataout" />
+        </pb_type>
+        <interconnect>
+          <direct name="address1" input="spram.addr[10:0]" output="mem_2048x10_sp.addr">
+          </direct>
+          <direct name="data1" input="spram.din[9:0]" output="mem_2048x10_sp.datain">
+          </direct>
+          <direct name="writeen1" input="spram.we1" output="mem_2048x10_sp.we">
+          </direct>
+          <direct name="dataout1" input="mem_2048x10_sp.dataout" output="spram.dout[9:0]">
+          </direct>
+          <direct name="clk" input="spram.clk" output="mem_2048x10_sp.clk">
+          </direct>
+        </interconnect>
+      </mode>
+    </pb_type>
+  </complexblocklist>
+</architecture>

@@ -1,0 +1,34 @@
+{
+  "utc": "2026-11-03T07:11:55.943918+00:00",
+  "status": "registered_before_strict_training",
+  "sha256": {
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/preparation_registration.json": "4c3ae09e068ca698b26b5f22b4f69aa262cb4da4432c4d8cc97b4c1d4a17b1fb",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/benchmark_protocol.json": "91dcd6f8948c97c87700a615aec67baaf345ea13498f119a925ffa8ef88dce93",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_resource_amendment.json": "f263279b98440b8f4a359daf7402e973fe2fb53ad76d2712f40ea12c6d300efd",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runtime_dependency_binding.json": "c23ba091fc4ec78bc96523fe53467ed99e9f4af27bc97f30dacbfd5481cf1978",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/training_jobs.json": "322814487177def2c8ef006b09b6e5590279cde6091300c9719b6226da2e3be6",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/partition_balance_sensitivity_protocol.json": "330a8121f36a1bf21c0a4336ef143cef002c7f56036b4810d2066a4701beab36",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runner_syscall_validation_v3.json": "88a6278dd2c58a9e256268cf745b169937650f49500399e5b1bd62702f354981",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/scheduler_failure_validation_v2.json": "c3dff80e21a2eb24491abaa94f388ba7ae6d692e98dc6f5db988ff36fa9a6dd3",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/final_pilot_verification.json": "f36ce471d8e178c65c53c3451793fb016e66f72425db04a9f378d8c216aa25bb",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/flatland_benchmark.py": "7b1a3ab9aad9b84fa5fff1d7435cbe21b3d8615bb6f9774924b8a4b91650cc08",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/flatland_experiment_io.py": "1cc5cec91fdefe1d0cc15b71654869b7431d919d44ed19b4a4938c0deb5eed18",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/process_tree_observer.py": "eea49788c003d73ed41c7f4edecec4158b8882c9a35c3a0ba609d35659a16cfe",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/run_flatland_training.py": "713e4e47388ffd653c511c8a575cd53e0dc9c9e6578fa069e5d8a1c65f9484cd",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/select_flatland_configs.py": "0149bc5c20b9f0e50aa44dea88e0e29f267349ba2358203df5b26940bd5f959c",
+    "results/architecture_flow_20261027/single_thread_candidate_20261103/serial_candidate_artifacts_20261103.json": "afdcedbd159ce787b6aa862672bb8eecf2f104e290d99b005ff9345aeb9060fe",
+    "results/architecture_flow_20261027/single_thread_candidate_20261103/run_serial_triton_bridge.py": "3a40e285a2cde7dafe7f07fbfd306e594238cd3f73ca7d43977f8b50490f934d"
+  },
+  "training_roles": 594,
+  "training_only_selection": true,
+  "heldout_cases": 180,
+  "balance_cases": 48,
+  "serial_repetitions": 36,
+  "caveats": [
+    "Original model and pack census are reused as frozen upstream inputs.",
+    "Tracing may affect wall time and timeout outcomes.",
+    "A0/R1/B2/P1 are separately built serial candidates; do not claim binary identity with original releases.",
+    "Formal heldout, W300, balance and non-ptrace timing remain future phases; prerequisites and timing protocol must be independently checked."
+  ],
+  "disk_safety": "Training stops scheduling work when filesystem free space below 80 GiB; active workers drain."
+}

@@ -1,0 +1,78 @@
+{
+  "utc": "2026-11-04T03:07:11.234915+00:00",
+  "amendment": "Add missing pathlib.Path import only; failure occurred before evaluation registration or case execution.",
+  "source_and_evidence_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/run_flatland_evaluation_import_fix_v1.py": "216443739f7ef53d5b64c70aa5c1726a1c67fc41545a75fff6eb6c40b3af8d52",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/resume_strict_study_import_fix_v1.py": "04bf17ed1cc44bd28a461246619d3bcc1b1f7f3bf2178e67a15f16cf4bf32a6e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/strict_continuation/registration.json": "678d0bb5aaa9f063b4aab8cc67ebb8d54a0f52fefad3c931e83d2b169c1d56eb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/strict_continuation/state.json": "59d1a75886adebfd6abf732c721df14234bbc4134ca0b4926fc67417ac64c089",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/strict_continuation/heldout.log": "920d51f3977900894116134657f19ec29cc8831d86b751fb5a804ec5142e9b10",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/seccomp_full_workload_validation.json": "53c76787f403a7ac53f647c4997b34f7aa61dc4f164002f660af6a177aaadb32"
+  },
+  "original_binding_count": 40,
+  "stages": [
+    [
+      "heldout",
+      [
+        "run_flatland_evaluation_import_fix_v1.py",
+        "--phase",
+        "heldout",
+        "--workers",
+        "6"
+      ]
+    ],
+    [
+      "width300",
+      [
+        "run_flatland_evaluation_import_fix_v1.py",
+        "--phase",
+        "width300",
+        "--workers",
+        "6"
+      ]
+    ],
+    [
+      "serial",
+      [
+        "run_flatland_serial_candidate.py"
+      ]
+    ],
+    [
+      "balance",
+      [
+        "run_flatland_balance_sensitivity.py"
+      ]
+    ],
+    [
+      "evaluation_analysis",
+      [
+        "analyze_flatland_evaluation.py"
+      ]
+    ],
+    [
+      "serial_analysis",
+      [
+        "analyze_flatland_serial_candidate.py"
+      ]
+    ],
+    [
+      "balance_analysis",
+      [
+        "analyze_flatland_balance_sensitivity.py"
+      ]
+    ],
+    [
+      "figures",
+      [
+        "render_flatland_figures.py"
+      ]
+    ],
+    [
+      "report",
+      [
+        "render_flatland_report.py"
+      ]
+    ]
+  ],
+  "seccomp_qualification": "One spmv/SB/W100 case; guard changes syscall availability, sampling can miss transient processes, and seccomp/supervision add timing overhead. Wider designs and all workloads are not proven equivalent."
+}

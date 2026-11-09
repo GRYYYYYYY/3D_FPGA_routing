@@ -1,0 +1,1730 @@
+{
+  "utc": "2026-10-28T00:14:51.955533+00:00",
+  "classification": "verified_wait",
+  "live_processes": [
+    {
+      "pid": 3912353,
+      "cmdline": ".venv-lazagna/bin/python scripts/continue_flatland_training.py "
+    },
+    {
+      "pid": 1394840,
+      "cmdline": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/scripts/run_flatland_training.py --circuits attention_layer softmax --workers 6 "
+    },
+    {
+      "pid": 976695,
+      "cmdline": ".venv-lazagna/bin/python scripts/resume_flatland_model_audits.py --size 125 --output results/architecture_flow_20261027/benchmark_models/n125_w100 "
+    },
+    {
+      "pid": 976991,
+      "cmdline": ".venv-lazagna/bin/python scripts/resume_flatland_model_audits.py --size 200 --output results/architecture_flow_20261027/benchmark_models/n200_w100 "
+    },
+    {
+      "pid": 2037063,
+      "cmdline": ".venv-lazagna/bin/python scripts/continue_flatland_sensitivity_models.py "
+    },
+    {
+      "pid": 2037622,
+      "cmdline": ".venv-lazagna/bin/python scripts/preflight_flatland_training_placement.py "
+    }
+  ],
+  "manifest_status_counts": {
+    "completed": 309,
+    "failed": 30,
+    "running": 3
+  },
+  "softmax_cases": {
+    "sb": {
+      "state.json": {
+        "utc": "2026-10-28T00:12:44.308409+00:00",
+        "status": "routing",
+        "circuit": "softmax",
+        "family": "sb",
+        "completed_attempts": 33,
+        "registered_routes": 33,
+        "last": "training_softmax_s11_sb_n60_w100_p0_delay_critical_c7"
+      }
+    },
+    "cb_o": {
+      "state.json": {
+        "utc": "2026-10-27T23:40:20.483223+00:00",
+        "status": "routing",
+        "circuit": "softmax",
+        "family": "cb_o",
+        "completed_attempts": 33,
+        "registered_routes": 33,
+        "last": "training_softmax_s11_cb_o_n60_w100_p0_delay_critical_c7"
+      },
+      "audit_summary.json": {
+        "utc": "2026-10-27T23:43:02.600075+00:00",
+        "passed": true,
+        "registered_route_count": 33,
+        "legal_count": 33,
+        "failed_count": 0,
+        "legal": [
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_a0",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 2.32,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_geometry_c0",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.71,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_c0",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 5.75,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_critical_c0",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.59,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_critical_c0",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.68,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_geometry_c1",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.85,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_c1",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 4.24,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_critical_c1",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.48,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_critical_c1",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.71,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_geometry_c2",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.59,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_c2",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 11.34,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_critical_c2",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.48,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_critical_c2",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.77,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_geometry_c3",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.68,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_c3",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 8.16,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_critical_c3",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.46,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_critical_c3",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.45,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_geometry_c4",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 4.13,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_c4",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 4.62,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_critical_c4",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.5,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_critical_c4",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.56,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_geometry_c5",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.82,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_c5",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 11.33,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_critical_c5",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.48,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_critical_c5",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.65,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_geometry_c6",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.94,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_c6",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 5.84,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_critical_c6",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.7,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_critical_c6",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.82,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_geometry_c7",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 4.01,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_c7",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 8.6,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_critical_c7",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.64,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_cb_o_n60_w100_p0_delay_critical_c7",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 7.66733,
+              "wirelength": 153357,
+              "router_seconds": 3.66,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 153357,
+              "sb_pairs_used": 0,
+              "sb_pair_net_occupancy": 0,
+              "cb_crossing_output_sources_used": 656,
+              "cb_crossing_output_source_net_occupancy": 656,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 356,
+                "OPIN->CHANY": 360
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          }
+        ],
+        "failed": [],
+        "graph_sha256": "a6b41c2ba07480b95828b207c6ef89d8c46ae5f90c9c9edf7664ab148d3ed5c1"
+      },
+      "result.json": {
+        "utc": "2026-10-27T23:43:03.491981+00:00",
+        "status": "completed",
+        "circuit": "softmax",
+        "family": "cb_o",
+        "size": 60,
+        "registered_routes": 33,
+        "legal_routes": 33,
+        "failed_routes": 0
+      }
+    },
+    "hybrid_o": {
+      "state.json": {
+        "utc": "2026-10-28T00:07:07.037200+00:00",
+        "status": "routing",
+        "circuit": "softmax",
+        "family": "hybrid_o",
+        "completed_attempts": 33,
+        "registered_routes": 33,
+        "last": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c7"
+      },
+      "audit_summary.json": {
+        "utc": "2026-10-28T00:10:10.553042+00:00",
+        "passed": true,
+        "registered_route_count": 33,
+        "legal_count": 33,
+        "failed_count": 0,
+        "legal": [
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_a0",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169490,
+              "router_seconds": 2.58,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169490,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_geometry_c0",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169467,
+              "router_seconds": 64.28,
+              "iterations": 16,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169467,
+              "sb_pairs_used": 7,
+              "sb_pair_net_occupancy": 7,
+              "cb_crossing_output_sources_used": 712,
+              "cb_crossing_output_source_net_occupancy": 712,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 419,
+                "OPIN->CHANY": 355,
+                "CHANX->CHANX": 7
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_c0",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169514,
+              "router_seconds": 66.52,
+              "iterations": 16,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169514,
+              "sb_pairs_used": 7,
+              "sb_pair_net_occupancy": 7,
+              "cb_crossing_output_sources_used": 712,
+              "cb_crossing_output_source_net_occupancy": 712,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 411,
+                "OPIN->CHANY": 357,
+                "CHANX->CHANX": 7
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_critical_c0",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169490,
+              "router_seconds": 4.98,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169490,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c0",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169490,
+              "router_seconds": 4.76,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169490,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_geometry_c1",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169541,
+              "router_seconds": 65.82,
+              "iterations": 14,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169541,
+              "sb_pairs_used": 5,
+              "sb_pair_net_occupancy": 5,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 421,
+                "OPIN->CHANY": 353,
+                "CHANX->CHANX": 5
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_c1",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169360,
+              "router_seconds": 66.82,
+              "iterations": 14,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169360,
+              "sb_pairs_used": 5,
+              "sb_pair_net_occupancy": 5,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 421,
+                "OPIN->CHANY": 353,
+                "CHANX->CHANX": 5
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_critical_c1",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169478,
+              "router_seconds": 6.17,
+              "iterations": 14,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169478,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 422,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c1",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169490,
+              "router_seconds": 6.38,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169490,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_geometry_c2",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169455,
+              "router_seconds": 66.48,
+              "iterations": 14,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169455,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 418,
+                "OPIN->CHANY": 354,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_c2",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169543,
+              "router_seconds": 72.8,
+              "iterations": 16,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169543,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 412,
+                "OPIN->CHANY": 350,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_critical_c2",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169490,
+              "router_seconds": 4.17,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169490,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c2",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169490,
+              "router_seconds": 4.58,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169490,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_geometry_c3",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169653,
+              "router_seconds": 64.29,
+              "iterations": 14,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169653,
+              "sb_pairs_used": 5,
+              "sb_pair_net_occupancy": 5,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 423,
+                "OPIN->CHANY": 353,
+                "CHANX->CHANX": 5
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_c3",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169328,
+              "router_seconds": 68.95,
+              "iterations": 14,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169328,
+              "sb_pairs_used": 5,
+              "sb_pair_net_occupancy": 5,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 420,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 5
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_critical_c3",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169514,
+              "router_seconds": 5.19,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169514,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c3",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169490,
+              "router_seconds": 5.37,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169490,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_geometry_c4",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169405,
+              "router_seconds": 63.9,
+              "iterations": 16,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169405,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 416,
+                "OPIN->CHANY": 358,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_c4",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169546,
+              "router_seconds": 64.19,
+              "iterations": 14,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169546,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 422,
+                "OPIN->CHANY": 356,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_critical_c4",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169490,
+              "router_seconds": 4.15,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169490,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c4",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169490,
+              "router_seconds": 4.63,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169490,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_geometry_c5",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169515,
+              "router_seconds": 63.51,
+              "iterations": 14,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169515,
+              "sb_pairs_used": 5,
+              "sb_pair_net_occupancy": 5,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 421,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 5
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_c5",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169364,
+              "router_seconds": 71.55,
+              "iterations": 14,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169364,
+              "sb_pairs_used": 5,
+              "sb_pair_net_occupancy": 5,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 418,
+                "OPIN->CHANY": 351,
+                "CHANX->CHANX": 5
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_critical_c5",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169490,
+              "router_seconds": 4.58,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169490,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c5",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169490,
+              "router_seconds": 4.65,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169490,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_geometry_c6",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169573,
+              "router_seconds": 63.79,
+              "iterations": 15,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169573,
+              "sb_pairs_used": 7,
+              "sb_pair_net_occupancy": 7,
+              "cb_crossing_output_sources_used": 712,
+              "cb_crossing_output_source_net_occupancy": 712,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 416,
+                "OPIN->CHANY": 354,
+                "CHANX->CHANX": 7
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_c6",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169590,
+              "router_seconds": 65.72,
+              "iterations": 14,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169590,
+              "sb_pairs_used": 7,
+              "sb_pair_net_occupancy": 7,
+              "cb_crossing_output_sources_used": 712,
+              "cb_crossing_output_source_net_occupancy": 712,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 419,
+                "OPIN->CHANY": 355,
+                "CHANX->CHANX": 7
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_critical_c6",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169592,
+              "router_seconds": 6.09,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169592,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 419,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c6",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169431,
+              "router_seconds": 6.28,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169431,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 422,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_geometry_c7",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169371,
+              "router_seconds": 64.05,
+              "iterations": 16,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169371,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 415,
+                "OPIN->CHANY": 353,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_c7",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169375,
+              "router_seconds": 67.78,
+              "iterations": 14,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169375,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 420,
+                "OPIN->CHANY": 354,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_critical_c7",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169534,
+              "router_seconds": 4.94,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169534,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          },
+          {
+            "name": "training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c7",
+            "passed": true,
+            "metrics": {
+              "critical_path_ns": 8.97575,
+              "wirelength": 169490,
+              "router_seconds": 5.52,
+              "iterations": 13,
+              "native_full_check_passed": true,
+              "routing_success_reported": true
+            },
+            "physical_metrics": {
+              "planar_wirelength_excluding_sb_half_nodes": 169490,
+              "sb_pairs_used": 6,
+              "sb_pair_net_occupancy": 6,
+              "cb_crossing_output_sources_used": 713,
+              "cb_crossing_output_source_net_occupancy": 713,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANX": 424,
+                "OPIN->CHANY": 352,
+                "CHANX->CHANX": 6
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            }
+          }
+        ],
+        "failed": [],
+        "graph_sha256": "a383aba09dff2b52b2dbd98fbb3b6be16550bfc439f8c005d510bb85b67065c9"
+      },
+      "result.json": {
+        "utc": "2026-10-28T00:10:11.804993+00:00",
+        "status": "completed",
+        "circuit": "softmax",
+        "family": "hybrid_o",
+        "size": 60,
+        "registered_routes": 33,
+        "legal_routes": 33,
+        "failed_routes": 0
+      }
+    }
+  },
+  "goal_complete": false
+}

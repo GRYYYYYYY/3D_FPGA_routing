@@ -1,0 +1,123 @@
+{
+  "utc": "2026-11-09T09:00:07.022999+00:00",
+  "job": {
+    "circuit": "conv_layer_hls",
+    "split": "heldout",
+    "seed": 21,
+    "width": 100,
+    "family": "cb_o",
+    "placement_arm": "literal",
+    "partition_argument": 0.03,
+    "routers": [
+      "A0",
+      "R1",
+      "B2"
+    ]
+  },
+  "status": "completed",
+  "placement": "balance_literal_conv_layer_hls_s21_cb_o_n80_w100_p1_place",
+  "balance": {
+    "vertices": 4003,
+    "edges": 5607,
+    "parts": 2,
+    "balance_argument": 0.03,
+    "partition_weights": [
+      2001.0,
+      2002.0
+    ],
+    "lower_each": 2000.2991,
+    "upper_each": 2002.7008999999998,
+    "balanced": true,
+    "unit_weight_integer_feasible": true,
+    "graph_sha256": "a395d69b4a37548ce0be9e81b7203a1d270b11d78509b180d4f10ba6f9eb55fe",
+    "assignment_sha256": "80f1c3f2508492d3580fbebe317ac133573dbbf94c1966009fd5f2c51c241649"
+  },
+  "roles": {
+    "A0": "balance_literal_conv_layer_hls_s21_cb_o_n80_w100_p1_a0",
+    "R1": "balance_literal_conv_layer_hls_s21_cb_o_n80_w100_p1_critical_c4",
+    "B2": "balance_literal_conv_layer_hls_s21_cb_o_n80_w100_p1_b2"
+  },
+  "route_audit": {
+    "utc": "2026-11-09T09:03:17.551593+00:00",
+    "passed": true,
+    "registered_route_count": 3,
+    "legal_count": 3,
+    "failed_count": 0,
+    "legal": [
+      {
+        "name": "balance_literal_conv_layer_hls_s21_cb_o_n80_w100_p1_a0",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 13.9794,
+          "wirelength": 73704,
+          "router_seconds": 2.68,
+          "iterations": 15,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 73704,
+          "sb_pairs_used": 0,
+          "sb_pair_net_occupancy": 0,
+          "cb_crossing_output_sources_used": 1315,
+          "cb_crossing_output_source_net_occupancy": 1315,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANX": 961,
+            "OPIN->CHANY": 393
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      },
+      {
+        "name": "balance_literal_conv_layer_hls_s21_cb_o_n80_w100_p1_critical_c4",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 13.9794,
+          "wirelength": 73704,
+          "router_seconds": 4.43,
+          "iterations": 15,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 73704,
+          "sb_pairs_used": 0,
+          "sb_pair_net_occupancy": 0,
+          "cb_crossing_output_sources_used": 1315,
+          "cb_crossing_output_source_net_occupancy": 1315,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANX": 961,
+            "OPIN->CHANY": 393
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      },
+      {
+        "name": "balance_literal_conv_layer_hls_s21_cb_o_n80_w100_p1_b2",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 13.9794,
+          "wirelength": 72722,
+          "router_seconds": 2.6,
+          "iterations": 13,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 72722,
+          "sb_pairs_used": 0,
+          "sb_pair_net_occupancy": 0,
+          "cb_crossing_output_sources_used": 1315,
+          "cb_crossing_output_source_net_occupancy": 1315,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANX": 957,
+            "OPIN->CHANY": 386
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      }
+    ],
+    "failed": [],
+    "graph_sha256": "0225d429624141851085b5dc5e61dc5e34bb20b3fb81ecea15c1f26f5d329f0c"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "utc": "2026-10-27T17:37:05.985159+00:00",
+  "passed": true,
+  "captured_after_completed_runs": true,
+  "cwd": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing",
+  "checks": [
+    {
+      "name": "bounded_directed_delay_oracle",
+      "compile_command": [
+        "g++",
+        "-std=c++20",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-I",
+        "vendor/vtr/vpr/src/route",
+        "tests/test_delay_search.cpp",
+        "-o",
+        "/tmp/test_h3d_delay_20261027"
+      ],
+      "run_command": [
+        "/tmp/test_h3d_delay_20261027"
+      ],
+      "exit_code": 0,
+      "random_graphs": 250,
+      "source_sha256": "366f7fee2654181fa1cf172a8fbdcb325cc1c41ea2e90292035e9712662a456b",
+      "header_sha256": "bf993193eeed18d0846589d673075fc53bc961686893f7ddc36145d92c5db9eb",
+      "binary_sha256": "ef7fa5599ede89cbb0b8289357266f5ff0239d0dde3c9622b996b37fc9d7cf13",
+      "log_sha256": "4d314fd47b557c908440130d37c3b9a75d7f822a6f961f824fea1df84f36da57"
+    },
+    {
+      "name": "existing_python_regressions",
+      "command": [
+        ".venv-lazagna/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "tests": 28,
+      "log_sha256": "7447298b41d1e2f3083cdab0475dce02d524f17ec9b263795d15358fa0fcc472"
+    }
+  ]
+}

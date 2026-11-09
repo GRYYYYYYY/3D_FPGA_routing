@@ -1,0 +1,59 @@
+{
+  "utc": "2026-10-27T22:16:11.388567+00:00",
+  "scope": "One training circuit/config only; independent batch audit still pending, never a held-out conclusion",
+  "rows": {
+    "a0": {
+      "metrics": {
+        "critical_path_ns": 8.04317,
+        "wirelength": 223688,
+        "router_seconds": 25.31,
+        "iterations": 99,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "route_body_sha256": "533690736546cad0c3994d4f67a78617f0ba14cd682af01ac14c33d10fdafe50",
+      "receipt_sha256": "1c7c5db4560a6ceb119574e1652bb278aee73786363b63677bd6e4283546facd"
+    },
+    "geometry_c0": {
+      "metrics": {
+        "critical_path_ns": 8.04317,
+        "wirelength": 223688,
+        "router_seconds": 26.74,
+        "iterations": 99,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "route_body_sha256": "533690736546cad0c3994d4f67a78617f0ba14cd682af01ac14c33d10fdafe50",
+      "receipt_sha256": "fc891d53d0c67b1174ac7ee2124df089e11e45b77be110816ff2fffc46e9de26"
+    },
+    "delay_c0": {
+      "metrics": {
+        "critical_path_ns": 8.04317,
+        "wirelength": 223688,
+        "router_seconds": 28.44,
+        "iterations": 99,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "route_body_sha256": "533690736546cad0c3994d4f67a78617f0ba14cd682af01ac14c33d10fdafe50",
+      "receipt_sha256": "54c6d82322567bfad1e6ff86fa529e71d10459ffb6781109bf905ebe5f1de075"
+    },
+    "critical_c0": {
+      "metrics": {
+        "critical_path_ns": 8.04317,
+        "wirelength": 223688,
+        "router_seconds": 25.67,
+        "iterations": 99,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "route_body_sha256": "533690736546cad0c3994d4f67a78617f0ba14cd682af01ac14c33d10fdafe50",
+      "receipt_sha256": "9b61dcae05a6a8746372220d32634c413de2ff4fcc19be5733926e36a362fddc"
+    }
+  },
+  "exact_route_bodies_identical": true,
+  "last_tree_counters": "H3D_TREE guided_paths=63877 preferred_paths=63877 rollbacks=0",
+  "structural_hypothesis": "Current edge adapter identifies a candidate by its crossing source OPIN. Multiple cross-layer receiving-channel edges from the same OPIN receive the same guide penalty; a single feasible source offers no such distinction. This can make CB-only guiding inert even when many crossings are used.",
+  "proposed_followup": "Separate directed crossing-edge/receiving-channel choice from shared physical source capacity. Preserve OPIN/channel occupancy constraints; validate exact reachability and timing before a separately registered new algorithm study.",
+  "current_action": "Complete frozen v2 training and evaluation; do not change candidate semantics or tune using held-out data mid-study"
+}

@@ -1,0 +1,62 @@
+{
+  "utc": "2026-11-08T01:49:14.052172+00:00",
+  "scope": "Closed tpu_like.small.os seed25 matched-2D W100 case; prior small-file review coverage for seeds21/23 included, not closure of remaining 3D cases or whole study.",
+  "matches_frozen_job": true,
+  "evaluation_jobs_sha256": "efbc5f6d7fd682a44afbca64ccbe72f9c9c53bb92ef908b5d43cb02a0c878fcf",
+  "bindings": [
+    {
+      "path": "evaluation_cases/heldout_tpu_like.small.os_s25_matched_2d_w100/result.json",
+      "sha256": "d336bde65c1eed5b520ba951eb76fe6ef8435058f24aa4b9a914b8beb4e9d963"
+    },
+    {
+      "path": "evaluation_cases/heldout_tpu_like.small.os_s25_matched_2d_w100/p0_audit_summary.json",
+      "sha256": "ab972a54006eb80c8c408ce80025e597033d30d6b00e9befb15fe9c8745d522d"
+    },
+    {
+      "path": "runs/heldout_tpu_like.small.os_s25_matched_2d_n60_w100_p0_a0/manifest.json",
+      "sha256": "09a5d5a8fc7fc1f0bfc8c19b9e381951a722e9e373c63c7c59d8179e52d80dc0"
+    },
+    {
+      "path": "runs/heldout_tpu_like.small.os_s25_matched_2d_n60_w100_p0_a0/independent_audit.json",
+      "sha256": "6449426a63e25cb0f83f42971c15f43bcef0e2bdd94c91272273aa56ed6e2398"
+    },
+    {
+      "path": "benchmark_models/n60_w100/manifest.json",
+      "sha256": "f46250ad48cd4f37264863dcfad42a86ffe159fa3399edd23eca44d58ed21ae9"
+    }
+  ],
+  "legal_routes": 1,
+  "failed_routes": 0,
+  "critical_path_ns": 7.44581,
+  "route_sha256": "78161f309c245f71aa18f7e001c6cb3652bd27e60bf90acf87016e1b8e9a2850",
+  "audit_scope": "directed_edges_tree_routed_resource_capacity",
+  "independent_not_checked": [
+    "netlist/placement endpoint identity",
+    "local OPIN reservations",
+    "nonconfigurable edge closure",
+    "bus-mux shared selection"
+  ],
+  "matched_2d_seed_coverage": [
+    {
+      "seed": 21,
+      "review": "tpu_small_os_seed21_matched_2d_closed_review_20261108.json",
+      "review_sha256": "065ca351707fea2f5c9fa0e72c46ad88954508ca3eef1f920dd5895c4e5e13a5",
+      "legal_routes": 1,
+      "failed_routes": 0
+    },
+    {
+      "seed": 23,
+      "review": "tpu_small_os_seed23_matched_2d_closed_review_20261108.json",
+      "review_sha256": "d6b539c765ea5fe7b88ed32b5eb28e2981435c67317bce1a604a11226fea04c2",
+      "legal_routes": 0,
+      "failed_routes": 1
+    },
+    {
+      "seed": 25,
+      "legal_routes": 1,
+      "failed_routes": 0
+    }
+  ],
+  "interpretation": "Seed25 has a legal matched-2D timing observation. Across registered seeds21/23/25, two matched-2D cases are legal and seed23 failed; retain all three in coverage. Do not silently restrict overall success denominators to legal pairs. Logical capacity match does not imply matched area/I/O/wire inventory. This receipt establishes no 3D/2D ratio or aggregate timing advantage.",
+  "full_study_complete": false
+}

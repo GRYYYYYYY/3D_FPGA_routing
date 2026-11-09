@@ -1,0 +1,807 @@
+{
+  "utc": "2026-10-27T17:02:15.110470+00:00",
+  "fixtures": {
+    "w300_attention_layer": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_attention_layer/manifest.json",
+    "w300_conv_layer": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer/manifest.json",
+    "w300_dla_like.small": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_dla_like.small/manifest.json",
+    "w300_bnn": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_bnn/manifest.json",
+    "w300_lstm": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_lstm/manifest.json",
+    "w300_tpu_like.small.ws": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.small.ws/manifest.json",
+    "w300_tpu_like.large.ws": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.large.ws/manifest.json",
+    "w300_clstm_like.small": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_clstm_like.small/manifest.json",
+    "w300_robot_rl": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_robot_rl/manifest.json",
+    "w300_conv_layer_hls": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer_hls/manifest.json",
+    "w100_clstm_like.small": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_a0a4_seed1_clstm_like.small_a0/manifest.json",
+    "w100_robot_rl": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_a0a4_seed1_robot_rl_a0/manifest.json",
+    "w100_conv_layer_hls": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_a0a4_seed1_conv_layer_hls_a0/manifest.json",
+    "w100_reduction_layer": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_a0a4_seed1_reduction_layer_a0/manifest.json",
+    "smoke_ex5p": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/paired_seeds_all_ex5p_seed1_a0/manifest.json"
+  },
+  "bindings": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_attention_layer/manifest.json": "bf5688a9fcfd01d88babf0721904502edb125df99f776951452a9943041daa02",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/architectures/native_100.xml": "77bae591da42990777f70f11a76b40fb56d0e3658949c7e67ba530c3851863f8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/attention_layer.blif": "8725742b17469a86483656a74e3bce385f972c54d012f3f10998555d60de81cb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/native_base_graph/rr_graph.xml": "eca11d8e1082a0548da4905514114bc535e69effa8c9c90d8e14edc0e9791f13",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_attention_layer/packed.net": "e687689f1bad21dd715bf1416281809c34040e181c8b84c81ca936ab77c05782",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_attention_layer/fixed.place": "9952cc3d9b13ac5a32ae4660893f02165b764b664a255b453feb85a607a7adf4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer/manifest.json": "a7d7a1259ac68a159b407cc5bc2c62145aaa20f234aff2614451ab4a0cfb250c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/conv_layer.blif": "27556467d1173692d5541c65b0b305dd034c046b08ecaf340c30cb3e88cd94f5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer/packed.net": "611cfcac0884594a10ab0f87e78e57b6d60ce1b4d9022ccf180bf1a6c932bd9e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer/fixed.place": "e74cc2b160896ac1f262a36ceb422ccd386155cfd963e3024b097dc58f159f5f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_dla_like.small/manifest.json": "994363bcc71beddb0427fc29c2c897e66e40bc249b1159c3164df9c41b9aa5df",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/dla_like.small.blif": "bd7c32d3a98ef6b992270352787cd27028d4f9ccba2e1ab42716e62c0e14ef72",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_dla_like.small/packed.net": "72439f1639c8ff9939b9c6dd0de1ee5e5ca6628fd9232ff1d3a3f138f10c1af7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_dla_like.small/fixed.place": "f78aa6a6f0c732f690bce6fc45c6b982fe160c8292d41037068fad28be3a1895",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_bnn/manifest.json": "0142021773e4231ca16435d90e20ff021ac349131488a4ffbedf647c3ef38ae1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/bnn.blif": "e41a79e8dbbbd119b856b975680a87152af047b4c8781dd464489e9211b2629a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_bnn/packed.net": "494d7986f69e427c40d760b5b5d070a0e33c89cc311886b198834f57b3d2c9d2",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_bnn/fixed.place": "0fedf53cd74a114b62c6dca6ce376a05d9219fc14d77d924ddc90aa666fc7282",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_lstm/manifest.json": "5f9772bbd3e45a3ad1f03eacaabd9d9a0166e0b15d36ab0624b5b7b7b12de2cd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/lstm.blif": "38ecd31e85c8afa11a8f8840b4d62f89d763506d0d936417d78650afe4be09b1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_lstm/packed.net": "974c24fb3d6a00ec69b37cc63d7167fe029fb0b95acf80a496b5b3ced9a2fe14",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_lstm/fixed.place": "6e441b94e0aed628270043719574fe4cd4723f126a138779555658847db66bb9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.small.ws/manifest.json": "5914061fe72e56721203df0fcb3067c35937f279167756c141fdcabec8f00143",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/tpu_like.small.ws.blif": "50be37c9e091fa42bc869f56f91d160224b36329413480624dcf62787ea08838",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.small.ws/packed.net": "fdb12a00ea3e8c07192c8a4a2672c71c9d0a93618c620594a370288613e7d9a3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.small.ws/fixed.place": "5edf076c5517d1f8f78cbfc68d8e0cdb1a78988409a9d0ad0f67155cf1896af8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.large.ws/manifest.json": "5a844ea99dce0b5fd47435751d1ad56f81951fabe4b813d974048f51ea2165f4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/tpu_like.large.ws.blif": "a19bf1704ba5b18a2b5e912670d1006d21af0b14c641ec9522845521d1c7c7a0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.large.ws/packed.net": "b59f6cbc7258916123c14a40af442b1dee73bf6a3eb95151cdbf56c27431160e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.large.ws/fixed.place": "f50a3f64e1421921923c9b462e2e83e7ffe693e3dd631c84727858bb48fdaab1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_clstm_like.small/manifest.json": "0d592ce596b95213eec9ff5846f1bde6be0d103f825b87be0fee40aa6c85cd67",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/clstm_like.small.blif": "4ee082ec6338c9a8a05d4447263a6e4a944b3cae762e6f4ed3f7a885e6690f8f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_clstm_like.small/packed.net": "b7fae79ac0ee674b975152f7facf51b71329d5ea19494d73eb874b3cd97b0332",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_clstm_like.small/fixed.place": "527b78694ba36f09c6f6f516282e6932745a39f910909ea445c739ec6e443e0c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_robot_rl/manifest.json": "7c6e2980a25aeb1bb1d94092bc14de6d80a442944344fcb898137e54db697f04",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/robot_rl.blif": "109d5a5bb0a01307d90fbce63dcf4dd163df79a9d25c2fc857cc350259423496",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_robot_rl/packed.net": "8c790e1294db9db321d37e9213e17cb2a1b5f431deac08240f6dbf3cd5e08499",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_robot_rl/fixed.place": "69bdaecd21ef4acd09fe2ed22c598c78a7bba5ebc15db4580cfc812c9323b989",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer_hls/manifest.json": "257662bdb1b1552383cc277013f620d759717dcccfb2a84e6b882b31cd406f10",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/conv_layer_hls.blif": "2e8007bc118ae92a6bbf47de14ad9563554f5b27aebe7771d5ba85540d149ebc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer_hls/packed.net": "a23c650333e7d11cf485644a2a9aed160e9e95375750b037ed36b2bea943d0eb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer_hls/fixed.place": "667a6b9c7bd885d6b04b206537f24cbf01e9f81de27012439e2c68b58a657c4b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_a0a4_seed1_clstm_like.small_a0/manifest.json": "08b0686d2a64ab7b0dcc558a94223159c1ed28a8a54fe12e55d92700c05c5830",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/configs/architectures/koios_native3d_n6_f16_d1_v3.xml": "b19507fc7eeb0f87208a8565fe09b6313aafd1d6006b057c1e284ae2c549ef60",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_clstm_like.small_seed1/rr_graph.xml": "5a4a1fc34e8adc0c3e3fb4bd97e29b03b8e9c6475aea498ba89ae17cdd0c2598",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_clstm_like.small_seed1/packed.net": "c56e040b60817297db74ca9185d5c608e90508786614ab3c707a1f850e087ff7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_clstm_like.small_seed1/fixed.place": "c2a6432a3604bd1696fd181672dd4ee95265e4a35284b6556484f1b8d974e5e6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_a0a4_seed1_robot_rl_a0/manifest.json": "e803379e965395487a57b10d89152244e0f5f17f146add7f10c6d5923ff8fe79",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_robot_rl_seed1/rr_graph.xml": "1083bfe9e3fc1bdeb86ab1a404891990e4ec49f99a82252865feea4ab60c6408",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_robot_rl_seed1/packed.net": "08771489fb05c15e3cd9e66879ef5c441a86b0cd2c115347377481c2c1774476",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_robot_rl_seed1/fixed.place": "27dc80845f02ea398a42355f614a16c10873c8f42e1958b414a12d92222de027",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_a0a4_seed1_conv_layer_hls_a0/manifest.json": "3f62bc65ef02764e16e3f9869c5416d2fe88b9acdc4722c6f5c42296facbd1c8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_conv_hls_seed1_v3/rr_graph.xml": "925882e29b7d7c432fc4e35046e93bb11290585faef785c54edf6bf41bee4da6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_conv_hls_seed1_v3/packed.net": "0f608de7bdb8fbbb054cc9faa91a8521a51470d49307689d861815d9fadff388",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_conv_hls_seed1_v3/fixed.place": "e30098ad51f06b117d971e6bb4cd048774d68a287412d5b2070400ffe4203031",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_a0a4_seed1_reduction_layer_a0/manifest.json": "446d7cdb5ee4bd2cee74c8adfd17a5070de706941fc9de31f75b2f36e2147e81",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/reduction_layer.blif": "a3f36e0e1108894ff8fca1413b2f0f434954977b24b7adf2a3636e4c3399787c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_reduction_layer_seed1/rr_graph.xml": "9cfff6267c28c9b188a166a9217b733ef3791fc109bc16d18897245670263bdc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_reduction_layer_seed1/packed.net": "5a6ab30ba7ffcfe90553b9fdb6a1c942b2caf68a402aece8e2c7bf33c05d7d64",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_reduction_layer_seed1/fixed.place": "7d59c8db321e59b5a72e9e7f7c08d3ea04ee24c8ceada3cdf61e810803272f7a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/paired_seeds_all_ex5p_seed1_a0/manifest.json": "98dcdb78f765d3919983814bbb5fd92e5ea73aeb3a59141907751b3a98144c61",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/vtr/vtr_flow/arch/multi_die/hecate/3d/hecate_3d_sb_10um_bidir_fanin_16_fanout_16_with_esd_7nm.xml": "1e9d59fb5d6d3a39b1f95e0eee7b0d528e67d3c763cd6e1c99e649c63da4ce54",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/vtr/vtr_flow/benchmarks/blif/ex5p.blif": "4efbea0113705c5a9375c2e2664150521465f6647dd60023d53203311aa06a63",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced1/rr_graph.xml": "6ed35333d25d5c08af7d77706de9cb1764529349649cbe70005fc6c19cf50317",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced1/packed.net": "71ec4c9c979c79c71dfc71a73cc3027180c292e1dde10958ef1be5dd5f866612",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/fixture_ex5p_balanced1/fixed.place": "c57269a9a2da651dad47c14562e9e512d5e55ed21d368b91073a772fca32b13f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/delay-20261027/vpr": "5bd21e5a56b247b1400f41e68857dcf7909311adb27c6b7115156af44e31c77e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/delay-20261027/manifest.json": "86643c431012cd758bfeb4bc43b6e9c8db9601fc7999d2144947a69b0e5c013b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/a4scc/vpr": "538b2750fcdc4acc902a95dc9d06c844a333cd79bc7d61353177dda7b109cc12",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/a4scc/manifest.json": "10fce77f27fa8b7c2fd7706aad6fd1b4bf92cdf6d2e7022ef1c0ea3b8df90967",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/scripts/run_h3d_delay_study.py": "a5a57699ef5184a61be5f9b98ead9ac201d92f997d44a33a2fd79ab7afd2c392"
+  },
+  "binary": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/delay-20261027/vpr",
+  "binary_sha256": "5bd21e5a56b247b1400f41e68857dcf7909311adb27c6b7115156af44e31c77e",
+  "environments": {
+    "legacy": {
+      "VPR_H3D_MODE": "static",
+      "VPR_H3D_REACHABILITY": "scc",
+      "VPR_H3D_STATS": "1"
+    },
+    "delay": {
+      "VPR_H3D_MODE": "static",
+      "VPR_H3D_REACHABILITY": "scc",
+      "VPR_H3D_STATS": "1",
+      "VPR_H3D_CANDIDATE_COST": "delay",
+      "VPR_H3D_DELAY_BUDGET": "4096"
+    },
+    "critical": {
+      "VPR_H3D_MODE": "static",
+      "VPR_H3D_REACHABILITY": "scc",
+      "VPR_H3D_STATS": "1",
+      "VPR_H3D_MIN_CRITICALITY": "0.9"
+    },
+    "delay_critical": {
+      "VPR_H3D_MODE": "static",
+      "VPR_H3D_REACHABILITY": "scc",
+      "VPR_H3D_STATS": "1",
+      "VPR_H3D_CANDIDATE_COST": "delay",
+      "VPR_H3D_DELAY_BUDGET": "4096",
+      "VPR_H3D_MIN_CRITICALITY": "0.9"
+    },
+    "off": {},
+    "budget1": {
+      "VPR_H3D_MODE": "static",
+      "VPR_H3D_REACHABILITY": "scc",
+      "VPR_H3D_STATS": "1",
+      "VPR_H3D_CANDIDATE_COST": "delay",
+      "VPR_H3D_DELAY_BUDGET": "1"
+    },
+    "archived_a3": {
+      "VPR_H3D_MODE": "static",
+      "VPR_H3D_REACHABILITY": "scc",
+      "VPR_H3D_STATS": "1"
+    }
+  },
+  "jobs": [
+    {
+      "name": "pilot_smoke_ex5p_off_r0",
+      "phase": "pilot",
+      "fixture": "smoke_ex5p",
+      "arm": "off",
+      "repeat": 0
+    },
+    {
+      "name": "pilot_smoke_ex5p_legacy_r0",
+      "phase": "pilot",
+      "fixture": "smoke_ex5p",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "pilot_smoke_ex5p_delay_r0",
+      "phase": "pilot",
+      "fixture": "smoke_ex5p",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "pilot_smoke_ex5p_critical_r0",
+      "phase": "pilot",
+      "fixture": "smoke_ex5p",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "pilot_smoke_ex5p_delay_critical_r0",
+      "phase": "pilot",
+      "fixture": "smoke_ex5p",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "pilot_smoke_ex5p_budget1_r0",
+      "phase": "pilot",
+      "fixture": "smoke_ex5p",
+      "arm": "budget1",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_attention_layer_legacy_r0",
+      "phase": "main",
+      "fixture": "w300_attention_layer",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_attention_layer_delay_r0",
+      "phase": "main",
+      "fixture": "w300_attention_layer",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_attention_layer_critical_r0",
+      "phase": "main",
+      "fixture": "w300_attention_layer",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_attention_layer_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w300_attention_layer",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_conv_layer_legacy_r0",
+      "phase": "main",
+      "fixture": "w300_conv_layer",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_conv_layer_delay_r0",
+      "phase": "main",
+      "fixture": "w300_conv_layer",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_conv_layer_critical_r0",
+      "phase": "main",
+      "fixture": "w300_conv_layer",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_conv_layer_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w300_conv_layer",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_dla_like.small_legacy_r0",
+      "phase": "main",
+      "fixture": "w300_dla_like.small",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_dla_like.small_delay_r0",
+      "phase": "main",
+      "fixture": "w300_dla_like.small",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_dla_like.small_critical_r0",
+      "phase": "main",
+      "fixture": "w300_dla_like.small",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_dla_like.small_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w300_dla_like.small",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_bnn_legacy_r0",
+      "phase": "main",
+      "fixture": "w300_bnn",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_bnn_delay_r0",
+      "phase": "main",
+      "fixture": "w300_bnn",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_bnn_critical_r0",
+      "phase": "main",
+      "fixture": "w300_bnn",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_bnn_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w300_bnn",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_lstm_legacy_r0",
+      "phase": "main",
+      "fixture": "w300_lstm",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_lstm_delay_r0",
+      "phase": "main",
+      "fixture": "w300_lstm",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_lstm_critical_r0",
+      "phase": "main",
+      "fixture": "w300_lstm",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_lstm_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w300_lstm",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_tpu_like.small.ws_legacy_r0",
+      "phase": "main",
+      "fixture": "w300_tpu_like.small.ws",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_tpu_like.small.ws_delay_r0",
+      "phase": "main",
+      "fixture": "w300_tpu_like.small.ws",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_tpu_like.small.ws_critical_r0",
+      "phase": "main",
+      "fixture": "w300_tpu_like.small.ws",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_tpu_like.small.ws_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w300_tpu_like.small.ws",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_tpu_like.large.ws_legacy_r0",
+      "phase": "main",
+      "fixture": "w300_tpu_like.large.ws",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_tpu_like.large.ws_delay_r0",
+      "phase": "main",
+      "fixture": "w300_tpu_like.large.ws",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_tpu_like.large.ws_critical_r0",
+      "phase": "main",
+      "fixture": "w300_tpu_like.large.ws",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_tpu_like.large.ws_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w300_tpu_like.large.ws",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_clstm_like.small_legacy_r0",
+      "phase": "main",
+      "fixture": "w300_clstm_like.small",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_clstm_like.small_delay_r0",
+      "phase": "main",
+      "fixture": "w300_clstm_like.small",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_clstm_like.small_critical_r0",
+      "phase": "main",
+      "fixture": "w300_clstm_like.small",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_clstm_like.small_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w300_clstm_like.small",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_robot_rl_legacy_r0",
+      "phase": "main",
+      "fixture": "w300_robot_rl",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_robot_rl_delay_r0",
+      "phase": "main",
+      "fixture": "w300_robot_rl",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_robot_rl_critical_r0",
+      "phase": "main",
+      "fixture": "w300_robot_rl",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_robot_rl_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w300_robot_rl",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_conv_layer_hls_legacy_r0",
+      "phase": "main",
+      "fixture": "w300_conv_layer_hls",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_conv_layer_hls_delay_r0",
+      "phase": "main",
+      "fixture": "w300_conv_layer_hls",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_conv_layer_hls_critical_r0",
+      "phase": "main",
+      "fixture": "w300_conv_layer_hls",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_conv_layer_hls_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w300_conv_layer_hls",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_clstm_like.small_legacy_r0",
+      "phase": "main",
+      "fixture": "w100_clstm_like.small",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_clstm_like.small_delay_r0",
+      "phase": "main",
+      "fixture": "w100_clstm_like.small",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_clstm_like.small_critical_r0",
+      "phase": "main",
+      "fixture": "w100_clstm_like.small",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_clstm_like.small_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w100_clstm_like.small",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_robot_rl_legacy_r0",
+      "phase": "main",
+      "fixture": "w100_robot_rl",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_robot_rl_delay_r0",
+      "phase": "main",
+      "fixture": "w100_robot_rl",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_robot_rl_critical_r0",
+      "phase": "main",
+      "fixture": "w100_robot_rl",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_robot_rl_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w100_robot_rl",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_conv_layer_hls_legacy_r0",
+      "phase": "main",
+      "fixture": "w100_conv_layer_hls",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_conv_layer_hls_delay_r0",
+      "phase": "main",
+      "fixture": "w100_conv_layer_hls",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_conv_layer_hls_critical_r0",
+      "phase": "main",
+      "fixture": "w100_conv_layer_hls",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_conv_layer_hls_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w100_conv_layer_hls",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_reduction_layer_legacy_r0",
+      "phase": "main",
+      "fixture": "w100_reduction_layer",
+      "arm": "legacy",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_reduction_layer_delay_r0",
+      "phase": "main",
+      "fixture": "w100_reduction_layer",
+      "arm": "delay",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_reduction_layer_critical_r0",
+      "phase": "main",
+      "fixture": "w100_reduction_layer",
+      "arm": "critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_reduction_layer_delay_critical_r0",
+      "phase": "main",
+      "fixture": "w100_reduction_layer",
+      "arm": "delay_critical",
+      "repeat": 0
+    },
+    {
+      "name": "main_w100_clstm_like.small_off_r0",
+      "phase": "main",
+      "fixture": "w100_clstm_like.small",
+      "arm": "off",
+      "repeat": 0
+    },
+    {
+      "name": "main_w300_conv_layer_hls_off_r0",
+      "phase": "main",
+      "fixture": "w300_conv_layer_hls",
+      "arm": "off",
+      "repeat": 0
+    },
+    {
+      "name": "serial_w100_clstm_like.small_archived_a3_r1",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "archived_a3",
+      "repeat": 1
+    },
+    {
+      "name": "serial_w100_clstm_like.small_legacy_r1",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "legacy",
+      "repeat": 1
+    },
+    {
+      "name": "serial_w100_clstm_like.small_delay_r1",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "delay",
+      "repeat": 1
+    },
+    {
+      "name": "serial_w100_clstm_like.small_critical_r1",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "critical",
+      "repeat": 1
+    },
+    {
+      "name": "serial_w100_clstm_like.small_delay_critical_r1",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "delay_critical",
+      "repeat": 1
+    },
+    {
+      "name": "serial_w100_robot_rl_archived_a3_r1",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "archived_a3",
+      "repeat": 1
+    },
+    {
+      "name": "serial_w100_robot_rl_legacy_r1",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "legacy",
+      "repeat": 1
+    },
+    {
+      "name": "serial_w100_robot_rl_delay_r1",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "delay",
+      "repeat": 1
+    },
+    {
+      "name": "serial_w100_robot_rl_critical_r1",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "critical",
+      "repeat": 1
+    },
+    {
+      "name": "serial_w100_robot_rl_delay_critical_r1",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "delay_critical",
+      "repeat": 1
+    },
+    {
+      "name": "serial_w100_clstm_like.small_legacy_r2",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "legacy",
+      "repeat": 2
+    },
+    {
+      "name": "serial_w100_clstm_like.small_delay_r2",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "delay",
+      "repeat": 2
+    },
+    {
+      "name": "serial_w100_clstm_like.small_critical_r2",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "critical",
+      "repeat": 2
+    },
+    {
+      "name": "serial_w100_clstm_like.small_delay_critical_r2",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "delay_critical",
+      "repeat": 2
+    },
+    {
+      "name": "serial_w100_clstm_like.small_archived_a3_r2",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "archived_a3",
+      "repeat": 2
+    },
+    {
+      "name": "serial_w100_robot_rl_legacy_r2",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "legacy",
+      "repeat": 2
+    },
+    {
+      "name": "serial_w100_robot_rl_delay_r2",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "delay",
+      "repeat": 2
+    },
+    {
+      "name": "serial_w100_robot_rl_critical_r2",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "critical",
+      "repeat": 2
+    },
+    {
+      "name": "serial_w100_robot_rl_delay_critical_r2",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "delay_critical",
+      "repeat": 2
+    },
+    {
+      "name": "serial_w100_robot_rl_archived_a3_r2",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "archived_a3",
+      "repeat": 2
+    },
+    {
+      "name": "serial_w100_clstm_like.small_delay_r3",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "delay",
+      "repeat": 3
+    },
+    {
+      "name": "serial_w100_clstm_like.small_critical_r3",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "critical",
+      "repeat": 3
+    },
+    {
+      "name": "serial_w100_clstm_like.small_delay_critical_r3",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "delay_critical",
+      "repeat": 3
+    },
+    {
+      "name": "serial_w100_clstm_like.small_archived_a3_r3",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "archived_a3",
+      "repeat": 3
+    },
+    {
+      "name": "serial_w100_clstm_like.small_legacy_r3",
+      "phase": "serial",
+      "fixture": "w100_clstm_like.small",
+      "arm": "legacy",
+      "repeat": 3
+    },
+    {
+      "name": "serial_w100_robot_rl_delay_r3",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "delay",
+      "repeat": 3
+    },
+    {
+      "name": "serial_w100_robot_rl_critical_r3",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "critical",
+      "repeat": 3
+    },
+    {
+      "name": "serial_w100_robot_rl_delay_critical_r3",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "delay_critical",
+      "repeat": 3
+    },
+    {
+      "name": "serial_w100_robot_rl_archived_a3_r3",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "archived_a3",
+      "repeat": 3
+    },
+    {
+      "name": "serial_w100_robot_rl_legacy_r3",
+      "phase": "serial",
+      "fixture": "w100_robot_rl",
+      "arm": "legacy",
+      "repeat": 3
+    }
+  ],
+  "timeout_seconds": 1200,
+  "parallel_workers": 6,
+  "serial_workers": 1,
+  "treatment": "2x2 delay proxy / criticality>=0.9; original soft congestion guide, K8, miss2, opening8",
+  "selection": "All 10 legal W300 diagnostic fixtures; 4 W100 historical gain/neutral/regression cases selected before new measurements. Not an unbiased full benchmark.",
+  "command_policy": "Clone archived A0 options, replace executable and private paths, timing_report_npaths=0. Preserve each fixture routing budget/clock/seed.",
+  "smoke_gate": "All six pilots must pass native FULL; off trace must match A0; budget1 must match legacy trace with no delay-scored pins.",
+  "metrics": "CPD primary; independent planar length and vertical occupancy, failures, delay coverage, serial wall/router/planning time and peak memory secondary.",
+  "comparison": "Within each fixture use the same binary, architecture, graph, packing, placement, seed and options. W100 and W300 reported separately.",
+  "limitations": "No threshold tuning, no new placement seeds, no claim of LaZagna speedup. Unknown bounded distances fall back; graph is never pruned. No general RC timing model.",
+  "status": "registered"
+}

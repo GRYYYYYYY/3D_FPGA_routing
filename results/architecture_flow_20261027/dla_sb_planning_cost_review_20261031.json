@@ -1,0 +1,65 @@
+{
+  "created_utc": "2026-10-31T08:06:03.719656+00:00",
+  "scope": "Supplemental diagnosis of terminal registered DLA SB runs; no solver reruns or frozen-source changes",
+  "records": [
+    {
+      "run": "heldout_dla_like.medium_s21_sb_n200_w100_p0_critical_c7",
+      "status": "timeout",
+      "wall_seconds": 1800.0063134357333,
+      "initialization_seconds": 17.514748,
+      "cumulative_planning_seconds": 622.992385,
+      "planning_minus_initialization_seconds": 605.477637,
+      "channels": 7122568,
+      "plans": 153889,
+      "groups": 737,
+      "evidence_sha256": {
+        "results/architecture_flow_20261027/runs/heldout_dla_like.medium_s21_sb_n200_w100_p0_critical_c7/manifest.json": "357632f2b1d21d56dc8b37726b68d9853f2930e3b1f16b88c536ce71a6e71b11",
+        "results/architecture_flow_20261027/runs/heldout_dla_like.medium_s21_sb_n200_w100_p0_critical_c7/stdout.log": "f7c7f17a0c585c7a1e46fd3addfbf834fce2e826072b59ca176bb1cac9838826"
+      }
+    },
+    {
+      "run": "heldout_dla_like.medium_s21_sb_n200_w100_p1_critical_c7",
+      "status": "timeout",
+      "wall_seconds": 1800.007944855839,
+      "initialization_seconds": 17.34993,
+      "cumulative_planning_seconds": 965.750984,
+      "planning_minus_initialization_seconds": 948.401054,
+      "channels": 7122568,
+      "plans": 153889,
+      "groups": 1134,
+      "evidence_sha256": {
+        "results/architecture_flow_20261027/runs/heldout_dla_like.medium_s21_sb_n200_w100_p1_critical_c7/manifest.json": "94a7b5c0d13d9dcdde81e1847271523ab10dea71e143ddf7f91357587ddc7ec4",
+        "results/architecture_flow_20261027/runs/heldout_dla_like.medium_s21_sb_n200_w100_p1_critical_c7/stdout.log": "d664f0ca1e00f0003f5b75162e70958564afa6c14e7399cf960d99b057719331"
+      }
+    },
+    {
+      "run": "heldout_dla_like.medium_s23_sb_n200_w100_p0_critical_c7",
+      "status": "timeout",
+      "wall_seconds": 1800.018196966499,
+      "initialization_seconds": 17.224835,
+      "cumulative_planning_seconds": 766.285233,
+      "planning_minus_initialization_seconds": 749.060398,
+      "channels": 7122568,
+      "plans": 153889,
+      "groups": 910,
+      "evidence_sha256": {
+        "results/architecture_flow_20261027/runs/heldout_dla_like.medium_s23_sb_n200_w100_p0_critical_c7/manifest.json": "592b93d4845d4f9bf4cf2ef28615cc1f6360a1c1b868e49551db3484e1845ae8",
+        "results/architecture_flow_20261027/runs/heldout_dla_like.medium_s23_sb_n200_w100_p0_critical_c7/stdout.log": "80232f922b68b72f7876365cfdeb3a8e1f12ced773cafc789645499440b232a7"
+      }
+    }
+  ],
+  "source_sha256": {
+    "vendor/vtr-architecture-src/vpr/src/route/h3d_routing.cpp": "585d2ab01700b717736be78d994e2fead11b38c4f92a8c682bd90626723c7786",
+    "vendor/vtr-architecture-src/vpr/src/route/h3d_fast_plan.cpp": "4edf289f6779fe83dc3e7fafb875295b74e674ebd37090b3d74e20e94598f605"
+  },
+  "source_observations": [
+    "H3dPlanner constructor adds initialization to planning_seconds_; subsequent timed plan calls add to the same cumulative counter.",
+    "H3dFastPlan::plan returns early when no critical remote pins remain. If sampled candidates yield no feasible entry, a fallback scans the full channel table until enough feasible candidates are found."
+  ],
+  "interpretation_limits": [
+    "These are internal cumulative wall timers under concurrent shared-host execution, not isolated serial costs or speedup estimates.",
+    "Subtracting initialization does not isolate candidate fallback, reachability, allocations or dynamic programming. Existing counters do not establish which dominates.",
+    "All listed runs timed out; no failed-run CPD or wirelength is used as QoR.",
+    "Future profiling should separately measure cache misses, feasible checks, full-table fallback visits and per-net planning; no such implementation or retuning is performed in this study."
+  ]
+}

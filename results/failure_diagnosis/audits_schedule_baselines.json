@@ -1,0 +1,689 @@
+[
+  {
+    "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__elliptic_seed1__a0",
+    "audit": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/audits/schedule200__elliptic_seed1__a0.json",
+    "native_state": "failed",
+    "passed": false,
+    "inputs": {
+      "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_elliptic_w100_seed1/rr_graph.xml",
+      "rr_graph_sha256": "6ed35333d25d5c08af7d77706de9cb1764529349649cbe70005fc6c19cf50317",
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__elliptic_seed1__a0/routed.route",
+      "route_sha256": "f2e88e0499a4d7dc3248b91565bd3023956c98d5fc591499fd41b871cb4ba131",
+      "resource_map_sha256": null
+    },
+    "graph": {
+      "nodes_by_type": {
+        "SINK": 27064,
+        "SOURCE": 29200,
+        "IPIN": 76312,
+        "OPIN": 42880,
+        "CHANX": 41440,
+        "CHANY": 41440,
+        "CHANZ": 6658
+      },
+      "edges": 2366014,
+      "switches_by_type": {
+        "mux": 6
+      },
+      "physical_vertical_channels": 6658,
+      "native_chanz_with_fanin_and_fanout": 6254,
+      "native_chanz_without_fanin": 404,
+      "native_chanz_without_fanout": 404
+    },
+    "route": {
+      "routed_nets": 2849,
+      "sink_terminals": 6968,
+      "cross_layer_sink_connections": 402,
+      "directed_edges": 40537,
+      "overused_rr_nodes": 1,
+      "vertical_channel_net_occupancy": 754,
+      "unique_used_vertical_channels": 754,
+      "horizontal_track_length": 97096
+    },
+    "routed_connection_delays": {
+      "available": false,
+      "model": "Sum of actual switch Tdel on zero-RC directed route trees; excludes intra-cluster logic/local delay; CPD remains native VPR STA",
+      "all": null,
+      "remote": null
+    },
+    "errors": [
+      "capacity exceeded: {'node': 126200, 'occupancy': 2, 'capacity': 1}"
+    ],
+    "auditor_sha256": {
+      "check_route.py": "7ecd32d7a9821dc2321de424f34eb8fe61c50e2734d67024f54764c2d29b8872",
+      "audit_matrix.py": "86196efa1d220103be2179f89ebd89c4ca38270a8f9db5e260ae2d3ecd051778"
+    },
+    "cache_reused": false
+  },
+  {
+    "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__elliptic_seed2__a0",
+    "audit": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/audits/schedule200__elliptic_seed2__a0.json",
+    "native_state": "completed",
+    "passed": true,
+    "inputs": {
+      "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_elliptic_w100_seed2/rr_graph.xml",
+      "rr_graph_sha256": "6ed35333d25d5c08af7d77706de9cb1764529349649cbe70005fc6c19cf50317",
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__elliptic_seed2__a0/routed.route",
+      "route_sha256": "70c41909f2856825b78b59b100597623919e9951553f6cbff2ccdf6473952754",
+      "resource_map_sha256": null
+    },
+    "graph": {
+      "nodes_by_type": {
+        "SINK": 27064,
+        "SOURCE": 29200,
+        "IPIN": 76312,
+        "OPIN": 42880,
+        "CHANX": 41440,
+        "CHANY": 41440,
+        "CHANZ": 6658
+      },
+      "edges": 2366014,
+      "switches_by_type": {
+        "mux": 6
+      },
+      "physical_vertical_channels": 6658,
+      "native_chanz_with_fanin_and_fanout": 6254,
+      "native_chanz_without_fanin": 404,
+      "native_chanz_without_fanout": 404
+    },
+    "route": {
+      "routed_nets": 2849,
+      "sink_terminals": 6968,
+      "cross_layer_sink_connections": 554,
+      "directed_edges": 39222,
+      "overused_rr_nodes": 0,
+      "vertical_channel_net_occupancy": 2654,
+      "unique_used_vertical_channels": 2654,
+      "horizontal_track_length": 82945
+    },
+    "routed_connection_delays": {
+      "available": true,
+      "model": "Sum of actual switch Tdel on zero-RC directed route trees; excludes intra-cluster logic/local delay; CPD remains native VPR STA",
+      "all": {
+        "connections": 6968,
+        "mean_ns": 0.7356869057032337,
+        "p95_ns": 1.6880299870999997,
+        "max_ns": 2.5874499546999994
+      },
+      "remote": {
+        "connections": 554,
+        "mean_ns": 1.3285540751803246,
+        "p95_ns": 2.2911399573999995,
+        "max_ns": 2.5874499546999994
+      }
+    },
+    "errors": [],
+    "auditor_sha256": {
+      "check_route.py": "7ecd32d7a9821dc2321de424f34eb8fe61c50e2734d67024f54764c2d29b8872",
+      "audit_matrix.py": "86196efa1d220103be2179f89ebd89c4ca38270a8f9db5e260ae2d3ecd051778"
+    },
+    "cache_reused": false
+  },
+  {
+    "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__elliptic_seed3__a0",
+    "audit": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/audits/schedule200__elliptic_seed3__a0.json",
+    "native_state": "failed",
+    "passed": false,
+    "inputs": {
+      "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/baseline_elliptic_w100_seed3/rr_graph.xml",
+      "rr_graph_sha256": "6ed35333d25d5c08af7d77706de9cb1764529349649cbe70005fc6c19cf50317",
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__elliptic_seed3__a0/routed.route",
+      "route_sha256": "ee31f783c251183786ad4ded5da7bcaa46fde510a31d137a16aa5df7ac095ad0",
+      "resource_map_sha256": null
+    },
+    "graph": {
+      "nodes_by_type": {
+        "SINK": 27064,
+        "SOURCE": 29200,
+        "IPIN": 76312,
+        "OPIN": 42880,
+        "CHANX": 41440,
+        "CHANY": 41440,
+        "CHANZ": 6658
+      },
+      "edges": 2366014,
+      "switches_by_type": {
+        "mux": 6
+      },
+      "physical_vertical_channels": 6658,
+      "native_chanz_with_fanin_and_fanout": 6254,
+      "native_chanz_without_fanin": 404,
+      "native_chanz_without_fanout": 404
+    },
+    "route": {
+      "routed_nets": 2849,
+      "sink_terminals": 6968,
+      "cross_layer_sink_connections": 474,
+      "directed_edges": 40412,
+      "overused_rr_nodes": 1,
+      "vertical_channel_net_occupancy": 823,
+      "unique_used_vertical_channels": 823,
+      "horizontal_track_length": 96588
+    },
+    "routed_connection_delays": {
+      "available": false,
+      "model": "Sum of actual switch Tdel on zero-RC directed route trees; excludes intra-cluster logic/local delay; CPD remains native VPR STA",
+      "all": null,
+      "remote": null
+    },
+    "errors": [
+      "capacity exceeded: {'node': 124191, 'occupancy': 2, 'capacity': 1}"
+    ],
+    "auditor_sha256": {
+      "check_route.py": "7ecd32d7a9821dc2321de424f34eb8fe61c50e2734d67024f54764c2d29b8872",
+      "audit_matrix.py": "86196efa1d220103be2179f89ebd89c4ca38270a8f9db5e260ae2d3ecd051778"
+    },
+    "cache_reused": false
+  },
+  {
+    "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__attention_layer__a0",
+    "audit": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/audits/schedule200__attention_layer__a0.json",
+    "native_state": "failed",
+    "passed": false,
+    "inputs": {
+      "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_attention_layer_seed1/rr_graph.xml",
+      "rr_graph_sha256": "925882e29b7d7c432fc4e35046e93bb11290585faef785c54edf6bf41bee4da6",
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__attention_layer__a0/routed.route",
+      "route_sha256": "23b808fc7925b78d0398f79ca27099a6e9a8118133d895afb96ef4271ef35b4f",
+      "resource_map_sha256": null
+    },
+    "graph": {
+      "nodes_by_type": {
+        "SINK": 96288,
+        "SOURCE": 119340,
+        "IPIN": 247452,
+        "OPIN": 119340,
+        "CHANX": 128692,
+        "CHANY": 128692,
+        "CHANZ": 16854
+      },
+      "edges": 7452656,
+      "switches_by_type": {
+        "mux": 5
+      },
+      "physical_vertical_channels": 16854,
+      "native_chanz_with_fanin_and_fanout": 16224,
+      "native_chanz_without_fanin": 630,
+      "native_chanz_without_fanout": 630
+    },
+    "route": {
+      "routed_nets": 24246,
+      "sink_terminals": 44761,
+      "cross_layer_sink_connections": 4139,
+      "directed_edges": 213711,
+      "overused_rr_nodes": 227,
+      "vertical_channel_net_occupancy": 5588,
+      "unique_used_vertical_channels": 5588,
+      "horizontal_track_length": 386221
+    },
+    "routed_connection_delays": {
+      "available": false,
+      "model": "Sum of actual switch Tdel on zero-RC directed route trees; excludes intra-cluster logic/local delay; CPD remains native VPR STA",
+      "all": null,
+      "remote": null
+    },
+    "errors": [
+      "capacity exceeded: {'node': 676779, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 816754, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 816744, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 816677, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 816738, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 816685, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 816742, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 816752, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 816746, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 826578, 'occupancy': 2, 'capacity': 1}"
+    ],
+    "auditor_sha256": {
+      "check_route.py": "7ecd32d7a9821dc2321de424f34eb8fe61c50e2734d67024f54764c2d29b8872",
+      "audit_matrix.py": "86196efa1d220103be2179f89ebd89c4ca38270a8f9db5e260ae2d3ecd051778"
+    },
+    "cache_reused": false
+  },
+  {
+    "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__bnn__a0",
+    "audit": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/audits/schedule200__bnn__a0.json",
+    "native_state": "failed",
+    "passed": false,
+    "inputs": {
+      "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_bnn_seed1/rr_graph.xml",
+      "rr_graph_sha256": "fcc81cf443963dc301157a06668603d6bab56e9e807a160bef7ea8572ede6f47",
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__bnn__a0/routed.route",
+      "route_sha256": "7e36de555cf4d37385a55c92e1b12d5849556bf94750c4135411cc14659c34e4",
+      "resource_map_sha256": null
+    },
+    "graph": {
+      "nodes_by_type": {
+        "SINK": 434280,
+        "SOURCE": 538560,
+        "IPIN": 1137840,
+        "OPIN": 538560,
+        "CHANX": 572712,
+        "CHANY": 572712,
+        "CHANZ": 75264
+      },
+      "edges": 33889468,
+      "switches_by_type": {
+        "mux": 5
+      },
+      "physical_vertical_channels": 75264,
+      "native_chanz_with_fanin_and_fanout": 73926,
+      "native_chanz_without_fanin": 1338,
+      "native_chanz_without_fanout": 1338
+    },
+    "route": {
+      "routed_nets": 78308,
+      "sink_terminals": 230379,
+      "cross_layer_sink_connections": 51402,
+      "directed_edges": 933051,
+      "overused_rr_nodes": 1,
+      "vertical_channel_net_occupancy": 21312,
+      "unique_used_vertical_channels": 21312,
+      "horizontal_track_length": 1559312
+    },
+    "routed_connection_delays": {
+      "available": false,
+      "model": "Sum of actual switch Tdel on zero-RC directed route trees; excludes intra-cluster logic/local delay; CPD remains native VPR STA",
+      "all": null,
+      "remote": null
+    },
+    "errors": [
+      "capacity exceeded: {'node': 3329241, 'occupancy': 2, 'capacity': 1}"
+    ],
+    "auditor_sha256": {
+      "check_route.py": "7ecd32d7a9821dc2321de424f34eb8fe61c50e2734d67024f54764c2d29b8872",
+      "audit_matrix.py": "86196efa1d220103be2179f89ebd89c4ca38270a8f9db5e260ae2d3ecd051778"
+    },
+    "cache_reused": false
+  },
+  {
+    "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__conv_layer__a0",
+    "audit": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/audits/schedule200__conv_layer__a0.json",
+    "native_state": "failed",
+    "passed": false,
+    "inputs": {
+      "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_conv_layer_seed1/rr_graph.xml",
+      "rr_graph_sha256": "925882e29b7d7c432fc4e35046e93bb11290585faef785c54edf6bf41bee4da6",
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__conv_layer__a0/routed.route",
+      "route_sha256": "ab398a31842cd64b4dfa78d0fb6180e672fc056dfe8a4162ce493aaafed15ab9",
+      "resource_map_sha256": null
+    },
+    "graph": {
+      "nodes_by_type": {
+        "SINK": 96288,
+        "SOURCE": 119340,
+        "IPIN": 247452,
+        "OPIN": 119340,
+        "CHANX": 128692,
+        "CHANY": 128692,
+        "CHANZ": 16854
+      },
+      "edges": 7452656,
+      "switches_by_type": {
+        "mux": 5
+      },
+      "physical_vertical_channels": 16854,
+      "native_chanz_with_fanin_and_fanout": 16224,
+      "native_chanz_without_fanin": 630,
+      "native_chanz_without_fanout": 630
+    },
+    "route": {
+      "routed_nets": 21184,
+      "sink_terminals": 46295,
+      "cross_layer_sink_connections": 3383,
+      "directed_edges": 198030,
+      "overused_rr_nodes": 936,
+      "vertical_channel_net_occupancy": 4397,
+      "unique_used_vertical_channels": 4397,
+      "horizontal_track_length": 323186
+    },
+    "routed_connection_delays": {
+      "available": false,
+      "model": "Sum of actual switch Tdel on zero-RC directed route trees; excludes intra-cluster logic/local delay; CPD remains native VPR STA",
+      "all": null,
+      "remote": null
+    },
+    "errors": [
+      "capacity exceeded: {'node': 806659, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 807891, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 807899, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 807970, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 807968, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 807958, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 807964, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 807960, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 807903, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 807962, 'occupancy': 2, 'capacity': 1}"
+    ],
+    "auditor_sha256": {
+      "check_route.py": "7ecd32d7a9821dc2321de424f34eb8fe61c50e2734d67024f54764c2d29b8872",
+      "audit_matrix.py": "86196efa1d220103be2179f89ebd89c4ca38270a8f9db5e260ae2d3ecd051778"
+    },
+    "cache_reused": false
+  },
+  {
+    "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__dla_like.medium__a0",
+    "audit": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/audits/schedule200__dla_like.medium__a0.json",
+    "native_state": "failed",
+    "passed": false,
+    "inputs": {
+      "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_dla_like.medium_seed1/rr_graph.xml",
+      "rr_graph_sha256": "7dc10d20b32d8a622160c107f2c2c72580aee323f8dac3b4b57ad148d1dcd2a7",
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__dla_like.medium__a0/routed.route",
+      "route_sha256": "deb9b4e1c1351dd5ef54ef7b9330e2f382db21454bba3d2ad157726c730e3b6d",
+      "resource_map_sha256": null
+    },
+    "graph": {
+      "nodes_by_type": {
+        "SINK": 812592,
+        "SOURCE": 1014752,
+        "IPIN": 2164176,
+        "OPIN": 1014752,
+        "CHANX": 1081736,
+        "CHANY": 1081736,
+        "CHANZ": 142296
+      },
+      "edges": 64251424,
+      "switches_by_type": {
+        "mux": 5
+      },
+      "physical_vertical_channels": 142296,
+      "native_chanz_with_fanin_and_fanout": 140454,
+      "native_chanz_without_fanin": 1842,
+      "native_chanz_without_fanout": 1842
+    },
+    "route": {
+      "routed_nets": 154021,
+      "sink_terminals": 359055,
+      "cross_layer_sink_connections": 35794,
+      "directed_edges": 1547070,
+      "overused_rr_nodes": 2114,
+      "vertical_channel_net_occupancy": 29001,
+      "unique_used_vertical_channels": 28996,
+      "horizontal_track_length": 2729586
+    },
+    "routed_connection_delays": {
+      "available": false,
+      "model": "Sum of actual switch Tdel on zero-RC directed route trees; excludes intra-cluster logic/local delay; CPD remains native VPR STA",
+      "all": null,
+      "remote": null
+    },
+    "errors": [
+      "capacity exceeded: {'node': 6977752, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 6977758, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 6977677, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 6974149, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 6974224, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 6974151, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 6974157, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 6977587, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 6977603, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 6977595, 'occupancy': 2, 'capacity': 1}"
+    ],
+    "auditor_sha256": {
+      "check_route.py": "7ecd32d7a9821dc2321de424f34eb8fe61c50e2734d67024f54764c2d29b8872",
+      "audit_matrix.py": "86196efa1d220103be2179f89ebd89c4ca38270a8f9db5e260ae2d3ecd051778"
+    },
+    "cache_reused": false
+  },
+  {
+    "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__dla_like.small__a0",
+    "audit": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/audits/schedule200__dla_like.small__a0.json",
+    "native_state": "failed",
+    "passed": false,
+    "inputs": {
+      "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_dla_like.small_seed1/rr_graph.xml",
+      "rr_graph_sha256": "d41912de6219d86c349dfe81a3ee3afbb2cdc42bdbd7a8cc24d92b380f3c05b1",
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__dla_like.small__a0/routed.route",
+      "route_sha256": "cf51861aa8bf96f0d3c9d03159359bf81bc76afc7874bf58875874538ef45b5a",
+      "resource_map_sha256": null
+    },
+    "graph": {
+      "nodes_by_type": {
+        "SINK": 330188,
+        "SOURCE": 413220,
+        "IPIN": 882506,
+        "OPIN": 413220,
+        "CHANX": 447664,
+        "CHANY": 447664,
+        "CHANZ": 58806
+      },
+      "edges": 26304246,
+      "switches_by_type": {
+        "mux": 5
+      },
+      "physical_vertical_channels": 58806,
+      "native_chanz_with_fanin_and_fanout": 57624,
+      "native_chanz_without_fanin": 1182,
+      "native_chanz_without_fanout": 1182
+    },
+    "route": {
+      "routed_nets": 64114,
+      "sink_terminals": 154687,
+      "cross_layer_sink_connections": 16919,
+      "directed_edges": 637583,
+      "overused_rr_nodes": 508,
+      "vertical_channel_net_occupancy": 11003,
+      "unique_used_vertical_channels": 11003,
+      "horizontal_track_length": 1048696
+    },
+    "routed_connection_delays": {
+      "available": false,
+      "model": "Sum of actual switch Tdel on zero-RC directed route trees; excludes intra-cluster logic/local delay; CPD remains native VPR STA",
+      "all": null,
+      "remote": null
+    },
+    "errors": [
+      "capacity exceeded: {'node': 2620479, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2620471, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2618256, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2618252, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2620600, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2620511, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2620521, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2620513, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2620509, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2618298, 'occupancy': 2, 'capacity': 1}"
+    ],
+    "auditor_sha256": {
+      "check_route.py": "7ecd32d7a9821dc2321de424f34eb8fe61c50e2734d67024f54764c2d29b8872",
+      "audit_matrix.py": "86196efa1d220103be2179f89ebd89c4ca38270a8f9db5e260ae2d3ecd051778"
+    },
+    "cache_reused": false
+  },
+  {
+    "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__lstm__a0",
+    "audit": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/audits/schedule200__lstm__a0.json",
+    "native_state": "failed",
+    "passed": false,
+    "inputs": {
+      "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_lstm_seed1/rr_graph.xml",
+      "rr_graph_sha256": "0647d4a8ed1e2625489d3875c0006010578b7a91351a947eaac253625cf8d9a7",
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__lstm__a0/routed.route",
+      "route_sha256": "5f622c4ddaea9799f27f02798fe4c59ed3ba5dd01284111ae8f44e104bbd186a",
+      "resource_map_sha256": null
+    },
+    "graph": {
+      "nodes_by_type": {
+        "SINK": 438672,
+        "SOURCE": 545676,
+        "IPIN": 1157286,
+        "OPIN": 545676,
+        "CHANX": 582960,
+        "CHANY": 582960,
+        "CHANZ": 76614
+      },
+      "edges": 34459546,
+      "switches_by_type": {
+        "mux": 5
+      },
+      "physical_vertical_channels": 76614,
+      "native_chanz_with_fanin_and_fanout": 75264,
+      "native_chanz_without_fanin": 1350,
+      "native_chanz_without_fanout": 1350
+    },
+    "route": {
+      "routed_nets": 105855,
+      "sink_terminals": 207452,
+      "cross_layer_sink_connections": 22623,
+      "directed_edges": 984875,
+      "overused_rr_nodes": 95,
+      "vertical_channel_net_occupancy": 25688,
+      "unique_used_vertical_channels": 25688,
+      "horizontal_track_length": 1843535
+    },
+    "routed_connection_delays": {
+      "available": false,
+      "model": "Sum of actual switch Tdel on zero-RC directed route trees; excludes intra-cluster logic/local delay; CPD remains native VPR STA",
+      "all": null,
+      "remote": null
+    },
+    "errors": [
+      "capacity exceeded: {'node': 3461981, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 3462038, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 3462008, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 3462031, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 3462039, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 3461978, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 3462025, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 3461969, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 3462000, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 3461991, 'occupancy': 2, 'capacity': 1}"
+    ],
+    "auditor_sha256": {
+      "check_route.py": "7ecd32d7a9821dc2321de424f34eb8fe61c50e2734d67024f54764c2d29b8872",
+      "audit_matrix.py": "86196efa1d220103be2179f89ebd89c4ca38270a8f9db5e260ae2d3ecd051778"
+    },
+    "cache_reused": false
+  },
+  {
+    "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__tpu_like.large.ws__a0",
+    "audit": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/audits/schedule200__tpu_like.large.ws__a0.json",
+    "native_state": "failed",
+    "passed": false,
+    "inputs": {
+      "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_tpu_like.large.ws_seed1/rr_graph.xml",
+      "rr_graph_sha256": "d41912de6219d86c349dfe81a3ee3afbb2cdc42bdbd7a8cc24d92b380f3c05b1",
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__tpu_like.large.ws__a0/routed.route",
+      "route_sha256": "d645decd94f45f3d2b5de187255590ff1c534a2c66a095e40293817b8b1a595f",
+      "resource_map_sha256": null
+    },
+    "graph": {
+      "nodes_by_type": {
+        "SINK": 330188,
+        "SOURCE": 413220,
+        "IPIN": 882506,
+        "OPIN": 413220,
+        "CHANX": 447664,
+        "CHANY": 447664,
+        "CHANZ": 58806
+      },
+      "edges": 26304246,
+      "switches_by_type": {
+        "mux": 5
+      },
+      "physical_vertical_channels": 58806,
+      "native_chanz_with_fanin_and_fanout": 57624,
+      "native_chanz_without_fanin": 1182,
+      "native_chanz_without_fanout": 1182
+    },
+    "route": {
+      "routed_nets": 74067,
+      "sink_terminals": 158831,
+      "cross_layer_sink_connections": 34431,
+      "directed_edges": 821445,
+      "overused_rr_nodes": 1054,
+      "vertical_channel_net_occupancy": 28595,
+      "unique_used_vertical_channels": 28541,
+      "horizontal_track_length": 1733743
+    },
+    "routed_connection_delays": {
+      "available": false,
+      "model": "Sum of actual switch Tdel on zero-RC directed route trees; excludes intra-cluster logic/local delay; CPD remains native VPR STA",
+      "all": null,
+      "remote": null
+    },
+    "errors": [
+      "capacity exceeded: {'node': 2768693, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2777799, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2777703, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2768631, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2768598, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2768573, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2768591, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2341293, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2768519, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 2768507, 'occupancy': 2, 'capacity': 1}"
+    ],
+    "auditor_sha256": {
+      "check_route.py": "7ecd32d7a9821dc2321de424f34eb8fe61c50e2734d67024f54764c2d29b8872",
+      "audit_matrix.py": "86196efa1d220103be2179f89ebd89c4ca38270a8f9db5e260ae2d3ecd051778"
+    },
+    "cache_reused": false
+  },
+  {
+    "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__tpu_like.small.ws__a0",
+    "audit": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/audits/schedule200__tpu_like.small.ws__a0.json",
+    "native_state": "failed",
+    "passed": false,
+    "inputs": {
+      "rr_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/koios_tpu_like.small.ws_seed1/rr_graph.xml",
+      "rr_graph_sha256": "ca9e4ab3a5f1dc14c9b1df7dd647fe5fdc5113166189507cbeafbcd0f5ed326c",
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/runs/schedule200__tpu_like.small.ws__a0/routed.route",
+      "route_sha256": "c9b394636e622dbb7817bb0985618e2eea8f05be714909c2c2ab1b660b8ab6c4",
+      "resource_map_sha256": null
+    },
+    "graph": {
+      "nodes_by_type": {
+        "SINK": 108108,
+        "SOURCE": 132840,
+        "IPIN": 276588,
+        "OPIN": 132840,
+        "CHANX": 143584,
+        "CHANY": 143584,
+        "CHANZ": 18816
+      },
+      "edges": 8317600,
+      "switches_by_type": {
+        "mux": 5
+      },
+      "physical_vertical_channels": 18816,
+      "native_chanz_with_fanin_and_fanout": 18150,
+      "native_chanz_without_fanin": 666,
+      "native_chanz_without_fanout": 666
+    },
+    "route": {
+      "routed_nets": 22622,
+      "sink_terminals": 48747,
+      "cross_layer_sink_connections": 5809,
+      "directed_edges": 233796,
+      "overused_rr_nodes": 71,
+      "vertical_channel_net_occupancy": 5075,
+      "unique_used_vertical_channels": 5075,
+      "horizontal_track_length": 460837
+    },
+    "routed_connection_delays": {
+      "available": false,
+      "model": "Sum of actual switch Tdel on zero-RC directed route trees; excludes intra-cluster logic/local delay; CPD remains native VPR STA",
+      "all": null,
+      "remote": null
+    },
+    "errors": [
+      "capacity exceeded: {'node': 754347, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 757977, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 888757, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 888786, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 890106, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 772196, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 877827, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 877878, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 877817, 'occupancy': 2, 'capacity': 1}",
+      "capacity exceeded: {'node': 888509, 'occupancy': 2, 'capacity': 1}"
+    ],
+    "auditor_sha256": {
+      "check_route.py": "7ecd32d7a9821dc2321de424f34eb8fe61c50e2734d67024f54764c2d29b8872",
+      "audit_matrix.py": "86196efa1d220103be2179f89ebd89c4ca38270a8f9db5e260ae2d3ecd051778"
+    },
+    "cache_reused": false
+  }
+]

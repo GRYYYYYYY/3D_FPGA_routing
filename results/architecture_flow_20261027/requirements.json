@@ -1,0 +1,71 @@
+{
+  "created_utc": "2026-10-27T20:38:59.818130+00:00",
+  "objective": "Execute the accepted Flatland-informed research scheme",
+  "status": "active",
+  "acceptance": {
+    "provenance": {
+      "status": "in_progress",
+      "requirement": "Pin paper/native/LaZagna tools, dependencies, integration patches and binary hashes"
+    },
+    "physical_audit": {
+      "status": "in_progress",
+      "requirement": "SB, CB-O, Hybrid-O: count grid capacities, pin exits, cross-layer resources, directions and full path delays"
+    },
+    "compatibility": {
+      "status": "in_progress",
+      "requirement": "Prove packed netlist / placement / RRG compatibility before any cross-tool paired claim"
+    },
+    "dual_baseline": {
+      "status": "in_progress",
+      "requirement": "Matched 2D denominator and same-architecture 3D denominator, with exact resource matching or explicit residual differences"
+    },
+    "placement_routing": {
+      "status": "in_progress",
+      "requirement": "Both placement flows crossed with baseline and our routing, fixed inputs within every route pair"
+    },
+    "hyperparameters": {
+      "status": "in_progress",
+      "requirement": "criticality, K, delay budget and guide weights; disjoint circuit/seed tuning and held-out evaluation"
+    },
+    "ablations": {
+      "status": "pending",
+      "requirement": "Fixed parameters and equally budgeted per-variant tuning; keep failures in denominators"
+    },
+    "architecture_ranking": {
+      "status": "pending",
+      "requirement": "Rank by absolute final CPD/common 2D normalization; seed stability and costs; allow no reversal"
+    },
+    "external_baselines": {
+      "status": "in_progress",
+      "requirement": "Keep paper VTR8.1, modern LaZagna port and official native VTR9 distinct; no unsupported ratios"
+    },
+    "timing": {
+      "status": "pending",
+      "requirement": "Serial repeats including official A0 and modern LaZagna where comparable; include setup/partition costs"
+    },
+    "validation": {
+      "status": "in_progress",
+      "requirement": "VPR FULL plus independent directed-edge/switch/tree/capacity audit; evidence/trace checks"
+    },
+    "closure": {
+      "status": "pending",
+      "requirement": "Preserve historical hashes, register all attempts, archive analysis, sources and acceptance audit"
+    },
+    "partition_balance_sensitivity": {
+      "status": "pending",
+      "requirement": "Execute registered literal versus relative-3-percent P1 sensitivity; independently audit balance and separate placement effects from routing effects",
+      "protocol": "results/architecture_flow_20261027/partition_balance_sensitivity_protocol.json",
+      "protocol_sha256": "4bb58eeb47d7b253187931a598fd2b2e97604555830e81654df0111a04753ec5"
+    }
+  },
+  "constraints": {
+    "historical_results": "immutable",
+    "max_workers_initial": 6,
+    "threads_per_vpr": 1,
+    "paper_partition_seed": 1,
+    "rank_reversal": "hypothesis, never completion criterion",
+    "paper_source": "84ba44acf1bad597bc5a9d1f615415870e178a86",
+    "native_source": "0b912334fdd83bb754b302146ac0d1ec9edc9a0e"
+  },
+  "current_stage": "Formal W100 training started; model preparation andtraining inprogress; noheld-out conclusions"
+}

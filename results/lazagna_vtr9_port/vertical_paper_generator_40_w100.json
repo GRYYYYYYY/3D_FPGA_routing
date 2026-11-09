@@ -1,0 +1,124 @@
+{
+  "graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/lazagna_vtr9_port/runs/paper_generator_sb_40_w100/rr_graph.xml",
+  "graph_sha256": "e0c8575f050e7e4d4549a081a76c742abd64a8712c5a3d5ca72e4ee41fec62bf",
+  "passed": true,
+  "errors": [],
+  "nodes_by_type": {
+    "SINK": 54948,
+    "SOURCE": 67032,
+    "IPIN": 137940,
+    "OPIN": 67032,
+    "CHANX": 73408,
+    "CHANY": 73408,
+    "Z": 45624
+  },
+  "edges_by_type": {
+    "SOURCE->OPIN": 67032,
+    "IPIN->SINK": 137940,
+    "OPIN->CHANY": 424688,
+    "OPIN->CHANX": 168416,
+    "CHANX->IPIN": 701024,
+    "CHANX->CHANX": 65608,
+    "CHANX->CHANY": 464514,
+    "CHANY->IPIN": 1119480,
+    "CHANY->CHANX": 464510,
+    "CHANY->CHANY": 65608,
+    "CHANX->Z": 123782,
+    "CHANY->Z": 123546,
+    "Z->CHANX": 41894,
+    "Z->CHANY": 41802,
+    "Z->Z": 22812
+  },
+  "physical_vertical_channels": 22812,
+  "vertical_locations": 760,
+  "direct_vertical_pin_edges": [],
+  "zero_node_rc": true,
+  "sample_channel_at_20_20_layer0": {
+    "L16": 12,
+    "L4": 88
+  },
+  "fanin_fanout_histogram": [
+    {
+      "fanin": 2,
+      "fanout": 2,
+      "count": 292
+    },
+    {
+      "fanin": 3,
+      "fanout": 3,
+      "count": 6968
+    },
+    {
+      "fanin": 12,
+      "fanout": 4,
+      "count": 5496
+    },
+    {
+      "fanin": 14,
+      "fanout": 4,
+      "count": 504
+    },
+    {
+      "fanin": 16,
+      "fanout": 4,
+      "count": 9552
+    }
+  ],
+  "plane_to_plane_switch_delay_ps_values": [
+    277.3759762,
+    470.8407762
+  ],
+  "switches": {
+    "0": {
+      "name": "__vpr_delayless_switch__",
+      "timing": {}
+    },
+    "1": {
+      "name": "ipin_cblock",
+      "timing": {
+        "Tdel": "1.06036097e-10"
+      }
+    },
+    "2": {
+      "name": "L4_driver",
+      "timing": {
+        "Tdel": "1.85825799e-10"
+      }
+    },
+    "3": {
+      "name": "L16_driver",
+      "timing": {
+        "Tdel": "3.79290599e-10"
+      }
+    },
+    "4": {
+      "name": "L4_inter_layer_driver",
+      "timing": {
+        "Tdel": "3.23168409e-10"
+      }
+    },
+    "5": {
+      "name": "L16_inter_layer_driver",
+      "timing": {
+        "Tdel": "5.16632515e-10"
+      }
+    },
+    "6": {
+      "name": "ipin_inter_layer_cblock",
+      "timing": {
+        "Tdel": "2.44581799e-10"
+      }
+    },
+    "7": {
+      "name": "3D_SB_switch",
+      "timing": {
+        "Tdel": "4.57750886e-11"
+      }
+    }
+  },
+  "examples": [],
+  "example_node_metadata": {},
+  "resource_map": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/lazagna_vtr9_port/vertical_paper_generator_40_w100.resource_map.json",
+  "resource_map_sha256": "4a9406dcf4aee7628c6454eff56ccc3c73eafc6a657ee0c3c6bf5dfcab3e4f1c",
+  "interpretation": "Native bidirectional CHANZ is one shared capacity resource; legacy opposite directions are distinct physical groups. Delay list sums actual crossing-path switches; same-layer paths through native CHANZ are also possible."
+}

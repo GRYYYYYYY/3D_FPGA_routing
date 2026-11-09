@@ -1,0 +1,265 @@
+{
+  "utc": "2026-11-08T01:58:47.576870+00:00",
+  "scope": "Only closed tpu_like.small.os seed25 Hybrid-O W100 case; not whole heldout-stage or study closure.",
+  "result": "evaluation_cases/heldout_tpu_like.small.os_s25_hybrid_o_w100/result.json",
+  "result_sha256": "92149ac8f64d381cc70d6eff35001fe64d9b39156e5ee4d5a1020461265ae589",
+  "matches_frozen_job": true,
+  "evaluation_jobs_sha256": "efbc5f6d7fd682a44afbca64ccbe72f9c9c53bb92ef908b5d43cb02a0c878fcf",
+  "distinct_route_attempts": 6,
+  "legal_routes": 6,
+  "failed_routes": 0,
+  "graph_bridge": {
+    "model_manifest": "benchmark_models/n60_w100/manifest.json",
+    "model_manifest_sha256": "f46250ad48cd4f37264863dcfad42a86ffe159fa3399edd23eca44d58ed21ae9",
+    "source_graph_sha256": "a383aba09dff2b52b2dbd98fbb3b6be16550bfc439f8c005d510bb85b67065c9",
+    "imported_graph_sha256": "c3e14267d6971825ea7cf7d69c295b8efaead78de0bc22ec2bca0f0a95d67b9f",
+    "native_schema_exact_records": 13803213
+  },
+  "flows": [
+    {
+      "flow": "p0",
+      "role_to_run": {
+        "A0": "heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p0_a0",
+        "R1": "heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p0_delay_critical_c6",
+        "B2": "heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p0_b2"
+      },
+      "audit_summary": "evaluation_cases/heldout_tpu_like.small.os_s25_hybrid_o_w100/p0_audit_summary.json",
+      "audit_summary_sha256": "a7ee7c1470b8a86b7d4c4a1b3849d4d6258e8d617725c2769c851b3589046d31",
+      "common_recorded_private_input_and_blif_hashes": {
+        "packed.net": "bf620e19b9e487a4574089250e53934aebb452dd3034472bcb0c5ff49513343d",
+        "placed.place": "2731f05ee4d4a8a3ef7424a8341b1fa07fe8f0d86cf4db251400d8e5c99ff019",
+        "blif": "09a234fc53c32ade9e2f592938e7761eeae15cc9dbc444750d5d7b190313b40d"
+      },
+      "legal_runs": 3,
+      "failed_runs": 0,
+      "metrics_by_role": {
+        "A0": {
+          "critical_path_ns": 7.72402,
+          "wirelength": 355789,
+          "router_seconds": 7.49,
+          "iterations": 19,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "R1": {
+          "critical_path_ns": 7.72402,
+          "wirelength": 356056,
+          "router_seconds": 73.1,
+          "iterations": 18,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "B2": {
+          "critical_path_ns": 7.72402,
+          "wirelength": 340699,
+          "router_seconds": 6.72,
+          "iterations": 19,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        }
+      },
+      "paired_timing_effects": {
+        "r1_delay_reduction_vs_a0_percent": 0.0,
+        "r1_delay_reduction_vs_b2_percent": 0.0
+      },
+      "runs": [
+        {
+          "name": "heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p0_a0",
+          "manifest": "runs/heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p0_a0/manifest.json",
+          "manifest_sha256": "aef2d99c98028c2370299f4095e42f5f2748bdaf29d5e667d6a3e2442535071b",
+          "independent_audit": "runs/heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p0_a0/independent_audit.json",
+          "independent_audit_sha256": "0e141f9cec60829c3318b18015a85b4438ec6dcd3dac4e91582b004b010dd485",
+          "audit_scope": "directed_edges_tree_routed_resource_capacity",
+          "independent_not_checked": [
+            "netlist/placement endpoint identity",
+            "local OPIN reservations",
+            "nonconfigurable edge closure",
+            "bus-mux shared selection"
+          ],
+          "route_sha256": "c52eeeeef2295841dcda3bd09eff9ee407097fe7d8ca1d1cc82c66091226b285",
+          "graph_representation": "imported",
+          "metrics": {
+            "critical_path_ns": 7.72402,
+            "wirelength": 355789,
+            "router_seconds": 7.49,
+            "iterations": 19,
+            "native_full_check_passed": true,
+            "routing_success_reported": true
+          }
+        },
+        {
+          "name": "heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p0_b2",
+          "manifest": "runs/heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p0_b2/manifest.json",
+          "manifest_sha256": "2c2a630712f869551427773010277818c1b146052c18c7372f5fcdb24f90501c",
+          "independent_audit": "runs/heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p0_b2/independent_audit.json",
+          "independent_audit_sha256": "21eb1e29cce50ba726d1f68bbff3fdc4a2f4dfbdc8364a241d79c07fe3f9174e",
+          "audit_scope": "directed_edges_tree_routed_resource_capacity",
+          "independent_not_checked": [
+            "netlist/placement endpoint identity",
+            "local OPIN reservations",
+            "nonconfigurable edge closure",
+            "bus-mux shared selection"
+          ],
+          "route_sha256": "44fca266202a9ba6a93c3148e753aa552cd7c04559e585fd5400ca6b0612c374",
+          "graph_representation": "source",
+          "metrics": {
+            "critical_path_ns": 7.72402,
+            "wirelength": 340699,
+            "router_seconds": 6.72,
+            "iterations": 19,
+            "native_full_check_passed": true,
+            "routing_success_reported": true
+          }
+        },
+        {
+          "name": "heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p0_delay_critical_c6",
+          "manifest": "runs/heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p0_delay_critical_c6/manifest.json",
+          "manifest_sha256": "87c31d87e347746ad058aa08ca33201550d17663135eee0224ba1c4519ad63a7",
+          "independent_audit": "runs/heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p0_delay_critical_c6/independent_audit.json",
+          "independent_audit_sha256": "5048b11edac90b144dd64d01209bf51a7913c30d38154c7f68c1bf65d6efab68",
+          "audit_scope": "directed_edges_tree_routed_resource_capacity",
+          "independent_not_checked": [
+            "netlist/placement endpoint identity",
+            "local OPIN reservations",
+            "nonconfigurable edge closure",
+            "bus-mux shared selection"
+          ],
+          "route_sha256": "12cfa48a229929cdcb6e2f3edcf98544bcbd9c2d47cbbc24dd50fe1bff17ebb6",
+          "graph_representation": "imported",
+          "metrics": {
+            "critical_path_ns": 7.72402,
+            "wirelength": 356056,
+            "router_seconds": 73.1,
+            "iterations": 18,
+            "native_full_check_passed": true,
+            "routing_success_reported": true
+          }
+        }
+      ]
+    },
+    {
+      "flow": "p1",
+      "role_to_run": {
+        "A0": "heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p1_a0",
+        "R1": "heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p1_delay_critical_c6",
+        "B2": "heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p1_b2"
+      },
+      "audit_summary": "evaluation_cases/heldout_tpu_like.small.os_s25_hybrid_o_w100/p1_audit_summary.json",
+      "audit_summary_sha256": "d3249d035c4ad36937dd6e42fbc969f2b16b101aad6f24153a0597710f632009",
+      "common_recorded_private_input_and_blif_hashes": {
+        "packed.net": "e4dc62b2947e89f4bcd649b7906e30bac17b12a8d28f7d0a01ff32b9e4d44266",
+        "placed.place": "60ac94c0f8b868d13061cabf193948a02f2bb66c02dc1f37107eead2c617bf71",
+        "blif": "09a234fc53c32ade9e2f592938e7761eeae15cc9dbc444750d5d7b190313b40d"
+      },
+      "legal_runs": 3,
+      "failed_runs": 0,
+      "metrics_by_role": {
+        "A0": {
+          "critical_path_ns": 6.73883,
+          "wirelength": 338753,
+          "router_seconds": 8.03,
+          "iterations": 23,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "R1": {
+          "critical_path_ns": 6.73119,
+          "wirelength": 339230,
+          "router_seconds": 132.68,
+          "iterations": 17,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "B2": {
+          "critical_path_ns": 6.77134,
+          "wirelength": 327187,
+          "router_seconds": 7.46,
+          "iterations": 25,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        }
+      },
+      "paired_timing_effects": {
+        "r1_delay_reduction_vs_a0_percent": 0.11337279616788543,
+        "r1_delay_reduction_vs_b2_percent": 0.5929402452099669
+      },
+      "runs": [
+        {
+          "name": "heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p1_a0",
+          "manifest": "runs/heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p1_a0/manifest.json",
+          "manifest_sha256": "da5014a7892ecdc40bf92ab8b59d9621c6aef21a5dd425722cd997d01f1c0c24",
+          "independent_audit": "runs/heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p1_a0/independent_audit.json",
+          "independent_audit_sha256": "59240480a10c36a757583b69f8d6528995dcc21f0dceef6a6dbabb2758935d98",
+          "audit_scope": "directed_edges_tree_routed_resource_capacity",
+          "independent_not_checked": [
+            "netlist/placement endpoint identity",
+            "local OPIN reservations",
+            "nonconfigurable edge closure",
+            "bus-mux shared selection"
+          ],
+          "route_sha256": "c9cbfd2d4bb10d97ca2b8432c154ea481adf3e8f545499d1351d76d14af41920",
+          "graph_representation": "imported",
+          "metrics": {
+            "critical_path_ns": 6.73883,
+            "wirelength": 338753,
+            "router_seconds": 8.03,
+            "iterations": 23,
+            "native_full_check_passed": true,
+            "routing_success_reported": true
+          }
+        },
+        {
+          "name": "heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p1_b2",
+          "manifest": "runs/heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p1_b2/manifest.json",
+          "manifest_sha256": "90ed03dfa9ac86fe54653877e7aa0fdc43ad00281dc5f79481540a272ccea455",
+          "independent_audit": "runs/heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p1_b2/independent_audit.json",
+          "independent_audit_sha256": "62b2853066fdb841d6f1bf1552187e21fe69b43670900a5404e126f51565da7d",
+          "audit_scope": "directed_edges_tree_routed_resource_capacity",
+          "independent_not_checked": [
+            "netlist/placement endpoint identity",
+            "local OPIN reservations",
+            "nonconfigurable edge closure",
+            "bus-mux shared selection"
+          ],
+          "route_sha256": "6da0553d47f7fc68ddb827633669dfe588f4b9c11c2f29495bac76fd39f602d7",
+          "graph_representation": "source",
+          "metrics": {
+            "critical_path_ns": 6.77134,
+            "wirelength": 327187,
+            "router_seconds": 7.46,
+            "iterations": 25,
+            "native_full_check_passed": true,
+            "routing_success_reported": true
+          }
+        },
+        {
+          "name": "heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p1_delay_critical_c6",
+          "manifest": "runs/heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p1_delay_critical_c6/manifest.json",
+          "manifest_sha256": "4013d7b92e80f229800a05699661ae3822f0c339b39998a3c3b0c6dc67ce9870",
+          "independent_audit": "runs/heldout_tpu_like.small.os_s25_hybrid_o_n60_w100_p1_delay_critical_c6/independent_audit.json",
+          "independent_audit_sha256": "9a527645aea00b42c2a7b62d82815283de67a7fe4f38b8107d84e6c71e058f41",
+          "audit_scope": "directed_edges_tree_routed_resource_capacity",
+          "independent_not_checked": [
+            "netlist/placement endpoint identity",
+            "local OPIN reservations",
+            "nonconfigurable edge closure",
+            "bus-mux shared selection"
+          ],
+          "route_sha256": "d11d008e53fc782e20bbb087bbc2ad0904793b3e2b87bde631c2697e4433f2e5",
+          "graph_representation": "imported",
+          "metrics": {
+            "critical_path_ns": 6.73119,
+            "wirelength": 339230,
+            "router_seconds": 132.68,
+            "iterations": 17,
+            "native_full_check_passed": true,
+            "routing_success_reported": true
+          }
+        }
+      ]
+    }
+  ],
+  "validation_scope": "Frozen roles, recorded per-flow netlist/placement/BLIF equality, original/imported graph/architecture bindings, native FULL and scoped independent audits, fresh route hashes. No repeated large RRG scans; independent audit excludes endpoint mapping/local reservations/nonconfigurable closure/bus mux.",
+  "interpretation": "P0 R1, A0 and B2 have equal CPD for this seed. P1 R1 has a small reduction relative to both baselines. Retain other seeds with regressions and failures. No aggregate advantage, isolated DP causality, 2D ratio or formal runtime speedup is established by this case.",
+  "full_study_complete": false
+}

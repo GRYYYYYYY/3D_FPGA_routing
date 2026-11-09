@@ -1,0 +1,32 @@
+{
+  "utc": "2026-10-25T14:41:38.375236+00:00",
+  "files": {
+    "scripts/lazagna_vtr9_common.py": "8fa4e5e39a67992390180a7273fe377d09d742efd4ed04d660851f51192bf994",
+    "scripts/build_lazagna_vtr9_port.py": "fe0d0f9ac7798e02b3d6e648cca0462f76d8a2e766648f0079ac01ddf2e21897",
+    "scripts/run_lazagna_vtr9_pilot.py": "f3ffa87a0b42c439a16879c2cbc2cbea08cdac81ccc438f8423799f62ae842ad",
+    "scripts/analyze_lazagna_vtr9_generator.py": "be593f23bc6e613ea2022d31f53be7f93e3b42d78f33de2f13b9f1d430cc09ea",
+    "scripts/validate_lazagna_vtr9_pilot.py": "32694663e32aafb34875ee060c37ec46e1798f74b7bbe1cd1722e10b1518bf13",
+    "scripts/lazagna_common.py": "1643fc641ef844973f68a2696bfa976aedd076312e1b2a76539f3dc5fa909cc0",
+    "scripts/run_vpr.py": "127788b89d3b69cb1abe3a4c32da5983d824a7165a78ecb6f2526a110585616b",
+    "scripts/compare_lazagna_graphs.py": "83d05d8efae9ea7ed2a9a74b8bc79a81cac9d57c199cc96690e4c7eec1de8458",
+    "scripts/check_lazagna_clock_graph_mode.py": "5a8e789fc6c66ce8dfaf67b4ea16aee6955a29d804e611abbf41dbf8953cb6e3",
+    "scripts/audit_lazagna_vertical.py": "1743dda2bfd4331ffa690451c3eb106a096a32b217258bb9ad4c5e2b5a7b01ff",
+    "scripts/check_route.py": "bac0d05ab363cee28afad1b38afaf8d03772cab474cb672c0cc25fd8428c94f5",
+    "tests/test_lazagna_full_dsp_scan.py": "60bbf4a202697552dcd074d740af51185179bd20363199b2898d77dba8f9295e",
+    "tests/test_lazagna_graph_comparison.py": "3c3e3d6e30f1b03204e93a9081d98166816c581c313b68bbaf8904e95a72d54a",
+    "tests/test_lazagna_input_isolation.py": "b1c579b304c4934fa9bbdf9263a88feae372511e544ec997dfbeca93d0f3390f",
+    "tests/test_lazagna_packed_cuts.py": "b481058e560408e694b7c7e948a149b1661ba8358379b59f59258d71e30fe3b4",
+    "tests/test_route_audit.py": "990cf327e669694936e7bbe5050693e3a06e74a585d7c476c8120491f76a44e8",
+    "patches/lazagna-vtr9-build-portability.patch": "2bd63b84855e84aca423f19f5609f0257c038c4f268be44ad1ae95645f4e7f03"
+  },
+  "tests": {
+    "lazagna_suite": {
+      "command": ".venv-lazagna/bin/python -m unittest discover -s tests -p test_lazagna*.py -v",
+      "passed": 11
+    },
+    "route_audit_suite": {
+      "receipt": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/lazagna_vtr9_port/runs/route_audit_tests/manifest.json",
+      "passed": 12
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "utc": "2026-11-09T08:22:54.945577+00:00",
+  "job": {
+    "circuit": "robot_rl",
+    "split": "heldout",
+    "seed": 21,
+    "width": 300,
+    "family": "cb_o",
+    "placement_arm": "relative3",
+    "partition_argument": 1.5,
+    "routers": [
+      "A0",
+      "R1",
+      "B2"
+    ]
+  },
+  "status": "completed",
+  "placement": "balance_relative3_robot_rl_s21_cb_o_n60_w300_p1_place",
+  "balance": {
+    "vertices": 2468,
+    "edges": 12979,
+    "parts": 2,
+    "balance_argument": 1.5,
+    "partition_weights": [
+      1217.0,
+      1251.0
+    ],
+    "lower_each": 1196.98,
+    "upper_each": 1271.02,
+    "balanced": true,
+    "unit_weight_integer_feasible": true,
+    "graph_sha256": "769d1bd1a58446aa861a118848d440c5175ff7262ad1666ed6d77c8785009dca",
+    "assignment_sha256": "187eb962f19d4f0a07ddfe4ad16467280cbe6b64143d448d2f0e9b90cd5bd8d6"
+  },
+  "roles": {
+    "A0": "balance_relative3_robot_rl_s21_cb_o_n60_w300_p1_a0",
+    "R1": "balance_relative3_robot_rl_s21_cb_o_n60_w300_p1_critical_c4",
+    "B2": "balance_relative3_robot_rl_s21_cb_o_n60_w300_p1_b2"
+  },
+  "route_audit": {
+    "utc": "2026-11-09T08:28:19.447086+00:00",
+    "passed": true,
+    "registered_route_count": 3,
+    "legal_count": 3,
+    "failed_count": 0,
+    "legal": [
+      {
+        "name": "balance_relative3_robot_rl_s21_cb_o_n60_w300_p1_a0",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 11.5525,
+          "wirelength": 193654,
+          "router_seconds": 2.41,
+          "iterations": 12,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 193654,
+          "sb_pairs_used": 0,
+          "sb_pair_net_occupancy": 0,
+          "cb_crossing_output_sources_used": 5029,
+          "cb_crossing_output_source_net_occupancy": 5029,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANX": 3314,
+            "OPIN->CHANY": 2299
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      },
+      {
+        "name": "balance_relative3_robot_rl_s21_cb_o_n60_w300_p1_critical_c4",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 11.5525,
+          "wirelength": 193654,
+          "router_seconds": 4.67,
+          "iterations": 12,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 193654,
+          "sb_pairs_used": 0,
+          "sb_pair_net_occupancy": 0,
+          "cb_crossing_output_sources_used": 5029,
+          "cb_crossing_output_source_net_occupancy": 5029,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANX": 3314,
+            "OPIN->CHANY": 2299
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      },
+      {
+        "name": "balance_relative3_robot_rl_s21_cb_o_n60_w300_p1_b2",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 11.5525,
+          "wirelength": 192153,
+          "router_seconds": 2.47,
+          "iterations": 13,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 192153,
+          "sb_pairs_used": 0,
+          "sb_pair_net_occupancy": 0,
+          "cb_crossing_output_sources_used": 5029,
+          "cb_crossing_output_source_net_occupancy": 5029,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANX": 3294,
+            "OPIN->CHANY": 2289
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      }
+    ],
+    "failed": [],
+    "graph_sha256": "19d75b2e22d6be504ae2464a5bd32af4624ef7f6798a8454691bf561c8505d1f"
+  }
+}

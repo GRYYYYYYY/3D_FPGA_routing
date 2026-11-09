@@ -1,0 +1,26 @@
+{
+  "utc": "2026-11-03T07:33:05.016639+00:00",
+  "status": "synthetic_checks_passed_not_formally_approved",
+  "source_sha256": {
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/flatland_timing_io_candidate.py": "de3f4ad7886df8291e6420e2c50314c071cd29bdb1367af5adc59e58c231db31",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/run_flatland_serial_candidate.py": "893533fe90ad4c46509c839e0c652847a7e260be1922ac933d747a584acd8705",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/seccomp_thread_guard": "e1a990f2884c3b332d8561bfb3decc1bdb8a9affc5db6f9d672506c591fbf877",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/seccomp_thread_guard.c": "52642b31d0b70bdb98f800c3bb3f41fe7d27087a966b361722cdcb718c0f9479",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/run_seccomp_candidate_pilot.py": "b105d6735cc9b88ffa46365977b7c49c6055529c1ed0f332c9a5ee58e2422d25",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/seccomp_guard_unit_validation.json": "e4a7f16757c73d34aba7c41b85bf2b70c30796d2276169d41d68f36c5d6ff7ce"
+  },
+  "checks": [
+    "single-thread process completes under guard",
+    "guard launch and wrapper binaries bound",
+    "top-level SIGSYS from attempted pthread classified as thread constraint violation",
+    "timeout preserved",
+    "input seal passes",
+    "serial candidate refuses to start without A0/R1/B2/P1 real workload validation"
+  ],
+  "limitations": [
+    "Real VPR/P1 workload verification remains pending",
+    "No quantitative measurement of filter timing overhead",
+    "clone3 denied including process creation; child failure handling may mask attempted threads",
+    "candidate is not registered or run as formal serial study"
+  ]
+}

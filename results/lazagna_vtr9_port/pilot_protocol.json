@@ -1,0 +1,60 @@
+{
+  "utc": "2026-10-25T14:07:13.416861+00:00",
+  "binary": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/lazagna-vtr9-port-buildfix/vpr",
+  "binary_sha256": "8b956740f97e12b6ea84071aa1f52809c8ecd413c4901c45970b34935f52bc45",
+  "architecture_template": {
+    "modern": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/LaZagna/arch_files/templates/dsp_bram/vtr_arch_dsp_bram.xml",
+    "paper": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/LaZagna-paper/arch_files/templates/dsp_bram/vtr_arch_dsp_bram.xml",
+    "byte_identical": true,
+    "sha256": "4db97df7d66cefb795fd6e18ed63c438cc67e8f287550c311f65abd82ad8b66c"
+  },
+  "small_graph": {
+    "grid": [
+      40,
+      40,
+      2
+    ],
+    "width": 100,
+    "graph_clock": "route",
+    "delay_ratio": 0.739,
+    "sb_fraction": 0.5,
+    "sb_pattern": "subset",
+    "sb_location": "repeated_interval",
+    "generator_control": "Apply modern and paper-era generators to the identical new base graph."
+  },
+  "fixed_controls": {
+    "cases": {
+      "bnn": "route",
+      "conv_layer": "ideal",
+      "dla_like.small": "ideal"
+    },
+    "grid": [
+      100,
+      100,
+      2
+    ],
+    "width": 300,
+    "seed": 1,
+    "router_iterations": 200,
+    "process_timeout_seconds": 1800,
+    "arms": [
+      "paper_guardfix",
+      "vtr9_port_buildfix"
+    ],
+    "inputs": "Exact archived paper graph and successful guardfix packed/place files; every attempt has private byte-identical copies.",
+    "graph_clock": "route",
+    "ideal_clock_scope": "Explicit diagnostic for BRAM Fc=0; shared graph kept byte-identical.",
+    "interpretation": "Tool-version control conditional on legacy graph/input compatibility. Not native A0, not H3D, and not a modern end-to-end benchmark."
+  },
+  "smoke": {
+    "case": "ex5p",
+    "clock": "route",
+    "graph": "modern 40x40x2 W100",
+    "full_pnr": true
+  },
+  "limits": [
+    "Pilot selection of three previously successful cases; no circuit-population inference.",
+    "No runtime speedup claim from concurrent runs.",
+    "Modern 100x100x2 end-to-end PnR, full OpenFPGA and bitstream flow remain outside this pilot."
+  ]
+}

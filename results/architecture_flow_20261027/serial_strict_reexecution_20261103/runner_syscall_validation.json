@@ -1,0 +1,22 @@
+{
+  "utc": "2026-11-03T06:52:35.679015+00:00",
+  "passed": true,
+  "source_sha256": {
+    "process_tree_observer.py": "eea49788c003d73ed41c7f4edecec4158b8882c9a35c3a0ba609d35659a16cfe",
+    "flatland_experiment_io.py": "7308db164a437f6a0c5f56349cdc995d9ea2e390ceae4e7b9e13b3022cfcfb18",
+    "test_isolated_runner.py": "36984249c5b77403f3cd5fb856a2b5615cb9cf7bbf52b28fb60d46e01bdc4826"
+  },
+  "strace_sha256": "38a5c75cb29dd85ddd7780d54f5bf595554d7a1b5c42524b23065f5dc4c4b01d",
+  "checks": [
+    "clone/clone3 tracing captures child thread attempt",
+    "process tree sampler detects live child thread",
+    "existing receipt protected",
+    "failure and timeout retained",
+    "single-thread negative control"
+  ],
+  "limitations": [
+    "Any CLONE_THREAD attempt is conservatively flagged, even if it failed",
+    "ptrace changes timings",
+    "coverage outside clone/clone3 syscalls not asserted"
+  ]
+}

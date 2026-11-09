@@ -1,0 +1,13 @@
+--- a/scripts/check_route.py
++++ b/scripts/check_route.py
+@@ -252,7 +252,9 @@
+                 raise ValueError(f"Overlapping/empty physical channel group: {identity}")
+             if group["capacity"] < 1:
+                 raise ValueError(f"Invalid physical capacity for {identity}")
+-            if members - nodes.keys():
++            # Each legacy physical group has only two nodes; scanning the
++            # million-node dict_keys view for every group is quadratic.
++            if any(inode not in nodes for inode in members):
+                 raise ValueError(f"Physical channel {identity} refers to absent RRG nodes")
+             assigned.update(members)
+             physical_groups[identity] = group

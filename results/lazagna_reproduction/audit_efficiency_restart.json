@@ -1,0 +1,58 @@
+{
+  "utc": "2026-10-23T15:51:21.801986+00:00",
+  "supervisors": [
+    {
+      "pid": 88670,
+      "command": [
+        ".venv-lazagna/bin/python",
+        "scripts/audit_lazagna_routes.py",
+        "--state",
+        "repaired_pnr_state.json",
+        "--prefix",
+        "repaired_pnr"
+      ]
+    },
+    {
+      "pid": 650052,
+      "command": [
+        ".venv-lazagna/bin/python",
+        "scripts/audit_lazagna_routes.py",
+        "--state",
+        "guardfix_pnr_state.json",
+        "--prefix",
+        "guardfix_pnr"
+      ]
+    },
+    {
+      "pid": 3577467,
+      "command": [
+        ".venv-lazagna/bin/python",
+        "scripts/audit_lazagna_routes.py"
+      ]
+    },
+    {
+      "pid": 3807641,
+      "command": [
+        ".venv-lazagna/bin/python",
+        "scripts/audit_lazagna_routes.py",
+        "--state",
+        "clock_diagnostic_state.json",
+        "--prefix",
+        "clock_diagnostic"
+      ]
+    },
+    {
+      "pid": 3851902,
+      "command": [
+        ".venv-lazagna/bin/python",
+        "scripts/audit_lazagna_routes.py",
+        "--state",
+        "native_compat_state.json",
+        "--prefix",
+        "native_compat"
+      ]
+    }
+  ],
+  "smoke_pid": 145853,
+  "reason": "Replace equivalent membership check (small_set - huge_dict_keys) with any(member not in dict), eliminating quadratic legacy resource-map validation; no validation conditions weakened and no VPR solver signaled."
+}

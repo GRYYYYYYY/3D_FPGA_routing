@@ -1,0 +1,330 @@
+diff --git a/vpr/src/route/SerialNetlistRouter.tpp b/vpr/src/route/SerialNetlistRouter.tpp
+index 4ce1bc3..0a58876 100644
+--- a/vpr/src/route/SerialNetlistRouter.tpp
++++ b/vpr/src/route/SerialNetlistRouter.tpp
+@@ -6,6 +6,8 @@
+ #include "partition_tree.h"
+ #include "route_net.h"
+ #include "route_utils.h"
++#include "h3d_routing.h"
++#include "h3d_controls.h"
+ #include "vtr_time.h"
+ 
+ template<typename HeapType>
+@@ -14,6 +16,8 @@ inline RouteIterResults SerialNetlistRouter<HeapType>::route_netlist(int itry, f
+     RouteIterResults out;
+ 
+     vtr::Timer timer;
++    h3d_prepare_iteration(itry, _is_flat);
++    h3d_control_iteration(itry, _is_flat);
+ 
+     /* Sort so net with most sinks is routed first */
+     auto sorted_nets = std::vector<ParentNetId>(_net_list.nets().begin(), _net_list.nets().end());
+@@ -66,6 +70,8 @@ inline RouteIterResults SerialNetlistRouter<HeapType>::route_netlist(int itry, f
+         }
+     }
+ 
++    h3d_log_iteration(itry, pres_fac, out.stats);
++    h3d_control_log();
+     PartitionTreeDebug::log("Routing all nets took " + std::to_string(timer.elapsed_sec()) + " s");
+     return out;
+ }
+diff --git a/vpr/src/route/connection_based_routing.h b/vpr/src/route/connection_based_routing.h
+index ac80681..5971fe7 100644
+--- a/vpr/src/route/connection_based_routing.h
++++ b/vpr/src/route/connection_based_routing.h
+@@ -6,6 +6,7 @@
+ #include "timing_info.h"
+ #include "vpr_net_pins_matrix.h"
+ #include "connection_based_routing_fwd.h"
++#include "vtr_assert.h"
+ 
+ /***************** Connection based rerouting **********************/
+ // encompasses both incremental rerouting through route tree pruning
+@@ -85,6 +86,14 @@ class Connection_based_routing_resources {
+     void clear_force_reroute_for_connection(ParentNetId net_id, RRNodeId rr_sink_node);
+     void clear_force_reroute_for_net(ParentNetId net_id);
+ 
++    /** @brief Restore a saved reroute request after a transactional tree rollback. */
++    void restore_force_reroute_connection(ParentNetId net_id, RRNodeId sink) {
++        auto& flags = forcible_reroute_connection_flag[net_id];
++        auto found = flags.find(sink);
++        VTR_ASSERT(found != flags.end());
++        found->second = true;
++    }
++
+     // check each connection of each net to see if any satisfy the criteria described above (for the forcible_reroute_connection_flag data structure)
+     // and if so, mark them to be rerouted
+     bool forcibly_reroute_connections(float max_criticality,
+diff --git a/vpr/src/route/connection_router.tpp b/vpr/src/route/connection_router.tpp
+index e7772b2..159c059 100644
+--- a/vpr/src/route/connection_router.tpp
++++ b/vpr/src/route/connection_router.tpp
+@@ -343,7 +343,21 @@ float ConnectionRouter<Heap>::evaluate_timing_driven_backward_costs(RTExploredNo
+         }
+     }
+ 
++    // This extra resource preference does not change RC delay or PathFinder's
++    // present/history costs. Non-configurable sets keep their existing charge.
++    if ((cost_params.h3d_vertical_weight > 0.f || cost_params.h3d_guide) && reached_configurably
++        && rr_graph_->node_type(to->index) == e_rr_type::CHANZ) {
++        float extra_weight = cost_params.h3d_vertical_weight;
++        if (cost_params.h3d_guide
++            && !std::binary_search(cost_params.h3d_guide->preferred.begin(), cost_params.h3d_guide->preferred.end(), to->index)) {
++            extra_weight += cost_params.h3d_guide->miss_weight;
++        }
++        cong_cost *= 1.f + extra_weight;
++    }
++
+     // Update the backward cost (upstream already included)
++    if (cost_params.h3d_planar_guide && reached_configurably)
++        cong_cost *= h3d_control_multiplier(*cost_params.h3d_planar_guide, to->index);
+     to->backward_path_cost += (1. - cost_params.criticality) * cong_cost; // Congestion cost
+     to->backward_path_cost += cost_params.criticality * Tdel;             // Delay cost
+ 
+diff --git a/vpr/src/route/connection_router_interface.h b/vpr/src/route/connection_router_interface.h
+index 83c1147..01dab39 100644
+--- a/vpr/src/route/connection_router_interface.h
++++ b/vpr/src/route/connection_router_interface.h
+@@ -5,6 +5,8 @@
+ #include "vpr_types.h"
+ #include "router_stats.h"
+ #include "spatial_route_tree_lookup.h"
++#include "h3d_routing.h"
++#include "h3d_controls.h"
+ 
+ //Delay budget information for a specific connection
+ struct t_conn_delay_budget {
+@@ -24,6 +26,9 @@ struct t_conn_cost_params {
+     float post_target_prune_offset = 0.f;
+     float bend_cost = 1.;
+     float pres_fac = 1.;
++    float h3d_vertical_weight = 0.f;                      ///< Additional CHANZ congestion preference; zero preserves baseline arithmetic.
++    const t_h3d_connection_guide* h3d_guide = nullptr;    ///< Optional soft channel preference, valid through one sink search.
++    const t_h3d_planar_guide* h3d_planar_guide = nullptr; ///< Optional static XY literature-inspired control.
+     const t_conn_delay_budget* delay_budget = nullptr;
+ 
+     //TODO: Eventually once delay budgets are working, t_conn_delay_budget
+diff --git a/vpr/src/route/route_net.cpp b/vpr/src/route/route_net.cpp
+index f281d60..cc54295 100644
+--- a/vpr/src/route/route_net.cpp
++++ b/vpr/src/route/route_net.cpp
+@@ -4,6 +4,7 @@
+ #include "bus_mux_routing.h"
+ #include "connection_based_routing.h"
+ #include "timing_util.h"
++#include "h3d_routing.h"
+ 
+ bool check_hold(const t_router_opts& router_opts, float worst_neg_slack) {
+     if (router_opts.routing_budgets_algorithm != YOYO) {
+@@ -34,7 +35,9 @@ void setup_net(int itry,
+     // otherwise, we incrementally reroute by reusing legal parts of the previous iteration.
+     // ripup_for_skew forces a full rip-up when the low-skew clock algorithm has just loaded
+     // new per-connection delay budgets for this net.
+-    if (num_sinks < router_opts.min_incremental_reroute_fanout || itry == 1 || ripup_high_fanout_nets || ripup_for_skew) {
++    bool force_whole = h3d_force_whole_net() && !net_list.net_is_global(net_id);
++    bool force_subtree = h3d_force_subtree() && !net_list.net_is_global(net_id);
++    if ((!force_subtree && num_sinks < router_opts.min_incremental_reroute_fanout) || force_whole || itry == 1 || ripup_high_fanout_nets || ripup_for_skew) {
+         profiling::net_rerouted();
+ 
+         /* rip up the whole net */
+diff --git a/vpr/src/route/route_net.tpp b/vpr/src/route/route_net.tpp
+index 48fa425..3a2909d 100644
+--- a/vpr/src/route/route_net.tpp
++++ b/vpr/src/route/route_net.tpp
+@@ -1,5 +1,7 @@
+ #pragma once
+ 
++#include "h3d_routing.h"
++
+ /** @file Header implementations for templated net routing fns. */
+ 
+ #include "device_grid.h"
+@@ -81,12 +83,31 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+     profiling::net_fanout_start();
+ 
+     flags.was_rerouted = true; // Flag to record whether routing was actually changed
++    h3d_capture_net(net_id);
+ 
+     auto& device_ctx = g_vpr_ctx.device();
+     const auto& rr_graph = device_ctx.rr_graph;
+ 
+     unsigned int num_sinks = net_list.net_sinks(net_id).size();
+ 
++    // A transaction owns a complete previous tree and the reroute requests that
++    // setup_net may consume. Signal-net rollback restores all affected state.
++    vtr::optional<RouteTree> previous_tree;
++    std::vector<RRNodeId> previous_forced_sinks;
++    bool previous_hold_request = false;
++    bool previous_skew_request = false;
++    if (h3d_transactional() && should_setup && !net_list.net_is_global(net_id)
++        && route_ctx.route_trees[net_id] && route_ctx.route_trees[net_id]->get_remaining_isinks().empty()) {
++        previous_tree = route_ctx.route_trees[net_id].value();
++        for (RRNodeId sink : route_ctx.net_rr_terminals[net_id])
++            if (connections_inf.should_force_reroute_connection(net_id, sink))
++                previous_forced_sinks.push_back(sink);
++        if (budgeting_inf.if_set()) {
++            previous_hold_request = budgeting_inf.get_should_reroute(net_id);
++            previous_skew_request = budgeting_inf.get_should_reroute_for_skew(net_id);
++        }
++    }
++
+     VTR_LOGV_DEBUG(f_router_debug, "Routing Net %zu (%zu sinks)\n", size_t(net_id), num_sinks);
+ 
+     /* Prune or rip-up existing routing for the net */
+@@ -104,6 +125,33 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+     VTR_ASSERT(route_ctx.route_trees[net_id]);
+     RouteTree& tree = route_ctx.route_trees[net_id].value();
+ 
++    auto rollback = [&] {
++        VTR_ASSERT(previous_tree);
++        pathfinder_update_cost_from_route_tree(tree.root(), -1);
++        tree = std::move(previous_tree.value());
++        previous_tree = vtr::nullopt;
++        pathfinder_update_cost_from_route_tree(tree.root(), 1);
++        tree.reload_timing();
++        update_rr_route_inf_from_tree(tree.root());
++        connections_inf.clear_force_reroute_for_net(net_id);
++        for (RRNodeId sink : previous_forced_sinks)
++            connections_inf.restore_force_reroute_connection(net_id, sink);
++        if (budgeting_inf.if_set()) {
++            budgeting_inf.set_should_reroute(net_id, previous_hold_request);
++            budgeting_inf.set_should_reroute_for_skew(net_id, previous_skew_request);
++        }
++        update_net_delays_from_route_tree(net_delays[net_id].data(), net_list, net_id, timing_info, pin_timing_invalidator);
++        router.empty_rcv_route_tree_set();
++        route_ctx.net_status.set_is_routed(net_id, true);
++        h3d_record_rollback();
++        ++router_stats.nets_routed;
++        profiling::net_finish();
++        profiling::net_fanout_end(net_list.net_sinks(net_id).size());
++        // The restored tree is connected, but may still be congested. The
++        // global feasibility check, never this local flag, decides success.
++        flags.success = true;
++    };
++
+     bool high_fanout = is_high_fanout(num_sinks, router_opts.high_fanout_threshold);
+ 
+     SpatialRouteTreeLookup spatial_route_tree_lookup;
+@@ -125,8 +173,15 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+ 
+     auto remaining_targets = sink_mask_to_vector(remaining_targets_mask, num_sinks);
+ 
+-    // calculate criticality of remaining target pins
+-    for (int ipin : remaining_targets) {
++    // The shared plan also needs timing weights for retained terminals.
++    auto criticality_targets = remaining_targets;
++    if (h3d_enabled()) {
++        criticality_targets.clear();
++        for (unsigned ipin = 1; ipin <= num_sinks; ++ipin)
++            criticality_targets.push_back(ipin);
++    }
++    // calculate criticality of target pins
++    for (int ipin : criticality_targets) {
+         auto pin = net_list.net_pin(net_id, ipin);
+         pin_criticality[ipin] = get_net_pin_criticality(timing_info,
+                                                         netlist_pin_lookup,
+@@ -218,6 +273,9 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+ 
+     /* Update base costs according to fanout and criticality rules */
+     update_rr_base_costs(num_sinks);
++    h3d_prepare_net(net_id, itry, pres_fac, pin_criticality);
++    h3d_control_prepare(net_id);
++    h3d_control_sort(net_id, remaining_targets, pin_criticality);
+ 
+     t_conn_delay_budget conn_delay_budget{.short_path_criticality = 0.f,
+                                           .min_delay = 0.f,
+@@ -231,6 +289,8 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+     cost_params.post_target_prune_offset = router_opts.post_target_prune_offset;
+     cost_params.bend_cost = router_opts.bend_cost;
+     cost_params.pres_fac = pres_fac;
++    cost_params.h3d_vertical_weight = h3d_vertical_weight();
++    cost_params.h3d_planar_guide = h3d_control_guide(net_id);
+     cost_params.delay_budget = nullptr;
+ 
+     // Pre-route to clock source for clock nets (marked as global nets)
+@@ -309,6 +369,7 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+         enable_router_debug(router_opts, net_id, sink_rr, itry, &router);
+ 
+         cost_params.criticality = pin_criticality[target_pin];
++        cost_params.h3d_guide = h3d_connection_guide(net_id, target_pin);
+ 
+         bool use_rcv = budgeting_inf.should_use_rcv(net_id, target_pin);
+         if (use_rcv) {
+@@ -345,6 +406,10 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+         flags.retry_with_full_bb |= sink_flags.retry_with_full_bb;
+ 
+         if (!sink_flags.success) {
++            if (previous_tree) {
++                rollback();
++                return flags;
++            }
+             flags.success = false;
+             VTR_LOG("Routing failed for sink %d of net %d\n", target_pin, net_id);
+             return flags;
+@@ -357,6 +422,12 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+         ++router_stats.connections_routed;
+     } // finished all sinks
+ 
++    if (previous_tree && h3d_test_rollback_once()) {
++        rollback();
++        return flags;
++    }
++    h3d_observe_net(net_id);
++
+     ++router_stats.nets_routed;
+     profiling::net_finish();
+ 
+@@ -564,6 +635,20 @@ inline NetResultFlags route_sink(ConnectionRouterType& router,
+                                                                                                                          conn_params);
+     }
+ 
++    if (!found_path && (cost_params.h3d_guide || cost_params.h3d_planar_guide)) {
++        // Candidate guidance never makes a reachability/failure certificate.
++        // Retry without guide bias before allowing the normal bounding-box retry.
++        router.reset_path_costs();
++        router.clear_modified_rr_node_info();
++        t_conn_cost_params fallback_cost = cost_params;
++        fallback_cost.h3d_guide = nullptr;
++        fallback_cost.h3d_planar_guide = nullptr;
++        fallback_cost.h3d_vertical_weight = 0.f;
++        h3d_record_fallback();
++        std::tie(found_path, flags.retry_with_full_bb, cheapest) = router.timing_driven_route_connection_from_route_tree(
++            tree.root(), sink_node, fallback_cost, net_bb, router_stats, conn_params);
++    }
++
+     if (!found_path) {
+         ParentBlockId src_block = net_list.net_driver_block(net_id);
+         ParentBlockId sink_block = net_list.pin_block(*(net_list.net_pins(net_id).begin() + target_pin));
+diff --git a/vpr/src/timing/VprTimingGraphResolver.cpp b/vpr/src/timing/VprTimingGraphResolver.cpp
+index 42c9d6e..a15e05a 100644
+--- a/vpr/src/timing/VprTimingGraphResolver.cpp
++++ b/vpr/src/timing/VprTimingGraphResolver.cpp
+@@ -342,13 +342,15 @@ void VprTimingGraphResolver::get_detailed_interconnect_components_helper(std::ve
+ 
+     vtr::optional<const RouteTreeNode&> current_node = node;
+     while (current_node) {
+-        // Process the current interconnect component if it is of type OPIN, CHANX, CHANY, IPIN
++        // Include native vertical channels so the displayed increments sum to
++        // the same routed delay used by STA on stacked-die designs.
+         // Only process SOURCE, SINK in debug report mode
+         auto rr_type = rr_graph.node_type(RRNodeId(current_node->inode));
+         if (rr_type == e_rr_type::OPIN
+             || rr_type == e_rr_type::IPIN
+             || rr_type == e_rr_type::CHANX
+             || rr_type == e_rr_type::CHANY
++            || rr_type == e_rr_type::CHANZ
+             || ((rr_type == e_rr_type::SOURCE || rr_type == e_rr_type::SINK) && (detail_level() == e_timing_report_detail::DEBUG))) {
+             tatum::DelayComponent net_component; // declare a new instance of DelayComponent
+ 
+diff --git a/vtr_flow/tasks/regression_tests/vtr_reg_strong/task_list.txt b/vtr_flow/tasks/regression_tests/vtr_reg_strong/task_list.txt
+index 27cd6e6..d20567b 100644
+--- a/vtr_flow/tasks/regression_tests/vtr_reg_strong/task_list.txt
++++ b/vtr_flow/tasks/regression_tests/vtr_reg_strong/task_list.txt
+@@ -1,5 +1,6 @@
+ regression_tests/vtr_reg_strong/basic_ap
+ regression_tests/vtr_reg_strong/basic_3d
++regression_tests/vtr_reg_strong/strong_h3d_vertical
+ regression_tests/vtr_reg_strong/strong_ap/mcnc
+ regression_tests/vtr_reg_strong/strong_ap/mcnc_auto_device_no_chan
+ regression_tests/vtr_reg_strong/strong_ap/vtr_chain

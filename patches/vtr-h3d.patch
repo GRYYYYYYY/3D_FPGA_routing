@@ -1,0 +1,3599 @@
+diff --git a/vpr/src/route/SerialNetlistRouter.tpp b/vpr/src/route/SerialNetlistRouter.tpp
+index 4ce1bc3..0a58876 100644
+--- a/vpr/src/route/SerialNetlistRouter.tpp
++++ b/vpr/src/route/SerialNetlistRouter.tpp
+@@ -6,6 +6,8 @@
+ #include "partition_tree.h"
+ #include "route_net.h"
+ #include "route_utils.h"
++#include "h3d_routing.h"
++#include "h3d_controls.h"
+ #include "vtr_time.h"
+ 
+ template<typename HeapType>
+@@ -14,6 +16,8 @@ inline RouteIterResults SerialNetlistRouter<HeapType>::route_netlist(int itry, f
+     RouteIterResults out;
+ 
+     vtr::Timer timer;
++    h3d_prepare_iteration(itry, _is_flat);
++    h3d_control_iteration(itry, _is_flat);
+ 
+     /* Sort so net with most sinks is routed first */
+     auto sorted_nets = std::vector<ParentNetId>(_net_list.nets().begin(), _net_list.nets().end());
+@@ -66,6 +70,8 @@ inline RouteIterResults SerialNetlistRouter<HeapType>::route_netlist(int itry, f
+         }
+     }
+ 
++    h3d_log_iteration(itry, pres_fac, out.stats);
++    h3d_control_log();
+     PartitionTreeDebug::log("Routing all nets took " + std::to_string(timer.elapsed_sec()) + " s");
+     return out;
+ }
+diff --git a/vpr/src/route/connection_based_routing.h b/vpr/src/route/connection_based_routing.h
+index ac80681..5971fe7 100644
+--- a/vpr/src/route/connection_based_routing.h
++++ b/vpr/src/route/connection_based_routing.h
+@@ -6,6 +6,7 @@
+ #include "timing_info.h"
+ #include "vpr_net_pins_matrix.h"
+ #include "connection_based_routing_fwd.h"
++#include "vtr_assert.h"
+ 
+ /***************** Connection based rerouting **********************/
+ // encompasses both incremental rerouting through route tree pruning
+@@ -85,6 +86,14 @@ class Connection_based_routing_resources {
+     void clear_force_reroute_for_connection(ParentNetId net_id, RRNodeId rr_sink_node);
+     void clear_force_reroute_for_net(ParentNetId net_id);
+ 
++    /** @brief Restore a saved reroute request after a transactional tree rollback. */
++    void restore_force_reroute_connection(ParentNetId net_id, RRNodeId sink) {
++        auto& flags = forcible_reroute_connection_flag[net_id];
++        auto found = flags.find(sink);
++        VTR_ASSERT(found != flags.end());
++        found->second = true;
++    }
++
+     // check each connection of each net to see if any satisfy the criteria described above (for the forcible_reroute_connection_flag data structure)
+     // and if so, mark them to be rerouted
+     bool forcibly_reroute_connections(float max_criticality,
+diff --git a/vpr/src/route/connection_router.tpp b/vpr/src/route/connection_router.tpp
+index e7772b2..159c059 100644
+--- a/vpr/src/route/connection_router.tpp
++++ b/vpr/src/route/connection_router.tpp
+@@ -343,7 +343,21 @@ float ConnectionRouter<Heap>::evaluate_timing_driven_backward_costs(RTExploredNo
+         }
+     }
+ 
++    // This extra resource preference does not change RC delay or PathFinder's
++    // present/history costs. Non-configurable sets keep their existing charge.
++    if ((cost_params.h3d_vertical_weight > 0.f || cost_params.h3d_guide) && reached_configurably
++        && rr_graph_->node_type(to->index) == e_rr_type::CHANZ) {
++        float extra_weight = cost_params.h3d_vertical_weight;
++        if (cost_params.h3d_guide
++            && !std::binary_search(cost_params.h3d_guide->preferred.begin(), cost_params.h3d_guide->preferred.end(), to->index)) {
++            extra_weight += cost_params.h3d_guide->miss_weight;
++        }
++        cong_cost *= 1.f + extra_weight;
++    }
++
+     // Update the backward cost (upstream already included)
++    if (cost_params.h3d_planar_guide && reached_configurably)
++        cong_cost *= h3d_control_multiplier(*cost_params.h3d_planar_guide, to->index);
+     to->backward_path_cost += (1. - cost_params.criticality) * cong_cost; // Congestion cost
+     to->backward_path_cost += cost_params.criticality * Tdel;             // Delay cost
+ 
+diff --git a/vpr/src/route/connection_router_interface.h b/vpr/src/route/connection_router_interface.h
+index 83c1147..01dab39 100644
+--- a/vpr/src/route/connection_router_interface.h
++++ b/vpr/src/route/connection_router_interface.h
+@@ -5,6 +5,8 @@
+ #include "vpr_types.h"
+ #include "router_stats.h"
+ #include "spatial_route_tree_lookup.h"
++#include "h3d_routing.h"
++#include "h3d_controls.h"
+ 
+ //Delay budget information for a specific connection
+ struct t_conn_delay_budget {
+@@ -24,6 +26,9 @@ struct t_conn_cost_params {
+     float post_target_prune_offset = 0.f;
+     float bend_cost = 1.;
+     float pres_fac = 1.;
++    float h3d_vertical_weight = 0.f;                      ///< Additional CHANZ congestion preference; zero preserves baseline arithmetic.
++    const t_h3d_connection_guide* h3d_guide = nullptr;    ///< Optional soft channel preference, valid through one sink search.
++    const t_h3d_planar_guide* h3d_planar_guide = nullptr; ///< Optional static XY literature-inspired control.
+     const t_conn_delay_budget* delay_budget = nullptr;
+ 
+     //TODO: Eventually once delay budgets are working, t_conn_delay_budget
+diff --git a/vpr/src/route/route_net.cpp b/vpr/src/route/route_net.cpp
+index f281d60..cc54295 100644
+--- a/vpr/src/route/route_net.cpp
++++ b/vpr/src/route/route_net.cpp
+@@ -4,6 +4,7 @@
+ #include "bus_mux_routing.h"
+ #include "connection_based_routing.h"
+ #include "timing_util.h"
++#include "h3d_routing.h"
+ 
+ bool check_hold(const t_router_opts& router_opts, float worst_neg_slack) {
+     if (router_opts.routing_budgets_algorithm != YOYO) {
+@@ -34,7 +35,9 @@ void setup_net(int itry,
+     // otherwise, we incrementally reroute by reusing legal parts of the previous iteration.
+     // ripup_for_skew forces a full rip-up when the low-skew clock algorithm has just loaded
+     // new per-connection delay budgets for this net.
+-    if (num_sinks < router_opts.min_incremental_reroute_fanout || itry == 1 || ripup_high_fanout_nets || ripup_for_skew) {
++    bool force_whole = h3d_force_whole_net() && !net_list.net_is_global(net_id);
++    bool force_subtree = h3d_force_subtree() && !net_list.net_is_global(net_id);
++    if ((!force_subtree && num_sinks < router_opts.min_incremental_reroute_fanout) || force_whole || itry == 1 || ripup_high_fanout_nets || ripup_for_skew) {
+         profiling::net_rerouted();
+ 
+         /* rip up the whole net */
+diff --git a/vpr/src/route/route_net.tpp b/vpr/src/route/route_net.tpp
+index 48fa425..3a2909d 100644
+--- a/vpr/src/route/route_net.tpp
++++ b/vpr/src/route/route_net.tpp
+@@ -1,5 +1,7 @@
+ #pragma once
+ 
++#include "h3d_routing.h"
++
+ /** @file Header implementations for templated net routing fns. */
+ 
+ #include "device_grid.h"
+@@ -81,12 +83,31 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+     profiling::net_fanout_start();
+ 
+     flags.was_rerouted = true; // Flag to record whether routing was actually changed
++    h3d_capture_net(net_id);
+ 
+     auto& device_ctx = g_vpr_ctx.device();
+     const auto& rr_graph = device_ctx.rr_graph;
+ 
+     unsigned int num_sinks = net_list.net_sinks(net_id).size();
+ 
++    // A transaction owns a complete previous tree and the reroute requests that
++    // setup_net may consume. Signal-net rollback restores all affected state.
++    vtr::optional<RouteTree> previous_tree;
++    std::vector<RRNodeId> previous_forced_sinks;
++    bool previous_hold_request = false;
++    bool previous_skew_request = false;
++    if (h3d_transactional() && should_setup && !net_list.net_is_global(net_id)
++        && route_ctx.route_trees[net_id] && route_ctx.route_trees[net_id]->get_remaining_isinks().empty()) {
++        previous_tree = route_ctx.route_trees[net_id].value();
++        for (RRNodeId sink : route_ctx.net_rr_terminals[net_id])
++            if (connections_inf.should_force_reroute_connection(net_id, sink))
++                previous_forced_sinks.push_back(sink);
++        if (budgeting_inf.if_set()) {
++            previous_hold_request = budgeting_inf.get_should_reroute(net_id);
++            previous_skew_request = budgeting_inf.get_should_reroute_for_skew(net_id);
++        }
++    }
++
+     VTR_LOGV_DEBUG(f_router_debug, "Routing Net %zu (%zu sinks)\n", size_t(net_id), num_sinks);
+ 
+     /* Prune or rip-up existing routing for the net */
+@@ -104,6 +125,33 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+     VTR_ASSERT(route_ctx.route_trees[net_id]);
+     RouteTree& tree = route_ctx.route_trees[net_id].value();
+ 
++    auto rollback = [&] {
++        VTR_ASSERT(previous_tree);
++        pathfinder_update_cost_from_route_tree(tree.root(), -1);
++        tree = std::move(previous_tree.value());
++        previous_tree = vtr::nullopt;
++        pathfinder_update_cost_from_route_tree(tree.root(), 1);
++        tree.reload_timing();
++        update_rr_route_inf_from_tree(tree.root());
++        connections_inf.clear_force_reroute_for_net(net_id);
++        for (RRNodeId sink : previous_forced_sinks)
++            connections_inf.restore_force_reroute_connection(net_id, sink);
++        if (budgeting_inf.if_set()) {
++            budgeting_inf.set_should_reroute(net_id, previous_hold_request);
++            budgeting_inf.set_should_reroute_for_skew(net_id, previous_skew_request);
++        }
++        update_net_delays_from_route_tree(net_delays[net_id].data(), net_list, net_id, timing_info, pin_timing_invalidator);
++        router.empty_rcv_route_tree_set();
++        route_ctx.net_status.set_is_routed(net_id, true);
++        h3d_record_rollback();
++        ++router_stats.nets_routed;
++        profiling::net_finish();
++        profiling::net_fanout_end(net_list.net_sinks(net_id).size());
++        // The restored tree is connected, but may still be congested. The
++        // global feasibility check, never this local flag, decides success.
++        flags.success = true;
++    };
++
+     bool high_fanout = is_high_fanout(num_sinks, router_opts.high_fanout_threshold);
+ 
+     SpatialRouteTreeLookup spatial_route_tree_lookup;
+@@ -125,8 +173,15 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+ 
+     auto remaining_targets = sink_mask_to_vector(remaining_targets_mask, num_sinks);
+ 
+-    // calculate criticality of remaining target pins
+-    for (int ipin : remaining_targets) {
++    // The shared plan also needs timing weights for retained terminals.
++    auto criticality_targets = remaining_targets;
++    if (h3d_enabled()) {
++        criticality_targets.clear();
++        for (unsigned ipin = 1; ipin <= num_sinks; ++ipin)
++            criticality_targets.push_back(ipin);
++    }
++    // calculate criticality of target pins
++    for (int ipin : criticality_targets) {
+         auto pin = net_list.net_pin(net_id, ipin);
+         pin_criticality[ipin] = get_net_pin_criticality(timing_info,
+                                                         netlist_pin_lookup,
+@@ -218,6 +273,9 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+ 
+     /* Update base costs according to fanout and criticality rules */
+     update_rr_base_costs(num_sinks);
++    h3d_prepare_net(net_id, itry, pres_fac, pin_criticality);
++    h3d_control_prepare(net_id);
++    h3d_control_sort(net_id, remaining_targets, pin_criticality);
+ 
+     t_conn_delay_budget conn_delay_budget{.short_path_criticality = 0.f,
+                                           .min_delay = 0.f,
+@@ -231,6 +289,8 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+     cost_params.post_target_prune_offset = router_opts.post_target_prune_offset;
+     cost_params.bend_cost = router_opts.bend_cost;
+     cost_params.pres_fac = pres_fac;
++    cost_params.h3d_vertical_weight = h3d_vertical_weight();
++    cost_params.h3d_planar_guide = h3d_control_guide(net_id);
+     cost_params.delay_budget = nullptr;
+ 
+     // Pre-route to clock source for clock nets (marked as global nets)
+@@ -309,6 +369,7 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+         enable_router_debug(router_opts, net_id, sink_rr, itry, &router);
+ 
+         cost_params.criticality = pin_criticality[target_pin];
++        cost_params.h3d_guide = h3d_connection_guide(net_id, target_pin);
+ 
+         bool use_rcv = budgeting_inf.should_use_rcv(net_id, target_pin);
+         if (use_rcv) {
+@@ -345,6 +406,10 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+         flags.retry_with_full_bb |= sink_flags.retry_with_full_bb;
+ 
+         if (!sink_flags.success) {
++            if (previous_tree) {
++                rollback();
++                return flags;
++            }
+             flags.success = false;
+             VTR_LOG("Routing failed for sink %d of net %d\n", target_pin, net_id);
+             return flags;
+@@ -357,6 +422,12 @@ inline NetResultFlags route_net(ConnectionRouterType& router,
+         ++router_stats.connections_routed;
+     } // finished all sinks
+ 
++    if (previous_tree && h3d_test_rollback_once()) {
++        rollback();
++        return flags;
++    }
++    h3d_observe_net(net_id);
++
+     ++router_stats.nets_routed;
+     profiling::net_finish();
+ 
+@@ -564,6 +635,20 @@ inline NetResultFlags route_sink(ConnectionRouterType& router,
+                                                                                                                          conn_params);
+     }
+ 
++    if (!found_path && (cost_params.h3d_guide || cost_params.h3d_planar_guide)) {
++        // Candidate guidance never makes a reachability/failure certificate.
++        // Retry without guide bias before allowing the normal bounding-box retry.
++        router.reset_path_costs();
++        router.clear_modified_rr_node_info();
++        t_conn_cost_params fallback_cost = cost_params;
++        fallback_cost.h3d_guide = nullptr;
++        fallback_cost.h3d_planar_guide = nullptr;
++        fallback_cost.h3d_vertical_weight = 0.f;
++        h3d_record_fallback();
++        std::tie(found_path, flags.retry_with_full_bb, cheapest) = router.timing_driven_route_connection_from_route_tree(
++            tree.root(), sink_node, fallback_cost, net_bb, router_stats, conn_params);
++    }
++
+     if (!found_path) {
+         ParentBlockId src_block = net_list.net_driver_block(net_id);
+         ParentBlockId sink_block = net_list.pin_block(*(net_list.net_pins(net_id).begin() + target_pin));
+diff --git a/vpr/src/timing/VprTimingGraphResolver.cpp b/vpr/src/timing/VprTimingGraphResolver.cpp
+index 42c9d6e..a15e05a 100644
+--- a/vpr/src/timing/VprTimingGraphResolver.cpp
++++ b/vpr/src/timing/VprTimingGraphResolver.cpp
+@@ -342,13 +342,15 @@ void VprTimingGraphResolver::get_detailed_interconnect_components_helper(std::ve
+ 
+     vtr::optional<const RouteTreeNode&> current_node = node;
+     while (current_node) {
+-        // Process the current interconnect component if it is of type OPIN, CHANX, CHANY, IPIN
++        // Include native vertical channels so the displayed increments sum to
++        // the same routed delay used by STA on stacked-die designs.
+         // Only process SOURCE, SINK in debug report mode
+         auto rr_type = rr_graph.node_type(RRNodeId(current_node->inode));
+         if (rr_type == e_rr_type::OPIN
+             || rr_type == e_rr_type::IPIN
+             || rr_type == e_rr_type::CHANX
+             || rr_type == e_rr_type::CHANY
++            || rr_type == e_rr_type::CHANZ
+             || ((rr_type == e_rr_type::SOURCE || rr_type == e_rr_type::SINK) && (detail_level() == e_timing_report_detail::DEBUG))) {
+             tatum::DelayComponent net_component; // declare a new instance of DelayComponent
+ 
+diff --git a/vtr_flow/tasks/regression_tests/vtr_reg_strong/task_list.txt b/vtr_flow/tasks/regression_tests/vtr_reg_strong/task_list.txt
+index 27cd6e6..d20567b 100644
+--- a/vtr_flow/tasks/regression_tests/vtr_reg_strong/task_list.txt
++++ b/vtr_flow/tasks/regression_tests/vtr_reg_strong/task_list.txt
+@@ -1,5 +1,6 @@
+ regression_tests/vtr_reg_strong/basic_ap
+ regression_tests/vtr_reg_strong/basic_3d
++regression_tests/vtr_reg_strong/strong_h3d_vertical
+ regression_tests/vtr_reg_strong/strong_ap/mcnc
+ regression_tests/vtr_reg_strong/strong_ap/mcnc_auto_device_no_chan
+ regression_tests/vtr_reg_strong/strong_ap/vtr_chain
+diff --git a/vpr/src/route/h3d_controls.cpp b/vpr/src/route/h3d_controls.cpp
+new file mode 100644
+index 0000000..9614860
+--- /dev/null
++++ b/vpr/src/route/h3d_controls.cpp
+@@ -0,0 +1,226 @@
++#include "h3d_controls.h"
++
++#include <algorithm>
++#include <chrono>
++#include <cmath>
++#include <cstdlib>
++#include <limits>
++#include <map>
++#include <queue>
++#include <string>
++#include <unordered_map>
++
++#include "globals.h"
++#include "h3d_flute.h"
++#include "vpr_error.h"
++#include "vtr_log.h"
++
++namespace {
++/** @brief Opt-in static topology controls, separate from cross-layer planning. */
++enum class e_h3d_control { OFF,
++                           FLUTE_SOFT,
++                           STEINER_FIELD };
++
++/** @brief Read the exact immutable control setting; typos are fatal. */
++e_h3d_control mode() {
++    static const e_h3d_control value = [] {
++        const char* env = std::getenv("VPR_H3D_CONTROL");
++        std::string name = env ? env : "off";
++        if (name == "off") return e_h3d_control::OFF;
++        if (name == "flute_soft") return e_h3d_control::FLUTE_SOFT;
++        if (name == "steiner_field") return e_h3d_control::STEINER_FIELD;
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Unknown VPR_H3D_CONTROL '%s'", name.c_str());
++        return e_h3d_control::OFF;
++    }();
++    return value;
++}
++
++/** @brief Parse a finite bounded control parameter. */
++double setting(const char* name, double fallback, double lower, double upper) {
++    const char* text = std::getenv(name);
++    if (!text) return fallback;
++    char* end = nullptr;
++    double value = std::strtod(text, &end);
++    if (end == text || *end || !std::isfinite(value) || value < lower || value > upper)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "%s must be finite and in [%g,%g]", name, lower, upper);
++    return value;
++}
++
++std::unordered_map<ParentNetId, t_h3d_planar_guide> guides;
++bool initialized = false;
++bool lut_loaded = false;
++size_t skipped = 0, cells = 0;
++double seconds = 0.;
++
++/** @brief Build a reproducible XY guide; VPR retains layer assignment. */
++t_h3d_planar_guide build(ParentNetId net) {
++    const auto& graph = g_vpr_ctx.device().rr_graph;
++    const auto& terminals = g_vpr_ctx.routing().net_rr_terminals[net];
++    t_h3d_planar_guide result;
++    result.beta = setting("VPR_H3D_CONTROL_BETA", .6, 0., .99);
++    result.benefit.resize(terminals.size(), 0.);
++    std::map<std::pair<int, int>, int> unique;
++    for (RRNodeId node : terminals)
++        unique.emplace(std::pair{graph.node_xlow(node), graph.node_ylow(node)}, 0);
++    // Explicit bounded-work fallback, not a claim about FLUTE's own limits.
++    if (unique.size() < 2 || unique.size() > 512) {
++        ++skipped;
++        return result;
++    }
++    std::vector<int> xs, ys;
++    for (auto& [xy, id] : unique) {
++        id = xs.size();
++        xs.push_back(xy.first);
++        ys.push_back(xy.second);
++    }
++    auto tree = Flute::flute(xs.size(), xs.data(), ys.data(), FLUTE_ACCURACY);
++    int count = 2 * tree.deg - 2;
++    std::vector<std::vector<int>> adjacent(count);
++    int root = -1;
++    std::map<std::pair<int, int>, int> node_at;
++    for (int i = 0; i < count; ++i) {
++        const auto& a = tree.branch[i];
++        node_at.emplace(std::pair{a.x, a.y}, i);
++        if (a.n != i) {
++            adjacent[i].push_back(a.n);
++            adjacent[a.n].push_back(i);
++        }
++    }
++    root = node_at.at({graph.node_xlow(terminals[0]), graph.node_ylow(terminals[0])});
++    std::vector<int> parent(count, -1), order{root}, load(count, 0);
++    parent[root] = root;
++    for (size_t i = 0; i < order.size(); ++i)
++        for (int next : adjacent[order[i]])
++            if (parent[next] < 0) {
++                parent[next] = order[i];
++                order.push_back(next);
++            }
++    VTR_ASSERT(order.size() == size_t(count));
++    for (size_t pin = 1; pin < terminals.size(); ++pin)
++        ++load[node_at.at({graph.node_xlow(terminals[pin]), graph.node_ylow(terminals[pin])})];
++    for (auto it = order.rbegin(); it != order.rend(); ++it)
++        if (*it != root) load[parent[*it]] += load[*it];
++
++    int xmax = *std::max_element(xs.begin(), xs.end());
++    int ymax = *std::max_element(ys.begin(), ys.end());
++    result.xmin = *std::min_element(xs.begin(), xs.end());
++    result.ymin = *std::min_element(ys.begin(), ys.end());
++    result.width = xmax - result.xmin + 1;
++    result.height = ymax - result.ymin + 1;
++    result.potential.assign(size_t(result.width) * result.height, 0.f);
++    auto seed = [&](int x, int y, float value) {
++        auto& cell = result.potential[size_t(y - result.ymin) * result.width + x - result.xmin];
++        cell = std::max(cell, value);
++    };
++    // A deterministic x-then-y L embedding. This does not reproduce
++    // PathSteiner's optimized diagonal decomposition or hard corridors.
++    for (int child : order) {
++        if (child == root) continue;
++        const auto& a = tree.branch[parent[child]];
++        const auto& b = tree.branch[child];
++        float value = mode() == e_h3d_control::FLUTE_SOFT ? 1.f : 1.f + std::log1p(load[child]);
++        for (int x = std::min(a.x, b.x); x <= std::max(a.x, b.x); ++x)
++            seed(x, a.y, value);
++        for (int y = std::min(a.y, b.y); y <= std::max(a.y, b.y); ++y)
++            seed(b.x, y, value);
++    }
++    for (size_t pin = 1; pin < terminals.size(); ++pin) {
++        int node = node_at.at({graph.node_xlow(terminals[pin]), graph.node_ylow(terminals[pin])});
++        while (node != root) {
++            const auto& a = tree.branch[node];
++            const auto& b = tree.branch[parent[node]];
++            result.benefit[pin] += std::max(0, load[node] - 1) * (std::abs(a.x - b.x) + std::abs(a.y - b.y));
++            node = parent[node];
++        }
++    }
++    Flute::free_tree(tree);
++    if (mode() == e_h3d_control::STEINER_FIELD) {
++        // Phi(x)=max_e [(1+log(1+load_e))*exp(-L1(x,e)/sigma)],
++        // normalized to [0,1]. This is our stated control formula; the
++        // inaccessible potential-field paper's detailed formula is not claimed.
++        float decay = std::exp(-1. / setting("VPR_H3D_CONTROL_SIGMA", 3., .1, 100.));
++        using Entry = std::pair<float, size_t>;
++        std::priority_queue<Entry> frontier;
++        for (size_t i = 0; i < result.potential.size(); ++i)
++            if (result.potential[i] > 0.f) frontier.emplace(result.potential[i], i);
++        while (!frontier.empty()) {
++            auto [value, i] = frontier.top();
++            frontier.pop();
++            if (value < result.potential[i]) continue;
++            int x = i % result.width, y = i / result.width;
++            for (auto [dx, dy] : {std::pair{-1, 0}, {1, 0}, {0, -1}, {0, 1}}) {
++                int nx = x + dx, ny = y + dy;
++                if (nx < 0 || ny < 0 || nx >= result.width || ny >= result.height) continue;
++                size_t next = size_t(ny) * result.width + nx;
++                float candidate = value * decay;
++                if (candidate > result.potential[next]) {
++                    result.potential[next] = candidate;
++                    frontier.emplace(candidate, next);
++                }
++            }
++        }
++        float maximum = *std::max_element(result.potential.begin(), result.potential.end());
++        for (auto& value : result.potential)
++            value /= maximum;
++    }
++    cells += result.potential.size();
++    return result;
++}
++} // namespace
++
++void h3d_control_iteration(int iteration, bool is_flat) {
++    if (mode() == e_h3d_control::OFF || iteration != 1) return;
++    if (is_flat) VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "H3D controls currently require serial clustered routing");
++    auto start = std::chrono::steady_clock::now();
++    guides.clear();
++    skipped = cells = 0;
++    seconds = 0.;
++    if (!lut_loaded) {
++        const char* directory = std::getenv("VPR_H3D_FLUTE_LUT");
++        if (!directory) VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "H3D controls require explicit VPR_H3D_FLUTE_LUT directory");
++        Flute::readLUT(directory);
++        lut_loaded = true;
++    }
++    initialized = true;
++    seconds += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
++    VTR_LOG("H3D_CONTROL_INIT mode=%s xy_projected=1 original_paper_reproduction=0\n", mode() == e_h3d_control::FLUTE_SOFT ? "flute_soft" : "steiner_field");
++}
++
++void h3d_control_prepare(ParentNetId net) {
++    if (mode() == e_h3d_control::OFF) return;
++    if (!initialized) VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "H3D controls require serial routing");
++    if (guides.contains(net)) return;
++    auto start = std::chrono::steady_clock::now();
++    guides.emplace(net, build(net));
++    seconds += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
++}
++
++const t_h3d_planar_guide* h3d_control_guide(ParentNetId net) {
++    if (mode() == e_h3d_control::OFF) return nullptr;
++    const auto& result = guides.at(net);
++    return result.potential.empty() ? nullptr : &result;
++}
++
++void h3d_control_sort(ParentNetId net, std::vector<size_t>& pins, const std::vector<float>& criticality) {
++    if (mode() != e_h3d_control::STEINER_FIELD) return;
++    const auto& guide = guides.at(net);
++    std::stable_sort(pins.begin(), pins.end(), [&](int a, int b) {
++        return (1. + 4. * criticality[a]) * (1. + std::log1p(guide.benefit[a]))
++               > (1. + 4. * criticality[b]) * (1. + std::log1p(guide.benefit[b]));
++    });
++}
++
++float h3d_control_multiplier(const t_h3d_planar_guide& guide, RRNodeId node) {
++    const auto& graph = g_vpr_ctx.device().rr_graph;
++    auto type = graph.node_type(node);
++    if (type != e_rr_type::CHANX && type != e_rr_type::CHANY && type != e_rr_type::CHANZ) return 1.f;
++    int x = (graph.node_xlow(node) + graph.node_xhigh(node)) / 2 - guide.xmin;
++    int y = (graph.node_ylow(node) + graph.node_yhigh(node)) / 2 - guide.ymin;
++    if (x < 0 || y < 0 || x >= guide.width || y >= guide.height) return 1.f;
++    return 1.f - guide.beta * guide.potential[size_t(y) * guide.width + x];
++}
++
++void h3d_control_log() {
++    if (mode() != e_h3d_control::OFF)
++        VTR_LOG("H3D_CONTROL nets=%zu skipped_degree=%zu cells=%zu preprocessing_seconds=%.6f\n", guides.size(), skipped, cells, seconds);
++}
+diff --git a/vpr/src/route/h3d_controls.h b/vpr/src/route/h3d_controls.h
+new file mode 100644
+index 0000000..2900a5d
+--- /dev/null
++++ b/vpr/src/route/h3d_controls.h
+@@ -0,0 +1,29 @@
++#pragma once
++
++#include <vector>
++#include "netlist_fwd.h"
++#include "rr_graph_fwd.h"
++
++/** @brief Static XY guidance, projected onto all layers; never a physical route. */
++struct t_h3d_planar_guide {
++    int xmin = 0;                 ///< Left edge of the net's XY box.
++    int ymin = 0;                 ///< Bottom edge of the net's XY box.
++    int width = 0;                ///< Number of stored X coordinates.
++    int height = 0;               ///< Number of stored Y coordinates.
++    float beta = 0.f;             ///< Maximum fractional congestion discount.
++    std::vector<float> potential; ///< Normalized [0,1] soft preference per XY cell.
++    std::vector<double> benefit;  ///< Shared-trunk proxy for each real terminal.
++};
++
++/** @brief Initialize opt-in literature-inspired controls and their explicit LUTs. */
++void h3d_control_iteration(int iteration, bool is_flat);
++/** @brief Compute one FLUTE topology per selected net on its first routing attempt. */
++void h3d_control_prepare(ParentNetId net);
++/** @brief Read the static field; nullptr means original VPR cost. */
++const t_h3d_planar_guide* h3d_control_guide(ParentNetId net);
++/** @brief Apply the documented sharing/criticality order only for the field control. */
++void h3d_control_sort(ParentNetId net, std::vector<size_t>& pins, const std::vector<float>& criticality);
++/** @brief Congestion multiplier in [1-beta,1], sampled at the resource midpoint. */
++float h3d_control_multiplier(const t_h3d_planar_guide& guide, RRNodeId node);
++/** @brief Report all preprocessing time, retained cells and explicit fallbacks. */
++void h3d_control_log();
+diff --git a/vpr/src/route/h3d_fast_plan.cpp b/vpr/src/route/h3d_fast_plan.cpp
+new file mode 100644
+index 0000000..eb98f05
+--- /dev/null
++++ b/vpr/src/route/h3d_fast_plan.cpp
+@@ -0,0 +1,315 @@
++#include "h3d_fast_plan.h"
++
++#include <cmath>
++#include <cstdlib>
++#include <limits>
++#include <set>
++
++#include "globals.h"
++#include "h3d_partition_dp.h"
++#include "route_common.h"
++#include "route_tree.h"
++#include "vtr_log.h"
++#include "vpr_error.h"
++
++namespace {
++
++/** @brief Pack nonnegative integer XY coordinates into a collision-free key. */
++unsigned long long site_key(int x, int y) {
++    return (static_cast<unsigned long long>(static_cast<unsigned>(x)) << 32) | static_cast<unsigned>(y);
++}
++
++/** @brief Whether two sorted component-id lists have a common member. */
++bool intersects(const std::vector<int>& a, const std::vector<int>& b) {
++    size_t i = 0, j = 0;
++    while (i < a.size() && j < b.size()) {
++        if (a[i] == b[j]) return true;
++        if (a[i] < b[j])
++            ++i;
++        else
++            ++j;
++    }
++    return false;
++}
++
++/** @brief Sort and deduplicate a small component list. */
++void unique_components(std::vector<int>& values) {
++    std::sort(values.begin(), values.end());
++    values.erase(std::unique(values.begin(), values.end()), values.end());
++}
++
++} // namespace
++
++H3dFastPlan::H3dFastPlan(const RRGraphView& graph)
++    : graph_(graph) {
++    channel_index_.resize(graph_.num_nodes(), -1);
++    size_t planar_count = 0;
++    double planar_length = 0.;
++    std::vector<std::pair<size_t, size_t>> planar_edges;
++    for (RRNodeId node : graph_.nodes()) {
++        if (graph_.node_type(node) == e_rr_type::CHANZ) {
++            channel_index_[node] = channels_.size();
++            sites_[site_key(graph_.node_xlow(node), graph_.node_ylow(node))].push_back(channels_.size());
++            channels_.push_back(node);
++            continue;
++        }
++        if (graph_.node_type(node) == e_rr_type::CHANX || graph_.node_type(node) == e_rr_type::CHANY) {
++            ++planar_count;
++            planar_length += 1 + graph_.node_xhigh(node) - graph_.node_xlow(node)
++                             + graph_.node_yhigh(node) - graph_.node_ylow(node);
++        }
++        for (auto edge : graph_.node_out_edges(node)) {
++            RRNodeId sink = graph_.edge_sink_node(node, edge);
++            if (graph_.node_type(sink) != e_rr_type::CHANZ
++                && graph_.node_layer_low(node) == graph_.node_layer_high(node)
++                && graph_.node_layer_low(sink) == graph_.node_layer_high(sink)
++                && graph_.node_layer_low(node) == graph_.node_layer_low(sink))
++                planar_edges.emplace_back(size_t(node), size_t(sink));
++        }
++    }
++    if (planar_count) mean_span_ = planar_length / planar_count;
++    reachability_ = std::make_unique<H3dReachabilityIndex>(graph_.num_nodes(), planar_edges);
++    entries_.resize(channels_.size());
++    exits_.resize(channels_.size());
++    for (RRNodeId node : graph_.nodes()) {
++        for (auto edge : graph_.node_out_edges(node)) {
++            RRNodeId sink = graph_.edge_sink_node(node, edge);
++            int source_z = channel_index_[node];
++            int sink_z = channel_index_[sink];
++            if (source_z < 0 && sink_z >= 0)
++                entries_[sink_z].push_back(reachability_->component(size_t(node)));
++            if (source_z >= 0 && sink_z < 0)
++                exits_[source_z].push_back(reachability_->component(size_t(sink)));
++        }
++    }
++    std::vector<int> all_entries, all_exits;
++    for (size_t c = 0; c < channels_.size(); ++c) {
++        unique_components(entries_[c]);
++        unique_components(exits_[c]);
++        all_entries.insert(all_entries.end(), entries_[c].begin(), entries_[c].end());
++        all_exits.insert(all_exits.end(), exits_[c].begin(), exits_[c].end());
++    }
++    forward_allowed_ = reachability_->mark(all_entries, true);
++    reverse_allowed_ = reachability_->mark(all_exits, false);
++    VTR_LOG("H3D_SCC_INIT components=%zu planar_edges=%zu channels=%zu mean_planar_span=%g\n",
++            reachability_->num_components(), planar_edges.size(), channels_.size(), mean_span_);
++    if (std::getenv("VPR_H3D_VALIDATE_SCC")) validate_against_bfs();
++}
++
++void H3dFastPlan::validate_against_bfs() {
++    std::vector<std::vector<RRNodeId>> predecessors(graph_.num_nodes());
++    for (RRNodeId node : graph_.nodes())
++        for (auto edge : graph_.node_out_edges(node))
++            predecessors[size_t(graph_.edge_sink_node(node, edge))].push_back(node);
++    auto bfs = [&](RRNodeId endpoint, bool backwards) {
++        std::vector<bool> seen(graph_.num_nodes(), false), result(channels_.size(), false);
++        std::vector<RRNodeId> frontier{endpoint};
++        seen[size_t(endpoint)] = true;
++        int layer = graph_.node_layer_low(endpoint);
++        for (size_t i = 0; i < frontier.size(); ++i) {
++            auto visit = [&](RRNodeId next) {
++                if (seen[size_t(next)]) return;
++                int z = channel_index_[next];
++                if (z >= 0) {
++                    seen[size_t(next)] = true;
++                    result[z] = true;
++                } else if (graph_.node_layer_low(next) == layer && graph_.node_layer_high(next) == layer) {
++                    seen[size_t(next)] = true;
++                    frontier.push_back(next);
++                }
++            };
++            RRNodeId node = frontier[i];
++            if (backwards) {
++                for (RRNodeId next : predecessors[size_t(node)])
++                    visit(next);
++            } else {
++                for (auto edge : graph_.node_out_edges(node))
++                    visit(graph_.edge_sink_node(node, edge));
++            }
++        }
++        return result;
++    };
++    size_t connections = 0, comparisons = 0, reachable = 0;
++    for (const auto& terminals : g_vpr_ctx.routing().net_rr_terminals) {
++        if (terminals.size() < 2 || terminals[0] == RRNodeId::INVALID()) continue;
++        RRNodeId source = terminals[0];
++        for (size_t pin = 1; pin < terminals.size() && connections < 32; ++pin) {
++            RRNodeId sink = terminals[pin];
++            if (sink == RRNodeId::INVALID() || graph_.node_layer_low(source) == graph_.node_layer_low(sink)) continue;
++            auto from = bfs(source, false), to = bfs(sink, true);
++            for (size_t c = 0; c < channels_.size(); ++c) {
++                bool expected = from[c] && to[c];
++                if (feasible_(source, c, sink) != expected)
++                    VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "SCC/BFS mismatch for source %zu channel %zu sink %zu", size_t(source), size_t(channels_[c]), size_t(sink));
++                ++comparisons;
++                reachable += expected;
++            }
++            ++connections;
++        }
++        if (connections == 32) break;
++    }
++    VTR_LOG("H3D_SCC_VALIDATED connections=%zu channel_comparisons=%zu reachable=%zu\n", connections, comparisons, reachable);
++}
++
++const std::vector<int>& H3dFastPlan::reach_(RRNodeId endpoint, bool reverse) {
++    auto& cache = reverse ? sink_cache_ : source_cache_;
++    auto found = cache.find(endpoint);
++    if (found != cache.end()) return found->second;
++    auto result = reachability_->relevant_components(size_t(endpoint), reverse, reverse ? reverse_allowed_ : forward_allowed_);
++    return cache.emplace(endpoint, std::move(result)).first->second;
++}
++
++bool H3dFastPlan::feasible_(RRNodeId source, size_t channel, RRNodeId sink) {
++    ++queries_;
++    return intersects(reach_(source, false), entries_[channel]) && intersects(reach_(sink, true), exits_[channel]);
++}
++
++double H3dFastPlan::proxy_(RRNodeId endpoint, size_t channel) const {
++    RRNodeId z = channels_[channel];
++    int distance = std::abs(graph_.node_xlow(endpoint) - graph_.node_xlow(z))
++                   + std::abs(graph_.node_ylow(endpoint) - graph_.node_ylow(z));
++    return 2. + distance / mean_span_;
++}
++
++std::vector<size_t> H3dFastPlan::nearby_(RRNodeId source, RRNodeId sink, int center_x, int center_y, size_t target) const {
++    int sx = graph_.node_xlow(source), sy = graph_.node_ylow(source);
++    int tx = graph_.node_xlow(sink), ty = graph_.node_ylow(sink);
++    std::vector<std::pair<int, int>> points{{sx, sy}, {tx, ty}, {(sx + tx) / 2, (sy + ty) / 2}, {(3 * sx + tx) / 4, (3 * sy + ty) / 4}, {(sx + 3 * tx) / 4, (sy + 3 * ty) / 4}, {sx, ty}, {tx, sy}, {center_x, center_y}};
++    std::set<size_t> selected;
++    for (int radius = 0; radius <= 3 && selected.size() < target; ++radius) {
++        for (const auto& [x, y] : points)
++            for (int dx = -radius; dx <= radius; ++dx)
++                for (int dy = -radius; dy <= radius; ++dy) {
++                    if (std::max(std::abs(dx), std::abs(dy)) != radius || x + dx < 0 || y + dy < 0) continue;
++                    auto site = sites_.find(site_key(x + dx, y + dy));
++                    if (site != sites_.end()) selected.insert(site->second.begin(), site->second.end());
++                }
++    }
++    return {selected.begin(), selected.end()};
++}
++
++std::vector<size_t> H3dFastPlan::diversify_(const std::vector<std::pair<double, size_t>>& ranked, size_t count) const {
++    if (ranked.empty()) return {};
++    std::vector<size_t> chosen{ranked.front().second};
++    size_t shortlist = std::min(ranked.size(), count * 8);
++    while (chosen.size() < count && chosen.size() < shortlist) {
++        double best_score = -1.;
++        size_t best = chosen.front();
++        for (size_t i = 0; i < shortlist; ++i) {
++            size_t c = ranked[i].second;
++            if (std::find(chosen.begin(), chosen.end(), c) != chosen.end()) continue;
++            int spread = std::numeric_limits<int>::max();
++            for (size_t prior : chosen)
++                spread = std::min(spread, std::abs(graph_.node_xlow(channels_[c]) - graph_.node_xlow(channels_[prior]))
++                                              + std::abs(graph_.node_ylow(channels_[c]) - graph_.node_ylow(channels_[prior])));
++            double score = (1. + spread) / (1. + ranked[i].first - ranked.front().first);
++            if (score > best_score) {
++                best_score = score;
++                best = c;
++            }
++        }
++        if (best_score < 0.) break;
++        chosen.push_back(best);
++    }
++    return chosen;
++}
++
++t_h3d_fast_plan H3dFastPlan::plan(ParentNetId net, const std::vector<float>& criticality, const std::vector<RRNodeId>& previous_channels, float pres_fac, size_t candidate_count, float opening_weight, float miss_weight, bool use_tree) {
++    const auto& routing = g_vpr_ctx.routing();
++    const auto& terminals = routing.net_rr_terminals[net];
++    RRNodeId source = terminals[0];
++    t_h3d_fast_plan result;
++    result.guides.resize(terminals.size());
++    std::vector<int> pins;
++    int center_x = 0, center_y = 0;
++    for (size_t pin = 1; pin < terminals.size(); ++pin)
++        if (graph_.node_layer_low(source) != graph_.node_layer_low(terminals[pin])) {
++            pins.push_back(pin);
++            center_x += graph_.node_xlow(terminals[pin]);
++            center_y += graph_.node_ylow(terminals[pin]);
++        }
++    if (pins.empty()) return result;
++    center_x /= pins.size();
++    center_y /= pins.size();
++    std::set<RRNodeId> owned;
++    if (routing.route_trees[net])
++        for (const auto& node : routing.route_trees[net]->all_nodes())
++            if (channel_index_[node.inode] >= 0) owned.insert(node.inode);
++    auto opening = [&](size_t c) {
++        RRNodeId node = channels_[c];
++        const auto& info = routing.rr_node_route_inf[node];
++        int demand = info.occ() + (owned.contains(node) ? 0 : 1);
++        // Additional demand is zero for a retained channel of this net.
++        double negotiated = info.acc_cost * (1. + pres_fac * std::max(0, demand - graph_.node_capacity(node)));
++        return proxy_(source, c) + opening_weight * negotiated;
++    };
++    auto branch = [&](int pin, size_t c) {
++        return proxy_(terminals[pin], c) * (1. + 4. * criticality[pin]) + 4. * criticality[pin] * proxy_(source, c);
++    };
++    std::set<size_t> pool;
++    for (int pin : pins) {
++        auto candidates = nearby_(source, terminals[pin], center_x, center_y, candidate_count * 8);
++        for (RRNodeId node : previous_channels)
++            if (channel_index_[node] >= 0) candidates.push_back(channel_index_[node]);
++        std::sort(candidates.begin(), candidates.end());
++        candidates.erase(std::unique(candidates.begin(), candidates.end()), candidates.end());
++        spatial_candidates_ += candidates.size();
++        std::vector<std::pair<double, size_t>> ranked;
++        for (size_t c : candidates)
++            if (feasible_(source, c, terminals[pin])) ranked.emplace_back(opening(c) + branch(pin, c), c);
++        // Spatial sampling failure is not infeasibility. Search the full
++        // candidate table until a usable fallback set is found.
++        if (ranked.empty())
++            for (size_t c = 0; c < channels_.size() && ranked.size() < candidate_count * 8; ++c)
++                if (feasible_(source, c, terminals[pin])) ranked.emplace_back(opening(c) + branch(pin, c), c);
++        std::sort(ranked.begin(), ranked.end());
++        auto selected = diversify_(ranked, candidate_count);
++        for (RRNodeId node : previous_channels) {
++            int c = channel_index_[node];
++            if (c >= 0 && feasible_(source, c, terminals[pin])) selected.push_back(c);
++        }
++        std::sort(selected.begin(), selected.end());
++        selected.erase(std::unique(selected.begin(), selected.end()), selected.end());
++        if (selected.empty()) ++result.no_candidate;
++        for (size_t c : selected) {
++            result.guides[pin].preferred.push_back(channels_[c]);
++            pool.insert(c);
++        }
++        result.guides[pin].miss_weight = miss_weight;
++    }
++    // Keep pathological high-fanout work linear in the connection count.
++    // This explicit fallback is counted and does not claim a tree optimum.
++    if (use_tree && pins.size() > 128) {
++        ++high_fanout_fallbacks_;
++        use_tree = false;
++    }
++    if (use_tree && !pool.empty()) {
++        std::vector<size_t> table(pool.begin(), pool.end());
++        std::vector<double> openings;
++        for (size_t c : table)
++            openings.push_back(opening(c));
++        std::vector<t_h3d_plan_leaf> leaves;
++        for (int pin : pins) {
++            if (result.guides[pin].preferred.empty()) continue;
++            RRNodeId sink = terminals[pin];
++            t_h3d_plan_leaf leaf{pin, graph_.node_xlow(sink), graph_.node_ylow(sink), {}};
++            for (size_t i = 0; i < table.size(); ++i)
++                if (feasible_(source, table[i], sink)) leaf.candidates.push_back({i, branch(pin, table[i])});
++            leaves.push_back(std::move(leaf));
++        }
++        auto planned = h3d_plan_partition(leaves, openings);
++        if (std::isfinite(planned.cost)) {
++            result.groups = planned.groups;
++            for (const auto& [pin, c] : planned.assignment)
++                result.guides[pin].preferred = {channels_[table[c]]};
++        }
++    }
++    for (auto& guide : result.guides)
++        std::sort(guide.preferred.begin(), guide.preferred.end());
++    return result;
++}
++
++void H3dFastPlan::log() const {
++    VTR_LOG("H3D_SCC queries=%zu endpoint_cache=%zu sampled_candidates=%zu high_fanout_fallbacks=%zu\n",
++            queries_, source_cache_.size() + sink_cache_.size(), spatial_candidates_, high_fanout_fallbacks_);
++}
+diff --git a/vpr/src/route/h3d_fast_plan.h b/vpr/src/route/h3d_fast_plan.h
+new file mode 100644
+index 0000000..dd2a98b
+--- /dev/null
++++ b/vpr/src/route/h3d_fast_plan.h
+@@ -0,0 +1,70 @@
++#pragma once
++
++#include <memory>
++#include <unordered_map>
++#include <vector>
++
++#include "h3d_reachability.h"
++#include "h3d_routing.h"
++#include "rr_graph_view.h"
++#include "vtr_vector.h"
++
++/** @brief SCC-backed finite candidate result; all costs remain planning proxies. */
++struct t_h3d_fast_plan {
++    std::vector<t_h3d_connection_guide> guides; ///< Per-terminal soft preferences.
++    size_t groups = 0;                          ///< Groups in the hierarchical DP.
++    size_t no_candidate = 0;                    ///< Remote terminals delegated to baseline search.
++};
++
++/** @brief Reuse exact planar SCC reachability with bounded spatial candidate sampling.
++ *
++ * This accelerates the reference all-channel BFS planner. Reachability stays
++ * exact, while cost changes to a documented geometric hop proxy. It must be
++ * reported as a separate ablation, not as identical shortest-path planning.
++ */
++class H3dFastPlan {
++  public:
++    /** @brief Index the fixed RRG's planar components and vertical access endpoints. */
++    explicit H3dFastPlan(const RRGraphView& graph);
++
++    /** @brief Generate diverse feasible candidates and optionally solve a finite shared/split DP. */
++    t_h3d_fast_plan plan(ParentNetId net, const std::vector<float>& criticality, const std::vector<RRNodeId>& previous_channels, float pres_fac, size_t candidate_count, float opening_weight, float miss_weight, bool use_tree);
++
++    /** @brief Report cache, candidate and high-fanout fallback counts. */
++    void log() const;
++
++    /** @brief Opt-in real-RRG adapter check against independent planar BFS. */
++    void validate_against_bfs();
++
++  private:
++    /** @brief Reachable component set for one source or reverse sink query. */
++    const std::vector<int>& reach_(RRNodeId endpoint, bool reverse);
++
++    /** @brief Test an actual directed source->channel->sink walk using SCC intersections. */
++    bool feasible_(RRNodeId source, size_t channel, RRNodeId sink);
++
++    /** @brief Gather a bounded spatial shortlist near endpoints, their corridor and net centroid. */
++    std::vector<size_t> nearby_(RRNodeId source, RRNodeId sink, int center_x, int center_y, size_t target) const;
++
++    /** @brief Geometric hop proxy, not shortest graph distance or physical RC delay. */
++    double proxy_(RRNodeId endpoint, size_t channel) const;
++
++    /** @brief Diversity selection within a cost-ranked, finite feasible list. */
++    std::vector<size_t> diversify_(const std::vector<std::pair<double, size_t>>& ranked, size_t count) const;
++
++    const RRGraphView& graph_;                                          ///< Exact immutable graph used by detailed routing.
++    std::unique_ptr<H3dReachabilityIndex> reachability_;                ///< SCC DAG for same-layer non-Z edges.
++    std::vector<RRNodeId> channels_;                                    ///< Candidate table of native CHANZ resources.
++    vtr::vector<RRNodeId, int> channel_index_;                          ///< RR id to candidate table index.
++    std::vector<std::vector<int>> entries_;                             ///< Original predecessors' components for each channel.
++    std::vector<std::vector<int>> exits_;                               ///< Original successors' components for each channel.
++    std::vector<bool> forward_allowed_;                                 ///< Components able to reach a Z entry.
++    std::vector<bool> reverse_allowed_;                                 ///< Components reachable from a Z exit.
++    std::unordered_map<RRNodeId, std::vector<int>> source_cache_;       ///< Sparse forward component closures.
++    std::unordered_map<RRNodeId, std::vector<int>> sink_cache_;         ///< Sparse reverse component closures.
++    std::unordered_map<unsigned long long, std::vector<size_t>> sites_; ///< XY site to native channels.
++    double mean_span_ = 1.;                                             ///< Mean planar channel span for proxy-unit normalization.
++    size_t queries_ = 0;                                                ///< Exact feasibility queries.
++    size_t spatial_candidates_ = 0;                                     ///< Sampled candidates before feasibility/ranking.
++    size_t high_fanout_fallbacks_ = 0;                                  ///< Nets using independent guides instead of a large DP.
++};
+diff --git a/vpr/src/route/h3d_flute.cpp b/vpr/src/route/h3d_flute.cpp
+new file mode 100644
+index 0000000..a0f098d
+--- /dev/null
++++ b/vpr/src/route/h3d_flute.cpp
+@@ -0,0 +1,1604 @@
++////////////////////////////////////////////////////////////////////////////////
++// BSD 3-Clause License
++//
++// Copyright (c) 2018, Iowa State University All rights reserved.
++//
++// Redistribution and use in source and binary forms, with or without
++// modification, are permitted provided that the following conditions are met:
++//
++// * Redistributions of source code must retain the above copyright notice,
++// this list of conditions and the following disclaimer.
++//
++// * Redistributions in binary form must reproduce the above copyright notice,
++// this list of conditions and the following disclaimer in the documentation
++// and/or other materials provided with the distribution.
++//
++// * Neither the name of the copyright holder nor the names of its contributors
++// may be used to endorse or promote products derived from this software
++// without specific prior written permission.
++//
++// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
++// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
++// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
++// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
++// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
++// USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++////////////////////////////////////////////////////////////////////////////////
++
++#include <stdio.h>
++#include <stdlib.h>
++#include <limits.h>
++#include <math.h>
++#include <algorithm>
++#include <string>
++#include "h3d_flute.h"
++
++namespace Flute {
++
++#if FLUTE_D <= 7
++        #define MGROUP 5040 / 4  // Max. # of groups, 7! = 5040
++        #define MPOWV 15         // Max. # of POWVs per group
++#elif FLUTE_D == 8
++        #define MGROUP 40320 / 4  // Max. # of groups, 8! = 40320
++        #define MPOWV 33          // Max. # of POWVs per group
++#elif FLUTE_D == 9
++        #define MGROUP 362880 / 4  // Max. # of groups, 9! = 362880
++        #define MPOWV 79           // Max. # of POWVs per group
++#endif
++int numgrp[10] = {0, 0, 0, 0, 6, 30, 180, 1260, 10080, 90720};
++
++struct csoln {
++        unsigned char parent;
++        unsigned char seg[11];        // Add: 0..i, Sub: j..10; seg[i+1]=seg[j-1]=0
++        unsigned char rowcol[FLUTE_D - 2];  // row = rowcol[]/16, col = rowcol[]%16,
++        unsigned char neighbor[2 * FLUTE_D - 2];
++};
++
++struct csoln *LUT[FLUTE_D + 1][MGROUP];  // storing 4 .. FLUTE_D
++
++int numsoln[FLUTE_D + 1][MGROUP];
++
++struct point {
++        DTYPE x, y;
++        int o;
++};
++
++Tree dmergetree(Tree t1, Tree t2);
++Tree hmergetree(Tree t1, Tree t2, int s[]);
++Tree vmergetree(Tree t1, Tree t2);
++void local_refinement(int deg, Tree *tp, int p);
++
++template <class T> inline T ADIFF(T x, T y) {
++        if (x > y) {
++            return (x - y);
++        } else {
++            return (y - x);
++        }
++}
++
++void readLUT(const char* directory) {
++        std::string powv_path = std::string(directory) + "/POWV9.dat";
++        std::string post_path = std::string(directory) + "/POST9.dat";
++        unsigned char charnum[256], line[32], *linep, c;
++        FILE *fpwv, *fprt;
++        struct csoln *p;
++        int d, i, j, k, kk, ns, nn;
++
++        for (i = 0; i <= 255; i++) {
++                if ('0' <= i && i <= '9')
++                        charnum[i] = i - '0';
++                else if (i >= 'A')
++                        charnum[i] = i - 'A' + 10;
++                else  // if (i=='$' || i=='\n' || ... )
++                        charnum[i] = 0;
++        }
++
++        fpwv = fopen(powv_path.c_str(), "r");
++        if (fpwv == NULL) {
++                printf("Error in opening %s\n", powv_path.c_str());
++                exit(1);
++        }
++
++#if FLUTE_ROUTING == 1
++        fprt = fopen(post_path.c_str(), "r");
++        if (fprt == NULL) {
++                printf("Error in opening %s\n", post_path.c_str());
++                exit(1);
++        }
++#endif
++
++        for (d = 4; d <= FLUTE_D; d++) {
++                fscanf(fpwv, "d=%d\n", &d);
++#if FLUTE_ROUTING == 1
++                fscanf(fprt, "d=%d\n", &d);
++#endif
++                for (k = 0; k < numgrp[d]; k++) {
++                        ns = (int)charnum[fgetc(fpwv)];
++
++                        if (ns == 0) {  // same as some previous group
++                                fscanf(fpwv, "%d\n", &kk);
++                                numsoln[d][k] = numsoln[d][kk];
++                                LUT[d][k] = LUT[d][kk];
++                        } else {
++                                fgetc(fpwv);  // '\n'
++                                numsoln[d][k] = ns;
++                                p = (struct csoln *)malloc(ns * sizeof(struct csoln));
++                                LUT[d][k] = p;
++                                for (i = 1; i <= ns; i++) {
++                                        linep = (unsigned char *)fgets((char *)line, 32, fpwv);
++                                        p->parent = charnum[*(linep++)];
++                                        j = 0;
++                                        while ((p->seg[j++] = charnum[*(linep++)]) != 0)
++                                                ;
++                                        j = 10;
++                                        while ((p->seg[j--] = charnum[*(linep++)]) != 0)
++                                                ;
++#if FLUTE_ROUTING == 1
++                                        nn = 2 * d - 2;
++                                        fread(line, 1, d - 2, fprt);
++                                        linep = line;
++                                        for (j = d; j < nn; j++) {
++                                                c = charnum[*(linep++)];
++                                                p->rowcol[j - d] = c;
++                                        }
++                                        fread(line, 1, nn / 2 + 1, fprt);
++                                        linep = line;  // last char \n
++                                        for (j = 0; j < nn;) {
++                                                c = *(linep++);
++                                                p->neighbor[j++] = c / 16;
++                                                p->neighbor[j++] = c % 16;
++                                        }
++#endif
++                                        p++;
++                                }
++                        }
++                }
++        }
++}
++
++DTYPE flute_wl(int d, DTYPE x[], DTYPE y[], int acc) {
++        DTYPE minval, l, xu, xl, yu, yl;
++        DTYPE *xs, *ys;
++        int i, j, minidx, degree;
++        int *s;
++        struct point **ptp, *tmpp;
++        struct point *pt;
++        
++        /* allocate the dynamic pieces on the heap rather than the stack */
++        degree = d + 1;
++        xs = (DTYPE *)malloc(sizeof(DTYPE) * (d));
++        ys = (DTYPE *)malloc(sizeof(DTYPE) * (d));
++        s = (int *)malloc(sizeof(int) * (d));
++        pt = (struct point *)malloc(sizeof(struct point) * (d+1));
++        ptp = (struct point **)malloc(sizeof(struct point *) * (d+1));
++
++        if (d == 2)
++                l = ADIFF(x[0], x[1]) + ADIFF(y[0], y[1]);
++        else if (d == 3) {
++                if (x[0] > x[1]) {
++                        xu = std::max(x[0], x[2]);
++                        xl = std::min(x[1], x[2]);
++                } else {
++                        xu = std::max(x[1], x[2]);
++                        xl = std::min(x[0], x[2]);
++                }
++                if (y[0] > y[1]) {
++                        yu = std::max(y[0], y[2]);
++                        yl = std::min(y[1], y[2]);
++                } else {
++                        yu = std::max(y[1], y[2]);
++                        yl = std::min(y[0], y[2]);
++                }
++                l = (xu - xl) + (yu - yl);
++        } else {
++                for (i = 0; i < d; i++) {
++                        pt[i].x = x[i];
++                        pt[i].y = y[i];
++                        ptp[i] = &pt[i];
++                }
++
++                // sort x
++                for (i = 0; i < d - 1; i++) {
++                        minval = ptp[i]->x;
++                        minidx = i;
++                        for (j = i + 1; j < d; j++) {
++                                if (minval > ptp[j]->x) {
++                                        minval = ptp[j]->x;
++                                        minidx = j;
++                                }
++                        }
++                        tmpp = ptp[i];
++                        ptp[i] = ptp[minidx];
++                        ptp[minidx] = tmpp;
++                }
++
++#if FLUTE_REMOVE_DUPLICATE_PIN == 1
++                ptp[d] = &pt[d];
++                ptp[d]->x = ptp[d]->y = -999999;
++                j = 0;
++                for (i = 0; i < d; i++) {
++                        for (k = i + 1; ptp[k]->x == ptp[i]->x; k++)
++                                if (ptp[k]->y == ptp[i]->y)  // pins k and i are the same
++                                        break;
++                        if (ptp[k]->x != ptp[i]->x)
++                                ptp[j++] = ptp[i];
++                }
++                d = j;
++#endif
++
++                for (i = 0; i < d; i++) {
++                        xs[i] = ptp[i]->x;
++                        ptp[i]->o = i;
++                }
++
++                // sort y to find s[]
++                for (i = 0; i < d - 1; i++) {
++                        minval = ptp[i]->y;
++                        minidx = i;
++                        for (j = i + 1; j < d; j++) {
++                                if (minval > ptp[j]->y) {
++                                        minval = ptp[j]->y;
++                                        minidx = j;
++                                }
++                        }
++                        ys[i] = ptp[minidx]->y;
++                        s[i] = ptp[minidx]->o;
++                        ptp[minidx] = ptp[i];
++                }
++                ys[d - 1] = ptp[d - 1]->y;
++                s[d - 1] = ptp[d - 1]->o;
++
++                l = flutes_wl(d, xs, ys, s, acc);
++        }
++        free( xs ) ;
++        free( ys ) ;
++        free( s ) ;
++        free( pt ) ;
++        free( ptp ) ;
++
++        return l;
++}
++
++// xs[] and ys[] are coords in x and y in sorted order
++// s[] is a list of nodes in increasing y direction
++//   if nodes are indexed in the order of increasing x coord
++//   i.e., s[i] = s_i as defined in paper
++// The points are (xs[s[i]], ys[i]) for i=0..d-1
++//             or (xs[i], ys[si[i]]) for i=0..d-1
++
++DTYPE flutes_wl_RDP(int d, DTYPE xs[], DTYPE ys[], int s[], int acc) {
++        int i, j, ss;
++
++        for (i = 0; i < d - 1; i++) {
++                if (xs[s[i]] == xs[s[i + 1]] && ys[i] == ys[i + 1]) {
++                        if (s[i] < s[i + 1])
++                                ss = s[i + 1];
++                        else {
++                                ss = s[i];
++                                s[i] = s[i + 1];
++                        }
++                        for (j = i + 2; j < d; j++) {
++                                ys[j - 1] = ys[j];
++                                s[j - 1] = s[j];
++                        }
++                        for (j = ss + 1; j < d; j++)
++                                xs[j - 1] = xs[j];
++                        for (j = 0; j <= d - 2; j++)
++                                if (s[j] > ss) s[j]--;
++                        i--;
++                        d--;
++                }
++        }
++        return flutes_wl_ALLD(d, xs, ys, s, acc);
++}
++
++// For low-degree, i.e., 2 <= d <= FLUTE_D
++DTYPE flutes_wl_LD(int d, DTYPE xs[], DTYPE ys[], int s[]) {
++        int k, pi, i, j;
++        struct csoln *rlist;
++        DTYPE dd[2 * FLUTE_D - 2];  // 0..FLUTE_D-2 for v, FLUTE_D-1..2*D-3 for h
++        DTYPE minl, sum, l[MPOWV + 1];
++
++        if (d <= 3)
++                minl = xs[d - 1] - xs[0] + ys[d - 1] - ys[0];
++        else {
++                k = 0;
++                if (s[0] < s[2]) k++;
++                if (s[1] < s[2]) k++;
++
++                for (i = 3; i <= d - 1; i++) {  // p0=0 always, skip i=1 for symmetry
++                        pi = s[i];
++                        for (j = d - 1; j > i; j--)
++                                if (s[j] < s[i])
++                                        pi--;
++                        k = pi + (i + 1) * k;
++                }
++
++                if (k < numgrp[d])  // no horizontal flip
++                        for (i = 1; i <= d - 3; i++) {
++                                dd[i] = ys[i + 1] - ys[i];
++                                dd[d - 1 + i] = xs[i + 1] - xs[i];
++                        }
++                else {
++                        k = 2 * numgrp[d] - 1 - k;
++                        for (i = 1; i <= d - 3; i++) {
++                                dd[i] = ys[i + 1] - ys[i];
++                                dd[d - 1 + i] = xs[d - 1 - i] - xs[d - 2 - i];
++                        }
++                }
++
++                minl = l[0] = xs[d - 1] - xs[0] + ys[d - 1] - ys[0];
++                rlist = LUT[d][k];
++                for (i = 0; rlist->seg[i] > 0; i++)
++                        minl += dd[rlist->seg[i]];
++
++                l[1] = minl;
++                j = 2;
++                while (j <= numsoln[d][k]) {
++                        rlist++;
++                        sum = l[rlist->parent];
++                        for (i = 0; rlist->seg[i] > 0; i++)
++                                sum += dd[rlist->seg[i]];
++                        for (i = 10; rlist->seg[i] > 0; i--)
++                                sum -= dd[rlist->seg[i]];
++                        minl = std::min(minl, sum);
++                        l[j++] = sum;
++                }
++        }
++
++        return minl;
++}
++
++// For medium-degree, i.e., FLUTE_D+1 <= d
++DTYPE flutes_wl_MD(int d, DTYPE xs[], DTYPE ys[], int s[], int acc) {
++        float pnlty, dx, dy;
++        float *score, *penalty;
++        DTYPE xydiff;
++        DTYPE ll, minl, extral;
++        DTYPE *x1, *x2, *y1, *y2;
++        DTYPE *distx, *disty;
++        int i, r, p, maxbp, nbp, bp, ub, lb, n1, n2, newacc;
++        int ms, mins, maxs, minsi, maxsi, degree;
++        int return_val;
++        int *si, *s1, *s2;
++        
++        degree = d + 1;
++        score = (float *)malloc(sizeof(float) * (2 * degree));
++        penalty = (float *)malloc(sizeof(float) * (degree));
++        
++        x1 = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        x2 = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        y1 = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        y2 = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        distx = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        disty = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        si = (int *)malloc(sizeof(int) * (degree));
++        s1 = (int *)malloc(sizeof(int) * (degree));
++        s2 = (int *)malloc(sizeof(int) * (degree));
++
++        if (s[0] < s[d - 1]) {
++                ms = std::max(s[0], s[1]);
++                for (i = 2; i <= ms; i++)
++                        ms = std::max(ms, s[i]);
++                if (ms <= d - 3) {
++                        for (i = 0; i <= ms; i++) {
++                                x1[i] = xs[i];
++                                y1[i] = ys[i];
++                                s1[i] = s[i];
++                        }
++                        x1[ms + 1] = xs[ms];
++                        y1[ms + 1] = ys[ms];
++                        s1[ms + 1] = ms + 1;
++
++                        s2[0] = 0;
++                        for (i = 1; i <= d - 1 - ms; i++)
++                                s2[i] = s[i + ms] - ms;
++
++                        return_val = flutes_wl_LMD(ms + 2, x1, y1, s1, acc) +
++                                     flutes_wl_LMD(d - ms, xs + ms, ys + ms, s2, acc);
++                        free(score);
++                        free(penalty);
++                        free(x1);
++                        free(x2);
++                        free(y1);
++                        free(y2);
++                        free(distx);
++                        free(disty);
++                        free(si);
++                        free(s1);
++                        free(s2);
++                        
++                        return return_val;
++                }
++        } else {  // (s[0] > s[d-1])
++                ms = std::min(s[0], s[1]);
++                for (i = 2; i <= d - 1 - ms; i++)
++                        ms = std::min(ms, s[i]);
++                if (ms >= 2) {
++                        x1[0] = xs[ms];
++                        y1[0] = ys[0];
++                        s1[0] = s[0] - ms + 1;
++                        for (i = 1; i <= d - 1 - ms; i++) {
++                                x1[i] = xs[i + ms - 1];
++                                y1[i] = ys[i];
++                                s1[i] = s[i] - ms + 1;
++                        }
++                        x1[d - ms] = xs[d - 1];
++                        y1[d - ms] = ys[d - 1 - ms];
++                        s1[d - ms] = 0;
++
++                        s2[0] = ms;
++                        for (i = 1; i <= ms; i++)
++                                s2[i] = s[i + d - 1 - ms];
++
++                        return_val = flutes_wl_LMD(d + 1 - ms, x1, y1, s1, acc) +
++                                flutes_wl_LMD(ms + 1, xs, ys + d - 1 - ms, s2, acc);
++                        free(score);
++                        free(penalty);
++                        free(x1);
++                        free(x2);
++                        free(y1);
++                        free(y2);
++                        free(distx);
++                        free(disty);
++                        free(si);
++                        free(s1);
++                        free(s2);
++                        return return_val;
++                }
++        }
++
++        // Find inverse si[] of s[]
++        for (r = 0; r < d; r++)
++                si[s[r]] = r;
++
++        // Determine breaking directions and positions dp[]
++        lb = (d - 2 * acc + 2) / 4;
++        if (lb < 2) lb = 2;
++        ub = d - 1 - lb;
++
++// Compute scores
++#define AAWL 0.6
++#define BBWL 0.3
++        float CCWL = 7.4 / ((d + 10.) * (d - 3.));
++        float DDWL = 4.8 / (d - 1);
++
++        // Compute penalty[]
++        dx = CCWL * (xs[d - 2] - xs[1]);
++        dy = CCWL * (ys[d - 2] - ys[1]);
++        for (r = d / 2, pnlty = 0; r >= 0; r--, pnlty += dx)
++                penalty[r] = pnlty, penalty[d - 1 - r] = pnlty;
++        for (r = d / 2 - 1, pnlty = dy; r >= 0; r--, pnlty += dy)
++                penalty[s[r]] += pnlty, penalty[s[d - 1 - r]] += pnlty;
++        //#define CCWL 0.16
++        //    for (r=0; r<d; r++)
++        //        penalty[r] = abs(d-1-r-r)*dx + abs(d-1-si[r]-si[r])*dy;
++
++        // Compute distx[], disty[]
++        xydiff = (xs[d - 1] - xs[0]) - (ys[d - 1] - ys[0]);
++        if (s[0] < s[1])
++                mins = s[0], maxs = s[1];
++        else
++                mins = s[1], maxs = s[0];
++        if (si[0] < si[1])
++                minsi = si[0], maxsi = si[1];
++        else
++                minsi = si[1], maxsi = si[0];
++        for (r = 2; r <= ub; r++) {
++                if (s[r] < mins)
++                        mins = s[r];
++                else if (s[r] > maxs)
++                        maxs = s[r];
++                distx[r] = xs[maxs] - xs[mins];
++                if (si[r] < minsi)
++                        minsi = si[r];
++                else if (si[r] > maxsi)
++                        maxsi = si[r];
++                disty[r] = ys[maxsi] - ys[minsi] + xydiff;
++        }
++
++        if (s[d - 2] < s[d - 1])
++                mins = s[d - 2], maxs = s[d - 1];
++        else
++                mins = s[d - 1], maxs = s[d - 2];
++        if (si[d - 2] < si[d - 1])
++                minsi = si[d - 2], maxsi = si[d - 1];
++        else
++                minsi = si[d - 1], maxsi = si[d - 2];
++        for (r = d - 3; r >= lb; r--) {
++                if (s[r] < mins)
++                        mins = s[r];
++                else if (s[r] > maxs)
++                        maxs = s[r];
++                distx[r] += xs[maxs] - xs[mins];
++                if (si[r] < minsi)
++                        minsi = si[r];
++                else if (si[r] > maxsi)
++                        maxsi = si[r];
++                disty[r] += ys[maxsi] - ys[minsi];
++        }
++
++        nbp = 0;
++        for (r = lb; r <= ub; r++) {
++                if (si[r] == 0 || si[r] == d - 1)
++                        score[nbp] = (xs[r + 1] - xs[r - 1]) - penalty[r]
++                                - AAWL * (ys[d - 2] - ys[1]) - DDWL * disty[r];
++                else score[nbp] = (xs[r + 1] - xs[r - 1]) - penalty[r]
++                                - BBWL * (ys[si[r] + 1] - ys[si[r] - 1]) - DDWL * disty[r];
++                nbp++;
++
++                if (s[r] == 0 || s[r] == d - 1)
++                        score[nbp] = (ys[r + 1] - ys[r - 1]) - penalty[s[r]]
++                                - AAWL * (xs[d - 2] - xs[1]) - DDWL * distx[r];
++                else score[nbp] = (ys[r + 1] - ys[r - 1]) - penalty[s[r]]
++                                - BBWL * (xs[s[r] + 1] - xs[s[r] - 1]) - DDWL * distx[r];
++                nbp++;
++        }
++
++        if (acc <= 3)
++                newacc = 1;
++        else {
++                newacc = acc / 2;
++                if (acc >= nbp) acc = nbp - 1;
++        }
++
++        minl = (DTYPE)INT_MAX;
++        for (i = 0; i < acc; i++) {
++                maxbp = 0;
++                for (bp = 1; bp < nbp; bp++)
++                        if (score[maxbp] < score[bp]) maxbp = bp;
++                score[maxbp] = -9e9;
++
++#define BreakPt(bp) ((bp) / 2 + lb)
++#define BreakInX(bp) ((bp) % 2 == 0)
++                p = BreakPt(maxbp);
++                // Breaking in p
++                if (BreakInX(maxbp)) {  // break in x
++                        n1 = n2 = 0;
++                        for (r = 0; r < d; r++) {
++                                if (s[r] < p) {
++                                        s1[n1] = s[r];
++                                        y1[n1] = ys[r];
++                                        n1++;
++                                } else if (s[r] > p) {
++                                        s2[n2] = s[r] - p;
++                                        y2[n2] = ys[r];
++                                        n2++;
++                                } else {  // if (s[r] == p)  i.e.,  r = si[p]
++                                        s1[n1] = p;
++                                        s2[n2] = 0;
++                                        if (r == d - 1 || r == d - 2) {
++                                                y1[n1] = y2[n2] = ys[r - 1];
++                                                extral = ys[r] - ys[r - 1];
++                                        }
++                                        if (r == 0 || r == 1) {
++                                                y1[n1] = y2[n2] = ys[r + 1];
++                                                extral = ys[r + 1] - ys[r];
++                                        } else {
++                                                y1[n1] = y2[n2] = ys[r];
++                                                extral = 0;
++                                        }
++                                        n1++;
++                                        n2++;
++                                }
++                        }
++                        ll = extral + flutes_wl_LMD(p + 1, xs, y1, s1, newacc) +
++                                flutes_wl_LMD(d - p, xs + p, y2, s2, newacc);
++                } else {  // if (!BreakInX(maxbp))
++                        n1 = n2 = 0;
++                        for (r = 0; r < d; r++) {
++                                if (si[r] < p) {
++                                        s1[si[r]] = n1;
++                                        x1[n1] = xs[r];
++                                        n1++;
++                                } else if (si[r] > p) {
++                                        s2[si[r] - p] = n2;
++                                        x2[n2] = xs[r];
++                                        n2++;
++                                } else {  // if (si[r] == p)  i.e.,  r = s[p]
++                                        s1[p] = n1;
++                                        s2[0] = n2;
++                                        if (r == d - 1 || r == d - 2) {
++                                                x1[n1] = x2[n2] = xs[r - 1];
++                                                extral = xs[r] - xs[r - 1];
++                                        }
++                                        if (r == 0 || r == 1) {
++                                                x1[n1] = x2[n2] = xs[r + 1];
++                                                extral = xs[r + 1] - xs[r];
++                                        } else {
++                                                x1[n1] = x2[n2] = xs[r];
++                                                extral = 0;
++                                        }
++                                        n1++;
++                                        n2++;
++                                }
++                        }
++                        ll = extral + flutes_wl_LMD(p + 1, x1, ys, s1, newacc) +
++                                flutes_wl_LMD(d - p, x2, ys + p, s2, newacc);
++                }
++                if (minl > ll) minl = ll;
++        }
++        return_val = minl;
++        
++        free(score);
++        free(penalty);
++        free(x1);
++        free(x2);
++        free(y1);
++        free(y2);
++        free(distx);
++        free(disty);
++        free(si);
++        free(s1);
++        free(s2);
++        return return_val;
++}
++
++static int orderx(const void *a, const void *b) {
++        struct point *pa, *pb;
++
++        pa = *(struct point **)a;
++        pb = *(struct point **)b;
++
++        if (pa->x < pb->x) return -1;
++        if (pa->x > pb->x) return 1;
++        return 0;
++}
++
++static int ordery(const void *a, const void *b) {
++        struct point *pa, *pb;
++
++        pa = *(struct point **)a;
++        pb = *(struct point **)b;
++
++        if (pa->y < pb->y) return -1;
++        if (pa->y > pb->y) return 1;
++        return 0;
++}
++
++Tree flute(int d, DTYPE x[], DTYPE y[], int acc) {
++        DTYPE *xs, *ys, minval;
++        int *s;
++        int i, j, minidx;
++        struct point *pt, **ptp, *tmpp;
++        Tree t;
++
++        if (d == 2) {
++                t.deg = 2;
++                t.length = ADIFF(x[0], x[1]) + ADIFF(y[0], y[1]);
++                t.branch = (Branch *)malloc(2 * sizeof(Branch));
++                t.branch[0].x = x[0];
++                t.branch[0].y = y[0];
++                t.branch[0].n = 1;
++                t.branch[1].x = x[1];
++                t.branch[1].y = y[1];
++                t.branch[1].n = 1;
++        } else {
++                xs = (DTYPE *)malloc(sizeof(DTYPE) * (d));
++                ys = (DTYPE *)malloc(sizeof(DTYPE) * (d));
++                s = (int *)malloc(sizeof(int) * (d));
++                pt = (struct point *)malloc(sizeof(struct point) * (d + 1));
++                ptp = (struct point **)malloc(sizeof(struct point *) * (d + 1));
++
++                for (i = 0; i < d; i++) {
++                        pt[i].x = x[i];
++                        pt[i].y = y[i];
++                        ptp[i] = &pt[i];
++                }
++
++                // sort x
++                if (d < 200) {
++                        for (i = 0; i < d - 1; i++) {
++                                minval = ptp[i]->x;
++                                minidx = i;
++                                for (j = i + 1; j < d; j++) {
++                                        if (minval > ptp[j]->x) {
++                                                minval = ptp[j]->x;
++                                                minidx = j;
++                                        }
++                                }
++                                tmpp = ptp[i];
++                                ptp[i] = ptp[minidx];
++                                ptp[minidx] = tmpp;
++                        }
++                } else {
++                        qsort(ptp, d, sizeof(struct point *), orderx);
++                }
++
++#if FLUTE_REMOVE_DUPLICATE_PIN == 1
++                ptp[d] = &pt[d];
++                ptp[d]->x = ptp[d]->y = -999999;
++                j = 0;
++                for (i = 0; i < d; i++) {
++                        for (k = i + 1; ptp[k]->x == ptp[i]->x; k++)
++                                if (ptp[k]->y == ptp[i]->y)  // pins k and i are the same
++                                        break;
++                        if (ptp[k]->x != ptp[i]->x)
++                                ptp[j++] = ptp[i];
++                }
++                d = j;
++#endif
++
++                for (i = 0; i < d; i++) {
++                        xs[i] = ptp[i]->x;
++                        ptp[i]->o = i;
++                }
++
++                // sort y to find s[]
++                if (d < 200) {
++                        for (i = 0; i < d - 1; i++) {
++                                minval = ptp[i]->y;
++                                minidx = i;
++                                for (j = i + 1; j < d; j++) {
++                                        if (minval > ptp[j]->y) {
++                                                minval = ptp[j]->y;
++                                                minidx = j;
++                                        }
++                                }
++                                ys[i] = ptp[minidx]->y;
++                                s[i] = ptp[minidx]->o;
++                                ptp[minidx] = ptp[i];
++                        }
++                        ys[d - 1] = ptp[d - 1]->y;
++                        s[d - 1] = ptp[d - 1]->o;
++                } else {
++                        qsort(ptp, d, sizeof(struct point *), ordery);
++                        for (i = 0; i < d; i++) {
++                                ys[i] = ptp[i]->y;
++                                s[i] = ptp[i]->o;
++                        }
++                }
++
++                t = flutes(d, xs, ys, s, acc);
++
++                free(xs);
++                free(ys);
++                free(s);
++                free(pt);
++                free(ptp);
++        }
++
++        return t;
++}
++
++// xs[] and ys[] are coords in x and y in sorted order
++// s[] is a list of nodes in increasing y direction
++//   if nodes are indexed in the order of increasing x coord
++//   i.e., s[i] = s_i as defined in paper
++// The points are (xs[s[i]], ys[i]) for i=0..d-1
++//             or (xs[i], ys[si[i]]) for i=0..d-1
++
++Tree flutes_RDP(int d, DTYPE xs[], DTYPE ys[], int s[], int acc) {
++        int i, j, ss;
++
++        for (i = 0; i < d - 1; i++) {
++                if (xs[s[i]] == xs[s[i + 1]] && ys[i] == ys[i + 1]) {
++                        if (s[i] < s[i + 1])
++                                ss = s[i + 1];
++                        else {
++                                ss = s[i];
++                                s[i] = s[i + 1];
++                        }
++                        for (j = i + 2; j < d; j++) {
++                                ys[j - 1] = ys[j];
++                                s[j - 1] = s[j];
++                        }
++                        for (j = ss + 1; j < d; j++)
++                                xs[j - 1] = xs[j];
++                        for (j = 0; j <= d - 2; j++)
++                                if (s[j] > ss) s[j]--;
++                        i--;
++                        d--;
++                }
++        }
++        return flutes_ALLD(d, xs, ys, s, acc);
++}
++
++// For low-degree, i.e., 2 <= d <= FLUTE_D
++Tree flutes_LD(int d, DTYPE xs[], DTYPE ys[], int s[]) {
++        int k, pi, i, j;
++        struct csoln *rlist, *bestrlist;
++        DTYPE dd[2 * FLUTE_D - 2];  // 0..D-2 for v, D-1..2*D-3 for h
++        DTYPE minl, sum, l[MPOWV + 1];
++        int hflip;
++        Tree t;
++
++        t.deg = d;
++        t.branch = (Branch *)malloc((2 * d - 2) * sizeof(Branch));
++        if (d == 2) {
++                minl = xs[1] - xs[0] + ys[1] - ys[0];
++                t.branch[0].x = xs[s[0]];
++                t.branch[0].y = ys[0];
++                t.branch[0].n = 1;
++                t.branch[1].x = xs[s[1]];
++                t.branch[1].y = ys[1];
++                t.branch[1].n = 1;
++        } else if (d == 3) {
++                minl = xs[2] - xs[0] + ys[2] - ys[0];
++                t.branch[0].x = xs[s[0]];
++                t.branch[0].y = ys[0];
++                t.branch[0].n = 3;
++                t.branch[1].x = xs[s[1]];
++                t.branch[1].y = ys[1];
++                t.branch[1].n = 3;
++                t.branch[2].x = xs[s[2]];
++                t.branch[2].y = ys[2];
++                t.branch[2].n = 3;
++                t.branch[3].x = xs[1];
++                t.branch[3].y = ys[1];
++                t.branch[3].n = 3;
++        } else {
++                k = 0;
++                if (s[0] < s[2]) k++;
++                if (s[1] < s[2]) k++;
++
++                for (i = 3; i <= d - 1; i++) {  // p0=0 always, skip i=1 for symmetry
++                        pi = s[i];
++                        for (j = d - 1; j > i; j--)
++                                if (s[j] < s[i])
++                                        pi--;
++                        k = pi + (i + 1) * k;
++                }
++
++                if (k < numgrp[d]) {  // no horizontal flip
++                        hflip = 0;
++                        for (i = 1; i <= d - 3; i++) {
++                                dd[i] = ys[i + 1] - ys[i];
++                                dd[d - 1 + i] = xs[i + 1] - xs[i];
++                        }
++                } else {
++                        hflip = 1;
++                        k = 2 * numgrp[d] - 1 - k;
++                        for (i = 1; i <= d - 3; i++) {
++                                dd[i] = ys[i + 1] - ys[i];
++                                dd[d - 1 + i] = xs[d - 1 - i] - xs[d - 2 - i];
++                        }
++                }
++
++                minl = l[0] = xs[d - 1] - xs[0] + ys[d - 1] - ys[0];
++                rlist = LUT[d][k];
++                for (i = 0; rlist->seg[i] > 0; i++)
++                        minl += dd[rlist->seg[i]];
++                bestrlist = rlist;
++                l[1] = minl;
++                j = 2;
++                while (j <= numsoln[d][k]) {
++                        rlist++;
++                        sum = l[rlist->parent];
++                        for (i = 0; rlist->seg[i] > 0; i++)
++                                sum += dd[rlist->seg[i]];
++                        for (i = 10; rlist->seg[i] > 0; i--)
++                                sum -= dd[rlist->seg[i]];
++                        if (sum < minl) {
++                                minl = sum;
++                                bestrlist = rlist;
++                        }
++                        l[j++] = sum;
++                }
++
++                t.branch[0].x = xs[s[0]];
++                t.branch[0].y = ys[0];
++                t.branch[1].x = xs[s[1]];
++                t.branch[1].y = ys[1];
++                for (i = 2; i < d - 2; i++) {
++                        t.branch[i].x = xs[s[i]];
++                        t.branch[i].y = ys[i];
++                        t.branch[i].n = bestrlist->neighbor[i];
++                }
++                t.branch[d - 2].x = xs[s[d - 2]];
++                t.branch[d - 2].y = ys[d - 2];
++                t.branch[d - 1].x = xs[s[d - 1]];
++                t.branch[d - 1].y = ys[d - 1];
++                if (hflip) {
++                        if (s[1] < s[0]) {
++                                t.branch[0].n = bestrlist->neighbor[1];
++                                t.branch[1].n = bestrlist->neighbor[0];
++                        } else {
++                                t.branch[0].n = bestrlist->neighbor[0];
++                                t.branch[1].n = bestrlist->neighbor[1];
++                        }
++                        if (s[d - 1] < s[d - 2]) {
++                                t.branch[d - 2].n = bestrlist->neighbor[d - 1];
++                                t.branch[d - 1].n = bestrlist->neighbor[d - 2];
++                        } else {
++                                t.branch[d - 2].n = bestrlist->neighbor[d - 2];
++                                t.branch[d - 1].n = bestrlist->neighbor[d - 1];
++                        }
++                        for (i = d; i < 2 * d - 2; i++) {
++                                t.branch[i].x = xs[d - 1 - bestrlist->rowcol[i - d] % 16];
++                                t.branch[i].y = ys[bestrlist->rowcol[i - d] / 16];
++                                t.branch[i].n = bestrlist->neighbor[i];
++                        }
++                } else {  // !hflip
++                        if (s[0] < s[1]) {
++                                t.branch[0].n = bestrlist->neighbor[1];
++                                t.branch[1].n = bestrlist->neighbor[0];
++                        } else {
++                                t.branch[0].n = bestrlist->neighbor[0];
++                                t.branch[1].n = bestrlist->neighbor[1];
++                        }
++                        if (s[d - 2] < s[d - 1]) {
++                                t.branch[d - 2].n = bestrlist->neighbor[d - 1];
++                                t.branch[d - 1].n = bestrlist->neighbor[d - 2];
++                        } else {
++                                t.branch[d - 2].n = bestrlist->neighbor[d - 2];
++                                t.branch[d - 1].n = bestrlist->neighbor[d - 1];
++                        }
++                        for (i = d; i < 2 * d - 2; i++) {
++                                t.branch[i].x = xs[bestrlist->rowcol[i - d] % 16];
++                                t.branch[i].y = ys[bestrlist->rowcol[i - d] / 16];
++                                t.branch[i].n = bestrlist->neighbor[i];
++                        }
++                }
++        }
++        t.length = minl;
++
++        return t;
++}
++
++// For medium-degree, i.e., FLUTE_D+1 <= d
++Tree flutes_MD(int d, DTYPE xs[], DTYPE ys[], int s[], int acc) 
++{
++        float *score, *penalty, pnlty, dx, dy;
++        int ms, mins, maxs, minsi, maxsi;
++        int i, r, p, maxbp, bestbp, bp, nbp, ub, lb, n1, n2, nn1, nn2, newacc;
++        int *si, *s1, *s2, degree;
++        Tree t, t1, t2, bestt1, bestt2;
++        DTYPE ll, minl, coord1, coord2;
++        DTYPE *distx, *disty, xydiff;
++        DTYPE *x1, *x2, *y1, *y2;
++        
++        degree = d + 1;
++        score = (float *)malloc(sizeof(float) * (2 * degree));
++        penalty = (float *)malloc(sizeof(float) * (degree));
++        
++        x1 = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        x2 = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        y1 = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        y2 = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        distx = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        disty = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        si = (int *)malloc(sizeof(int) * (degree));
++        s1 = (int *)malloc(sizeof(int) * (degree));
++        s2 = (int *)malloc(sizeof(int) * (degree));
++
++        if (s[0] < s[d - 1]) {
++                ms = std::max(s[0], s[1]);
++                for (i = 2; i <= ms; i++)
++                        ms = std::max(ms, s[i]);
++                if (ms <= d - 3) {
++                        for (i = 0; i <= ms; i++) {
++                                x1[i] = xs[i];
++                                y1[i] = ys[i];
++                                s1[i] = s[i];
++                        }
++                        x1[ms + 1] = xs[ms];
++                        y1[ms + 1] = ys[ms];
++                        s1[ms + 1] = ms + 1;
++
++                        s2[0] = 0;
++                        for (i = 1; i <= d - 1 - ms; i++)
++                                s2[i] = s[i + ms] - ms;
++
++                        t1 = flutes_LMD(ms + 2, x1, y1, s1, acc);
++                        t2 = flutes_LMD(d - ms, xs + ms, ys + ms, s2, acc);
++                        t = dmergetree(t1, t2);
++                        free(t1.branch);
++                        free(t2.branch);
++                        
++                        free(score);
++                        free(penalty);
++                        free(x1);
++                        free(x2);
++                        free(y1);
++                        free(y2);
++                        free(distx);
++                        free(disty);
++                        free(si);
++                        free(s1);
++                        free(s2);
++                        
++                        return t;
++                }
++        } else {  // (s[0] > s[d-1])
++                ms = std::min(s[0], s[1]);
++                for (i = 2; i <= d - 1 - ms; i++)
++                        ms = std::min(ms, s[i]);
++                if (ms >= 2) {
++                        x1[0] = xs[ms];
++                        y1[0] = ys[0];
++                        s1[0] = s[0] - ms + 1;
++                        for (i = 1; i <= d - 1 - ms; i++) {
++                                x1[i] = xs[i + ms - 1];
++                                y1[i] = ys[i];
++                                s1[i] = s[i] - ms + 1;
++                        }
++                        x1[d - ms] = xs[d - 1];
++                        y1[d - ms] = ys[d - 1 - ms];
++                        s1[d - ms] = 0;
++
++                        s2[0] = ms;
++                        for (i = 1; i <= ms; i++)
++                                s2[i] = s[i + d - 1 - ms];
++
++                        t1 = flutes_LMD(d + 1 - ms, x1, y1, s1, acc);
++                        t2 = flutes_LMD(ms + 1, xs, ys + d - 1 - ms, s2, acc);
++                        t = dmergetree(t1, t2);
++                        free(t1.branch);
++                        free(t2.branch);
++                        
++                        free(score);
++                        free(penalty);
++                        free(x1);
++                        free(x2);
++                        free(y1);
++                        free(y2);
++                        free(distx);
++                        free(disty);
++                        free(si);
++                        free(s1);
++                        free(s2);
++
++                        return t;
++                }
++        }
++
++        // Find inverse si[] of s[]
++        for (r = 0; r < d; r++)
++                si[s[r]] = r;
++
++        // Determine breaking directions and positions dp[]
++        lb = (d - 2 * acc + 2) / 4;
++        if (lb < 2) lb = 2;
++        ub = d - 1 - lb;
++
++// Compute scores
++#define AA 0.6  // 2.0*BB
++#define BB 0.3
++        float CC = 7.4 / ((d + 10.) * (d - 3.));
++        float DD = 4.8 / (d - 1);
++
++        // Compute penalty[]
++        dx = CC * (xs[d - 2] - xs[1]);
++        dy = CC * (ys[d - 2] - ys[1]);
++        for (r = d / 2, pnlty = 0; r >= 2; r--, pnlty += dx)
++                penalty[r] = pnlty, penalty[d - 1 - r] = pnlty;
++        penalty[1] = pnlty, penalty[d - 2] = pnlty;
++        penalty[0] = pnlty, penalty[d - 1] = pnlty;
++        for (r = d / 2 - 1, pnlty = dy; r >= 2; r--, pnlty += dy)
++                penalty[s[r]] += pnlty, penalty[s[d - 1 - r]] += pnlty;
++        penalty[s[1]] += pnlty, penalty[s[d - 2]] += pnlty;
++        penalty[s[0]] += pnlty, penalty[s[d - 1]] += pnlty;
++        //#define CC 0.16
++        //#define v(r) ((r==0||r==1||r==d-2||r==d-1) ? d-3 : abs(d-1-r-r))
++        //    for (r=0; r<d; r++)
++        //        penalty[r] = v(r)*dx + v(si[r])*dy;
++
++        // Compute distx[], disty[]
++        xydiff = (xs[d - 1] - xs[0]) - (ys[d - 1] - ys[0]);
++        if (s[0] < s[1])
++                mins = s[0], maxs = s[1];
++        else mins = s[1], maxs = s[0];
++        if (si[0] < si[1])
++                minsi = si[0], maxsi = si[1];
++        else minsi = si[1], maxsi = si[0];
++        for (r = 2; r <= ub; r++) {
++                if (s[r] < mins)
++                        mins = s[r];
++                else if (s[r] > maxs)
++                        maxs = s[r];
++                distx[r] = xs[maxs] - xs[mins];
++                if (si[r] < minsi)
++                        minsi = si[r];
++                else if (si[r] > maxsi)
++                        maxsi = si[r];
++                disty[r] = ys[maxsi] - ys[minsi] + xydiff;
++        }
++
++        if (s[d - 2] < s[d - 1])
++                mins = s[d - 2], maxs = s[d - 1];
++        else mins = s[d - 1], maxs = s[d - 2];
++        if (si[d - 2] < si[d - 1])
++                minsi = si[d - 2], maxsi = si[d - 1];
++        else minsi = si[d - 1], maxsi = si[d - 2];
++        for (r = d - 3; r >= lb; r--) {
++                if (s[r] < mins)
++                        mins = s[r];
++                else if (s[r] > maxs)
++                        maxs = s[r];
++                distx[r] += xs[maxs] - xs[mins];
++                if (si[r] < minsi)
++                        minsi = si[r];
++                else if (si[r] > maxsi)
++                        maxsi = si[r];
++                disty[r] += ys[maxsi] - ys[minsi];
++        }
++
++        nbp = 0;
++        for (r = lb; r <= ub; r++) {
++                if (si[r] <= 1)
++                        score[nbp] = (xs[r + 1] - xs[r - 1]) - penalty[r] - AA * (ys[2] - ys[1]) - DD * disty[r];
++                else if (si[r] >= d - 2)
++                        score[nbp] = (xs[r + 1] - xs[r - 1]) - penalty[r] - AA * (ys[d - 2] - ys[d - 3]) - DD * disty[r];
++                else
++                        score[nbp] = (xs[r + 1] - xs[r - 1]) - penalty[r] - BB * (ys[si[r] + 1] - ys[si[r] - 1]) - DD * disty[r];
++                nbp++;
++
++                if (s[r] <= 1)
++                        score[nbp] = (ys[r + 1] - ys[r - 1]) - penalty[s[r]] - AA * (xs[2] - xs[1]) - DD * distx[r];
++                else if (s[r] >= d - 2)
++                        score[nbp] = (ys[r + 1] - ys[r - 1]) - penalty[s[r]] - AA * (xs[d - 2] - xs[d - 3]) - DD * distx[r];
++                else
++                        score[nbp] = (ys[r + 1] - ys[r - 1]) - penalty[s[r]] - BB * (xs[s[r] + 1] - xs[s[r] - 1]) - DD * distx[r];
++                nbp++;
++        }
++
++        if (acc <= 3)
++                newacc = 1;
++        else {
++                newacc = acc / 2;
++                if (acc >= nbp) acc = nbp - 1;
++        }
++
++        minl = (DTYPE)INT_MAX;
++        bestt1.branch = bestt2.branch = NULL;
++        for (i = 0; i < acc; i++) {
++                maxbp = 0;
++                for (bp = 1; bp < nbp; bp++)
++                        if (score[maxbp] < score[bp]) maxbp = bp;
++                score[maxbp] = -9e9;
++
++#define BreakPt(bp) ((bp) / 2 + lb)
++#define BreakInX(bp) ((bp) % 2 == 0)
++                p = BreakPt(maxbp);
++                // Breaking in p
++                if (BreakInX(maxbp)) {  // break in x
++                        n1 = n2 = 0;
++                        for (r = 0; r < d; r++) {
++                                if (s[r] < p) {
++                                        s1[n1] = s[r];
++                                        y1[n1] = ys[r];
++                                        n1++;
++                                } else if (s[r] > p) {
++                                        s2[n2] = s[r] - p;
++                                        y2[n2] = ys[r];
++                                        n2++;
++                                } else {  // if (s[r] == p)  i.e.,  r = si[p]
++                                        s1[n1] = p;
++                                        s2[n2] = 0;
++                                        y1[n1] = y2[n2] = ys[r];
++                                        nn1 = n1;
++                                        nn2 = n2;
++                                        n1++;
++                                        n2++;
++                                }
++                        }
++
++                        t1 = flutes_LMD(p + 1, xs, y1, s1, newacc);
++                        t2 = flutes_LMD(d - p, xs + p, y2, s2, newacc);
++                        ll = t1.length + t2.length;
++                        coord1 = t1.branch[t1.branch[nn1].n].y;
++                        coord2 = t2.branch[t2.branch[nn2].n].y;
++                        if (t2.branch[nn2].y > std::max(coord1, coord2))
++                                ll -= t2.branch[nn2].y - std::max(coord1, coord2);
++                        else if (t2.branch[nn2].y < std::min(coord1, coord2))
++                                ll -= std::min(coord1, coord2) - t2.branch[nn2].y;
++                } else {  // if (!BreakInX(maxbp))
++                        n1 = n2 = 0;
++                        for (r = 0; r < d; r++) {
++                                if (si[r] < p) {
++                                        s1[si[r]] = n1;
++                                        x1[n1] = xs[r];
++                                        n1++;
++                                } else if (si[r] > p) {
++                                        s2[si[r] - p] = n2;
++                                        x2[n2] = xs[r];
++                                        n2++;
++                                } else {  // if (si[r] == p)  i.e.,  r = s[p]
++                                        s1[p] = n1;
++                                        s2[0] = n2;
++                                        x1[n1] = x2[n2] = xs[r];
++                                        n1++;
++                                        n2++;
++                                }
++                        }
++
++                        t1 = flutes_LMD(p + 1, x1, ys, s1, newacc);
++                        t2 = flutes_LMD(d - p, x2, ys + p, s2, newacc);
++                        ll = t1.length + t2.length;
++                        coord1 = t1.branch[t1.branch[p].n].x;
++                        coord2 = t2.branch[t2.branch[0].n].x;
++                        if (t2.branch[0].x > std::max(coord1, coord2))
++                                ll -= t2.branch[0].x - std::max(coord1, coord2);
++                        else if (t2.branch[0].x < std::min(coord1, coord2))
++                                ll -= std::min(coord1, coord2) - t2.branch[0].x;
++                }
++                if (minl > ll) {
++                        minl = ll;
++                        free(bestt1.branch);
++                        free(bestt2.branch);
++                        bestt1 = t1;
++                        bestt2 = t2;
++                        bestbp = maxbp;
++                } else {
++                        free(t1.branch);
++                        free(t2.branch);
++                }
++        }
++
++#if FLUTE_LOCAL_REFINEMENT == 1
++        if (BreakInX(bestbp)) {
++                t = hmergetree(bestt1, bestt2, s);
++                local_refinement(degree, &t, si[BreakPt(bestbp)]);
++        } else {
++                t = vmergetree(bestt1, bestt2);
++                local_refinement(degree, &t, BreakPt(bestbp));
++        }
++#else
++        if (BreakInX(bestbp)) {
++                t = hmergetree(bestt1, bestt2, s);
++        } else {
++                t = vmergetree(bestt1, bestt2);
++        }
++#endif
++
++        free(bestt1.branch);
++        free(bestt2.branch);
++
++        free(score);
++        free(penalty);
++        free(x1);
++        free(x2);
++        free(y1);
++        free(y2);
++        free(distx);
++        free(disty);
++        free(si);
++        free(s1);
++        free(s2);
++        
++        return t;
++}
++
++Tree dmergetree(Tree t1, Tree t2) {
++        int i, d, prev, curr, next, offset1, offset2;
++        Tree t;
++
++        t.deg = d = t1.deg + t2.deg - 2;
++        t.length = t1.length + t2.length;
++        t.branch = (Branch *)malloc((2 * d - 2) * sizeof(Branch));
++        offset1 = t2.deg - 2;
++        offset2 = 2 * t1.deg - 4;
++
++        for (i = 0; i <= t1.deg - 2; i++) {
++                t.branch[i].x = t1.branch[i].x;
++                t.branch[i].y = t1.branch[i].y;
++                t.branch[i].n = t1.branch[i].n + offset1;
++        }
++        for (i = t1.deg - 1; i <= d - 1; i++) {
++                t.branch[i].x = t2.branch[i - t1.deg + 2].x;
++                t.branch[i].y = t2.branch[i - t1.deg + 2].y;
++                t.branch[i].n = t2.branch[i - t1.deg + 2].n + offset2;
++        }
++        for (i = d; i <= d + t1.deg - 3; i++) {
++                t.branch[i].x = t1.branch[i - offset1].x;
++                t.branch[i].y = t1.branch[i - offset1].y;
++                t.branch[i].n = t1.branch[i - offset1].n + offset1;
++        }
++        for (i = d + t1.deg - 2; i <= 2 * d - 3; i++) {
++                t.branch[i].x = t2.branch[i - offset2].x;
++                t.branch[i].y = t2.branch[i - offset2].y;
++                t.branch[i].n = t2.branch[i - offset2].n + offset2;
++        }
++
++        prev = t2.branch[0].n + offset2;
++        curr = t1.branch[t1.deg - 1].n + offset1;
++        next = t.branch[curr].n;
++        while (curr != next) {
++                t.branch[curr].n = prev;
++                prev = curr;
++                curr = next;
++                next = t.branch[curr].n;
++        }
++        t.branch[curr].n = prev;
++
++        return t;
++}
++
++Tree hmergetree(Tree t1, Tree t2, int s[]) {
++        int i, prev, curr, next, extra, offset1, offset2;
++        int p, ii, n1, n2, nn1, nn2;
++        DTYPE coord1, coord2;
++        Tree t;
++
++        t.deg = t1.deg + t2.deg - 1;
++        t.length = t1.length + t2.length;
++        t.branch = (Branch *)malloc((2 * t.deg - 2) * sizeof(Branch));
++        offset1 = t2.deg - 1;
++        offset2 = 2 * t1.deg - 3;
++
++        p = t1.deg - 1;
++        n1 = n2 = 0;
++        for (i = 0; i < t.deg; i++) {
++                if (s[i] < p) {
++                        t.branch[i].x = t1.branch[n1].x;
++                        t.branch[i].y = t1.branch[n1].y;
++                        t.branch[i].n = t1.branch[n1].n + offset1;
++                        n1++;
++                } else if (s[i] > p) {
++                        t.branch[i].x = t2.branch[n2].x;
++                        t.branch[i].y = t2.branch[n2].y;
++                        t.branch[i].n = t2.branch[n2].n + offset2;
++                        n2++;
++                } else {
++                        t.branch[i].x = t2.branch[n2].x;
++                        t.branch[i].y = t2.branch[n2].y;
++                        t.branch[i].n = t2.branch[n2].n + offset2;
++                        nn1 = n1;
++                        nn2 = n2;
++                        ii = i;
++                        n1++;
++                        n2++;
++                }
++        }
++        for (i = t.deg; i <= t.deg + t1.deg - 3; i++) {
++                t.branch[i].x = t1.branch[i - offset1].x;
++                t.branch[i].y = t1.branch[i - offset1].y;
++                t.branch[i].n = t1.branch[i - offset1].n + offset1;
++        }
++        for (i = t.deg + t1.deg - 2; i <= 2 * t.deg - 4; i++) {
++                t.branch[i].x = t2.branch[i - offset2].x;
++                t.branch[i].y = t2.branch[i - offset2].y;
++                t.branch[i].n = t2.branch[i - offset2].n + offset2;
++        }
++        extra = 2 * t.deg - 3;
++        coord1 = t1.branch[t1.branch[nn1].n].y;
++        coord2 = t2.branch[t2.branch[nn2].n].y;
++        if (t2.branch[nn2].y > std::max(coord1, coord2)) {
++                t.branch[extra].y = std::max(coord1, coord2);
++                t.length -= t2.branch[nn2].y - t.branch[extra].y;
++        } else if (t2.branch[nn2].y < std::min(coord1, coord2)) {
++                t.branch[extra].y = std::min(coord1, coord2);
++                t.length -= t.branch[extra].y - t2.branch[nn2].y;
++        } else
++                t.branch[extra].y = t2.branch[nn2].y;
++        t.branch[extra].x = t2.branch[nn2].x;
++        t.branch[extra].n = t.branch[ii].n;
++        t.branch[ii].n = extra;
++
++        prev = extra;
++        curr = t1.branch[nn1].n + offset1;
++        next = t.branch[curr].n;
++        while (curr != next) {
++                t.branch[curr].n = prev;
++                prev = curr;
++                curr = next;
++                next = t.branch[curr].n;
++        }
++        t.branch[curr].n = prev;
++
++        return t;
++}
++
++Tree vmergetree(Tree t1, Tree t2) {
++        int i, prev, curr, next, extra, offset1, offset2;
++        DTYPE coord1, coord2;
++        Tree t;
++
++        t.deg = t1.deg + t2.deg - 1;
++        t.length = t1.length + t2.length;
++        t.branch = (Branch *)malloc((2 * t.deg - 2) * sizeof(Branch));
++        offset1 = t2.deg - 1;
++        offset2 = 2 * t1.deg - 3;
++
++        for (i = 0; i <= t1.deg - 2; i++) {
++                t.branch[i].x = t1.branch[i].x;
++                t.branch[i].y = t1.branch[i].y;
++                t.branch[i].n = t1.branch[i].n + offset1;
++        }
++        for (i = t1.deg - 1; i <= t.deg - 1; i++) {
++                t.branch[i].x = t2.branch[i - t1.deg + 1].x;
++                t.branch[i].y = t2.branch[i - t1.deg + 1].y;
++                t.branch[i].n = t2.branch[i - t1.deg + 1].n + offset2;
++        }
++        for (i = t.deg; i <= t.deg + t1.deg - 3; i++) {
++                t.branch[i].x = t1.branch[i - offset1].x;
++                t.branch[i].y = t1.branch[i - offset1].y;
++                t.branch[i].n = t1.branch[i - offset1].n + offset1;
++        }
++        for (i = t.deg + t1.deg - 2; i <= 2 * t.deg - 4; i++) {
++                t.branch[i].x = t2.branch[i - offset2].x;
++                t.branch[i].y = t2.branch[i - offset2].y;
++                t.branch[i].n = t2.branch[i - offset2].n + offset2;
++        }
++        extra = 2 * t.deg - 3;
++        coord1 = t1.branch[t1.branch[t1.deg - 1].n].x;
++        coord2 = t2.branch[t2.branch[0].n].x;
++        if (t2.branch[0].x > std::max(coord1, coord2)) {
++                t.branch[extra].x = std::max(coord1, coord2);
++                t.length -= t2.branch[0].x - t.branch[extra].x;
++        } else if (t2.branch[0].x < std::min(coord1, coord2)) {
++                t.branch[extra].x = std::min(coord1, coord2);
++                t.length -= t.branch[extra].x - t2.branch[0].x;
++        } else
++                t.branch[extra].x = t2.branch[0].x;
++        t.branch[extra].y = t2.branch[0].y;
++        t.branch[extra].n = t.branch[t1.deg - 1].n;
++        t.branch[t1.deg - 1].n = extra;
++
++        prev = extra;
++        curr = t1.branch[t1.deg - 1].n + offset1;
++        next = t.branch[curr].n;
++        while (curr != next) {
++                t.branch[curr].n = prev;
++                prev = curr;
++                curr = next;
++                next = t.branch[curr].n;
++        }
++        t.branch[curr].n = prev;
++
++        return t;
++}
++
++void local_refinement(int deg, Tree *tp, int p) {
++        int d, dd, i, ii, j, prev, curr, next, root;
++        int *SteinerPin, *index, *ss, degree;
++        DTYPE *x, *xs, *ys;
++        Tree tt;
++        
++        degree = deg + 1;
++        SteinerPin = (int *)malloc(sizeof(int) * (2 * degree));
++        index = (int *)malloc(sizeof(int) * (2 * degree));
++        x = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        xs = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        ys = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++        ss = (DTYPE *)malloc(sizeof(DTYPE) * (degree));
++
++        d = tp->deg;
++        root = tp->branch[p].n;
++
++        // Reverse edges to point to root
++        prev = root;
++        curr = tp->branch[prev].n;
++        next = tp->branch[curr].n;
++        while (curr != next) {
++                tp->branch[curr].n = prev;
++                prev = curr;
++                curr = next;
++                next = tp->branch[curr].n;
++        }
++        tp->branch[curr].n = prev;
++        tp->branch[root].n = root;
++
++        // Find Steiner nodes that are at pins
++        for (i = d; i <= 2 * d - 3; i++)
++                SteinerPin[i] = -1;
++        for (i = 0; i < d; i++) {
++                next = tp->branch[i].n;
++                if (tp->branch[i].x == tp->branch[next].x &&
++                    tp->branch[i].y == tp->branch[next].y)
++                        SteinerPin[next] = i;  // Steiner 'next' at Pin 'i'
++        }
++        SteinerPin[root] = p;
++
++        // Find pins that are directly connected to root
++        dd = 0;
++        for (i = 0; i < d; i++) {
++                curr = tp->branch[i].n;
++                if (SteinerPin[curr] == i)
++                        curr = tp->branch[curr].n;
++                while (SteinerPin[curr] < 0)
++                        curr = tp->branch[curr].n;
++                if (curr == root) {
++                        x[dd] = tp->branch[i].x;
++                        if (SteinerPin[tp->branch[i].n] == i && tp->branch[i].n != root)
++                                index[dd++] = tp->branch[i].n;  // Steiner node
++                        else index[dd++] = i;  // Pin
++                }
++        }
++
++        if (4 <= dd && dd <= FLUTE_D) {
++                // Find Steiner nodes that are directly connected to root
++                ii = dd;
++                for (i = 0; i < dd; i++) {
++                        curr = tp->branch[index[i]].n;
++                        while (SteinerPin[curr] < 0) {
++                                index[ii++] = curr;
++                                SteinerPin[curr] = INT_MAX;
++                                curr = tp->branch[curr].n;
++                        }
++                }
++                index[ii] = root;
++
++                for (ii = 0; ii < dd; ii++) {
++                        ss[ii] = 0;
++                        for (j = 0; j < ii; j++)
++                                if (x[j] < x[ii])
++                                        ss[ii]++;
++                        for (j = ii + 1; j < dd; j++)
++                                if (x[j] <= x[ii])
++                                        ss[ii]++;
++                        xs[ss[ii]] = x[ii];
++                        ys[ii] = tp->branch[index[ii]].y;
++                }
++
++                tt = flutes_LD(dd, xs, ys, ss);
++
++                // Find new wirelength
++                tp->length += tt.length;
++                for (ii = 0; ii < 2 * dd - 3; ii++) {
++                        i = index[ii];
++                        j = tp->branch[i].n;
++                        tp->length -= ADIFF(tp->branch[i].x, tp->branch[j].x)
++                                + ADIFF(tp->branch[i].y, tp->branch[j].y);
++                }
++
++                // Copy tt into t
++                for (ii = 0; ii < dd; ii++) {
++                        tp->branch[index[ii]].n = index[tt.branch[ii].n];
++                }
++                for (; ii <= 2 * dd - 3; ii++) {
++                        tp->branch[index[ii]].x = tt.branch[ii].x;
++                        tp->branch[index[ii]].y = tt.branch[ii].y;
++                        tp->branch[index[ii]].n = index[tt.branch[ii].n];
++                }
++                free(tt.branch);
++        }
++
++        free(SteinerPin);
++        free(index);
++        free(x);
++        free(xs);
++        free(ys);
++        free(ss);
++        
++        return;
++}
++
++DTYPE wirelength(Tree t) {
++        int i, j;
++        DTYPE l = 0;
++
++        for (i = 0; i < 2 * t.deg - 2; i++) {
++                j = t.branch[i].n;
++                l += ADIFF(t.branch[i].x, t.branch[j].x) + ADIFF(t.branch[i].y, t.branch[j].y);
++        }
++
++        return l;
++}
++
++void printtree(Tree t) {
++        int i;
++
++        for (i = 0; i < t.deg; i++)
++                printf(" %-2d:  x=%4g  y=%4g  e=%d\n",
++                       i, (float)t.branch[i].x, (float)t.branch[i].y, t.branch[i].n);
++        for (i = t.deg; i < 2 * t.deg - 2; i++)
++                printf("s%-2d:  x=%4g  y=%4g  e=%d\n",
++                       i, (float)t.branch[i].x, (float)t.branch[i].y, t.branch[i].n);
++        printf("\n");
++}
++
++// Output in a format that can be plotted by gnuplot
++void plottree(Tree t) {
++        int i;
++
++        for (i = 0; i < 2 * t.deg - 2; i++) {
++                printf("%d %d\n", t.branch[i].x, t.branch[i].y);
++                printf("%d %d\n\n", t.branch[t.branch[i].n].x,
++                       t.branch[t.branch[i].n].y);
++        }
++}
++
++void free_tree(Tree t) {
++        if(t.deg > 0){
++                free(t.branch);
++        }
++        
++        t.deg = 0 ;
++}
++}  // namespace Flute
+diff --git a/vpr/src/route/h3d_flute.h b/vpr/src/route/h3d_flute.h
+new file mode 100644
+index 0000000..a88e795
+--- /dev/null
++++ b/vpr/src/route/h3d_flute.h
+@@ -0,0 +1,126 @@
++#pragma once
++
++////////////////////////////////////////////////////////////////////////////////
++// BSD 3-Clause License
++//
++// Copyright (c) 2018, Iowa State University All rights reserved.
++//
++// Redistribution and use in source and binary forms, with or without
++// modification, are permitted provided that the following conditions are met:
++//
++// * Redistributions of source code must retain the above copyright notice,
++// this list of conditions and the following disclaimer.
++//
++// * Redistributions in binary form must reproduce the above copyright notice,
++// this list of conditions and the following disclaimer in the documentation
++// and/or other materials provided with the distribution.
++//
++// * Neither the name of the copyright holder nor the names of its contributors
++// may be used to endorse or promote products derived from this software
++// without specific prior written permission.
++//
++// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
++// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
++// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
++// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
++// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
++// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
++// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
++// USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++////////////////////////////////////////////////////////////////////////////////
++
++#ifndef __FLUTE_H__
++#define __FLUTE_H__
++
++namespace Flute {
++
++/*****************************/
++/*  User-Defined Parameters  */
++/*****************************/
++#define FLUTE_ACCURACY 10             // Default accuracy
++#define FLUTE_ROUTING 1               // 1 to construct routing, 0 to estimate WL only
++#define FLUTE_LOCAL_REFINEMENT 1      // Suggestion: Set to 1 if ACCURACY >= 5
++#define FLUTE_REMOVE_DUPLICATE_PIN 0  // Remove dup. pin for flute_wl() & flute()
++
++#define FLUTE_POWVFILE "../../../POWV9.dat"  // LUT for POWV (Wirelength Vector)
++#define FLUTE_POSTFILE "../../../POST9.dat"  // LUT for POST (Steiner Tree)
++#define FLUTE_D 9                   // LUT is used for d <= FLUTE_D, FLUTE_D <= 9
++
++typedef int DTYPE;
++
++typedef struct {
++        DTYPE x, y;  // starting point of the branch
++        int n;       // index of neighbor
++} Branch;
++
++typedef struct {
++        int deg;         // degree
++        DTYPE length;    // total wirelength
++        Branch *branch;  // array of tree branches
++} Tree;
++
++// User-Callable Functions
++void readLUT(const char* directory);
++DTYPE flute_wl(int d, DTYPE x[], DTYPE y[], int acc);
++Tree flute(int d, DTYPE x[], DTYPE y[], int acc);
++DTYPE wirelength(Tree t);
++void printtree(Tree t);
++void plottree(Tree t);
++void free_tree(Tree t);
++
++// Other useful functions
++DTYPE flutes_wl_LD(int d, DTYPE xs[], DTYPE ys[], int s[]);
++DTYPE flutes_wl_MD(int d, DTYPE xs[], DTYPE ys[], int s[], int acc);
++DTYPE flutes_wl_RDP(int d, DTYPE xs[], DTYPE ys[], int s[], int acc);
++Tree flutes_LD(int d, DTYPE xs[], DTYPE ys[], int s[]);
++Tree flutes_MD(int d, DTYPE xs[], DTYPE ys[], int s[], int acc);
++Tree flutes_HD(int d, DTYPE xs[], DTYPE ys[], int s[], int acc);
++Tree flutes_RDP(int d, DTYPE xs[], DTYPE ys[], int s[], int acc);
++
++inline DTYPE flutes_wl_LMD(int d, DTYPE xs[], DTYPE ys[], int s[], int acc) {
++        if (d <= FLUTE_D) {
++                return flutes_wl_LD(d, xs, ys, s);
++        } else {
++                return flutes_wl_MD(d, xs, ys, s, acc);
++        }
++}
++
++inline DTYPE flutes_wl_ALLD(int d, DTYPE xs[], DTYPE ys[], int s[], int acc) {
++        return flutes_wl_LMD(d, xs, ys, s, acc);
++}
++
++inline DTYPE flutes_wl(int d, DTYPE xs[], DTYPE ys[], int s[], int acc) {
++        if (FLUTE_REMOVE_DUPLICATE_PIN == 1) {
++                return flutes_wl_RDP(d, xs, ys, s, acc);
++        } else {
++                return flutes_wl_ALLD(d, xs, ys, s, acc);
++        }
++}
++
++inline Tree flutes_ALLD(int d, DTYPE xs[], DTYPE ys[], int s[], int acc) {
++        if (d <= FLUTE_D) {
++                return flutes_LD(d, xs, ys, s);
++        } else {
++                return flutes_MD(d, xs, ys, s, acc);
++        }
++}
++
++inline Tree flutes(int d, DTYPE xs[], DTYPE ys[], int s[], int acc) {
++        if (FLUTE_REMOVE_DUPLICATE_PIN == 1) {
++                return flutes_RDP(d, xs, ys, s, acc);
++        } else {
++                return flutes_ALLD(d, xs, ys, s, acc);
++        }
++}
++
++inline Tree flutes_LMD(int d, DTYPE xs[], DTYPE ys[], int s[], int acc) {
++        if (d <= FLUTE_D) {
++                return flutes_LD(d, xs, ys, s);
++        } else {
++                return flutes_MD(d, xs, ys, s, acc);
++        }
++}
++}  // namespace Flute
++#endif /* __FLUTE_H__ */
+diff --git a/vpr/src/route/h3d_partition_dp.h b/vpr/src/route/h3d_partition_dp.h
+new file mode 100644
+index 0000000..11fe1dc
+--- /dev/null
++++ b/vpr/src/route/h3d_partition_dp.h
+@@ -0,0 +1,144 @@
++#pragma once
++
++#include <algorithm>
++#include <cmath>
++#include <limits>
++#include <utility>
++#include <vector>
++
++#include "vtr_assert.h"
++
++/** @brief A verified candidate's sink-side cost in the planning surrogate. */
++struct t_h3d_candidate_cost {
++    size_t channel;     ///< Index in the planner's candidate table, not an RR node id.
++    double branch_cost; ///< Nonnegative sink-side surrogate cost; not final RC timing.
++};
++
++/** @brief One remote terminal and its individually reachable candidate channels. */
++struct t_h3d_plan_leaf {
++    int pin;                                      ///< Net pin index, unique among the leaves.
++    int x;                                        ///< Sink x coordinate for deterministic spatial hierarchy.
++    int y;                                        ///< Sink y coordinate for deterministic spatial hierarchy.
++    std::vector<t_h3d_candidate_cost> candidates; ///< Sorted by channel, with no duplicate channels.
++};
++
++/** @brief Optimal plan within a fixed hierarchy and finite candidate sets. */
++struct t_h3d_partition_plan {
++    double cost = std::numeric_limits<double>::infinity(); ///< Surrogate objective, including each selected group opening.
++    std::vector<std::pair<int, size_t>> assignment;        ///< Net pin to preferred physical-channel table index.
++    size_t groups = 0;                                     ///< Number of shared groups in the hierarchical partition.
++};
++
++namespace h3d_detail {
++
++/** @brief A subtree optimum and costs if all of its leaves share each common candidate. */
++struct t_partial_plan {
++    t_h3d_partition_plan best;                      ///< Shared-versus-split optimum.
++    std::vector<t_h3d_candidate_cost> common_costs; ///< Sum of branch costs over all leaves for each common candidate.
++};
++
++/** @brief Recursively compare one shared crossing with the two child plans.
++ *
++ * Leaves are split by median along the wider coordinate range. The recurrence
++ * is exact only for this fixed hierarchy and the supplied additive surrogate:
++ * D(v) = min(min_c(open[c] + sum_{i in v} branch[i,c]), D(left)+D(right)).
++ * Each shared candidate must be present in every descendant leaf's feasible set.
++ * Neither arbitrary subset partitions nor joint detailed routing are optimized.
++ */
++inline t_partial_plan solve_partition(std::vector<t_h3d_plan_leaf> leaves,
++                                      const std::vector<double>& opening_cost) {
++    VTR_ASSERT(!leaves.empty());
++    t_partial_plan result;
++    if (leaves.size() == 1) {
++        result.common_costs = leaves.front().candidates;
++    } else {
++        int xmin = leaves.front().x;
++        int xmax = xmin;
++        int ymin = leaves.front().y;
++        int ymax = ymin;
++        for (const auto& leaf : leaves) {
++            xmin = std::min(xmin, leaf.x);
++            xmax = std::max(xmax, leaf.x);
++            ymin = std::min(ymin, leaf.y);
++            ymax = std::max(ymax, leaf.y);
++        }
++        bool split_x = xmax - xmin >= ymax - ymin;
++        std::stable_sort(leaves.begin(), leaves.end(), [split_x](const auto& lhs, const auto& rhs) {
++            if (split_x && lhs.x != rhs.x)
++                return lhs.x < rhs.x;
++            if (!split_x && lhs.y != rhs.y)
++                return lhs.y < rhs.y;
++            return lhs.pin < rhs.pin;
++        });
++        auto midpoint = leaves.begin() + leaves.size() / 2;
++        t_partial_plan left = solve_partition({leaves.begin(), midpoint}, opening_cost);
++        t_partial_plan right = solve_partition({midpoint, leaves.end()}, opening_cost);
++
++        result.best.cost = left.best.cost + right.best.cost;
++        if (std::isfinite(result.best.cost)) {
++            result.best.assignment = std::move(left.best.assignment);
++            result.best.assignment.insert(result.best.assignment.end(), right.best.assignment.begin(), right.best.assignment.end());
++            result.best.groups = left.best.groups + right.best.groups;
++        }
++
++        // Only intersect verified sets. A missing candidate is infeasible for
++        // this subtree; geometric proximity is never a connectivity proof.
++        size_t i = 0;
++        size_t j = 0;
++        while (i < left.common_costs.size() && j < right.common_costs.size()) {
++            const auto& a = left.common_costs[i];
++            const auto& b = right.common_costs[j];
++            if (a.channel < b.channel) {
++                ++i;
++            } else if (a.channel > b.channel) {
++                ++j;
++            } else {
++                result.common_costs.push_back({a.channel, a.branch_cost + b.branch_cost});
++                ++i;
++                ++j;
++            }
++        }
++    }
++
++    for (const auto& candidate : result.common_costs) {
++        VTR_ASSERT(candidate.channel < opening_cost.size());
++        double shared_cost = opening_cost[candidate.channel] + candidate.branch_cost;
++        // Prefer a shared group on a tie, then the lower candidate index.
++        if (shared_cost < result.best.cost || (shared_cost == result.best.cost && result.best.groups > 1)) {
++            result.best.cost = shared_cost;
++            result.best.groups = 1;
++            result.best.assignment.clear();
++            for (const auto& leaf : leaves)
++                result.best.assignment.emplace_back(leaf.pin, candidate.channel);
++        }
++    }
++    return result;
++}
++
++} // namespace h3d_detail
++
++/** @brief Plan shared or split vertical channels using a finite hierarchical DP.
++ *
++ * Opening costs include the source-side access and one channel charge. Branch
++ * costs are counted for each terminal, so downstream shared wires/RC loads are
++ * not modeled exactly. A non-finite optimum means this restricted candidate
++ * problem has no plan; it is never proof that the RRG is unroutable.
++ */
++inline t_h3d_partition_plan h3d_plan_partition(const std::vector<t_h3d_plan_leaf>& leaves,
++                                               const std::vector<double>& opening_cost) {
++    if (leaves.empty())
++        return {0., {}, 0};
++    for (double cost : opening_cost)
++        VTR_ASSERT(std::isfinite(cost) && cost >= 0.);
++    for (const auto& leaf : leaves) {
++        for (size_t i = 0; i < leaf.candidates.size(); ++i) {
++            const auto& candidate = leaf.candidates[i];
++            VTR_ASSERT(candidate.channel < opening_cost.size());
++            VTR_ASSERT(std::isfinite(candidate.branch_cost) && candidate.branch_cost >= 0.);
++            VTR_ASSERT(i == 0 || leaf.candidates[i - 1].channel < candidate.channel);
++        }
++    }
++    t_h3d_partition_plan result = h3d_detail::solve_partition(leaves, opening_cost).best;
++    std::sort(result.assignment.begin(), result.assignment.end());
++    return result;
++}
+diff --git a/vpr/src/route/h3d_reachability.h b/vpr/src/route/h3d_reachability.h
+new file mode 100644
+index 0000000..595d539
+--- /dev/null
++++ b/vpr/src/route/h3d_reachability.h
+@@ -0,0 +1,144 @@
++#pragma once
++
++#include <algorithm>
++#include <cstddef>
++#include <numeric>
++#include <utility>
++#include <vector>
++
++#include "vtr_assert.h"
++
++/** @brief Exact directed reachability through a strongly connected component DAG.
++ *
++ * Vertex numbers here are generic graph indices. The VPR adapter supplies only
++ * same-layer non-CHANZ edges, so SCC membership certifies a same-die walk without
++ * inventing a reverse routing transition. No shortest-distance claim is made.
++ */
++class H3dReachabilityIndex {
++  public:
++    /** @brief Build SCCs iteratively (no deep recursion) and deduplicated DAGs. */
++    H3dReachabilityIndex(size_t vertices, const std::vector<std::pair<size_t, size_t>>& edges) {
++        std::vector<size_t> out_begin(vertices + 1, 0), in_begin(vertices + 1, 0);
++        for (const auto& [source, sink] : edges) {
++            VTR_ASSERT(source < vertices && sink < vertices);
++            ++out_begin[source + 1];
++            ++in_begin[sink + 1];
++        }
++        std::partial_sum(out_begin.begin(), out_begin.end(), out_begin.begin());
++        std::partial_sum(in_begin.begin(), in_begin.end(), in_begin.begin());
++        std::vector<size_t> successors(edges.size()), predecessors(edges.size());
++        auto out_cursor = out_begin;
++        auto in_cursor = in_begin;
++        for (const auto& [source, sink] : edges) {
++            successors[out_cursor[source]++] = sink;
++            predecessors[in_cursor[sink]++] = source;
++        }
++        std::vector<bool> seen(vertices, false);
++        std::vector<size_t> order;
++        order.reserve(vertices);
++        for (size_t root = 0; root < vertices; ++root) {
++            if (seen[root]) continue;
++            std::vector<std::pair<size_t, size_t>> stack{{root, out_begin[root]}};
++            seen[root] = true;
++            while (!stack.empty()) {
++                auto& [node, cursor] = stack.back();
++                if (cursor == out_begin[node + 1]) {
++                    order.push_back(node);
++                    stack.pop_back();
++                } else {
++                    size_t next = successors[cursor++];
++                    if (!seen[next]) {
++                        seen[next] = true;
++                        stack.emplace_back(next, out_begin[next]);
++                    }
++                }
++            }
++        }
++        components_.assign(vertices, -1);
++        int component_count = 0;
++        for (auto root = order.rbegin(); root != order.rend(); ++root) {
++            if (components_[*root] >= 0) continue;
++            std::vector<size_t> stack{*root};
++            components_[*root] = component_count;
++            while (!stack.empty()) {
++                size_t node = stack.back();
++                stack.pop_back();
++                for (size_t edge = in_begin[node]; edge < in_begin[node + 1]; ++edge) {
++                    size_t next = predecessors[edge];
++                    if (components_[next] < 0) {
++                        components_[next] = component_count;
++                        stack.push_back(next);
++                    }
++                }
++            }
++            ++component_count;
++        }
++        forward_.resize(component_count);
++        reverse_.resize(component_count);
++        for (const auto& [source, sink] : edges) {
++            int a = components_[source];
++            int b = components_[sink];
++            if (a != b) forward_[a].push_back(b);
++        }
++        for (int a = 0; a < component_count; ++a) {
++            auto& outgoing = forward_[a];
++            std::sort(outgoing.begin(), outgoing.end());
++            outgoing.erase(std::unique(outgoing.begin(), outgoing.end()), outgoing.end());
++            for (int b : outgoing)
++                reverse_[b].push_back(a);
++        }
++    }
++
++    /** @brief Map a graph vertex to its strongly connected component. */
++    int component(size_t vertex) const { return components_.at(vertex); }
++
++    /** @brief Number of components in the condensation graph. */
++    size_t num_components() const { return forward_.size(); }
++
++    /** @brief Mark components reachable from several seeds in a chosen direction. */
++    std::vector<bool> mark(const std::vector<int>& seeds, bool backwards) const {
++        const auto& adjacency = backwards ? reverse_ : forward_;
++        std::vector<bool> result(adjacency.size(), false);
++        std::vector<int> queue;
++        for (int seed : seeds) {
++            if (!result[seed]) {
++                result[seed] = true;
++                queue.push_back(seed);
++            }
++        }
++        for (size_t i = 0; i < queue.size(); ++i)
++            for (int next : adjacency[queue[i]])
++                if (!result[next]) {
++                    result[next] = true;
++                    queue.push_back(next);
++                }
++        return result;
++    }
++
++    /** @brief Reach only relevant components; allowed must be closed toward the target seeds.
++     *
++     * For source-to-Z queries, allowed is the reverse reachability closure of
++     * all Z-entry components; for Z-to-sink queries it is the forward closure
++     * of all Z-exit components. This skips terminal dead ends without dropping
++     * a valid route to/from a channel. Result is sorted for exact intersection.
++     */
++    std::vector<int> relevant_components(size_t vertex, bool backwards, const std::vector<bool>& allowed) const {
++        const auto& adjacency = backwards ? reverse_ : forward_;
++        int root = component(vertex);
++        if (!allowed[root]) return {};
++        std::vector<int> visited{root};
++        // Relevant pin-to-wire DAGs are small. Keeping the work set sparse
++        // avoids clearing a device-sized bitmap for every endpoint query.
++        for (size_t i = 0; i < visited.size(); ++i)
++            for (int next : adjacency[visited[i]])
++                if (allowed[next] && std::find(visited.begin(), visited.end(), next) == visited.end())
++                    visited.push_back(next);
++        std::sort(visited.begin(), visited.end());
++        return visited;
++    }
++
++  private:
++    std::vector<int> components_;           ///< Component id for every generic input vertex.
++    std::vector<std::vector<int>> forward_; ///< Deduplicated DAG successors.
++    std::vector<std::vector<int>> reverse_; ///< DAG predecessors, used only for analysis.
++};
+diff --git a/vpr/src/route/h3d_routing.cpp b/vpr/src/route/h3d_routing.cpp
+new file mode 100644
+index 0000000..841ccda
+--- /dev/null
++++ b/vpr/src/route/h3d_routing.cpp
+@@ -0,0 +1,472 @@
++#include "h3d_routing.h"
++
++#include <cerrno>
++#include <cmath>
++#include <cstdlib>
++#include <chrono>
++#include <memory>
++#include <numeric>
++#include <set>
++#include <string>
++#include <unordered_map>
++
++#include "globals.h"
++#include "h3d_partition_dp.h"
++#include "h3d_fast_plan.h"
++#include "route_common.h"
++#include "route_tree.h"
++#include "vpr_error.h"
++#include "vtr_log.h"
++
++namespace {
++
++/** @brief Strictly parse a finite nonnegative experiment setting. */
++float read_number(const char* name, float default_value) {
++    const char* text = std::getenv(name);
++    if (!text)
++        return default_value;
++    errno = 0;
++    char* end = nullptr;
++    float parsed = std::strtof(text, &end);
++    if (errno || end == text || *end || !std::isfinite(parsed) || parsed < 0.f)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "%s must be finite and nonnegative, got '%s'", name, text);
++    return parsed;
++}
++
++/** @brief Explicit experimental modes; the detailed connection search is always VPR's. */
++enum class e_h3d_mode { OFF,
++                        CANDIDATES,
++                        STATIC,
++                        DYNAMIC,
++                        DYNAMIC_WHOLE,
++                        DYNAMIC_SUBTREE };
++
++/** @brief Immutable per-process settings, recorded at the first routing iteration. */
++struct t_settings {
++    bool use_scc = false;              ///< Exact SCC reachability with geometric costs instead of full BFS distances.
++    e_h3d_mode mode = e_h3d_mode::OFF; ///< Candidate-planning ablation.
++    size_t candidates = 8;             ///< Diverse preferred candidates per remote terminal.
++    float miss_weight = 2.f;           ///< Additional relative CHANZ cost outside the preference set.
++    float opening_weight = 8.f;        ///< Channel-opening weight in hop-cost planning units.
++};
++
++/** @brief Parse modes exactly; misspellings must not silently run the baseline. */
++const t_settings& settings() {
++    static const t_settings value = [] {
++        t_settings result;
++        const char* env = std::getenv("VPR_H3D_MODE");
++        std::string mode = env ? env : "off";
++        if (mode == "off")
++            result.mode = e_h3d_mode::OFF;
++        else if (mode == "candidates")
++            result.mode = e_h3d_mode::CANDIDATES;
++        else if (mode == "static")
++            result.mode = e_h3d_mode::STATIC;
++        else if (mode == "dynamic")
++            result.mode = e_h3d_mode::DYNAMIC;
++        else if (mode == "dynamic_whole")
++            result.mode = e_h3d_mode::DYNAMIC_WHOLE;
++        else if (mode == "dynamic_subtree")
++            result.mode = e_h3d_mode::DYNAMIC_SUBTREE;
++        else
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Unknown VPR_H3D_MODE '%s'", mode.c_str());
++        float candidates = read_number("VPR_H3D_CANDIDATES", 8.f);
++        if (candidates < 1.f || candidates > 64.f || std::floor(candidates) != candidates)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_CANDIDATES must be an integer in [1,64]");
++        result.candidates = static_cast<size_t>(candidates);
++        result.miss_weight = read_number("VPR_H3D_MISS_WEIGHT", 2.f);
++        result.opening_weight = read_number("VPR_H3D_OPENING_WEIGHT", 8.f);
++        const char* search = std::getenv("VPR_H3D_REACHABILITY");
++        std::string reachability = search ? search : "bfs";
++        if (reachability != "bfs" && reachability != "scc")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_REACHABILITY must be bfs or scc");
++        result.use_scc = reachability == "scc";
++        return result;
++    }();
++    return value;
++}
++
++/** @brief Persistent exact reachability caches and per-net surrogate plans.
++ *
++ * Searches stay on the starting die and stop on first entering CHANZ. A forward
++ * source search and reverse sink search therefore certify a real single-crossing
++ * walk. Congestion never removes candidates. Reverse CSR is only an auxiliary
++ * index of the unchanged RRG; it does not create legal reverse routing edges.
++ */
++class H3dPlanner {
++  public:
++    /** @brief Build a reverse-edge CSR and identify native physical channels. */
++    H3dPlanner() {
++        auto start = std::chrono::steady_clock::now();
++        const auto& graph = g_vpr_ctx.device().rr_graph;
++        size_t count = graph.num_nodes();
++        reverse_start_.resize(count, 0);
++        reverse_count_.resize(count, 0);
++        z_index_.resize(count, -1);
++        distance_.resize(count, -1);
++        for (RRNodeId node : graph.nodes()) {
++            if (graph.node_type(node) == e_rr_type::CHANZ) {
++                z_index_[node] = channels_.size();
++                channels_.push_back(node);
++            }
++            for (auto edge : graph.node_out_edges(node))
++                ++reverse_count_[graph.edge_sink_node(node, edge)];
++        }
++        if (settings().use_scc) {
++            fast_plan_ = std::make_unique<H3dFastPlan>(graph);
++            reverse_start_.clear();
++            reverse_count_.clear();
++            distance_.clear();
++            planning_seconds_ += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
++            VTR_LOG("H3D_INIT reachability=scc channels=%zu init_seconds=%.6f\n", channels_.size(), planning_seconds_);
++            return;
++        }
++        size_t total = 0;
++        for (RRNodeId node : graph.nodes()) {
++            reverse_start_[node] = total;
++            total += reverse_count_[node];
++        }
++        reverse_edges_.resize(total);
++        auto cursor = reverse_start_;
++        for (RRNodeId node : graph.nodes())
++            for (auto edge : graph.node_out_edges(node))
++                reverse_edges_[cursor[graph.edge_sink_node(node, edge)]++] = node;
++        if (channels_.empty())
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "H3D candidate modes require native CHANZ; legacy encodings need an explicit adapter");
++        planning_seconds_ += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
++        VTR_LOG("H3D_INIT channels=%zu reverse_edges=%zu candidates=%zu miss_weight=%g opening_weight=%g init_seconds=%.6f\n",
++                channels_.size(), total, settings().candidates, settings().miss_weight, settings().opening_weight, planning_seconds_);
++    }
++
++    /** @brief Save old channels so replanning does not discard already used choices. */
++    void capture(ParentNetId net) {
++        current_channels_.clear();
++        const auto& tree = g_vpr_ctx.routing().route_trees[net];
++        if (tree)
++            for (const auto& node : tree->all_nodes())
++                if (z_index_[node.inode] >= 0)
++                    current_channels_.insert(z_index_[node.inode]);
++    }
++
++    /** @brief Build source/sink feasible sets, then rank independently or solve the hierarchy. */
++    void plan(ParentNetId net, float pres_fac, const std::vector<float>& criticality) {
++        if (settings().mode == e_h3d_mode::STATIC && guides_.contains(net))
++            return;
++        auto start = std::chrono::steady_clock::now();
++        if (fast_plan_) {
++            std::vector<RRNodeId> previous;
++            for (size_t c : current_channels_)
++                previous.push_back(channels_[c]);
++            auto result = fast_plan_->plan(net, criticality, previous, pres_fac, settings().candidates,
++                                           settings().opening_weight, settings().miss_weight,
++                                           settings().mode != e_h3d_mode::CANDIDATES);
++            ++plans_;
++            groups_ += result.groups;
++            no_candidate_ += result.no_candidate;
++            guides_[net] = std::move(result.guides);
++            planning_seconds_ += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
++            return;
++        }
++        const auto& graph = g_vpr_ctx.device().rr_graph;
++        const auto& terminals = g_vpr_ctx.routing().net_rr_terminals[net];
++        RRNodeId source = terminals[0];
++        auto& guides = guides_[net];
++        guides.assign(terminals.size(), {});
++        std::vector<int> remote_pins;
++        for (size_t pin = 1; pin < terminals.size(); ++pin)
++            if (graph.node_layer_low(source) != graph.node_layer_low(terminals[pin]))
++                remote_pins.push_back(pin);
++        if (remote_pins.empty()) {
++            planning_seconds_ += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
++            return;
++        }
++        ++plans_;
++        const auto& from_source = distances_(source, false);
++        std::set<size_t> pool;
++        std::vector<double> opening(channels_.size(), 0.);
++        for (size_t c = 0; c < channels_.size(); ++c) {
++            RRNodeId node = channels_[c];
++            float base = g_vpr_ctx.device().rr_indexed_data[graph.node_cost_index(node)].base_cost;
++            double congestion = get_rr_cong_cost(node, pres_fac) / std::max(base, 1.e-20f);
++            opening[c] = std::max(0, from_source[c]) + settings().opening_weight * congestion;
++        }
++        for (int pin : remote_pins) {
++            const auto& to_sink = distances_(terminals[pin], true);
++            std::vector<std::pair<double, size_t>> ranked;
++            for (size_t c = 0; c < channels_.size(); ++c) {
++                if (from_source[c] < 0 || to_sink[c] < 0)
++                    continue;
++                double branch = to_sink[c] * (1. + 4. * criticality[pin]) + 4. * criticality[pin] * from_source[c];
++                ranked.emplace_back(opening[c] + branch, c);
++            }
++            std::sort(ranked.begin(), ranked.end());
++            std::set<size_t> chosen;
++            if (!ranked.empty()) {
++                chosen.insert(ranked.front().second);
++                // Retain cost quality while spreading the alternatives across
++                // distinct XY sites. Channels at one site can still differ in
++                // directed access and are kept when fewer sites are available.
++                size_t shortlist = std::min(ranked.size(), settings().candidates * 8);
++                while (chosen.size() < settings().candidates && chosen.size() < ranked.size()) {
++                    double best_score = -1.;
++                    size_t best = ranked.front().second;
++                    for (size_t i = 0; i < shortlist; ++i) {
++                        size_t c = ranked[i].second;
++                        if (chosen.contains(c)) continue;
++                        int spread = std::numeric_limits<int>::max();
++                        for (size_t previous : chosen) {
++                            int distance = std::abs(graph.node_xlow(channels_[c]) - graph.node_xlow(channels_[previous]))
++                                           + std::abs(graph.node_ylow(channels_[c]) - graph.node_ylow(channels_[previous]));
++                            spread = std::min(spread, distance);
++                        }
++                        double score = (1. + spread) / (1. + ranked[i].first - ranked.front().first);
++                        if (score > best_score) {
++                            best_score = score;
++                            best = c;
++                        }
++                    }
++                    if (best_score < 0.) break;
++                    chosen.insert(best);
++                }
++            }
++            for (size_t c : current_channels_)
++                if (from_source[c] >= 0 && to_sink[c] >= 0)
++                    chosen.insert(c);
++            if (chosen.empty()) {
++                ++no_candidate_;
++                continue;
++            }
++            pool.insert(chosen.begin(), chosen.end());
++            for (size_t c : chosen)
++                guides[pin].preferred.push_back(channels_[c]);
++            guides[pin].miss_weight = settings().miss_weight;
++        }
++        if (settings().mode != e_h3d_mode::CANDIDATES) {
++            std::vector<t_h3d_plan_leaf> leaves;
++            for (int pin : remote_pins) {
++                if (guides[pin].preferred.empty()) continue;
++                RRNodeId sink = terminals[pin];
++                const auto& to_sink = distances_(sink, true);
++                t_h3d_plan_leaf leaf{pin, graph.node_xlow(sink), graph.node_ylow(sink), {}};
++                for (size_t c : pool)
++                    if (from_source[c] >= 0 && to_sink[c] >= 0)
++                        leaf.candidates.push_back({c, to_sink[c] * (1. + 4. * criticality[pin]) + 4. * criticality[pin] * from_source[c]});
++                leaves.push_back(std::move(leaf));
++            }
++            auto result = h3d_plan_partition(leaves, opening);
++            if (std::isfinite(result.cost)) {
++                groups_ += result.groups;
++                for (const auto& [pin, channel] : result.assignment)
++                    guides[pin].preferred = {channels_[channel]};
++            }
++        }
++        for (auto& guide : guides)
++            std::sort(guide.preferred.begin(), guide.preferred.end());
++        planning_seconds_ += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
++    }
++
++    /** @brief Read the stable guide storage while a net's sink searches execute. */
++    const t_h3d_connection_guide* guide(ParentNetId net, int pin) const {
++        auto found = guides_.find(net);
++        if (found == guides_.end() || found->second.at(pin).preferred.empty())
++            return nullptr;
++        return &found->second[pin];
++    }
++
++    /** @brief Report cumulative preprocessing/search overhead separately from native A*. */
++    void log() const {
++        VTR_LOG("H3D_PLAN plans=%zu groups=%zu bfs_nodes=%zu cache_entries=%zu no_candidate=%zu fallback=%zu planning_seconds=%.6f\n",
++                plans_, groups_, bfs_nodes_, forward_cache_.size() + reverse_cache_.size(), no_candidate_, fallbacks_, planning_seconds_);
++        VTR_LOG("H3D_TREE guided_paths=%zu preferred_paths=%zu rollbacks=%zu\n", guided_observations_, preferred_observations_, rollbacks_);
++        if (fast_plan_) fast_plan_->log();
++    }
++
++    /** @brief Count an explicit fallback retry. */
++    void fallback() { ++fallbacks_; }
++
++    /** @brief Measure preferences on each actual source-to-sink route-tree path. */
++    void observe(ParentNetId net) {
++        auto found = guides_.find(net);
++        const auto& tree = g_vpr_ctx.routing().route_trees[net];
++        if (found == guides_.end() || !tree) return;
++        for (size_t pin = 1; pin < found->second.size(); ++pin) {
++            const auto& preferred = found->second[pin].preferred;
++            if (preferred.empty()) continue;
++            auto node = tree->find_by_isink(pin);
++            if (!node) continue;
++            ++guided_observations_;
++            while (node) {
++                if (std::binary_search(preferred.begin(), preferred.end(), node->inode)) {
++                    ++preferred_observations_;
++                    break;
++                }
++                node = node->parent();
++            }
++        }
++    }
++
++    /** @brief Count restoration of a complete prior tree and its bookkeeping. */
++    void rollback() { ++rollbacks_; }
++
++  private:
++    /** @brief Cache directed same-die BFS distances to every first-crossing channel. */
++    const std::vector<int>& distances_(RRNodeId terminal, bool reverse) {
++        auto& cache = reverse ? reverse_cache_ : forward_cache_;
++        auto found = cache.find(terminal);
++        if (found != cache.end()) return found->second;
++        const auto& graph = g_vpr_ctx.device().rr_graph;
++        int layer = graph.node_layer_low(terminal);
++        std::fill(distance_.begin(), distance_.end(), -1);
++        std::vector<RRNodeId> queue{terminal};
++        distance_[terminal] = 0;
++        std::vector<int> result(channels_.size(), -1);
++        for (size_t head = 0; head < queue.size(); ++head) {
++            RRNodeId current = queue[head];
++            ++bfs_nodes_;
++            auto visit = [&](RRNodeId next) {
++                if (distance_[next] >= 0) return;
++                if (z_index_[next] >= 0) {
++                    distance_[next] = distance_[current] + 1;
++                    result[z_index_[next]] = distance_[next];
++                } else if (graph.node_layer_low(next) == layer && graph.node_layer_high(next) == layer) {
++                    distance_[next] = distance_[current] + 1;
++                    queue.push_back(next);
++                }
++            };
++            if (reverse) {
++                size_t end = reverse_start_[current] + reverse_count_[current];
++                for (size_t edge = reverse_start_[current]; edge < end; ++edge)
++                    visit(reverse_edges_[edge]);
++            } else {
++                for (auto edge : graph.node_out_edges(current))
++                    visit(graph.edge_sink_node(current, edge));
++            }
++        }
++        return cache.emplace(terminal, std::move(result)).first->second;
++    }
++
++    std::vector<RRNodeId> channels_;                                              ///< Candidate index to native physical RR resource.
++    std::unique_ptr<H3dFastPlan> fast_plan_;                                      ///< Optional SCC index with geometric surrogate planning.
++    vtr::vector<RRNodeId, int> z_index_;                                          ///< RR resource to candidate index, -1 for planar resources.
++    vtr::vector<RRNodeId, size_t> reverse_start_;                                 ///< Reverse CSR offset per resource.
++    vtr::vector<RRNodeId, size_t> reverse_count_;                                 ///< Reverse CSR length per resource.
++    std::vector<RRNodeId> reverse_edges_;                                         ///< Sources of original incoming directed edges.
++    vtr::vector<RRNodeId, int> distance_;                                         ///< Reusable per-search BFS distance scratch.
++    std::unordered_map<RRNodeId, std::vector<int>> forward_cache_;                ///< Source-to-channel distances.
++    std::unordered_map<RRNodeId, std::vector<int>> reverse_cache_;                ///< Channel-to-sink distances.
++    std::unordered_map<ParentNetId, std::vector<t_h3d_connection_guide>> guides_; ///< Guides indexed by net and terminal.
++    std::set<size_t> current_channels_;                                           ///< Previous tree channels included before pruning.
++    size_t plans_ = 0;                                                            ///< Completed planning events.
++    size_t groups_ = 0;                                                           ///< Shared groups selected cumulatively.
++    size_t bfs_nodes_ = 0;                                                        ///< BFS node expansions, separate from A* statistics.
++    size_t no_candidate_ = 0;                                                     ///< Connections delegated to unmodified search.
++    size_t fallbacks_ = 0;                                                        ///< Guided search failures retried without preferences.
++    double planning_seconds_ = 0.;                                                ///< Includes reverse-index build and all cache/search/DP work.
++    size_t guided_observations_ = 0;                                              ///< Cumulative routed sink paths with preferences.
++    size_t preferred_observations_ = 0;                                           ///< Cumulative preferred-channel matches on those paths.
++    size_t rollbacks_ = 0;                                                        ///< Fully restored failed/rejected signal-net transactions.
++};
++
++std::unique_ptr<H3dPlanner> planner; ///< Serial-router-owned experimental planner.
++
++} // namespace
++
++bool h3d_enabled() { return settings().mode != e_h3d_mode::OFF; }
++
++bool h3d_force_whole_net() { return settings().mode == e_h3d_mode::DYNAMIC_WHOLE; }
++
++bool h3d_force_subtree() { return settings().mode == e_h3d_mode::DYNAMIC_SUBTREE; }
++
++bool h3d_transactional() { return h3d_force_whole_net() || h3d_force_subtree(); }
++
++void h3d_observe_net(ParentNetId net) {
++    if (planner) planner->observe(net);
++}
++
++void h3d_record_rollback() {
++    VTR_ASSERT(planner);
++    planner->rollback();
++}
++
++bool h3d_test_rollback_once() {
++    static const bool enabled = std::getenv("VPR_H3D_TEST_ROLLBACK_ONCE") != nullptr;
++    static bool used = false;
++    if (enabled && !used) {
++        used = true;
++        VTR_LOG("H3D_TEST rejecting one completed replacement to exercise full rollback\n");
++        return true;
++    }
++    return false;
++}
++
++void h3d_prepare_iteration(int iteration, bool is_flat) {
++    if (!h3d_enabled()) return;
++    if (iteration == 1) {
++        const auto& device = g_vpr_ctx.device();
++        if (is_flat || device.grid.get_num_layers() != 2 || device.grid.has_interposer_cuts() || !device.rr_bus_muxes.empty())
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "H3D candidate modes currently require clustered routing, two stacked layers, no interposer cuts and no bus-mux sharing");
++        planner = std::make_unique<H3dPlanner>();
++    }
++}
++
++void h3d_capture_net(ParentNetId net) {
++    if (!h3d_enabled()) return;
++    if (!planner)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "H3D candidate modes require the serial netlist router");
++    planner->capture(net);
++}
++
++void h3d_prepare_net(ParentNetId net, int /*iteration*/, float pres_fac, const std::vector<float>& criticality) {
++    if (h3d_enabled()) planner->plan(net, pres_fac, criticality);
++}
++
++const t_h3d_connection_guide* h3d_connection_guide(ParentNetId net, int pin) {
++    return h3d_enabled() ? planner->guide(net, pin) : nullptr;
++}
++
++void h3d_record_fallback() {
++    if (planner) planner->fallback();
++}
++
++float h3d_vertical_weight() {
++    static const float value = [] {
++        const char* text = std::getenv("VPR_H3D_VERTICAL_WEIGHT");
++        if (!text)
++            return 0.f;
++        errno = 0;
++        char* end = nullptr;
++        float parsed = std::strtof(text, &end);
++        if (errno || end == text || *end || !std::isfinite(parsed) || parsed < 0.f) {
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_VERTICAL_WEIGHT must be finite and nonnegative, got '%s'", text);
++        }
++        VTR_LOG("H3D vertical_weight=%g (additional congestion preference; native timing unchanged)\n", parsed);
++        return parsed;
++    }();
++    return value;
++}
++
++void h3d_log_iteration(int iteration, float pres_fac, const RouterStats& stats) {
++    static const bool enabled = std::getenv("VPR_H3D_STATS") != nullptr;
++    if (!enabled && !h3d_enabled())
++        return;
++    const auto& graph = g_vpr_ctx.device().rr_graph;
++    const auto& routing = g_vpr_ctx.routing();
++    size_t vertical_used = 0;
++    size_t vertical_occupancy = 0;
++    size_t vertical_overused = 0;
++    size_t vertical_total_overuse = 0;
++    for (RRNodeId inode : graph.nodes()) {
++        if (graph.node_type(inode) != e_rr_type::CHANZ)
++            continue;
++        int occ = routing.rr_node_route_inf[inode].occ();
++        int capacity = graph.node_capacity(inode);
++        vertical_used += occ > 0;
++        vertical_occupancy += occ;
++        vertical_overused += occ > capacity;
++        vertical_total_overuse += std::max(0, occ - capacity);
++    }
++    VTR_LOG("H3D_ITER iter=%d pres=%g z_used=%zu z_net_occupancy=%zu z_overused=%zu z_excess=%zu nets_routed=%zu connections_routed=%zu heap_pushes=%zu heap_pops=%zu\n",
++            iteration, pres_fac, vertical_used, vertical_occupancy, vertical_overused, vertical_total_overuse,
++            stats.nets_routed, stats.connections_routed, stats.heap_pushes, stats.heap_pops);
++    if (planner) planner->log();
++}
+diff --git a/vpr/src/route/h3d_routing.h b/vpr/src/route/h3d_routing.h
+new file mode 100644
+index 0000000..7602001
+--- /dev/null
++++ b/vpr/src/route/h3d_routing.h
+@@ -0,0 +1,54 @@
++#pragma once
++
++#include "router_stats.h"
++#include "rr_graph_fwd.h"
++#include <vector>
++
++/** @brief Soft channel preference for a connection; other channels remain legal. */
++struct t_h3d_connection_guide {
++    std::vector<RRNodeId> preferred; ///< Sorted, individually reachable native CHANZ resources.
++    float miss_weight = 0.f;         ///< Additional relative congestion charge for other CHANZ nodes.
++};
++
++/** @brief Whether finite candidate planning is explicitly enabled. */
++bool h3d_enabled();
++
++/** @brief Explicit A4 whole-net/subtree ablations; other modes keep VPR's policy. */
++bool h3d_force_whole_net();
++bool h3d_force_subtree();
++
++/** @brief Whether failed signal-net replacements must restore their prior complete tree. */
++bool h3d_transactional();
++
++/** @brief Observe whether each routed sink actually used its preferred crossing. */
++void h3d_observe_net(ParentNetId net);
++
++/** @brief Reject one completed replacement when an explicit test-only setting is enabled. */
++bool h3d_test_rollback_once();
++
++/** @brief Count a fully restored transaction. */
++void h3d_record_rollback();
++
++/** @brief Initialize graph indices for serial clustered routing, once per fixed-width trial. */
++void h3d_prepare_iteration(int iteration, bool is_flat);
++
++/** @brief Save this net's existing channels before VPR prunes/rips up its tree. */
++void h3d_capture_net(ParentNetId net);
++
++/** @brief Compute or reuse a finite candidate plan using real directed RRG reachability. */
++void h3d_prepare_net(ParentNetId net, int iteration, float pres_fac, const std::vector<float>& criticality);
++
++/** @brief Return a net's connection preference, or nullptr for unrestricted search. */
++const t_h3d_connection_guide* h3d_connection_guide(ParentNetId net, int pin);
++
++/** @brief Count an explicit no-guide search retry. */
++void h3d_record_fallback();
++
++/** @brief Read a nonnegative experimental CHANZ congestion-cost multiplier.
++ * Zero (the default) leaves arithmetic on the baseline path unchanged.
++ * This is an additional resource preference, not a replacement delay model.
++ */
++float h3d_vertical_weight();
++
++/** @brief Emit optional per-iteration physical vertical occupancy and search work. */
++void h3d_log_iteration(int iteration, float pres_fac, const RouterStats& stats);
+diff --git a/vtr_flow/tasks/regression_tests/vtr_reg_strong/strong_h3d_vertical/config/config.txt b/vtr_flow/tasks/regression_tests/vtr_reg_strong/strong_h3d_vertical/config/config.txt
+new file mode 100644
+index 0000000..98494c1
+--- /dev/null
++++ b/vtr_flow/tasks/regression_tests/vtr_reg_strong/strong_h3d_vertical/config/config.txt
+@@ -0,0 +1,11 @@
++# Native CHANZ routing smoke fixture. The paired off/on experimental environment
++# and exact-graph checks are exercised by the outer project's scripts/run_vpr.py.
++circuits_dir=benchmarks/blif
++archs_dir=arch
++circuit_list_add=ex5p.blif
++arch_list_add=multi_die/hecate/3d/hecate_3d_sb_10um_bidir_fanin_16_fanout_16_with_esd_7nm.xml
++parse_file=vpr_fixed_chan_width.txt
++qor_parse_file=qor_fixed_chan_width.txt
++pass_requirements_file=pass_requirements_strict_rr_graph.txt
++script_params_common=-start vpr -end vpr -track_memory_usage --route_chan_width 100 --target_utilization 0.1 --device_width 30 --flat_routing off --check_route full --timing_report_detail detailed
++script_params_list_add=--pack --place --route --analysis
+diff --git a/vtr_flow/tasks/regression_tests/vtr_reg_strong/strong_h3d_vertical/config/golden_results.txt b/vtr_flow/tasks/regression_tests/vtr_reg_strong/strong_h3d_vertical/config/golden_results.txt
+new file mode 100644
+index 0000000..721f794
+--- /dev/null
++++ b/vtr_flow/tasks/regression_tests/vtr_reg_strong/strong_h3d_vertical/config/golden_results.txt
+@@ -0,0 +1,2 @@
++arch	circuit	script_params	vtr_flow_elapsed_time	vtr_max_mem_stage	vtr_max_mem	error	odin_synth_time	max_odin_mem	parmys_synth_time	max_parmys_mem	mosaic_synth_time	max_mosaic_mem	abc_depth	abc_synth_time	abc_cec_time	abc_sec_time	max_abc_mem	ace_time	max_ace_mem	num_clb	num_io	num_memories	num_mult	vpr_status	vpr_revision	vpr_build_info	vpr_compiler	vpr_compiled	hostname	rundir	max_vpr_mem	num_primary_inputs	num_primary_outputs	num_pre_packed_nets	num_pre_packed_blocks	num_netlist_clocks	num_post_packed_nets	num_post_packed_blocks	device_width	device_height	device_grid_tiles	device_limiting_resources	device_name	pack_mem	pack_time	initial_placed_wirelength_est	placed_wirelength_est	total_swap	accepted_swap	rejected_swap	aborted_swap	place_mem	place_time	place_quench_time	initial_placed_CPD_est	placed_CPD_est	placed_setup_TNS_est	placed_setup_WNS_est	placed_geomean_nonvirtual_intradomain_critical_path_delay_est	place_delay_matrix_lookup_time	place_quench_timing_analysis_time	place_quench_sta_time	place_total_timing_analysis_time	place_total_sta_time	ap_mem	ap_time	ap_full_legalizer_mem	ap_full_legalizer_time	routed_wirelength	avg_routed_wirelength	routed_wiresegment	avg_routed_wiresegment	total_nets_routed	total_connections_routed	total_heap_pushes	total_heap_pops	logic_block_area_total	logic_block_area_used	routing_area_total	routing_area_per_tile	crit_path_route_success_iteration	num_rr_graph_nodes	num_rr_graph_edges	collapsed_nodes	critical_path_delay	geomean_nonvirtual_intradomain_critical_path_delay	setup_TNS	setup_WNS	hold_TNS	hold_WNS	create_rr_graph_time	create_intra_cluster_rr_graph_time	adding_internal_edges	route_mem	crit_path_route_time	crit_path_total_timing_analysis_time	crit_path_total_sta_time	router_lookahead_mem	tile_lookahead_computation_time	router_lookahead_computation_time	
++multi_die/hecate/3d/hecate_3d_sb_10um_bidir_fanin_16_fanout_16_with_esd_7nm.xml	ex5p.blif	common_--pack_--place_--route_--analysis	6.86	vpr	186.18 MiB		-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	78	8	0	-1	success	0b91233-dirty	release VTR_ASSERT_LEVEL=2	GNU 11.4.0 on Linux-5.15.0-119-generic x86_64	2026-10-22T13:27:37	fpgaacc--cc6e3aed63e1-kloi3p6yyx	/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/vtr/vtr_flow/tasks	190648	8	63	1072	1135	0	679	149	30	30	1800	-1	auto	28.8 MiB	0.74	16434	7617	37973	16967	20746	260	114.1 MiB	0.49	0.01	6.39402	4.3399	-193.153	-4.3399	nan	0.00	0.00185975	0.0016718	0.197753	0.1808	-1	-1	-1	-1	20656	30.4212	5039	7.42121	6678	21878	4021211	809886	6.78036e+07	2.17659e+06	1.27889e+07	7104.94	26	264994	2366014	-1	5.17424	nan	-223.497	-5.17424	0	0	0.81	-1	-1	186.2 MiB	1.05	0.335705	0.306046	114.1 MiB	-1	3.08	

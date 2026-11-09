@@ -1,0 +1,50 @@
+{
+  "created_utc": "2026-10-31T06:19:11.046446+00:00",
+  "scope": "Frozen W100 dla_like.medium seed21 SB P0 selected-R1 versus A0 terminal-failure diagnostic only. Neither run has legal-route QoR.",
+  "records": [
+    {
+      "run": "heldout_dla_like.medium_s21_sb_n200_w100_p0_a0",
+      "status": "failed",
+      "returncode": 2,
+      "wall_seconds": 1376.1998700611293,
+      "timeout_seconds": 1800,
+      "last_completed_iteration_record": " 200    4.3  1000.0    0 9522494    5081   11540    2661 ( 0.010%) 3403359 (21.6%)   23.613 -7.228e+05    -23.613      0.000      0.000    54946",
+      "last_cumulative_counters_not_summed": {},
+      "source_hashes": {
+        "results/architecture_flow_20261027/runs/heldout_dla_like.medium_s21_sb_n200_w100_p0_a0/manifest.json": "4c4522d3d7af68102978c1066283b99c35083c49af33e51a3a36f6a810552d57",
+        "results/architecture_flow_20261027/runs/heldout_dla_like.medium_s21_sb_n200_w100_p0_a0/stdout.log": "41e7cb380a8b5783d79bfdca15da49102fa66e4e59d0effa78b5d760f0452356"
+      }
+    },
+    {
+      "run": "heldout_dla_like.medium_s21_sb_n200_w100_p0_critical_c7",
+      "status": "timeout",
+      "returncode": -15,
+      "wall_seconds": 1800.0063134357333,
+      "timeout_seconds": 1800,
+      "last_completed_iteration_record": " 151    4.5  1000.0    0 9492055    5146   11984    2704 ( 0.010%) 3368818 (21.4%)   23.107 -7.178e+05    -23.107      0.000      0.000    29101",
+      "last_cumulative_counters_not_summed": {
+        "H3D_CONFIG": "H3D_CONFIG candidate_cost=geometry min_criticality=0.8 delay_budget=8192",
+        "H3D_INIT": "H3D_INIT reachability=scc channels=7122568 init_seconds=17.514748",
+        "H3D_PLAN": "H3D_PLAN plans=153889 groups=737 bfs_nodes=0 cache_entries=0 no_candidate=0 fallback=0 planning_seconds=622.992385",
+        "H3D_TREE": "H3D_TREE guided_paths=4283 preferred_paths=66 rollbacks=0",
+        "H3D_SCORE": "H3D_SCORE eligible=740 skipped=21709 delay_scored=0 unmeasured=0",
+        "H3D_SCC": "H3D_SCC queries=775158 endpoint_cache=1461 sampled_candidates=763256 high_fanout_fallbacks=0"
+      },
+      "source_hashes": {
+        "results/architecture_flow_20261027/runs/heldout_dla_like.medium_s21_sb_n200_w100_p0_critical_c7/manifest.json": "357632f2b1d21d56dc8b37726b68d9853f2930e3b1f16b88c536ce71a6e71b11",
+        "results/architecture_flow_20261027/runs/heldout_dla_like.medium_s21_sb_n200_w100_p0_critical_c7/stdout.log": "f7c7f17a0c585c7a1e46fd3addfbf834fce2e826072b59ca176bb1cac9838826"
+      }
+    }
+  ],
+  "observations": [
+    "A0 ended with exit2 after 200 iterations with 2661 overused nodes; R1 hit the registered 1800-second wall budget after its last logged completed iteration 151 with 2704 overused nodes.",
+    "R1 last cumulative planning_seconds=622.992385 with 153889 plans and 737 groups. Eligible=740 and skipped=21709.",
+    "Planning overhead warrants future profiling of per-net work and reachability/cache paths, but these counters do not isolate the responsible function or prove a counterfactual legal route."
+  ],
+  "limitations": [
+    "Planning_seconds is internal cumulative wall timing under concurrent host load. It is not an isolated serial timing result or a causal decomposition of total runtime.",
+    "Failed-route CPD is excluded from QoR comparisons. Timeout does not prove inherent unroutability.",
+    "No solver reruns, parameter changes, extra time budgets, or live worker/source edits are requested by this diagnostic.",
+    "Full circuit/seed/architecture conclusions remain pending completion of the registered study."
+  ]
+}

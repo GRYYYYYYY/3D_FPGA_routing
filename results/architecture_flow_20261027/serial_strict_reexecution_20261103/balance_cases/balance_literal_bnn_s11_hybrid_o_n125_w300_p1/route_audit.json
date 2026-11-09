@@ -1,0 +1,70 @@
+{
+  "utc": "2026-11-09T06:25:35.770092+00:00",
+  "passed": true,
+  "registered_route_count": 3,
+  "legal_count": 2,
+  "failed_count": 1,
+  "legal": [
+    {
+      "name": "balance_literal_bnn_s11_hybrid_o_n125_w300_p1_a0",
+      "passed": true,
+      "metrics": {
+        "critical_path_ns": 10.8902,
+        "wirelength": 1654126,
+        "router_seconds": 22.26,
+        "iterations": 13,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 1654126,
+        "sb_pairs_used": 62,
+        "sb_pair_net_occupancy": 62,
+        "cb_crossing_output_sources_used": 21724,
+        "cb_crossing_output_source_net_occupancy": 21724,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 10454,
+          "OPIN->CHANX": 13734,
+          "CHANX->CHANX": 62
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      }
+    },
+    {
+      "name": "balance_literal_bnn_s11_hybrid_o_n125_w300_p1_b2",
+      "passed": true,
+      "metrics": {
+        "critical_path_ns": 10.7937,
+        "wirelength": 1554961,
+        "router_seconds": 20.4,
+        "iterations": 12,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 1554961,
+        "sb_pairs_used": 35,
+        "sb_pair_net_occupancy": 35,
+        "cb_crossing_output_sources_used": 21717,
+        "cb_crossing_output_source_net_occupancy": 21717,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 10488,
+          "OPIN->CHANX": 13666,
+          "CHANX->CHANX": 35
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      }
+    }
+  ],
+  "failed": [
+    {
+      "name": "balance_literal_bnn_s11_hybrid_o_n125_w300_p1_delay_critical_c6",
+      "status": "timeout",
+      "metrics": {
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      }
+    }
+  ],
+  "graph_sha256": "1269da8a1ac7fde46644b04af34c14634b000cd684d4fdedfc641642db4dbf58"
+}

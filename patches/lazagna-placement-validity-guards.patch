@@ -1,0 +1,20 @@
+--- a/vpr/src/place/move_utils.cpp
++++ b/vpr/src/place/move_utils.cpp
+@@ -1201,7 +1201,7 @@
+     int layer_num = compressed_loc.layer_num;
+     // VTR_ASSERT(compressed_loc.x != OPEN && compressed_loc.y != OPEN && compressed_loc.layer_num != OPEN);
+ 
+-    if (compressed_loc.x != OPEN || compressed_loc.y != OPEN || compressed_loc.layer_num != OPEN){
++    if (compressed_loc.x == OPEN || compressed_loc.y == OPEN || compressed_loc.layer_num == OPEN){
+         return t_bb(OPEN, OPEN, OPEN, OPEN, OPEN, OPEN);
+     }
+ 
+@@ -1232,7 +1232,7 @@
+     // VTR_ASSERT(from_compressed_loc.x != OPEN && from_compressed_loc.y != OPEN && from_compressed_loc.layer_num != OPEN);
+     // VTR_ASSERT(target_compressed_loc.x != OPEN && target_compressed_loc.y != OPEN && target_compressed_loc.layer_num != OPEN);
+ 
+-    if ((from_compressed_loc.x != OPEN || from_compressed_loc.y != OPEN || from_compressed_loc.layer_num != OPEN) || (target_compressed_loc.x != OPEN || target_compressed_loc.y != OPEN || target_compressed_loc.layer_num != OPEN)){
++    if ((from_compressed_loc.x == OPEN || from_compressed_loc.y == OPEN || from_compressed_loc.layer_num == OPEN) || (target_compressed_loc.x == OPEN || target_compressed_loc.y == OPEN || target_compressed_loc.layer_num == OPEN)){
+         return t_bb(OPEN, OPEN, OPEN, OPEN, OPEN, OPEN);
+     }
+ 

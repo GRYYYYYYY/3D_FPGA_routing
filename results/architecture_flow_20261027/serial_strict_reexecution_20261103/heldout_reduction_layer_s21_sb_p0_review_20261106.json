@@ -1,0 +1,42 @@
+{
+  "utc": "2026-11-06T19:31:54.527204+00:00",
+  "case": "heldout_reduction_layer_s21_sb_w100",
+  "flow": "p0",
+  "audit_passed": true,
+  "metrics": {
+    "A0": {
+      "critical_path_ns": 12.9408,
+      "wirelength": 1302771,
+      "router_seconds": 96.62,
+      "iterations": 15,
+      "native_full_check_passed": true,
+      "routing_success_reported": true
+    },
+    "R1": {
+      "critical_path_ns": 13.3125,
+      "wirelength": 1293557,
+      "router_seconds": 410.14,
+      "iterations": 15,
+      "native_full_check_passed": true,
+      "routing_success_reported": true
+    },
+    "B2": {
+      "critical_path_ns": 13.3201,
+      "wirelength": 1249316,
+      "router_seconds": 39.52,
+      "iterations": 15,
+      "native_full_check_passed": true,
+      "routing_success_reported": true
+    }
+  },
+  "r1_vs_a0": {
+    "critical_path_improvement_percent": -2.872310830860547,
+    "wirelength_reduction_percent": 0.707261675305948
+  },
+  "evidence_sha256": {
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_reduction_layer_s21_sb_n125_w100_p0_a0/independent_audit.json": "091282207f8c8fc14e1c03426e5ebe934cffe94a19889d2165ce185063b1acf9",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_reduction_layer_s21_sb_n125_w100_p0_critical_c7/independent_audit.json": "58690fe2b8182ebe284ea577938dc961e8ab644be5e21cfa5eb97fcc2946573d",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_reduction_layer_s21_sb_n125_w100_p0_b2/independent_audit.json": "badd1ef291e9d82ef77a3792f55d46fbbaf99369b8a7fadc6812d5de24401da7"
+  },
+  "qualification": "One seed and one flow only; the complete case and heldout cohort remain unfinished. This case shows worse critical path with reduced wirelength. Traced router_seconds are retained as diagnostics, not formal speedup evidence. No algorithm retuning or experiment changes follow from this heldout observation."
+}

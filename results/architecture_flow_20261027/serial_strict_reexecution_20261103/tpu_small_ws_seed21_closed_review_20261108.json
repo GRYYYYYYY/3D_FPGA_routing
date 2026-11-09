@@ -1,0 +1,48 @@
+{
+  "utc": "2026-11-08T08:18:47.417145+00:00",
+  "scope": "Only the four closed tpu_like.small.ws seed21 W100 cases, including registered ablations; not full heldout or study closure.",
+  "case_count": 4,
+  "distinct_route_attempts": 38,
+  "status_counts": {
+    "timeout": 15,
+    "failed": 23
+  },
+  "legal_routes": 0,
+  "reviews": [
+    {
+      "family": "sb",
+      "review": "tpu_small_ws_seed21_sb_closed_review_20261108.json",
+      "sha256": "6aabbe255c8149104de47fefd067f19b68229ed99b7d2edc3f03393e74d13f96",
+      "result": "evaluation_cases/heldout_tpu_like.small.ws_s21_sb_w100/result.json",
+      "result_sha256": "3602d024da9560001c7f98fbd26c22be0a7a6f9d2fdc8a3babb6e79a881698d0"
+    },
+    {
+      "family": "cb_o",
+      "review": "tpu_small_ws_seed21_cb_o_closed_review_20261108.json",
+      "sha256": "3ad9dd6f93d5c136cfed3bbeb68f2f6bf36208f174308aeed2d1b32cb7b3855f",
+      "result": "evaluation_cases/heldout_tpu_like.small.ws_s21_cb_o_w100/result.json",
+      "result_sha256": "d007d73187faa5cf065f86b372e1c481d7461361291f6053bd874d883bdf2dc0"
+    },
+    {
+      "family": "hybrid_o",
+      "review": "tpu_small_ws_seed21_hybrid_o_closed_review_20261108.json",
+      "sha256": "a443c519aad8a407daca80156b1b6e274049ebe5566dc597aca8cd212ac95bb1",
+      "result": "evaluation_cases/heldout_tpu_like.small.ws_s21_hybrid_o_w100/result.json",
+      "result_sha256": "9a97490f2b19a7d5f8fe85e53f85479c4603ab98b642af1483d7f0aba70fd75a"
+    },
+    {
+      "family": "matched_2d",
+      "review": "tpu_small_ws_seed21_matched_2d_closed_review_20261108.json",
+      "sha256": "8c89c58c5b0bc8711608174f1cbd3d5d9b91ea6d4c614c236d9782c758dd0e19",
+      "result": "evaluation_cases/heldout_tpu_like.small.ws_s21_matched_2d_w100/result.json",
+      "result_sha256": "023c95f0ea3df9c6965850e0588f83dc7a0ef856ad1364df6d06bad3c3005baf"
+    }
+  ],
+  "verification": "Rechecked linked result, audit-summary and route-manifest small-file hashes from all four per-case reviews. No fresh physical audit or large RRG hashing was performed.",
+  "interpretation": [
+    "All 37 distinct 3D route attempts across SB/CB-O/Hybrid-O, both placements and registered ablations were unsuccessful under the registered budgets. Aliased role entries are not independent attempts.",
+    "The one matched-2D baseline attempt also failed; no legal denominator for relative-to-2D timing ratios exists.",
+    "No legal timing-gain pair or architecture ranking is available for this circuit/seed. All failures and timeouts remain in coverage denominators; no replacement reruns or heldout retuning."
+  ],
+  "full_study_complete": false
+}

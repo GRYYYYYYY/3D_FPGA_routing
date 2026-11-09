@@ -1,0 +1,147 @@
+{
+  "utc": "2026-11-06T20:28:51.176289+00:00",
+  "hostname": "fpgaacc--cc6e3aed63e1-kloi3p6yyx",
+  "boot_id": "72faa1f8-35f2-4ad1-be94-e8479b77f2fa",
+  "root": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing",
+  "strict_results": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103",
+  "conversation_goal_status": "paused",
+  "background_policy": "用户已知后台仍运行并要求保留接续；未停止、重启或重复提交现有任务。新账号需重新建立会话目标。",
+  "processes": [
+    {
+      "pid": 1450297,
+      "start_ticks": 1873640141,
+      "state": "S",
+      "ppid": 2474184,
+      "session_id": 2474184,
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/recover_unstarted_heldout_v1.py --workers 1 "
+    },
+    {
+      "pid": 2474184,
+      "start_ticks": 1871502713,
+      "state": "S",
+      "ppid": 1,
+      "session_id": 2474184,
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/queue_heldout_disk_recovery_v2.py "
+    },
+    {
+      "pid": 2887558,
+      "start_ticks": 1876284418,
+      "state": "S",
+      "ppid": 1,
+      "session_id": 2887558,
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/continue_after_heldout_recovery_v1.py --owner-pid 2474184 --owner-start-ticks 1871502713 "
+    },
+    {
+      "pid": 3764138,
+      "start_ticks": 1876532964,
+      "state": "S",
+      "ppid": 1,
+      "session_id": 3764138,
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/continue_parallel_heldout_v1.py "
+    },
+    {
+      "pid": 895653,
+      "start_ticks": 1876911257,
+      "state": "R",
+      "ppid": 895651,
+      "session_id": 895644,
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/r1_serial_build/vpr/vpr /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w100/sb/import_only.xml /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/reduction_layer.blif --route --analysis --device fixture --route_chan_width 100 --num_workers 1 --seed 21 --clock_modeling ideal --check_route full --verify_file_digests off --read_rr_graph /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w100/sb/rr_graph.xml --max_router_iterations 200 --routing_failure_predictor off --timing_report_npaths 0 --net_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_reduction_layer_s21_sb_n125_w100_p1_geometry_c2/packed.net --place_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_reduction_layer_s21_sb_n125_w100_p1_geometry_c2/placed.place --route_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_reduction_layer_s21_sb_n125_w100_p1_geometry_c2/routed.route --merge_constant_generators off "
+    }
+  ],
+  "heldout_result_files": 96,
+  "heldout_planned": 168,
+  "states": {
+    "parallel_continuation_v1/state.json": {
+      "utc": "2026-11-06T19:16:02.075702+00:00",
+      "supervisor_pid": 3764138,
+      "status": "waiting_controlled_drain",
+      "completed_stages": []
+    },
+    "heldout_disk_recovery_queue_v2/state.json": {
+      "utc": "2026-11-06T11:13:53.707308+00:00",
+      "status": "running_unstarted",
+      "completed": [
+        "heldout_lstm_s21_sb_w100",
+        "heldout_lstm_s21_hybrid_o_w100"
+      ],
+      "owner_pid": 2474184
+    },
+    "post_heldout_continuation_v1/state.json": {
+      "utc": "2026-11-06T18:34:37.513152+00:00",
+      "supervisor_pid": 2887558,
+      "status": "waiting_recovery_owner",
+      "completed_stages": [],
+      "owner_pid": 2474184,
+      "owner_start_ticks": 1871502713
+    }
+  },
+  "references_sha256": {
+    "parallel_continuation_v1/state.json": "a7fd653073ffd1951e1b06361d194e7729ee5d72b8247245265b2772bf8cb246",
+    "parallel_continuation_v1/registration.json": "9921e9b1078d671fcf7789d291dbf5d4436b92d8e3ff61153ac3237eed88a804",
+    "parallel_resumption_amendment_20261106.json": "2bf317140cd25b342534d819bce8dac37e1aedd226a2e6c07322ea518fed8bfd",
+    "parallel_resumption_signal_20261106.json": "e953f793541d8feab046f48727cb7142eea0cd4ea2aa103b8065a6d84b467064",
+    "heldout_disk_recovery_queue_v2/state.json": "32d00103159f242dcdcf717603cd44b90ca496db773ee8ce38018ec322678eb3",
+    "post_heldout_continuation_v1/state.json": "5365c5f137fe0bfe565ee4fce806c8e8946868f766f9c64b169f51255e220b4f"
+  },
+  "case_manifests": {
+    "heldout_reduction_layer_s21_sb_n125_w100_p1_geometry_c0": {
+      "status": "failed",
+      "start_utc": "2026-11-06T19:50:03.361468+00:00",
+      "metrics": {
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      }
+    },
+    "heldout_reduction_layer_s21_sb_n125_w100_p1_place": {
+      "status": "completed",
+      "start_utc": "2026-11-06T19:29:23.923213+00:00",
+      "metrics": {
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      }
+    },
+    "heldout_reduction_layer_s21_sb_n125_w100_p1_a0": {
+      "status": "completed",
+      "start_utc": "2026-11-06T19:37:56.443100+00:00",
+      "metrics": {
+        "critical_path_ns": 11.1889,
+        "wirelength": 1574887,
+        "router_seconds": 42.67,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      }
+    },
+    "heldout_reduction_layer_s21_sb_n125_w100_p1_geometry_c2": {
+      "status": "running",
+      "start_utc": "2026-11-06T20:19:04.837924+00:00",
+      "metrics": null
+    },
+    "heldout_reduction_layer_s21_sb_n125_w100_p1_b2": {
+      "status": "completed",
+      "start_utc": "2026-11-06T19:45:50.403145+00:00",
+      "metrics": {
+        "critical_path_ns": 10.9801,
+        "wirelength": 1342114,
+        "router_seconds": 83.15,
+        "iterations": 16,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      }
+    },
+    "heldout_reduction_layer_s21_sb_n125_w100_p1_critical_c7": {
+      "status": "completed",
+      "start_utc": "2026-11-06T19:41:19.421363+00:00",
+      "metrics": {
+        "critical_path_ns": 10.2747,
+        "wirelength": 1578138,
+        "router_seconds": 111.24,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      }
+    }
+  },
+  "scientific_context_file": "docs/交接说明_2026-11-06.json",
+  "failure_review": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/heldout_reduction_layer_s21_sb_geometry_c0_failure_review_20261106.json"
+}

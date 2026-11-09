@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-23T15:04:51.699821+00:00",
+  "reason": "Published architecture has zero-Fc BRAM clock pins while published template sets clock_modeling=route. Complete RRG scans and explicit no-path errors establish structural unreachability.",
+  "original_reproduction": "Finish all 11 strict primary attempts. Retain their exact outputs and failures.",
+  "fixed_original_clock_policy": "For a case with an active BRAM clock, cancel redundant original-clock fixed executions after their immutable manifest is created; retain a per-run preflight record and SIGTERM receipt. A structural cancellation is not a router convergence result.",
+  "diagnosis": "Separate 44 planned arms: only clock_modeling becomes ideal; reuse the exact original primary packed netlist and placement and original RRG; 200 iterations, failure predictor off. Cases lacking a primary placement are explicitly skipped.",
+  "interpretation": "These ideal-clock runs are diagnostic adaptations, not unmodified LaZagna reproduction; original placement may have been degraded by unreachable clocks. No cross-tool algorithm-only or paper CPD reproduction claim."
+}

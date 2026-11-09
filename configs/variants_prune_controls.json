@@ -1,0 +1,38 @@
+[
+  {
+    "name": "a0_prune",
+    "binary": "artifacts/bin/controls/vpr",
+    "extra": [
+      "--min_incremental_reroute_fanout",
+      "1"
+    ],
+    "env": {
+      "VPR_H3D_STATS": "1"
+    }
+  },
+  {
+    "name": "a1_w2_prune",
+    "binary": "artifacts/bin/controls/vpr",
+    "extra": [
+      "--min_incremental_reroute_fanout",
+      "1"
+    ],
+    "env": {
+      "VPR_H3D_STATS": "1",
+      "VPR_H3D_VERTICAL_WEIGHT": "2"
+    }
+  },
+  {
+    "name": "a3_prune",
+    "binary": "artifacts/bin/controls/vpr",
+    "extra": [
+      "--min_incremental_reroute_fanout",
+      "1"
+    ],
+    "env": {
+      "VPR_H3D_STATS": "1",
+      "VPR_H3D_MODE": "static",
+      "VPR_H3D_REACHABILITY": "scc"
+    }
+  }
+]

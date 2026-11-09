@@ -1,0 +1,120 @@
+{
+  "utc": "2026-11-09T09:33:08.305317+00:00",
+  "job": {
+    "circuit": "conv_layer_hls",
+    "split": "heldout",
+    "seed": 21,
+    "width": 300,
+    "family": "sb",
+    "placement_arm": "relative3",
+    "partition_argument": 1.5,
+    "routers": [
+      "A0",
+      "R1",
+      "B2"
+    ]
+  },
+  "status": "completed",
+  "placement": "balance_relative3_conv_layer_hls_s21_sb_n80_w300_p1_place",
+  "balance": {
+    "vertices": 4003,
+    "edges": 5607,
+    "parts": 2,
+    "balance_argument": 1.5,
+    "partition_weights": [
+      2059.0,
+      1944.0
+    ],
+    "lower_each": 1941.455,
+    "upper_each": 2061.545,
+    "balanced": true,
+    "unit_weight_integer_feasible": true,
+    "graph_sha256": "a395d69b4a37548ce0be9e81b7203a1d270b11d78509b180d4f10ba6f9eb55fe",
+    "assignment_sha256": "1d08f6c2830a43ab393c2090dd502b25197e78de1b2c1bf97d426d3ac676b0d6"
+  },
+  "roles": {
+    "A0": "balance_relative3_conv_layer_hls_s21_sb_n80_w300_p1_a0",
+    "R1": "balance_relative3_conv_layer_hls_s21_sb_n80_w300_p1_critical_c7",
+    "B2": "balance_relative3_conv_layer_hls_s21_sb_n80_w300_p1_b2"
+  },
+  "route_audit": {
+    "utc": "2026-11-09T09:47:37.494110+00:00",
+    "passed": true,
+    "registered_route_count": 3,
+    "legal_count": 3,
+    "failed_count": 0,
+    "legal": [
+      {
+        "name": "balance_relative3_conv_layer_hls_s21_sb_n80_w300_p1_a0",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 14.1652,
+          "wirelength": 85366,
+          "router_seconds": 3.4,
+          "iterations": 13,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 85366,
+          "sb_pairs_used": 953,
+          "sb_pair_net_occupancy": 953,
+          "cb_crossing_output_sources_used": 0,
+          "cb_crossing_output_source_net_occupancy": 0,
+          "actual_crossing_edge_traversals": {
+            "CHANX->CHANX": 953
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      },
+      {
+        "name": "balance_relative3_conv_layer_hls_s21_sb_n80_w300_p1_critical_c7",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 14.1652,
+          "wirelength": 85366,
+          "router_seconds": 9.15,
+          "iterations": 13,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 85366,
+          "sb_pairs_used": 953,
+          "sb_pair_net_occupancy": 953,
+          "cb_crossing_output_sources_used": 0,
+          "cb_crossing_output_source_net_occupancy": 0,
+          "actual_crossing_edge_traversals": {
+            "CHANX->CHANX": 953
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      },
+      {
+        "name": "balance_relative3_conv_layer_hls_s21_sb_n80_w300_p1_b2",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 14.1652,
+          "wirelength": 79749,
+          "router_seconds": 10.89,
+          "iterations": 11,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 79749,
+          "sb_pairs_used": 955,
+          "sb_pair_net_occupancy": 955,
+          "cb_crossing_output_sources_used": 0,
+          "cb_crossing_output_source_net_occupancy": 0,
+          "actual_crossing_edge_traversals": {
+            "CHANX->CHANX": 955
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      }
+    ],
+    "failed": [],
+    "graph_sha256": "f994f323f55528c72ff01c6796536cdecc7c8f659f404f8849be064f9b49eea4"
+  }
+}

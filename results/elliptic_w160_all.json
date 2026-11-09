@@ -1,0 +1,798 @@
+{
+  "owner_pid": 1992760,
+  "workers": 2,
+  "started_epoch": 1792676480.855578,
+  "timing_scope": "concurrent screening; controlled sequential repeats required",
+  "prepared_list": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/elliptic_w160_prepare.json",
+  "variants": [
+    {
+      "name": "a0",
+      "binary": "artifacts/bin/baseline/vpr",
+      "env": {}
+    },
+    {
+      "name": "a1_w2",
+      "binary": "artifacts/bin/a4scc/vpr",
+      "env": {
+        "VPR_H3D_VERTICAL_WEIGHT": "2",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a2",
+      "binary": "artifacts/bin/a4scc/vpr",
+      "env": {
+        "VPR_H3D_MODE": "candidates",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a3",
+      "binary": "artifacts/bin/a4scc/vpr",
+      "env": {
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a4_whole",
+      "binary": "artifacts/bin/a4scc/vpr",
+      "env": {
+        "VPR_H3D_MODE": "dynamic_whole",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a4_subtree",
+      "binary": "artifacts/bin/a4scc/vpr",
+      "env": {
+        "VPR_H3D_MODE": "dynamic_subtree",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "flute_soft",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_CONTROL": "flute_soft",
+        "VPR_H3D_FLUTE_LUT": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/sources/flute3",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "steiner_field",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_CONTROL": "steiner_field",
+        "VPR_H3D_FLUTE_LUT": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/sources/flute3",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a0_prune",
+      "binary": "artifacts/bin/controls/vpr",
+      "extra": [
+        "--min_incremental_reroute_fanout",
+        "1"
+      ],
+      "env": {
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a1_w2_prune",
+      "binary": "artifacts/bin/controls/vpr",
+      "extra": [
+        "--min_incremental_reroute_fanout",
+        "1"
+      ],
+      "env": {
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_VERTICAL_WEIGHT": "2"
+      }
+    },
+    {
+      "name": "a3_prune",
+      "binary": "artifacts/bin/controls/vpr",
+      "extra": [
+        "--min_incremental_reroute_fanout",
+        "1"
+      ],
+      "env": {
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc"
+      }
+    },
+    {
+      "name": "a3_tuned",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_MISS_WEIGHT": "4"
+      }
+    },
+    {
+      "name": "a4_tuned",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_MODE": "dynamic_subtree",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_CANDIDATES": "4"
+      }
+    }
+  ],
+  "jobs": [
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "a0",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_a0",
+      "metrics": {
+        "critical_path_ns": 7.65173,
+        "wirelength": 58900,
+        "router_seconds": 1.36,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 8.983317527920008,
+      "peak_rss_kib": 600848
+    },
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "a1_w2",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_a1_w2",
+      "metrics": {
+        "critical_path_ns": 7.79104,
+        "wirelength": 59087,
+        "router_seconds": 1.34,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.5356215685606,
+      "peak_rss_kib": 600916
+    },
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "a2",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_a2",
+      "metrics": {
+        "critical_path_ns": 7.65173,
+        "wirelength": 59321,
+        "router_seconds": 2.27,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 10.136148016899824,
+      "peak_rss_kib": 600868
+    },
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "a3",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_a3",
+      "metrics": {
+        "critical_path_ns": 7.65173,
+        "wirelength": 59477,
+        "router_seconds": 1.77,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.433527361601591,
+      "peak_rss_kib": 600816
+    },
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "a4_whole",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_a4_whole",
+      "metrics": {
+        "critical_path_ns": 8.30486,
+        "wirelength": 61592,
+        "router_seconds": 3.15,
+        "iterations": 25,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 11.03578982129693,
+      "peak_rss_kib": 600888
+    },
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "a4_subtree",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_a4_subtree",
+      "metrics": {
+        "critical_path_ns": 7.65173,
+        "wirelength": 58110,
+        "router_seconds": 2.0,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 10.13522107899189,
+      "peak_rss_kib": 600988
+    },
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "flute_soft",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_flute_soft",
+      "metrics": {
+        "critical_path_ns": 7.65173,
+        "wirelength": 61701,
+        "router_seconds": 1.56,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.1845488473773,
+      "peak_rss_kib": 600884
+    },
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "steiner_field",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_steiner_field",
+      "metrics": {
+        "critical_path_ns": 7.65173,
+        "wirelength": 60757,
+        "router_seconds": 1.6,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.68399591371417,
+      "peak_rss_kib": 600984
+    },
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_a0_prune",
+      "metrics": {
+        "critical_path_ns": 7.65173,
+        "wirelength": 58546,
+        "router_seconds": 1.28,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.282537013292313,
+      "peak_rss_kib": 600908
+    },
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 7.65173,
+        "wirelength": 58503,
+        "router_seconds": 1.25,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 8.93480996787548,
+      "peak_rss_kib": 600984
+    },
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_a3_prune",
+      "metrics": {
+        "critical_path_ns": 7.65173,
+        "wirelength": 58918,
+        "router_seconds": 1.77,
+        "iterations": 21,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.666256450116634,
+      "peak_rss_kib": 600884
+    },
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "a3_tuned",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_a3_tuned",
+      "metrics": {
+        "critical_path_ns": 7.65173,
+        "wirelength": 59375,
+        "router_seconds": 2.15,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 10.084423944354057,
+      "peak_rss_kib": 600848
+    },
+    {
+      "circuit": "elliptic_w160_seed1",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed1",
+      "variant": "a4_tuned",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed1_a4_tuned",
+      "metrics": {
+        "critical_path_ns": 7.65173,
+        "wirelength": 58033,
+        "router_seconds": 1.64,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.282251361757517,
+      "peak_rss_kib": 600920
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "a0",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_a0",
+      "metrics": {
+        "critical_path_ns": 7.2742,
+        "wirelength": 58546,
+        "router_seconds": 1.57,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.63437394797802,
+      "peak_rss_kib": 600912
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "a1_w2",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_a1_w2",
+      "metrics": {
+        "critical_path_ns": 7.4162,
+        "wirelength": 58852,
+        "router_seconds": 1.63,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.886150378733873,
+      "peak_rss_kib": 600984
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "a2",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_a2",
+      "metrics": {
+        "critical_path_ns": 7.2742,
+        "wirelength": 58542,
+        "router_seconds": 2.51,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 10.686167426407337,
+      "peak_rss_kib": 600888
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "a3",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_a3",
+      "metrics": {
+        "critical_path_ns": 7.2742,
+        "wirelength": 59139,
+        "router_seconds": 1.94,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.986103385686874,
+      "peak_rss_kib": 600888
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "a4_whole",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_a4_whole",
+      "metrics": {
+        "critical_path_ns": 7.2742,
+        "wirelength": 59779,
+        "router_seconds": 3.88,
+        "iterations": 22,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 11.6363576464355,
+      "peak_rss_kib": 600956
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "a4_subtree",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_a4_subtree",
+      "metrics": {
+        "critical_path_ns": 7.41182,
+        "wirelength": 57661,
+        "router_seconds": 2.39,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 10.33638520911336,
+      "peak_rss_kib": 600892
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "flute_soft",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_flute_soft",
+      "metrics": {
+        "critical_path_ns": 7.2742,
+        "wirelength": 60356,
+        "router_seconds": 1.8,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.737065896391869,
+      "peak_rss_kib": 600924
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "steiner_field",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_steiner_field",
+      "metrics": {
+        "critical_path_ns": 7.2742,
+        "wirelength": 60456,
+        "router_seconds": 1.8,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.533128429204226,
+      "peak_rss_kib": 600884
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_a0_prune",
+      "metrics": {
+        "critical_path_ns": 7.52302,
+        "wirelength": 57869,
+        "router_seconds": 1.3,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 8.987375404685736,
+      "peak_rss_kib": 600892
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 7.2742,
+        "wirelength": 58663,
+        "router_seconds": 1.45,
+        "iterations": 21,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 8.98144393786788,
+      "peak_rss_kib": 600884
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_a3_prune",
+      "metrics": {
+        "critical_path_ns": 7.2742,
+        "wirelength": 57504,
+        "router_seconds": 1.79,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.382050920277834,
+      "peak_rss_kib": 600912
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "a3_tuned",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_a3_tuned",
+      "metrics": {
+        "critical_path_ns": 7.2742,
+        "wirelength": 58137,
+        "router_seconds": 1.78,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.533098589628935,
+      "peak_rss_kib": 601016
+    },
+    {
+      "circuit": "elliptic_w160_seed2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed2",
+      "variant": "a4_tuned",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed2_a4_tuned",
+      "metrics": {
+        "critical_path_ns": 7.27432,
+        "wirelength": 57653,
+        "router_seconds": 1.85,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.332059022039175,
+      "peak_rss_kib": 601012
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "a0",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_a0",
+      "metrics": {
+        "critical_path_ns": 7.25289,
+        "wirelength": 59786,
+        "router_seconds": 1.66,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.332213837653399,
+      "peak_rss_kib": 600872
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "a1_w2",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_a1_w2",
+      "metrics": {
+        "critical_path_ns": 7.25289,
+        "wirelength": 59586,
+        "router_seconds": 1.34,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.232947148382664,
+      "peak_rss_kib": 600852
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "a2",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_a2",
+      "metrics": {
+        "critical_path_ns": 7.35166,
+        "wirelength": 59843,
+        "router_seconds": 2.53,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 10.183501411229372,
+      "peak_rss_kib": 600928
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "a3",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_a3",
+      "metrics": {
+        "critical_path_ns": 7.60018,
+        "wirelength": 60388,
+        "router_seconds": 1.82,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.23256753385067,
+      "peak_rss_kib": 600864
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "a4_whole",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_a4_whole",
+      "metrics": {
+        "critical_path_ns": 7.40522,
+        "wirelength": 61643,
+        "router_seconds": 3.31,
+        "iterations": 22,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 10.987394031137228,
+      "peak_rss_kib": 600864
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "a4_subtree",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_a4_subtree",
+      "metrics": {
+        "critical_path_ns": 7.16696,
+        "wirelength": 59302,
+        "router_seconds": 2.41,
+        "iterations": 21,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 10.38429882004857,
+      "peak_rss_kib": 600856
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "flute_soft",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_flute_soft",
+      "metrics": {
+        "critical_path_ns": 7.35166,
+        "wirelength": 61352,
+        "router_seconds": 1.59,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.083480641245842,
+      "peak_rss_kib": 601012
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "steiner_field",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_steiner_field",
+      "metrics": {
+        "critical_path_ns": 7.35166,
+        "wirelength": 61047,
+        "router_seconds": 1.59,
+        "iterations": 22,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.033876158297062,
+      "peak_rss_kib": 600892
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "a0_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_a0_prune",
+      "metrics": {
+        "critical_path_ns": 7.25289,
+        "wirelength": 59339,
+        "router_seconds": 2.46,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.934248104691505,
+      "peak_rss_kib": 601012
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "a1_w2_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_a1_w2_prune",
+      "metrics": {
+        "critical_path_ns": 7.05535,
+        "wirelength": 59311,
+        "router_seconds": 2.38,
+        "iterations": 20,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.883009605109692,
+      "peak_rss_kib": 600956
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "a3_prune",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_a3_prune",
+      "metrics": {
+        "critical_path_ns": 7.21678,
+        "wirelength": 58953,
+        "router_seconds": 1.72,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.635696735233068,
+      "peak_rss_kib": 600920
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "a3_tuned",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_a3_tuned",
+      "metrics": {
+        "critical_path_ns": 7.3645,
+        "wirelength": 59928,
+        "router_seconds": 2.02,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.734802667051554,
+      "peak_rss_kib": 600956
+    },
+    {
+      "circuit": "elliptic_w160_seed3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_seed3",
+      "variant": "a4_tuned",
+      "state": "completed",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/elliptic_w160_all_elliptic_w160_seed3_a4_tuned",
+      "metrics": {
+        "critical_path_ns": 7.05535,
+        "wirelength": 58847,
+        "router_seconds": 1.73,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_wall_seconds": 9.83562820032239,
+      "peak_rss_kib": 600956
+    }
+  ],
+  "finished_epoch": 1792676693.6488762
+}

@@ -1,0 +1,152 @@
+{
+  "utc": "2026-10-28T00:01:31.197014+00:00",
+  "goal": "active; full accepted research scheme is not yet complete",
+  "turn_classification": "progress: n100 W100 completed physical model reviewed",
+  "current": {
+    "training_counts": {
+      "route:completed": 281,
+      "placement:completed": 12,
+      "route:failed": 21,
+      "route:running": 5
+    },
+    "audited_legal_routes": 231,
+    "completed_training_cases": {
+      "eltwise_layer_sb": "completed",
+      "softmax_cb_o": "completed",
+      "eltwise_layer_hybrid_o": "completed",
+      "eltwise_layer_cb_o": "completed",
+      "spmv_hybrid_o": "completed",
+      "spmv_cb_o": "completed",
+      "spmv_sb": "completed"
+    },
+    "ready_models": [
+      "n100_w100",
+      "n40_w100",
+      "n40_w300",
+      "n60_w100",
+      "n60_w300",
+      "n80_w100"
+    ],
+    "training_supervisor": {
+      "utc": "2026-10-27T23:28:51.949449+00:00",
+      "supervisor_pid": 3912353,
+      "status": "running_training",
+      "circuits": [
+        "attention_layer",
+        "softmax"
+      ],
+      "workers": 6
+    },
+    "sensitivity_supervisor": {
+      "utc": "2026-10-27T23:53:49.930689+00:00",
+      "pid": 2037063,
+      "status": "waiting_for_training_to_need_at_most_three_slots"
+    },
+    "p1_preflight": {
+      "utc": "2026-10-27T23:53:51.119382+00:00",
+      "pid": 2037622,
+      "status": "waiting_for_training_to_need_at_most_three_slots"
+    },
+    "live_process_snapshot": [
+      " 567070  567046       36:58 92.9 4705776 .venv-lazagna/bin/python scripts/prepare_flatland_without_gc.py --size 60 --width 300",
+      " 637815  637795       34:02  0.0 22136 .venv-lazagna/bin/python scripts/continue_flatland_sensitivity_models.py",
+      " 976073  976065       22:05 98.6 5840916 .venv-lazagna/bin/python scripts/resume_flatland_model_audits.py --size 100 --output results/architecture_flow_20261027/benchmark_models/n100_w100",
+      " 976695  976683       22:04 98.2 12445244 .venv-lazagna/bin/python scripts/resume_flatland_model_audits.py --size 125 --output results/architecture_flow_20261027/benchmark_models/n125_w100",
+      " 976991  976990       22:02 98.4 65417988 .venv-lazagna/bin/python scripts/resume_flatland_model_audits.py --size 200 --output results/architecture_flow_20261027/benchmark_models/n200_w100",
+      "1086926 1086906       19:30  0.0 22712 .venv-lazagna/bin/python scripts/preflight_flatland_training_placement.py",
+      "1394840 3912353       07:43  6.3 2653260 /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/scripts/run_flatland_training.py --circuits attention_layer softmax --workers 6",
+      "3912353 3912333    01:12:27  0.0 22448 .venv-lazagna/bin/python scripts/continue_flatland_training.py"
+    ]
+  },
+  "sessions": {
+    "training_continuation": 80464,
+    "resumed_n125_w100": 8113,
+    "resumed_n200_w100": 49850,
+    "sensitivity_model_queue": 28717,
+    "p1_training_preflight": 66262
+  },
+  "terminated_and_archived_original_preparations": {
+    "n100": {
+      "pid": 3737480,
+      "session": 62981,
+      "exit": 143
+    },
+    "n125": {
+      "pid": 3472653,
+      "session": 10135,
+      "exit": 143
+    },
+    "n200": {
+      "pid": 3536841,
+      "session": 66634,
+      "exit": 143
+    }
+  },
+  "new_evidence": [
+    "model_resume_validation_v2/summary.json",
+    "analysis_schema_validation.json",
+    "analysis_evidence_reader_validation_v2.json",
+    "cb_candidate_granularity_observation_2.json",
+    "figure_render_validation/validation.json",
+    "report_render_validation_v5/validation.json",
+    "diagnostics_validation.json",
+    "diagnostics_actual_log_validation.json",
+    "evaluation_submission_guard_validation.json",
+    "training_failure_checkpoint_20261027_2337.json",
+    "training_cases/softmax_cb_o/route_identity.json",
+    "softmax_cb_training_completion.json",
+    "queue_revisions/early_low_concurrency_gate/amendment.json",
+    "model_ready_reviews/n60_w300.json",
+    "model_ready_reviews/n100_w100.json"
+  ],
+  "source_and_history": {
+    "frozen_training_sources_unchanged": true,
+    "historical_refs_unchanged": true,
+    "historical_refs_sha256": "0e3f83ea7612682260dc833e42cf791eb45b2b612ac439498e46ba896379d99d"
+  },
+  "continuation_notes": [
+    "Do not restart active jobs or edit frozen shared helpers. New resumed preparation logs are benchmark_model_n{100,125,200}_w100_resumed_console.log; original supervisor only inspects original logs, so inspect resumed failures explicitly.",
+    "W300 n40/n60 are live. W300 n80/n125 queue holds evaluation/serial locks and waits for attention_layer_softmax training seal, then prepares sequentially; subsequent training uses <=3 workers.",
+    "P1 training preflight also waits for attention_layer_softmax seal, then checks real spmv SB seed11 packing semantic identity and actual TritonPart success. Evaluate any failure before launching held-out work.",
+    "Evaluation driver now requires selected configs, unchanged training helper sources and passed P1 preflight; no held-out job has been launched. Review selection, ready models and queue locks before starting.",
+    "Full heldout/width300/serial experiments, final analysis/research report and complete acceptance closure remain required. Do not mark goal complete for these implementation checks.",
+    "Updated runtime and figure generators are ready but unexecuted on formal results. Figure render validation contains clearly marked synthetic data only.",
+    "CB-O complete training sweeps for eltwise_layer and spmv each have one route-body hash across33 audited routes. Followup directed-edge candidate refinement belongs in a separate registration; frozen v2 stays unchanged.",
+    "The first 198-route training batch completed, all legal and independently audited, with input seal passed. Attention/softmax now run with six VPR workers under the original continuation session80464.",
+    "Report generator scripts/render_flatland_report.py now renders all final tables directly from complete formal analyses; only synthetic report validation exists. Do not mistake fixtures for final results.",
+    "Evidence reader now parses final cumulative H3D_SCORE/DELAY/PLAN/TREE; diagnostics aggregation reports legal-run mean fractions with missing/disabled queries excluded, keeping failure counts.",
+    "Evaluation driver stops new submissions on infrastructure error and drains active jobs; it records exact unstarted jobs as still required. Normal scientific failures do not cancel the registered cohort.",
+    "Source hash records from earlier analysis validations predate the diagnostic parser extension; current diagnostic and report validations pin their own versions. Recheck current source bindings at final closure.",
+    "The first four attention_layer W100 non-convergence failures are documented in training_failure_checkpoint_20261027_2337.json. Fresh check found 6 total normal return-code2 failures reaching iteration200. Preserve all in denominators; no protocol change or infeasibility claim.",
+    "softmax CB-O is now complete:33/33 legal audited and one route-body hash across A0+32R1. Three CB-O training circuits show complete identity; attention CB-O still fails within200 iterations. Keep scope distinct.",
+    "IMPORTANT scheduling amendment supersedes earlier whole-batch-seal gate: after all THREE softmax cases are completed and audited, at most three attention/subsequent training VPRs remain. Replacement W300 queue session28717 PID2037063 and P1 preflight session66262 PID2037622 wait on this condition. Old waiting owners stopped with no children; archived under queue_revisions/early_low_concurrency_gate. Logs now sensitivity_model_continuation_v2_console.log and p1_training_preflight_v2_console.log. No solver or frozen source changed."
+  ],
+  "completed_sessions": {
+    "initial_training": {
+      "session": 26989,
+      "exit": 0,
+      "legal_audited": 198,
+      "input_seal": "training_invocations/eltwise_layer_spmv_input_integrity.json"
+    },
+    "model_n40_w300": {
+      "session": 74383,
+      "exit": 0,
+      "manifest": "benchmark_models/n40_w300/manifest.json"
+    },
+    "model_n80_w100": {
+      "session": 65594,
+      "exit": 0,
+      "manifest": "benchmark_models/n80_w100/manifest.json"
+    },
+    "model_n60_w300": {
+      "session": 39409,
+      "exit": 0,
+      "review": "model_ready_reviews/n60_w300.json"
+    },
+    "resumed_n100_w100": {
+      "session": 35058,
+      "exit": 0,
+      "review": "model_ready_reviews/n100_w100.json"
+    }
+  }
+}

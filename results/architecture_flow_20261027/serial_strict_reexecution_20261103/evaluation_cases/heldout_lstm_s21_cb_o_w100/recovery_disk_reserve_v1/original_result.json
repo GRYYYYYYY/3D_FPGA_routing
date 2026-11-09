@@ -1,0 +1,103 @@
+{
+  "utc": "2026-11-05T03:22:08.532170+00:00",
+  "status": "error",
+  "job": {
+    "phase": "heldout",
+    "circuit": "lstm",
+    "seed": 21,
+    "family": "cb_o",
+    "width": 100,
+    "roles": {
+      "p0": {
+        "A0": {
+          "router": "A0",
+          "variant": null,
+          "config": null
+        },
+        "R1": {
+          "router": "R1",
+          "variant": "critical",
+          "config": 4
+        },
+        "B2": {
+          "router": "B2",
+          "variant": null,
+          "config": null
+        }
+      },
+      "p1": {
+        "A0": {
+          "router": "A0",
+          "variant": null,
+          "config": null
+        },
+        "R1": {
+          "router": "R1",
+          "variant": "critical",
+          "config": 4
+        },
+        "B2": {
+          "router": "B2",
+          "variant": null,
+          "config": null
+        },
+        "fixed_geometry": {
+          "router": "R1",
+          "variant": "geometry",
+          "config": 0
+        },
+        "tuned_geometry": {
+          "router": "R1",
+          "variant": "geometry",
+          "config": 1
+        },
+        "fixed_delay": {
+          "router": "R1",
+          "variant": "delay",
+          "config": 0
+        },
+        "tuned_delay": {
+          "router": "R1",
+          "variant": "delay",
+          "config": 4
+        },
+        "fixed_critical": {
+          "router": "R1",
+          "variant": "critical",
+          "config": 0
+        },
+        "tuned_critical": {
+          "router": "R1",
+          "variant": "critical",
+          "config": 4
+        },
+        "fixed_delay_critical": {
+          "router": "R1",
+          "variant": "delay_critical",
+          "config": 0
+        },
+        "tuned_delay_critical": {
+          "router": "R1",
+          "variant": "delay_critical",
+          "config": 0
+        }
+      }
+    }
+  },
+  "flows": {
+    "p0": {
+      "status": "completed",
+      "roles": {
+        "A0": "heldout_lstm_s21_cb_o_n125_w100_p0_a0",
+        "R1": "heldout_lstm_s21_cb_o_n125_w100_p0_critical_c4",
+        "B2": "heldout_lstm_s21_cb_o_n125_w100_p0_b2"
+      },
+      "registered_roles": 3,
+      "unique_runs": 3,
+      "legal_runs": 0,
+      "failed_runs": 3
+    }
+  },
+  "error": "Free space below evaluation reserve: 85479915520 bytes; minimum 85899345920",
+  "traceback": "Traceback (most recent call last):\n  File \"/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/run_flatland_evaluation_import_fix_v1.py\", line 128, in run\n    require_disk_space()\n  File \"/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/run_flatland_evaluation_import_fix_v1.py\", line 22, in require_disk_space\n    if free<MIN_FREE_BYTES:raise RuntimeError(f'Free space below evaluation reserve: {free} bytes; minimum {MIN_FREE_BYTES}')\nRuntimeError: Free space below evaluation reserve: 85479915520 bytes; minimum 85899345920\n"
+}

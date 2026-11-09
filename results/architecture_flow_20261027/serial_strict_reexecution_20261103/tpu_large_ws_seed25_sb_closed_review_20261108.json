@@ -1,0 +1,90 @@
+{
+  "utc": "2026-11-08T00:09:55.511258+00:00",
+  "scope": "Closed SB case for tpu_like.large.ws seed25 W100, P0 and P1 only; not whole circuit-seed, heldout stage or full study closure.",
+  "result": "evaluation_cases/heldout_tpu_like.large.ws_s25_sb_w100/result.json",
+  "result_sha256": "ed6035a3bfb482bb6b14e9798ae1a38e787a62d50a93b405a809d6b2c63889bc",
+  "result_status": "completed",
+  "matches_frozen_job": true,
+  "evaluation_jobs_sha256": "efbc5f6d7fd682a44afbca64ccbe72f9c9c53bb92ef908b5d43cb02a0c878fcf",
+  "registered_routes": 6,
+  "status_counts": {
+    "timeout": 6
+  },
+  "legal_routes": 0,
+  "flows": [
+    {
+      "flow": "p0",
+      "audit_summary": "evaluation_cases/heldout_tpu_like.large.ws_s25_sb_w100/p0_audit_summary.json",
+      "audit_summary_sha256": "769a9d580e984dc528c828c3d3d5db55ab77b04018d1732105dbfd7a7ff633f9",
+      "legal_count": 0,
+      "failed_count": 3,
+      "runs": [
+        {
+          "name": "heldout_tpu_like.large.ws_s25_sb_n100_w100_p0_a0",
+          "manifest": "runs/heldout_tpu_like.large.ws_s25_sb_n100_w100_p0_a0/manifest.json",
+          "sha256": "583d3ab3d9e477695ac7b22f321d44bed22cd275b5cb966340d74b7ff666931e",
+          "status": "timeout",
+          "returncode": -15,
+          "wall_seconds": 1800.2499775886536,
+          "timeout_seconds": 1800
+        },
+        {
+          "name": "heldout_tpu_like.large.ws_s25_sb_n100_w100_p0_b2",
+          "manifest": "runs/heldout_tpu_like.large.ws_s25_sb_n100_w100_p0_b2/manifest.json",
+          "sha256": "797eeb4fa5e745645d7e2121aad0c6834fb343b4292ddeea5412ebcbb39ba1a9",
+          "status": "timeout",
+          "returncode": -15,
+          "wall_seconds": 1800.3011481799185,
+          "timeout_seconds": 1800
+        },
+        {
+          "name": "heldout_tpu_like.large.ws_s25_sb_n100_w100_p0_critical_c7",
+          "manifest": "runs/heldout_tpu_like.large.ws_s25_sb_n100_w100_p0_critical_c7/manifest.json",
+          "sha256": "80264758c9dc5b4d9db528b9f248c0547598bf987bc37c5b166b7be93499938b",
+          "status": "timeout",
+          "returncode": -15,
+          "wall_seconds": 1800.352442573756,
+          "timeout_seconds": 1800
+        }
+      ]
+    },
+    {
+      "flow": "p1",
+      "audit_summary": "evaluation_cases/heldout_tpu_like.large.ws_s25_sb_w100/p1_audit_summary.json",
+      "audit_summary_sha256": "471d022deb3c7c4a0fcc11d9fd8ac80f2e11fef5a0818b9558fe1fd0f3a81a5d",
+      "legal_count": 0,
+      "failed_count": 3,
+      "runs": [
+        {
+          "name": "heldout_tpu_like.large.ws_s25_sb_n100_w100_p1_a0",
+          "manifest": "runs/heldout_tpu_like.large.ws_s25_sb_n100_w100_p1_a0/manifest.json",
+          "sha256": "c3c7d17a7be6e6fb40996eb073cfe2e34ead1903972e34dd42d43db5cbf380af",
+          "status": "timeout",
+          "returncode": -15,
+          "wall_seconds": 1800.2619233354926,
+          "timeout_seconds": 1800
+        },
+        {
+          "name": "heldout_tpu_like.large.ws_s25_sb_n100_w100_p1_b2",
+          "manifest": "runs/heldout_tpu_like.large.ws_s25_sb_n100_w100_p1_b2/manifest.json",
+          "sha256": "90a3e11847d1e877996c90b382454c1ce5b44485946e21b79cdb5b2338316431",
+          "status": "timeout",
+          "returncode": -15,
+          "wall_seconds": 1800.303508233279,
+          "timeout_seconds": 1800
+        },
+        {
+          "name": "heldout_tpu_like.large.ws_s25_sb_n100_w100_p1_critical_c7",
+          "manifest": "runs/heldout_tpu_like.large.ws_s25_sb_n100_w100_p1_critical_c7/manifest.json",
+          "sha256": "97fc21d72f4aba2093536c218a28c647caae12573684498675e307b168cdb2f6",
+          "status": "timeout",
+          "returncode": -15,
+          "wall_seconds": 1800.955622047186,
+          "timeout_seconds": 1800
+        }
+      ]
+    }
+  ],
+  "interpretation": "All six registered routes timed out. Retain failures and denominators. No legal A0/R1/B2 timing pairs or placement timing comparison for this case. Audit passed is processing verification, not routing success.",
+  "full_study_complete": false
+}

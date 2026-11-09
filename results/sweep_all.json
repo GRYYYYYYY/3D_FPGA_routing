@@ -1,0 +1,974 @@
+{
+  "owner_pid": 1497923,
+  "workers": 2,
+  "started_epoch": 1792675223.436608,
+  "timing_scope": "concurrent screening; controlled sequential repeats required",
+  "prepared_list": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/sweep_prepare_v2.json",
+  "variants": [
+    {
+      "name": "a0",
+      "binary": "artifacts/bin/baseline/vpr",
+      "env": {}
+    },
+    {
+      "name": "a1_w2",
+      "binary": "artifacts/bin/a4scc/vpr",
+      "env": {
+        "VPR_H3D_VERTICAL_WEIGHT": "2",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a2",
+      "binary": "artifacts/bin/a4scc/vpr",
+      "env": {
+        "VPR_H3D_MODE": "candidates",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a3",
+      "binary": "artifacts/bin/a4scc/vpr",
+      "env": {
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a4_whole",
+      "binary": "artifacts/bin/a4scc/vpr",
+      "env": {
+        "VPR_H3D_MODE": "dynamic_whole",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "a4_subtree",
+      "binary": "artifacts/bin/a4scc/vpr",
+      "env": {
+        "VPR_H3D_MODE": "dynamic_subtree",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "flute_soft",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_CONTROL": "flute_soft",
+        "VPR_H3D_FLUTE_LUT": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/sources/flute3",
+        "VPR_H3D_STATS": "1"
+      }
+    },
+    {
+      "name": "steiner_field",
+      "binary": "artifacts/bin/controls/vpr",
+      "env": {
+        "VPR_H3D_CONTROL": "steiner_field",
+        "VPR_H3D_FLUTE_LUT": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/sources/flute3",
+        "VPR_H3D_STATS": "1"
+      }
+    }
+  ],
+  "jobs": [
+    {
+      "circuit": "ex5p_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_reference_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_reference_a0"
+    },
+    {
+      "circuit": "ex5p_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_reference_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_reference_a1_w2"
+    },
+    {
+      "circuit": "ex5p_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_reference_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_reference_a2"
+    },
+    {
+      "circuit": "ex5p_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_reference_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_reference_a3"
+    },
+    {
+      "circuit": "ex5p_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_reference_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_reference_a4_whole"
+    },
+    {
+      "circuit": "ex5p_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_reference_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_reference_a4_subtree"
+    },
+    {
+      "circuit": "ex5p_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_reference_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_reference_flute_soft"
+    },
+    {
+      "circuit": "ex5p_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_reference_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_reference_steiner_field"
+    },
+    {
+      "circuit": "ex5p_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density3_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density3_a0"
+    },
+    {
+      "circuit": "ex5p_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density3_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density3_a1_w2"
+    },
+    {
+      "circuit": "ex5p_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density3_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density3_a2"
+    },
+    {
+      "circuit": "ex5p_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density3_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density3_a3"
+    },
+    {
+      "circuit": "ex5p_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density3_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density3_a4_whole"
+    },
+    {
+      "circuit": "ex5p_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density3_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density3_a4_subtree"
+    },
+    {
+      "circuit": "ex5p_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density3_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density3_flute_soft"
+    },
+    {
+      "circuit": "ex5p_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density3_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density3_steiner_field"
+    },
+    {
+      "circuit": "ex5p_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density12_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density12_a0"
+    },
+    {
+      "circuit": "ex5p_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density12_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density12_a1_w2"
+    },
+    {
+      "circuit": "ex5p_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density12_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density12_a2"
+    },
+    {
+      "circuit": "ex5p_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density12_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density12_a3"
+    },
+    {
+      "circuit": "ex5p_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density12_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density12_a4_whole"
+    },
+    {
+      "circuit": "ex5p_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density12_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density12_a4_subtree"
+    },
+    {
+      "circuit": "ex5p_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density12_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density12_flute_soft"
+    },
+    {
+      "circuit": "ex5p_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_density12_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_density12_steiner_field"
+    },
+    {
+      "circuit": "ex5p_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access8_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access8_a0"
+    },
+    {
+      "circuit": "ex5p_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access8_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access8_a1_w2"
+    },
+    {
+      "circuit": "ex5p_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access8_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access8_a2"
+    },
+    {
+      "circuit": "ex5p_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access8_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access8_a3"
+    },
+    {
+      "circuit": "ex5p_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access8_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access8_a4_whole"
+    },
+    {
+      "circuit": "ex5p_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access8_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access8_a4_subtree"
+    },
+    {
+      "circuit": "ex5p_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access8_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access8_flute_soft"
+    },
+    {
+      "circuit": "ex5p_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access8_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access8_steiner_field"
+    },
+    {
+      "circuit": "ex5p_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access32_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access32_a0"
+    },
+    {
+      "circuit": "ex5p_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access32_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access32_a1_w2"
+    },
+    {
+      "circuit": "ex5p_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access32_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access32_a2"
+    },
+    {
+      "circuit": "ex5p_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access32_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access32_a3"
+    },
+    {
+      "circuit": "ex5p_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access32_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access32_a4_whole"
+    },
+    {
+      "circuit": "ex5p_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access32_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access32_a4_subtree"
+    },
+    {
+      "circuit": "ex5p_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access32_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access32_flute_soft"
+    },
+    {
+      "circuit": "ex5p_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_access32_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_access32_steiner_field"
+    },
+    {
+      "circuit": "ex5p_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay0p5_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay0p5_a0"
+    },
+    {
+      "circuit": "ex5p_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay0p5_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay0p5_a1_w2"
+    },
+    {
+      "circuit": "ex5p_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay0p5_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay0p5_a2"
+    },
+    {
+      "circuit": "ex5p_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay0p5_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay0p5_a3"
+    },
+    {
+      "circuit": "ex5p_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay0p5_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay0p5_a4_whole"
+    },
+    {
+      "circuit": "ex5p_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay0p5_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay0p5_a4_subtree"
+    },
+    {
+      "circuit": "ex5p_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay0p5_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay0p5_flute_soft"
+    },
+    {
+      "circuit": "ex5p_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay0p5_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay0p5_steiner_field"
+    },
+    {
+      "circuit": "ex5p_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay2_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay2_a0"
+    },
+    {
+      "circuit": "ex5p_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay2_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay2_a1_w2"
+    },
+    {
+      "circuit": "ex5p_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay2_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay2_a2"
+    },
+    {
+      "circuit": "ex5p_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay2_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay2_a3"
+    },
+    {
+      "circuit": "ex5p_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay2_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay2_a4_whole"
+    },
+    {
+      "circuit": "ex5p_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay2_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay2_a4_subtree"
+    },
+    {
+      "circuit": "ex5p_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay2_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay2_flute_soft"
+    },
+    {
+      "circuit": "ex5p_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_delay2_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_delay2_steiner_field"
+    },
+    {
+      "circuit": "ex5p_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_perimeter_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_perimeter_a0"
+    },
+    {
+      "circuit": "ex5p_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_perimeter_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_perimeter_a1_w2"
+    },
+    {
+      "circuit": "ex5p_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_perimeter_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_perimeter_a2"
+    },
+    {
+      "circuit": "ex5p_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_perimeter_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_perimeter_a3"
+    },
+    {
+      "circuit": "ex5p_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_perimeter_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_perimeter_a4_whole"
+    },
+    {
+      "circuit": "ex5p_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_perimeter_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_perimeter_a4_subtree"
+    },
+    {
+      "circuit": "ex5p_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_perimeter_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_perimeter_flute_soft"
+    },
+    {
+      "circuit": "ex5p_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_ex5p_perimeter_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_ex5p_perimeter_steiner_field"
+    },
+    {
+      "circuit": "diffeq_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_reference_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_reference_a0"
+    },
+    {
+      "circuit": "diffeq_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_reference_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_reference_a1_w2"
+    },
+    {
+      "circuit": "diffeq_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_reference_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_reference_a2"
+    },
+    {
+      "circuit": "diffeq_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_reference_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_reference_a3"
+    },
+    {
+      "circuit": "diffeq_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_reference_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_reference_a4_whole"
+    },
+    {
+      "circuit": "diffeq_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_reference_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_reference_a4_subtree"
+    },
+    {
+      "circuit": "diffeq_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_reference_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_reference_flute_soft"
+    },
+    {
+      "circuit": "diffeq_reference",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_reference_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_reference_steiner_field"
+    },
+    {
+      "circuit": "diffeq_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density3_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density3_a0"
+    },
+    {
+      "circuit": "diffeq_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density3_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density3_a1_w2"
+    },
+    {
+      "circuit": "diffeq_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density3_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density3_a2"
+    },
+    {
+      "circuit": "diffeq_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density3_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density3_a3"
+    },
+    {
+      "circuit": "diffeq_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density3_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density3_a4_whole"
+    },
+    {
+      "circuit": "diffeq_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density3_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density3_a4_subtree"
+    },
+    {
+      "circuit": "diffeq_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density3_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density3_flute_soft"
+    },
+    {
+      "circuit": "diffeq_density3",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density3_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density3_steiner_field"
+    },
+    {
+      "circuit": "diffeq_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density12_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density12_a0"
+    },
+    {
+      "circuit": "diffeq_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density12_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density12_a1_w2"
+    },
+    {
+      "circuit": "diffeq_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density12_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density12_a2"
+    },
+    {
+      "circuit": "diffeq_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density12_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density12_a3"
+    },
+    {
+      "circuit": "diffeq_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density12_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density12_a4_whole"
+    },
+    {
+      "circuit": "diffeq_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density12_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density12_a4_subtree"
+    },
+    {
+      "circuit": "diffeq_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density12_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density12_flute_soft"
+    },
+    {
+      "circuit": "diffeq_density12",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_density12_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_density12_steiner_field"
+    },
+    {
+      "circuit": "diffeq_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access8_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access8_a0"
+    },
+    {
+      "circuit": "diffeq_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access8_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access8_a1_w2"
+    },
+    {
+      "circuit": "diffeq_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access8_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access8_a2"
+    },
+    {
+      "circuit": "diffeq_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access8_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access8_a3"
+    },
+    {
+      "circuit": "diffeq_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access8_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access8_a4_whole"
+    },
+    {
+      "circuit": "diffeq_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access8_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access8_a4_subtree"
+    },
+    {
+      "circuit": "diffeq_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access8_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access8_flute_soft"
+    },
+    {
+      "circuit": "diffeq_access8",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access8_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access8_steiner_field"
+    },
+    {
+      "circuit": "diffeq_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access32_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access32_a0"
+    },
+    {
+      "circuit": "diffeq_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access32_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access32_a1_w2"
+    },
+    {
+      "circuit": "diffeq_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access32_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access32_a2"
+    },
+    {
+      "circuit": "diffeq_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access32_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access32_a3"
+    },
+    {
+      "circuit": "diffeq_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access32_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access32_a4_whole"
+    },
+    {
+      "circuit": "diffeq_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access32_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access32_a4_subtree"
+    },
+    {
+      "circuit": "diffeq_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access32_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access32_flute_soft"
+    },
+    {
+      "circuit": "diffeq_access32",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_access32_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_access32_steiner_field"
+    },
+    {
+      "circuit": "diffeq_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay0p5_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay0p5_a0"
+    },
+    {
+      "circuit": "diffeq_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay0p5_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay0p5_a1_w2"
+    },
+    {
+      "circuit": "diffeq_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay0p5_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay0p5_a2"
+    },
+    {
+      "circuit": "diffeq_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay0p5_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay0p5_a3"
+    },
+    {
+      "circuit": "diffeq_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay0p5_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay0p5_a4_whole"
+    },
+    {
+      "circuit": "diffeq_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay0p5_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay0p5_a4_subtree"
+    },
+    {
+      "circuit": "diffeq_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay0p5_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay0p5_flute_soft"
+    },
+    {
+      "circuit": "diffeq_delay0p5",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay0p5_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay0p5_steiner_field"
+    },
+    {
+      "circuit": "diffeq_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay2_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay2_a0"
+    },
+    {
+      "circuit": "diffeq_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay2_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay2_a1_w2"
+    },
+    {
+      "circuit": "diffeq_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay2_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay2_a2"
+    },
+    {
+      "circuit": "diffeq_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay2_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay2_a3"
+    },
+    {
+      "circuit": "diffeq_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay2_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay2_a4_whole"
+    },
+    {
+      "circuit": "diffeq_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay2_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay2_a4_subtree"
+    },
+    {
+      "circuit": "diffeq_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay2_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay2_flute_soft"
+    },
+    {
+      "circuit": "diffeq_delay2",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_delay2_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_delay2_steiner_field"
+    },
+    {
+      "circuit": "diffeq_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_perimeter_v2",
+      "variant": "a0",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_perimeter_a0"
+    },
+    {
+      "circuit": "diffeq_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_perimeter_v2",
+      "variant": "a1_w2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_perimeter_a1_w2"
+    },
+    {
+      "circuit": "diffeq_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_perimeter_v2",
+      "variant": "a2",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_perimeter_a2"
+    },
+    {
+      "circuit": "diffeq_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_perimeter_v2",
+      "variant": "a3",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_perimeter_a3"
+    },
+    {
+      "circuit": "diffeq_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_perimeter_v2",
+      "variant": "a4_whole",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_perimeter_a4_whole"
+    },
+    {
+      "circuit": "diffeq_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_perimeter_v2",
+      "variant": "a4_subtree",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_perimeter_a4_subtree"
+    },
+    {
+      "circuit": "diffeq_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_perimeter_v2",
+      "variant": "flute_soft",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_perimeter_flute_soft"
+    },
+    {
+      "circuit": "diffeq_perimeter",
+      "prepared": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_prepare_diffeq_perimeter_v2",
+      "variant": "steiner_field",
+      "state": "waiting_preparation",
+      "output": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/runs/sweep_all_diffeq_perimeter_steiner_field"
+    }
+  ]
+}

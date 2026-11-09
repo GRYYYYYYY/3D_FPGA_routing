@@ -1,0 +1,57 @@
+{
+  "utc": "2026-11-06T14:25:53.295493+00:00",
+  "passed": true,
+  "registered_route_count": 3,
+  "legal_count": 1,
+  "failed_count": 2,
+  "legal": [
+    {
+      "name": "heldout_lstm_s25_sb_n125_w100_p0_b2",
+      "passed": true,
+      "metrics": {
+        "critical_path_ns": 13.3732,
+        "wirelength": 2416371,
+        "router_seconds": 287.74,
+        "iterations": 138,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 2416371,
+        "sb_pairs_used": 8390,
+        "sb_pair_net_occupancy": 8390,
+        "cb_crossing_output_sources_used": 0,
+        "cb_crossing_output_source_net_occupancy": 0,
+        "actual_crossing_edge_traversals": {
+          "CHANX->CHANX": 8390
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      }
+    }
+  ],
+  "failed": [
+    {
+      "name": "heldout_lstm_s25_sb_n125_w100_p0_a0",
+      "status": "failed",
+      "metrics": {
+        "critical_path_ns": 13.1797,
+        "wirelength": 2602862,
+        "router_seconds": 379.06,
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      }
+    },
+    {
+      "name": "heldout_lstm_s25_sb_n125_w100_p0_critical_c7",
+      "status": "failed",
+      "metrics": {
+        "critical_path_ns": 13.0107,
+        "wirelength": 2606570,
+        "router_seconds": 413.18,
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      }
+    }
+  ],
+  "graph_sha256": "6b1ce8e60ba4084099ece8b5fbcbeba99e57a0de2a39d4b4a51f8e86b6b1dcce"
+}

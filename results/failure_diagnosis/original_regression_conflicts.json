@@ -1,0 +1,152 @@
+[
+  {
+    "circuit": "clstm_like.small",
+    "original_run": "koios_a0a4_seed1_clstm_like.small_a4_subtree",
+    "route_sha256": "80229fffea77cd84cecc388fa9ddfa1c656c8f94b74e5b070f797d28f8571241",
+    "conflicting_node": 598872,
+    "node_type": "CHANY",
+    "capacity_reported_by_native": 1,
+    "owners": [
+      {
+        "net_id": 2251,
+        "name": "C_LSTM_stage_3_18_10_64_2048_1_16_1_inst_skqzqwirvv.multiple_c_matrix_vec_mult_and_sum_18_10_16_1_1_64_inst_gwxvknsryv.idft_16_top_18_inst_odzdqwqjpl.codeBlock98050_18_inst_apzkvgqore.add98468.q[16]",
+        "source": [
+          11,
+          17,
+          1
+        ],
+        "sinks": [
+          [
+            10,
+            19,
+            1
+          ],
+          [
+            10,
+            19,
+            1
+          ]
+        ],
+        "vertical_nodes": []
+      },
+      {
+        "net_id": 2261,
+        "name": "C_LSTM_stage_3_18_10_64_2048_1_16_1_inst_skqzqwirvv.multiple_c_matrix_vec_mult_and_sum_18_10_16_1_1_64_inst_gwxvknsryv.idft_16_top_18_inst_odzdqwqjpl.codeBlock98050_18_inst_apzkvgqore.add98468.q[6]",
+        "source": [
+          11,
+          19,
+          1
+        ],
+        "sinks": [
+          [
+            10,
+            19,
+            1
+          ],
+          [
+            10,
+            19,
+            1
+          ]
+        ],
+        "vertical_nodes": []
+      }
+    ],
+    "interpretation": "Both final competing nets are entirely within one layer. This identifies the residual conflict; it does not establish which earlier guidance decision caused it."
+  },
+  {
+    "circuit": "robot_rl",
+    "original_run": "koios_controls_seed1_robot_rl_flute_soft",
+    "route_sha256": "11722204c2e1d906bb4ac1d63fc4b13112123e43ffb4153a5940644b70ce8967",
+    "conflicting_node": 513185,
+    "node_type": "CHANY",
+    "capacity_reported_by_native": 1,
+    "owners": [
+      {
+        "net_id": 3437,
+        "name": "robot_6.module_2.u_Sum_Calc.Product_cast_1[23]",
+        "source": [
+          18,
+          24,
+          1
+        ],
+        "sinks": [
+          [
+            13,
+            9,
+            1
+          ],
+          [
+            13,
+            8,
+            1
+          ],
+          [
+            17,
+            10,
+            1
+          ],
+          [
+            16,
+            8,
+            1
+          ],
+          [
+            14,
+            8,
+            1
+          ],
+          [
+            17,
+            8,
+            1
+          ],
+          [
+            17,
+            9,
+            1
+          ],
+          [
+            16,
+            9,
+            1
+          ],
+          [
+            19,
+            8,
+            1
+          ],
+          [
+            17,
+            12,
+            1
+          ]
+        ],
+        "vertical_nodes": []
+      },
+      {
+        "net_id": 6876,
+        "name": "$abc$92585$new_n24568",
+        "source": [
+          17,
+          24,
+          1
+        ],
+        "sinks": [
+          [
+            16,
+            13,
+            1
+          ],
+          [
+            17,
+            16,
+            1
+          ]
+        ],
+        "vertical_nodes": []
+      }
+    ],
+    "interpretation": "Both final competing nets are entirely within one layer. This identifies the residual conflict; it does not establish which earlier guidance decision caused it."
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-27T22:24:08.044970+00:00",
+  "source_sha256": "a56de3bd5f8f6e7062eb816f899675c55509433faaaac58a8182c8c93858e55b",
+  "initial_batch": "eltwise_layer_spmv",
+  "batches": [
+    {
+      "circuits": [
+        "attention_layer",
+        "softmax"
+      ],
+      "workers": 6
+    },
+    {
+      "circuits": [
+        "bnn"
+      ],
+      "workers": 3
+    },
+    {
+      "circuits": [
+        "gemm_layer"
+      ],
+      "workers": 3
+    }
+  ],
+  "contract": "Wait for previous input-integrity seal and ready physical models; stop on infrastructure error; never start held-out runs or change registered hyperparameters"
+}

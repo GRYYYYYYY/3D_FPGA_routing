@@ -1,0 +1,140 @@
+{
+  "utc": "2026-10-27T20:54:18.759501+00:00",
+  "graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/graph_2d_25_w100_routeclock/rr_graph.xml",
+  "graph_sha256": "d8bed6f39010592121e7fc8451739b9a5d3498cfa54e2cfaf4eee27de47e5d6f",
+  "architecture": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/beyond-flatland-src/Architecture_Files/2d_architecture.xml",
+  "architecture_sha256": "c0e167c99ecedb269b64aba4c831d54bbd35887e6de9bbc350d22c06da732c49",
+  "grid": [
+    {
+      "layer": 0,
+      "type": "EMPTY",
+      "tiles": 4,
+      "slots": 0
+    },
+    {
+      "layer": 0,
+      "type": "clb",
+      "tiles": 825,
+      "slots": 825
+    },
+    {
+      "layer": 0,
+      "type": "complex_dsp",
+      "tiles": 132,
+      "slots": 132
+    },
+    {
+      "layer": 0,
+      "type": "io",
+      "tiles": 132,
+      "slots": 1056
+    },
+    {
+      "layer": 0,
+      "type": "spram",
+      "tiles": 132,
+      "slots": 132
+    }
+  ],
+  "total_slots": {
+    "io": 1056,
+    "clb": 825,
+    "spram": 132,
+    "complex_dsp": 132,
+    "EMPTY": 0
+  },
+  "node_counts": {
+    "SINK": 19470,
+    "SOURCE": 24354,
+    "IPIN": 51645,
+    "OPIN": 24354,
+    "CHANX": 27744,
+    "CHANY": 27744
+  },
+  "edge_counts": {
+    "SOURCE->OPIN": 24354,
+    "IPIN->SINK": 51645,
+    "OPIN->CHANY": 149886,
+    "OPIN->CHANX": 60984,
+    "CHANX->IPIN": 262680,
+    "CHANX->CHANX": 24344,
+    "CHANX->CHANY": 172592,
+    "CHANY->IPIN": 404250,
+    "CHANY->CHANX": 172592,
+    "CHANY->CHANY": 24344
+  },
+  "total_nodes": 175311,
+  "total_edges": 1347671,
+  "cross_layer_edges": {},
+  "switches": {
+    "0": {
+      "name": "__vpr_delayless_switch__",
+      "type": "mux",
+      "timing": {}
+    },
+    "1": {
+      "name": "ipin_cblock",
+      "type": "mux",
+      "timing": {
+        "Tdel": "1.06036097e-10"
+      }
+    },
+    "2": {
+      "name": "L4_driver",
+      "type": "mux",
+      "timing": {
+        "Tdel": "1.85825799e-10"
+      }
+    },
+    "3": {
+      "name": "L16_driver",
+      "type": "mux",
+      "timing": {
+        "Tdel": "3.79290599e-10"
+      }
+    },
+    "4": {
+      "name": "L4_inter_layer_driver",
+      "type": "mux",
+      "timing": {
+        "Tdel": "3.23151061e-10"
+      }
+    },
+    "5": {
+      "name": "L16_inter_layer_driver",
+      "type": "mux",
+      "timing": {
+        "Tdel": "5.16615861e-10"
+      }
+    },
+    "6": {
+      "name": "ipin_inter_layer_cblock",
+      "type": "mux",
+      "timing": {
+        "Tdel": "2.43361359e-10"
+      }
+    },
+    "7": {
+      "name": "3D_SB_switch",
+      "type": "mux",
+      "timing": {
+        "Tdel": "4.57750886e-11"
+      }
+    }
+  },
+  "crossing_examples": {},
+  "zero_indegree_clock_ipins": {
+    "spram": 132
+  },
+  "nonzero_node_RC_count": 0,
+  "sb_pair_count": 0,
+  "sb_pair_nodes": 0,
+  "unpaired_sb_nodes": 0,
+  "schema_version": 2,
+  "supersedes": "v1 segment-name heuristic did not detect L4/L16-tagged SB half-nodes; v2 uses direction NONE plus explicit no-bypass pairing checks",
+  "cb_crossing_source_rr_nodes": 0,
+  "cb_crossing_unique_tile_output_pins": 0,
+  "cb_capacity_interpretation": "Crossing edges share OPIN/receiving channel capacities; edge count is NOT an independent physical via-capacity count",
+  "crossing_delay_histogram": [],
+  "sb_full_transition_delay_histogram": []
+}

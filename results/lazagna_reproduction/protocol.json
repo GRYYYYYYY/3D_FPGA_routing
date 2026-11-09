@@ -1,0 +1,112 @@
+{
+  "created_utc": "2026-10-23T14:28:36.795408+00:00",
+  "scope": "Reproduce paper-era LaZagna PnR conditions and audit DSP/planar/inter-layer graph correspondence.",
+  "paper_source": "https://arxiv.org/abs/2505.05579v1",
+  "source_selection": "Last public LaZagna commit on 2025-05-08; author experiment commit is not specified in the paper.",
+  "sources": {
+    "lazagna": "16fa62c9385843144f9d00c3827e1d87accec4fb",
+    "openfpga": "729e6187fe9e88b8c24399cfe852bcd3b3fb9291",
+    "vtr": "a80511e8f96d560e680d2ebe9c18272a759ce493",
+    "yosys": "1bf908dea8e09f29e10b7eb44501151a63c68eb3"
+  },
+  "paper_parameters": {
+    "grid": [
+      100,
+      100,
+      2
+    ],
+    "channel_width": 300,
+    "sb_fraction": 0.5,
+    "sb_pattern": "subset",
+    "sb_location": "repeated_interval",
+    "vertical_track_fraction": 1,
+    "vertical_delay_ratio": 0.739,
+    "placement": "cube_bb",
+    "seed": 1
+  },
+  "diagnostics": {
+    "small_grid": [
+      40,
+      40,
+      2
+    ],
+    "widths": [
+      100,
+      300
+    ],
+    "focus_cases": [
+      "attention_layer",
+      "conv_layer",
+      "dla_like.small",
+      "dla_like.medium",
+      "bnn",
+      "lstm",
+      "tpu_like.small.ws",
+      "tpu_like.large.ws",
+      "clstm_like.small",
+      "robot_rl",
+      "conv_layer_hls"
+    ],
+    "netlists": "Use the exact published BLIF inputs of the existing study to avoid a synthesis confound. Separately assess completeness of the historical Verilog synthesis flow.",
+    "graph_audit": "Canonical physical node/edge identities; collapse paired legacy vertical nodes only with explicit physical-channel mapping.",
+    "interpretation": "Changing toolchain, graph, packing or placement is not an algorithm-only comparison. Every run retains actual stage outcome; unsupported inputs, timeouts and capacity failures are separate."
+  },
+  "architectures": {
+    "paper_40": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/lazagna_reproduction/architectures/paper_40.xml",
+      "sha256": "ba69cf50999ff3504f6dcfd5d1ecd98192703f9575ae0deea6cf0c3a4134645d",
+      "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/LaZagna-paper/arch_files/templates/dsp_bram/vtr_arch_dsp_bram.xml",
+      "source_sha256": "4db97df7d66cefb795fd6e18ed63c438cc67e8f287550c311f65abd82ad8b66c",
+      "grid": [
+        40,
+        40,
+        2
+      ],
+      "delay_ratio": 0.739
+    },
+    "native_40": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/lazagna_reproduction/architectures/native_40.xml",
+      "sha256": "b5fae2820b1acbce594eda5cc0e90c30beeda8114e607ba5855429f9747e7160",
+      "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/configs/architectures/koios_native3d_n6_f16_d1_v3.xml",
+      "source_sha256": "b19507fc7eeb0f87208a8565fe09b6313aafd1d6006b057c1e284ae2c549ef60",
+      "grid": [
+        40,
+        40,
+        2
+      ],
+      "delay_ratio": null
+    },
+    "paper_100": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/lazagna_reproduction/architectures/paper_100.xml",
+      "sha256": "15a354f937ad8f9178efba3aad5bee0b902b6521bd412c0a8eaa0ab880de141b",
+      "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/LaZagna-paper/arch_files/templates/dsp_bram/vtr_arch_dsp_bram.xml",
+      "source_sha256": "4db97df7d66cefb795fd6e18ed63c438cc67e8f287550c311f65abd82ad8b66c",
+      "grid": [
+        100,
+        100,
+        2
+      ],
+      "delay_ratio": 0.739
+    },
+    "native_100": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/lazagna_reproduction/architectures/native_100.xml",
+      "sha256": "77bae591da42990777f70f11a76b40fb56d0e3658949c7e67ba530c3851863f8",
+      "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/configs/architectures/koios_native3d_n6_f16_d1_v3.xml",
+      "source_sha256": "b19507fc7eeb0f87208a8565fe09b6313aafd1d6006b057c1e284ae2c549ef60",
+      "grid": [
+        100,
+        100,
+        2
+      ],
+      "delay_ratio": null
+    }
+  },
+  "protected_files": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/analysis.json": "e1f73957b2225db1784b9559381612a4653c437304cb742321952568502e1e53",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/failure_diagnosis/analysis_native.json": "41970b32895124d4c2b3eff052cc1e9a8cb37c2140763eb23b30363eb0d7cbec",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/configs/sources.lock.json": "43ef9c53e8f5909c8115b7d6c929e42df5a72db768b0ec434c72e0fcb3d4b6e1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/configs/failure_diagnosis_native.json": "f84fd341f48d3fd52b766029c096ba532129d71b5489ed25831da4ff65df7825",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/configs/architectures/koios_native3d_n6_f16_d1_v3.xml": "b19507fc7eeb0f87208a8565fe09b6313aafd1d6006b057c1e284ae2c549ef60"
+  },
+  "status": "sources_and_build_in_progress"
+}

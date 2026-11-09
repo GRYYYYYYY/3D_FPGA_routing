@@ -1,0 +1,123 @@
+{
+  "utc": "2026-11-08T22:32:13.989894+00:00",
+  "job": {
+    "circuit": "spmv",
+    "split": "training",
+    "seed": 11,
+    "width": 300,
+    "family": "cb_o",
+    "placement_arm": "literal",
+    "partition_argument": 0.03,
+    "routers": [
+      "A0",
+      "R1",
+      "B2"
+    ]
+  },
+  "status": "completed",
+  "placement": "balance_literal_spmv_s11_cb_o_n40_w300_p1_place",
+  "balance": {
+    "vertices": 1337,
+    "edges": 8317,
+    "parts": 2,
+    "balance_argument": 0.03,
+    "partition_weights": [
+      1057.0,
+      280.0
+    ],
+    "lower_each": 668.0989,
+    "upper_each": 668.9010999999999,
+    "balanced": false,
+    "unit_weight_integer_feasible": false,
+    "graph_sha256": "6319e665779380fbfdcd8c2e61cfcad93e56581dc395c29932cd3d96600d1d0e",
+    "assignment_sha256": "13bfe20fc35faf4a2da6e6570ecbe722c2b20059e170be819891336d5b64bfba"
+  },
+  "roles": {
+    "A0": "balance_literal_spmv_s11_cb_o_n40_w300_p1_a0",
+    "R1": "balance_literal_spmv_s11_cb_o_n40_w300_p1_critical_c4",
+    "B2": "balance_literal_spmv_s11_cb_o_n40_w300_p1_b2"
+  },
+  "route_audit": {
+    "utc": "2026-11-08T22:34:13.401891+00:00",
+    "passed": true,
+    "registered_route_count": 3,
+    "legal_count": 3,
+    "failed_count": 0,
+    "legal": [
+      {
+        "name": "balance_literal_spmv_s11_cb_o_n40_w300_p1_a0",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 6.41043,
+          "wirelength": 116746,
+          "router_seconds": 1.4,
+          "iterations": 13,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 116746,
+          "sb_pairs_used": 0,
+          "sb_pair_net_occupancy": 0,
+          "cb_crossing_output_sources_used": 2402,
+          "cb_crossing_output_source_net_occupancy": 2402,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANY": 1018,
+            "OPIN->CHANX": 1523
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      },
+      {
+        "name": "balance_literal_spmv_s11_cb_o_n40_w300_p1_critical_c4",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 6.41043,
+          "wirelength": 116746,
+          "router_seconds": 2.39,
+          "iterations": 13,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 116746,
+          "sb_pairs_used": 0,
+          "sb_pair_net_occupancy": 0,
+          "cb_crossing_output_sources_used": 2402,
+          "cb_crossing_output_source_net_occupancy": 2402,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANY": 1018,
+            "OPIN->CHANX": 1523
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      },
+      {
+        "name": "balance_literal_spmv_s11_cb_o_n40_w300_p1_b2",
+        "passed": true,
+        "metrics": {
+          "critical_path_ns": 6.41043,
+          "wirelength": 115141,
+          "router_seconds": 1.39,
+          "iterations": 12,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 115141,
+          "sb_pairs_used": 0,
+          "sb_pair_net_occupancy": 0,
+          "cb_crossing_output_sources_used": 2402,
+          "cb_crossing_output_source_net_occupancy": 2402,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANY": 1019,
+            "OPIN->CHANX": 1528
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        }
+      }
+    ],
+    "failed": [],
+    "graph_sha256": "62d6fc2f1be8f87ca92980ffe2f65425ec01cd599bfeb361273a91a9caf99cc0"
+  }
+}

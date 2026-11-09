@@ -1,0 +1,2486 @@
+{
+  "utc": "2026-10-27T16:43:54.962731+00:00",
+  "rows": [
+    {
+      "directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_attention_layer",
+      "inputs": {
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_attention_layer/report_timing.setup.rpt": "401c8067a4ab305fb8335badc58eaa309db196b2396c0b21a3c5d5b74e2d2648",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_attention_layer/packed.net": "e687689f1bad21dd715bf1416281809c34040e181c8b84c81ca936ab77c05782",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_attention_layer/fixed.place": "9952cc3d9b13ac5a32ae4660893f02165b764b664a255b453feb85a607a7adf4"
+      },
+      "arcs": [
+        {
+          "source": "qk_acc.Add_u33.b[1]",
+          "sink": "$abc$170096$new_n38894",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\ff7[15:0][12]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\ff7[15:0][6]",
+          "source_location": [
+            31,
+            48,
+            0,
+            1
+          ],
+          "sink_location": [
+            47,
+            47,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 1.183
+        },
+        {
+          "source": "$abc$170096$new_n38894",
+          "sink": "$abc$170096$new_n38892",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\ff7[15:0][6]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\ff7[15:0][6]",
+          "source_location": [
+            47,
+            47,
+            0,
+            1
+          ],
+          "sink_location": [
+            47,
+            47,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$170096$new_n38892",
+          "sink": "$abc$170096$new_n38901",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\ff7[15:0][6]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\ff1[15:0][0]",
+          "source_location": [
+            47,
+            47,
+            0,
+            1
+          ],
+          "sink_location": [
+            30,
+            48,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.977
+        },
+        {
+          "source": "$abc$170096$new_n38901",
+          "sink": "$abc$170096$new_n38927",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\ff1[15:0][0]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][6]",
+          "source_location": [
+            30,
+            48,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            46,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 1.163
+        },
+        {
+          "source": "$abc$170096$new_n38927",
+          "sink": "$abc$170096$new_n38951",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][6]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][6]",
+          "source_location": [
+            46,
+            46,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            46,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$170096$new_n38951",
+          "sink": "$abc$170096$new_n38977",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][6]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][6]",
+          "source_location": [
+            46,
+            46,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            46,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$170096$new_n38977",
+          "sink": "$abc$170096$new_n39014",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][6]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][8]",
+          "source_location": [
+            46,
+            46,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            44,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$170096$new_n39014",
+          "sink": "$abc$170096$new_n39050",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][8]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][11]",
+          "source_location": [
+            46,
+            44,
+            0,
+            1
+          ],
+          "sink_location": [
+            45,
+            45,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$170096$new_n39050",
+          "sink": "$abc$170096$new_n39073",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][11]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][11]",
+          "source_location": [
+            45,
+            45,
+            0,
+            1
+          ],
+          "sink_location": [
+            45,
+            45,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$170096$new_n39073",
+          "sink": "$abc$170096$new_n39071",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][11]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][10]",
+          "source_location": [
+            45,
+            45,
+            0,
+            1
+          ],
+          "sink_location": [
+            45,
+            41,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.784
+        },
+        {
+          "source": "$abc$170096$new_n39071",
+          "sink": "$abc$170096$new_n39116",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][10]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][13]",
+          "source_location": [
+            45,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            45,
+            42,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$170096$new_n39116",
+          "sink": "$abc$170096$new_n39166",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][13]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][13]",
+          "source_location": [
+            45,
+            42,
+            0,
+            1
+          ],
+          "sink_location": [
+            45,
+            42,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$170096$new_n39166",
+          "sink": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][15]",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][13]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][15]",
+          "source_location": [
+            45,
+            42,
+            0,
+            1
+          ],
+          "sink_location": [
+            43,
+            46,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][15]",
+          "sink": "qiki[15]",
+          "source_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][15]",
+          "sink_cluster": "$abc$170096$flatten\\qk_acc.$0\\data_out[15:0][15]",
+          "source_location": [
+            43,
+            46,
+            0,
+            1
+          ],
+          "sink_location": [
+            43,
+            46,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.0
+        }
+      ],
+      "counts": {
+        "within_cluster": 6,
+        "same_die_clusters": 8,
+        "cross_die_terminals": 0
+      },
+      "reported_arrival_ns": 10.62,
+      "case": "attention_layer",
+      "a0_a3_worst_report_identical": true
+    },
+    {
+      "directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_bnn",
+      "inputs": {
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_bnn/report_timing.setup.rpt": "942d48efdb54e2d7e37b4f2d7f923196ac034da792264b2e6466d262544b9af6",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_bnn/packed.net": "494d7986f69e427c40d760b5b5d070a0e33c89cc311886b198834f57b3d2c9d2",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_bnn/fixed.place": "0fedf53cd74a114b62c6dca6ce376a05d9219fc14d77d924ddc90aa666fc7282"
+      },
+      "arcs": [
+        {
+          "source": "grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.mult_770_V_reg_3814_pp0_iter7_reg[1]",
+          "sink": "$abc$644909$new_n107620",
+          "source_cluster": "$abc$644909$flatten\\grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.$0\\mult_770_V_reg_3814_pp0_iter5_reg[15:0][12]",
+          "sink_cluster": "$abc$644909$new_n107620",
+          "source_location": [
+            78,
+            69,
+            0,
+            1
+          ],
+          "sink_location": [
+            71,
+            70,
+            0,
+            0
+          ],
+          "kind": "cross_die_terminals",
+          "reported_increment_ns": 1.131
+        },
+        {
+          "source": "$abc$644909$new_n107620",
+          "sink": "$abc$644909$new_n107632",
+          "source_cluster": "$abc$644909$new_n107620",
+          "sink_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][4]",
+          "source_location": [
+            71,
+            70,
+            0,
+            0
+          ],
+          "sink_location": [
+            83,
+            71,
+            0,
+            1
+          ],
+          "kind": "cross_die_terminals",
+          "reported_increment_ns": 1.297
+        },
+        {
+          "source": "$abc$644909$new_n107632",
+          "sink": "$abc$644909$new_n107648",
+          "source_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][4]",
+          "sink_cluster": "$abc$644909$flatten\\grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.$0\\mult_770_V_reg_3814_pp0_iter7_reg[15:0][3]",
+          "source_location": [
+            83,
+            71,
+            0,
+            1
+          ],
+          "sink_location": [
+            79,
+            71,
+            0,
+            0
+          ],
+          "kind": "cross_die_terminals",
+          "reported_increment_ns": 1.111
+        },
+        {
+          "source": "$abc$644909$new_n107648",
+          "sink": "$abc$644909$new_n107664",
+          "source_cluster": "$abc$644909$flatten\\grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.$0\\mult_770_V_reg_3814_pp0_iter7_reg[15:0][3]",
+          "sink_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][9]",
+          "source_location": [
+            79,
+            71,
+            0,
+            0
+          ],
+          "sink_location": [
+            83,
+            71,
+            0,
+            0
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.784
+        },
+        {
+          "source": "$abc$644909$new_n107664",
+          "sink": "$abc$644909$new_n107663",
+          "source_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][9]",
+          "sink_cluster": "$abc$644909$flatten\\grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.$0\\add_ln703_672_reg_4829[15:0][12]",
+          "source_location": [
+            83,
+            71,
+            0,
+            0
+          ],
+          "sink_location": [
+            95,
+            74,
+            0,
+            0
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.969
+        },
+        {
+          "source": "$abc$644909$new_n107663",
+          "sink": "$abc$644909$new_n107669",
+          "source_cluster": "$abc$644909$flatten\\grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.$0\\add_ln703_672_reg_4829[15:0][12]",
+          "sink_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][8]",
+          "source_location": [
+            95,
+            74,
+            0,
+            0
+          ],
+          "sink_location": [
+            87,
+            70,
+            0,
+            0
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.784
+        },
+        {
+          "source": "$abc$644909$new_n107669",
+          "sink": "$abc$644909$new_n107685",
+          "source_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][8]",
+          "sink_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][10]",
+          "source_location": [
+            87,
+            70,
+            0,
+            0
+          ],
+          "sink_location": [
+            95,
+            70,
+            0,
+            0
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.969
+        },
+        {
+          "source": "$abc$644909$new_n107685",
+          "sink": "$abc$644909$new_n107709",
+          "source_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][10]",
+          "sink_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][14]",
+          "source_location": [
+            95,
+            70,
+            0,
+            0
+          ],
+          "sink_location": [
+            95,
+            71,
+            0,
+            0
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.412
+        },
+        {
+          "source": "$abc$644909$new_n107709",
+          "sink": "$abc$644909$new_n107718",
+          "source_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][14]",
+          "sink_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][15]",
+          "source_location": [
+            95,
+            71,
+            0,
+            0
+          ],
+          "sink_location": [
+            95,
+            75,
+            0,
+            0
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$644909$new_n107718",
+          "sink": "grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.ap_return_63[15]",
+          "source_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][15]",
+          "sink_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][15]",
+          "source_location": [
+            95,
+            75,
+            0,
+            0
+          ],
+          "sink_location": [
+            95,
+            75,
+            0,
+            0
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.ap_return_63[15]",
+          "sink": "grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.ap_return_63_int_reg[15]",
+          "source_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][15]",
+          "sink_cluster": "$0\\layer2_out_63_V_reg_2461[15:0][15]",
+          "source_location": [
+            95,
+            75,
+            0,
+            0
+          ],
+          "sink_location": [
+            95,
+            75,
+            0,
+            0
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.0
+        }
+      ],
+      "counts": {
+        "within_cluster": 2,
+        "same_die_clusters": 6,
+        "cross_die_terminals": 3
+      },
+      "reported_arrival_ns": 10.996,
+      "case": "bnn",
+      "a0_a3_worst_report_identical": true
+    },
+    {
+      "directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_clstm_like.small",
+      "inputs": {
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_clstm_like.small/report_timing.setup.rpt": "f660f69a3a46a8a7f962afa3632c2bb2e648f7545d668b2dcfa40747803575fa",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_clstm_like.small/packed.net": "b7fae79ac0ee674b975152f7facf51b71329d5ea19494d73eb874b3cd97b0332",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_clstm_like.small/fixed.place": "527b78694ba36f09c6f6f516282e6932745a39f910909ea445c739ec6e443e0c"
+      },
+      "arcs": [
+        {
+          "source": "C_LSTM_stage_3_18_10_64_2048_1_16_1_inst_skqzqwirvv.multiple_c_matrix_vec_mult_and_sum_18_10_16_1_1_64_inst_gwxvknsryv.c_matrix_vec_mult_core_18_10_16_1_1_inst_onagqdrvym.elementwise_mult_core_18_1810_9_1_inst_0_real_real.dsp_signed_mult_18x18_unit_18_18_1_inst4.reg_ay[5]",
+          "sink": "$abc$109867$auto$wreduce.cc:461:run$7638[16]",
+          "source_cluster": "$techmap$flatten\\C_LSTM_stage_3_18_10_64_2048_1_16_1_inst_skqzqwirvv.\\multiple_c_matrix_vec_mult_and_sum_18_10_16_1_1_64_inst_gwxvknsryv.\\c_matrix_vec_mult_core_18_10_16_1_1_inst_onagqdrvym.\\dft_16_top_18_inst_pjmnmgldmq.\\codeBlock89324_18_inst_wkywadjwfn.\\add89492.$add$./benchmark/clstm_like.small.v:5641$99.$auto$alumacc.cc:485:replace_alu$9637.Y[5]",
+          "sink_cluster": "$abc$109867$flatten\\C_LSTM_stage_3_18_10_64_2048_1_16_1_inst_skqzqwirvv.\\multiple_c_matrix_vec_mult_and_sum_18_10_16_1_1_64_inst_gwxvknsryv.\\c_matrix_vec_mult_core_18_10_16_1_1_inst_onagqdrvym.\\elementwise_mult_core_18_1810_9_1_inst_0_real_real.\\fp_rounding_unit_1_37_10_inst4.$0\\ceil[36:0][7]",
+          "source_location": [
+            49,
+            73,
+            0,
+            0
+          ],
+          "sink_location": [
+            62,
+            41,
+            0,
+            1
+          ],
+          "kind": "cross_die_terminals",
+          "reported_increment_ns": 0.759
+        },
+        {
+          "source": "$abc$109867$auto$wreduce.cc:461:run$7638[16]",
+          "sink": "C_LSTM_stage_3_18_10_64_2048_1_16_1_inst_skqzqwirvv.multiple_c_matrix_vec_mult_and_sum_18_10_16_1_1_64_inst_gwxvknsryv.c_matrix_vec_mult_core_18_10_16_1_1_inst_onagqdrvym.elementwise_mult_core_18_1810_9_1_inst_0_real_real.dsp_signed_mult_18x18_unit_18_18_1_inst4.reg_resa[16]",
+          "source_cluster": "$abc$109867$flatten\\C_LSTM_stage_3_18_10_64_2048_1_16_1_inst_skqzqwirvv.\\multiple_c_matrix_vec_mult_and_sum_18_10_16_1_1_64_inst_gwxvknsryv.\\c_matrix_vec_mult_core_18_10_16_1_1_inst_onagqdrvym.\\elementwise_mult_core_18_1810_9_1_inst_0_real_real.\\fp_rounding_unit_1_37_10_inst4.$0\\ceil[36:0][7]",
+          "sink_cluster": "$abc$109867$flatten\\C_LSTM_stage_3_18_10_64_2048_1_16_1_inst_skqzqwirvv.\\multiple_c_matrix_vec_mult_and_sum_18_10_16_1_1_64_inst_gwxvknsryv.\\c_matrix_vec_mult_core_18_10_16_1_1_inst_onagqdrvym.\\elementwise_mult_core_18_1810_9_1_inst_0_real_real.\\fp_rounding_unit_1_37_10_inst4.$0\\ceil[36:0][7]",
+          "source_location": [
+            62,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            62,
+            41,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.0
+        }
+      ],
+      "counts": {
+        "within_cluster": 1,
+        "same_die_clusters": 0,
+        "cross_die_terminals": 1
+      },
+      "reported_arrival_ns": 6.174,
+      "case": "clstm_like.small",
+      "a0_a3_worst_report_identical": true
+    },
+    {
+      "directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer",
+      "inputs": {
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer/report_timing.setup.rpt": "6c45c4ed3b31a267fddc76b1a75cc7d51a60a89897593a1dc05bce055f3d918f",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer/packed.net": "611cfcac0884594a10ab0f87e78e57b6d60ce1b4d9022ccf180bf1a6c932bd9e",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer/fixed.place": "e74cc2b160896ac1f262a36ceb422ccd386155cfd963e3024b097dc58f159f5f"
+      },
+      "arcs": [
+        {
+          "source": "slice_4_op[0]",
+          "sink": "$abc$113997$new_n54637",
+          "source_cluster": "$0\\slice_4_op[1:0][0]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\out[15:0][0]",
+          "source_location": [
+            39,
+            60,
+            0,
+            1
+          ],
+          "sink_location": [
+            40,
+            61,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.804
+        },
+        {
+          "source": "$abc$113997$new_n54637",
+          "sink": "$abc$113997$new_n54644",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\out[15:0][0]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][2]",
+          "source_location": [
+            40,
+            61,
+            0,
+            1
+          ],
+          "sink_location": [
+            38,
+            61,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.412
+        },
+        {
+          "source": "$abc$113997$new_n54644",
+          "sink": "$abc$113997$new_n54652",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][2]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][7]",
+          "source_location": [
+            38,
+            61,
+            0,
+            1
+          ],
+          "sink_location": [
+            37,
+            61,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$113997$new_n54652",
+          "sink": "$abc$113997$new_n54663",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][7]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][7]",
+          "source_location": [
+            37,
+            61,
+            0,
+            1
+          ],
+          "sink_location": [
+            37,
+            61,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$113997$new_n54663",
+          "sink": "$abc$113997$new_n54671",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][7]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\out[15:0][1]",
+          "source_location": [
+            37,
+            61,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            61,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$113997$new_n54671",
+          "sink": "$abc$113997$new_n54682",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\out[15:0][1]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][20]",
+          "source_location": [
+            33,
+            61,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            63,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$113997$new_n54682",
+          "sink": "$abc$113997$new_n54689",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][20]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][20]",
+          "source_location": [
+            33,
+            63,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            63,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$113997$new_n54689",
+          "sink": "$abc$113997$new_n54695",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][20]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][20]",
+          "source_location": [
+            33,
+            63,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            63,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$113997$new_n54695",
+          "sink": "$abc$113997$new_n54699",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][20]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][27]",
+          "source_location": [
+            33,
+            63,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            65,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$113997$new_n54699",
+          "sink": "$abc$113997$new_n54703",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][27]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][27]",
+          "source_location": [
+            33,
+            65,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            65,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$113997$new_n54703",
+          "sink": "$abc$113997$new_n54712",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][27]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][31]",
+          "source_location": [
+            33,
+            65,
+            0,
+            1
+          ],
+          "sink_location": [
+            32,
+            65,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.412
+        },
+        {
+          "source": "$abc$113997$new_n54712",
+          "sink": "$abc$113997$new_n54718",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][31]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][31]",
+          "source_location": [
+            32,
+            65,
+            0,
+            1
+          ],
+          "sink_location": [
+            32,
+            65,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$113997$new_n54718",
+          "sink": "$abc$113997$new_n54723",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][31]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][31]",
+          "source_location": [
+            32,
+            65,
+            0,
+            1
+          ],
+          "sink_location": [
+            32,
+            65,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$113997$new_n54723",
+          "sink": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][27]",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][31]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][27]",
+          "source_location": [
+            32,
+            65,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            65,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][27]",
+          "sink": "u_matmul_4x4_systolic_4.u_systolic_pe_matrix.pe22.u_mac.add_out_reg[27]",
+          "source_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][27]",
+          "sink_cluster": "$abc$113997$flatten\\u_matmul_4x4_systolic_4.\\u_systolic_pe_matrix.\\pe22.\\u_mac.$0\\add_out_reg[31:0][27]",
+          "source_location": [
+            33,
+            65,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            65,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.0
+        }
+      ],
+      "counts": {
+        "within_cluster": 7,
+        "same_die_clusters": 8,
+        "cross_die_terminals": 0
+      },
+      "reported_arrival_ns": 9.1,
+      "case": "conv_layer",
+      "a0_a3_worst_report_identical": true
+    },
+    {
+      "directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer_hls",
+      "inputs": {
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer_hls/report_timing.setup.rpt": "b04110dd021577425c3bf172c6417544ddcb9a0bfef3f08f22bb6326cf1dd9e8",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer_hls/packed.net": "a23c650333e7d11cf485644a2a9aed160e9e95375750b037ed36b2bea943d0eb",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_conv_layer_hls/fixed.place": "667a6b9c7bd885d6b04b206537f24cbf01e9f81de27012439e2c68b58a657c4b"
+      },
+      "arcs": [
+        {
+          "source": "i_2.tdf3_accum_2_U0.hadd_16ns_16ns_16_2_full_dsp_1_U258.a_tdata[14]",
+          "sink": "$abc$86476$new_n13635",
+          "source_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][14]",
+          "sink_cluster": "i_2.accum1_out_0_U.t_q0[9]",
+          "source_location": [
+            55,
+            46,
+            0,
+            1
+          ],
+          "sink_location": [
+            53,
+            41,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.804
+        },
+        {
+          "source": "$abc$86476$new_n13635",
+          "sink": "$abc$86476$new_n13631",
+          "source_cluster": "i_2.accum1_out_0_U.t_q0[9]",
+          "sink_cluster": "$abc$86476$flatten\\i_2.\\accum1_out_0_U.$0\\reg_q0[15:0][3]",
+          "source_location": [
+            53,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            54,
+            41,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.412
+        },
+        {
+          "source": "$abc$86476$new_n13631",
+          "sink": "$abc$86476$new_n13628",
+          "source_cluster": "$abc$86476$flatten\\i_2.\\accum1_out_0_U.$0\\reg_q0[15:0][3]",
+          "sink_cluster": "$abc$86476$new_n13708",
+          "source_location": [
+            54,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            54,
+            42,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.412
+        },
+        {
+          "source": "$abc$86476$new_n13628",
+          "sink": "$abc$86476$new_n13620",
+          "source_cluster": "$abc$86476$new_n13708",
+          "sink_cluster": "i_2.accum1_out_0_U.t_q0[12]",
+          "source_location": [
+            54,
+            42,
+            0,
+            1
+          ],
+          "sink_location": [
+            55,
+            41,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$86476$new_n13620",
+          "sink": "$abc$86476$new_n13644",
+          "source_cluster": "i_2.accum1_out_0_U.t_q0[12]",
+          "sink_cluster": "$abc$86476$new_n13739",
+          "source_location": [
+            55,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            55,
+            45,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$86476$new_n13644",
+          "sink": "$abc$86476$new_n13680",
+          "source_cluster": "$abc$86476$new_n13739",
+          "sink_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][5]",
+          "source_location": [
+            55,
+            45,
+            0,
+            1
+          ],
+          "sink_location": [
+            54,
+            44,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$86476$new_n13680",
+          "sink": "$abc$86476$new_n13733",
+          "source_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][5]",
+          "sink_cluster": "$abc$86476$new_n13675",
+          "source_location": [
+            54,
+            44,
+            0,
+            1
+          ],
+          "sink_location": [
+            55,
+            43,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$86476$new_n13733",
+          "sink": "$abc$86476$new_n13690",
+          "source_cluster": "$abc$86476$new_n13675",
+          "sink_cluster": "$abc$86476$new_n13690",
+          "source_location": [
+            55,
+            43,
+            0,
+            1
+          ],
+          "sink_location": [
+            56,
+            44,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$86476$new_n13690",
+          "sink": "$abc$86476$new_n13674",
+          "source_cluster": "$abc$86476$new_n13690",
+          "sink_cluster": "$abc$86476$new_n13658",
+          "source_location": [
+            56,
+            44,
+            0,
+            1
+          ],
+          "sink_location": [
+            55,
+            44,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.412
+        },
+        {
+          "source": "$abc$86476$new_n13674",
+          "sink": "$abc$86476$new_n13664",
+          "source_cluster": "$abc$86476$new_n13658",
+          "sink_cluster": "$abc$86476$new_n13664",
+          "source_location": [
+            55,
+            44,
+            0,
+            1
+          ],
+          "sink_location": [
+            54,
+            45,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.412
+        },
+        {
+          "source": "$abc$86476$new_n13664",
+          "sink": "$abc$86476$new_n13613",
+          "source_cluster": "$abc$86476$new_n13664",
+          "sink_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][9]",
+          "source_location": [
+            54,
+            45,
+            0,
+            1
+          ],
+          "sink_location": [
+            54,
+            47,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$86476$new_n13613",
+          "sink": "$abc$86476$new_n13612",
+          "source_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][9]",
+          "sink_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][15]",
+          "source_location": [
+            54,
+            47,
+            0,
+            1
+          ],
+          "sink_location": [
+            54,
+            46,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.412
+        },
+        {
+          "source": "$abc$86476$new_n13612",
+          "sink": "$abc$86476$new_n13782",
+          "source_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][15]",
+          "sink_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][4]",
+          "source_location": [
+            54,
+            46,
+            0,
+            1
+          ],
+          "sink_location": [
+            53,
+            43,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$86476$new_n13782",
+          "sink": "$abc$86476$new_n13788",
+          "source_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][4]",
+          "sink_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][4]",
+          "source_location": [
+            53,
+            43,
+            0,
+            1
+          ],
+          "sink_location": [
+            53,
+            43,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$86476$new_n13788",
+          "sink": "$abc$86476$new_n13806",
+          "source_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][4]",
+          "sink_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][10]",
+          "source_location": [
+            53,
+            43,
+            0,
+            1
+          ],
+          "sink_location": [
+            53,
+            45,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$86476$new_n13806",
+          "sink": "$abc$86476$new_n13833",
+          "source_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][10]",
+          "sink_cluster": "$abc$86476$new_n13822",
+          "source_location": [
+            53,
+            45,
+            0,
+            1
+          ],
+          "sink_location": [
+            53,
+            46,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$86476$new_n13833",
+          "sink": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][13]",
+          "source_cluster": "$abc$86476$new_n13822",
+          "sink_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][14]",
+          "source_location": [
+            53,
+            46,
+            0,
+            1
+          ],
+          "sink_location": [
+            55,
+            46,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][13]",
+          "sink": "i_2.tdf3_accum_2_U0.hadd_16ns_16ns_16_2_full_dsp_1_U258.din0[13]",
+          "source_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][14]",
+          "sink_cluster": "$abc$86476$flatten\\i_2.\\tdf3_accum_2_U0.$0\\sum_01_reg_55[15:0][14]",
+          "source_location": [
+            55,
+            46,
+            0,
+            1
+          ],
+          "sink_location": [
+            55,
+            46,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.0
+        }
+      ],
+      "counts": {
+        "within_cluster": 2,
+        "same_die_clusters": 16,
+        "cross_die_terminals": 0
+      },
+      "reported_arrival_ns": 13.607,
+      "case": "conv_layer_hls",
+      "a0_a3_worst_report_identical": true
+    },
+    {
+      "directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_dla_like.small",
+      "inputs": {
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_dla_like.small/report_timing.setup.rpt": "d3bca099d04437cc50a38a1fa0da571166bfc2a61fe19142a0a2f3ffce49d024",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_dla_like.small/packed.net": "72439f1639c8ff9939b9c6dd0de1ee5e5ca6628fd9232ff1d3a3f138f10c1af7",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_dla_like.small/fixed.place": "f78aa6a6f0c732f690bce6fc45c6b982fe160c8292d41037068fad28be3a1895"
+      },
+      "arcs": [
+        {
+          "source": "processing_element_inst_6.dot_product_16_8_30_2_inst_4.dsp_block_16_8_false_inst_0.bx_reg[0]",
+          "sink": "$abc$522361$new_n158724",
+          "source_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\bx_reg[15:0][0]",
+          "sink_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "source_location": [
+            62,
+            53,
+            0,
+            0
+          ],
+          "sink_location": [
+            46,
+            41,
+            0,
+            1
+          ],
+          "kind": "cross_die_terminals",
+          "reported_increment_ns": 0.759
+        },
+        {
+          "source": "$abc$522361$new_n158724",
+          "sink": "$abc$522361$new_n158727",
+          "source_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "sink_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "source_location": [
+            46,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            41,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$522361$new_n158727",
+          "sink": "$abc$522361$new_n158730",
+          "source_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "sink_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "source_location": [
+            46,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            41,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$522361$new_n158730",
+          "sink": "$abc$522361$new_n158733",
+          "source_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "sink_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "source_location": [
+            46,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            41,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$522361$new_n158733",
+          "sink": "$abc$522361$new_n158736",
+          "source_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "sink_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][22]",
+          "source_location": [
+            46,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            39,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 1.163
+        },
+        {
+          "source": "$abc$522361$new_n158736",
+          "sink": "$abc$522361$new_n158739",
+          "source_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][22]",
+          "sink_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][22]",
+          "source_location": [
+            33,
+            39,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            39,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$522361$new_n158739",
+          "sink": "$abc$522361$new_n158742",
+          "source_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][22]",
+          "sink_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][22]",
+          "source_location": [
+            33,
+            39,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            39,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$522361$new_n158742",
+          "sink": "$abc$522361$new_n158745",
+          "source_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][22]",
+          "sink_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][22]",
+          "source_location": [
+            33,
+            39,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            39,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$522361$new_n158745",
+          "sink": "$abc$522361$new_n158748",
+          "source_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][22]",
+          "sink_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][22]",
+          "source_location": [
+            33,
+            39,
+            0,
+            1
+          ],
+          "sink_location": [
+            33,
+            39,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$522361$new_n158748",
+          "sink": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "source_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][22]",
+          "sink_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "source_location": [
+            33,
+            39,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            41,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 1.163
+        },
+        {
+          "source": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "sink": "processing_element_inst_6.DP_res_4[19]",
+          "source_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "sink_cluster": "$abc$522361$flatten\\processing_element_inst_6.\\dot_product_16_8_30_2_inst_4.\\dsp_block_16_8_false_inst_0.$0\\resulta_tmp[23:0][19]",
+          "source_location": [
+            46,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            41,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.0
+        }
+      ],
+      "counts": {
+        "within_cluster": 8,
+        "same_die_clusters": 2,
+        "cross_die_terminals": 1
+      },
+      "reported_arrival_ns": 10.984,
+      "case": "dla_like.small",
+      "a0_a3_worst_report_identical": true
+    },
+    {
+      "directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_lstm",
+      "inputs": {
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_lstm/report_timing.setup.rpt": "b2e01ea373b05941bc009b5f83be24644cd47c5f49a0bff39436bdb9b8fd76a8",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_lstm/packed.net": "974c24fb3d6a00ec69b37cc63d7167fe029fb0b95acf80a496b5b3ced9a2fe14",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_lstm/fixed.place": "6e441b94e0aed628270043719574fe4cd4723f126a138779555658847db66bb9"
+      },
+      "arcs": [
+        {
+          "source": "lstm.f_gateaddx.Add_u79.b[0]",
+          "sink": "$abc$652356$new_n188806",
+          "source_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][1]",
+          "sink_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\ff59[15:0][4]",
+          "source_location": [
+            49,
+            54,
+            0,
+            1
+          ],
+          "sink_location": [
+            49,
+            56,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.618
+        },
+        {
+          "source": "$abc$652356$new_n188806",
+          "sink": "$abc$652356$new_n188818",
+          "source_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\ff59[15:0][4]",
+          "sink_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\ff65[15:0][2]",
+          "source_location": [
+            49,
+            56,
+            0,
+            1
+          ],
+          "sink_location": [
+            32,
+            55,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 1.163
+        },
+        {
+          "source": "$abc$652356$new_n188818",
+          "sink": "$abc$652356$new_n188842",
+          "source_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\ff65[15:0][2]",
+          "sink_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][7]",
+          "source_location": [
+            32,
+            55,
+            0,
+            1
+          ],
+          "sink_location": [
+            49,
+            57,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 1.163
+        },
+        {
+          "source": "$abc$652356$new_n188842",
+          "sink": "$abc$652356$new_n188835",
+          "source_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][7]",
+          "sink_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\ff67[15:0][4]",
+          "source_location": [
+            49,
+            57,
+            0,
+            1
+          ],
+          "sink_location": [
+            32,
+            54,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 1.163
+        },
+        {
+          "source": "$abc$652356$new_n188835",
+          "sink": "$abc$652356$new_n188871",
+          "source_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\ff67[15:0][4]",
+          "sink_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\ff49[15:0][4]",
+          "source_location": [
+            32,
+            54,
+            0,
+            1
+          ],
+          "sink_location": [
+            61,
+            53,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 1.542
+        },
+        {
+          "source": "$abc$652356$new_n188871",
+          "sink": "$abc$652356$new_n188924",
+          "source_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\ff49[15:0][4]",
+          "sink_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][8]",
+          "source_location": [
+            61,
+            53,
+            0,
+            1
+          ],
+          "sink_location": [
+            57,
+            53,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$652356$new_n188924",
+          "sink": "$abc$652356$new_n188967",
+          "source_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][8]",
+          "sink_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][11]",
+          "source_location": [
+            57,
+            53,
+            0,
+            1
+          ],
+          "sink_location": [
+            55,
+            53,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.412
+        },
+        {
+          "source": "$abc$652356$new_n188967",
+          "sink": "$abc$652356$new_n189029",
+          "source_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][11]",
+          "sink_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][10]",
+          "source_location": [
+            55,
+            53,
+            0,
+            1
+          ],
+          "sink_location": [
+            55,
+            57,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$652356$new_n189029",
+          "sink": "$abc$652356$new_n189050",
+          "source_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][10]",
+          "sink_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][14]",
+          "source_location": [
+            55,
+            57,
+            0,
+            1
+          ],
+          "sink_location": [
+            51,
+            54,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.784
+        },
+        {
+          "source": "$abc$652356$new_n189050",
+          "sink": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][13]",
+          "source_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][14]",
+          "sink_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][13]",
+          "source_location": [
+            51,
+            54,
+            0,
+            1
+          ],
+          "sink_location": [
+            57,
+            25,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 1.542
+        },
+        {
+          "source": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][13]",
+          "sink": "lstm.f_gateaddx.data_out[13]",
+          "source_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][13]",
+          "sink_cluster": "$abc$652356$flatten\\lstm.\\f_gateaddx.$0\\data_out[15:0][13]",
+          "source_location": [
+            57,
+            25,
+            0,
+            1
+          ],
+          "sink_location": [
+            57,
+            25,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.0
+        }
+      ],
+      "counts": {
+        "within_cluster": 1,
+        "same_die_clusters": 10,
+        "cross_die_terminals": 0
+      },
+      "reported_arrival_ns": 12.422,
+      "case": "lstm",
+      "a0_a3_worst_report_identical": true
+    },
+    {
+      "directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_robot_rl",
+      "inputs": {
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_robot_rl/report_timing.setup.rpt": "50a4bed994a349f596076089fec53322e13ddc4867387a0be4eb9d2ed76c611e",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_robot_rl/packed.net": "8c790e1294db9db321d37e9213e17cb2a1b5f431deac08240f6dbf3cd5e08499",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_robot_rl/fixed.place": "69bdaecd21ef4acd09fe2ed22c598c78a7bba5ebc15db4580cfc812c9323b989"
+      },
+      "arcs": [
+        {
+          "source": "robot_6.module_2.Max_out1_flopped[2]",
+          "sink": "$abc$92585$new_n24554",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.$0\\Max_out1_flopped[15:0][2]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][9]",
+          "source_location": [
+            41,
+            45,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            47,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 1.272
+        },
+        {
+          "source": "$abc$92585$new_n24554",
+          "sink": "$abc$92585$new_n24561",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][9]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][9]",
+          "source_location": [
+            46,
+            47,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            47,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$92585$new_n24561",
+          "sink": "$abc$92585$new_n24568",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][9]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][9]",
+          "source_location": [
+            46,
+            47,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            47,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$92585$new_n24568",
+          "sink": "$abc$92585$new_n24576",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][9]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][9]",
+          "source_location": [
+            46,
+            47,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            47,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$92585$new_n24576",
+          "sink": "$abc$92585$new_n24583",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][9]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][19]",
+          "source_location": [
+            46,
+            47,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            48,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$92585$new_n24583",
+          "sink": "$abc$92585$new_n24592",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][19]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][19]",
+          "source_location": [
+            46,
+            48,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            48,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$92585$new_n24592",
+          "sink": "$abc$92585$new_n24607",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][19]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][19]",
+          "source_location": [
+            46,
+            48,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            48,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$92585$new_n24607",
+          "sink": "$abc$92585$new_n24616",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][19]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "source_location": [
+            46,
+            48,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$92585$new_n24616",
+          "sink": "$abc$92585$new_n24631",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "source_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$92585$new_n24631",
+          "sink": "$abc$92585$new_n24638",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "source_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$92585$new_n24638",
+          "sink": "$abc$92585$new_n24655",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "source_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$92585$new_n24655",
+          "sink": "$abc$92585$new_n24661",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "source_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$92585$new_n24661",
+          "sink": "$abc$92585$new_n34060",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "source_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$92585$new_n34060",
+          "sink": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][31]",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "source_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][31]",
+          "sink": "robot_6.module_2.u_Sum_Calc.Sum1_out1_flopped[31]",
+          "source_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "sink_cluster": "$abc$92585$flatten\\robot_6.\\module_2.\\u_Sum_Calc.$0\\Sum1_out1_flopped[31:0][30]",
+          "source_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "sink_location": [
+            46,
+            52,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.0
+        }
+      ],
+      "counts": {
+        "within_cluster": 12,
+        "same_die_clusters": 3,
+        "cross_die_terminals": 0
+      },
+      "reported_arrival_ns": 11.633,
+      "case": "robot_rl",
+      "a0_a3_worst_report_identical": true
+    },
+    {
+      "directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.large.ws",
+      "inputs": {
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.large.ws/report_timing.setup.rpt": "68a77b397665ababeb1c904eeafbffe72a1ac5dfd83d2ad70d3c8c8011818d4e",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.large.ws/packed.net": "b59f6cbc7258916123c14a40af442b1dee73bf6a3eb95151cdbf56c27431160e",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.large.ws/fixed.place": "f50a3f64e1421921923c9b462e2e83e7ffe693e3dd631c84727858bb48fdaab1"
+      },
+      "arcs": [
+        {
+          "source": "u_matmul.u_systolic_pe_matrix.pe22_22.u_mac.b_flopped[0]",
+          "sink": "$abc$532790$new_n180804",
+          "source_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe22_22.\\u_mac.$0\\b_flopped[7:0][0]",
+          "sink_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe23_22.\\u_mac.$0\\c_flopped[7:0][6]",
+          "source_location": [
+            14,
+            44,
+            0,
+            0
+          ],
+          "sink_location": [
+            38,
+            41,
+            0,
+            1
+          ],
+          "kind": "cross_die_terminals",
+          "reported_increment_ns": 0.573
+        },
+        {
+          "source": "$abc$532790$new_n180804",
+          "sink": "$abc$532790$new_n180803",
+          "source_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe23_22.\\u_mac.$0\\c_flopped[7:0][6]",
+          "sink_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe23_22.\\u_mac.$0\\c_flopped[7:0][6]",
+          "source_location": [
+            38,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            38,
+            41,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$532790$new_n180803",
+          "sink": "$abc$532790$new_n180805",
+          "source_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe23_22.\\u_mac.$0\\c_flopped[7:0][6]",
+          "sink_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe23_22.\\u_mac.$0\\c_flopped[7:0][6]",
+          "source_location": [
+            38,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            38,
+            41,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$532790$new_n180805",
+          "sink": "$abc$532790$new_n180807",
+          "source_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe23_22.\\u_mac.$0\\c_flopped[7:0][6]",
+          "sink_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe22_22.\\u_mac.$0\\c_flopped[7:0][3]",
+          "source_location": [
+            38,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            21,
+            39,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 1.163
+        },
+        {
+          "source": "$abc$532790$new_n180807",
+          "sink": "$abc$532790$new_n180809",
+          "source_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe22_22.\\u_mac.$0\\c_flopped[7:0][3]",
+          "sink_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe22_22.\\u_mac.$0\\c_flopped[7:0][3]",
+          "source_location": [
+            21,
+            39,
+            0,
+            1
+          ],
+          "sink_location": [
+            21,
+            39,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$532790$new_n180809",
+          "sink": "$abc$532790$new_n180811",
+          "source_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe22_22.\\u_mac.$0\\c_flopped[7:0][3]",
+          "sink_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe22_22.\\u_mac.$0\\c_flopped[7:0][3]",
+          "source_location": [
+            21,
+            39,
+            0,
+            1
+          ],
+          "sink_location": [
+            21,
+            39,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$532790$new_n180811",
+          "sink": "$abc$532790$new_n180813",
+          "source_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe22_22.\\u_mac.$0\\c_flopped[7:0][3]",
+          "sink_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe23_22.\\u_mac.$0\\c_flopped[7:0][6]",
+          "source_location": [
+            21,
+            39,
+            0,
+            1
+          ],
+          "sink_location": [
+            38,
+            41,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 1.163
+        },
+        {
+          "source": "$abc$532790$new_n180813",
+          "sink": "$abc$532790$new_n180815",
+          "source_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe23_22.\\u_mac.$0\\c_flopped[7:0][6]",
+          "sink_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe23_22.\\u_mac.$0\\c_flopped[7:0][6]",
+          "source_location": [
+            38,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            38,
+            41,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$532790$new_n180815",
+          "sink": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe23_22.\\u_mac.$0\\c_flopped[7:0][5]",
+          "source_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe23_22.\\u_mac.$0\\c_flopped[7:0][6]",
+          "sink_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe22_22.\\u_mac.$0\\c_flopped[7:0][5]",
+          "source_location": [
+            38,
+            41,
+            0,
+            1
+          ],
+          "sink_location": [
+            21,
+            44,
+            0,
+            0
+          ],
+          "kind": "cross_die_terminals",
+          "reported_increment_ns": 1.491
+        },
+        {
+          "source": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe23_22.\\u_mac.$0\\c_flopped[7:0][5]",
+          "sink": "u_matmul.u_systolic_pe_matrix.pe23_22.u_mac.add_u1.a[5]",
+          "source_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe22_22.\\u_mac.$0\\c_flopped[7:0][5]",
+          "sink_cluster": "$abc$532790$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe22_22.\\u_mac.$0\\c_flopped[7:0][5]",
+          "source_location": [
+            21,
+            44,
+            0,
+            0
+          ],
+          "sink_location": [
+            21,
+            44,
+            0,
+            0
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.0
+        }
+      ],
+      "counts": {
+        "within_cluster": 6,
+        "same_die_clusters": 2,
+        "cross_die_terminals": 2
+      },
+      "reported_arrival_ns": 12.029,
+      "case": "tpu_like.large.ws",
+      "a0_a3_worst_report_identical": true
+    },
+    {
+      "directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.small.ws",
+      "inputs": {
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.small.ws/report_timing.setup.rpt": "feabb232186fb05924a5e399230e3d07d47614c5ed1d7c4cfd1172b6fc8183ba",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.small.ws/packed.net": "fdb12a00ea3e8c07192c8a4a2672c71c9d0a93618c620594a370288613e7d9a3",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/three_baselines_20261027/runs/a0_tpu_like.small.ws/fixed.place": "5edf076c5517d1f8f78cbfc68d8e0cdb1a78988409a9d0ad0f67155cf1896af8"
+      },
+      "arcs": [
+        {
+          "source": "u_matmul.u_systolic_pe_matrix.pe15_10.u_mac.b_flopped[6]",
+          "sink": "$abc$194824$new_n68437",
+          "source_cluster": "$abc$194824$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe10_10.\\u_mac.$0\\b_flopped[7:0][6]",
+          "sink_cluster": "$abc$194824$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe15_10.\\u_mac.$0\\c_flopped[7:0][3]",
+          "source_location": [
+            70,
+            50,
+            0,
+            0
+          ],
+          "sink_location": [
+            62,
+            47,
+            0,
+            1
+          ],
+          "kind": "cross_die_terminals",
+          "reported_increment_ns": 1.272
+        },
+        {
+          "source": "$abc$194824$new_n68437",
+          "sink": "$abc$194824$new_n68436",
+          "source_cluster": "$abc$194824$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe15_10.\\u_mac.$0\\c_flopped[7:0][3]",
+          "sink_cluster": "$abc$194824$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe15_10.\\u_mac.$0\\c_flopped[7:0][3]",
+          "source_location": [
+            62,
+            47,
+            0,
+            1
+          ],
+          "sink_location": [
+            62,
+            47,
+            0,
+            1
+          ],
+          "kind": "within_cluster",
+          "reported_increment_ns": 0.1
+        },
+        {
+          "source": "$abc$194824$new_n68436",
+          "sink": "$abc$194824$new_n68445",
+          "source_cluster": "$abc$194824$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe15_10.\\u_mac.$0\\c_flopped[7:0][3]",
+          "sink_cluster": "$abc$194824$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe14_10.\\u_mac.$0\\c_flopped[7:0][0]",
+          "source_location": [
+            62,
+            47,
+            0,
+            1
+          ],
+          "sink_location": [
+            62,
+            51,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$194824$new_n68445",
+          "sink": "$abc$194824$new_n68449",
+          "source_cluster": "$abc$194824$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe14_10.\\u_mac.$0\\c_flopped[7:0][0]",
+          "sink_cluster": "$abc$194824$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe15_10.\\u_mac.$0\\c_flopped[7:0][3]",
+          "source_location": [
+            62,
+            51,
+            0,
+            1
+          ],
+          "sink_location": [
+            62,
+            47,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$194824$new_n68449",
+          "sink": "$abc$194824$new_n68455",
+          "source_cluster": "$abc$194824$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe15_10.\\u_mac.$0\\c_flopped[7:0][3]",
+          "sink_cluster": "$abc$194824$flatten\\u_pooling.$0\\avg10_int[23:0][2]",
+          "source_location": [
+            62,
+            47,
+            0,
+            1
+          ],
+          "sink_location": [
+            61,
+            52,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$194824$new_n68455",
+          "sink": "$abc$194824$new_n68454",
+          "source_cluster": "$abc$194824$flatten\\u_pooling.$0\\avg10_int[23:0][2]",
+          "sink_cluster": "u_accum.accum10_ping.d0[7]",
+          "source_location": [
+            61,
+            52,
+            0,
+            1
+          ],
+          "sink_location": [
+            61,
+            53,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.412
+        },
+        {
+          "source": "$abc$194824$new_n68454",
+          "sink": "$abc$194824$new_n68463",
+          "source_cluster": "u_accum.accum10_ping.d0[7]",
+          "sink_cluster": "$abc$194824$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe12_10.\\u_mac.$0\\c_flopped[7:0][5]",
+          "source_location": [
+            61,
+            53,
+            0,
+            1
+          ],
+          "sink_location": [
+            61,
+            50,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.598
+        },
+        {
+          "source": "$abc$194824$new_n68463",
+          "sink": "u_accum.accum10_ping.d0[7]",
+          "source_cluster": "$abc$194824$flatten\\u_matmul.\\u_systolic_pe_matrix.\\pe12_10.\\u_mac.$0\\c_flopped[7:0][5]",
+          "sink_cluster": "u_accum.accum10_ping.d0[7]",
+          "source_location": [
+            61,
+            50,
+            0,
+            1
+          ],
+          "sink_location": [
+            61,
+            53,
+            0,
+            1
+          ],
+          "kind": "same_die_clusters",
+          "reported_increment_ns": 0.412
+        }
+      ],
+      "counts": {
+        "within_cluster": 1,
+        "same_die_clusters": 6,
+        "cross_die_terminals": 1
+      },
+      "reported_arrival_ns": 10.751,
+      "case": "tpu_like.small.ws",
+      "a0_a3_worst_report_identical": true
+    }
+  ],
+  "scope": "One reported worst path at report precision. Atom arcs mapped through packed cluster membership and placement; increments include local delay. Endpoint die changes do not count all physical Z traversals, and no claim is made about other near-critical paths."
+}

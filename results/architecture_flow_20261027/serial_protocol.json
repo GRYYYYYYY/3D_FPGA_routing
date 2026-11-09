@@ -1,0 +1,50 @@
+{
+  "utc": "2026-11-02T14:03:18.372288+00:00",
+  "protocol_sha256": "a21af6c1a5d9462d9baaeef60d606913e0aa9b441166b4dfded7f1ba891beb74",
+  "selection_sha256": "7dad31df15d3582be538851a406f76c5e111b469d35b681803181dbbeda4a240",
+  "source_sha256": "e49cdf16624e198659c23271381839dc728c3779eb842a340353e4e8c6d410b3",
+  "shared_source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/scripts/run_flatland_training.py": "1c6bf95f41d69f06f3c56f454b53b64b733005dbc88e9be8b9ac3b920008c753",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/scripts/flatland_benchmark.py": "4cad987e370c01f12aac4cd02ce25205a6f5144e7c2d71b5a21d8c73c0ac9397",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/scripts/flatland_experiment_io.py": "4fb46c12dcbb0ec66a49fcea6e036cd119cf57b934dd75eebca6f1e5618390b3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/scripts/check_route.py": "bac0d05ab363cee28afad1b38afaf8d03772cab474cb672c0cc25fd8428c94f5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/scripts/compare_lazagna_graphs.py": "83d05d8efae9ea7ed2a9a74b8bc79a81cac9d57c199cc96690e4c7eec1de8458",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/scripts/run_flatland_pack_census.py": "e48bc384b58a1d54bf6f347ece8693d18e10c1d60820067f2a4cb07dace88f0c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/scripts/prepare_flatland_benchmark_models.py": "3478c64c238b29347ee15f89446edfa91f4678f68343cfad0eb1da86dd916ded",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/scripts/select_flatland_configs.py": "0149bc5c20b9f0e50aa44dea88e0e29f267349ba2358203df5b26940bd5f959c"
+  },
+  "preregistered": {
+    "serial": true,
+    "repeats": 3,
+    "circuits": [
+      "spmv",
+      "robot_rl"
+    ],
+    "seeds": {
+      "spmv": 11,
+      "robot_rl": 21
+    },
+    "architectures": [
+      "sb",
+      "cb_o",
+      "hybrid_o"
+    ],
+    "flows": [
+      "P0",
+      "P1"
+    ],
+    "routers": [
+      "A0",
+      "R1",
+      "B2"
+    ],
+    "ordering": "Rotate router order by repetition; no concurrent VPR/partition processes owned by this study during serial timing",
+    "scope": "Runtime inference limited to this preregistered subset; parallel sweep wall time is not speedup evidence"
+  },
+  "amendment": "Add a disabled R1-binary control to each repeat before measuring any serial result",
+  "reason": "Official A0 and R1 share compiler/IPO setting, but differ in optional frontend/interchange build flags. Report official baseline and same-build algorithm overhead separately.",
+  "off_control": "VPR_H3D_MODE=off with matching edge/statistics instrumentation; require exact A0 route-body identity on successful pairs",
+  "setup": "Repeat pack/partition/placement setup for each flow/repetition; assert cross-repeat placement coordinates identical before attributing router runtime",
+  "rotation": "Rotate A0,R1,B2 order by repetition. Disabled build control runs after that triplet so it does not alter the preregistered triplet order.",
+  "isolation": "No concurrent VPR/partition process owned by this study. Host is shared; load averages retained, no exclusive-host claim."
+}

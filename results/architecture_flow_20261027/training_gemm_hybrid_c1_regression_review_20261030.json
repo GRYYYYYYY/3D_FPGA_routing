@@ -1,0 +1,223 @@
+{
+  "utc": "2026-10-30T03:06:47.966015+00:00",
+  "status": "training_subset_source_and_log_review_not_causal_proof",
+  "circuit": "gemm_layer",
+  "family": "hybrid_o",
+  "seed": 11,
+  "width": 100,
+  "placement": "p0",
+  "configuration": 1,
+  "observations": {
+    "a0": {
+      "metrics": {
+        "critical_path_ns": 13.2565,
+        "wirelength": 4704149,
+        "router_seconds": 695.19,
+        "iterations": 23,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "environment": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1"
+      },
+      "final_cumulative_counters": {},
+      "pair_check": {
+        "utc": "2026-10-29T23:31:14.807192+00:00",
+        "passed": true,
+        "checks": {
+          "packed_identical": true,
+          "placement_identical": true
+        },
+        "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_place"
+      }
+    },
+    "critical_c1": {
+      "metrics": {
+        "critical_path_ns": 13.1564,
+        "wirelength": 4702179,
+        "router_seconds": 1009.44,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "environment": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_GRAPH_ENCODING": "edge",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_CANDIDATES": "4",
+        "VPR_H3D_MISS_WEIGHT": "1",
+        "VPR_H3D_OPENING_WEIGHT": "4",
+        "VPR_H3D_DELAY_BUDGET": "1024",
+        "VPR_H3D_CANDIDATE_COST": "geometry",
+        "VPR_H3D_MIN_CRITICALITY": "0.7"
+      },
+      "final_cumulative_counters": {
+        "H3D_PLAN": {
+          "plans": 206153,
+          "groups": 213,
+          "bfs_nodes": 0,
+          "cache_entries": 0,
+          "no_candidate": 0,
+          "fallback": 0,
+          "planning_seconds": 302.280626
+        },
+        "H3D_SCORE": {
+          "eligible": 488,
+          "skipped": 35674,
+          "delay_scored": 0,
+          "unmeasured": 0
+        },
+        "H3D_TREE": {
+          "guided_paths": 5453,
+          "preferred_paths": 1086,
+          "rollbacks": 0
+        },
+        "H3D_SCC": {
+          "queries": 737637,
+          "endpoint_cache": 581,
+          "sampled_candidates": 702592,
+          "high_fanout_fallbacks": 0
+        }
+      },
+      "pair_check": {
+        "utc": "2026-10-30T02:37:32.414764+00:00",
+        "passed": true,
+        "checks": {
+          "packed_identical": true,
+          "placement_identical": true
+        },
+        "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_place"
+      }
+    },
+    "delay_critical_c1": {
+      "metrics": {
+        "critical_path_ns": 13.9919,
+        "wirelength": 4711398,
+        "router_seconds": 993.62,
+        "iterations": 24,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "environment": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "VPR_H3D_MODE": "static",
+        "VPR_H3D_REACHABILITY": "scc",
+        "VPR_H3D_GRAPH_ENCODING": "edge",
+        "VPR_H3D_STATS": "1",
+        "VPR_H3D_CANDIDATES": "4",
+        "VPR_H3D_MISS_WEIGHT": "1",
+        "VPR_H3D_OPENING_WEIGHT": "4",
+        "VPR_H3D_DELAY_BUDGET": "1024",
+        "VPR_H3D_CANDIDATE_COST": "delay",
+        "VPR_H3D_MIN_CRITICALITY": "0.7"
+      },
+      "final_cumulative_counters": {
+        "H3D_PLAN": {
+          "plans": 206153,
+          "groups": 216,
+          "bfs_nodes": 0,
+          "cache_entries": 0,
+          "no_candidate": 0,
+          "fallback": 0,
+          "planning_seconds": 304.481838
+        },
+        "H3D_SCORE": {
+          "eligible": 488,
+          "skipped": 35674,
+          "delay_scored": 0,
+          "unmeasured": 488
+        },
+        "H3D_DELAY": {
+          "queries": 581,
+          "settled": 594944,
+          "truncated": 581,
+          "cache_hits": 90,
+          "cached_endpoints": 581
+        },
+        "H3D_TREE": {
+          "guided_paths": 6020,
+          "preferred_paths": 1445,
+          "rollbacks": 0
+        },
+        "H3D_SCC": {
+          "queries": 731842,
+          "endpoint_cache": 581,
+          "sampled_candidates": 702592,
+          "high_fanout_fallbacks": 0
+        }
+      },
+      "pair_check": {
+        "utc": "2026-10-30T03:03:06.315306+00:00",
+        "passed": true,
+        "checks": {
+          "packed_identical": true,
+          "placement_identical": true
+        },
+        "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_place"
+      }
+    }
+  },
+  "environment_difference_critical_vs_combined": {
+    "VPR_H3D_CANDIDATE_COST": [
+      "geometry",
+      "delay"
+    ]
+  },
+  "source_binding": {
+    "binary_manifest": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/flatland-edge-v2/manifest.json",
+    "declared_binary_sha256": "bbebbfd49f0831dc4337aadc4595e99157234a084b4cfc48988d22ef7ddb796a",
+    "source_and_build_snapshot_match": true
+  },
+  "findings": [
+    {
+      "kind": "observed",
+      "statement": "Critical-only improves CPD relative to A0, while the combined delay-critical variant regresses on the same registered training placement."
+    },
+    {
+      "kind": "observed",
+      "statement": "All 581 bounded delay queries are truncated; zero of 488 eligible cumulative scoring events receive full candidate coverage."
+    },
+    {
+      "kind": "source_semantics",
+      "statement": "source_cost uses a covered forward distance when available, independently of timed.contains(pin). opening uses source_cost both before the full-coverage check and for the shared partition-DP openings. Untimed branch costs use geometry; therefore zero fully measured leaves does not guarantee exact geometry-only costs."
+    },
+    {
+      "kind": "hypothesis",
+      "statement": "Partial forward-distance substitution can change candidate ranking or shared opening costs despite zero full-coverage leaves. The current counters do not prove which substitutions occurred or that they caused the QoR regression."
+    }
+  ],
+  "candidate_followup": {
+    "separate_version_only": true,
+    "instrumentation": "Count actual partial source substitutions and capture candidate sets, normalized cost components, DP assignments and final guide differences.",
+    "experiment": "Compare the current partial-distance policy with an explicitly defined strict geometry fallback under matched inputs and budgets, preserving all failures.",
+    "acceptance": "For a strict fallback policy, test equality of selected candidates, costs and guides against geometry when its coverage condition is false; then evaluate held-out QoR and serial overhead under a new preregistered identity."
+  },
+  "limitations": [
+    "Training circuit and seed only; no held-out or overall advantage claim.",
+    "Native FULL and paired-input checks pass; independent batch audit for this case is pending.",
+    "Counters are cumulative events, not independent circuit samples.",
+    "No active binary, helper, selection rule or experiment protocol was modified."
+  ],
+  "evidence_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/flatland-edge-v2/manifest.json": "573e4bb7440eec50d5880d8e9560ff4225c9509851050c5281f34a1de3bad8df",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/vtr-architecture-src/vpr/src/route/h3d_fast_plan.cpp": "4edf289f6779fe83dc3e7fafb875295b74e674ebd37090b3d74e20e94598f605",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/flatland-edge-v2/new_sources/vpr/src/route/h3d_fast_plan.cpp": "4edf289f6779fe83dc3e7fafb875295b74e674ebd37090b3d74e20e94598f605",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_a0/manifest.json": "7f296f2ebd5acacd381cd1efe1936218a7249925f6e013e63ff0b36ee44fec90",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_a0/pair_check.json": "9fa57321c04bd2a8a04fce7f10660b88a3ca106b305e69d1ac4cbfe3a5d941a6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_a0/vpr_stdout.log": "14351b0b94a623168278bb4f976fd44127fccf7e28c99a9d1e6591e1a01120af",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_critical_c1/manifest.json": "e9e54f450c2169a8735d90d9f68b44a7963cb87d315c63b8bee045e4bcb59e39",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_critical_c1/pair_check.json": "e642656b77b542122160c42c4449c9506c5c0394d2e874c24509813c8fdc2d79",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_critical_c1/vpr_stdout.log": "e73be91dd4df16dcc8262ccea8b9d093a5c073cadd62bec64ab6ef48ab86d4d6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_delay_critical_c1/manifest.json": "83d02fe16e004f0525b8b9da5d7be894a0b7cec74a92a704f1c169a58ec65210",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_delay_critical_c1/pair_check.json": "6b2a677c3b4aefd390c7f6d4f0818f1a093bbb39f13212d074f3934a4cefd212",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_delay_critical_c1/vpr_stdout.log": "ac4bfa41d3104ed4c4493a2eb1765b256e32c69890ca1aae0ab6aafcdc581733"
+  }
+}

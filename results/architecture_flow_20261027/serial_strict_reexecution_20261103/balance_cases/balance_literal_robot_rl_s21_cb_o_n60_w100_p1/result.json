@@ -1,0 +1,84 @@
+{
+  "utc": "2026-11-09T07:45:33.188334+00:00",
+  "job": {
+    "circuit": "robot_rl",
+    "split": "heldout",
+    "seed": 21,
+    "width": 100,
+    "family": "cb_o",
+    "placement_arm": "literal",
+    "partition_argument": 0.03,
+    "routers": [
+      "A0",
+      "R1",
+      "B2"
+    ]
+  },
+  "status": "completed",
+  "placement": "balance_literal_robot_rl_s21_cb_o_n60_w100_p1_place",
+  "balance": {
+    "vertices": 2468,
+    "edges": 12979,
+    "parts": 2,
+    "balance_argument": 0.03,
+    "partition_weights": [
+      1234.0,
+      1234.0
+    ],
+    "lower_each": 1233.2595999999999,
+    "upper_each": 1234.7404,
+    "balanced": true,
+    "unit_weight_integer_feasible": true,
+    "graph_sha256": "769d1bd1a58446aa861a118848d440c5175ff7262ad1666ed6d77c8785009dca",
+    "assignment_sha256": "4b298436cd08f3031965d2a7075ebe22b49411f06308680ee73fcb65cac84ded"
+  },
+  "roles": {
+    "A0": "balance_literal_robot_rl_s21_cb_o_n60_w100_p1_a0",
+    "R1": "balance_literal_robot_rl_s21_cb_o_n60_w100_p1_critical_c4",
+    "B2": "balance_literal_robot_rl_s21_cb_o_n60_w100_p1_b2"
+  },
+  "route_audit": {
+    "utc": "2026-11-09T07:48:04.017561+00:00",
+    "passed": true,
+    "registered_route_count": 3,
+    "legal_count": 0,
+    "failed_count": 3,
+    "legal": [],
+    "failed": [
+      {
+        "name": "balance_literal_robot_rl_s21_cb_o_n60_w100_p1_a0",
+        "status": "failed",
+        "metrics": {
+          "critical_path_ns": 12.6598,
+          "wirelength": 227744,
+          "router_seconds": 17.94,
+          "native_full_check_passed": false,
+          "routing_success_reported": false
+        }
+      },
+      {
+        "name": "balance_literal_robot_rl_s21_cb_o_n60_w100_p1_critical_c4",
+        "status": "failed",
+        "metrics": {
+          "critical_path_ns": 12.6598,
+          "wirelength": 227744,
+          "router_seconds": 19.46,
+          "native_full_check_passed": false,
+          "routing_success_reported": false
+        }
+      },
+      {
+        "name": "balance_literal_robot_rl_s21_cb_o_n60_w100_p1_b2",
+        "status": "failed",
+        "metrics": {
+          "critical_path_ns": 12.8456,
+          "wirelength": 225323,
+          "router_seconds": 17.29,
+          "native_full_check_passed": false,
+          "routing_success_reported": false
+        }
+      }
+    ],
+    "graph_sha256": "a6b41c2ba07480b95828b207c6ef89d8c46ae5f90c9c9edf7664ab148d3ed5c1"
+  }
+}

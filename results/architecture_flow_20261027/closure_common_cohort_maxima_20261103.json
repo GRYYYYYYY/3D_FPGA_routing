@@ -1,0 +1,211 @@
+{
+  "utc": "2026-11-03T04:13:28.852539+00:00",
+  "input_sha256": "f9781706aa36da4e2cb02ab3e4a2ba3c07f38fbc0e50a873bb35951d9c640876",
+  "purpose": "Same complete three-seed circuit cohort for mean and maximum; original report uses all jointly successful samples for maxima",
+  "rows": [
+    {
+      "family": "sb",
+      "flow": "p0",
+      "complete_circuits": [
+        "clstm_like.medium",
+        "conv_layer_hls",
+        "reduction_layer"
+      ],
+      "joint_samples_in_complete_cohort": 9,
+      "geomean_vs_3d_percent": -0.6384909844168618,
+      "geomean_vs_2d_percent": -7.1702837943429465,
+      "maximum_vs_3d": {
+        "circuit": "reduction_layer",
+        "seed": 25,
+        "cpd_ns": 12.6467,
+        "improvement_vs_3d_percent": 1.38948451839781,
+        "improvement_vs_2d_percent": -12.75789511225236,
+        "numerator_run": "heldout_reduction_layer_s25_sb_n125_w100_p0_critical_c7",
+        "baseline_3d_run": "heldout_reduction_layer_s25_sb_n125_w100_p0_a0",
+        "baseline_2d_run": "heldout_reduction_layer_s25_matched_2d_n125_w100_p0_a0"
+      },
+      "original_report_maximum": {
+        "circuit": "tpu_like.small.os",
+        "seed": 21,
+        "cpd_ns": 7.89393,
+        "baseline_3d_cpd_ns": 8.09503,
+        "baseline_2d_cpd_ns": 8.11795,
+        "improvement_vs_3d_percent": 2.4842403301778893,
+        "improvement_vs_2d_percent": 2.7595636829495174,
+        "numerator_run": "heldout_tpu_like.small.os_s21_sb_n60_w100_p0_critical_c7",
+        "baseline_3d_run": "heldout_tpu_like.small.os_s21_sb_n60_w100_p0_a0",
+        "baseline_2d_run": "heldout_tpu_like.small.os_s21_matched_2d_n60_w100_p0_a0"
+      }
+    },
+    {
+      "family": "sb",
+      "flow": "p1",
+      "complete_circuits": [
+        "clstm_like.medium",
+        "clstm_like.small",
+        "conv_layer_hls",
+        "reduction_layer"
+      ],
+      "joint_samples_in_complete_cohort": 12,
+      "geomean_vs_3d_percent": 0.4104558674321468,
+      "geomean_vs_2d_percent": 0.885883190838177,
+      "maximum_vs_3d": {
+        "circuit": "reduction_layer",
+        "seed": 21,
+        "cpd_ns": 10.2747,
+        "improvement_vs_3d_percent": 8.170597645881195,
+        "improvement_vs_2d_percent": 9.078279029432068,
+        "numerator_run": "heldout_reduction_layer_s21_sb_n125_w100_p1_critical_c7",
+        "baseline_3d_run": "heldout_reduction_layer_s21_sb_n125_w100_p1_a0",
+        "baseline_2d_run": "heldout_reduction_layer_s21_matched_2d_n125_w100_p0_a0"
+      },
+      "original_report_maximum": {
+        "circuit": "reduction_layer",
+        "seed": 21,
+        "cpd_ns": 10.2747,
+        "baseline_3d_cpd_ns": 11.1889,
+        "baseline_2d_cpd_ns": 11.3006,
+        "improvement_vs_3d_percent": 8.170597645881195,
+        "improvement_vs_2d_percent": 9.078279029432068,
+        "numerator_run": "heldout_reduction_layer_s21_sb_n125_w100_p1_critical_c7",
+        "baseline_3d_run": "heldout_reduction_layer_s21_sb_n125_w100_p1_a0",
+        "baseline_2d_run": "heldout_reduction_layer_s21_matched_2d_n125_w100_p0_a0"
+      }
+    },
+    {
+      "family": "cb_o",
+      "flow": "p0",
+      "complete_circuits": [
+        "conv_layer_hls",
+        "reduction_layer"
+      ],
+      "joint_samples_in_complete_cohort": 6,
+      "geomean_vs_3d_percent": 0.0,
+      "geomean_vs_2d_percent": 3.051658900040366,
+      "maximum_vs_3d": {
+        "circuit": "conv_layer_hls",
+        "seed": 21,
+        "cpd_ns": 14.351,
+        "improvement_vs_3d_percent": 0.0,
+        "improvement_vs_2d_percent": -1.3116652076921032,
+        "numerator_run": "heldout_conv_layer_hls_s21_cb_o_n80_w100_p0_critical_c5",
+        "baseline_3d_run": "heldout_conv_layer_hls_s21_cb_o_n80_w100_p0_a0",
+        "baseline_2d_run": "heldout_conv_layer_hls_s21_matched_2d_n80_w100_p0_a0"
+      },
+      "original_report_maximum": {
+        "circuit": "clstm_like.medium",
+        "seed": 21,
+        "cpd_ns": 7.32599,
+        "baseline_3d_cpd_ns": 7.32599,
+        "baseline_2d_cpd_ns": 6.59032,
+        "improvement_vs_3d_percent": 0.0,
+        "improvement_vs_2d_percent": -11.162887386348451,
+        "numerator_run": "heldout_clstm_like.medium_s21_cb_o_n80_w100_p0_critical_c5",
+        "baseline_3d_run": "heldout_clstm_like.medium_s21_cb_o_n80_w100_p0_a0",
+        "baseline_2d_run": "heldout_clstm_like.medium_s21_matched_2d_n80_w100_p0_a0"
+      }
+    },
+    {
+      "family": "cb_o",
+      "flow": "p1",
+      "complete_circuits": [
+        "conv_layer_hls",
+        "reduction_layer"
+      ],
+      "joint_samples_in_complete_cohort": 6,
+      "geomean_vs_3d_percent": 0.0,
+      "geomean_vs_2d_percent": 4.283634087717658,
+      "maximum_vs_3d": {
+        "circuit": "conv_layer_hls",
+        "seed": 21,
+        "cpd_ns": 13.9794,
+        "improvement_vs_3d_percent": 0.0,
+        "improvement_vs_2d_percent": 1.311665207692092,
+        "numerator_run": "heldout_conv_layer_hls_s21_cb_o_n80_w100_p1_critical_c5",
+        "baseline_3d_run": "heldout_conv_layer_hls_s21_cb_o_n80_w100_p1_a0",
+        "baseline_2d_run": "heldout_conv_layer_hls_s21_matched_2d_n80_w100_p0_a0"
+      },
+      "original_report_maximum": {
+        "circuit": "clstm_like.medium",
+        "seed": 23,
+        "cpd_ns": 6.59796,
+        "baseline_3d_cpd_ns": 6.59796,
+        "baseline_2d_cpd_ns": 6.76851,
+        "improvement_vs_3d_percent": 0.0,
+        "improvement_vs_2d_percent": 2.519756933209827,
+        "numerator_run": "heldout_clstm_like.medium_s23_cb_o_n80_w100_p1_critical_c5",
+        "baseline_3d_run": "heldout_clstm_like.medium_s23_cb_o_n80_w100_p1_a0",
+        "baseline_2d_run": "heldout_clstm_like.medium_s23_matched_2d_n80_w100_p0_a0"
+      }
+    },
+    {
+      "family": "hybrid_o",
+      "flow": "p0",
+      "complete_circuits": [
+        "clstm_like.medium",
+        "clstm_like.small",
+        "conv_layer_hls"
+      ],
+      "joint_samples_in_complete_cohort": 9,
+      "geomean_vs_3d_percent": 1.3169333918943593,
+      "geomean_vs_2d_percent": 0.34682938483097114,
+      "maximum_vs_3d": {
+        "circuit": "clstm_like.small",
+        "seed": 23,
+        "cpd_ns": 6.2215,
+        "improvement_vs_3d_percent": 12.959232211309779,
+        "improvement_vs_2d_percent": 10.537879942597005,
+        "numerator_run": "heldout_clstm_like.small_s23_hybrid_o_n60_w100_p0_delay_critical_c6",
+        "baseline_3d_run": "heldout_clstm_like.small_s23_hybrid_o_n60_w100_p0_a0",
+        "baseline_2d_run": "heldout_clstm_like.small_s23_matched_2d_n60_w100_p0_a0"
+      },
+      "original_report_maximum": {
+        "circuit": "clstm_like.small",
+        "seed": 23,
+        "cpd_ns": 6.2215,
+        "baseline_3d_cpd_ns": 7.1478,
+        "baseline_2d_cpd_ns": 6.95434,
+        "improvement_vs_3d_percent": 12.959232211309779,
+        "improvement_vs_2d_percent": 10.537879942597005,
+        "numerator_run": "heldout_clstm_like.small_s23_hybrid_o_n60_w100_p0_delay_critical_c6",
+        "baseline_3d_run": "heldout_clstm_like.small_s23_hybrid_o_n60_w100_p0_a0",
+        "baseline_2d_run": "heldout_clstm_like.small_s23_matched_2d_n60_w100_p0_a0"
+      }
+    },
+    {
+      "family": "hybrid_o",
+      "flow": "p1",
+      "complete_circuits": [
+        "clstm_like.medium",
+        "clstm_like.small",
+        "conv_layer_hls",
+        "reduction_layer"
+      ],
+      "joint_samples_in_complete_cohort": 12,
+      "geomean_vs_3d_percent": 1.077204432003076,
+      "geomean_vs_2d_percent": 1.0451469485528997,
+      "maximum_vs_3d": {
+        "circuit": "clstm_like.medium",
+        "seed": 21,
+        "cpd_ns": 6.67151,
+        "improvement_vs_3d_percent": 11.186385172148928,
+        "improvement_vs_2d_percent": -1.2319583874531137,
+        "numerator_run": "heldout_clstm_like.medium_s21_hybrid_o_n80_w100_p1_delay_critical_c6",
+        "baseline_3d_run": "heldout_clstm_like.medium_s21_hybrid_o_n80_w100_p1_a0",
+        "baseline_2d_run": "heldout_clstm_like.medium_s21_matched_2d_n80_w100_p0_a0"
+      },
+      "original_report_maximum": {
+        "circuit": "clstm_like.medium",
+        "seed": 21,
+        "cpd_ns": 6.67151,
+        "baseline_3d_cpd_ns": 7.51181,
+        "baseline_2d_cpd_ns": 6.59032,
+        "improvement_vs_3d_percent": 11.186385172148928,
+        "improvement_vs_2d_percent": -1.2319583874531137,
+        "numerator_run": "heldout_clstm_like.medium_s21_hybrid_o_n80_w100_p1_delay_critical_c6",
+        "baseline_3d_run": "heldout_clstm_like.medium_s21_hybrid_o_n80_w100_p1_a0",
+        "baseline_2d_run": "heldout_clstm_like.medium_s21_matched_2d_n80_w100_p0_a0"
+      }
+    }
+  ]
+}
