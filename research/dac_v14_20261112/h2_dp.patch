@@ -1,0 +1,193 @@
+--- a/vpr/src/route/connection_router.tpp
++++ b/vpr/src/route/connection_router.tpp
+@@ -316,6 +316,7 @@
+     // Second, we adjust the Tdel to account for the delay caused by the internal capacitance.
+     Tdel += Rdel_adjust * switch_Cinternal;
+ 
++    float guide_timing_cost = 0.f;
+     float cong_cost = 0.;
+     if (reached_configurably) {
+         cong_cost = get_rr_cong_cost(to->index, cost_params.pres_fac);
+@@ -351,6 +352,7 @@
+         if (cost_params.h3d_guide
+             && !std::binary_search(cost_params.h3d_guide->preferred.begin(), cost_params.h3d_guide->preferred.end(), to->index)) {
+             extra_weight += cost_params.h3d_guide->miss_weight;
++            guide_timing_cost = cost_params.h3d_guide->timing_miss_penalty;
+         }
+         cong_cost *= 1.f + extra_weight;
+     }
+@@ -363,11 +365,16 @@
+         && rr_graph_->node_layer_low(from_node) != rr_graph_->node_layer_low(to->index)
+         && !std::binary_search(cost_params.h3d_guide->preferred.begin(), cost_params.h3d_guide->preferred.end(), from_node)) {
+         cong_cost *= 1.f + cost_params.h3d_guide->miss_weight;
++        guide_timing_cost = cost_params.h3d_guide->timing_miss_penalty;
+     }
+     if (cost_params.h3d_planar_guide && reached_configurably)
+         cong_cost *= h3d_control_multiplier(*cost_params.h3d_planar_guide, to->index);
+     to->backward_path_cost += (1. - cost_params.criticality) * cong_cost; // Congestion cost
+     to->backward_path_cost += cost_params.criticality * Tdel;             // Delay cost
++    // RCV has a separate hold-delay objective; this experiment supports the
++    // ordinary setup-timing path only and never alters RCV physical delay.
++    if (guide_timing_cost > 0.f && !rcv_path_manager.is_enabled())
++        to->backward_path_cost += cost_params.criticality * guide_timing_cost;
+ 
+     if (cost_params.bend_cost != 0.) {
+         e_rr_type from_type = rr_graph_->node_type(from_node);
+--- a/vpr/src/route/h3d_fast_plan.cpp
++++ b/vpr/src/route/h3d_fast_plan.cpp
+@@ -1,8 +1,11 @@
+ #include "h3d_fast_plan.h"
+ #include "h3d_crossing.h"
+ #include "h3d_calibrated_cost.h"
++#include "h3d_independent_plan.h"
+ 
+ #include <cmath>
++#include <bit>
++#include <cstdint>
+ #include <cstdlib>
+ #include <limits>
+ #include <set>
+@@ -56,7 +59,19 @@
+     if (mixed && std::string(mixed) != "0" && std::string(mixed) != "1")
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_MIXED_DELAY must be 0 or 1");
+     mixed_delay_ = mixed && std::string(mixed) == "1";
+-    VTR_LOG("H3D_EXPERIMENT mixed_delay=%d\n", mixed_delay_);
++    const char* timing = std::getenv("VPR_H3D_TIMING_GUIDE");
++    if (timing) {
++        char* end = nullptr;
++        timing_guide_weight_ = std::strtod(timing, &end);
++        if (end == timing || *end || !std::isfinite(timing_guide_weight_) || timing_guide_weight_ < 0. || timing_guide_weight_ > 1.)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TIMING_GUIDE must be in [0,1]");
++    }
++    const char* assignment = std::getenv("VPR_H3D_ASSIGNMENT");
++    std::string solver = assignment ? assignment : "shared";
++    if (solver != "shared" && solver != "independent")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_ASSIGNMENT must be shared or independent");
++    independent_ = solver == "independent";
++    VTR_LOG("H3D_EXPERIMENT mixed_delay=%d timing_guide=%g assignment=%s\n", mixed_delay_, timing_guide_weight_, solver.c_str());
+     channel_index_.resize(graph_.num_nodes(), -1);
+     size_t planar_count = 0;
+     double planar_length = 0.;
+@@ -434,15 +449,58 @@
+             }
+             leaves.push_back(std::move(leaf));
+         }
+-        auto planned = h3d_plan_partition(leaves, openings);
++        // Diagnostic-only exact-cost fingerprint, before either solver.
++        static const bool trace_table = std::getenv("VPR_H3D_TRACE_TABLE") != nullptr;
++        if (trace_table) {
++            uint64_t fingerprint = 14695981039346656037ull;
++            auto mix = [&](uint64_t word) {
++                for (int i = 0; i < 8; ++i) {
++                    fingerprint ^= word & 255;
++                    fingerprint *= 1099511628211ull;
++                    word >>= 8;
++                }
++            };
++            mix(table.size());
++            for (size_t i = 0; i < table.size(); ++i) {
++                mix(size_t(channels_[table[i]]));
++                mix(std::bit_cast<uint64_t>(openings[i]));
++            }
++            mix(leaves.size());
++            for (const auto& leaf : leaves) {
++                mix(leaf.pin); mix(leaf.x); mix(leaf.y); mix(leaf.candidates.size());
++                for (const auto& c : leaf.candidates) {
++                    mix(c.channel); mix(std::bit_cast<uint64_t>(c.branch_cost));
++                }
++            }
++            VTR_LOG("H3D_TABLE net=%zu fingerprint=%016llx candidates=%zu leaves=%zu\n",
++                    size_t(net), static_cast<unsigned long long>(fingerprint), table.size(), leaves.size());
++        }
++        auto planned = independent_ ? h3d_plan_independent(leaves, openings) : h3d_plan_partition(leaves, openings);
+         if (std::isfinite(planned.cost)) {
+             result.groups = planned.groups;
+             for (const auto& [pin, c] : planned.assignment)
+                 result.guides[pin].preferred = {channels_[table[c]]};
+         }
+     }
+-    for (auto& guide : result.guides)
++    for (int pin : pins) {
++        auto& guide = result.guides[pin];
+         std::sort(guide.preferred.begin(), guide.preferred.end());
++        if (timing_guide_weight_ > 0. && forward && !guide.preferred.empty()) {
++            // Confidence is measured-side coverage of the selected preference,
++            // not whole-query coverage. No measurements => no timing penalty.
++            double reliability = 0.;
++            for (RRNodeId node : guide.preferred) {
++                reliability += .5 * forward->contains(node);
++                auto back = reverse.find(pin);
++                if (back != reverse.end()) reliability += .5 * back->second->contains(node);
++            }
++            reliability /= guide.preferred.size();
++            // At most one graph delay unit per mismatching crossing. This is
++            // a search preference only, never part of physical Tdel or STA.
++            guide.timing_miss_penalty = timing_guide_weight_ * reliability * delay_plan_->delay_unit();
++            timing_guides_ += guide.timing_miss_penalty > 0.f;
++        }
++    }
+     return result;
+ }
+ 
+@@ -453,5 +511,6 @@
+             eligible_pins_, skipped_pins_, measured_pins_, unmeasured_pins_);
+     VTR_LOG("H3D_MIXED pins=%zu informed_pins=%zu both=%zu source_only=%zu sink_only=%zu estimated=%zu\n",
+             mixed_pins_, mixed_informed_pins_, mixed_both_, mixed_source_only_, mixed_sink_only_, mixed_estimated_);
++    VTR_LOG("H3D_TIMING_GUIDE nonzero_guides=%zu weight=%g\n", timing_guides_, timing_guide_weight_);
+     if (delay_plan_) delay_plan_->log();
+ }
+--- a/vpr/src/route/h3d_fast_plan.h
++++ b/vpr/src/route/h3d_fast_plan.h
+@@ -54,6 +54,9 @@
+     std::vector<size_t> diversify_(const std::vector<std::pair<double, size_t>>& ranked, size_t count) const;
+ 
+     const RRGraphView& graph_;                                          ///< Exact immutable graph used by detailed routing.
++    double timing_guide_weight_ = 0.;                                  ///< Bounded timing-preference amplitude in graph delay units.
++    bool independent_ = false;                                        ///< Same-table independent top-1 solver control.
++    size_t timing_guides_ = 0;                                         ///< Selected guides with at least one measured side.
+     bool mixed_delay_ = false;                                         ///< Experimental calibrated candidate-level delay, off by default.
+     size_t mixed_pins_ = 0, mixed_informed_pins_ = 0;                    ///< Eligible and measurement-informed connections.
+     size_t mixed_both_ = 0, mixed_source_only_ = 0, mixed_sink_only_ = 0, mixed_estimated_ = 0; ///< Sampled candidate coverage.
+--- a/vpr/src/route/h3d_independent_plan.h
++++ b/vpr/src/route/h3d_independent_plan.h
+@@ -0,0 +1,30 @@
++#pragma once
++
++#include "h3d_partition_dp.h"
++
++/** @brief Independent top-1 control over exactly the shared solver's finite table.
++ * Empty leaves return an unavailable plan, preserving the shared fallback.
++ * Candidate order is ascending; ties keep the smaller table index.
++ */
++inline t_h3d_partition_plan h3d_plan_independent(const std::vector<t_h3d_plan_leaf>& leaves,
++                                               const std::vector<double>& opening) {
++    t_h3d_partition_plan result{0., {}, 0};
++    for (const auto& leaf : leaves) {
++        double best = std::numeric_limits<double>::infinity();
++        size_t chosen = 0;
++        for (const auto& candidate : leaf.candidates) {
++            VTR_ASSERT(candidate.channel < opening.size());
++            double cost = opening[candidate.channel] + candidate.branch_cost;
++            if (cost < best) {
++                best = cost;
++                chosen = candidate.channel;
++            }
++        }
++        if (!std::isfinite(best)) return {};
++        result.cost += best;
++        result.assignment.emplace_back(leaf.pin, chosen);
++        ++result.groups;
++    }
++    std::sort(result.assignment.begin(), result.assignment.end());
++    return result;
++}
+--- a/vpr/src/route/h3d_routing.h
++++ b/vpr/src/route/h3d_routing.h
+@@ -7,6 +7,7 @@
+ /** @brief Soft channel preference for a connection; other channels remain legal. */
+ struct t_h3d_connection_guide {
+     std::vector<RRNodeId> preferred; ///< Sorted, individually reachable native CHANZ resources.
++    float timing_miss_penalty = 0.f; ///< Search-only seconds, excluded from Tdel and STA.
+     float miss_weight = 0.f;         ///< Additional relative congestion charge for other CHANZ nodes.
+     bool edge_encoding = false;      ///< Preferred IDs identify crossing-edge sources, not CHANZ nodes.
+ };

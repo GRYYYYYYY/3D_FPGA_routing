@@ -1,0 +1,12 @@
+{
+  "registered_at": 1794558221.873979,
+  "parent_protocol": "candidate_path_query_experiment_01.json",
+  "heuristic_seconds_per_grid_unit": "spatial/priced:4*mean_positive_switch_Tdel/max(1,mean_planar_span), uniform0; ordering only, not admissible certificate",
+  "price_weight": 0.25,
+  "price_toll": "0 for owned or nonplanar destination; otherwise weight*delay_unit*max(0,price-1)/max(1,price), where price=acc*(1+pres*max(0,occ+1-cap)); infinite price saturates fraction1. Applies to the original directed edge destination in reverse adapter. This is a bounded proxy, not native congestion cost.",
+  "leaf_priority": "criticality*(.25+.75/(1+abs(local_gap)/max(1,chosen_independent_charge))); if no alternative, uncertainty0. This is scheduling priority, NOT shared-DP marginal reliability.",
+  "candidate_selection": "Unknown reverse distance only; base shared-DP proposal if unknown plus first XY-diverse alternative among top4 unknown candidates by independent opening+branch cost, fallback first distinct unknown. At most2leaves by priority/pin and2requests perleaf.",
+  "work": "256shared expansions/refresh, allowance max(1,remaining/remaining_requests), with explicit zero-work skip when empty. Immutable per-plan sink/entry memo reuse charged0, no reuse across current-price snapshots.",
+  "query_domain": "Reverse from native sink within its layer, with only the selected crossing entry as virtual first-crossing target. New results are query-only and never inserted into legacy physical-distance maps.",
+  "native_adapters_pending": true
+}

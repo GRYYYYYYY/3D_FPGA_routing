@@ -1,0 +1,69 @@
+--- parent/vpr/src/route/h3d_fast_plan.cpp
++++ candidate/vpr/src/route/h3d_fast_plan.cpp
+@@ -150,6 +150,15 @@
+     if (solver != "shared" && solver != "independent")
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_ASSIGNMENT must be shared or independent");
+     independent_ = solver == "independent";
++    const char* refresh_assignment = std::getenv("VPR_H3D_REFRESH_ASSIGNMENT");
++    std::string refresh_solver = refresh_assignment ? refresh_assignment : "inherit";
++    if (refresh_solver != "inherit" && refresh_solver != "independent")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_REFRESH_ASSIGNMENT must be inherit or independent");
++    refresh_independent_ = refresh_solver == "independent";
++    const char* target_feedback = std::getenv("VPR_H3D_TARGET_FEEDBACK");
++    if (refresh_independent_ && (independent_ || !feedback || std::string(feedback) != "1"
++                                || !target_feedback || std::string(target_feedback) != "1"))
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Independent refresh ablation requires initial shared planning and target-restricted feedback");
+     VTR_LOG("H3D_EXPERIMENT mixed_delay=%d timing_guide=%g assignment=%s\n", mixed_delay_, timing_guide_weight_, solver.c_str());
+     channel_index_.resize(graph_.num_nodes(), -1);
+     size_t planar_count = 0;
+@@ -758,7 +767,12 @@
+                     size_t(net), static_cast<unsigned long long>(fingerprint), table.size(), leaves.size());
+         }
+         profile.enter(Phase::SOLVE);
+-        auto planned = independent_ ? h3d_plan_independent(leaves, openings) : h3d_plan_partition(leaves, openings);
++        const bool independent = independent_ || (prior_guides && refresh_independent_);
++        auto planned = independent ? h3d_plan_independent(leaves, openings) : h3d_plan_partition(leaves, openings);
++        if (prior_guides) {
++            refresh_independent_calls_ += independent;
++            refresh_shared_calls_ += !independent;
++        }
+         profile.enter(Phase::PRIOR);
+         if (prior_guides) {
+             std::vector<std::pair<int, size_t>> prior_assignment;
+@@ -789,12 +803,15 @@
+                 }
+             }
+             result.previous_cost = 0.;
+-            if (independent_) {
++            if (independent) {
+                 for (const auto& leaf : leaves)
+                     result.previous_cost += h3d_assignment_cost({leaf}, openings, prior_assignment);
+             } else result.previous_cost = h3d_assignment_cost(leaves, openings, prior_assignment);
+             result.proposed_cost = planned.cost;
+             result.refresh_accepted = h3d_accept_refresh(result.previous_cost, result.proposed_cost, refresh_margin);
++            VTR_LOG("H3D_REFRESH_SOLVER net=%zu independent=%d leaves=%zu candidates=%zu old_cost=%.17g new_cost=%.17g groups=%zu accepted=%d\n",
++                    size_t(net), independent, leaves.size(), table.size(), result.previous_cost, result.proposed_cost,
++                    planned.groups, result.refresh_accepted);
+             if (!result.refresh_accepted) {
+                 result.guides = *prior_guides;
+                 return result;
+@@ -923,6 +940,8 @@
+ }
+ 
+ void H3dFastPlan::log() const {
++    VTR_LOG("H3D_REFRESH_SOLVER_SUMMARY independent=%d shared_calls=%zu independent_calls=%zu\n",
++            refresh_independent_, refresh_shared_calls_, refresh_independent_calls_);
+     VTR_LOG("H3D_EXIT_PRICE_SUMMARY weight=%g pairs=%zu positive=%zu cross_edges=%zu\n",
+             exit_price_weight_, exit_price_pairs_, exit_price_positive_, exit_price_edges_);
+     VTR_LOG("H3D_EQUIVALENT_GUIDES cap=%zu pins=%zu added=%zu\n",
+--- parent/vpr/src/route/h3d_fast_plan.h
++++ candidate/vpr/src/route/h3d_fast_plan.h
+@@ -75,6 +75,8 @@
+     size_t equivalent_guide_cap_ = 0; ///< Opt-in total acceptable crossings per singleton DP guide, preserving its chosen crossing.
+     size_t equivalent_guide_pins_ = 0, equivalent_guide_added_ = 0; ///< Expanded connections and additional exactly measured alternatives.
+     size_t timing_regret_guides_ = 0, timing_regret_pairs_ = 0; ///< Connections with positive penalties and stored alternative entries.
++    bool refresh_independent_ = false; ///< Same-table independent top-1 only during target-restricted feedback; initial shared planning unchanged.
++    size_t refresh_shared_calls_ = 0, refresh_independent_calls_ = 0; ///< Nonempty finite refresh tables actually solved.
+     bool independent_ = false;                                        ///< Same-table independent top-1 solver control.
+     size_t timing_guides_ = 0;                                         ///< Selected guides with at least one measured side.
+     bool targeted_delay_ = false;                                      ///< Candidate-specific bidirectional search, mixed scoring only.

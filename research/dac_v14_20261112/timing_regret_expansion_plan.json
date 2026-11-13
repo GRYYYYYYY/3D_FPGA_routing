@@ -1,0 +1,30 @@
+{
+  "question": "Does alternative-specific timing guidance affect a larger population with many more both-sided known selections, while preserving exact P tables and query work? The two-case pilot is correct but shows no CPD gain, so this is a transfer probe, not promotion.",
+  "inputs": "softmax and bnn HybridO/P0/W100/seed11; byte-identical frozen packing/placement/RRG binding",
+  "arms": [
+    "P",
+    "Hc",
+    "Tg"
+  ],
+  "stage": "timing_regret_candidate_01",
+  "parameters": {
+    "K": 16,
+    "endpoint_budget": 4096,
+    "candidate_quota": 256,
+    "min_criticality": 0.7,
+    "opening": 16,
+    "miss": 2,
+    "timing_weight": 0.25,
+    "regret_deadband_units": 0.02
+  },
+  "pilot_status": "6/6legal,sealed,fullPcontrols,sameplanning/query,all48positivepenaltiesindependentlyreconstructed;Tgfullroute=Pbothcases",
+  "motivation": "Spmv has zero certified positive alternatives; eltwise has13guides/48pairs and same route. Bnn prior P has338 both-sided selected candidates versus34 eltwise, providing a larger applicable population without increasing budget or tuning amplitude.",
+  "protections": {
+    "timeout": 1800,
+    "memory_GiB": 64,
+    "disk_reserve_GiB": 80,
+    "max_live_vpr": 3
+  },
+  "formal_timing": false,
+  "registered_at": 1794518094.1256077
+}

@@ -1,0 +1,715 @@
+{
+  "passed": true,
+  "scope": "Matched sealedTf controls; fullroute/table/refresh/guide/query/pinchange equality plus final counters excludingseconds, independent legality/guideaudit and seal. Times are development observations under concurrent workloads, not formal speedup.",
+  "rows": [
+    {
+      "circuit": "spmv",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 7.04599,
+        "wirelength": 148617,
+        "router_seconds": 4.68,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148617,
+        "sb_pairs_used": 1,
+        "sb_pair_net_occupancy": 1,
+        "cb_crossing_output_sources_used": 967,
+        "cb_crossing_output_source_net_occupancy": 967,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "OPIN->CHANX": 584,
+          "CHANX->CHANX": 1
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "reference": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/spmv_Tf",
+      "optimized": "research/dac_v14_20261112/target_membership_dev_02/runs/spmv_O",
+      "reference_counters": {
+        "H3D_PLAN": {
+          "plans": "8353",
+          "groups": "91",
+          "bfs_nodes": "0",
+          "cache_entries": "0",
+          "no_candidate": "0",
+          "fallback": "0",
+          "planning_seconds": "0.866985"
+        },
+        "H3D_DELAY": {
+          "queries": "155",
+          "settled": "634880",
+          "truncated": "155",
+          "cache_hits": "103",
+          "cached_endpoints": "155"
+        },
+        "H3D_FEEDBACK": {
+          "checks": "20801",
+          "skipped": "20762",
+          "attempts": "39",
+          "accepted": "13",
+          "overuse": "27",
+          "criticality": "6",
+          "path": "6",
+          "check_seconds": "0.001422"
+        },
+        "H3D_UPDATE_PINS_SUMMARY": {
+          "enabled": "1",
+          "records": "8",
+          "retained": "0",
+          "targeted": "8"
+        },
+        "H3D_FINAL": {
+          "success": "1",
+          "guided": "109",
+          "routed": "109",
+          "adopted": "81",
+          "guide_rollbacks": "0"
+        },
+        "profiles": {
+          "initial": {
+            "mode": "initial",
+            "calls": "8314",
+            "total_seconds": "0.176212565",
+            "eligibility_seconds": "0.001046550",
+            "source_seconds": "0.071095927",
+            "candidates_seconds": "0.021031213",
+            "distance_seconds": "0.075961054",
+            "select_seconds": "0.005271862",
+            "table_seconds": "0.001554203",
+            "solve_seconds": "0.000139200",
+            "prior_seconds": "0.000004162",
+            "output_seconds": "0.000108394"
+          },
+          "refresh": {
+            "mode": "refresh",
+            "calls": "39",
+            "total_seconds": "0.019335482",
+            "eligibility_seconds": "0.000608830",
+            "source_seconds": "0.002594191",
+            "candidates_seconds": "0.008675558",
+            "distance_seconds": "0.005423684",
+            "select_seconds": "0.001581846",
+            "table_seconds": "0.000334880",
+            "solve_seconds": "0.000048609",
+            "prior_seconds": "0.000060514",
+            "output_seconds": "0.000007370"
+          }
+        }
+      },
+      "optimized_counters": {
+        "H3D_PLAN": {
+          "plans": "8353",
+          "groups": "91",
+          "bfs_nodes": "0",
+          "cache_entries": "0",
+          "no_candidate": "0",
+          "fallback": "0",
+          "planning_seconds": "1.139478"
+        },
+        "H3D_DELAY": {
+          "queries": "155",
+          "settled": "634880",
+          "truncated": "155",
+          "cache_hits": "103",
+          "cached_endpoints": "155"
+        },
+        "H3D_FEEDBACK": {
+          "checks": "20801",
+          "skipped": "20762",
+          "attempts": "39",
+          "accepted": "13",
+          "overuse": "27",
+          "criticality": "6",
+          "path": "6",
+          "check_seconds": "0.001762"
+        },
+        "H3D_UPDATE_PINS_SUMMARY": {
+          "enabled": "1",
+          "records": "8",
+          "retained": "0",
+          "targeted": "8"
+        },
+        "H3D_FINAL": {
+          "success": "1",
+          "guided": "109",
+          "routed": "109",
+          "adopted": "81",
+          "guide_rollbacks": "0"
+        },
+        "profiles": {
+          "initial": {
+            "mode": "initial",
+            "calls": "8314",
+            "total_seconds": "0.176497463",
+            "eligibility_seconds": "0.001011243",
+            "source_seconds": "0.071581930",
+            "candidates_seconds": "0.021079584",
+            "distance_seconds": "0.075807661",
+            "select_seconds": "0.005135835",
+            "table_seconds": "0.001608454",
+            "solve_seconds": "0.000165886",
+            "prior_seconds": "0.000003548",
+            "output_seconds": "0.000103322"
+          },
+          "refresh": {
+            "mode": "refresh",
+            "calls": "39",
+            "total_seconds": "0.019410301",
+            "eligibility_seconds": "0.000639191",
+            "source_seconds": "0.002590568",
+            "candidates_seconds": "0.008716889",
+            "distance_seconds": "0.005433360",
+            "select_seconds": "0.001556304",
+            "table_seconds": "0.000345267",
+            "solve_seconds": "0.000049245",
+            "prior_seconds": "0.000072859",
+            "output_seconds": "0.000006618"
+          }
+        }
+      },
+      "planning_seconds": [
+        0.866985,
+        1.139478
+      ],
+      "process_seconds": [
+        18.101729404181242,
+        19.00158443301916
+      ]
+    },
+    {
+      "circuit": "softmax",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 8.97575,
+        "wirelength": 169431,
+        "router_seconds": 4.59,
+        "iterations": 13,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169431,
+        "sb_pairs_used": 6,
+        "sb_pair_net_occupancy": 6,
+        "cb_crossing_output_sources_used": 713,
+        "cb_crossing_output_source_net_occupancy": 713,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 422,
+          "OPIN->CHANY": 352,
+          "CHANX->CHANX": 6
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "reference": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/softmax_Tf",
+      "optimized": "research/dac_v14_20261112/target_membership_dev_02/runs/softmax_O",
+      "reference_counters": {
+        "H3D_PLAN": {
+          "plans": "11311",
+          "groups": "45",
+          "bfs_nodes": "0",
+          "cache_entries": "0",
+          "no_candidate": "0",
+          "fallback": "0",
+          "planning_seconds": "1.963610"
+        },
+        "H3D_DELAY": {
+          "queries": "69",
+          "settled": "282624",
+          "truncated": "69",
+          "cache_hits": "99",
+          "cached_endpoints": "69"
+        },
+        "H3D_FEEDBACK": {
+          "checks": "20370",
+          "skipped": "20360",
+          "attempts": "10",
+          "accepted": "8",
+          "overuse": "4",
+          "criticality": "0",
+          "path": "6",
+          "check_seconds": "0.001518"
+        },
+        "H3D_UPDATE_PINS_SUMMARY": {
+          "enabled": "1",
+          "records": "2",
+          "retained": "0",
+          "targeted": "2"
+        },
+        "H3D_FINAL": {
+          "success": "1",
+          "guided": "110",
+          "routed": "110",
+          "adopted": "96",
+          "guide_rollbacks": "0"
+        },
+        "profiles": {
+          "initial": {
+            "mode": "initial",
+            "calls": "11301",
+            "total_seconds": "0.095884329",
+            "eligibility_seconds": "0.001608323",
+            "source_seconds": "0.034352276",
+            "candidates_seconds": "0.020041761",
+            "distance_seconds": "0.033284691",
+            "select_seconds": "0.005226644",
+            "table_seconds": "0.001079636",
+            "solve_seconds": "0.000216501",
+            "prior_seconds": "0.000001967",
+            "output_seconds": "0.000072530"
+          },
+          "refresh": {
+            "mode": "refresh",
+            "calls": "10",
+            "total_seconds": "0.004736794",
+            "eligibility_seconds": "0.000195206",
+            "source_seconds": "0.000005119",
+            "candidates_seconds": "0.003578604",
+            "distance_seconds": "0.000101162",
+            "select_seconds": "0.000679994",
+            "table_seconds": "0.000113291",
+            "solve_seconds": "0.000039116",
+            "prior_seconds": "0.000019116",
+            "output_seconds": "0.000005186"
+          }
+        }
+      },
+      "optimized_counters": {
+        "H3D_PLAN": {
+          "plans": "11311",
+          "groups": "45",
+          "bfs_nodes": "0",
+          "cache_entries": "0",
+          "no_candidate": "0",
+          "fallback": "0",
+          "planning_seconds": "1.781721"
+        },
+        "H3D_DELAY": {
+          "queries": "69",
+          "settled": "282624",
+          "truncated": "69",
+          "cache_hits": "99",
+          "cached_endpoints": "69"
+        },
+        "H3D_FEEDBACK": {
+          "checks": "20370",
+          "skipped": "20360",
+          "attempts": "10",
+          "accepted": "8",
+          "overuse": "4",
+          "criticality": "0",
+          "path": "6",
+          "check_seconds": "0.002345"
+        },
+        "H3D_UPDATE_PINS_SUMMARY": {
+          "enabled": "1",
+          "records": "2",
+          "retained": "0",
+          "targeted": "2"
+        },
+        "H3D_FINAL": {
+          "success": "1",
+          "guided": "110",
+          "routed": "110",
+          "adopted": "96",
+          "guide_rollbacks": "0"
+        },
+        "profiles": {
+          "initial": {
+            "mode": "initial",
+            "calls": "11301",
+            "total_seconds": "0.097028294",
+            "eligibility_seconds": "0.002158776",
+            "source_seconds": "0.034940218",
+            "candidates_seconds": "0.019886408",
+            "distance_seconds": "0.033538167",
+            "select_seconds": "0.005179225",
+            "table_seconds": "0.001055829",
+            "solve_seconds": "0.000197605",
+            "prior_seconds": "0.000001874",
+            "output_seconds": "0.000070192"
+          },
+          "refresh": {
+            "mode": "refresh",
+            "calls": "10",
+            "total_seconds": "0.004651469",
+            "eligibility_seconds": "0.000180170",
+            "source_seconds": "0.000005026",
+            "candidates_seconds": "0.003525857",
+            "distance_seconds": "0.000102712",
+            "select_seconds": "0.000670377",
+            "table_seconds": "0.000109308",
+            "solve_seconds": "0.000035797",
+            "prior_seconds": "0.000016992",
+            "output_seconds": "0.000005230"
+          }
+        }
+      },
+      "planning_seconds": [
+        1.96361,
+        1.781721
+      ],
+      "process_seconds": [
+        39.68940610811114,
+        38.33793901652098
+      ]
+    },
+    {
+      "circuit": "eltwise_layer",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 6.20812,
+        "wirelength": 228420,
+        "router_seconds": 12.85,
+        "iterations": 42,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 228420,
+        "sb_pairs_used": 118,
+        "sb_pair_net_occupancy": 118,
+        "cb_crossing_output_sources_used": 955,
+        "cb_crossing_output_source_net_occupancy": 955,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 554,
+          "CHANX->CHANX": 118,
+          "OPIN->CHANY": 453
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "reference": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_dev_01/runs/eltwise_layer_Tf",
+      "optimized": "research/dac_v14_20261112/target_membership_dev_02/runs/eltwise_layer_O",
+      "reference_counters": {
+        "H3D_PLAN": {
+          "plans": "10094",
+          "groups": "118",
+          "bfs_nodes": "0",
+          "cache_entries": "0",
+          "no_candidate": "0",
+          "fallback": "0",
+          "planning_seconds": "1.093330"
+        },
+        "H3D_DELAY": {
+          "queries": "268",
+          "settled": "1097728",
+          "truncated": "268",
+          "cache_hits": "327",
+          "cached_endpoints": "268"
+        },
+        "H3D_FEEDBACK": {
+          "checks": "39678",
+          "skipped": "39487",
+          "attempts": "191",
+          "accepted": "100",
+          "overuse": "38",
+          "criticality": "111",
+          "path": "64",
+          "check_seconds": "0.003121"
+        },
+        "H3D_UPDATE_PINS_SUMMARY": {
+          "enabled": "1",
+          "records": "115",
+          "retained": "0",
+          "targeted": "115"
+        },
+        "H3D_FINAL": {
+          "success": "1",
+          "guided": "198",
+          "routed": "198",
+          "adopted": "119",
+          "guide_rollbacks": "0"
+        },
+        "profiles": {
+          "initial": {
+            "mode": "initial",
+            "calls": "9903",
+            "total_seconds": "0.258877589",
+            "eligibility_seconds": "0.001282281",
+            "source_seconds": "0.067385587",
+            "candidates_seconds": "0.037266144",
+            "distance_seconds": "0.142604793",
+            "select_seconds": "0.007994518",
+            "table_seconds": "0.001951301",
+            "solve_seconds": "0.000266242",
+            "prior_seconds": "0.000004011",
+            "output_seconds": "0.000122712"
+          },
+          "refresh": {
+            "mode": "refresh",
+            "calls": "191",
+            "total_seconds": "0.170456069",
+            "eligibility_seconds": "0.008222686",
+            "source_seconds": "0.010251843",
+            "candidates_seconds": "0.080185975",
+            "distance_seconds": "0.054725848",
+            "select_seconds": "0.013660200",
+            "table_seconds": "0.002420427",
+            "solve_seconds": "0.000587463",
+            "prior_seconds": "0.000317645",
+            "output_seconds": "0.000083982"
+          }
+        }
+      },
+      "optimized_counters": {
+        "H3D_PLAN": {
+          "plans": "10094",
+          "groups": "118",
+          "bfs_nodes": "0",
+          "cache_entries": "0",
+          "no_candidate": "0",
+          "fallback": "0",
+          "planning_seconds": "1.104084"
+        },
+        "H3D_DELAY": {
+          "queries": "268",
+          "settled": "1097728",
+          "truncated": "268",
+          "cache_hits": "327",
+          "cached_endpoints": "268"
+        },
+        "H3D_FEEDBACK": {
+          "checks": "39678",
+          "skipped": "39487",
+          "attempts": "191",
+          "accepted": "100",
+          "overuse": "38",
+          "criticality": "111",
+          "path": "64",
+          "check_seconds": "0.003990"
+        },
+        "H3D_UPDATE_PINS_SUMMARY": {
+          "enabled": "1",
+          "records": "115",
+          "retained": "0",
+          "targeted": "115"
+        },
+        "H3D_FINAL": {
+          "success": "1",
+          "guided": "198",
+          "routed": "198",
+          "adopted": "119",
+          "guide_rollbacks": "0"
+        },
+        "profiles": {
+          "initial": {
+            "mode": "initial",
+            "calls": "9903",
+            "total_seconds": "0.264549312",
+            "eligibility_seconds": "0.001327631",
+            "source_seconds": "0.070111114",
+            "candidates_seconds": "0.037450098",
+            "distance_seconds": "0.144735390",
+            "select_seconds": "0.007890692",
+            "table_seconds": "0.002637947",
+            "solve_seconds": "0.000272754",
+            "prior_seconds": "0.000003904",
+            "output_seconds": "0.000119782"
+          },
+          "refresh": {
+            "mode": "refresh",
+            "calls": "191",
+            "total_seconds": "0.167244704",
+            "eligibility_seconds": "0.003536646",
+            "source_seconds": "0.010451061",
+            "candidates_seconds": "0.080662322",
+            "distance_seconds": "0.055360696",
+            "select_seconds": "0.013602484",
+            "table_seconds": "0.002512760",
+            "solve_seconds": "0.000643627",
+            "prior_seconds": "0.000386303",
+            "output_seconds": "0.000088805"
+          }
+        }
+      },
+      "planning_seconds": [
+        1.09333,
+        1.104084
+      ],
+      "process_seconds": [
+        27.310655754059553,
+        28.071181446313858
+      ]
+    },
+    {
+      "circuit": "bnn",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 13.4216,
+        "wirelength": 2074317,
+        "router_seconds": 89.4,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 2074317,
+        "sb_pairs_used": 105,
+        "sb_pair_net_occupancy": 105,
+        "cb_crossing_output_sources_used": 5062,
+        "cb_crossing_output_source_net_occupancy": 5062,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 2482,
+          "CHANX->CHANX": 105,
+          "OPIN->CHANX": 3057
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "reference": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/bnn_Tf",
+      "optimized": "research/dac_v14_20261112/target_membership_dev_02/runs/bnn_O",
+      "reference_counters": {
+        "H3D_PLAN": {
+          "plans": "78953",
+          "groups": "878",
+          "bfs_nodes": "0",
+          "cache_entries": "0",
+          "no_candidate": "0",
+          "fallback": "0",
+          "planning_seconds": "10.515153"
+        },
+        "H3D_DELAY": {
+          "queries": "1735",
+          "settled": "7106560",
+          "truncated": "1735",
+          "cache_hits": "1182",
+          "cached_endpoints": "1735"
+        },
+        "H3D_FEEDBACK": {
+          "checks": "301023",
+          "skipped": "300520",
+          "attempts": "503",
+          "accepted": "342",
+          "overuse": "317",
+          "criticality": "66",
+          "path": "149",
+          "check_seconds": "0.021857"
+        },
+        "H3D_UPDATE_PINS_SUMMARY": {
+          "enabled": "1",
+          "records": "525",
+          "retained": "0",
+          "targeted": "525"
+        },
+        "H3D_FINAL": {
+          "success": "1",
+          "guided": "1158",
+          "routed": "1158",
+          "adopted": "810",
+          "guide_rollbacks": "0"
+        },
+        "profiles": {
+          "initial": {
+            "mode": "initial",
+            "calls": "78450",
+            "total_seconds": "1.973110343",
+            "eligibility_seconds": "0.011585834",
+            "source_seconds": "0.725631161",
+            "candidates_seconds": "0.306238224",
+            "distance_seconds": "0.829685400",
+            "select_seconds": "0.068263931",
+            "table_seconds": "0.028612895",
+            "solve_seconds": "0.002000390",
+            "prior_seconds": "0.000033439",
+            "output_seconds": "0.001059069"
+          },
+          "refresh": {
+            "mode": "refresh",
+            "calls": "503",
+            "total_seconds": "0.602339076",
+            "eligibility_seconds": "0.014149578",
+            "source_seconds": "0.013314155",
+            "candidates_seconds": "0.211055680",
+            "distance_seconds": "0.321006084",
+            "select_seconds": "0.033091070",
+            "table_seconds": "0.007465814",
+            "solve_seconds": "0.001689045",
+            "prior_seconds": "0.000464187",
+            "output_seconds": "0.000103463"
+          }
+        }
+      },
+      "optimized_counters": {
+        "H3D_PLAN": {
+          "plans": "78953",
+          "groups": "878",
+          "bfs_nodes": "0",
+          "cache_entries": "0",
+          "no_candidate": "0",
+          "fallback": "0",
+          "planning_seconds": "10.472085"
+        },
+        "H3D_DELAY": {
+          "queries": "1735",
+          "settled": "7106560",
+          "truncated": "1735",
+          "cache_hits": "1182",
+          "cached_endpoints": "1735"
+        },
+        "H3D_FEEDBACK": {
+          "checks": "301023",
+          "skipped": "300520",
+          "attempts": "503",
+          "accepted": "342",
+          "overuse": "317",
+          "criticality": "66",
+          "path": "149",
+          "check_seconds": "0.028457"
+        },
+        "H3D_UPDATE_PINS_SUMMARY": {
+          "enabled": "1",
+          "records": "525",
+          "retained": "0",
+          "targeted": "525"
+        },
+        "H3D_FINAL": {
+          "success": "1",
+          "guided": "1158",
+          "routed": "1158",
+          "adopted": "810",
+          "guide_rollbacks": "0"
+        },
+        "profiles": {
+          "initial": {
+            "mode": "initial",
+            "calls": "78450",
+            "total_seconds": "1.994406205",
+            "eligibility_seconds": "0.011383988",
+            "source_seconds": "0.735537598",
+            "candidates_seconds": "0.312816554",
+            "distance_seconds": "0.844329359",
+            "select_seconds": "0.068823347",
+            "table_seconds": "0.018235253",
+            "solve_seconds": "0.002153973",
+            "prior_seconds": "0.000034115",
+            "output_seconds": "0.001092018"
+          },
+          "refresh": {
+            "mode": "refresh",
+            "calls": "503",
+            "total_seconds": "0.613321347",
+            "eligibility_seconds": "0.012351126",
+            "source_seconds": "0.013545189",
+            "candidates_seconds": "0.214632849",
+            "distance_seconds": "0.328990445",
+            "select_seconds": "0.033663755",
+            "table_seconds": "0.007598510",
+            "solve_seconds": "0.001810559",
+            "prior_seconds": "0.000612396",
+            "output_seconds": "0.000116518"
+          }
+        }
+      },
+      "planning_seconds": [
+        10.515153,
+        10.472085
+      ],
+      "process_seconds": [
+        266.4325393475592,
+        271.2598077468574
+      ]
+    }
+  ],
+  "script_sha256": "5cb6ac409db60a43e4867f8833ad9b0841fff37a77347f854b50efc328da3406"
+}

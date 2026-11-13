@@ -1,0 +1,554 @@
+{
+  "name": "gemm_layer_F",
+  "command": [
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/bin/vpr",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/import_only.xml",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/gemm_layer.blif",
+    "--route",
+    "--analysis",
+    "--device",
+    "fixture",
+    "--route_chan_width",
+    "100",
+    "--num_workers",
+    "1",
+    "--seed",
+    "11",
+    "--clock_modeling",
+    "ideal",
+    "--check_route",
+    "full",
+    "--verify_file_digests",
+    "off",
+    "--read_rr_graph",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/rr_graph.xml",
+    "--max_router_iterations",
+    "200",
+    "--routing_failure_predictor",
+    "off",
+    "--timing_report_npaths",
+    "0",
+    "--net_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/runs/gemm_layer_F/packed.net",
+    "--place_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/runs/gemm_layer_F/placed.place",
+    "--route_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/runs/gemm_layer_F/routed.route",
+    "--merge_constant_generators",
+    "off"
+  ],
+  "cwd": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/runs/gemm_layer_F",
+  "shared_inputs": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/bin/vpr": {
+      "sha256": "025e8ab46f6a98d389e0007b3ce4eeb5fed31ce36ffcfa5dec26599463d17ce0",
+      "stat_identity": [
+        1048620,
+        44106321358,
+        11199040,
+        1794474176355734864,
+        1794497177864289651
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/import_only.xml": {
+      "sha256": "b6fdf70e6da91b34bfb01ac212ebc20e6141216b5130c980e5ab513d23e66e83",
+      "stat_identity": [
+        1048620,
+        138497394067,
+        28919,
+        1793155579003159000,
+        1793155579002874552
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/gemm_layer.blif": {
+      "sha256": "351572ff1d5af340fcf517cdb74c4320eef6cef74a7672d0ff56cc0909f5b37c",
+      "stat_identity": [
+        1048620,
+        64553551824,
+        149474058,
+        1792671466454151615,
+        1792671466454151615
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/rr_graph.xml": {
+      "sha256": "f9992444df427c56a037d73a0e1344e96b010cb731f656dfe8a9f961eb0210fd",
+      "stat_identity": [
+        1048620,
+        138497394068,
+        13382215196,
+        1793155937882548817,
+        1793155937882548817
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_delay_critical_c6/packed.net": {
+      "sha256": "aace09ac33ae011ad128a5e63b03d63ceb09d17a195ddf325f385baea882b5ee",
+      "stat_identity": [
+        1048620,
+        57656749116,
+        656348772,
+        1793138668194375087,
+        1793760555765177000
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_delay_critical_c6/placed.place": {
+      "sha256": "241773df39dda96838ace7dc387ae9529f50f530c3672992c3ba7c2125bc40e9",
+      "stat_identity": [
+        1048620,
+        125593723558,
+        3572908,
+        1793701286006253656,
+        1793744767566677636
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/registration.json": {
+      "sha256": "a2005a2a4f7df8f57e7b3118b51742b6bfde71b9da11c9f363cd65e1f5b521f6",
+      "stat_identity": [
+        1048620,
+        147421226997,
+        9179,
+        1794497179548219000,
+        1794497179548056286
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/runtime_dependency_binding.json": {
+      "sha256": "c23ba091fc4ec78bc96523fe53467ed99e9f4af27bc97f30dacbfd5481cf1978",
+      "stat_identity": [
+        1048620,
+        147421226999,
+        4092,
+        1793689175345944000,
+        1794497177924913153
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libtcl8.6.so": {
+      "sha256": "8aa8d78367d409e0a53ae62608b52a1c3899da60d03c52a2fd3cc94e162db7a8",
+      "stat_identity": [
+        1048597,
+        2987437778,
+        1762056,
+        1648202329000000000,
+        1792669934136919867
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libz.so.1.2.11": {
+      "sha256": "64c206f0146cc58bbddc4f22054436f4ff278f5a554aa3ce6921ddf7e9133370",
+      "stat_identity": [
+        1048597,
+        15058497874,
+        108936,
+        1665783180000000000,
+        1774940171183771598
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0": {
+      "sha256": "d46f9225c1883039e8a6853e6d96ca1af11d034ce186a090952e4a7c8a7c2fdc",
+      "stat_identity": [
+        1048597,
+        13083214380,
+        298776,
+        1766181126000000000,
+        1792237081486955548
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30": {
+      "sha256": "ff0825e113603c3866680d5d52216bc6d8eedf3a59f52a0aef67ff01994db128",
+      "stat_identity": [
+        1048597,
+        13083214461,
+        2260296,
+        1766181126000000000,
+        1792237081702956290
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libm.so.6": {
+      "sha256": "df621c68dbfed7e843434ef2faedb9f4d4b0543ad161e9a55eaf4d4ce2443176",
+      "stat_identity": [
+        1048597,
+        13083214408,
+        940560,
+        1784895077000000000,
+        1792237081578955864
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1": {
+      "sha256": "fc9d43b2f6c20e53b009238f767c5b949d202389e20de9e202ea684b4ba3729a",
+      "stat_identity": [
+        1048597,
+        13083214374,
+        125488,
+        1766181126000000000,
+        1792237081482955535
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libc.so.6": {
+      "sha256": "e01b1ce7be2987f3b8560e26d0df2623f9dd5cec17be923ae28a785bc0d32d50",
+      "stat_identity": [
+        1048597,
+        13083214328,
+        2220400,
+        1784895077000000000,
+        1792237081446955411
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": {
+      "sha256": "8d06f393f4a93bcf9b81145a259524d66a95522a646bf8d7e05b6ffdf2e63dcc",
+      "stat_identity": [
+        1048597,
+        13083214278,
+        240936,
+        1784895077000000000,
+        1792237080450951993
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/a0_serial_build/vpr/vpr": {
+      "sha256": "a3fe24c59b8862ec1f6f13a7009a0df683dd0a8f7dec249bdd1569e2d14408f0",
+      "stat_identity": [
+        1048620,
+        75004637879,
+        12544264,
+        1793687062900116021,
+        1793687062900821101
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/r1_serial_build/vpr/vpr": {
+      "sha256": "1441c77e25e6a4fea62231e16914542952ff9790368ea68cd108ef50db472be6",
+      "stat_identity": [
+        1048620,
+        81802623263,
+        11184856,
+        1793686628677842573,
+        1793686628678138735
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libcrypto.so.3": {
+      "sha256": "7cc817ff1841b59516d684f357bc0c3fc2cc52c3fa9b4ffb8ce8bdc215f02915",
+      "stat_identity": [
+        1048597,
+        2987437811,
+        4455728,
+        1789655784000000000,
+        1792765849742065446
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/b2_serial_build/vpr/vpr": {
+      "sha256": "0a5b314bcacdc61987b3ab8fb5ea77ce4b33242b8b1cdf0ba9b7ad39c31737d5",
+      "stat_identity": [
+        1048620,
+        81800754884,
+        8689528,
+        1793686403292198895,
+        1793686403292441676
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/vpr_serial_bridge_build/vpr/vpr": {
+      "sha256": "ec0877666894210de715bb39cdee1fb32adfd1e3e86af338ff316b5b04c6f337",
+      "stat_identity": [
+        1048620,
+        99924708401,
+        6769376,
+        1793685149852395614,
+        1793685149852988040
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/openroad-local/root/usr/lib/x86_64-linux-gnu/libtclreadline-2.3.8.so": {
+      "sha256": "73f2caec3c775907178585c45e5b99f42f2f4e156dd944843bf4de7e6f0e3c83",
+      "stat_identity": [
+        1048620,
+        35284212032,
+        18760,
+        1574607291000000000,
+        1793133791071481715
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/openroad-local/root/opt/or-tools/lib/libortools.so.9.11.4210": {
+      "sha256": "e362f5d8acebd1bc3485d270e20a0801991f6ec4829245ecf1ff92ac4f0c059f",
+      "stat_identity": [
+        1048620,
+        94610736851,
+        38660240,
+        1733932577000000000,
+        1793133664808772354
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/deps/root/usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2": {
+      "sha256": "1de96ba8296808433bf3ad601f2410c179a3e422a05ad012b49e4ad364f72bc0",
+      "stat_identity": [
+        1048620,
+        57545416850,
+        498040,
+        1639845430000000000,
+        1793682704652006551
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/deps/root/usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1": {
+      "sha256": "d463bedd51d449b2346d329fad8080e0900120ad0aeab8bf93e325b6cff4a587",
+      "stat_identity": [
+        1048620,
+        57526140041,
+        133816,
+        1642615671000000000,
+        1793682704631311646
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libreadline.so.8.1": {
+      "sha256": "57419e3b177639246ecf7ffd2eba170bde779b7369d70e68b9b4c5fc3051cbc1",
+      "stat_identity": [
+        1048597,
+        4845150216,
+        335936,
+        1641486414000000000,
+        1774940172891776184
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libdl.so.2": {
+      "sha256": "d255ba9c9e3a7c35115e578c898147edaba1a2bcf742cc3a76995ceed9d5ac4f",
+      "stat_identity": [
+        1048597,
+        13083214350,
+        14432,
+        1784895077000000000,
+        1792237081466955480
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libpthread.so.0": {
+      "sha256": "fbed9505adacada2abb37c6b43be2df6de81e742712c6025694ba48de62c7e78",
+      "stat_identity": [
+        1048597,
+        13083214450,
+        21448,
+        1784895077000000000,
+        1792237081674956194
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3": {
+      "sha256": "856b8451914abc2277c3d91c64ba3e72b2e0d519806397afecae92fda1a6b10c",
+      "stat_identity": [
+        1048597,
+        2966304252,
+        200136,
+        1788176217000000000,
+        1792669675324051907
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/openroad_build_boost183/src/openroad": {
+      "sha256": "d072d1f1acac9cea70a0296e0f19dce5dfb55c9bdca9a9b51892b664b539c532",
+      "stat_identity": [
+        1048620,
+        81740007366,
+        83350152,
+        1793684542300152631,
+        1793684542300492815
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/seccomp_thread_guard": {
+      "sha256": "e1a990f2884c3b332d8561bfb3decc1bdb8a9affc5db6f9d672506c591fbf877",
+      "stat_identity": [
+        1048620,
+        57643898038,
+        16200,
+        1793690286802292905,
+        1793690286806919348
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/seccomp_guard_unit_validation.json": {
+      "sha256": "e4a7f16757c73d34aba7c41b85bf2b70c30796d2276169d41d68f36c5d6ff7ce",
+      "stat_identity": [
+        1048620,
+        99997487247,
+        1457,
+        1793690415385308423,
+        1793690415385308423
+      ]
+    },
+    "/usr/bin/time": {
+      "sha256": "7310b9b4c51a8f4d26c1af0da250f03a49ec8a8141033123e79196ad18f6c81b",
+      "stat_identity": [
+        1048597,
+        16880235753,
+        27160,
+        1648201942000000000,
+        1792669675852053665
+      ]
+    },
+    "/usr/bin/prlimit": {
+      "sha256": "a63d6a3b741b085776716c55a23f763280b509095faf43e5d435af7191b5e3e7",
+      "stat_identity": [
+        1048597,
+        5921941645,
+        27536,
+        1712676776000000000,
+        1774940170763770470
+      ]
+    }
+  },
+  "private_input_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/runs/gemm_layer_F/packed.net": "aace09ac33ae011ad128a5e63b03d63ceb09d17a195ddf325f385baea882b5ee",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/runs/gemm_layer_F/placed.place": "241773df39dda96838ace7dc387ae9529f50f530c3672992c3ba7c2125bc40e9"
+  },
+  "environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VPR_H3D_MODE": "static",
+    "VPR_H3D_REACHABILITY": "scc",
+    "VPR_H3D_GRAPH_ENCODING": "edge",
+    "VPR_H3D_STATS": "1",
+    "VPR_H3D_CANDIDATES": "16",
+    "VPR_H3D_MISS_WEIGHT": "2",
+    "VPR_H3D_OPENING_WEIGHT": "16",
+    "VPR_H3D_DELAY_BUDGET": "4096",
+    "VPR_H3D_CANDIDATE_COST": "delay",
+    "VPR_H3D_MIN_CRITICALITY": "0.7",
+    "VPR_H3D_TRACE_TABLE": "1",
+    "VPR_H3D_MIXED_DELAY": "0",
+    "VPR_H3D_TIMING_GUIDE": "0",
+    "VPR_H3D_ASSIGNMENT": "shared"
+  },
+  "timeout_seconds": 1800,
+  "tags": {
+    "circuit": "gemm_layer",
+    "arm": "F",
+    "phase": "development",
+    "hypothesis": "separate_H2_DP_geometry"
+  },
+  "start_utc": "2026-11-12T15:26:55.784731+00:00",
+  "status": "completed",
+  "supervisor_pid": 2152834,
+  "runner_sha256": "de3f4ad7886df8291e6420e2c50314c071cd29bdb1367af5adc59e58c231db31",
+  "execution_limit": {
+    "address_space_bytes": 68719476736,
+    "core_dump_bytes": 0,
+    "enforcement": "/usr/bin/prlimit --as=soft:hard --core=0:0, inherited by children"
+  },
+  "thread_enforcement": {
+    "method": "seccomp_guard_no_ptrace",
+    "guard": {
+      "sha256": "e1a990f2884c3b332d8561bfb3decc1bdb8a9affc5db6f9d672506c591fbf877",
+      "stat_identity": [
+        1048620,
+        57643898038,
+        16200,
+        1793690286802292905,
+        1793690286806919348
+      ]
+    },
+    "validation": {
+      "sha256": "e4a7f16757c73d34aba7c41b85bf2b70c30796d2276169d41d68f36c5d6ff7ce",
+      "stat_identity": [
+        1048620,
+        99997487247,
+        1457,
+        1793690415385308423,
+        1793690415385308423
+      ]
+    },
+    "qualification": "Linux x86-64 seccomp filter denies clone3 and kills a caller of clone with CLONE_THREAD; inherited by exec and descendants. BPF overhead and behavior change require workload validation.",
+    "top_level_sigsys_observed": false
+  },
+  "launch_command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/runs/gemm_layer_F/time.txt",
+    "/usr/bin/prlimit",
+    "--as=68719476736:68719476736",
+    "--core=0:0",
+    "--",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/seccomp_thread_guard",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/bin/vpr",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/import_only.xml",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/gemm_layer.blif",
+    "--route",
+    "--analysis",
+    "--device",
+    "fixture",
+    "--route_chan_width",
+    "100",
+    "--num_workers",
+    "1",
+    "--seed",
+    "11",
+    "--clock_modeling",
+    "ideal",
+    "--check_route",
+    "full",
+    "--verify_file_digests",
+    "off",
+    "--read_rr_graph",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/rr_graph.xml",
+    "--max_router_iterations",
+    "200",
+    "--routing_failure_predictor",
+    "off",
+    "--timing_report_npaths",
+    "0",
+    "--net_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/runs/gemm_layer_F/packed.net",
+    "--place_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/runs/gemm_layer_F/placed.place",
+    "--route_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/h2_expansion_01/runs/gemm_layer_F/routed.route",
+    "--merge_constant_generators",
+    "off"
+  ],
+  "environment_sanitization": "Remove inherited VPR_H3D_*, LD_PRELOAD, LD_AUDIT and LD_LIBRARY_PATH; explicit overrides and bridge-local settings remain.",
+  "process_group_id": 2172003,
+  "process_tree_observation": {
+    "method": "proc_process_tree_polling",
+    "interval_seconds": 0.01,
+    "samples": 141371,
+    "read_errors": 1,
+    "peak_threads": 1,
+    "violation_observed": false,
+    "processes": [
+      {
+        "pid": 2172003,
+        "start_ticks": "1926998349",
+        "name": "time",
+        "peak_threads": 1,
+        "samples": 141371
+      },
+      {
+        "pid": 2172006,
+        "start_ticks": "1926998349",
+        "name": "time",
+        "peak_threads": 1,
+        "samples": 141371
+      }
+    ],
+    "limitation": "Polling can miss transient threads/processes and introduces supervisor overhead; absence is not proof."
+  },
+  "execution_status": "completed",
+  "returncode": 0,
+  "finish_utc": "2026-11-12T15:53:19.129807+00:00",
+  "wall_seconds": 1583.3431963063776,
+  "metrics": {
+    "critical_path_ns": 13.1564,
+    "wirelength": 4705478,
+    "router_seconds": 1091.48,
+    "iterations": 19,
+    "native_full_check_passed": true,
+    "routing_success_reported": true
+  },
+  "outputs": {
+    "packed.net": {
+      "sha256": "aace09ac33ae011ad128a5e63b03d63ceb09d17a195ddf325f385baea882b5ee",
+      "bytes": 656348772
+    },
+    "placed.place": {
+      "sha256": "241773df39dda96838ace7dc387ae9529f50f530c3672992c3ba7c2125bc40e9",
+      "bytes": 3572908
+    },
+    "routed.route": {
+      "sha256": "2a567552f11e56f8bdcc45098f3fadb1526ee3af3c9c001333bf96b7714a5c78",
+      "bytes": 225795403
+    },
+    "stdout.log": {
+      "sha256": "11f15936da063bcd4ba772bafef1a3e060893e834e72b117ba2f2c354887345c",
+      "bytes": 108307
+    },
+    "time.txt": {
+      "sha256": "45f89cb414c09c2169ee850e5f658a6c1d5bbaecbbf68713f9e31a33cf78eb73",
+      "bytes": 2441
+    }
+  }
+}

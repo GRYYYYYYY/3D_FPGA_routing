@@ -1,0 +1,55 @@
+{
+  "status": "registered_before_execution",
+  "native_route_calls": 0,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_residual_query_offline.py": "ed116c78e77409798622e716da6be218c91344eb857d162e0832a6ebe2fecbfe",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/residual_query_driver.cpp": "d4e2e2fd82a2c138cfbca6af89c9dba9ce095902b0f9874c6277c8f32b5df2ff",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/src/vpr/src/route/h3d_candidate_path.h": "27cc86e679923e709a47018e952c186176ccaa0971c48bf3586809a1802df2fc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/residual_multitarget_query_experiment_01.json": "7bb7e6126a9ccdc3bf34e8d609f4673edc16a46e65381ce16cd437ca90a47902",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/residual_seed_oracle_01/analysis.json": "952280ca0914e1cd655ef6a660fedcc2eee1021d72b41f59ea07edfb57988b96",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/search_domain_eltwise_dev_01/search_domain_analysis.json": "47ffd09c7a5258fbbd471c34e4eabd02258b8c8448a46294a47c5f92f8f8a968",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/search_domain_eltwise_dev_01/input_seal.json": "f1cc4e2a1d841d5bb50a13c392297a2068beeee53a3343cf2dd5659d6a1ea087",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/search_domain_eltwise_dev_01/runs/eltwise_layer_T/stdout.log": "45b4bbed7b3b46b9b978598048a75adb594d6813f4867757c0398ec1d3b8fb4b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/search_domain_eltwise_dev_01/runs/eltwise_layer_T/manifest.json": "f0662dd99f9e8af5e54ac271ec48b4efc9f33a0f2932c97484d6aa3abc34bf31",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/rr_graph.xml": "e695cd129be100079b479a58aefa84d69e5221df4e06f189b1f632b898e30895",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_path_witnesses_v2.py": "31584e397cedd64505ed14e81a909194b26806ff3c27b9c744eca909936a75a5"
+  },
+  "protocol": {
+    "status": "registered_not_implemented_not_submitted",
+    "research_complete": false,
+    "question": "Can a fixed-budget query directed to actual same-layer queued seeds find useful residual no-new-cross walk alternatives, where legacy crossing-terminal Dijkstra does not settle those seeds?",
+    "evidence": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/residual_seed_oracle_01/analysis.json",
+      "sha256": "952280ca0914e1cd655ef6a660fedcc2eee1021d72b41f59ea07edfb57988b96",
+      "complete_seed_groups": 31,
+      "guided_groups": 10,
+      "guided_no_cross_no_worse": 6,
+      "known_sink_layer_seed_events": 23,
+      "total_sink_layer_seed_events": 565,
+      "qualification": "Physical walk comparisons not congestion-aware dominance or legal-extension/final STA certificates. Four guided groups favor an additional preferred crossing, so blanket suppress-on-sink-layer-seed is not justified."
+    },
+    "scope": "Offline saved actual complete seed groups first, no native route or router changes in first stage.",
+    "arms": [
+      "Q0 zero heuristic, one shared256 expansion budget per actual seed-group",
+      "Qh multi-target spatial ordering toward current source set with partial-tree Tdel as terminal cost, same shared256/label16384/heap65536 caps",
+      "Optional sequential-single-seed control with same total256 work, only if needed to distinguish multi-target allocation from heuristic ordering"
+    ],
+    "method": "Reverse same-layer BB-admitted RR walk from sink toward all actual queued sink-layer source IDs; virtual target edges at sources carry saved physical seedTdel. Virtual edges are analysis only, never RR resources. Use existing independently tested H3dCandidatePath generic query engine or exact parity port. Non-admissible geometry orders work only; frontier-g lower bound alone certifies optimum, discovered path is only UB until certified. Validate every real directed edge/weight and compare all exact claims to sealed offline full-Dijkstra oracle. Include storage/work-limit and source==sink cases. Record query work, unknown, actual best seed and physical witness. No enlarged legacy4096 or concealed fresh query work.",
+    "followup": "Only after useful coverage/validity: native read-only integration using actual successful seed set, static reverse-distance/path reuse and current price snapshots, then separately registered reliability-weighted guide/planning no-new-cross alternative. Compare default-off and query-only controls before scoring; no blanket attenuation based solely on sink-layer seed existence.",
+    "limits": {
+      "offline_seconds": 1800,
+      "offline_memory_bytes": 25769803776,
+      "native_timeout_seconds": 1800,
+      "native_memory_bytes": 68719476736,
+      "disk_reserve_bytes": 85899345920
+    },
+    "formal_timing": "Any candidate timing claim needs same-environment fresh measurement. Saved offline oracle work is research cost, not unchanged online planning cost."
+  },
+  "cpp_query": "Exact existing H3dCandidatePath header, stop-at-first-path1, label16384/heap65536/shared256 per arm per seedgroup.",
+  "heuristic": "Qh min(seedTdel +4*graphunit*Manhattan_lowXY/max(1,mean_planar_span)); ordering only; Q0 zero.",
+  "virtual_target": "Single virtual target after each actual seed, edge cost saved Tdel, not a physical RR edge.",
+  "memory_bytes": 25769803776,
+  "timeout": 1800,
+  "pid": 1044597,
+  "start_ticks": "1934454665"
+}

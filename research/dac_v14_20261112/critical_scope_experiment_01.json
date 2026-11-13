@@ -1,0 +1,29 @@
+{
+  "registered_at": 1794550073.0304277,
+  "question": "Can native-selected high-criticality targets receive all-layer search early while other nets retain the existing overuse-triggered layer expansion, recovering quality/success benefits with less broad search?",
+  "evidence": [
+    "scope_six_circuit_summary.json",
+    "failed_attention_diagnostic_01",
+    "retained_source_eltwise_dev_01/source_analysis.json",
+    "retained_source_tpu_dev_01/source_analysis.json"
+  ],
+  "new_mechanism": "After setup/pruning and native remaining-target criticality computation, persistently expand only the layer limits of a net with a remaining target at criticality>=.9. Preserve XY bounds, native costs, route/guide transactions, native reroute selection and existing overuse layer feedback. No guide in first independent test.",
+  "initial_cases": [
+    "eltwise_layer seed11 Hybrid-O/P0/W100",
+    "attention_layer seed11 Hybrid-O/P0/W100"
+  ],
+  "arms": {
+    "C": "new mode absent, old feedback0, reproduce original A0",
+    "O": "new mode absent, existing overuse feedback1, independent adaptive baseline",
+    "Z": "critical threshold0 plus existing feedback1, must reproduce initial-global A1 complete route/metrics",
+    "K": "critical threshold.9 plus existing feedback1"
+  },
+  "gates": "Default-off exact native A0 including failure status; Z exact A1 including native FULL and route equivalence. All legal routes independently graph-audited, failed CPD excluded. Compare C/O/A1/K with CPD/resources/iterations/planning and process costs; no formal timing or guide-causality claim.",
+  "limits": {
+    "timeout_seconds": 1800,
+    "memory_gib": 64,
+    "disk_reserve_gib": 80
+  },
+  "scope": "New early criticality trigger differs from already implemented pre-prune overuse witness. Do not present the old witness policy as novel. If useful, verify fixed settings on additional circuits before combining with Tf.",
+  "research_complete": false
+}

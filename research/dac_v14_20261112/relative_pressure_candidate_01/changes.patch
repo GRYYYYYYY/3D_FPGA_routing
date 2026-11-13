@@ -1,0 +1,129 @@
+--- a/vpr/src/route/h3d_routing.cpp
++++ b/vpr/src/route/h3d_routing.cpp
+@@ -51,6 +51,7 @@
+     size_t candidates = 8;             ///< Diverse preferred candidates per remote terminal.
+     float miss_weight = 2.f;           ///< Additional relative CHANZ cost outside the preference set.
+     bool dp_tie_pressure = false; ///< Enable final-pressure records for the shared-DP tie ablation.
++    bool dp_margin_pressure = false; ///< Enable final-pressure records for the relative-margin ablation.
+     float opening_weight = 8.f;        ///< Channel-opening weight in hop-cost planning units.
+     bool delay_cost = false;
+     size_t delay_budget = 4096;
+@@ -101,13 +102,17 @@
+         if (tie_pressure && std::string(tie_pressure) != "0" && std::string(tie_pressure) != "1")
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_DP_TIE_PRESSURE must be 0 or 1");
+         result.dp_tie_pressure = tie_pressure && std::string(tie_pressure) == "1";
++        const char* margin_pressure = std::getenv("VPR_H3D_DP_MARGIN_PRESSURE");
++        if (margin_pressure && std::string(margin_pressure) != "0" && std::string(margin_pressure) != "1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_DP_MARGIN_PRESSURE must be 0 or 1");
++        result.dp_margin_pressure = margin_pressure && std::string(margin_pressure) == "1";
+         result.opening_weight = read_number("VPR_H3D_OPENING_WEIGHT", 8.f);
+         const char* search = std::getenv("VPR_H3D_REACHABILITY");
+         std::string reachability = search ? search : "bfs";
+         if (reachability != "bfs" && reachability != "scc")
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_REACHABILITY must be bfs or scc");
+         result.use_scc = reachability == "scc";
+-        if (result.dp_tie_pressure && !result.use_scc)
++        if ((result.dp_tie_pressure || result.dp_margin_pressure) && !result.use_scc)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "DP tie pressure requires the SCC finite-table planner");
+         const char* encoding_env = std::getenv("VPR_H3D_GRAPH_ENCODING");
+         std::string encoding = encoding_env ? encoding_env : "native";
+@@ -734,7 +739,7 @@
+                 const auto& guide = guides[pin];
+                 if (guide.preferred.empty()) continue;
+                 ++guided;
+-                if (settings().dp_tie_pressure)
++                if (settings().dp_tie_pressure || settings().dp_margin_pressure)
+                     VTR_LOG("H3D_FINAL_PRESSURE net=%zu pin=%zu miss_weight=%.9g\n", size_t(net), pin, double(guide.miss_weight));
+                 std::set<RRNodeId> crossings;
+                 bool reached = tree && tree->find_by_isink(pin);
+--- a/vpr/src/route/h3d_fast_plan.cpp
++++ b/vpr/src/route/h3d_fast_plan.cpp
+@@ -121,6 +121,12 @@
+     if (tie_pressure && std::string(tie_pressure) != "0" && std::string(tie_pressure) != "1")
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_DP_TIE_PRESSURE must be 0 or 1");
+     dp_tie_pressure_ = tie_pressure && std::string(tie_pressure) == "1";
++    const char* margin_pressure = std::getenv("VPR_H3D_DP_MARGIN_PRESSURE");
++    if (margin_pressure && std::string(margin_pressure) != "0" && std::string(margin_pressure) != "1")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_DP_MARGIN_PRESSURE must be 0 or 1");
++    dp_margin_pressure_ = margin_pressure && std::string(margin_pressure) == "1";
++    if (dp_margin_pressure_ && dp_tie_pressure_)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Tie-only and relative-margin pressure are separate ablations");
+     if (trace_dp_sensitivity_ && !trace_guide_margin_)
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "DP sensitivity diagnostic requires the paired local-margin trace");
+     if (trace_estimates_ && !targeted_delay_)
+@@ -171,7 +177,7 @@
+     if (refresh_solver != "inherit" && refresh_solver != "independent")
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_REFRESH_ASSIGNMENT must be inherit or independent");
+     refresh_independent_ = refresh_solver == "independent";
+-    if (dp_tie_pressure_ && (independent_ || refresh_independent_ || timing_guide_weight_ > 0. || equivalent_guide_cap_))
++    if ((dp_tie_pressure_ || dp_margin_pressure_) && (independent_ || refresh_independent_ || timing_guide_weight_ > 0. || equivalent_guide_cap_))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "DP tie pressure requires shared assignment and separate timing/equivalent-guide ablations");
+     if (trace_dp_sensitivity_ && (independent_ || refresh_independent_))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "DP sensitivity diagnostic requires shared assignment throughout");
+@@ -842,11 +848,14 @@
+             result.groups = planned.groups;
+             for (const auto& [pin, c] : planned.assignment)
+                 result.guides[pin].preferred = {channels_[table[c]]};
+-            if (trace_dp_sensitivity_ || dp_tie_pressure_) {
++            if (trace_dp_sensitivity_ || dp_tie_pressure_ || dp_margin_pressure_) {
+                 auto sensitivity_start = std::chrono::steady_clock::now();
+                 auto sensitivity = h3d_partition_exclusion_costs(leaves, openings, planned.assignment);
+                 double seconds = std::chrono::duration<double>(std::chrono::steady_clock::now() - sensitivity_start).count();
+                 VTR_ASSERT(std::abs(sensitivity.base_cost - planned.cost) <= 1e-10 * std::max(1., planned.cost));
++                std::unordered_map<int, const t_h3d_plan_leaf*> sensitivity_leaves;
++                if (dp_margin_pressure_)
++                    for (const auto& leaf : leaves) sensitivity_leaves.emplace(leaf.pin, &leaf);
+                 for (size_t i = 0; i < planned.assignment.size(); ++i) {
+                     const auto& [pin, candidate] = planned.assignment[i];
+                     double alternative = sensitivity.exclusion_costs.at(i);
+@@ -859,6 +868,17 @@
+                         VTR_LOG("H3D_DP_PRESSURE net=%zu pin=%d refresh=%d candidate=%zu base=%.17g exclusion=%.17g original=%.9g applied=%.9g\n",
+                                 size_t(net), pin, prior_guides != nullptr, size_t(channels_[table[candidate]]),
+                                 sensitivity.base_cost, alternative, double(miss_weight), double(result.guides.at(pin).miss_weight));
++                    }
++                    if (dp_margin_pressure_) {
++                        const auto& costs = sensitivity_leaves.at(pin)->candidates;
++                        auto selected = std::lower_bound(costs.begin(), costs.end(), candidate,
++                            [](const auto& c, size_t index) { return c.channel < index; });
++                        VTR_ASSERT(selected != costs.end() && selected->channel == candidate);
++                        double leaf_cost = openings.at(candidate) + selected->branch_cost;
++                        result.guides.at(pin).miss_weight = h3d_relative_margin_pressure(miss_weight, sensitivity.base_cost, alternative, leaf_cost);
++                        VTR_LOG("H3D_DP_RELATIVE_PRESSURE net=%zu pin=%d refresh=%d candidate=%zu base=%.17g exclusion=%.17g leaf_cost=%.17g original=%.9g applied=%.9g\n",
++                                size_t(net), pin, prior_guides != nullptr, size_t(channels_[table[candidate]]),
++                                sensitivity.base_cost, alternative, leaf_cost, double(miss_weight), double(result.guides.at(pin).miss_weight));
+                     }
+                 }
+                 VTR_LOG("H3D_DP_SENSITIVITY_TIME net=%zu refresh=%d leaves=%zu requests=%zu seconds=%.9g\n",
+--- a/vpr/src/route/h3d_fast_plan.h
++++ b/vpr/src/route/h3d_fast_plan.h
+@@ -88,6 +88,7 @@
+     bool trace_guide_margin_ = false; ///< Diagnostic leaf-local surrogate margins; not a shared-DP or physical-delay confidence bound.
+     bool trace_dp_sensitivity_ = false; ///< Diagnostic exact fixed-hierarchy exclusion costs, no change to guidance.
+     bool dp_tie_pressure_ = false; ///< Zero extra congestion preference only on strict finite shared-DP exclusion ties.
++    bool dp_margin_pressure_ = false; ///< Separate bounded relative surrogate-sensitivity pressure ablation.
+     size_t estimate_trace_rows_ = 0; ///< Number of emitted candidate records across diagnostic phases.
+     bool reverse_rerank_ = false; ///< Re-evaluate reverse targets after source measurements with unchanged limits and diversity.
+     size_t reverse_rerank_pins_ = 0, reverse_rerank_changed_ = 0; ///< Pins considered and target sequences changed by source-informed reranking.
+--- a/vpr/src/route/h3d_partition_sensitivity.h
++++ b/vpr/src/route/h3d_partition_sensitivity.h
+@@ -19,6 +19,20 @@
+  */
+ inline float h3d_exact_tie_pressure(float original, double base, double excluded) {
+     return std::isfinite(base) && std::isfinite(excluded) && base == excluded ? 0.f : original;
++}
++
++/** @brief Bounded relative surrogate sensitivity, not physical-delay confidence.
++ * Compare the net-level exclusion gap with this leaf's selected standalone
++ * opening-plus-branch cost, avoiding dilution by unrelated leaves' base cost.
++ * A finite-table unique choice preserves the original fallback pressure.
++ */
++inline float h3d_relative_margin_pressure(float original, double base, double excluded, double leaf_cost) {
++    VTR_ASSERT(std::isfinite(base) && base >= 0. && std::isfinite(leaf_cost) && leaf_cost >= 0.);
++    if (!std::isfinite(excluded)) return original;
++    double gap = excluded - base;
++    if (gap <= 0.) return 0.f;
++    double reliability_proxy = 1. / (1. + leaf_cost / gap);
++    return float(double(original) * reliability_proxy);
+ }
+ 
+ namespace h3d_sensitivity_detail {

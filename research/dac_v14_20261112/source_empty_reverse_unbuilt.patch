@@ -1,0 +1,76 @@
+--- before/h3d_fast_plan.cpp
++++ after/h3d_fast_plan.cpp
+@@ -251,6 +251,16 @@
+     }
+     if(candidate_path_delay_weight_>0. && !candidate_path_use_cached_)
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Physical sink-delay ablation requires captured legacy witnesses");
++    if(const char* text=std::getenv("VPR_H3D_SOURCE_EMPTY_REVERSE")) {
++        if(std::string(text)!="0" && std::string(text)!="1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_SOURCE_EMPTY_REVERSE must be 0 or 1");
++        source_empty_reverse_=std::string(text)=="1";
++    }
++    if(source_empty_reverse_) {
++        const char* compact=std::getenv("VPR_H3D_CANDIDATE_PATH_COMPACT");
++        if(candidate_path_delay_weight_<=0. || mixed_delay_ || targeted_delay_ || !compact || std::string(compact)!="1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Source-empty reverse revalidation requires legacy physical-sink scoring with compact witnesses");
++    }
+     if (refresh_independent_ && (independent_ || !feedback || std::string(feedback) != "1"
+                                 || !target_feedback || std::string(target_feedback) != "1"))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Independent refresh ablation requires initial shared planning and target-restricted feedback");
+@@ -799,9 +809,22 @@
+                 cost = opening(c) + branch(pin, c);
+             }
+             mixed_informed_pins_ += measured > 0;
+-        } else if (forward && !forward->empty() && !ranked.empty()) {
++        } else if (forward && (!forward->empty() || source_empty_reverse_) && !ranked.empty()) {
++            H3dDelayPlan::WorkSnapshot before{0,0,0};
++            if(source_empty_reverse_ && forward->empty())before=delay_plan_->work_snapshot();
+             const auto& back = delay_plan_->distances(terminals[pin], true);
+             reverse[pin] = &back;
++            if(source_empty_reverse_ && forward->empty()) {
++                auto after=delay_plan_->work_snapshot();
++                ++empty_reverse_requests_;empty_reverse_queries_+=after.queries-before.queries;
++                empty_reverse_work_+=after.settled-before.settled;empty_reverse_hits_+=after.hits-before.hits;
++                empty_reverse_measured_+=back.size();
++                if(empty_reverse_rows_<20000) {
++                    ++empty_reverse_rows_;
++                    VTR_LOG("H3D_SOURCE_EMPTY_REVERSE net=%zu pin=%d source=%zu sink=%zu refresh=%d source_entries=0 ranked=%zu measured_entries=%zu before_queries=%zu after_queries=%zu before_settled=%zu after_settled=%zu before_hits=%zu after_hits=%zu\n",
++                            size_t(net),pin,size_t(source),size_t(terminals[pin]),int(prior_guides!=nullptr),ranked.size(),back.size(),before.queries,after.queries,before.settled,after.settled,before.hits,after.hits);
++                } else ++empty_reverse_omitted_;
++            }
+             std::vector<size_t> covered;
+             for (auto [cost, c] : ranked)
+                 if (forward->contains(channels_[c]) && back.contains(channels_[c])) covered.push_back(c);
+@@ -1490,6 +1513,9 @@
+ }
+ 
+ void H3dFastPlan::log() const {
++    if(source_empty_reverse_)
++        VTR_LOG("H3D_SOURCE_EMPTY_REVERSE_SUMMARY requests=%zu new_queries=%zu settled=%zu cache_hits=%zu measured_entry_events=%zu rows=%zu omitted=%zu row_cap=20000\n",
++                empty_reverse_requests_,empty_reverse_queries_,empty_reverse_work_,empty_reverse_hits_,empty_reverse_measured_,empty_reverse_rows_,empty_reverse_omitted_);
+     if(candidate_path_delay_weight_>0.)
+         VTR_LOG("H3D_PATH_DELAY_SUMMARY weight=%.17g records=%zu changed=%zu\n",
+                 candidate_path_delay_weight_,candidate_path_delay_records_,candidate_path_delay_changed_);
+--- before/h3d_fast_plan.h
++++ after/h3d_fast_plan.h
+@@ -108,6 +108,9 @@
+     bool candidate_path_use_cached_=false; ///< Current-price observations from already-settled reverse witnesses.
+     double candidate_path_delay_weight_=0.; ///< Separate calibrated physical sink-delay ablation.
+     size_t candidate_path_delay_records_=0,candidate_path_delay_changed_=0;
++    bool source_empty_reverse_=false; ///< Revalidate old skip under candidate-level physical sink scoring.
++    size_t empty_reverse_requests_=0,empty_reverse_queries_=0,empty_reverse_work_=0,empty_reverse_hits_=0;
++    size_t empty_reverse_measured_=0,empty_reverse_rows_=0,empty_reverse_omitted_=0;
+     size_t candidate_path_score_plans_=0,candidate_path_score_records_=0,candidate_path_score_observed_=0,candidate_path_score_estimated_=0;
+     size_t candidate_path_score_changed_=0,candidate_path_resolves_=0;
+     bool dp_tie_pressure_ = false; ///< Zero extra congestion preference only on strict finite shared-DP exclusion ties.
+--- before/h3d_delay_plan.h
++++ after/h3d_delay_plan.h
+@@ -24,6 +24,8 @@
+     size_t remaining_work(RRNodeId endpoint, bool reverse) const;
+     bool supported() const { return supported_; }
+     double delay_unit() const { return delay_unit_; }
++    struct WorkSnapshot { size_t queries, settled, hits; };
++    WorkSnapshot work_snapshot() const { return {queries_,settled_,hits_}; }
+     bool trace_bounds() const { return trace_bounds_; }
+     bool clamp_bounds() const { return clamp_bounds_; }
+     double lower_bound_seconds(RRNodeId endpoint, bool reverse) const;

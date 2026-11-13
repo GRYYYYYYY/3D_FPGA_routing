@@ -1,0 +1,135 @@
+{
+  "passed": true,
+  "circuits": {
+    "spmv": {
+      "P": {
+        "status": "legal",
+        "metrics": {
+          "critical_path_ns": 7.04234,
+          "wirelength": 148563,
+          "router_seconds": 4.44,
+          "iterations": 17,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 148563,
+          "sb_pairs_used": 0,
+          "sb_pair_net_occupancy": 0,
+          "cb_crossing_output_sources_used": 967,
+          "cb_crossing_output_source_net_occupancy": 967,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANY": 450,
+            "OPIN->CHANX": 584
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        },
+        "expanded_connections": 0,
+        "added_alternatives": 0,
+        "final_connections_using_added_alternative": 0,
+        "same_route_as_P": true,
+        "planning_seconds": 1.130337,
+        "process_seconds": 18.913791816681623
+      },
+      "Eq": {
+        "status": "legal",
+        "metrics": {
+          "critical_path_ns": 7.04234,
+          "wirelength": 148563,
+          "router_seconds": 4.68,
+          "iterations": 17,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 148563,
+          "sb_pairs_used": 0,
+          "sb_pair_net_occupancy": 0,
+          "cb_crossing_output_sources_used": 967,
+          "cb_crossing_output_source_net_occupancy": 967,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANY": 450,
+            "OPIN->CHANX": 584
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        },
+        "expanded_connections": 1,
+        "added_alternatives": 3,
+        "final_connections_using_added_alternative": 0,
+        "same_route_as_P": true,
+        "planning_seconds": 1.289199,
+        "process_seconds": 19.608378585428
+      }
+    },
+    "eltwise_layer": {
+      "P": {
+        "status": "legal",
+        "metrics": {
+          "critical_path_ns": 6.64602,
+          "wirelength": 228992,
+          "router_seconds": 11.96,
+          "iterations": 39,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 228992,
+          "sb_pairs_used": 117,
+          "sb_pair_net_occupancy": 117,
+          "cb_crossing_output_sources_used": 965,
+          "cb_crossing_output_source_net_occupancy": 965,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANX": 561,
+            "OPIN->CHANY": 448,
+            "CHANX->CHANX": 117
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        },
+        "expanded_connections": 0,
+        "added_alternatives": 0,
+        "final_connections_using_added_alternative": 0,
+        "same_route_as_P": true,
+        "planning_seconds": 1.318704,
+        "process_seconds": 27.15369475260377
+      },
+      "Eq": {
+        "status": "legal",
+        "metrics": {
+          "critical_path_ns": 6.64602,
+          "wirelength": 228992,
+          "router_seconds": 12.56,
+          "iterations": 39,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 228992,
+          "sb_pairs_used": 117,
+          "sb_pair_net_occupancy": 117,
+          "cb_crossing_output_sources_used": 965,
+          "cb_crossing_output_source_net_occupancy": 965,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANX": 561,
+            "OPIN->CHANY": 448,
+            "CHANX->CHANX": 117
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        },
+        "expanded_connections": 5,
+        "added_alternatives": 10,
+        "final_connections_using_added_alternative": 0,
+        "same_route_as_P": true,
+        "planning_seconds": 1.343702,
+        "process_seconds": 27.81970664858818
+      }
+    }
+  },
+  "scope": "Exact P controls and unchanged pre-output table/query states; every actual expanded resource independently checked against sealed two-sided measured eligibility, graph oracle distances and no-higher opening charge. Primary selected crossing retained, caps checked, final adoption independently audited. Local equivalence not global timing proof; development timing only.",
+  "bindings": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/analyze_equivalent_guides.py": "eb4d5b839683d9caa43c1c5f93dcfc36fe1750266a61a6c1cfd7e9f12b9f3497",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/equivalent_guides_dev_01/input_seal.json": "b27fca821ee3e861b89445493a1ef7ea44e835f025bb991cc9ba47b0548c8470",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/estimate_oracle_01/input_seal.json": "8afbcbc599b8184ad2afe730d50596022cf71136d6b3376fb05cd2fa440d8283",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/estimate_oracle_01/exact.csv": "e120c7a91246724a310f02454897bf4d05f148f4e05d680f874740d56d50c4a6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/estimate_diagnostics/guide_flexibility_applicability.json": "64ffadc62513f43d7af341a0624f701647e5768649af053e82e4289b3cd9e046"
+  }
+}

@@ -1,0 +1,404 @@
+--- a/h3d_partition_dp.h
++++ b/h3d_partition_dp.h
+@@ -20,13 +20,15 @@
+     int x;                                        ///< Sink x coordinate for deterministic spatial hierarchy.
+     int y;                                        ///< Sink y coordinate for deterministic spatial hierarchy.
+     std::vector<t_h3d_candidate_cost> candidates; ///< Sorted by channel, with no duplicate channels.
++    double outside_cost=std::numeric_limits<double>::infinity(); ///< Optional existing-tree continuation; no crossing opened.
+ };
+ 
+ /** @brief Optimal plan within a fixed hierarchy and finite candidate sets. */
+ struct t_h3d_partition_plan {
+     double cost = std::numeric_limits<double>::infinity(); ///< Surrogate objective, including each selected group opening.
+     std::vector<std::pair<int, size_t>> assignment;        ///< Net pin to preferred physical-channel table index.
+-    size_t groups = 0;                                     ///< Number of shared groups in the hierarchical partition.
++    size_t groups = 0;                                     ///< Number of physical crossing groups.
++    size_t outside_leaves = 0; ///< Outside assignments use channel==opening_cost.size(), not a real channel.
+ };
+ 
+ namespace h3d_detail {
+@@ -79,6 +81,7 @@
+             result.best.assignment = std::move(left.best.assignment);
+             result.best.assignment.insert(result.best.assignment.end(), right.best.assignment.begin(), right.best.assignment.end());
+             result.best.groups = left.best.groups + right.best.groups;
++            result.best.outside_leaves=left.best.outside_leaves+right.best.outside_leaves;
+         }
+ 
+         // Only intersect verified sets. A missing candidate is infeasible for
+@@ -107,10 +110,16 @@
+         if (shared_cost < result.best.cost || (shared_cost == result.best.cost && result.best.groups > 1)) {
+             result.best.cost = shared_cost;
+             result.best.groups = 1;
++            result.best.outside_leaves=0;
+             result.best.assignment.clear();
+             for (const auto& leaf : leaves)
+                 result.best.assignment.emplace_back(leaf.pin, candidate.channel);
+         }
++    }
++    if(leaves.size()==1 && leaves.front().outside_cost<result.best.cost) {
++        result.best.cost=leaves.front().outside_cost;
++        result.best.assignment={{leaves.front().pin,opening_cost.size()}};
++        result.best.groups=0;result.best.outside_leaves=1;
+     }
+     return result;
+ }
+@@ -131,6 +140,7 @@
+     for (double cost : opening_cost)
+         VTR_ASSERT(std::isfinite(cost) && cost >= 0.);
+     for (const auto& leaf : leaves) {
++        VTR_ASSERT(!std::isnan(leaf.outside_cost) && leaf.outside_cost>=0.);
+         for (size_t i = 0; i < leaf.candidates.size(); ++i) {
+             const auto& candidate = leaf.candidates[i];
+             VTR_ASSERT(candidate.channel < opening_cost.size());
+@@ -151,19 +161,21 @@
+                                   const std::vector<double>& opening,
+                                   const std::vector<std::pair<int, size_t>>& assignment) {
+     if (leaves.empty()) return 0.;
+-    size_t shared = opening.size();
+-    bool common = true;
+-    double branches = 0.;
+-    for (const auto& leaf : leaves) {
+-        auto found = std::find_if(assignment.begin(), assignment.end(), [&](const auto& a) { return a.first == leaf.pin; });
+-        if (found == assignment.end()) return std::numeric_limits<double>::infinity();
+-        auto candidate = std::find_if(leaf.candidates.begin(), leaf.candidates.end(), [&](const auto& c) { return c.channel == found->second; });
+-        if (candidate == leaf.candidates.end()) return std::numeric_limits<double>::infinity();
+-        if (shared == opening.size()) shared = found->second;
+-        common &= shared == found->second;
+-        branches += candidate->branch_cost;
++    size_t shared=opening.size();bool physical_seen=false,common=true;double branches=0.;
++    for(const auto& leaf:leaves) {
++        auto selected=std::find_if(assignment.begin(),assignment.end(),[&](const auto& a){return a.first==leaf.pin;});
++        if(selected==assignment.end())return std::numeric_limits<double>::infinity();
++        if(selected->second==opening.size()) {
++            if(!std::isfinite(leaf.outside_cost))return std::numeric_limits<double>::infinity();
++            if(leaves.size()==1)return leaf.outside_cost;
++            common=false;continue;
++        }
++        auto candidate=std::find_if(leaf.candidates.begin(),leaf.candidates.end(),[&](const auto& c){return c.channel==selected->second;});
++        if(candidate==leaf.candidates.end())return std::numeric_limits<double>::infinity();
++        if(!physical_seen){shared=selected->second;physical_seen=true;}
++        common=common && shared==selected->second;branches+=candidate->branch_cost;
+     }
+-    if (common) return opening.at(shared) + branches;
++    if(common && physical_seen)return opening.at(shared)+branches;
+     int xmin = leaves.front().x, xmax = xmin, ymin = leaves.front().y, ymax = ymin;
+     for (const auto& leaf : leaves) {
+         xmin = std::min(xmin, leaf.x); xmax = std::max(xmax, leaf.x);
+--- a/h3d_independent_plan.h
++++ b/h3d_independent_plan.h
+@@ -20,10 +20,11 @@
+                 chosen = candidate.channel;
+             }
+         }
++        if(leaf.outside_cost<best) {best=leaf.outside_cost;chosen=opening.size();}
+         if (!std::isfinite(best)) return {};
+         result.cost += best;
+         result.assignment.emplace_back(leaf.pin, chosen);
+-        ++result.groups;
++        if(chosen==opening.size())++result.outside_leaves;else ++result.groups;
+     }
+     std::sort(result.assignment.begin(), result.assignment.end());
+     return result;
+--- a/h3d_routing.h
++++ b/h3d_routing.h
+@@ -8,6 +8,8 @@
+ 
+ /** @brief Soft channel preference for a connection; other channels remain legal. */
+ struct t_h3d_connection_guide {
++    bool retained_outside=false; ///< Intentional no-preference plan, distinct from missing guide.
++    std::vector<RRNodeId> retained_suffix; ///< Current-tree anchor -> target static witness.
+     std::vector<RRNodeId> preferred; ///< Sorted, individually reachable native CHANZ resources.
+     float timing_miss_penalty = 0.f; ///< Search-only seconds, excluded from Tdel and STA.
+     bool timing_regret = false; ///< Use only certified two-sided alternatives; absent entries carry no timing preference.
+@@ -29,6 +31,7 @@
+ };
+ 
+ /** Read-only serial search diagnostics, separate from physical costs/state. */
++double h3d_outside_eta();
+ bool h3d_trace_guide_influence();
+ struct t_bb;
+ bool h3d_trace_search_domain();
+--- a/h3d_routing.cpp
++++ b/h3d_routing.cpp
+@@ -51,6 +51,7 @@
+ 
+ /** @brief Immutable per-process settings, recorded at the first routing iteration. */
+ struct t_settings {
++    double outside_eta=-1.;
+     int residual_query_mode=-1;
+     bool box_guide_admission = false;
+     bool trace_search_domain = false;
+@@ -244,6 +245,12 @@
+             if(result.residual_query_mode>=0 && (!domain || std::string(domain)!="1" || !result.use_scc || !result.delay_cost))
+                 VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Residual query diagnostic requires domain trace, SCC and delay planner");
+         }
++        if(std::getenv("VPR_H3D_OUTSIDE_ETA")) {
++            result.outside_eta=read_number("VPR_H3D_OUTSIDE_ETA",0.f);
++            const char* trace=std::getenv("VPR_H3D_TRACE_OUTSIDE");
++            if(result.outside_eta>1. || result.residual_query_mode!=2 || !trace || std::string(trace)!="1")
++                VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Outside eta must be in[0,1] with reuse mode and outside trace1");
++        }
+         if(const char* text=std::getenv("VPR_H3D_BOX_GUIDE_ADMISSION")) {
+             if(std::string(text)!="0" && std::string(text)!="1")
+                 VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_BOX_GUIDE_ADMISSION must be 0 or 1");
+@@ -265,6 +272,30 @@
+         return result;
+     }();
+     return value;
++}
++
++uint64_t outside_digest(const std::vector<t_h3d_connection_guide>& guides) {
++    uint64_t h=14695981039346656037ull;
++    auto mix=[&](size_t v){for(int i=0;i<8;++i){h^=v&255;h*=1099511628211ull;v>>=8;}};
++    mix(guides.size());
++    for(const auto& g:guides){mix(g.retained_outside);mix(g.retained_suffix.size());for(auto n:g.retained_suffix)mix(size_t(n));}
++    return h;
++}
++// Static witnesses never force a branch. Revalidate only a native-selected target.
++bool outside_valid(ParentNetId net,size_t pin,const t_h3d_connection_guide& guide,bool& overused) {
++    const auto& route=g_vpr_ctx.routing();const auto& graph=g_vpr_ctx.device().rr_graph;
++    if(!guide.retained_outside || guide.retained_suffix.empty() || !route.route_trees[net])return false;
++    const auto& path=guide.retained_suffix;if(path.back()!=route.net_rr_terminals[net][pin])return false;
++    std::set<RRNodeId> owned,seen;bool anchor=false;
++    for(const auto& n:route.route_trees[net]->all_nodes()){owned.insert(n.inode);if(n.inode==path.front())anchor=n.re_expand;}
++    if(!anchor)return false;
++    const auto& bb=route.route_bb[net];const int layer=graph.node_layer_low(path.back());
++    for(size_t i=0;i<path.size();++i) {
++        const auto n=path[i];if(!seen.insert(n).second || graph.node_layer_low(n)!=layer || !inside_bb(graph,n,bb) || (i && owned.contains(n)))return false;
++        if(i && (graph.node_type(n)==e_rr_type::CHANX || graph.node_type(n)==e_rr_type::CHANY) && graph.node_direction(n)!=Direction::NONE)
++            overused=overused || route.rr_node_route_inf[n].occ()+1>graph.node_capacity(n);
++    }
++    return true;
+ }
+ 
+ /** @brief Persistent exact reachability caches and per-net surrogate plans.
+@@ -438,7 +469,7 @@
+                     drift = std::max(drift, double(std::abs(criticality[pin] - state.criticality[pin])));
+                     newly_missing += state.criticality[pin] < settings().min_criticality
+                                      && criticality[pin] >= settings().min_criticality
+-                                     && guides_.at(net).at(pin).preferred.empty();
++                                     && guides_.at(net).at(pin).preferred.empty() && !guides_.at(net).at(pin).retained_outside;
+                 }
+             }
+             eligibility_checks_ += newly_missing > 0;
+@@ -454,6 +485,18 @@
+             bool planar_due = h3d_feedback_due(iteration, state.last_attempt, settings().cooldown,
+                                               captured_planar_paths_ > 0, 0., 0.);
+             bool due = base_due || (settings().planar_feedback && planar_due);
++            if(settings().outside_eta>=0.) {
++                size_t invalid=0,overused=0,checked=0;
++                for(size_t pin:remaining_targets) {
++                    const auto& guide=guides_.at(net).at(pin);
++                    if(!guide.retained_outside || criticality.at(pin)<settings().min_criticality)continue;
++                    bool price=false;const bool valid=outside_valid(net,pin,guide,price);++checked;invalid+=!valid;overused+=valid && price;
++                }
++                const bool extra=h3d_feedback_due(iteration,state.last_attempt,settings().cooldown,overused>0,0.,0.,invalid>0);
++                if(checked)VTR_LOG("H3D_OUTSIDE_FEEDBACK net=%zu iter=%d last_attempt=%d cooldown=%d targets=%zu checked=%zu invalid=%zu overused=%zu original_due=%d extra_due=%d\n",size_t(net),iteration,state.last_attempt,settings().cooldown,remaining_targets.size(),checked,invalid,overused,int(due),int(extra));
++                due=due || extra;
++            }
++
+             if (settings().trace_target_gate) {
+                 double target_drift = 0.;
+                 size_t target_missing = 0, target_eligible = 0, target_guided = 0;
+@@ -465,7 +508,7 @@
+                     target_drift = std::max(target_drift, double(std::abs(criticality[pin] - state.criticality[pin])));
+                     target_missing += state.criticality[pin] < settings().min_criticality
+                                       && criticality[pin] >= settings().min_criticality
+-                                      && guides_.at(net).at(pin).preferred.empty();
++                                      && guides_.at(net).at(pin).preferred.empty() && !guides_.at(net).at(pin).retained_outside;
+                 }
+                 bool target_original_due = h3d_feedback_due(iteration, state.last_attempt, settings().cooldown,
+                                                            captured_overuse_, target_drift, change);
+@@ -596,7 +639,9 @@
+                                    && before.bounded_reliability == after.bounded_reliability
+                                    && before.bounded_unit_seconds == after.bounded_unit_seconds
+                                    && before.bounded_beta == after.bounded_beta
+-                                   && before.bounded_penalty_seconds == after.bounded_penalty_seconds);
++                                   && before.bounded_penalty_seconds == after.bounded_penalty_seconds
++                                   && before.retained_outside == after.retained_outside
++                                   && before.retained_suffix == after.retained_suffix);
+                         VTR_ASSERT(generation_criticality.at(pin) == feedback_state_.at(net).criticality.at(pin));
+                     }
+                 }
+@@ -792,6 +837,15 @@
+     }
+ 
+     /** @brief Count restoration of a complete prior tree and its bookkeeping. */
++    bool outside_test_rollback(bool retained) const {
++        const auto current=guides_.find(captured_net_);if(current==guides_.end() || !backup_had_guide_)return false;
++        const auto has=[](const auto& v){return std::any_of(v.begin(),v.end(),[](const auto& g){return g.retained_outside;});};
++        const bool before=has(backup_guides_),after=has(current->second);
++        if((retained ? before : !before && after) && outside_digest(backup_guides_)!=outside_digest(current->second)) {
++            VTR_LOG("H3D_OUTSIDE_TEST_REJECT net=%zu prior_outside=%d current_outside=%d before=%llu current=%llu\n",size_t(captured_net_),int(before),int(after),(unsigned long long)outside_digest(backup_guides_),(unsigned long long)outside_digest(current->second));return true;
++        }
++        return false;
++    }
+     void rollback() {
+         ++rollbacks_;
+         if (settings().feedback) {
+@@ -801,6 +855,11 @@
+             else feedback_state_.erase(captured_net_);
+             ++guide_rollbacks_;
+             VTR_LOG("H3D_GUIDE_ROLLBACK net=%zu restored=1\n", size_t(captured_net_));
++            if(settings().outside_eta>=0. && backup_had_guide_) {
++                VTR_ASSERT(outside_digest(guides_.at(captured_net_))==outside_digest(backup_guides_));
++                VTR_LOG("H3D_OUTSIDE_ROLLBACK net=%zu expected=%llu restored=%llu\n",size_t(captured_net_),(unsigned long long)outside_digest(backup_guides_),(unsigned long long)outside_digest(guides_.at(captured_net_)));
++            }
++
+         }
+     }
+ 
+@@ -808,6 +867,9 @@
+     void save_best() {
+         if (!settings().final_trace) return;
+         best_guides_ = guides_;
++        if(settings().outside_eta>=0.)for(const auto& [net,guides]:best_guides_)
++            VTR_LOG("H3D_OUTSIDE_SAVE net=%zu digest=%llu\n",size_t(net),(unsigned long long)outside_digest(guides));
++
+         best_feedback_state_ = feedback_state_;
+         best_bounded_phase_ = !settings().bounded_after_legal || bounded_legal_phase;
+     }
+@@ -831,10 +893,16 @@
+         size_t guided = 0, routed = 0, adopted = 0;
+         for (ParentNetId net : nets) {
+             const auto& guides = chosen.at(net);
++            if(settings().outside_eta>=0.)VTR_LOG("H3D_FINAL_OUTSIDE_STATE net=%zu digest=%llu\n",size_t(net),(unsigned long long)outside_digest(guides));
++
+             const auto& tree = routing.route_trees[net];
+             const auto& terminals = routing.net_rr_terminals[net];
+             for (size_t pin = 1; pin < guides.size(); ++pin) {
+                 const auto& guide = guides[pin];
++                if(guide.retained_outside) {
++                    std::ostringstream suffix;for(auto n:guide.retained_suffix){if(suffix.tellp()>0)suffix<<',';suffix<<size_t(n);}
++                    VTR_LOG("H3D_FINAL_OUTSIDE net=%zu pin=%zu path=%s\n",size_t(net),pin,suffix.str().c_str());
++                }
+                 if (guide.preferred.empty()) continue;
+                 ++guided;
+                 if(guide.bounded_critical) {
+@@ -1029,6 +1097,7 @@
+ 
+ } // namespace
+ 
++double h3d_outside_eta() {return settings().outside_eta;}
+ bool h3d_trace_guide_influence() {return settings().trace_guide_influence;}
+ bool h3d_box_guide_admission() {return settings().box_guide_admission;}
+ bool h3d_box_guide_available(const t_h3d_connection_guide& guide,const t_bb& bb) {
+@@ -1198,6 +1267,13 @@
+ }
+ 
+ bool h3d_test_rollback_once() {
++    static bool outside_used=false;
++    if(const char* mode=std::getenv("VPR_H3D_TEST_OUTSIDE_ROLLBACK")) {
++        const std::string value=mode;
++        if(value!="new" && value!="retained")VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Outside rollback test must be new/retained");
++        if(!outside_used && planner && planner->outside_test_rollback(value=="retained")) {outside_used=true;return true;}
++    }
++
+     static const bool enabled = std::getenv("VPR_H3D_TEST_ROLLBACK_ONCE") != nullptr;
+     static bool used = false;
+     if (enabled && !used) {
+--- a/h3d_fast_plan.h
++++ b/h3d_fast_plan.h
+@@ -75,6 +75,7 @@
+         std::vector<t_h3d_plan_leaf>& leaves, const t_h3d_partition_plan& planned,
+         const std::unordered_map<int,const H3dDelayPlan::Distances*>& reverse, const std::set<int>& timed);
+ 
++    double outside_eta_=-1.;
+     bool trace_outside_=false;
+     size_t outside_plan_=0,outside_trace_rows_=0;
+     H3dPlanProfile profile_;                                           ///< Optional disjoint stage accounting.
+--- a/h3d_fast_plan.cpp
++++ b/h3d_fast_plan.cpp
+@@ -294,6 +294,11 @@
+         if(!bounded_critical_guide_ || (late && std::string(late)=="1"))
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Cap-only guide is an independent all-stage bounded policy");
+     }
++    outside_eta_=h3d_outside_eta();
++    if(outside_eta_>=0. && (!trace_outside_ || trace_dp_sensitivity_ || dp_tie_pressure_ || dp_margin_pressure_ || trace_guide_margin_
++        || timing_guide_weight_>0. || timing_regret_ || bounded_critical_guide_ || mixed_delay_ || targeted_delay_
++        || candidate_path_score_weight_>0. || candidate_path_delay_weight_>0. || source_empty_reverse_ || source_coverage_skip_))
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Outside pilot requires isolated shared/independent legacy costs without incompatible timing/sensitivity/extra scoring");
+     VTR_LOG("H3D_EXPERIMENT mixed_delay=%d timing_guide=%g assignment=%s\n", mixed_delay_, timing_guide_weight_, solver.c_str());
+     channel_index_.resize(graph_.num_nodes(), -1);
+     size_t planar_count = 0;
+@@ -946,8 +951,11 @@
+             }
+             leaves.push_back(std::move(leaf));
+         }
++        struct OutsideChoice {double raw=std::numeric_limits<double>::infinity();std::vector<RRNodeId> path;};
++        std::unordered_map<int,OutsideChoice> outside_choices;
++        size_t outside_event=0;
+         if(trace_outside_ && delay_plan_ && delay_plan_->supported()) {
+-            const size_t event=++outside_plan_;
++            const size_t event=++outside_plan_;outside_event=event;
+             struct TreeValue { bool expand;double delay; };
+             std::unordered_map<RRNodeId,TreeValue> tree_nodes;
+             std::vector<const RouteTreeNode*> tree_order;
+@@ -1004,6 +1012,10 @@
+                     }
+                     const double prefix=anchor==tree_nodes.end()?0.:anchor->second.delay;
+                     const double raw=(1.+4.*double(criticality[leaf.pin]))*(prefix+physical)/delay_plan_->delay_unit()+double(opening_weight)*premium;
++                    if(outside_eta_>=0. && prior_guides && std::string(reason)=="valid" && raw<outside_choices[leaf.pin].raw) {
++                        auto& choice=outside_choices[leaf.pin];choice.raw=raw;choice.path={path.anchor};
++                        for(auto it=path.reverse_edges.rbegin();it!=path.reverse_edges.rend();++it)choice.path.push_back(RRNodeId(it->from));
++                    }
+                     VTR_LOG("H3D_OUTSIDE_WITNESS event=%zu net=%zu pin=%d witness=%zu anchor=%zu origin=%zu edges=%zu reason=%s prefix=%.17g physical=%.17g premium=%.17g raw=%.17g\n",event,size_t(net),leaf.pin,number++,size_t(path.anchor),path.origin,path.reverse_edges.size(),reason,prefix,physical,premium,raw);
+                 }
+             }
+@@ -1055,6 +1067,17 @@
+                 VTR_LOG("H3D_PATH_PRICE_TABLE plan=%zu net=%zu fingerprint=%016llx candidates=%zu leaves=%zu\n",
+                         prefix_trace,size_t(net),static_cast<unsigned long long>(fingerprint_table()),table.size(),leaves.size());
+             }
++        }
++        if(outside_eta_>=0. && prior_guides) {
++            for(auto& leaf:leaves) {
++                double standalone=std::numeric_limits<double>::infinity();
++                for(const auto& c:leaf.candidates)standalone=std::min(standalone,openings[c.channel]+c.branch_cost);
++                auto found=outside_choices.find(leaf.pin);
++                if(found!=outside_choices.end())leaf.outside_cost=std::max(found->second.raw,(1.-outside_eta_)*standalone);
++                VTR_LOG("H3D_OUTSIDE_COST event=%zu net=%zu pin=%d eta=%.17g standalone=%.17g raw=%.17g outside=%.17g\n",outside_event,size_t(net),leaf.pin,outside_eta_,standalone,found==outside_choices.end()?std::numeric_limits<double>::infinity():found->second.raw,leaf.outside_cost);
++            }
++            planned=independent ? h3d_plan_independent(leaves,openings) : h3d_plan_partition(leaves,openings);
++            VTR_LOG("H3D_OUTSIDE_SOLVER event=%zu net=%zu independent=%d cost=%.17g groups=%zu outside=%zu\n",outside_event,size_t(net),int(independent),planned.cost,planned.groups,planned.outside_leaves);
+         }
+         if (prior_guides) {
+             refresh_independent_calls_ += independent;
+@@ -1191,6 +1214,7 @@
+             std::vector<std::pair<int, size_t>> prior_assignment;
+             for (const auto& leaf : leaves) {
+                 const auto& guide = prior_guides->at(leaf.pin);
++                if(guide.retained_outside) {prior_assignment.emplace_back(leaf.pin,openings.size());continue;}
+                 if (guide.preferred.size() != 1) continue;
+                 int old_channel = channel_index_[guide.preferred.front()];
+                 auto found = std::lower_bound(table.begin(), table.end(), size_t(old_channel));
+@@ -1203,6 +1227,10 @@
+                 result.prior_pairs = prior_assignment.size();
+                 for (const auto& leaf : leaves) {
+                     const auto& guide = prior_guides->at(leaf.pin);
++                    if(guide.retained_outside) {
++                        if(!std::isfinite(leaf.outside_cost))++result.prior_branch_nonfinite;
++                        continue;
++                    }
+                     if (guide.preferred.empty()) { result.prior_empty_pins.push_back(leaf.pin); continue; }
+                     if (guide.preferred.size() != 1) { ++result.prior_multiple; continue; }
+                     auto assigned = std::find_if(prior_assignment.begin(), prior_assignment.end(),
+@@ -1236,8 +1264,17 @@
+         profile.enter(Phase::OUTPUT);
+         if (std::isfinite(planned.cost)) {
+             result.groups = planned.groups;
+-            for (const auto& [pin, c] : planned.assignment)
+-                result.guides[pin].preferred = {channels_[table[c]]};
++            for (const auto& [pin, c] : planned.assignment) {
++                auto& guide=result.guides[pin];
++                if(c==openings.size()) {
++                    VTR_ASSERT(outside_eta_>=0. && outside_choices.contains(pin));
++                    guide=t_h3d_connection_guide{};guide.edge_encoding=edge_encoding_;guide.retained_outside=true;guide.retained_suffix=outside_choices.at(pin).path;
++                } else {guide.preferred={channels_[table[c]]};guide.retained_outside=false;guide.retained_suffix.clear();}
++                if(outside_eta_>=0.) {
++                    std::ostringstream path;for(auto node:guide.retained_suffix){if(path.tellp()>0)path<<',';path<<size_t(node);}
++                    VTR_LOG("H3D_OUTSIDE_ASSIGN event=%zu net=%zu pin=%d kind=%s resource=%lld path=%s\n",outside_event,size_t(net),pin,guide.retained_outside?"outside":"physical",guide.retained_outside?-1ll:(long long)size_t(guide.preferred.front()),guide.retained_outside?path.str().c_str():"-");
++                }
++            }
+             if (trace_dp_sensitivity_ || dp_tie_pressure_ || dp_margin_pressure_) {
+                 auto sensitivity_start = std::chrono::steady_clock::now();
+                 auto sensitivity = h3d_partition_exclusion_costs(leaves, openings, planned.assignment);

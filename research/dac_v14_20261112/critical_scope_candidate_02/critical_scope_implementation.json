@@ -1,0 +1,33 @@
+{
+  "status": "corrected_type_unbuilt_native_pending",
+  "source_binding": {
+    "h3d_fast_plan.cpp": {
+      "before_sha256": "a709241ab2e7652021b85f7243439fe37d9dbb0274d175d87731f1caa2a4cb40",
+      "after_sha256": "a709241ab2e7652021b85f7243439fe37d9dbb0274d175d87731f1caa2a4cb40"
+    },
+    "h3d_fast_plan.h": {
+      "before_sha256": "36736bec3c3fb3bc523200b158cf7dc8c784edbe7a2a2d9620ba70d96779dd26",
+      "after_sha256": "36736bec3c3fb3bc523200b158cf7dc8c784edbe7a2a2d9620ba70d96779dd26"
+    },
+    "route_common.cpp": {
+      "before_sha256": "f6fa38aa246bbd051b3dc3eeaef362ae68b01c2aa580d85494cad52cf677185d",
+      "after_sha256": "54f34234d9ab56b36a7e73f03ef720a8c97e0a84e702413bf8fb67c59baa60b2"
+    },
+    "route_common.h": {
+      "before_sha256": "94d03ba2a41117ba24f393781389a0ce4c5229f3572f2234458383400d1eaed5",
+      "after_sha256": "1a88c3784a0c2b222e8f4beaba2ac05e248fe7ab4b1200ae07feadd1b44ebd90"
+    },
+    "route_net.tpp": {
+      "before_sha256": "0b46ecedf8938691bb2ba107635d2dbc4f8b02fe223c38ac60bffe310629daeb",
+      "after_sha256": "bc1e9554f814f7c31808117eb970bb2f05bd58821d0bc7c5878c0ade9bae1771"
+    }
+  },
+  "design": "critical_scope_experiment_01.json",
+  "qualification": "No guide in pilot; earlier implementation already handled overuse-triggered layer scope. Novelty is early remaining-target criticality trigger after prune. Domains grow monotonically as native full-BB recovery; XY/native costs/STA untouched. Threshold0 must reproduce existing A1 complete route before interpreting threshold.9.",
+  "created_at": 1794550171.819005,
+  "prior_build_failure": {
+    "stage": "critical_scope_candidate_01",
+    "cause": "Prototype used vector<int> but native remaining_targets is vector<size_t>; corrected to native type, preserved failed stage, no route calls."
+  },
+  "updated_at": 1794550270.945115
+}

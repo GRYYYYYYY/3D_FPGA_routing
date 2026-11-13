@@ -1,0 +1,96 @@
+--- before/h3d_delay_plan.cpp
++++ after/h3d_delay_plan.cpp
+@@ -1,6 +1,7 @@
+ #include "h3d_delay_plan.h"
+ #include "h3d_crossing.h"
+ #include "h3d_bidirectional_delay.h"
++#include "h3d_compact_witness.h"
+ 
+ #include "globals.h"
+ #include "vtr_log.h"
+@@ -30,6 +31,13 @@
+         const char* targeted = std::getenv("VPR_H3D_TARGET_DELAY");
+         if (!edge_encoding_ || (targeted && std::string(targeted) == "1"))
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Cached path capture requires legacy edge-encoding distance queries");
++    }
++    if(const char* value=std::getenv("VPR_H3D_CANDIDATE_PATH_COMPACT")) {
++        if(std::string(value)!="0" && std::string(value)!="1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_CANDIDATE_PATH_COMPACT must be 0 or 1");
++        compact_paths_=std::string(value)=="1";
++        if(compact_paths_ && !cache_paths_)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Compact witnesses require path capture");
+     }
+     if (const char* value = std::getenv("VPR_H3D_TARGET_FRONTIER")) {
+         if (std::string(value) != "0" && std::string(value) != "1")
+@@ -173,6 +181,11 @@
+     };
+     auto result = search_->query(size_t(endpoint), budget_, terminal, expand, cache_paths_);
+     if (cache_paths_) {
++        if(compact_paths_) {
++            witness_full_records_+=result.witness.size();
++            result.witness=h3d_compact_witness(result);
++            witness_compact_records_+=result.witness.size();
++        }
+         if (result.witness.size() <= witness_record_limit_ - witness_records_) {
+             auto& forest = (reverse ? reverse_witness_ : forward_witness_)[endpoint];
+             forest.reserve(result.witness.size());
+@@ -568,6 +581,9 @@
+ }
+ 
+ void H3dDelayPlan::log() const {
++    if(compact_paths_)
++        VTR_LOG("H3D_CANDIDATE_PATH_COMPACT full_records=%zu compact_records=%zu\n",
++                witness_full_records_,witness_compact_records_);
+     if (cache_paths_ && !trace_paths_)
+         VTR_LOG("H3D_CANDIDATE_PATH_CAPTURE records=%zu record_limit=%zu skipped_queries=%zu forward_endpoints=%zu reverse_endpoints=%zu\n",
+                 witness_records_, witness_record_limit_, witness_cache_skips_, forward_witness_.size(), reverse_witness_.size());
+--- before/h3d_delay_plan.h
++++ after/h3d_delay_plan.h
+@@ -66,6 +66,8 @@
+     size_t queries_ = 0, settled_ = 0, truncated_ = 0, hits_ = 0;
+     bool trace_paths_ = false; ///< Decision-neutral canonical shortest witnesses, legacy queries only.
+     bool cache_paths_ = false; ///< Capture settled paths independently of verbose diagnostics.
++    bool compact_paths_ = false; ///< Cache only ancestors of measured terminals.
++    size_t witness_full_records_ = 0, witness_compact_records_ = 0;
+     using WitnessForest = std::unordered_map<size_t, H3dDelaySearch::WitnessStep>;
+     std::unordered_map<RRNodeId, WitnessForest> forward_witness_, reverse_witness_;
+     size_t witness_records_ = 0, witness_cache_skips_ = 0;
+--- before/h3d_compact_witness.h
++++ after/h3d_compact_witness.h
+@@ -0,0 +1,36 @@
++#pragma once
++#include "h3d_delay_search.h"
++#include <unordered_map>
++
++/** Ancestor union of returned terminals in the already settled forest.
++ * Stable filtering preserves canonical physical paths and edge weights.
++ * No search is performed; no tentative parent can enter the cache. */
++inline std::vector<H3dDelaySearch::WitnessStep> h3d_compact_witness(const H3dDelaySearch::Result& result) {
++    if (result.terminals.empty()) return {};
++    std::unordered_map<size_t,size_t> index;
++    index.reserve(result.witness.size());
++    for(size_t i=0;i<result.witness.size();++i)
++        if(!index.emplace(result.witness[i].node,i).second)
++            throw std::logic_error("Duplicate settled witness node");
++    std::vector<bool> retained(result.witness.size(),false);
++    for(const auto& terminal:result.terminals) {
++        size_t node=terminal.first;
++        while(true) {
++            auto found=index.find(node);
++            if(found==index.end())throw std::logic_error("Missing settled witness ancestor");
++            size_t i=found->second;
++            if(retained[i])break;
++            retained[i]=true;
++            size_t parent=result.witness[i].parent;
++            if(parent==node)break;
++            auto ancestor=index.find(parent);
++            if(ancestor==index.end() || ancestor->second>=i)
++                throw std::logic_error("Witness ancestor must have settled earlier");
++            node=parent;
++        }
++    }
++    std::vector<H3dDelaySearch::WitnessStep> answer;
++    for(size_t i=0;i<result.witness.size();++i)
++        if(retained[i])answer.push_back(result.witness[i]);
++    return answer;
++}

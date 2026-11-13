@@ -1,0 +1,93 @@
+--- parent/vpr/src/route/h3d_routing.cpp
++++ new/vpr/src/route/h3d_routing.cpp
+@@ -58,6 +58,7 @@
+     e_h3d_feedback_action feedback_action = e_h3d_feedback_action::ALL; ///< Development action ablation; full selective policy remains default.
+     bool eligibility_trigger = false; ///< Refresh missing guides when a remote pin newly crosses the selection threshold.
+     bool trace_prior = false; ///< Diagnose old-assignment coverage without changing refresh decisions.
++    bool trace_planar = false; ///< Decision-neutral pre-prune planar overuse diagnostics on native-selected reroutes.
+     bool feedback = false;            ///< Selective refresh of guides on VPR-selected reroute nets.
+     int cooldown = 3;                  ///< Minimum iterations between refresh attempts.
+     double refresh_margin = .05;       ///< Required relative surrogate improvement.
+@@ -121,6 +122,12 @@
+         if (feedback != 0.f && feedback != 1.f)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_FEEDBACK must be 0 or 1");
+         result.feedback = feedback == 1.f;
++        float trace_planar = read_number("VPR_H3D_TRACE_PLANAR_FEEDBACK", 0.f);
++        if (trace_planar != 0.f && trace_planar != 1.f)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_PLANAR_FEEDBACK must be 0 or 1");
++        result.trace_planar = trace_planar == 1.f;
++        if (result.trace_planar && !result.feedback)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Planar feedback tracing requires selective feedback");
+         float trace_prior = read_number("VPR_H3D_TRACE_PRIOR", 0.f);
+         if (trace_prior != 0.f && trace_prior != 1.f)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_PRIOR must be 0 or 1");
+@@ -208,6 +215,7 @@
+         captured_net_ = net;
+         captured_actual_.clear();
+         captured_overuse_ = false;
++        captured_planar_nodes_ = captured_guided_paths_ = captured_planar_paths_ = 0;
+         if (settings().feedback) {
+             auto prior = guides_.find(net);
+             backup_had_guide_ = prior != guides_.end();
+@@ -237,6 +245,42 @@
+             for (const auto& guide : backup_guides_)
+                 for (RRNodeId node : guide.preferred)
+                     captured_overuse_ |= routing.rr_node_route_inf[node].occ() > graph.node_capacity(node);
++            if (settings().trace_planar && routing.route_trees[net]) {
++                const auto& tree = *routing.route_trees[net];
++                std::set<RRNodeId> ordinary_overused;
++                std::string resources;
++                for (const auto& node : tree.all_nodes()) {
++                    auto type = graph.node_type(node.inode);
++                    auto parent = node.parent();
++                    // Count planar channel resources away from the encoded
++                    // crossing entry and its immediately reached destination.
++                    bool ordinary = (type == e_rr_type::CHANX || type == e_rr_type::CHANY)
++                                    && z_index_[node.inode] < 0
++                                    && (!parent || !h3d_crosses_layers(graph, parent->inode, node.inode));
++                    int occupancy = routing.rr_node_route_inf[node.inode].occ();
++                    if (ordinary && occupancy > graph.node_capacity(node.inode)) ordinary_overused.insert(node.inode);
++                }
++                captured_planar_nodes_ = ordinary_overused.size();
++                for (RRNodeId node : ordinary_overused)
++                    resources += std::to_string(size_t(node)) + ":" + std::to_string(routing.rr_node_route_inf[node].occ())
++                                 + ":" + std::to_string(graph.node_capacity(node)) + ";";
++                for (size_t pin = 1; pin < backup_guides_.size(); ++pin) {
++                    if (backup_guides_[pin].preferred.empty()) continue;
++                    auto node = tree.find_by_isink(pin);
++                    if (!node) continue;
++                    ++captured_guided_paths_;
++                    std::string overloaded;
++                    while (node) {
++                        if (ordinary_overused.contains(node->inode)) overloaded += std::to_string(size_t(node->inode)) + ";";
++                        node = node->parent();
++                    }
++                    captured_planar_paths_ += !overloaded.empty();
++                    if (!overloaded.empty())
++                        VTR_LOG("H3D_PLANAR_PATH net=%zu pin=%zu overused=%s\n", size_t(net), pin, overloaded.c_str());
++                }
++                VTR_LOG("H3D_PLANAR_CAPTURE net=%zu nodes=%zu guided_paths=%zu affected_paths=%zu overused=%s\n",
++                        size_t(net), captured_planar_nodes_, captured_guided_paths_, captured_planar_paths_, resources.c_str());
++            }
+         }
+         current_channels_.clear();
+         const auto& tree = g_vpr_ctx.routing().route_trees[net];
+@@ -277,6 +321,10 @@
+             bool with_eligibility = h3d_feedback_due(iteration, state.last_attempt, settings().cooldown, captured_overuse_, drift, change, newly_missing > 0);
+             eligibility_opportunities_ += with_eligibility && !original_due;
+             bool due = settings().eligibility_trigger ? with_eligibility : original_due;
++            if (settings().trace_planar)
++                VTR_LOG("H3D_PLANAR_CONTEXT net=%zu iter=%d last_attempt=%d cooldown=%d crossing_overuse=%d drift=%.17g change=%.17g original_due=%d due=%d planar_nodes=%zu guided_paths=%zu affected_paths=%zu\n",
++                        size_t(net), iteration, state.last_attempt, settings().cooldown, captured_overuse_, drift, change,
++                        original_due, due, captured_planar_nodes_, captured_guided_paths_, captured_planar_paths_);
+             if (!due) {
+                 ++refresh_skips_;
+                 refresh_check_seconds_ += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
+@@ -626,6 +674,7 @@
+     std::set<RRNodeId> captured_actual_;          ///< Pre-prune actual crossing resources.
+     size_t eligibility_checks_ = 0, eligibility_opportunities_ = 0, eligibility_extra_attempts_ = 0; ///< Repeated eligible-gap check/trigger counts, not unique pins or nets.
+     bool captured_overuse_ = false;               ///< Recommended crossing currently overloaded.
++    size_t captured_planar_nodes_ = 0, captured_guided_paths_ = 0, captured_planar_paths_ = 0; ///< Diagnostic-only pre-prune ordinary planar overuse and guided path counts.
+     size_t refresh_checks_ = 0, refresh_skips_ = 0, refresh_attempts_ = 0, refresh_accepts_ = 0; ///< Refresh work accounting.
+     size_t refresh_overuse_ = 0, refresh_drift_ = 0, refresh_path_ = 0, guide_rollbacks_ = 0; ///< Trigger and restoration counts.
+     double refresh_check_seconds_ = 0.;           ///< Includes gate work on skipped reroutes.

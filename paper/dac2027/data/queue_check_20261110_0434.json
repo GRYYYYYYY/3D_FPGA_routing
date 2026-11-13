@@ -1,0 +1,49 @@
+{
+  "observed_beijing": "2026-11-10T04:34:04.948641+08:00",
+  "coordinator_identity_matches": true,
+  "terminal_cases": 11,
+  "processes": [
+    {
+      "pid": 3764138,
+      "parent_pid": 1,
+      "state": "S",
+      "start_ticks": 1876532964,
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/continue_parallel_heldout_v1.py "
+    },
+    {
+      "pid": 2567402,
+      "parent_pid": 3764138,
+      "state": "S",
+      "start_ticks": 1899451207,
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/run_paired_width_diagnostic.py "
+    },
+    {
+      "pid": 2370643,
+      "parent_pid": 2567402,
+      "state": "S",
+      "start_ticks": 1902802654,
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/deps/strace_root/usr/bin/strace -f -qq -s 128 -e trace=clone,clone3 -o /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_geometry_c0/thread_syscalls.log -- /usr/bin/time -v -o /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_geometry_c0/time.txt /usr/bin/prlimit --as=68719476736:68719476736 --core=0:0 -- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/r1_serial_build/vpr/vpr /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w300/hybrid_o/import_only.xml /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/bnn.blif --route --analysis --device fixture --route_chan_width 300 --num_workers 1 --seed 11 --clock_modeling ideal --check_route full --verify_file_digests off --read_rr_graph /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w300/hybrid_o/rr_graph.xml --max_router_iterations 200 --routing_failure_predictor off --timing_report_npaths 0 --net_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_geometry_c0/packed.net --place_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_geometry_c0/placed.place --route_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_geometry_c0/routed.route --merge_constant_generators off "
+    },
+    {
+      "pid": 2370650,
+      "parent_pid": 2370643,
+      "state": "S",
+      "start_ticks": 1902802655,
+      "command": "/usr/bin/time -v -o /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_geometry_c0/time.txt /usr/bin/prlimit --as=68719476736:68719476736 --core=0:0 -- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/r1_serial_build/vpr/vpr /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w300/hybrid_o/import_only.xml /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/bnn.blif --route --analysis --device fixture --route_chan_width 300 --num_workers 1 --seed 11 --clock_modeling ideal --check_route full --verify_file_digests off --read_rr_graph /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w300/hybrid_o/rr_graph.xml --max_router_iterations 200 --routing_failure_predictor off --timing_report_npaths 0 --net_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_geometry_c0/packed.net --place_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_geometry_c0/placed.place --route_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_geometry_c0/routed.route --merge_constant_generators off "
+    },
+    {
+      "pid": 2370653,
+      "parent_pid": 2370650,
+      "state": "R",
+      "start_ticks": 1902802655,
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/r1_serial_build/vpr/vpr /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w300/hybrid_o/import_only.xml /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/bnn.blif --route --analysis --device fixture --route_chan_width 300 --num_workers 1 --seed 11 --clock_modeling ideal --check_route full --verify_file_digests off --read_rr_graph /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w300/hybrid_o/rr_graph.xml --max_router_iterations 200 --routing_failure_predictor off --timing_report_npaths 0 --net_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_geometry_c0/packed.net --place_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_geometry_c0/placed.place --route_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_geometry_c0/routed.route --merge_constant_generators off "
+    }
+  ],
+  "last_completed_role": {
+    "name": "paired_width_bnn_s11_hybrid_o_n125_w300_p1_a0",
+    "status": "completed",
+    "wall_seconds": 459.48947328329086,
+    "finish_utc": "2026-11-09T20:14:16.141658+00:00"
+  },
+  "actions": "read-only process tree; no coordinator or solver action; original conditional ETA retained"
+}

@@ -1,0 +1,48 @@
+{
+  "status": "bounded_cache_prototype_tested_not_router_integrated",
+  "random_cache_requests": 10000,
+  "cache_policies": [
+    "LRU live frontier slots",
+    "bounded non-evicting endpoint-direction work ledger",
+    "one cumulative endpoint budget even after eviction",
+    "aggregate settlement cap",
+    "full ledger refuses new keys",
+    "previously cached exact answers readable after global cap"
+  ],
+  "real_rrg": {
+    "11": {
+      "requests": 16,
+      "measured_exact": 10,
+      "newly_settled": 11510,
+      "log": "nodes=1028568 edges=4994132 queries=16 total_work=11510 evictions=0 restarts=0"
+    },
+    "2": {
+      "requests": 16,
+      "measured_exact": 10,
+      "newly_settled": 11510,
+      "log": "nodes=1028568 edges=4994132 queries=16 total_work=11510 evictions=9 restarts=0"
+    },
+    "1": {
+      "requests": 16,
+      "measured_exact": 9,
+      "newly_settled": 12312,
+      "log": "nodes=1028568 edges=4994132 queries=16 total_work=12312 evictions=11 restarts=1"
+    }
+  },
+  "limitations": [
+    "container entry bounds are not allocator-byte or RSS guarantees; retain process memory limit",
+    "one graph, fixed diagnostic targets from frozen final routes",
+    "no uncertainty scheduler or router integration",
+    "exceptions conservatively retire remaining admitted work, not counted as measured settlements"
+  ],
+  "sha256": {
+    "h3d_delay_frontier_cache.h": "1df50b17b932eb00a895a80a6376308485cd2759755ac2e856e053fff9c7e944",
+    "h3d_resumable_delay_search.h": "97412a73616683b43a274477bc368e1210807548c57dac530a9a123bd2278a4a",
+    "test_frontier_cache.cpp": "d81b4684139122d81d53d147bb991bebdc5d012fc9b09108307a7d63784f1934",
+    "validate_rrg_cache.cpp": "3fbe2691ecad0032c564624306f26858bd870e2fb0a6830f3bb159747d202372",
+    "rrg_spmv/binding.json": "8e25270d5ce7068de56ecbbb2e402a1883d01c82fa28c7f858256472eb814b5c",
+    "rrg_spmv/cache_11_validation.csv": "d363f2761181ea0a988cb57b0bd5b96c0c31b5d28d85be68f48ce403bbc70fff",
+    "rrg_spmv/cache_2_validation.csv": "d363f2761181ea0a988cb57b0bd5b96c0c31b5d28d85be68f48ce403bbc70fff",
+    "rrg_spmv/cache_1_validation.csv": "4f16e0ca011b12ffc668a387c66b0f8c9ab729d6ceadea3271025d8a4651582e"
+  }
+}

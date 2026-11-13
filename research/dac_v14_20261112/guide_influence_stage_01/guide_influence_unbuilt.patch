@@ -1,0 +1,233 @@
+--- before/h3d_routing.cpp
++++ after/h3d_routing.cpp
+@@ -10,6 +10,9 @@
+ #include <string>
+ #include <unordered_map>
+ #include <fstream>
++#include <array>
++#include <sstream>
++#include <iomanip>
+ 
+ #include "globals.h"
+ #include "h3d_partition_dp.h"
+@@ -46,6 +49,7 @@
+ 
+ /** @brief Immutable per-process settings, recorded at the first routing iteration. */
+ struct t_settings {
++    bool trace_guide_influence = false; ///< Read-only actual crossing-cost trace.
+     bool use_scc = false;              ///< Exact SCC reachability with geometric costs instead of full BFS distances.
+     e_h3d_mode mode = e_h3d_mode::OFF; ///< Candidate-planning ablation.
+     size_t candidates = 8;             ///< Diverse preferred candidates per remote terminal.
+@@ -211,6 +215,13 @@
+         if (!result.feedback && result.feedback_action != e_h3d_feedback_action::ALL)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Feedback action ablation requires selective feedback");
+         result.final_trace = std::getenv("VPR_H3D_FINAL_TRACE") != nullptr;
++        if(const char* text=std::getenv("VPR_H3D_TRACE_GUIDE_INFLUENCE")) {
++            if(std::string(text)!="0" && std::string(text)!="1")
++                VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_TRACE_GUIDE_INFLUENCE must be 0 or 1");
++            result.trace_guide_influence=std::string(text)=="1";
++        }
++        if(result.trace_guide_influence && (!result.edge_encoding || result.mode==e_h3d_mode::OFF))
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Guide influence tracing requires serial edge-encoding H3D routing");
+         if (result.feedback && (!result.use_scc || result.mode != e_h3d_mode::STATIC))
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Selective feedback requires static SCC planning");
+         return result;
+@@ -887,7 +898,96 @@
+ 
+ std::unique_ptr<H3dPlanner> planner; ///< Serial-router-owned experimental planner.
+ 
++struct InfluenceBucket {
++    size_t count=0,rows=0,finite=0,positive=0,below_unit=0;
++    double extra=0.,physical=0.,timing=0.,maximum_extra=0.;
++};
++struct InfluenceState {
++    size_t events=0,rows=0,attempts=0,contexts=0,context_omitted=0,current_net=0;
++    int iteration=0,current_pin=0;
++    std::array<size_t,7> group_rows{};
++    std::array<InfluenceBucket,16> buckets{};
++    double unit=1.e-10;
++};
++std::unique_ptr<InfluenceState> influence;
++
++int influence_focus(size_t net,int pin) {
++    if(net==4674 && pin==9)return 0;
++    if(net==4674 && pin==21)return 1;
++    if(net==4675 && pin==23)return 2;
++    return -1;
++}
++int influence_bin(double criticality) {
++    return criticality<.7 ? 0 : criticality<.9 ? 1 : criticality<.95 ? 2 : 3;
++}
++std::string influence_preferences(const t_h3d_connection_guide* guide) {
++    std::ostringstream out;
++    if(guide)for(auto node:guide->preferred) {if(out.tellp()>0)out<<',';out<<size_t(node);}
++    return out.str().empty() ? "-" : out.str();
++}
++void log_influence() {
++    if(!influence)return;
++    const auto& s=*influence;
++    VTR_LOG("H3D_GUIDE_INFLUENCE_SUMMARY iter=%d events=%zu rows=%zu omitted=%zu attempts=%zu contexts=%zu context_omitted=%zu row_cap=10000 unit_seconds=%.17g\n",
++        s.iteration,s.events,s.rows,s.events-s.rows,s.attempts,s.contexts,s.context_omitted,s.unit);
++    for(size_t i=0;i<s.buckets.size();++i) {
++        const auto& b=s.buckets[i];
++        VTR_LOG("H3D_GUIDE_INFLUENCE_BUCKET iter=%d bin=%zu configurable=%zu preferred=%zu count=%zu rows=%zu finite=%zu positive=%zu below_unit=%zu analytic_extra=%.17g weighted_physical_seconds=%.17g weighted_timing_seconds=%.17g maximum_extra=%.17g\n",
++            s.iteration,i/4,(i%4)/2,i%2,b.count,b.rows,b.finite,b.positive,b.below_unit,b.extra,b.physical,b.timing,b.maximum_extra);
++    }
++}
++
+ } // namespace
++
++bool h3d_trace_guide_influence() {return settings().trace_guide_influence;}
++
++void h3d_influence_begin(ParentNetId net,int pin,RRNodeId sink,bool high_fanout,
++                        float criticality,const t_h3d_connection_guide* guide) {
++    VTR_ASSERT(influence);auto& s=*influence;
++    ++s.attempts;s.current_net=size_t(net);s.current_pin=pin;
++    if(influence_focus(size_t(net),pin)<0)return;
++    if(s.contexts>=2000) {++s.context_omitted;return;}
++    ++s.contexts;
++    const auto& graph=g_vpr_ctx.device().rr_graph;
++    const auto& tree=g_vpr_ctx.routing().route_trees[net];
++    size_t nodes=0,expanded_on_sink_layer=0,crossings=0;std::ostringstream edges;edges<<std::setprecision(17);
++    if(tree)for(const auto& node:tree->all_nodes()) {
++        ++nodes;expanded_on_sink_layer+=node.re_expand && graph.node_layer_low(node.inode)==graph.node_layer_low(sink);
++        auto parent=node.parent();
++        if(!parent || !h3d_crosses_layers(graph,parent->inode,node.inode))continue;
++        if(crossings++)edges<<';';
++        edges<<size_t(parent->inode)<<','<<size_t(node.inode)<<','<<int(parent->re_expand)<<','<<int(node.re_expand)
++             <<','<<double(parent->Tdel)<<','<<double(node.Tdel);
++    }
++    VTR_LOG("H3D_GUIDE_INFLUENCE_CONTEXT iter=%d attempt=%zu net=%zu pin=%d sink=%zu high_fanout=%d guide=%d criticality=%.17g preferred=%s tree_nodes=%zu reexpand_sink_layer=%zu crossings=%zu edges=%s\n",
++        s.iteration,s.attempts,size_t(net),pin,size_t(sink),int(high_fanout),int(guide!=nullptr),double(criticality),
++        influence_preferences(guide).c_str(),nodes,expanded_on_sink_layer,crossings,crossings?edges.str().c_str():"-");
++}
++
++void h3d_influence_edge(ParentNetId net,int pin,RRNodeId from,RRNodeId to,int sw,
++                       bool configurable,float criticality,float before,float after,
++                       float physical_delay,float timing_penalty,bool rcv,
++                       const t_h3d_connection_guide& guide) {
++    VTR_ASSERT(influence);auto& s=*influence;
++    VTR_ASSERT(s.current_net==size_t(net) && s.current_pin==pin);
++    const bool preferred=std::binary_search(guide.preferred.begin(),guide.preferred.end(),from);
++    const int bin=influence_bin(criticality),focus=influence_focus(size_t(net),pin);
++    const size_t group=focus<0 ? 3+bin : focus,cap=focus<0 ? 1000 : 2000;
++    auto& b=s.buckets[bin*4+int(configurable)*2+int(preferred)];++b.count;++s.events;
++    const double extra=(1.-double(criticality))*(double(after)-double(before));
++    const double physical=double(criticality)*double(physical_delay);
++    const double timing=!rcv ? double(criticality)*double(timing_penalty) : 0.;
++    const bool finite=std::isfinite(extra) && std::isfinite(physical) && std::isfinite(timing);
++    if(finite) {
++        ++b.finite;b.positive+=extra>0.;b.below_unit+=extra>0. && extra<s.unit;
++        b.extra+=extra;b.physical+=physical;b.timing+=timing;b.maximum_extra=std::max(b.maximum_extra,extra);
++    }
++    if(s.group_rows[group]>=cap)return;
++    ++s.group_rows[group];++s.rows;++b.rows;
++    VTR_LOG("H3D_GUIDE_INFLUENCE_EDGE iter=%d event=%zu attempt=%zu net=%zu pin=%d from=%zu to=%zu switch=%d group=%zu group_row=%zu bin=%d configurable=%d preferred=%d rcv=%d criticality=%.17g miss_weight=%.17g preferred_ids=%s before_congestion=%.17g after_congestion=%.17g physical_seconds=%.17g timing_penalty_seconds=%.17g analytic_extra=%.17g weighted_physical_seconds=%.17g weighted_timing_seconds=%.17g finite=%d\n",
++        s.iteration,s.events,s.attempts,size_t(net),pin,size_t(from),size_t(to),sw,group,s.group_rows[group],bin,int(configurable),int(preferred),int(rcv),double(criticality),double(guide.miss_weight),
++        influence_preferences(&guide).c_str(),double(before),double(after),double(physical_delay),double(timing_penalty),extra,physical,timing,int(finite));
++}
+ 
+ bool h3d_enabled() { return settings().mode != e_h3d_mode::OFF; }
+ 
+@@ -920,11 +1020,20 @@
+ void h3d_prepare_iteration(int iteration, bool is_flat) {
+     if (!h3d_enabled()) return;
+     if (iteration == 1) {
++        influence.reset();
++        if(settings().trace_guide_influence) {
++            influence=std::make_unique<InfluenceState>();
++            double total=0.;size_t positive=0;
++            for(const auto& sw:g_vpr_ctx.device().rr_graph.rr_switch())
++                if(sw.Tdel>0.f) {total+=sw.Tdel;++positive;}
++            if(positive)influence->unit=total/positive;
++        }
+         const auto& device = g_vpr_ctx.device();
+         if (is_flat || device.grid.get_num_layers() != 2 || device.grid.has_interposer_cuts() || !device.rr_bus_muxes.empty())
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "H3D candidate modes currently require clustered routing, two stacked layers, no interposer cuts and no bus-mux sharing");
+         planner = std::make_unique<H3dPlanner>();
+     }
++    if(influence)influence->iteration=iteration;
+ }
+ 
+ void h3d_capture_net(ParentNetId net) {
+@@ -987,6 +1096,7 @@
+             iteration, pres_fac, vertical_used, vertical_occupancy, vertical_overused, vertical_total_overuse,
+             stats.nets_routed, stats.connections_routed, stats.heap_pushes, stats.heap_pops);
+     if (planner) planner->log();
++    log_influence();
+     if (settings().edge_encoding) {
+         std::unordered_map<RRNodeId, int> crossing_occupancy;
+         for (const auto& tree : routing.route_trees) {
+--- before/h3d_routing.h
++++ after/h3d_routing.h
+@@ -23,6 +23,15 @@
+         return found != timing_alternatives.end() && found->first == crossing ? found->second : 0.f;
+     }
+ };
++
++/** Read-only serial search diagnostics, separate from physical costs/state. */
++bool h3d_trace_guide_influence();
++void h3d_influence_begin(ParentNetId net, int pin, RRNodeId sink, bool high_fanout,
++                        float criticality, const t_h3d_connection_guide* guide);
++void h3d_influence_edge(ParentNetId net, int pin, RRNodeId from, RRNodeId to, int sw,
++                       bool configurable, float criticality, float before, float after,
++                       float physical_delay, float timing_penalty, bool rcv,
++                       const t_h3d_connection_guide& guide);
+ 
+ /** @brief Whether finite candidate planning is explicitly enabled. */
+ bool h3d_enabled();
+--- before/connection_router.tpp
++++ after/connection_router.tpp
+@@ -9,6 +9,7 @@
+ #include "rr_graph_fwd.h"
+ #include "vpr_context.h"
+ #include "vpr_utils.h"
++#include "h3d_routing.h"
+ 
+ /** Used for the flat router. The node isn't relevant to the target if
+  * it is an intra-block node outside of our target block */
+@@ -26,6 +27,10 @@
+     const ConnectionParameters& conn_params) {
+     router_stats_ = &router_stats;
+     conn_params_ = &conn_params;
++
++    if(h3d_trace_guide_influence())
++        h3d_influence_begin(conn_params.net_id_,conn_params.target_pin_num_,sink_node,false,
++                            cost_params.criticality,cost_params.h3d_guide);
+ 
+     bool retry = timing_driven_route_connection_common_setup(rt_root, sink_node, cost_params, bounding_box);
+ 
+@@ -62,6 +67,10 @@
+     const ConnectionParameters& conn_params) {
+     router_stats_ = &router_stats;
+     conn_params_ = &conn_params;
++
++    if(h3d_trace_guide_influence())
++        h3d_influence_begin(conn_params.net_id_,conn_params.target_pin_num_,sink_node,true,
++                            cost_params.criticality,cost_params.h3d_guide);
+ 
+     // re-explore route tree from root to add any new nodes (buildheap afterwards)
+     // route tree needs to be repushed onto the heap since each node's cost is target specific
+@@ -344,6 +353,11 @@
+         }
+     }
+ 
++    const bool trace_crossing=cost_params.h3d_guide && cost_params.h3d_guide->edge_encoding
++        && rr_graph_->node_layer_low(from_node)!=rr_graph_->node_layer_low(to->index)
++        && h3d_trace_guide_influence();
++    const float guide_before_congestion=trace_crossing ? cong_cost : 0.f;
++
+     // This extra resource preference does not change RC delay or PathFinder's
+     // present/history costs. Non-configurable sets keep their existing charge.
+     if ((cost_params.h3d_vertical_weight > 0.f || cost_params.h3d_guide) && reached_configurably
+@@ -367,6 +381,10 @@
+         cong_cost *= 1.f + cost_params.h3d_guide->miss_weight;
+         guide_timing_cost = cost_params.h3d_guide->timing_penalty(from_node);
+     }
++    if(trace_crossing)
++        h3d_influence_edge(conn_params_->net_id_,conn_params_->target_pin_num_,from_node,to->index,iswitch,
++            reached_configurably,cost_params.criticality,guide_before_congestion,cong_cost,Tdel,guide_timing_cost,
++            rcv_path_manager.is_enabled(),*cost_params.h3d_guide);
+     if (cost_params.h3d_planar_guide && reached_configurably)
+         cong_cost *= h3d_control_multiplier(*cost_params.h3d_planar_guide, to->index);
+     to->backward_path_cost += (1. - cost_params.criticality) * cong_cost; // Congestion cost

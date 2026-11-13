@@ -1,0 +1,28 @@
+{
+  "registered_at": 1794553389.3939888,
+  "question": "Do cached exactly measured candidate paths expose current planar congestion which is absent from entry-only planning prices, and is this diagnostic available without changing the query work or route?",
+  "evidence": [
+    "native_reconvergence_eltwise_dev_01/reconvergence_analysis.json",
+    "post_legal_freeze_eltwise_dev_01/freeze_analysis.json",
+    "critical_scope_attention_failed_resources_01/summary.json"
+  ],
+  "hypothesis": "Intrinsic first-crossing delay and entry/destination prices can miss planar conflicts. A canonical shortest witness can diagnose this gap but is not necessarily the least-congested equal-delay path and does not predict native final delay.",
+  "stage": "decision-neutral diagnostic; no risk penalty, new scoring, search-budget increase, guide change, query order change, scope change or release/freeze combination",
+  "case": "eltwise_layer seed11 Hybrid-O P0 W100 count2 Tf",
+  "arms": {
+    "C": "witness0, reproduce exact frozen count2 Tf complete route/metrics/guides/original records",
+    "T": "witness1, same native and planning/query output; collect canonical settled-terminal parent forests from the existing bounded Dijkstra queries only"
+  },
+  "implementation": "Optional lazy parent/edge-weight arrays in H3dDelaySearch. Cache at most 2000000 settled witness records across endpoint/direction queries; reconstruct only already measured candidate witnesses. Cap emitted witness records at50000 and report omissions explicitly. No targeted-query mode in this diagnostic.",
+  "validation": "Random small directed graphs with zero cycles, parallel edges, truncation and repeated epochs: traced/untraced query exact equality and independent Floyd distances; every emitted witness must be acyclic, directed, have matching edge weights and total measured distance. Native route/table/guide/query equivalence; graph/guide audit and input seal. Independent selected-RRG-edge/weight streaming audit before interpreting native congestion observations.",
+  "analysis": "Separate measured/witness-present/unmeasured/cache-limit/trace-limit coverage. For available canonical paths record current negotiated price multipliers with exact current net ownership, overused ordinary planar resources, observed selected/prior/alternative role and phase. These are descriptive proxy prices, not native summed costs or causal adoption. Require evidence before proposing a score change.",
+  "limits": {
+    "timeout_seconds": 1800,
+    "memory_gib": 64,
+    "disk_reserve_gib": 80,
+    "cached_witness_records": 2000000,
+    "emitted_records": 50000
+  },
+  "execution": "Only build/run after existing native reconvergence extension owner terminates and all its completion/seals are checked. No duplicate owner; source remains independent of frozen versions.",
+  "research_complete": false
+}

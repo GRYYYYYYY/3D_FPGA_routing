@@ -1,0 +1,23 @@
+{
+  "status": "registered_before_implementation",
+  "question": "Do fixed-budget residual queries and chronological physical suffix reuse improve useful coverage in actual guided searches while preserving every native routing decision, and what online cost/work do they add?",
+  "input": "eltwise_layer HybridO P0 W100 seed11 exact frozen packed/place/RRG,count2",
+  "arms": [
+    "C:off exact box-guide default0 control",
+    "Q0:zero heuristic query-only",
+    "Qh:spatial multi-target query-only",
+    "Qs:spatial, reuse prior static physical suffix if valid for current actual seed; otherwise query"
+  ],
+  "fixed": "No scoring or guide decisions consume result; box-admission0, bounded absent, pathprice/delay0; all legacy4096/fresh256 controls fixed; current SCC/DP/target update unchanged.",
+  "scope": "Actual guided native search after successful seed heap pushes, same-layer sources only, RCV excluded, no seeds skip. Per-search new query256, label16384/heap65536, at most2048unique same-layer sources (explicit resource skip). This additional work is separate from legacy query work and not claimed free.",
+  "cache": "Only Qs: query-produced static physical suffixes keyed sink/source, max16variants/key and16384total; no dynamic sourceTdel/occupancy/prices. Check current source membership/current prefix/layer/native BB every lookup. Cache reset each fixedwidth trial. No repeated future path data.",
+  "trace": "All query attempts (including skips/cache hits) and full current source IDs/Tdel. Path rows cap200000real+virtual edges cumulative, omitted counts explicit; online old trace separate. Current source set collected only when queryflag enabled. Whole native route/guide/originalcost/query/heap/prefix/numericrows must reproduce C; otherwise diagnose before scoring.",
+  "validation": "Independent RRG every returned edge, current seed/prefix/BB/layer, chronological cache prior origin. Fresh reverse adapter exactly same existing tested generic engine. Static graph reverse index reused via existing H3dDelayPlan. Actual costs recorded online. Follow separately registered scoring only after validation.",
+  "limits": {
+    "seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "quality_claim": false,
+  "formal_timing_claim": false
+}

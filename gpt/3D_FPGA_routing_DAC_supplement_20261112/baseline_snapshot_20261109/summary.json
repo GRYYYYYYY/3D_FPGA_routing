@@ -1,0 +1,174 @@
+{
+  "generated_utc": "2026-11-12T08:02:17.904158+00:00",
+  "source_label": "Public repository b132a1d13eec8351cfcdc371bfc03611f678291b (2026-11-09); not the server v13 final study",
+  "source_path": "/workspace/scratch/73f6e346c6e6/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/evaluation_analysis/observations.csv",
+  "source_sha256": "35c656bf61e6121fb1d49cb8d3ac2f5333d388f0bffcf8150cbdad221417f16f",
+  "input_rows": 1206,
+  "selected_rows": 504,
+  "population": {
+    "phase": "heldout",
+    "width": "100",
+    "circuits": [
+      "clstm_like.large",
+      "clstm_like.medium",
+      "clstm_like.small",
+      "conv_layer",
+      "conv_layer_hls",
+      "dla_like.medium",
+      "dla_like.small",
+      "lstm",
+      "reduction_layer",
+      "robot_rl",
+      "tpu_like.large.os",
+      "tpu_like.large.ws",
+      "tpu_like.small.os",
+      "tpu_like.small.ws"
+    ],
+    "seeds": [
+      "21",
+      "23",
+      "25"
+    ],
+    "families": [
+      "sb",
+      "cb_o",
+      "hybrid_o"
+    ],
+    "flows": [
+      "p0",
+      "p1"
+    ],
+    "roles": [
+      "A0",
+      "R1"
+    ]
+  },
+  "expected_rows": 504,
+  "population_complete": true,
+  "overall": {
+    "declared_pairs": 252,
+    "left_legal": 118,
+    "right_legal": 117,
+    "both_legal": 117,
+    "improved": 34,
+    "tie": 51,
+    "degraded": 32,
+    "status_pairs_left_then_right": {
+      "failed|failed": 92,
+      "failed|timeout": 3,
+      "legal|failed": 1,
+      "legal|legal": 117,
+      "timeout|timeout": 39
+    }
+  },
+  "panels": [
+    {
+      "family": "cb_o",
+      "flow": "p0",
+      "declared_pairs": 42,
+      "left_legal": 11,
+      "right_legal": 11,
+      "both_legal": 11,
+      "improved": 0,
+      "tie": 11,
+      "degraded": 0,
+      "status_pairs_left_then_right": {
+        "failed|failed": 27,
+        "legal|legal": 11,
+        "timeout|timeout": 4
+      }
+    },
+    {
+      "family": "cb_o",
+      "flow": "p1",
+      "declared_pairs": 42,
+      "left_legal": 12,
+      "right_legal": 12,
+      "both_legal": 12,
+      "improved": 0,
+      "tie": 12,
+      "degraded": 0,
+      "status_pairs_left_then_right": {
+        "failed|failed": 27,
+        "legal|legal": 12,
+        "timeout|timeout": 3
+      }
+    },
+    {
+      "family": "hybrid_o",
+      "flow": "p0",
+      "declared_pairs": 42,
+      "left_legal": 24,
+      "right_legal": 23,
+      "both_legal": 23,
+      "improved": 7,
+      "tie": 9,
+      "degraded": 7,
+      "status_pairs_left_then_right": {
+        "failed|failed": 9,
+        "failed|timeout": 1,
+        "legal|failed": 1,
+        "legal|legal": 23,
+        "timeout|timeout": 8
+      }
+    },
+    {
+      "family": "hybrid_o",
+      "flow": "p1",
+      "declared_pairs": 42,
+      "left_legal": 24,
+      "right_legal": 24,
+      "both_legal": 24,
+      "improved": 11,
+      "tie": 9,
+      "degraded": 4,
+      "status_pairs_left_then_right": {
+        "failed|failed": 11,
+        "failed|timeout": 1,
+        "legal|legal": 24,
+        "timeout|timeout": 6
+      }
+    },
+    {
+      "family": "sb",
+      "flow": "p0",
+      "declared_pairs": 42,
+      "left_legal": 23,
+      "right_legal": 23,
+      "both_legal": 23,
+      "improved": 9,
+      "tie": 4,
+      "degraded": 10,
+      "status_pairs_left_then_right": {
+        "failed|failed": 10,
+        "failed|timeout": 1,
+        "legal|legal": 23,
+        "timeout|timeout": 8
+      }
+    },
+    {
+      "family": "sb",
+      "flow": "p1",
+      "declared_pairs": 42,
+      "left_legal": 24,
+      "right_legal": 24,
+      "both_legal": 24,
+      "improved": 7,
+      "tie": 6,
+      "degraded": 11,
+      "status_pairs_left_then_right": {
+        "failed|failed": 8,
+        "legal|legal": 24,
+        "timeout|timeout": 10
+      }
+    }
+  ],
+  "limitations": [
+    "Uses recorded status; does not rerun raw route legality or provenance audits.",
+    "Win/tie/loss uses reported CPD precision and only pairs in which both runs are legal.",
+    "Missing and unsuccessful runs remain in the declared population.",
+    "Cases sharing a circuit, seed or architecture are correlated; these counts are not independent trials.",
+    "No significance test, global speedup, or causal interpretation is inferred.",
+    "Rerun with the server's final observations and verified population before use in a manuscript."
+  ]
+}

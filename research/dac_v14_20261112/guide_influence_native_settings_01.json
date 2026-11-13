@@ -1,0 +1,46 @@
+{
+  "status": "registered_not_implemented_not_submitted",
+  "time": 1794564722.2350888,
+  "parent": "guide_influence_experiment_01.json",
+  "initial_reference": "source_coverage_gate_eltwise_dev_01/runs/eltwise_layer_F",
+  "reference_behavior": "Same physical.25/price0 full legacy reverse as D1. Choose latest validated immutable stage when implementing; both gate flags disabled for isolation.",
+  "trace_flag": "VPR_H3D_TRACE_GUIDE_INFLUENCE",
+  "scope": "Serial H3D planner/controller state reset at fixed-width trial iteration1; actual ConnectionRouter crossing evaluations with current connection guide, plus focus connection start contexts.",
+  "sampling": {
+    "cap": 10000,
+    "focus_connections": [
+      {
+        "net": 4674,
+        "pin": 9
+      },
+      {
+        "net": 4674,
+        "pin": 21
+      },
+      {
+        "net": 4675,
+        "pin": 23
+      }
+    ],
+    "per_focus_cap": 2000,
+    "other_criticality_buckets": [
+      0,
+      0.7,
+      0.9,
+      0.95,
+      1
+    ],
+    "per_other_bucket_cap": 1000,
+    "rule": "First rows within each focus or nonfocus criticality group; mutually exclusive; all events still counted by criticality/preferred/configurable bins with exact omitted counts. Posthoc seen-case diagnostic, not random sample."
+  },
+  "cost_fields": "net/pin/iteration/from/to/switch, actual criticality/configurability/RCV/edgeencoding/preferred IDs/missweight, raw float native congestion immediately before and immediately after existing guide multiplication but before planar guide, native Tdel and current timing penalty.",
+  "derived_fields": "Double recomputation of (1-c)*(after-before), c*Tdel, effective c*timing_penalty when !RCV. These describe analytical contributions, not accumulator rounding, full priority/lookahead or event causality. Preserve original native float expressions exactly.",
+  "focus_tree_context": "At outer normal/highfanout connection begin, record existing pruned tree crossing edges, expansion flags and partial Tdel for focus connections only. Label present/re_expand state; do not call these actual queued seeds without a direct queue trace. Track repeats/retries explicitly where observable.",
+  "audits": "Disabled old behavior exact, enabled full non-time base/score/guide/route/queries/decisions/heap counters exact apart explicit new records; independent actual directed RR switch/config/Tdel and multiplier/weighted contribution formula on captured rows; subgroup row sequence/quota, cumulative counts and exact omissions. No broad distribution inference from censored raw rows.",
+  "guards": {
+    "timeout": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "qualification": "Implementation choice fixed before native trace. Await lazy reverse study independently; do not combine any new guide penalty before evidence."
+}

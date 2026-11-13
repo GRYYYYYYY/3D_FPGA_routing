@@ -1,0 +1,18 @@
+{
+  "question": "Does candidate-specific bidirectional search improve exact coverage under the same lifetime endpoint-direction budget as original endpoint-cache Dijkstra?",
+  "input_binding": "rrg_spmv/binding.json",
+  "requests": "rrg_spmv/queries.txt",
+  "per_endpoint_direction_settlements": 4096,
+  "targeted_budget_policy": "Each request charged both forward and reverse settlements against one persistent endpoint-direction ledger; never reset on target change",
+  "reference_policy": "Original H3dDelaySearch, cache complete returned terminal map once per endpoint/direction; 4096 settlements",
+  "label_limit": 200000,
+  "heap_limit": 500000,
+  "timeout_seconds": 300,
+  "process_address_space_gib": 4,
+  "diagnostic_only": "Targets derived from frozen final routes; not prospective QoR validation",
+  "source_sha256": {
+    "h3d_bidirectional_delay.h": "1a490b5828998627d02e3e29ec0d70a8d6096595e6ece267057ea949ef6ccde1",
+    "test_bidirectional.cpp": "10e79ce389043d1f05b5424fa7b689f8c13fc98a0370f578b6ad2d0bc2cb3312",
+    "validate_rrg_bidirectional.cpp": "7db6ad721b66d8beb3e587e16ab2ff33d53f0f276f68a78e65e8781b16d82563"
+  }
+}

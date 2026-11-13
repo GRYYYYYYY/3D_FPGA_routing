@@ -1,0 +1,147 @@
+--- before/h3d_fast_plan.cpp
++++ after/h3d_fast_plan.cpp
+@@ -242,8 +242,15 @@
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_CANDIDATE_PATH_USE_CACHED must be 0 or 1");
+         candidate_path_use_cached_=std::string(text)=="1";
+     }
+-    if(candidate_path_use_cached_ && candidate_path_score_weight_<=0.)
+-        VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Cached price observations require enabled candidate path score");
++    if(candidate_path_use_cached_ && candidate_path_mode_!=3)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Cached observations require priced candidate query mode");
++    if(const char* text=std::getenv("VPR_H3D_CANDIDATE_PATH_DELAY")) {
++        char* end=nullptr;candidate_path_delay_weight_=std::strtod(text,&end);
++        if(end==text || *end || !std::isfinite(candidate_path_delay_weight_) || candidate_path_delay_weight_<0. || candidate_path_delay_weight_>1.)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_CANDIDATE_PATH_DELAY must be in [0,1]");
++    }
++    if(candidate_path_delay_weight_>0. && !candidate_path_use_cached_)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Physical sink-delay ablation requires captured legacy witnesses");
+     if (refresh_independent_ && (independent_ || !feedback || std::string(feedback) != "1"
+                                 || !target_feedback || std::string(target_feedback) != "1"))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Independent refresh ablation requires initial shared planning and target-restricted feedback");
+@@ -900,7 +907,7 @@
+         if (candidate_path_mode_ && prior_guides && refresh_targets && prefix_trace
+             && delay_plan_ && delay_plan_->supported() && std::isfinite(planned.cost)) {
+             size_t before=candidate_path_score_plans_;
+-            bool changed=probe_candidates_(net,prefix_trace,terminals,criticality,*refresh_targets,pres_fac,table,openings,leaves,planned,reverse);
++            bool changed=probe_candidates_(net,prefix_trace,terminals,criticality,*refresh_targets,pres_fac,table,openings,leaves,planned,reverse,timed);
+             if(changed) {
+                 auto start=std::chrono::steady_clock::now();
+                 planned=independent ? h3d_plan_independent(leaves,openings) : h3d_plan_partition(leaves,openings);
+@@ -1290,7 +1297,7 @@
+         const std::vector<float>& criticality,const std::vector<size_t>& targets,float pres_fac,
+         const std::vector<size_t>& table,const std::vector<double>& openings,
+         std::vector<t_h3d_plan_leaf>& leaves,const t_h3d_partition_plan& planned,
+-        const std::unordered_map<int,const H3dDelayPlan::Distances*>& reverse) {
++        const std::unordered_map<int,const H3dDelayPlan::Distances*>& reverse,const std::set<int>& timed) {
+     const auto started=std::chrono::steady_clock::now();
+     struct Request {int pin;size_t candidate,alternatives;double priority,gap;bool proposed;};
+     struct LeafRequests {int pin;double priority;std::vector<Request> requests;};
+@@ -1338,7 +1345,7 @@
+     const auto& routing=g_vpr_ctx.routing();std::unordered_set<RRNodeId> owned;
+     if(routing.route_trees[net])for(const auto& node:routing.route_trees[net]->all_nodes())owned.insert(node.inode);
+     std::map<std::pair<RRNodeId,RRNodeId>,H3dCandidatePath::Result> memo;
+-    struct Observation {double physical,toll,geometry;bool exact;};
++    struct Observation {double physical,toll,geometry;bool exact;bool physical_exact=false;};
+     std::map<std::pair<int,size_t>,Observation> observations;
+     std::map<std::pair<RRNodeId,RRNodeId>,Observation> calibration;
+     size_t remaining=256;double unit=delay_plan_->delay_unit();
+@@ -1361,7 +1368,7 @@
+         candidate_path_found_+=result.priced_upper_seconds.has_value();
+         candidate_path_exact_+=result.stop==H3dCandidatePath::Stop::EXACT;
+         candidate_path_memory_+=result.stop==H3dCandidatePath::Stop::MEMORY_LIMIT;
+-        if(candidate_path_score_weight_>0. && result.priced_upper_seconds) {
++        if((candidate_path_score_weight_>0. || candidate_path_delay_weight_>0.) && result.priced_upper_seconds) {
+             Observation observation{*result.physical_path_seconds/unit,*result.toll_path_seconds/unit,
+                 proxy_(sink,table[request.candidate]),result.stop==H3dCandidatePath::Stop::EXACT};
+             observations[{request.pin,request.candidate}]=observation;
+@@ -1416,7 +1423,7 @@
+                     }
+                     tolls.push_back(edge_toll);toll+=edge_toll;
+                 }
+-                Observation observation{witness.delay_seconds/unit,toll/unit,proxy_(sink,table[candidate.channel]),toll==0.};
++                Observation observation{witness.delay_seconds/unit,toll/unit,proxy_(sink,table[candidate.channel]),toll==0.,true};
+                 VTR_ASSERT(!observations.contains({leaf.pin,candidate.channel}));
+                 observations[{leaf.pin,candidate.channel}]=observation;
+                 bool sample=calibration.emplace(std::make_pair(sink,entry),observation).second;
+@@ -1432,7 +1439,7 @@
+         }
+     }
+     candidate_path_seconds_+=std::chrono::duration<double>(std::chrono::steady_clock::now()-started).count();
+-    if(candidate_path_score_weight_==0. || calibration.empty())return false;
++    if((candidate_path_score_weight_==0. && candidate_path_delay_weight_==0.) || calibration.empty())return false;
+     const auto score_started=std::chrono::steady_clock::now();
+     ++candidate_path_score_plans_;
+     double scale=0.,rate=0.;bool all_exact=true;
+@@ -1446,6 +1453,14 @@
+     bool changed=false;
+     for(auto& leaf:leaves) {
+         if(!selected_pins.contains(leaf.pin))continue;
++        std::vector<double> physical_ratios;
++        if(candidate_path_delay_weight_>0.)
++            for(const auto& [key,observation]:observations)
++                if(key.first==leaf.pin && observation.physical_exact)
++                    physical_ratios.push_back(std::clamp(observation.physical/std::max(1.,observation.geometry),.25,4.));
++        std::sort(physical_ratios.begin(),physical_ratios.end());
++        const size_t count=physical_ratios.size();
++        const double physical_scale=count ? (physical_ratios[(count-1)/2]+physical_ratios[count/2])*.5 : 1.;
+         for(auto& candidate:leaf.candidates) {
+             RRNodeId entry=channels_[table[candidate.channel]];auto found=observations.find({leaf.pin,candidate.channel});
+             double geometry=proxy_(terminals[leaf.pin],table[candidate.channel]);
+@@ -1457,6 +1472,17 @@
+             candidate_path_score_estimated_+=found==observations.end();candidate_path_score_changed_+=candidate.branch_cost!=base;
+             VTR_LOG("H3D_PATH_PRICE_SCORE plan=%zu net=%zu pin=%d entry=%zu observed=%d samples=%zu scale=%.17g rate=%.17g reliability=%.17g criticality=%.17g geometry_units=%.17g risk_units=%.17g weight=%.17g cap_units=2 base_branch=%.17g delta_units=%.17g new_branch=%.17g\n",
+                     plan_id,size_t(net),leaf.pin,size_t(entry),int(found!=observations.end()),calibration.size(),scale,rate,reliability,double(criticality[leaf.pin]),geometry,risk,candidate_path_score_weight_,base,delta,candidate.branch_cost);
++            if(candidate_path_delay_weight_>0. && count) {
++                const bool measured=found!=observations.end() && found->second.physical_exact;
++                const double previous_sink=timed.contains(leaf.pin) ? reverse.at(leaf.pin)->at(entry)/unit : geometry;
++                const double next_sink=measured ? found->second.physical : geometry*physical_scale;
++                const double correction=candidate_path_delay_weight_*(1.+4.*double(criticality[leaf.pin]))*std::clamp(next_sink-previous_sink,-2.,2.);
++                double before_delay=candidate.branch_cost;candidate.branch_cost+=correction;
++                changed|=candidate.branch_cost!=before_delay;
++                ++candidate_path_delay_records_;candidate_path_delay_changed_+=candidate.branch_cost!=before_delay;
++                VTR_LOG("H3D_PATH_DELAY_SCORE plan=%zu net=%zu pin=%d entry=%zu physical_measured=%d legacy_timed=%d leaf_samples=%zu scale=%.17g geometry_units=%.17g previous_sink_units=%.17g next_sink_units=%.17g criticality=%.17g weight=%.17g sink_cap_units=2 price_branch=%.17g delta_units=%.17g new_branch=%.17g\n",
++                        plan_id,size_t(net),leaf.pin,size_t(entry),int(measured),int(timed.contains(leaf.pin)),count,physical_scale,geometry,previous_sink,next_sink,double(criticality[leaf.pin]),candidate_path_delay_weight_,before_delay,correction,candidate.branch_cost);
++            }
+         }
+     }
+     candidate_path_score_seconds_+=std::chrono::duration<double>(std::chrono::steady_clock::now()-score_started).count();
+@@ -1464,7 +1490,10 @@
+ }
+ 
+ void H3dFastPlan::log() const {
+-    if(candidate_path_score_weight_>0.)
++    if(candidate_path_delay_weight_>0.)
++        VTR_LOG("H3D_PATH_DELAY_SUMMARY weight=%.17g records=%zu changed=%zu\n",
++                candidate_path_delay_weight_,candidate_path_delay_records_,candidate_path_delay_changed_);
++    if(candidate_path_score_weight_>0. || candidate_path_delay_weight_>0.)
+         VTR_LOG("H3D_PATH_PRICE_SCORE_SUMMARY weight=%.17g plans=%zu records=%zu observed=%zu estimated=%zu changed=%zu extra_solves=%zu score_seconds=%.9g resolve_seconds=%.9g\n",
+                 candidate_path_score_weight_,candidate_path_score_plans_,candidate_path_score_records_,candidate_path_score_observed_,candidate_path_score_estimated_,candidate_path_score_changed_,candidate_path_resolves_,candidate_path_score_seconds_,candidate_path_resolve_seconds_);
+     if(candidate_path_mode_)
+--- before/h3d_fast_plan.h
++++ after/h3d_fast_plan.h
+@@ -1,6 +1,7 @@
+ #pragma once
+ 
+ #include <memory>
++#include <set>
+ #include <unordered_map>
+ #include <vector>
+ 
+@@ -68,7 +69,7 @@
+         const std::vector<float>& criticality, const std::vector<size_t>& targets, float pres_fac,
+         const std::vector<size_t>& table, const std::vector<double>& openings,
+         std::vector<t_h3d_plan_leaf>& leaves, const t_h3d_partition_plan& planned,
+-        const std::unordered_map<int,const H3dDelayPlan::Distances*>& reverse);
++        const std::unordered_map<int,const H3dDelayPlan::Distances*>& reverse, const std::set<int>& timed);
+ 
+     H3dPlanProfile profile_;                                           ///< Optional disjoint stage accounting.
+     size_t reach_misses_ = 0;                                          ///< Endpoint closure cache misses.
+@@ -105,6 +106,8 @@
+     double candidate_path_seconds_=0.;
+     double candidate_path_score_weight_=0.,candidate_path_score_seconds_=0.,candidate_path_resolve_seconds_=0.;
+     bool candidate_path_use_cached_=false; ///< Current-price observations from already-settled reverse witnesses.
++    double candidate_path_delay_weight_=0.; ///< Separate calibrated physical sink-delay ablation.
++    size_t candidate_path_delay_records_=0,candidate_path_delay_changed_=0;
+     size_t candidate_path_score_plans_=0,candidate_path_score_records_=0,candidate_path_score_observed_=0,candidate_path_score_estimated_=0;
+     size_t candidate_path_score_changed_=0,candidate_path_resolves_=0;
+     bool dp_tie_pressure_ = false; ///< Zero extra congestion preference only on strict finite shared-DP exclusion ties.

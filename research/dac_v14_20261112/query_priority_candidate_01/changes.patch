@@ -1,0 +1,313 @@
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bound_clamp_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp	2026-11-12 18:38:15.191582000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bound_clamp_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp	2026-11-12 18:44:25.534284000 +0000
+@@ -38,6 +38,13 @@
+         if (trace_bounds_ && !persistent_frontier_)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Delay-bound diagnostics require universal-terminal frontier queries");
+     }
++    if (const char* value = std::getenv("VPR_H3D_BOUND_CLAMP")) {
++        if (std::string(value) != "0" && std::string(value) != "1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_BOUND_CLAMP must be 0 or 1");
++        clamp_bounds_ = std::string(value) == "1";
++        if (clamp_bounds_ && !persistent_frontier_)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Bound-clamped estimates require universal-terminal frontier queries");
++    }
+     if (const char* value = std::getenv("VPR_H3D_TARGET_REUSE")) {
+         if (std::string(value) != "0" && std::string(value) != "1")
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TARGET_REUSE must be 0 or 1");
+@@ -394,7 +401,7 @@
+         }
+         if (answer.exact) { values[candidate] = *answer.exact; ++targeted_exact_; }
+         else { ++targeted_unknown_; targeted_memory_stops_ += answer.stop == H3dPersistentBidirectional::Stop::MEMORY_LIMIT; }
+-        if (trace_bounds_) {
++        if (trace_bounds_ || clamp_bounds_) {
+             auto bound = state->second.search->unsettled_lower_bound();
+             if (bound && std::isfinite(*bound)) {
+                 auto& saved = (reverse ? reverse_bounds_ : forward_bounds_)[endpoint];
+@@ -417,9 +424,13 @@
+     return found == bounds.end() ? 0. : found->second;
+ }
+ 
++double H3dDelayPlan::adjust_estimate_units(RRNodeId endpoint, bool reverse, double estimate) const {
++    return clamp_bounds_ ? std::max(estimate, lower_bound_seconds(endpoint, reverse) / delay_unit_) : estimate;
++}
++
+ void H3dDelayPlan::log() const {
+-    VTR_LOG("H3D_DELAY_BOUNDS trace=%d updates=%zu forward_endpoints=%zu reverse_endpoints=%zu\n",
+-            trace_bounds_, bound_updates_, forward_bounds_.size(), reverse_bounds_.size());
++    VTR_LOG("H3D_DELAY_BOUNDS trace=%d updates=%zu forward_endpoints=%zu reverse_endpoints=%zu clamp=%d\n",
++            trace_bounds_, bound_updates_, forward_bounds_.size(), reverse_bounds_.size(), clamp_bounds_);
+     VTR_LOG("H3D_PERSISTENT_DELAY enabled=%d slots=%zu peak_states=%zu evictions=%zu restarts=%zu forward_settled=%zu reverse_settled=%zu terminal_certificates=%zu ledger_endpoints=%zu retain=%d discards=%zu live_states=%zu\n",
+             persistent_frontier_, frontier_slots_, frontier_peak_states_, frontier_evictions_, frontier_restarts_, frontier_forward_work_, frontier_reverse_work_, frontier_terminals_, forward_work_.size()+reverse_work_.size(), frontier_retain_, frontier_discards_, frontiers_.size());
+     VTR_LOG("H3D_TARGET_REUSE enabled=%d settled_labels=%zu inserted=%zu duplicates=%zu uncertified_edges=%zu capacity_stops=%zu endpoint_entry_cap=200000\n",
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_delay_plan.h /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bound_clamp_candidate_01/src/vpr/src/route/h3d_delay_plan.h
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_delay_plan.h	2026-11-12 18:38:15.189053279 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bound_clamp_candidate_01/src/vpr/src/route/h3d_delay_plan.h	2026-11-12 18:44:25.529832000 +0000
+@@ -19,7 +19,9 @@
+     bool supported() const { return supported_; }
+     double delay_unit() const { return delay_unit_; }
+     bool trace_bounds() const { return trace_bounds_; }
++    bool clamp_bounds() const { return clamp_bounds_; }
+     double lower_bound_seconds(RRNodeId endpoint, bool reverse) const;
++    double adjust_estimate_units(RRNodeId endpoint, bool reverse, double estimate) const;
+     void log() const;
+ 
+   private:
+@@ -52,6 +54,7 @@
+     bool frontier_retain_ = true; ///< Ablation: discard only the search frontier after each target, retaining exact values and work charges.
+     size_t frontier_discards_ = 0;
+     bool trace_bounds_ = false; ///< Decision-neutral diagnostic; no scoring clamp is applied.
++    bool clamp_bounds_ = false; ///< Separate opt-in score change, never applied to exact measurements.
+     std::unordered_map<RRNodeId, double> forward_bounds_, reverse_bounds_; ///< Certified maxima survive frontier eviction.
+     size_t bound_updates_ = 0;
+     size_t frontier_slots_ = 8, frontier_clock_ = 0, frontier_evictions_ = 0, frontier_restarts_ = 0;
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bound_clamp_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp	2026-11-12 18:38:15.195445000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bound_clamp_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp	2026-11-12 18:44:25.537652000 +0000
+@@ -381,7 +381,8 @@
+             auto found = forward->find(channels_[c]);
+             if (found != forward->end()) return found->second / delay_plan_->delay_unit();
+         }
+-        return source_scale * proxy_(source, c);
++        double estimate = source_scale * proxy_(source, c);
++        return delay_plan_ ? delay_plan_->adjust_estimate_units(source, false, estimate) : estimate;
+     };
+     std::set<RRNodeId> owned;
+     if (routing.route_trees[net])
+@@ -398,12 +399,14 @@
+     auto branch = [&](int pin, size_t c) {
+         if (mixed) {
+             double sink_cost = proxy_(terminals[pin], c);
++            bool measured = false;
+             auto back = reverse.find(pin);
+             if (back != reverse.end()) {
+                 auto found = back->second->find(channels_[c]);
+-                sink_cost = found != back->second->end() ? found->second / delay_plan_->delay_unit()
+-                                                       : sink_cost * sink_scales.at(pin);
++                measured = found != back->second->end();
++                sink_cost = measured ? found->second / delay_plan_->delay_unit() : sink_cost * sink_scales.at(pin);
+             }
++            if (!measured) sink_cost = delay_plan_->adjust_estimate_units(terminals[pin], true, sink_cost);
+             return sink_cost * (1. + 4. * criticality[pin]) + 4. * criticality[pin] * source_cost(c);
+         }
+         if (timed.contains(pin)) {
+@@ -641,8 +644,9 @@
+                         if (estimate < bound) {
+                             ++bound_below_sides_;
+                             bound_gap_units_ += bound - estimate;
+-                            VTR_LOG("H3D_BOUND_SELECTED net=%zu pin=%d side=%s candidate=%zu estimate_units=%.17g lower_units=%.17g criticality=%.9g\n",
+-                                    size_t(net), pin, backward ? "sink" : "source", size_t(node), estimate, bound, double(criticality[pin]));
++                            double effective = delay_plan_->adjust_estimate_units(endpoint, backward, estimate);
++                            VTR_LOG("H3D_BOUND_SELECTED net=%zu pin=%d side=%s candidate=%zu estimate_units=%.17g lower_units=%.17g criticality=%.9g effective_units=%.17g clamp=%d\n",
++                                    size_t(net), pin, backward ? "sink" : "source", size_t(node), estimate, bound, double(criticality[pin]), effective, delay_plan_->clamp_bounds());
+                         }
+                     };
+                     inspect(from, source, false, source_scale * proxy_(source, c));
+
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/../../vendor/vtr-architecture-src/vpr/src/route/route_common.cpp	2026-10-27 20:54:50.229604963 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/layer_bbox_candidate_01/src/vpr/src/route/route_common.cpp	2026-11-12 19:05:54.987638000 +0000
+@@ -19,6 +19,8 @@
+ 
+ #include <ranges>
+ #include <utility>
++#include <cstdlib>
++#include <cstring>
+ 
+ #if defined(VPR_USE_TBB)
+ #include <tbb/parallel_for_each.h>
+@@ -681,6 +683,16 @@
+                                              int bb_factor) {
+     vtr::vector<ParentNetId, t_bb> route_bb;
+ 
++    // Independent search-scope diagnostic: preserve XY limits and all physical
++    // costs, but allow planar nets to explore legal paths through other layers.
++    const char* layer_setting = std::getenv("VPR_H3D_ALL_LAYER_BB");
++    if (layer_setting && std::strcmp(layer_setting, "0") != 0 && std::strcmp(layer_setting, "1") != 0) {
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_ALL_LAYER_BB must be 0 or 1");
++    }
++    const bool all_layers = layer_setting && std::strcmp(layer_setting, "1") == 0;
++    size_t restricted_nets = 0;
++    size_t expanded_nets = 0;
++
+     auto& route_ctx = g_vpr_ctx.routing();
+ 
+     t_bb full_device_bounding_box;
+@@ -701,6 +713,16 @@
+             route_bb[net_id] = load_net_route_bb(net_list,
+                                                  net_id,
+                                                  bb_factor);
++            t_bb& bb = route_bb[net_id];
++            if (bb.layer_min != full_device_bounding_box.layer_min
++                || bb.layer_max != full_device_bounding_box.layer_max) {
++                ++restricted_nets;
++                if (all_layers) {
++                    bb.layer_min = full_device_bounding_box.layer_min;
++                    bb.layer_max = full_device_bounding_box.layer_max;
++                    ++expanded_nets;
++                }
++            }
+         } else {
+             // Clocks should use a bounding box that includes the entire
+             // fabric. This is because when a clock spine extends from a global
+@@ -722,6 +744,8 @@
+             route_bb[net_id] = full_device_bounding_box;
+         }
+     }
++    VTR_LOG("H3D_LAYER_BB enabled=%d restricted_nets=%zu expanded_nets=%zu layers=%d\n",
++            int(all_layers), restricted_nets, expanded_nets, full_device_bounding_box.layer_max + 1);
+     return route_bb;
+ }
+ 
+
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/layer_bbox_candidate_01/src/vpr/src/route/route_common.cpp	2026-11-12 19:05:54.987638000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/selective_layer_candidate_01/src/vpr/src/route/route_common.cpp	2026-11-12 19:20:43.637218000 +0000
+@@ -679,6 +679,52 @@
+     }
+ }
+ 
++/** @brief Strict, default-off selection for congestion-triggered layer scope. */
++static bool h3d_layer_bb_feedback_enabled() {
++    static const bool enabled = [] {
++        const char* setting = std::getenv("VPR_H3D_LAYER_BB_FEEDBACK");
++        if (setting && std::strcmp(setting, "0") != 0 && std::strcmp(setting, "1") != 0)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_LAYER_BB_FEEDBACK must be 0 or 1");
++        return setting && std::strcmp(setting, "1") == 0;
++    }();
++    return enabled;
++}
++
++void h3d_expand_layer_bb_for_reroute(const Netlist<>& net_list,
++                                    ParentNetId net_id,
++                                    int iteration,
++                                    bool is_flat,
++                                    bool should_setup,
++                                    const t_bb& net_bb) {
++    if (!h3d_layer_bb_feedback_enabled()) return;
++#if defined(VPR_USE_TBB)
++    VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Layer BB feedback requires a serial VPR build");
++#endif
++    auto& routing = g_vpr_ctx.mutable_routing();
++    if (is_flat || &net_bb != &routing.route_bb[net_id])
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Layer BB feedback supports serial clustered routing with the native net BB only");
++    if (iteration < 2 || !should_setup || net_list.net_is_global(net_id) || !routing.route_trees[net_id]) return;
++    const auto& device = g_vpr_ctx.device();
++    const int last_layer = device.grid.get_num_layers() - 1;
++    t_bb& bb = routing.route_bb[net_id];
++    if (bb.layer_min == 0 && bb.layer_max == last_layer) return;
++    // Called only after should_route_net accepts this net, before pruning.
++    // A larger search domain persists across route rollback, as with native
++    // full-device retry; no tree/occupancy/guide transaction is changed here.
++    for (const auto& node : routing.route_trees[net_id]->all_nodes()) {
++        const int occupancy = routing.rr_node_route_inf[node.inode].occ();
++        const int capacity = device.rr_graph.node_capacity(node.inode);
++        if (occupancy <= capacity) continue;
++        const int old_min = bb.layer_min;
++        const int old_max = bb.layer_max;
++        bb.layer_min = 0;
++        bb.layer_max = last_layer;
++        VTR_LOG("H3D_LAYER_BB_REFRESH iter=%d net=%zu witness_rr=%zu occ=%d cap=%d old_min=%d old_max=%d new_min=0 new_max=%d\n",
++                iteration, size_t(net_id), size_t(node.inode), occupancy, capacity, old_min, old_max, last_layer);
++        break;
++    }
++}
++
+ vtr::vector<ParentNetId, t_bb> load_route_bb(const Netlist<>& net_list,
+                                              int bb_factor) {
+     vtr::vector<ParentNetId, t_bb> route_bb;
+@@ -690,6 +736,8 @@
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_ALL_LAYER_BB must be 0 or 1");
+     }
+     const bool all_layers = layer_setting && std::strcmp(layer_setting, "1") == 0;
++    if (all_layers && h3d_layer_bb_feedback_enabled())
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Initial all-layer BB and feedback layer BB are separate experimental modes");
+     size_t restricted_nets = 0;
+     size_t expanded_nets = 0;
+ 
+
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/vtr-architecture-src/vpr/src/route/route_common.h	2026-10-27 20:54:50.230272000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/selective_layer_candidate_01/src/vpr/src/route/route_common.h	2026-11-12 19:19:08.828069000 +0000
+@@ -102,6 +102,16 @@
+                        ParentNetId net_id,
+                        int bb_factor);
+ 
++/** @brief Expand only a selected serial reroute net's layer scope when its old
++ * tree uses an over-capacity RR node. Bounds grow monotonically; XY, route tree,
++ * occupancy and physical delays are unchanged by this optional diagnostic. */
++void h3d_expand_layer_bb_for_reroute(const Netlist<>& net_list,
++                                    ParentNetId net_id,
++                                    int iteration,
++                                    bool is_flat,
++                                    bool should_setup,
++                                    const t_bb& net_bb);
++
+ void pathfinder_update_single_node_occupancy(RRNodeId inode, int add_or_sub);
+ 
+ void pathfinder_update_acc_cost_and_overuse_info(float acc_fac, OveruseInfo& overuse_info);
+
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/layer_bbox_candidate_01/src/vpr/src/route/route_net.tpp	2026-10-27 20:57:07.564623000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/selective_layer_candidate_01/src/vpr/src/route/route_net.tpp	2026-11-12 19:19:08.834331000 +0000
+@@ -79,6 +79,8 @@
+     if (!should_route_net(net_list, net_id, connections_inf, budgeting_inf, worst_negative_slack, true))
+         return flags;
+ 
++    h3d_expand_layer_bb_for_reroute(net_list, net_id, itry, is_flat, should_setup, net_bb);
++
+     // track time spent vs fanout
+     profiling::net_fanout_start();
+ 
+
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/selective_layer_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp	2026-11-12 18:44:25.537652000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/query_priority_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp	2026-11-12 19:26:09.274065000 +0000
+@@ -75,6 +75,12 @@
+     targeted_delay_ = targeted && std::string(targeted) == "1";
+     if (targeted_delay_ && (!mixed_delay_ || !delay_cost || !edge_encoding_))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Target delay requires mixed delay scoring on edge-encoded delay graphs");
++    const char* query_order = std::getenv("VPR_H3D_QUERY_CRITICALITY_ORDER");
++    if (query_order && std::string(query_order) != "0" && std::string(query_order) != "1")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_QUERY_CRITICALITY_ORDER must be 0 or 1");
++    criticality_query_order_ = query_order && std::string(query_order) == "1";
++    if (criticality_query_order_ && !targeted_delay_)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Criticality query order requires candidate-targeted delay queries");
+     const char* timing = std::getenv("VPR_H3D_TIMING_GUIDE");
+     if (timing) {
+         char* end = nullptr;
+@@ -420,7 +426,18 @@
+         return proxy_(terminals[pin], c) * (1. + 4. * criticality[pin]) + 4. * criticality[pin] * proxy_(source, c);
+     };
+     std::set<size_t> pool;
+-    for (int pin : pins) {
++    // Each sink has its own reverse ledger, but source work is shared across
++    // this net's pins. Only the measurement/candidate pass is reordered: keep
++    // the original pins vector for DP topology and deterministic tie-breaking.
++    auto query_pins = pins;
++    ++query_order_nets_;
++    if (criticality_query_order_) {
++        std::stable_sort(query_pins.begin(), query_pins.end(), [&](int a, int b) {
++            return criticality[a] > criticality[b];
++        });
++        query_order_changed_ += query_pins != pins;
++    }
++    for (int pin : query_pins) {
+         profile.enter(Phase::CANDIDATES);
+         auto candidates = nearby_(source, terminals[pin], center_x, center_y, candidate_count * 8);
+         for (RRNodeId node : previous_channels)
+@@ -690,5 +707,7 @@
+     VTR_LOG("H3D_MIXED pins=%zu informed_pins=%zu both=%zu source_only=%zu sink_only=%zu estimated=%zu\n",
+             mixed_pins_, mixed_informed_pins_, mixed_both_, mixed_source_only_, mixed_sink_only_, mixed_estimated_);
+     VTR_LOG("H3D_TIMING_GUIDE nonzero_guides=%zu weight=%g\n", timing_guides_, timing_guide_weight_);
++    VTR_LOG("H3D_QUERY_PRIORITY enabled=%d plans=%zu reordered=%zu\n",
++            int(criticality_query_order_), query_order_nets_, query_order_changed_);
+     if (delay_plan_) delay_plan_->log();
+ }
+
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/selective_layer_candidate_01/src/vpr/src/route/h3d_fast_plan.h	2026-11-12 18:38:15.193250000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/query_priority_candidate_01/src/vpr/src/route/h3d_fast_plan.h	2026-11-12 19:26:09.271842000 +0000
+@@ -72,6 +72,8 @@
+     bool independent_ = false;                                        ///< Same-table independent top-1 solver control.
+     size_t timing_guides_ = 0;                                         ///< Selected guides with at least one measured side.
+     bool targeted_delay_ = false;                                      ///< Candidate-specific bidirectional search, mixed scoring only.
++    bool criticality_query_order_ = false; ///< Allocate shared source query work to critical pins first; DP pin order stays fixed.
++    size_t query_order_nets_ = 0, query_order_changed_ = 0; ///< Nonempty plans considered and reordered by query priority.
+     bool mixed_delay_ = false;                                         ///< Experimental calibrated candidate-level delay, off by default.
+     size_t mixed_pins_ = 0, mixed_informed_pins_ = 0;                    ///< Eligible and measurement-informed connections.
+     size_t mixed_both_ = 0, mixed_source_only_ = 0, mixed_sink_only_ = 0, mixed_estimated_ = 0; ///< Sampled candidate coverage.

@@ -1,0 +1,277 @@
+{
+  "status": "both_pairs_sealed_not_promoted",
+  "source_sha256": {
+    "retained_source_eltwise_dev_01": "19855558242cb339009c7dc127009a07f90b5ad9906d7b3c3b8a107f7a0c1244",
+    "retained_source_tpu_dev_01": "74637f8e196feb445fd01fa47848b6e932cce94182d26660987bcd21380e0acb"
+  },
+  "cases": [
+    {
+      "circuit": "eltwise_layer",
+      "seed": 11,
+      "observations": [
+        {
+          "arm": "C",
+          "path": "research/dac_v14_20261112/retained_source_eltwise_dev_01/runs/eltwise_layer_C",
+          "status": "legal",
+          "legal_cpd_ns": 6.20812,
+          "native_cpd_ns": 6.20812,
+          "iterations": 42,
+          "planning_seconds": 1.249322,
+          "process_seconds": 28.017556618899107,
+          "physical_metrics": {
+            "planar_wirelength_excluding_sb_half_nodes": 228420,
+            "sb_pairs_used": 118,
+            "sb_pair_net_occupancy": 118,
+            "cb_crossing_output_sources_used": 955,
+            "cb_crossing_output_source_net_occupancy": 955,
+            "actual_crossing_edge_traversals": {
+              "OPIN->CHANX": 554,
+              "CHANX->CHANX": 118,
+              "OPIN->CHANY": 453
+            },
+            "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+          },
+          "route_body_sha256": "19a5d2637fcb60c2a8f6d1fb8de0e8b0f9dcc4cbd3304d3e3d00ebdd007079c8",
+          "mechanism": {
+            "trace": {
+              "table_plans": 120,
+              "skipped_plans": 71,
+              "skip_reasons": {
+                "no_eligible_pins": 71
+              },
+              "accepted_plans": 29,
+              "leaf_events": 239,
+              "leaves_with_retained_reachable_option": 118,
+              "counters": {
+                "finite_candidate_events": 11803,
+                "owned_candidate_events": 154,
+                "retained_crossing_candidate_events": 133,
+                "retained_reachable_candidate_events": 133,
+                "retained_expandable_candidate_events": 133,
+                "proposed_retained_reachable_events": 39,
+                "missing_cached_view_events": 0
+              },
+              "scope": "Repeated finite refresh events, not independent observations. Rejected proposals included. Reachability flags come from cached SCC views, not a new independent graph audit. Retained partial-tree Tdel/RC is not final STA or a certified extension-delay bound."
+            },
+            "credit": {
+              "entry_table_records": 3214,
+              "owned_entry_table_records": 57,
+              "credited_entry_table_records": 0,
+              "negotiated_premium_records": 0,
+              "formula_passed": true,
+              "scope": "Unique plan/entry records; repeated trajectory observations, not independent samples."
+            },
+            "source": {
+              "effective_source_formula_passed": true,
+              "expandable_retained_entry_records": 0,
+              "differs_from_legacy_opening_source_records": 0,
+              "differs_from_geometry_branch_source_records": 0,
+              "qualification": "Partial current-tree Tdel, not final RC or a certified extension bound. Entry/table records are repeated observations."
+            }
+          }
+        },
+        {
+          "arm": "Ps",
+          "path": "research/dac_v14_20261112/retained_source_eltwise_dev_01/runs/eltwise_layer_Ps",
+          "status": "legal",
+          "legal_cpd_ns": 7.00702,
+          "native_cpd_ns": 7.00702,
+          "iterations": 30,
+          "planning_seconds": 1.317258,
+          "process_seconds": 27.518946174532175,
+          "physical_metrics": {
+            "planar_wirelength_excluding_sb_half_nodes": 229318,
+            "sb_pairs_used": 130,
+            "sb_pair_net_occupancy": 130,
+            "cb_crossing_output_sources_used": 957,
+            "cb_crossing_output_source_net_occupancy": 957,
+            "actual_crossing_edge_traversals": {
+              "OPIN->CHANX": 558,
+              "CHANX->CHANX": 130,
+              "OPIN->CHANY": 452
+            },
+            "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+          },
+          "route_body_sha256": "9718195256edf28ab2637cc1cb8ac0d6be1ca0585e188daddf045958d55bb225",
+          "mechanism": {
+            "trace": {
+              "table_plans": 108,
+              "skipped_plans": 79,
+              "skip_reasons": {
+                "no_eligible_pins": 79
+              },
+              "accepted_plans": 25,
+              "leaf_events": 257,
+              "leaves_with_retained_reachable_option": 144,
+              "counters": {
+                "finite_candidate_events": 28020,
+                "owned_candidate_events": 176,
+                "retained_crossing_candidate_events": 150,
+                "retained_reachable_candidate_events": 150,
+                "retained_expandable_candidate_events": 150,
+                "proposed_retained_reachable_events": 143,
+                "missing_cached_view_events": 0
+              },
+              "scope": "Repeated finite refresh events, not independent observations. Rejected proposals included. Reachability flags come from cached SCC views, not a new independent graph audit. Retained partial-tree Tdel/RC is not final STA or a certified extension-delay bound."
+            },
+            "credit": {
+              "entry_table_records": 3270,
+              "owned_entry_table_records": 35,
+              "credited_entry_table_records": 0,
+              "negotiated_premium_records": 0,
+              "formula_passed": true,
+              "scope": "Unique plan/entry records; repeated trajectory observations, not independent samples."
+            },
+            "source": {
+              "effective_source_formula_passed": true,
+              "expandable_retained_entry_records": 35,
+              "differs_from_legacy_opening_source_records": 2,
+              "differs_from_geometry_branch_source_records": 35,
+              "qualification": "Partial current-tree Tdel, not final RC or a certified extension bound. Entry/table records are repeated observations."
+            }
+          }
+        }
+      ],
+      "comparison": {
+        "both_legal": true,
+        "cpd_improvement_pct": -12.868630116685884,
+        "same_route": false
+      }
+    },
+    {
+      "circuit": "tpu_like.small.os",
+      "seed": 21,
+      "observations": [
+        {
+          "arm": "C",
+          "path": "research/dac_v14_20261112/retained_source_tpu_dev_01/runs/tpu_like.small.os_C",
+          "status": "legal",
+          "legal_cpd_ns": 7.81221,
+          "native_cpd_ns": 7.81221,
+          "iterations": 20,
+          "planning_seconds": 4.964787,
+          "process_seconds": 51.061548966914415,
+          "physical_metrics": {
+            "planar_wirelength_excluding_sb_half_nodes": 360633,
+            "sb_pairs_used": 32,
+            "sb_pair_net_occupancy": 32,
+            "cb_crossing_output_sources_used": 1562,
+            "cb_crossing_output_source_net_occupancy": 1562,
+            "actual_crossing_edge_traversals": {
+              "OPIN->CHANY": 781,
+              "OPIN->CHANX": 841,
+              "CHANX->CHANX": 32
+            },
+            "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+          },
+          "route_body_sha256": "19ff091bc55c40bc4fdce71bebfb8497df1e770b5177c9115f4a1e5f378da8d8",
+          "mechanism": {
+            "trace": {
+              "table_plans": 60,
+              "skipped_plans": 96,
+              "skip_reasons": {
+                "no_eligible_pins": 96
+              },
+              "accepted_plans": 17,
+              "leaf_events": 303,
+              "leaves_with_retained_reachable_option": 260,
+              "counters": {
+                "finite_candidate_events": 89286,
+                "owned_candidate_events": 270,
+                "retained_crossing_candidate_events": 269,
+                "retained_reachable_candidate_events": 269,
+                "retained_expandable_candidate_events": 269,
+                "proposed_retained_reachable_events": 81,
+                "missing_cached_view_events": 0
+              },
+              "scope": "Repeated finite refresh events, not independent observations. Rejected proposals included. Reachability flags come from cached SCC views, not a new independent graph audit. Retained partial-tree Tdel/RC is not final STA or a certified extension-delay bound."
+            },
+            "credit": {
+              "entry_table_records": 3698,
+              "owned_entry_table_records": 31,
+              "credited_entry_table_records": 0,
+              "negotiated_premium_records": 0,
+              "formula_passed": true,
+              "scope": "Unique plan/entry records; repeated trajectory observations, not independent samples."
+            },
+            "source": {
+              "effective_source_formula_passed": true,
+              "expandable_retained_entry_records": 0,
+              "differs_from_legacy_opening_source_records": 0,
+              "differs_from_geometry_branch_source_records": 0,
+              "qualification": "Partial current-tree Tdel, not final RC or a certified extension bound. Entry/table records are repeated observations."
+            }
+          }
+        },
+        {
+          "arm": "Ps",
+          "path": "research/dac_v14_20261112/retained_source_tpu_dev_01/runs/tpu_like.small.os_Ps",
+          "status": "legal",
+          "legal_cpd_ns": 7.86071,
+          "native_cpd_ns": 7.86071,
+          "iterations": 18,
+          "planning_seconds": 5.893258,
+          "process_seconds": 51.75805316865444,
+          "physical_metrics": {
+            "planar_wirelength_excluding_sb_half_nodes": 360239,
+            "sb_pairs_used": 32,
+            "sb_pair_net_occupancy": 32,
+            "cb_crossing_output_sources_used": 1563,
+            "cb_crossing_output_source_net_occupancy": 1563,
+            "actual_crossing_edge_traversals": {
+              "OPIN->CHANY": 782,
+              "OPIN->CHANX": 845,
+              "CHANX->CHANX": 32
+            },
+            "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+          },
+          "route_body_sha256": "5e1105c51042c89468ae66e454b59d2c6ce69cfb5cc8d8eaebbf0973d65da210",
+          "mechanism": {
+            "trace": {
+              "table_plans": 59,
+              "skipped_plans": 91,
+              "skip_reasons": {
+                "no_eligible_pins": 91
+              },
+              "accepted_plans": 15,
+              "leaf_events": 354,
+              "leaves_with_retained_reachable_option": 307,
+              "counters": {
+                "finite_candidate_events": 101791,
+                "owned_candidate_events": 313,
+                "retained_crossing_candidate_events": 312,
+                "retained_reachable_candidate_events": 312,
+                "retained_expandable_candidate_events": 312,
+                "proposed_retained_reachable_events": 287,
+                "missing_cached_view_events": 0
+              },
+              "scope": "Repeated finite refresh events, not independent observations. Rejected proposals included. Reachability flags come from cached SCC views, not a new independent graph audit. Retained partial-tree Tdel/RC is not final STA or a certified extension-delay bound."
+            },
+            "credit": {
+              "entry_table_records": 3784,
+              "owned_entry_table_records": 23,
+              "credited_entry_table_records": 0,
+              "negotiated_premium_records": 0,
+              "formula_passed": true,
+              "scope": "Unique plan/entry records; repeated trajectory observations, not independent samples."
+            },
+            "source": {
+              "effective_source_formula_passed": true,
+              "expandable_retained_entry_records": 23,
+              "differs_from_legacy_opening_source_records": 1,
+              "differs_from_geometry_branch_source_records": 23,
+              "qualification": "Partial current-tree Tdel, not final RC or a certified extension bound. Entry/table records are repeated observations."
+            }
+          }
+        }
+      ],
+      "comparison": {
+        "both_legal": true,
+        "cpd_improvement_pct": -0.6208230449514256,
+        "same_route": false
+      }
+    }
+  ],
+  "circuit_geomean_improvement_pct": -6.568918819218239,
+  "qualification": "All4newnativelegal, disabledcontrols exact; feweriterations but worseCPD inboth. No formal runtime or extension-bound claim. Keep separate from opening-credit ablation."
+}

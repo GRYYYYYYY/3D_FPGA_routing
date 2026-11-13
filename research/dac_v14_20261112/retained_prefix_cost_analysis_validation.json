@@ -1,0 +1,25 @@
+{
+  "created_at": 1794533692.603933,
+  "status": "synthetic_tests_passed_native_analysis_pending",
+  "command": "python3 research/dac_v14_20261112/test_retained_prefix_costs.py",
+  "exit_code": 0,
+  "checks": [
+    "six ownership/reach/expansion states",
+    "fastest reachable may not be expandable",
+    "accepted/rejected and proposed flags separated",
+    "measured/estimated source split",
+    "finite JSON and empty strata",
+    "zero/NaN delay unit and negative source cost rejected"
+  ],
+  "sources_sha256": {
+    "analyze_retained_prefix_costs.py": "a1b0a77ff11c0b1ae15c2a63a717a65cc464d83d05bb1c0fa118120d0bbe65f4",
+    "test_retained_prefix_costs.py": "a00e687b60e9cab535eaa3c4bd95334245dd195036ae04585dc024bd8acc267e",
+    "analyze_retained_prefix.py": "1a02169bd8e8d74331b409a39f616199196fad4f716bc92fb10c28d7ce03d7e0",
+    "retained_prefix_workflow.py": "0ceaf39cc96af7dfd775d0a909bb4cd3265b66301afab36aa7f63962f67e5ba7",
+    "src/vpr/src/route/connection_router.tpp": "988dd9e93d8eeaccad8368a15b3f126a954d06c2c3bf95edc554ad5af633df47",
+    "src/vpr/src/route/h3d_fast_plan.cpp": "5f3a55a6f242d8dce80329647ca22dd5bdd5ceada037e088c04f279e58f82623"
+  },
+  "queue_policy": "Supplemental analysis only after primary receipt succeeds; no modification of pinned scripts/source or native workflow",
+  "native_result": null,
+  "qualified_source_finding": "connection_router.tpp:add_route_tree_to_heap recurses to descendants independent of parent re_expand; high-fanout path additionally filters spatial bins and BB. Direct crossing-child flags are not proof of actual heap insertion or all reusable descendants."
+}

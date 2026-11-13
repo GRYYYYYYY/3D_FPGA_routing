@@ -1,0 +1,101 @@
+--- before/h3d_routing.cpp
++++ after/h3d_routing.cpp
+@@ -564,6 +564,7 @@
+                                    && before.timing_regret == after.timing_regret
+                                    && before.timing_alternatives == after.timing_alternatives
+                                    && before.bounded_critical == after.bounded_critical
++                                   && before.bounded_cap_only == after.bounded_cap_only
+                                    && before.bounded_reliability == after.bounded_reliability
+                                    && before.bounded_unit_seconds == after.bounded_unit_seconds
+                                    && before.bounded_beta == after.bounded_beta
+@@ -808,6 +809,8 @@
+                     std::ostringstream ids;for(auto node:guide.preferred) {if(ids.tellp()>0)ids<<',';ids<<size_t(node);}
+                     VTR_LOG("H3D_FINAL_BOUNDED_GUIDE net=%zu pin=%zu reliability=%.17g unit_seconds=%.17g beta=%.17g penalty_seconds=%.17g preferred=%s\n",
+                         size_t(net),pin,guide.bounded_reliability,guide.bounded_unit_seconds,guide.bounded_beta,double(guide.bounded_penalty_seconds),ids.str().c_str());
++                    if(guide.bounded_cap_only)
++                        VTR_LOG("H3D_FINAL_BOUNDED_CAP net=%zu pin=%zu configured=1\n",size_t(net),pin);
+                 }
+                 if (settings().dp_tie_pressure || settings().dp_margin_pressure)
+                     VTR_LOG("H3D_FINAL_PRESSURE net=%zu pin=%zu miss_weight=%.9g\n", size_t(net), pin, double(guide.miss_weight));
+--- before/h3d_routing.h
++++ after/h3d_routing.h
+@@ -15,6 +15,7 @@
+     float miss_weight = 0.f;         ///< Additional relative congestion charge for other CHANZ nodes.
+     bool edge_encoding = false;      ///< Preferred IDs identify crossing-edge sources, not CHANZ nodes.
+     bool bounded_critical = false; ///< Replace extra crossing cost on actual critical setup searches.
++    bool bounded_cap_only = false; ///< Preserve old operation unless its extra exceeds the bound.
+     double bounded_reliability = 0.,bounded_unit_seconds = 0.,bounded_beta = 0.;
+     float bounded_penalty_seconds = 0.f; ///< Search-only seconds, excluded from physical Tdel and STA.
+ 
+--- before/connection_router.tpp
++++ after/connection_router.tpp
+@@ -387,7 +387,7 @@
+         const auto& guide=*cost_params.h3d_guide;
+         const bool preferred=std::binary_search(guide.preferred.begin(),guide.preferred.end(),from_node);
+         auto bounded=h3d_bounded_critical_cost(h3d_bounded_critical_stage_active(),reached_configurably,true,preferred,rcv_path_manager.is_enabled(),
+-            cost_params.criticality,guide_before_congestion,cong_cost,guide_timing_cost,guide.bounded_penalty_seconds);
++            cost_params.criticality,guide_before_congestion,cong_cost,guide_timing_cost,guide.bounded_penalty_seconds,guide.bounded_cap_only);
+         bounded_applied=bounded.applied;cong_cost=bounded.congestion;guide_timing_cost=bounded.timing_seconds;
+     }
+     if(trace_crossing)
+--- before/h3d_fast_plan.cpp
++++ after/h3d_fast_plan.cpp
+@@ -278,6 +278,16 @@
+         if(!edge_encoding_ || !delay_cost || targeted_delay_ || mixed_delay_ || timing_guide_weight_>0. || timing_regret_)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Bounded critical guide requires separate legacy edge-delay scoring without old timing guidance");
+     }
++    if(const char* text=std::getenv("VPR_H3D_BOUNDED_CRITICAL_CAP_ONLY")) {
++        if(std::string(text)!="0" && std::string(text)!="1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_BOUNDED_CRITICAL_CAP_ONLY must be0 or1");
++        bounded_cap_only_=std::string(text)=="1";
++    }
++    if(bounded_cap_only_) {
++        const char* late=std::getenv("VPR_H3D_BOUNDED_AFTER_LEGAL");
++        if(!bounded_critical_guide_ || (late && std::string(late)=="1"))
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Cap-only guide is an independent all-stage bounded policy");
++    }
+     VTR_LOG("H3D_EXPERIMENT mixed_delay=%d timing_guide=%g assignment=%s\n", mixed_delay_, timing_guide_weight_, solver.c_str());
+     channel_index_.resize(graph_.num_nodes(), -1);
+     size_t planar_count = 0;
+@@ -1284,11 +1294,14 @@
+                 from+=a;to+=b;if(known.tellp()>0)known<<';';known<<size_t(node)<<','<<int(a)<<','<<int(b);
+             }
+             guide.bounded_critical=true;guide.bounded_beta=bounded_critical_beta_;
++            guide.bounded_cap_only=bounded_cap_only_;
+             guide.bounded_reliability=.5*double(from+to)/guide.preferred.size();
+             guide.bounded_unit_seconds=delay_plan_->delay_unit();
+             guide.bounded_penalty_seconds=float(bounded_critical_beta_*guide.bounded_reliability*guide.bounded_unit_seconds);
+             VTR_LOG("H3D_BOUNDED_CRITICAL_GUIDE net=%zu pin=%d source=%zu sink=%zu reverse_present=%d source_known=%zu sink_known=%zu preferred_count=%zu reliability=%.17g unit_seconds=%.17g beta=%.17g penalty_seconds=%.17g known=%s\n",
+                 size_t(net),pin,size_t(source),size_t(terminals[pin]),int(back!=reverse.end()),from,to,guide.preferred.size(),guide.bounded_reliability,guide.bounded_unit_seconds,guide.bounded_beta,double(guide.bounded_penalty_seconds),known.str().c_str());
++            if(guide.bounded_cap_only)
++                VTR_LOG("H3D_BOUNDED_CAP_GUIDE net=%zu pin=%d configured=1\n",size_t(net),pin);
+         }
+         if (mixed && !guide.preferred.empty()) {
+             ++selected_delay_pins_;
+--- before/h3d_fast_plan.h
++++ after/h3d_fast_plan.h
+@@ -77,6 +77,7 @@
+     const RRGraphView& graph_;                                          ///< Exact immutable graph used by detailed routing.
+     double timing_guide_weight_ = 0.;                                  ///< Bounded timing-preference amplitude in graph delay units.
+     bool bounded_critical_guide_=false;
++    bool bounded_cap_only_=false;
+     double bounded_critical_beta_=0.; ///< Explicit zero is a critical no-extra-guide ablation.
+     double exit_price_weight_ = 0.; ///< Opt-in bounded feasible-destination congestion premium during selective refresh only.
+     size_t exit_price_pairs_ = 0, exit_price_positive_ = 0, exit_price_edges_ = 0; ///< Per-refresh cached pairs, positive surcharges and tested cross edges.
+--- before/h3d_bounded_critical_guide.h
++++ after/h3d_bounded_critical_guide.h
+@@ -10,8 +10,12 @@
+  * input or output. RCV and every other edge retain their original policy. */
+ inline H3dBoundedCriticalCost h3d_bounded_critical_cost(bool enabled,bool configurable,
+         bool crossing,bool preferred,bool rcv,float criticality,float native_congestion,
+-        float old_congestion,float old_timing_seconds,float bounded_seconds) {
+-    if(enabled && configurable && crossing && !preferred && !rcv && criticality>=.9f)
++        float old_congestion,float old_timing_seconds,float bounded_seconds,bool cap_only=false) {
++    if(enabled && configurable && crossing && !preferred && !rcv && criticality>=.9f) {
++        const double old_extra=(1.-double(criticality))*(double(old_congestion)-double(native_congestion));
++        const double bound=double(criticality*bounded_seconds);
++        if(cap_only && old_extra<=bound)return {false,old_congestion,old_timing_seconds};
+         return {true,native_congestion,bounded_seconds};
++    }
+     return {false,old_congestion,old_timing_seconds};
+ }

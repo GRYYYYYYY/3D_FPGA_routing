@@ -1,0 +1,27 @@
+{
+  "registered_at": 1794559175.3701055,
+  "question": "Does bounded current-price branch regularization using candidate-directed valid paths improve routing, beyond query-only coverage?",
+  "evidence": [
+    "candidate_path_queries_physical_audit_01/analysis.json",
+    "candidate_path_queries_eltwise_dev_01/completion.json",
+    "candidate_path_unit_01/validation.json"
+  ],
+  "hypothesis": "Same extra-work priced queries found53valid previously-unmeasured sink paths (43proposals),50withpositive proxy toll. Calibrate missing candidate toll in the same mean-switch-delay units rather than treating unqueried candidates as free; test a small reliability-weighted penalty in the shared-DP branch objective.",
+  "case": "eltwise_layer seed11 Hybrid-O P0 W100 count2, Tf original scope and selective native-target refresh; release/freeze0, oldphysicalbudget4096 unchanged",
+  "arms": {
+    "S0": "new score weight0; exact same-binary reproduction of query-only Qp complete route/guide/table/legacy query and candidate-query records except elapsed time",
+    "S1": "score weight1; same base-DP query scheduling, current-price snapshot and shared256newexpansions/refresh, then re-solve shared DP with branch risk penalty"
+  },
+  "score": "Only leaves selected for the candidate-query budget, and only refreshes with at least one valid query path. For observations, physical_units=physical_path_seconds/delay_unit, toll_units=toll_path_seconds/delay_unit. Per-plan clipped-mean pathScale=mean(clamp(physical_units/geometric_sink_proxy,.25,4)); tollRate=mean(clamp(toll_units/max(1,physical_units),0,1)). Observed candidate toll is its path toll_units; other candidates estimate geometric_sink_proxy*pathScale*tollRate. Delta_branch=weight*reliability*criticality*min(2,max(0,toll_units_or_estimate)). Reliability=.25 if any observation is not certified exact priced-proxy, otherwise1. This is an uncertainty heuristic, not a QoR probability or exact minimum toll. No observations => original geometry/cost fallback with no price delta.",
+  "reuse_and_diversity": "Only static SCC/CSR and geometry caches reused across plans; price observations/memo scoped to one current snapshot. Original finite candidate table/diversity unchanged. Known and estimated price units use the same normalization and common plan reliability. Original physical-distance maps, native costs/Tdel/STA unchanged.",
+  "hysteresis": "Re-evaluate prior assignment and proposed assignment on the same updated branch table before original5percent acceptance/cooldown/transactions; no forced reroutes or unconditional replanning.",
+  "logging": "Record every scored branch base/new/delta/observed-or-estimated, calibration sample count/scales/reliability and physical unit, plus query-only base proposal vs final scored assignment; keep all statuses, physical SB/CB and planning/router/whole-process cost.",
+  "gates": "S0 must exactly match frozen Qp including candidate request/path/work records after stripping only elapsed summary seconds. All new legal routes independently graph/guide audited and inputs sealed. Independently reconstruct score formulas/caps and scored/shared-DP objective or query subset before interpreting QoR. Existing native count2 A0/R1/A1 remain strong references.",
+  "next": "Transfer unchanged settings only if quality or documented resource/cost tradeoff warrants it. Do not promote small changes against Tf while remaining worse strong native controls. A failed branch remains evidence, not a stopping condition.",
+  "limits": {
+    "native_timeout_seconds": 1800,
+    "native_memory_gib": 64,
+    "disk_reserve_gib": 80
+  },
+  "research_complete": false
+}

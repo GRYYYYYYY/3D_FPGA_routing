@@ -1,0 +1,27 @@
+{
+  "registered_at": 1794555429.2106416,
+  "question": "Can complete valid witness coverage be obtained within the same query and measured-record caps by replacing per-unknown rows with exact cumulative coverage counters?",
+  "evidence": [
+    "path_witness_physical_audit_01/analysis.json",
+    "path_witness_eltwise_dev_01/path_witness_analysis.json"
+  ],
+  "hypothesis": "Intrinsic first-crossing delay and entry/destination prices can miss planar conflicts. A canonical shortest witness can diagnose this gap but is not necessarily the least-congested equal-delay path and does not predict native final delay.",
+  "stage": "decision-neutral complete measured-path logging; no risk cost or guide change",
+  "case": "eltwise_layer seed11 Hybrid-O P0 W100 count2 Tf",
+  "arms": {
+    "C": "witness0, reproduce exact frozen count2 Tf complete route/metrics/guides/original records",
+    "T": "witness1, same native and planning/query output; collect canonical settled-terminal parent forests from the existing bounded Dijkstra queries only"
+  },
+  "implementation": "Retain exactly the same cached Dijkstra forests, physical paths and current proxy snapshots. Count every leaf-side request as measured/unmeasured/cache-limit. Emit full rows only for measured witnesses, capped50000; report measured omissions separately. All requested-side status totals must equal twice the PREFIX_PAIR count; if measured omissions=0, every measured candidate path in all phases is available.",
+  "validation": "Random small directed graphs with zero cycles, parallel edges, truncation and repeated epochs: traced/untraced query exact equality and independent Floyd distances; every emitted witness must be acyclic, directed, have matching edge weights and total measured distance. Native route/table/guide/query equivalence; graph/guide audit and input seal. Independent selected-RRG-edge/weight streaming audit before interpreting native congestion observations.",
+  "analysis": "Original format emitted50000 rows but only11866 measured and omitted62704 side rows. Old data is chronologically censored; do not infer whole-route risk prevalence. New format preserves this evidence and changes logging only. Replay native and physical/formula gates before interpreting full coverage. No query-budget increase or scoring experiment.",
+  "limits": {
+    "timeout_seconds": 1800,
+    "memory_gib": 64,
+    "disk_reserve_gib": 80,
+    "cached_witness_records": 2000000,
+    "emitted_records": 50000
+  },
+  "execution": "Run a fresh immutable stage02 and same-binary C/T serially; baseline count2 Tf and original stage01 results preserved.",
+  "research_complete": false
+}

@@ -1,0 +1,15 @@
+\begin{table*}[t]
+\centering\scriptsize
+\caption{Native reconvergence control on four seen circuits (one seed each). Cells show final legal CPD in ns for maximum convergence count 1 / 2. The count is an upper limit; native early exits and best-route restoration remain enabled. Failures and other statuses remain in the accompanying CSV; gemm and original attention failures are outside this four-circuit extension, not removed from the broader quality cohort.}
+\label{tab:native-reconvergence}
+\begin{tabular}{lrrrr}
+\hline
+Circuit & A0 & Old R1 & Tf & Initial-global A1 \\
+\hline
+eltwise\_layer & 9.93208 / 6.01810 & 6.96208 / 6.01810 & 6.20812 / 6.20812 & 6.01810 / 6.01810 \\
+spmv & 7.03470 / 7.03470 & 7.04599 / 7.04599 & 7.04599 / 7.04599 & 7.03470 / 7.03470 \\
+softmax & 8.97575 / 8.97575 & 8.97575 / 8.97575 & 8.97575 / 8.97575 & 8.97575 / 8.97575 \\
+bnn & 13.60740 / 13.60740 & 13.42160 / 13.42160 & 13.42160 / 13.42160 & 13.60740 / 13.60740 \\
+\hline
+\end{tabular}
+\end{table*}

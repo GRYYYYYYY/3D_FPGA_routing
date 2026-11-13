@@ -1,0 +1,10 @@
+{
+  "status": "evidence_reviewed_implementation_next_not_launched",
+  "hypothesis": "Remove artificial crossing preference only when forbidding this leaf selected candidate leaves exactly the same optimal finite shared-DP objective. Preserve positive net-level sharing benefit even if local independent cost is worse. Test whether arbitrary tied assignments impose avoidable indirect congestion pressure.",
+  "evidence": "Sealed dp_sensitivity_dev_01: weight2 104/250 strict exact ties including64/101acceptedrefresh;52locallyworse events havepositiveDPmargin. Weight1 76/229exactties. Allroutes/decisions/localtraces reproduced. Sensitivity summarybuild+exclusion .000666052/.000542891sec over109finiteplans; excludeslogging, not formaloverhead.",
+  "policy": "New opt-in flag, defaultoff. For finite shared plans only: set existing per-connection miss_weight to0 iff exclusion_cost == base_cost exactly; otherwise retain configured weight2. No threshold fit, no query increase, unchanged selectedcandidate/sharedobjective. No claimed joint optimality for unconstrained routing or physical confidence. Retained non-target guides and rejected refreshes remain unchanged. High-fanout independent fallback preserves original behavior.",
+  "pilot": "Same initial-global eltwise/attention seed11HybridO/P0/W100, frozen stage with sameparameters otherthannewflag. Reuse sealedTf1(weight2),W1(weight1),A1 native andA0/oldR1 withstrictmatchedinputs. Track actualfinalpressure, native/independent/guideaudits, queries, resourcecounts, iterations, planning andfullprocess, allstatuses. Positive result must beat/justify tradeoff against same-scope native, not merely repair weakguide baseline.",
+  "next_checks": "Unit tie/positive/infinite mapping; native defaultoff exactreproduction or existing diagnostic equivalence; transaction andnon-targetfield preservation; then pairedpilot, no promotionbeforeaudits/seal. If useful integrate sensitivity summaries into originalDP toavoidduplicateprocessing beforeformalruntime.",
+  "created_at": 1794526505.2591043,
+  "evidence_sha256": "16ea2ae526839d2d497ea97b6eee859caa65b5175c51b5cf89f1a3deb1e033f7"
+}

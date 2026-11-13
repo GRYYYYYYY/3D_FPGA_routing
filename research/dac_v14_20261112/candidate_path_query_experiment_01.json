@@ -1,0 +1,24 @@
+{
+  "registered_at": 1794556732.9902823,
+  "question": "Can candidate-directed reverse search obtain useful valid paths for currently unmeasured proposed/near-tie candidates at a small, explicit fixed extra-work cap, and then support calibrated current-price scoring?",
+  "evidence": [
+    "path_witness_physical_audit_02/analysis.json",
+    "path_witness_choice_diagnostic_01.json",
+    "native_reconvergence_circuit_summary.json"
+  ],
+  "evidence_summary": "Complete tracing covers112704leaf-side requests with26900measured andnooutput/cacheomissions. Both sides known for557of56352candidate-leaf events; only36of704proposed leaves both-known. Intrinsic exact coverage alone previously did not improve QoR, so price-aware path information is a distinct hypothesis, not more identical queries.",
+  "prototype": "A bounded candidate-targeted path search with explicit physical-edge delays and optional nonnegative price toll in the same seconds unit. A geometric heuristic orders work only; it must never certify optimal distance. Return an actual directed path as an upper-bound estimate and claim exactness only from a valid zero-heuristic/frontier lower-bound certificate. Keep original physical distance caches unchanged; current-price queries are scoped to one immutable plan-price snapshot.",
+  "unit_input": "Random small directed weighted graphs including zero cycles, parallel edges, non-admissible heuristics, resource stops and repeated searches. Independent Floyd checks all claimed exact values; every returned path and physical/priced cost must be valid and upper-bound the optimum.",
+  "native_initial_case": "eltwise_layer seed11 Hybrid-O P0 W100 count2 Tf, original SCC/DP/guide update policy; release/freeze flags0.",
+  "native_design": "Default-off C exact Tf. Query-only controls Q0(no spatial ordering, zero toll), Qh(spatial ordering, zero toll), Qp(spatial ordering, bounded current-price toll) have identical maximum new-work/storage settings and cannot change costs/guides in this stage. Native route/table/guide/legacy-query equivalence and actual RRG path/weight validation required before any scoring pilot. New query expansions, labels/stops, coverage/reliability and planning/full-process cost explicitly recorded.",
+  "allocation": "VPR-selected refreshes only; prioritize actual remaining targets by criticality and candidate-ranking uncertainty. Initially at most2leaves/net and2candidate entries/leaf (base proposal plus near-rank/diverse alternative), shared256newexpansions/refresh, sparse label cap16384, heap cap65536. Skip already fully known/trivial source work. These are prototype resource settings, not research caps; change only with an evidence-linked new registration.",
+  "budget_qualification": "Do not enlarge legacy delay_budget4096 or conceal new query work. The additional fixed candidate-work cap must be compared with equal-cap non-directed and delay-only controls; a coverage gain is not a QoR gain or speedup.",
+  "later_scoring": "If native directed-path validity and useful coverage pass, separately register a bounded, confidence-weighted current-price score with same-unit calibrated unknown estimates, geometric fallback/diversity, prior-cost reevaluation/hysteresis and native Tdel/STA untouched. Do not directly penalize a single congested canonical witness as though it were minimum congestion among equal-delay paths.",
+  "limits": {
+    "native_timeout_seconds": 1800,
+    "native_memory_gib": 64,
+    "disk_reserve_gib": 80
+  },
+  "status": "registered_not_implemented_not_submitted",
+  "research_complete": false
+}

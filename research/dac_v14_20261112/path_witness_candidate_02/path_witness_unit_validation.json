@@ -1,0 +1,41 @@
+{
+  "status": "unit_passed_native_diagnostic_pending",
+  "time": 1794553793.2164755,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/test_path_witness.cpp": "baa1e1703b103b9937e189914f71d6394fe6b6342560dfe43fbebd0d7bd4d80a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/src/vpr/src/route/h3d_delay_search.h": "9d0a2fb9fb13e199f0a756cbbe19e027d6a43b047243749ecb98fd66d9be2dd1"
+  },
+  "compile_command": [
+    "timeout",
+    "120s",
+    "prlimit",
+    "--as=4294967296",
+    "--core=0",
+    "--",
+    "g++",
+    "-std=c++20",
+    "-O1",
+    "-g",
+    "-D_GLIBCXX_ASSERTIONS",
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/test_path_witness.cpp",
+    "-o",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/path_witness_unit_01/test_path_witness"
+  ],
+  "compile_returncode": 0,
+  "run_command": [
+    "timeout",
+    "60s",
+    "prlimit",
+    "--as=4294967296",
+    "--core=0",
+    "--",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/path_witness_unit_01/test_path_witness"
+  ],
+  "run_returncode": 0,
+  "stdout": "query_pairs=2500 witness_steps=9433 terminals=3110 passed",
+  "compiler_version": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "binary_sha256": "8f4b09705b964307a17450b8be21622d1c3ff9ccd7e11c1784e95dfdda381040",
+  "scope": "100 random directed graphs x25 epochs; zero-cost cycles, parallel unequal edges, truncation, alternating traced/untraced calls; exact equality of query terminals/work and independent Floyd distances and weighted witness validity. RR synthetic-terminal mapping and native route equivalence still require native evidence."
+}

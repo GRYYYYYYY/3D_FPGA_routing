@@ -1,0 +1,205 @@
+--- a/h3d_fast_plan.cpp
++++ b/h3d_fast_plan.cpp
+@@ -60,6 +60,10 @@
+     profile_.enabled = profile && std::string(profile) == "1";
+     const char* shared = std::getenv("VPR_H3D_SHARED_CLOSURE");
+     shared_closure_ = edge_encoding_ && shared && std::string(shared) == "1";
++    const char* view = std::getenv("VPR_H3D_CLOSURE_VIEW");
++    closure_view_ = view && std::string(view) == "1";
++    if (closure_view_ && !shared_closure_)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Closure views require shared closures on edge-encoded graphs");
+     const char* generation = std::getenv("VPR_H3D_GENERATION_CLOSURE");
+     bool generation_closure = generation && std::string(generation) == "1";
+     VTR_LOG("H3D_REACH_MODE generation_closure=%d profile=%d\n", generation_closure, profile_.enabled);
+@@ -251,8 +255,23 @@
+     return cache.emplace(endpoint, std::move(result)).first->second;
+ }
+ 
++const H3dReachabilityView& H3dFastPlan::reach_view_(RRNodeId endpoint, bool reverse) {
++    auto& cache = reverse ? sink_views_ : source_views_;
++    auto found = cache.find(endpoint);
++    if (found != cache.end()) return found->second;
++    auto start = profile_.enabled ? std::chrono::steady_clock::now() : std::chrono::steady_clock::time_point{};
++    ++reach_misses_;
++    auto result = reachability_->shared_relevant_view(size_t(endpoint), reverse);
++    view_local_entries_ += result.local_entries();
++    view_shared_references_ += result.shared_references();
++    if (profile_.enabled) reach_miss_seconds_ += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
++    return cache.emplace(endpoint, std::move(result)).first->second;
++}
++
+ bool H3dFastPlan::feasible_(RRNodeId source, size_t channel, RRNodeId sink) {
+     ++queries_;
++    if (closure_view_)
++        return reach_view_(source, false).intersects(entries_[channel]) && reach_view_(sink, true).intersects(exits_[channel]);
+     return intersects(reach_(source, false), entries_[channel]) && intersects(reach_(sink, true), exits_[channel]);
+ }
+ 
+@@ -617,6 +636,8 @@
+ 
+ void H3dFastPlan::log() const {
+     profile_.log();
++    if (closure_view_) VTR_LOG("H3D_CLOSURE_VIEW endpoints=%zu local_entries=%zu shared_references=%zu\n",
++                              source_views_.size() + sink_views_.size(), view_local_entries_, view_shared_references_);
+     if (profile_.enabled) VTR_LOG("H3D_REACH_PROFILE misses=%zu seconds=%.9f scope=inclusive_not_additive\n", reach_misses_, reach_miss_seconds_);
+     VTR_LOG("H3D_SELECTED_DELAY pins=%zu informed_pins=%zu both=%zu source_only=%zu sink_only=%zu estimated=%zu\n",
+             selected_delay_pins_, selected_delay_informed_, selected_both_, selected_source_, selected_sink_, selected_estimated_);
+--- a/h3d_reachability.h
++++ b/h3d_reachability.h
+@@ -12,6 +12,7 @@
+ #include "vtr_assert.h"
+ #include "h3d_visit_epoch.h"
+ #include "h3d_component_set.h"
++#include "h3d_reachability_view.h"
+ 
+ /** @brief Exact directed reachability through a strongly connected component DAG.
+  *
+@@ -191,7 +192,7 @@
+                     shared_entries_ += stored.stored_words();
+                     shared_logical_entries_ += stored.size();
+                     ++shared_admitted_;
+-                    shared_hubs_[direction].push_back({component_id, std::move(stored)});
++                    shared_hubs_[direction].push_back({component_id, std::make_shared<const H3dComponentSet>(std::move(stored))});
+                 } else ++shared_refused_;
+             }
+         }
+@@ -203,12 +204,12 @@
+      * Local traversal and set union preserve all components including endpoints;
+      * overlapping hubs and alternate paths are deduplicated. Scratch is serial.
+      */
+-    std::vector<int> shared_relevant_components(size_t vertex, bool backwards) const {
++    H3dReachabilityView shared_relevant_view(size_t vertex, bool backwards) const {
+         const size_t direction = backwards ? 1 : 0;
+         const auto& allowed = shared_allowed_[direction];
+         VTR_ASSERT(allowed.size() == num_components());
+         const int root = component(vertex);
+-        if (!allowed[root]) return {};
++        if (!allowed[root]) return H3dReachabilityView({}, {});
+         const auto& adjacency = backwards ? reverse_ : forward_;
+         const auto& hubs = shared_hubs_[direction];
+         visits_.begin();
+@@ -227,10 +228,15 @@
+                 if (allowed[next] && visits_.insert(next)) local.push_back(next);
+         }
+         std::sort(local.begin(), local.end());
+-        for (size_t hub : used) {
+-            local = hubs[hub].closure.merge(local);
+-        }
+-        return local;
++        std::vector<std::shared_ptr<const H3dComponentSet>> suffixes;
++        suffixes.reserve(used.size());
++        for (size_t hub : used) suffixes.push_back(hubs[hub].closure);
++        return H3dReachabilityView(std::move(local), std::move(suffixes));
++    }
++
++    /** @brief Materialize the exact shared closure for legacy callers. */
++    std::vector<int> shared_relevant_components(size_t vertex, bool backwards) const {
++        return shared_relevant_view(vertex, backwards).materialize();
+     }
+ 
+     /** @brief Number of component entries retained in shared closures. */
+@@ -245,7 +251,7 @@
+   private:
+     struct t_shared_hub {
+         int root;                  ///< Cached component id.
+-        H3dComponentSet closure;  ///< Complete allowed closure, optionally encoded as runs.
++        std::shared_ptr<const H3dComponentSet> closure; ///< Immutable complete closure shared with endpoint snapshots.
+     };
+     std::array<std::vector<bool>, 2> shared_allowed_; ///< Owned static masks, isolated from caller mutation.
+     std::array<std::vector<t_shared_hub>, 2> shared_hubs_; ///< Bounded forward/reverse hub closures.
+--- a/h3d_fast_plan.h
++++ b/h3d_fast_plan.h
+@@ -43,6 +43,8 @@
+   private:
+     /** @brief Reachable component set for one source or reverse sink query. */
+     const std::vector<int>& reach_(RRNodeId endpoint, bool reverse);
++    /** @brief Cached immutable closure view, avoiding full endpoint expansion. */
++    const H3dReachabilityView& reach_view_(RRNodeId endpoint, bool reverse);
+ 
+     /** @brief Test an actual directed source->channel->sink walk using SCC intersections. */
+     bool feasible_(RRNodeId source, size_t channel, RRNodeId sink);
+@@ -69,6 +71,9 @@
+     size_t mixed_both_ = 0, mixed_source_only_ = 0, mixed_sink_only_ = 0, mixed_estimated_ = 0; ///< Sampled candidate coverage.
+     size_t selected_delay_pins_ = 0, selected_delay_informed_ = 0; ///< Final selected-guide delay availability, separate from sampled-pool coverage.
+     size_t selected_both_ = 0, selected_source_ = 0, selected_sink_ = 0, selected_estimated_ = 0; ///< Selected candidate counts, possibly several per pin.
++    bool closure_view_ = false; ///< Exact union-view intersection without expanded endpoint vectors.
++    size_t view_local_entries_ = 0, view_shared_references_ = 0; ///< Cache storage counters, no duplicated shared components.
++    std::unordered_map<RRNodeId, H3dReachabilityView> source_views_, sink_views_; ///< Lifetime-safe immutable endpoint views.
+     bool shared_closure_ = false; ///< Reuse exact large-SCC closures under static allowed masks.
+     bool edge_encoding_ = false;                                       ///< Explicit imported edge encoding, independent of native CHANZ mode.
+     std::unique_ptr<H3dReachabilityIndex> reachability_;                ///< SCC DAG for same-layer non-Z edges.
+--- a/h3d_component_set.h
++++ b/h3d_component_set.h
+@@ -46,6 +46,18 @@
+     /** @brief True if word pairs encode inclusive runs. */
+     bool compressed() const { return compressed_; }
+ 
++    /** @brief Exact membership in plain ids or inclusive run endpoint pairs. */
++    bool contains(int value) const {
++        if (!compressed_) return std::binary_search(words_.begin(), words_.end(), value);
++        size_t left = 0, right = words_.size() / 2;
++        while (left < right) {
++            size_t middle = left + (right - left) / 2;
++            if (words_[2 * middle + 1] < value) left = middle + 1;
++            else right = middle;
++        }
++        return left < words_.size() / 2 && words_[2 * left] <= value;
++    }
++
+     /** @brief Return the exact sorted union with another sorted unique set. */
+     std::vector<int> merge(const std::vector<int>& local) const {
+         std::vector<int> result;
+--- a/h3d_reachability_view.h
++++ b/h3d_reachability_view.h
+@@ -0,0 +1,51 @@
++#pragma once
++
++#include <algorithm>
++#include <memory>
++#include <utility>
++#include <vector>
++
++#include "h3d_component_set.h"
++
++/** @brief Immutable union of endpoint-local components and shared hub closures.
++ *
++ * Owning const references keep a snapshot valid through index reconfiguration
++ * or destruction. Production configures once per graph and destroys endpoint
++ * caches with that graph. Intersection needs no expanded endpoint closure.
++ */
++class H3dReachabilityView {
++  public:
++    /** @brief Adopt sorted unique local components and immutable shared sets. */
++    H3dReachabilityView(std::vector<int> local,
++                        std::vector<std::shared_ptr<const H3dComponentSet>> shared)
++        : local_(std::move(local)), shared_(std::move(shared)) {
++        VTR_ASSERT_SAFE(std::is_sorted(local_.begin(), local_.end()));
++        VTR_ASSERT_SAFE(std::adjacent_find(local_.begin(), local_.end()) == local_.end());
++    }
++
++    /** @brief Exact intersection with component ids, without union expansion. */
++    bool intersects(const std::vector<int>& targets) const {
++        for (int value : targets) {
++            if (std::binary_search(local_.begin(), local_.end(), value)) return true;
++            for (const auto& suffix : shared_)
++                if (suffix->contains(value)) return true;
++        }
++        return false;
++    }
++
++    /** @brief Materialize the sorted unique union for legacy paths and tests. */
++    std::vector<int> materialize() const {
++        std::vector<int> result = local_;
++        for (const auto& suffix : shared_) result = suffix->merge(result);
++        return result;
++    }
++
++    /** @brief Actual local component count; shared sets are not counted again. */
++    size_t local_entries() const { return local_.size(); }
++    /** @brief Count of immutable shared-set references held by this endpoint. */
++    size_t shared_references() const { return shared_.size(); }
++
++  private:
++    std::vector<int> local_; ///< Sorted local traversal including encountered hub roots.
++    std::vector<std::shared_ptr<const H3dComponentSet>> shared_; ///< Shared immutable suffixes, possibly overlapping.
++};

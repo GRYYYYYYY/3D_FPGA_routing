@@ -1,0 +1,99 @@
+--- opening_baseline/h3d_fast_plan.cpp
++++ source_candidate/h3d_fast_plan.cpp
+@@ -182,6 +182,10 @@
+     if (trace_dp_sensitivity_ && (independent_ || refresh_independent_))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "DP sensitivity diagnostic requires shared assignment throughout");
+     const char* target_feedback = std::getenv("VPR_H3D_TARGET_FEEDBACK");
++    const char* retained_source = std::getenv("VPR_H3D_RETAINED_SOURCE_COST");
++    if (retained_source && std::string(retained_source) != "0" && std::string(retained_source) != "1")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_RETAINED_SOURCE_COST must be 0 or 1");
++    retained_source_cost_ = retained_source && std::string(retained_source) == "1";
+     const char* retained_credit = std::getenv("VPR_H3D_RETAINED_OPENING_CREDIT");
+     if (retained_credit) {
+         char* end = nullptr;
+@@ -196,6 +200,13 @@
+             || !target_feedback || std::string(target_feedback) != "1")
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Retained opening credit requires target feedback, edge delay scoring and cached closure views");
+         VTR_LOG("H3D_RETAINED_OPENING credit=%.17g scope=refresh_owned_entry preserve_congestion_premium=1\n", retained_opening_credit_);
++    }
++    if (retained_source_cost_) {
++        if (!edge_encoding_ || !closure_view_ || !delay_cost || mixed_delay_ || timing_guide_weight_ > 0.
++            || retained_opening_credit_ > 0. || !feedback || std::string(feedback) != "1"
++            || !target_feedback || std::string(target_feedback) != "1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Retained source cost requires separate legacy-delay target feedback with cached closure views");
++        VTR_LOG("H3D_RETAINED_SOURCE scope=refresh_expandable_entry physical_delay_modified=0 additional_queries=0\n");
+     }
+     const char* retained_prefix = std::getenv("VPR_H3D_TRACE_RETAINED_PREFIX");
+     if (retained_prefix && std::string(retained_prefix) != "0" && std::string(retained_prefix) != "1")
+@@ -514,7 +525,7 @@
+     const bool mixed = mixed_delay_ && forward;
+     double source_scale = mixed ? calibrate(source, *forward) : 1.;
+     std::unordered_map<int, double> sink_scales;
+-    auto source_cost = [&](size_t c) {
++    auto legacy_source_cost = [&](size_t c) {
+         if (forward) {
+             auto found = forward->find(channels_[c]);
+             if (found != forward->end()) return found->second / delay_plan_->delay_unit();
+@@ -524,6 +535,21 @@
+         double scale = source_geometry_floor_ ? std::max(1., source_scale) : source_scale;
+         double estimate = scale * proxy_(source, c);
+         return delay_plan_ ? delay_plan_->adjust_estimate_units(source, false, estimate) : estimate;
++    };
++    std::unordered_map<RRNodeId, double> retained_source_units;
++    if (retained_source_cost_ && prior_guides && delay_plan_ && delay_plan_->supported()
++        && routing.route_trees[net]) {
++        const double unit = delay_plan_->delay_unit();
++        VTR_ASSERT(std::isfinite(unit) && unit > 0.);
++        for (const auto& node : routing.route_trees[net]->all_nodes()) {
++            if (channel_index_[node.inode] >= 0 && node.re_expand
++                && std::isfinite(node.Tdel) && node.Tdel >= 0.)
++                retained_source_units.emplace(node.inode, double(node.Tdel) / unit);
++        }
++    }
++    auto source_cost = [&](size_t c) {
++        auto found = retained_source_units.find(channels_[c]);
++        return found == retained_source_units.end() ? legacy_source_cost(c) : found->second;
+     };
+     std::set<RRNodeId> owned;
+     if (routing.route_trees[net])
+@@ -566,7 +592,13 @@
+             return found->second / delay_plan_->delay_unit() * (1. + 4. * criticality[pin])
+                    + 4. * criticality[pin] * source_cost(c);
+         }
+-        return proxy_(terminals[pin], c) * (1. + 4. * criticality[pin]) + 4. * criticality[pin] * proxy_(source, c);
++        // The unchanged legacy fallback uses geometry on both sides. In this
++        // separate refresh experiment, substitute only an already expandable
++        // retained source prefix. This is a current-tree observation, not a
++        // final RC extension bound or a change to native physical delays.
++        auto prefix = retained_source_units.find(channels_[c]);
++        const double from = prefix == retained_source_units.end() ? proxy_(source, c) : prefix->second;
++        return proxy_(terminals[pin], c) * (1. + 4. * criticality[pin]) + 4. * criticality[pin] * from;
+     };
+     // Prices depend on this refresh's occupancy and present factor. Cache only
+     // within the call, while reusing the static SCC endpoint reachability view.
+@@ -866,12 +898,13 @@
+                     }
+                 }
+                 const auto& info = routing.rr_node_route_inf[entry];
+-                VTR_LOG("H3D_PREFIX_ENTRY plan=%zu net=%zu entry=%zu owned=%d retained_exits=%zu source_known=%d source_units=%.17g opening_units=%.17g occupancy=%d capacity=%d acc_cost=%.17g pres_fac=%.17g tdel_seconds=%.17g r_upstream=%.17g c_downstream=%.17g re_expand=%d\n",
++                VTR_LOG("H3D_PREFIX_ENTRY plan=%zu net=%zu entry=%zu owned=%d retained_exits=%zu source_known=%d source_units=%.17g opening_units=%.17g occupancy=%d capacity=%d acc_cost=%.17g pres_fac=%.17g tdel_seconds=%.17g r_upstream=%.17g c_downstream=%.17g re_expand=%d retained_source=%d legacy_source_units=%.17g geometry_source_units=%.17g\n",
+                         prefix_trace, size_t(net), size_t(entry), int(node != nullptr), exits.size(),
+                         int(forward && forward->contains(entry)), source_cost(table[c]), openings[c],
+                         info.occ(), graph_.node_capacity(entry), double(info.acc_cost), double(pres_fac),
+                         node ? double(node->Tdel) : missing, node ? double(node->R_upstream) : missing,
+-                        node ? double(node->C_downstream) : missing, node ? int(node->re_expand) : 0);
++                        node ? double(node->C_downstream) : missing, node ? int(node->re_expand) : 0,
++                        int(retained_source_units.contains(entry)), legacy_source_cost(table[c]), proxy_(source, table[c]));
+             }
+             std::unordered_map<int, size_t> proposed;
+             for (const auto& [pin, c] : planned.assignment) proposed.emplace(pin, c);
+--- opening_baseline/h3d_fast_plan.h
++++ source_candidate/h3d_fast_plan.h
+@@ -89,6 +89,7 @@
+     bool trace_dp_sensitivity_ = false; ///< Diagnostic exact fixed-hierarchy exclusion costs, no change to guidance.
+     bool trace_retained_prefix_ = false; ///< Read-only retained edge/RC observations on finite target-refresh tables.
+     double retained_opening_credit_ = 0.; ///< Refresh-only credit for the base opening charge of an already owned entry; congestion premiums remain.
++    bool retained_source_cost_ = false; ///< Separate refresh ablation: use expandable retained-entry partial Tdel for source scoring.
+     size_t retained_trace_plans_ = 0; ///< Diagnostic-only refresh identity, including explicitly uncovered calls.
+     bool dp_tie_pressure_ = false; ///< Zero extra congestion preference only on strict finite shared-DP exclusion ties.
+     bool dp_margin_pressure_ = false; ///< Separate bounded relative surrogate-sensitivity pressure ablation.

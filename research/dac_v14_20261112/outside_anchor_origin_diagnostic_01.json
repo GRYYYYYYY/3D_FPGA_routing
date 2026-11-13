@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "status": "sealed_cached_anchor_origin_classification",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/analyze_outside_anchor_origins.py": "dc9f7d984aa8cbe2ca280b7df230acc11ea8c72b62f99e738c9e07faac841eef",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retained_outside_trace_eltwise_dev_01/runs/eltwise_layer_D/stdout.log": "fd2b406f73b58a6547a068c2bded80751dc6c5bda100331c49441500fb0778f4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retained_outside_trace_eltwise_dev_01/outside_trace_analysis.json": "767938417a6314e41a9185630970beb19a451178e53b49c80f13940d9bb88c78"
+  },
+  "all_witnesses": {
+    "other_origin_net": 1623,
+    "same_net_query_intermediate": 1590,
+    "same_net_prior_actual_seed": 450
+  },
+  "by_exclusion_reason": {
+    "anchor_absent": {
+      "other_origin_net": 1622,
+      "same_net_query_intermediate": 1589,
+      "same_net_prior_actual_seed": 333
+    },
+    "valid": {
+      "same_net_prior_actual_seed": 116,
+      "same_net_query_intermediate": 1,
+      "other_origin_net": 1
+    },
+    "tree_intersection": {
+      "same_net_prior_actual_seed": 1
+    }
+  },
+  "qualification": "Cache is keyed by RR sink/source, not net. An absent anchor need never have belonged to this current net or have been an actual source: intermediate suffix vertices are also cached. Only same_net_prior_actual_seed supports that the anchor was once a real expandable source of this net. No inference that pruning alone caused absence."
+}

@@ -1,0 +1,60 @@
+{
+  "utc": "2026-11-12T08:51:14.414345+00:00",
+  "hypothesis": "H1 candidate-level calibrated partial delay at unchanged K/query budget; F validates default-off equivalence",
+  "circuits": [
+    "spmv",
+    "softmax"
+  ],
+  "arms": [
+    "F",
+    "M"
+  ],
+  "references": [
+    "frozen A0",
+    "frozen R1"
+  ],
+  "environment": {
+    "VPR_H3D_MODE": "static",
+    "VPR_H3D_REACHABILITY": "scc",
+    "VPR_H3D_GRAPH_ENCODING": "edge",
+    "VPR_H3D_STATS": "1",
+    "VPR_H3D_CANDIDATES": "16",
+    "VPR_H3D_MISS_WEIGHT": "2",
+    "VPR_H3D_OPENING_WEIGHT": "16",
+    "VPR_H3D_DELAY_BUDGET": "4096",
+    "VPR_H3D_CANDIDATE_COST": "delay",
+    "VPR_H3D_MIN_CRITICALITY": "0.7"
+  },
+  "source_sha256": {
+    "vpr/src/route/h3d_delay_plan.cpp": "e2f78542e0e3b841bfc53779e8e02ec7e5a658d0e5824098925298eb5f41431e",
+    "vpr/src/route/h3d_flute.h": "a65fcbdcbd99036eb85cab4f69673f0cb981241d7c45d9400d3df6f7884b0e82",
+    "vpr/src/route/h3d_delay_plan.h": "b5b34e3c93eca557f2b84dd3238212d50a1899606a229a7631df74a64cafb60e",
+    "vpr/src/route/h3d_routing.cpp": "585d2ab01700b717736be78d994e2fead11b38c4f92a8c682bd90626723c7786",
+    "vpr/src/route/h3d_controls.h": "56938e3ac93668030ae5314911a9c5158bb43609ee48f5ac6b1d4f4383396ae8",
+    "vpr/src/route/h3d_partition_dp.h": "204404cb477f039f217c3dcc5c3a1cc2ff2be94560f39240671d7b67586da1b6",
+    "vpr/src/route/h3d_controls.cpp": "466f8d32321ea444ec490449d8ed4d479219ca24fc6da5b857508af12e491a8c",
+    "vpr/src/route/h3d_crossing.h": "2e74456c58b3b974735a54356ecf23a0da80439c7c33bd091ed2c3b469e08ff0",
+    "vpr/src/route/h3d_delay_search.h": "bf993193eeed18d0846589d673075fc53bc961686893f7ddc36145d92c5db9eb",
+    "vpr/src/route/h3d_routing.h": "71d3d6c6861c328e8c3a66883ba90b04ec6f31c6f36733c41d9aab8908f27dca",
+    "vpr/src/route/h3d_calibrated_cost.h": "6247fbad5d28a98082decd63adf3fc6ea8587842c9140569e8ea1711fc5b60cf",
+    "vpr/src/route/h3d_fast_plan.cpp": "d8ba3b1f29ec28ec1fd5b44d4f26c77cbc8b4f952ea8b66b651a50a721376cac",
+    "vpr/src/route/h3d_reachability.h": "6b0b54df2cbcb4d2586dbf4cf60df4423dbe46c832ed172bd5cc44eb9a00fd09",
+    "vpr/src/route/h3d_fast_plan.h": "f30281f8e323be2e2eaf1db4d87408e90f8d43a7c2898fd0014c9082e5f26dcd",
+    "vpr/src/route/h3d_flute.cpp": "47268c01f29b7285427baa80b8fb07c9acf9d5a7e45e1511ecbf563edcb8dddc",
+    "vpr/src/route/connection_router.tpp": "c33d9787c0ed87c0c98a0aa56ff54cf406ae39e8017656a9192cffffda6647de",
+    "vpr/src/route/route_net.tpp": "4fba1b912eb515b7051fececab2fb0901e84d008307e1e9d87d8573c4ee29afc",
+    "vpr/src/route/SerialNetlistRouter.tpp": "98ebce328887435561afc1e99a73b20ce307d7e51da4e4b7a687178a1ac024bd"
+  },
+  "binary": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/src/build/vpr/vpr",
+  "binary_sha256": "e4eb4724b9fb8ddc04bce5dc0111a6473fb64f890f69d80b5a823ab489e293f9",
+  "runner_sha256": "7108aa4df9da781ab0e896854f5d7780976012ec28f591d183a2b508393575ba",
+  "timeout": 1800,
+  "memory_bytes": 68719476736,
+  "disk_reserve_bytes": 85899345920,
+  "workers": 1,
+  "host": "fpgaacc--cc6e3aed63e1-kloi3p6yyx",
+  "pid": 3593055,
+  "boot_id": "72faa1f8-35f2-4ad1-be94-e8479b77f2fa",
+  "timing_use": "Development diagnostics only, not formal speedup; paired formal repeats pending",
+  "note": "No reverse-query omission; no dynamic update; no change to physical Tdel or STA"
+}

@@ -1,0 +1,132 @@
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/eligibility_trigger_candidate_01/src/vpr/src/route/h3d_bidirectional_delay.h /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_reuse_candidate_01/src/vpr/src/route/h3d_bidirectional_delay.h
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/eligibility_trigger_candidate_01/src/vpr/src/route/h3d_bidirectional_delay.h	2026-11-12 16:02:37.778622000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_reuse_candidate_01/src/vpr/src/route/h3d_bidirectional_delay.h	2026-11-12 18:03:36.374761000 +0000
+@@ -23,23 +23,34 @@
+         Stop stop;
+         std::optional<double> exact;
+         size_t forward_settled, reverse_settled, peak_labels, peak_heap;
++        std::vector<std::pair<size_t, double>> forward_distances; ///< Optional settled endpoint-side labels, sorted by identity.
++        double forward_lower_bound = 0.; ///< Lower bound for unsettled endpoint-side nodes; valid only without memory stop.
+     };
+ 
+     /** @brief Prove one exact directed distance or return an explicit resource stop. */
+     template<typename Forward, typename Reverse>
+     static Result query(size_t source, size_t target, size_t budget,
+                         size_t label_limit, size_t heap_limit,
+-                        Forward forward, Reverse reverse) {
++                        Forward forward, Reverse reverse, bool capture_forward = false) {
+         if (label_limit < 2 || heap_limit < 2)
+             throw std::invalid_argument("bidirectional storage limits must admit two roots");
+-        if (source == target) return {Stop::EXACT, 0., 0, 0, 0, 0};
++        if (source == target) return {Stop::EXACT, 0., 0, 0, 0, 0, {}, 0.};
+         Side a(source), b(target);
+         double best = std::numeric_limits<double>::infinity();
+         size_t peak_labels = 2, peak_heap = 2;
+         bool memory_hit = false;
+         auto result = [&](Stop stop) {
+-            return Result{stop, stop == Stop::EXACT ? std::optional<double>(best) : std::nullopt,
+-                          a.settled.size(), b.settled.size(), peak_labels, peak_heap};
++            Result answer{stop, stop == Stop::EXACT ? std::optional<double>(best) : std::nullopt,
++                          a.settled.size(), b.settled.size(), peak_labels, peak_heap, {}, 0.};
++            // Every settled label is exact independently of the meeting proof.
++            // A dropped relaxation on memory stop invalidates the remaining
++            // frontier bound, so expose no reusable certificate in that case.
++            if (capture_forward && stop != Stop::MEMORY_LIMIT) {
++                for (size_t node : a.settled) answer.forward_distances.emplace_back(node, a.distance.at(node));
++                std::sort(answer.forward_distances.begin(), answer.forward_distances.end());
++                answer.forward_lower_bound = a.heap.empty() ? std::numeric_limits<double>::infinity() : a.heap.top().first;
++            }
++            return answer;
+         };
+         auto meet = [&](size_t node, double value, const Side& other) {
+             auto opposite = other.distance.find(node);
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/eligibility_trigger_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_reuse_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/eligibility_trigger_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp	2026-11-12 16:24:48.969455000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_reuse_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp	2026-11-12 18:01:39.850934000 +0000
+@@ -9,6 +9,14 @@
+ 
+ H3dDelayPlan::H3dDelayPlan(const RRGraphView& graph, size_t budget, bool edge_encoding)
+     : graph_(graph), budget_(budget), edge_encoding_(edge_encoding) {
++    if (const char* value = std::getenv("VPR_H3D_TARGET_REUSE")) {
++        if (std::string(value) != "0" && std::string(value) != "1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TARGET_REUSE must be 0 or 1");
++        targeted_reuse_ = std::string(value) == "1";
++        const char* targeted = std::getenv("VPR_H3D_TARGET_DELAY");
++        if (targeted_reuse_ && (!targeted || std::string(targeted) != "1" || !edge_encoding_))
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Target reuse requires targeted edge-encoding delay queries");
++    }
+     if (const char* value = std::getenv("VPR_H3D_TARGET_QUOTA")) {
+         char* end = nullptr;
+         unsigned long long quota = std::strtoull(value, &end, 10);
+@@ -219,7 +227,7 @@
+         size_t remaining = budget_ - used;
+         size_t allowance = targeted_quota_ ? std::min(targeted_quota_, remaining) : remaining;
+         auto answer = H3dBidirectionalDelay::query(size_t(endpoint), goal, allowance,
+-                                                   200000, 500000, outgoing, incoming);
++                                                   200000, 500000, outgoing, incoming, targeted_reuse_);
+         ++targeted_queries_;
+         targeted_quota_stops_ += allowance < remaining && answer.stop == H3dBidirectionalDelay::Stop::WORK_LIMIT;
+         size_t charged = answer.forward_settled + answer.reverse_settled;
+@@ -227,11 +235,50 @@
+         VTR_ASSERT(used <= budget_);
+         if (answer.exact) {values[candidate] = *answer.exact; ++targeted_exact_;}
+         else {++targeted_unknown_; targeted_memory_stops_ += answer.stop == H3dBidirectionalDelay::Stop::MEMORY_LIMIT;}
++        if (targeted_reuse_) {
++            Distances incidental;
++            for (auto [raw, distance] : answer.forward_distances) {
++                if (raw == goal) continue;
++                ++reuse_labels_;
++                RRNodeId node(raw);
++                if (!reverse) {
++                    if (edge_source_index_[node] >= 0) incidental.emplace(node, distance);
++                } else {
++                    for (size_t i = reverse_start_[raw]; i < reverse_start_[raw+1]; ++i) {
++                        const auto& p = predecessors_[i];
++                        if (!h3d_crosses_layers(graph_, p.node, node)) continue;
++                        double value = distance + p.delay;
++                        // Another crossing child may be unsettled. Its distance
++                        // is at least the endpoint frontier bound and its switch
++                        // delay is nonnegative. An unproved upper bound is never
++                        // promoted to a measured crossing-resource distance.
++                        if (value > answer.forward_lower_bound) { ++reuse_uncertified_; continue; }
++                        auto found = incidental.find(p.node);
++                        if (found == incidental.end() || value < found->second) incidental[p.node] = value;
++                    }
++                }
++            }
++            // Stable insertion order makes the bounded optional cache reproducible.
++            std::vector<std::pair<RRNodeId, double>> ordered(incidental.begin(), incidental.end());
++            std::sort(ordered.begin(), ordered.end());
++            for (auto [identity, distance] : ordered) {
++                auto found = values.find(identity);
++                if (found != values.end()) {
++                    ++reuse_duplicates_;
++                    if (std::abs(found->second - distance) > 1.e-18)
++                        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Conflicting certified target-reuse distances");
++                } else if (values.size() < 200000) {
++                    values.emplace(identity, distance); ++reuse_inserted_;
++                } else ++reuse_capacity_stops_;
++            }
++        }
+     }
+     return values;
+ }
+ 
+ void H3dDelayPlan::log() const {
++    VTR_LOG("H3D_TARGET_REUSE enabled=%d settled_labels=%zu inserted=%zu duplicates=%zu uncertified_edges=%zu capacity_stops=%zu endpoint_entry_cap=200000\n",
++            targeted_reuse_, reuse_labels_, reuse_inserted_, reuse_duplicates_, reuse_uncertified_, reuse_capacity_stops_);
+     VTR_LOG("H3D_TARGET_DELAY queries=%zu cache_hits=%zu exact=%zu unknown=%zu settled=%zu memory_stops=%zu endpoint_budget=%zu candidate_quota=%zu quota_stops=%zu\n",
+             targeted_queries_, targeted_hits_, targeted_exact_, targeted_unknown_, targeted_settled_, targeted_memory_stops_, budget_, targeted_quota_, targeted_quota_stops_);
+     VTR_LOG("H3D_DELAY queries=%zu settled=%zu truncated=%zu cache_hits=%zu cached_endpoints=%zu\n",
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/eligibility_trigger_candidate_01/src/vpr/src/route/h3d_delay_plan.h /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_reuse_candidate_01/src/vpr/src/route/h3d_delay_plan.h
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/eligibility_trigger_candidate_01/src/vpr/src/route/h3d_delay_plan.h	2026-11-12 16:24:48.966181382 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_reuse_candidate_01/src/vpr/src/route/h3d_delay_plan.h	2026-11-12 18:01:39.847728489 +0000
+@@ -24,6 +24,8 @@
+     size_t budget_;
+     size_t targeted_quota_ = 0; ///< Optional per-candidate work slice; cumulative endpoint budget remains unchanged.
+     size_t targeted_quota_stops_ = 0; ///< Local work slices exhausted before endpoint budget.
++    bool targeted_reuse_ = false; ///< Cache incidental exact endpoint-side crossing distances from targeted queries.
++    size_t reuse_labels_ = 0, reuse_inserted_ = 0, reuse_duplicates_ = 0, reuse_uncertified_ = 0, reuse_capacity_stops_ = 0;
+     bool edge_encoding_ = false;                       ///< Use virtual query terminals for actual crossing-edge sources.
+     std::vector<RRNodeId> edge_sources_;                ///< Query terminal index to real crossing source.
+     vtr::vector<RRNodeId, int> edge_source_index_;        ///< Real source ID to synthetic query terminal index.

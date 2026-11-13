@@ -1,0 +1,282 @@
+{
+  "circuits": [
+    "clstm_like.small",
+    "conv_layer"
+  ],
+  "seed": 21,
+  "family": "hybrid_o",
+  "flow": "p0",
+  "width": 100,
+  "status_counts": {
+    "A0": {
+      "legal": 1,
+      "missing": 1
+    },
+    "R1": {
+      "legal": 1,
+      "missing": 1
+    },
+    "F": {
+      "failed": 1,
+      "missing": 1
+    },
+    "V": {
+      "missing": 2
+    },
+    "Tf": {
+      "missing": 2
+    },
+    "A1": {
+      "missing": 2
+    }
+  },
+  "paired": {
+    "R1->F": {
+      "comparison_role": "method_or_reproduction",
+      "pairs": [],
+      "both_legal": 0,
+      "declared_circuits": 2,
+      "circuit_geomean_improvement_pct": null,
+      "worst_improvement_pct": null
+    },
+    "F->V": {
+      "comparison_role": "method_or_reproduction",
+      "pairs": [],
+      "both_legal": 0,
+      "declared_circuits": 2,
+      "circuit_geomean_improvement_pct": null,
+      "worst_improvement_pct": null
+    },
+    "A0->V": {
+      "comparison_role": "method_or_reproduction",
+      "pairs": [],
+      "both_legal": 0,
+      "declared_circuits": 2,
+      "circuit_geomean_improvement_pct": null,
+      "worst_improvement_pct": null
+    },
+    "F->Tf": {
+      "comparison_role": "method_or_reproduction",
+      "pairs": [],
+      "both_legal": 0,
+      "declared_circuits": 2,
+      "circuit_geomean_improvement_pct": null,
+      "worst_improvement_pct": null
+    },
+    "A0->Tf": {
+      "comparison_role": "method_or_reproduction",
+      "pairs": [],
+      "both_legal": 0,
+      "declared_circuits": 2,
+      "circuit_geomean_improvement_pct": null,
+      "worst_improvement_pct": null
+    },
+    "F->A1": {
+      "comparison_role": "method_or_reproduction",
+      "pairs": [],
+      "both_legal": 0,
+      "declared_circuits": 2,
+      "circuit_geomean_improvement_pct": null,
+      "worst_improvement_pct": null
+    },
+    "A0->A1": {
+      "comparison_role": "method_or_reproduction",
+      "pairs": [],
+      "both_legal": 0,
+      "declared_circuits": 2,
+      "circuit_geomean_improvement_pct": null,
+      "worst_improvement_pct": null
+    },
+    "V->Tf": {
+      "comparison_role": "method_or_reproduction",
+      "pairs": [],
+      "both_legal": 0,
+      "declared_circuits": 2,
+      "circuit_geomean_improvement_pct": null,
+      "worst_improvement_pct": null
+    },
+    "A1->Tf": {
+      "comparison_role": "method_or_reproduction",
+      "pairs": [],
+      "both_legal": 0,
+      "declared_circuits": 2,
+      "circuit_geomean_improvement_pct": null,
+      "worst_improvement_pct": null
+    }
+  },
+  "timing_caveat": "Development times only; no ratio to historical timing; formal rotated repeats pending.",
+  "attempt_review": {
+    "status": "invalid_configuration_before_native_routing",
+    "failure_kind": "diagnostic_configuration",
+    "reviewed_at": 1794528905.2239068,
+    "native_process_calls": 1,
+    "routing_iterations": 0,
+    "reason": "F disabled feedback but inherited TRACE_UPDATE_PINS=1, rejected by settings validation beforepathsearch. This is not algorithm QoRfailure. All logs/manifests preserved; nocompletedroute reused oroverwritten.",
+    "recovery": "New immutable run_target_feedback_transfer_02.py/target_feedback_transfer_dev_02 setsupdate-pin trace1 only forV/Tf, 0forF/A1. Same frozenqualitybinary andselectedinputs."
+  },
+  "table_fingerprint_diagnostics": {},
+  "observations": [
+    {
+      "circuit": "clstm_like.small",
+      "arm": "A0",
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_clstm_like.small_s21_hybrid_o_n60_w100_p0_a0",
+      "manifest_sha256": "93ecaf4f593df998e9f2c5a10b7d3fcf2186a1cec78fcaf1375023dbc9ebe07a",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 6.96198,
+        "wirelength": 227244,
+        "router_seconds": 8.35,
+        "iterations": 32,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 227244,
+        "sb_pairs_used": 9,
+        "sb_pair_net_occupancy": 9,
+        "cb_crossing_output_sources_used": 915,
+        "cb_crossing_output_source_net_occupancy": 915,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 559,
+          "OPIN->CHANX": 383,
+          "CHANX->CHANX": 9
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "planning_seconds": null
+    },
+    {
+      "circuit": "clstm_like.small",
+      "arm": "R1",
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_clstm_like.small_s21_hybrid_o_n60_w100_p0_delay_critical_c6",
+      "manifest_sha256": "a3ec4ad42ea459f9e28ae447d48655ed1756c3951b531b3d6a8537b0a51e135f",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 6.85706,
+        "wirelength": 227286,
+        "router_seconds": 32.56,
+        "iterations": 35,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 227286,
+        "sb_pairs_used": 5,
+        "sb_pair_net_occupancy": 5,
+        "cb_crossing_output_sources_used": 916,
+        "cb_crossing_output_source_net_occupancy": 916,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 560,
+          "OPIN->CHANX": 384,
+          "CHANX->CHANX": 5
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "planning_seconds": null
+    },
+    {
+      "circuit": "clstm_like.small",
+      "arm": "F",
+      "status": "failed",
+      "metrics": {
+        "router_seconds": 0.63,
+        "native_full_check_passed": false,
+        "routing_success_reported": false
+      },
+      "physical_metrics": null,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_dev_01/runs/clstm_like.small_F",
+      "process_seconds": 34.0267866961658,
+      "planning_seconds": null
+    },
+    {
+      "circuit": "clstm_like.small",
+      "arm": "V",
+      "status": "missing",
+      "metrics": {},
+      "physical_metrics": null,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_dev_01/runs/clstm_like.small_V",
+      "process_seconds": null,
+      "planning_seconds": null
+    },
+    {
+      "circuit": "clstm_like.small",
+      "arm": "Tf",
+      "status": "missing",
+      "metrics": {},
+      "physical_metrics": null,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_dev_01/runs/clstm_like.small_Tf",
+      "process_seconds": null,
+      "planning_seconds": null
+    },
+    {
+      "circuit": "clstm_like.small",
+      "arm": "A1",
+      "status": "missing",
+      "metrics": {},
+      "physical_metrics": null,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_dev_01/runs/clstm_like.small_A1",
+      "process_seconds": null,
+      "planning_seconds": null
+    },
+    {
+      "circuit": "conv_layer",
+      "arm": "A0",
+      "status": "missing",
+      "metrics": {},
+      "physical_metrics": null,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_dev_01/runs/conv_layer_A0",
+      "process_seconds": null,
+      "planning_seconds": null
+    },
+    {
+      "circuit": "conv_layer",
+      "arm": "R1",
+      "status": "missing",
+      "metrics": {},
+      "physical_metrics": null,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_dev_01/runs/conv_layer_R1",
+      "process_seconds": null,
+      "planning_seconds": null
+    },
+    {
+      "circuit": "conv_layer",
+      "arm": "F",
+      "status": "missing",
+      "metrics": {},
+      "physical_metrics": null,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_dev_01/runs/conv_layer_F",
+      "process_seconds": null,
+      "planning_seconds": null
+    },
+    {
+      "circuit": "conv_layer",
+      "arm": "V",
+      "status": "missing",
+      "metrics": {},
+      "physical_metrics": null,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_dev_01/runs/conv_layer_V",
+      "process_seconds": null,
+      "planning_seconds": null
+    },
+    {
+      "circuit": "conv_layer",
+      "arm": "Tf",
+      "status": "missing",
+      "metrics": {},
+      "physical_metrics": null,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_dev_01/runs/conv_layer_Tf",
+      "process_seconds": null,
+      "planning_seconds": null
+    },
+    {
+      "circuit": "conv_layer",
+      "arm": "A1",
+      "status": "missing",
+      "metrics": {},
+      "physical_metrics": null,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_dev_01/runs/conv_layer_A1",
+      "process_seconds": null,
+      "planning_seconds": null
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "registered_at": 1794552529.046844,
+  "question": "Does continued post-legal refresh rather than continued guide use obstruct native count2 timing repair?",
+  "evidence": "post_legal_release_eltwise_dev_01/release_analysis.json",
+  "evidence_sha256": "b643e65a766e26581552ead000ad1fbe61ba6f83d890d9dcd2899eefa1424156",
+  "hypothesis": "Guide release slightly improves Tf CPD but stays3.08785% worse than native count2. Independently freeze post-legal guide replanning while retaining guide lookup/pressure; no release+freeze combination.",
+  "implementation": "Default-off independent flag; planner-local epoch bit set after first native legal convergence, subsequent prepare-net planning returns without checking/updating candidates. Capture/observe/rollback and guide lookup remain active; native physical delays/STA/reroute selection/costs unchanged. Do not allow both release/freeze flags simultaneously in this diagnostic stage.",
+  "case": "eltwise_layer seed11 Hybrid-O P0 W100",
+  "arms": {
+    "C": "new freeze flag0 and release0: exact native count2 Tf route/metrics/guides/original records",
+    "F": "new freeze flag1 and release0: stop future guide planning only after first legal convergence"
+  },
+  "parameters": "Both max_convergence_count2; all Tf parameters unchanged, no retained-source/opening credit or new critical-scope trigger.",
+  "gates": "C exact count2 Tf. F first-legal native and planning-record prefix equals C; exactly one freeze event at first legal iteration and none of release events; subsequent plan/query/refresh counters unchanged, skipped native prepare-net calls positive; graph/guide audits and input sealing.",
+  "metrics": "All statuses, legal-only CPD, physical SB/CB occupancy and WL, actual legal cycles/iterations, planning/full-process times, final restored-guide provenance. Final guide overlap is descriptive metadata after release, not causal adoption.",
+  "next": "Only transfer a result with defensible QoR/cost tradeoff against strong count2 native controls. Preserve negative outcomes and pursue other supported mechanisms.",
+  "limits": {
+    "timeout_seconds": 1800,
+    "memory_gib": 64,
+    "disk_reserve_gib": 80
+  },
+  "research_complete": false
+}

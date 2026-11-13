@@ -1,0 +1,29 @@
+{
+  "status": "released_to_existing_queue_handle55155",
+  "question": "Does uniform Tf transfer to the existing hard failure and n200 scale under original scope?",
+  "circuits": [
+    "attention_layer",
+    "gemm_layer"
+  ],
+  "arms": [
+    "V",
+    "Tf"
+  ],
+  "candidate": "target_feedback_candidate_01",
+  "prerequisite": "Review sealed four-circuit aggregate before deciding submission; no fixed completion cap",
+  "limits": {
+    "timeout_seconds": 1800,
+    "memory_GiB": 64,
+    "disk_reserve_GiB": 80,
+    "max_live_VPR": 3
+  },
+  "note": "Attention failed reference is explicitly failed, no legalCPD andno absent guideaudit assumed; exact failed control reproduction gate.",
+  "review": {
+    "released": true,
+    "utc_epoch": 1794522618.3682215,
+    "review": "Allfourcircuits legal, unchangedper-armparameters andsamebinary; V/Tf1improve3tie0regress, geo.6517596%; R1/Tfgeo2.824838%; A0spmvexisting.160490%regressionretained. Supports scale/failurevalidation, notstablecandidatepromotion. Preserve SB/CB/iterations/costtradeoffs; originalscopeallcases.",
+    "aggregate_sha256": "2f44b69eb34edf62e49a38923b4e32669b718d74ef7dc6cbd0565d92882ed5bd",
+    "candidate": "target_feedback_candidate_01",
+    "runner_sha256": "737d7a2cac8bc64271fd017ae9dfb6e016654dfdce1a13270da2f89b8971b121"
+  }
+}

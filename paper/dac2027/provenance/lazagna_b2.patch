@@ -1,0 +1,27 @@
+diff --git a/libs/EXTERNAL/libtatum/CMakeLists.txt b/libs/EXTERNAL/libtatum/CMakeLists.txt
+index f51be5284..a97547212 100644
+--- a/libs/EXTERNAL/libtatum/CMakeLists.txt
++++ b/libs/EXTERNAL/libtatum/CMakeLists.txt
+@@ -41,4 +41,4 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+     add_subdirectory(doc)
+ endif()
+ target_compile_definitions(libtatum PRIVATE NO_SERVER)
+-target_link_libraries(libtatum PRIVATE vpr_interface)
+\ No newline at end of file
++target_link_libraries(libtatum vpr_interface)
+\ No newline at end of file
+diff --git a/libs/EXTERNAL/libtatum/libtatum/tatum/TimingReporter.hpp b/libs/EXTERNAL/libtatum/libtatum/tatum/TimingReporter.hpp
+index d705cd3ce..51e897e21 100644
+--- a/libs/EXTERNAL/libtatum/libtatum/tatum/TimingReporter.hpp
++++ b/libs/EXTERNAL/libtatum/libtatum/tatum/TimingReporter.hpp
+@@ -9,8 +9,8 @@
+ #include "tatum/report/TimingPath.hpp"
+ #include "tatum/report/TimingPathCollector.hpp"
+ #include "tatum/report/TimingReportTagRetriever.hpp"
+-#include "/home/OpenFPGA_LaZagna_merge/OpenFPGA_testing/OpenFPGA/vtr-verilog-to-routing/vpr/src/base/vpr_context.h"
+-#include "/home/OpenFPGA_LaZagna_merge/OpenFPGA_testing/OpenFPGA/vtr-verilog-to-routing/vpr/src/pack/prepack.h"
++#include "vpr_context.h"
++#include "prepack.h"
+ 
+ namespace tatum { namespace detail {
+ 

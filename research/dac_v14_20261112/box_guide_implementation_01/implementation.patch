@@ -1,0 +1,99 @@
+--- a/h3d_routing.cpp
++++ b/h3d_routing.cpp
+@@ -51,6 +51,7 @@
+ 
+ /** @brief Immutable per-process settings, recorded at the first routing iteration. */
+ struct t_settings {
++    bool box_guide_admission = false;
+     bool trace_search_domain = false;
+     bool trace_guide_influence = false; ///< Read-only actual crossing-cost trace.
+     bool bounded_after_legal = false;
+@@ -231,6 +232,13 @@
+                 VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_TRACE_GUIDE_INFLUENCE must be 0 or 1");
+             result.trace_guide_influence=std::string(text)=="1";
+         }
++        if(const char* text=std::getenv("VPR_H3D_BOX_GUIDE_ADMISSION")) {
++            if(std::string(text)!="0" && std::string(text)!="1")
++                VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_BOX_GUIDE_ADMISSION must be 0 or 1");
++            result.box_guide_admission=std::string(text)=="1";
++        }
++        if(result.box_guide_admission && !result.edge_encoding)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Box guide admission requires edge encoding");
+         if(const char* text=std::getenv("VPR_H3D_TRACE_SEARCH_DOMAIN")) {
+             if(std::string(text)!="0" && std::string(text)!="1")
+                 VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_TRACE_SEARCH_DOMAIN must be 0 or 1");
+@@ -949,6 +957,7 @@
+     double minimum_total=std::numeric_limits<double>::infinity();
+ };
+ struct InfluenceState {
++    size_t box_suppressed=0,box_rows=0;
+     size_t domain_searches=0,domain_rows=0,domain_omitted=0,domain_seed_rows=0,domain_seed_omitted=0,domain_local_seed_rows=0;
+     std::vector<DomainLayer> domain_layers;
+ 
+@@ -980,6 +989,8 @@
+ void log_influence() {
+     if(!influence)return;
+     const auto& s=*influence;
++    if(settings().box_guide_admission)
++        VTR_LOG("H3D_BOX_GUIDE_SUMMARY suppressed=%zu rows=%zu omitted=%zu\n",s.box_suppressed,s.box_rows,s.box_suppressed-s.box_rows);
+     if(settings().trace_search_domain)
+         VTR_LOG("H3D_SEARCH_DOMAIN_SUMMARY searches=%zu rows=%zu omitted=%zu seed_rows=%zu seed_omitted=%zu row_cap=20000 seed_cap=6000\n",
+                 s.domain_searches,s.domain_rows,s.domain_omitted,s.domain_seed_rows,s.domain_seed_omitted);
+@@ -998,6 +1009,26 @@
+ } // namespace
+ 
+ bool h3d_trace_guide_influence() {return settings().trace_guide_influence;}
++bool h3d_box_guide_admission() {return settings().box_guide_admission;}
++bool h3d_box_guide_available(const t_h3d_connection_guide& guide,const t_bb& bb) {
++    const auto& graph=g_vpr_ctx.device().rr_graph;
++    for(auto node:guide.preferred) {
++        if(!inside_bb(graph,node,bb))continue;
++        for(auto edge:graph.edges(node)) {
++            const auto head=graph.edge_sink_node(node,edge);
++            if(h3d_crosses_layers(graph,node,head) && inside_bb(graph,head,bb))return true;
++        }
++    }
++    return false;
++}
++void h3d_box_guide_suppressed() {
++    if(!influence)return;
++    auto& s=*influence;++s.box_suppressed;
++    if(s.box_rows>=2000)return;
++    ++s.box_rows;
++    VTR_LOG("H3D_BOX_GUIDE_SUPPRESSED iter=%d attempt=%zu search=%zu net=%zu pin=%d\n",s.iteration,s.attempts,s.domain_searches,s.current_net,s.current_pin);
++}
++
+ bool h3d_trace_search_domain() {return settings().trace_search_domain;}
+ void h3d_domain_reset() {
+     VTR_ASSERT(influence);auto& s=*influence;
+--- a/h3d_routing.h
++++ b/h3d_routing.h
+@@ -32,6 +32,9 @@
+ bool h3d_trace_guide_influence();
+ struct t_bb;
+ bool h3d_trace_search_domain();
++bool h3d_box_guide_admission();
++bool h3d_box_guide_available(const t_h3d_connection_guide& guide,const t_bb& bb);
++void h3d_box_guide_suppressed();
+ void h3d_domain_reset();
+ void h3d_domain_seed(RRNodeId node,float delay,float backward,float total,bool rcv);
+ void h3d_domain_search(RRNodeId sink,float criticality,const t_h3d_connection_guide* guide,const t_bb& bb,bool rcv);
+--- a/connection_router.tpp
++++ b/connection_router.tpp
+@@ -213,7 +213,15 @@
+     // Start measuring path search time
+     std::chrono::steady_clock::time_point begin_time = std::chrono::steady_clock::now();
+ 
+-    timing_driven_find_single_shortest_path_from_heap(sink_node, cost_params, bounding_box, target_bb);
++    // Search-local fallback: no guide metadata or native physical cost is changed.
++    auto search_cost_params=cost_params;
++    if(h3d_box_guide_admission() && cost_params.h3d_guide
++       && cost_params.h3d_guide->edge_encoding && !rcv_path_manager.is_enabled()
++       && !h3d_box_guide_available(*cost_params.h3d_guide,bounding_box)) {
++        search_cost_params.h3d_guide=nullptr;
++        h3d_box_guide_suppressed();
++    }
++    timing_driven_find_single_shortest_path_from_heap(sink_node, search_cost_params, bounding_box, target_bb);
+ 
+     // Stop measuring path search time
+     std::chrono::steady_clock::time_point end_time = std::chrono::steady_clock::now();

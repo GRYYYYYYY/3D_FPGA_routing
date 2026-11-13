@@ -1,0 +1,21 @@
+{
+  "status": "registered_before_implementation",
+  "question": "Are preferred crossing resources inside the actual search bounding box, and are partial-tree nodes on the sink layer actually pushed as sources? Read-only diagnostics distinguish full pruned-tree presence from queued search seeds.",
+  "input": "eltwise_layer HybridO P0 W100 seed11 exact frozen packed/place/RRG",
+  "arms": [
+    "C:trace-domain0 exact frozen cap C control",
+    "T:trace-domain1 exact C route/guide/cost/query/heap records"
+  ],
+  "max_convergences": 2,
+  "candidate": "unchanged Tf baseline; bounded flag absent, path-price/physical-delay scoring0; influence trace1",
+  "native_per_process_timeout_seconds": 1800,
+  "native_memory_bytes": 68719476736,
+  "disk_reserve_bytes": 85899345920,
+  "guards": "Control must reproduce frozen C, trace-on must reproduce trace-off; no new algorithm efficacy claim. No source reverse skip.",
+  "sampling": {
+    "domain_rows": 20000,
+    "seed_rows": 6000,
+    "seed_rows_per_focus_search": 100
+  },
+  "qualification": "Native successful seed pushes, including HF subset and full-tree retry separately. BB admission is native drivepoint test, not connectivity or complete route feasibility. RCV BB bypass explicitly recorded. Fixed focus IDs inherited from diagnostic only and do not affect routing decisions."
+}

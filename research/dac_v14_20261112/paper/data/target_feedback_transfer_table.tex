@@ -1,0 +1,23 @@
+\begin{table*}[t]
+\centering\scriptsize
+\caption{Fixed-parameter seed-21 transfer. All arms are legal on clstm and fail on conv; failed CPD and legal physical occupancy are omitted. F reproduces old R1; V/Tf share its original scope, whereas A1 uses initial-global native scope. Plan/process columns are single-run development seconds, not formal speedups. Historical timing is omitted.}
+\label{tab:target-transfer}
+\begin{tabular}{llrrrrrr}
+\hline
+Circuit & Arm/state & CPD (ns) & Iter. & SB & CB & Plan (s) & Process (s) \\
+\hline
+clstm\_like.small & A0/legal & 6.96198 & 32 & 9 & 915 & -- & -- \\
+clstm\_like.small & R1/legal & 6.85706 & 35 & 5 & 916 & -- & -- \\
+clstm\_like.small & F/legal & 6.85706 & 35 & 5 & 916 & 2.544 & 46.300 \\
+clstm\_like.small & V/legal & 6.85706 & 35 & 5 & 916 & 2.789 & 47.704 \\
+clstm\_like.small & Tf/legal & 6.85706 & 35 & 5 & 916 & 2.642 & 47.852 \\
+clstm\_like.small & A1/legal & 6.85706 & 20 & 68 & 976 & 0.000 & 41.244 \\
+conv\_layer & A0/failed & -- & 200 & -- & -- & -- & -- \\
+conv\_layer & R1/failed & -- & 200 & -- & -- & -- & -- \\
+conv\_layer & F/failed & -- & 200 & -- & -- & 1.865 & 108.664 \\
+conv\_layer & V/failed & -- & 200 & -- & -- & 3.331 & 122.995 \\
+conv\_layer & Tf/failed & -- & 200 & -- & -- & 2.459 & 116.030 \\
+conv\_layer & A1/failed & -- & 200 & -- & -- & 0.000 & 109.417 \\
+\hline
+\end{tabular}
+\end{table*}

@@ -1,0 +1,140 @@
+--- relative_pressure_candidate_01/h3d_fast_plan.cpp
++++ src/h3d_fast_plan.cpp
+@@ -182,6 +182,14 @@
+     if (trace_dp_sensitivity_ && (independent_ || refresh_independent_))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "DP sensitivity diagnostic requires shared assignment throughout");
+     const char* target_feedback = std::getenv("VPR_H3D_TARGET_FEEDBACK");
++    const char* retained_prefix = std::getenv("VPR_H3D_TRACE_RETAINED_PREFIX");
++    if (retained_prefix && std::string(retained_prefix) != "0" && std::string(retained_prefix) != "1")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_RETAINED_PREFIX must be 0 or 1");
++    trace_retained_prefix_ = retained_prefix && std::string(retained_prefix) == "1";
++    if (trace_retained_prefix_ && (!edge_encoding_ || !closure_view_ || !delay_cost
++                                  || !feedback || std::string(feedback) != "1"
++                                  || !target_feedback || std::string(target_feedback) != "1"))
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Retained-prefix tracing requires target feedback, edge delay scoring and cached closure views");
+     if (refresh_independent_ && (independent_ || !feedback || std::string(feedback) != "1"
+                                 || !target_feedback || std::string(target_feedback) != "1"))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Independent refresh ablation requires initial shared planning and target-restricted feedback");
+@@ -428,6 +436,7 @@
+     using Phase = H3dPlanProfile::Phase;
+     const auto& routing = g_vpr_ctx.routing();
+     const auto& terminals = routing.net_rr_terminals[net];
++    const size_t prefix_trace = trace_retained_prefix_ && prior_guides ? ++retained_trace_plans_ : 0;
+     RRNodeId source = terminals[0];
+     t_h3d_fast_plan result;
+     result.guides.resize(terminals.size());
+@@ -456,6 +465,8 @@
+             center_y += graph_.node_ylow(terminals[pin]);
+         }
+     if (pins.empty()) {
++        if (prefix_trace)
++            VTR_LOG("H3D_PREFIX_SKIP plan=%zu net=%zu reason=no_eligible_pins\n", prefix_trace, size_t(net));
+         if (prior_guides) {
+             // Deactivation is a criticality eligibility change, not an
+             // objective-improvement claim: no active eligible connection needs a guide.
+@@ -745,6 +756,9 @@
+         ++high_fanout_fallbacks_;
+         use_tree = false;
+     }
++    if (prefix_trace && (!use_tree || pool.empty()))
++        VTR_LOG("H3D_PREFIX_SKIP plan=%zu net=%zu reason=no_finite_tree_table pins=%zu pool=%zu tree=%d\n",
++                prefix_trace, size_t(net), pins.size(), pool.size(), int(use_tree));
+     if (use_tree && !pool.empty()) {
+         std::vector<size_t> table(pool.begin(), pool.end());
+         std::vector<double> openings;
+@@ -799,6 +813,74 @@
+             refresh_independent_calls_ += independent;
+             refresh_shared_calls_ += !independent;
+         }
++        if (prefix_trace) {
++            // Decision-neutral: tree references live only during this plan.
++            // No distance/closure construction or mutable routing state access.
++            const double missing = std::numeric_limits<double>::quiet_NaN();
++            const double unit = delay_plan_ && delay_plan_->supported() ? delay_plan_->delay_unit() : 0.;
++            std::unordered_map<RRNodeId, const RouteTreeNode*> retained_entries;
++            if (routing.route_trees[net]) {
++                for (const auto& node : routing.route_trees[net]->all_nodes())
++                    if (channel_index_[node.inode] >= 0) retained_entries.emplace(node.inode, &node);
++            }
++            std::unordered_map<RRNodeId, std::vector<const RouteTreeNode*>> retained_exits;
++            VTR_LOG("H3D_PREFIX_TABLE plan=%zu net=%zu leaves=%zu candidates=%zu unit_seconds=%.17g\n",
++                    prefix_trace, size_t(net), leaves.size(), table.size(), unit);
++            for (size_t c = 0; c < table.size(); ++c) {
++                RRNodeId entry = channels_[table[c]];
++                auto found = retained_entries.find(entry);
++                const RouteTreeNode* node = found == retained_entries.end() ? nullptr : found->second;
++                VTR_ASSERT(owned.contains(entry) == (node != nullptr));
++                auto& exits = retained_exits[entry];
++                if (node) {
++                    for (const auto& child : node->child_nodes()) {
++                        if (!h3d_crosses_layers(graph_, entry, child.inode)) continue;
++                        exits.push_back(&child);
++                        VTR_LOG("H3D_PREFIX_EXIT plan=%zu net=%zu entry=%zu exit=%zu component=%d parent_switch=%zu tdel_seconds=%.17g r_upstream=%.17g c_downstream=%.17g re_expand=%d\n",
++                                prefix_trace, size_t(net), size_t(entry), size_t(child.inode),
++                                reachability_->component(size_t(child.inode)), size_t(child.parent_switch),
++                                double(child.Tdel), double(child.R_upstream), double(child.C_downstream), int(child.re_expand));
++                    }
++                }
++                const auto& info = routing.rr_node_route_inf[entry];
++                VTR_LOG("H3D_PREFIX_ENTRY plan=%zu net=%zu entry=%zu owned=%d retained_exits=%zu source_known=%d source_units=%.17g opening_units=%.17g occupancy=%d capacity=%d acc_cost=%.17g pres_fac=%.17g tdel_seconds=%.17g r_upstream=%.17g c_downstream=%.17g re_expand=%d\n",
++                        prefix_trace, size_t(net), size_t(entry), int(node != nullptr), exits.size(),
++                        int(forward && forward->contains(entry)), source_cost(table[c]), openings[c],
++                        info.occ(), graph_.node_capacity(entry), double(info.acc_cost), double(pres_fac),
++                        node ? double(node->Tdel) : missing, node ? double(node->R_upstream) : missing,
++                        node ? double(node->C_downstream) : missing, node ? int(node->re_expand) : 0);
++            }
++            std::unordered_map<int, size_t> proposed;
++            for (const auto& [pin, c] : planned.assignment) proposed.emplace(pin, c);
++            for (const auto& leaf : leaves) {
++                auto sink_view = sink_views_.find(terminals[leaf.pin]);
++                for (const auto& candidate : leaf.candidates) {
++                    RRNodeId entry = channels_[table[candidate.channel]];
++                    size_t reachable_exits = 0, expandable_exits = 0;
++                    double best_exit_tdel = std::numeric_limits<double>::infinity();
++                    for (const auto* exit : retained_exits.at(entry)) {
++                        const int component = reachability_->component(size_t(exit->inode));
++                        const bool reaches = sink_view != sink_views_.end() && component >= 0
++                                             && sink_view->second.intersects({component});
++                        if (reaches) {
++                            ++reachable_exits;
++                            expandable_exits += exit->re_expand;
++                            best_exit_tdel = std::min(best_exit_tdel, double(exit->Tdel));
++                        }
++                        VTR_LOG("H3D_PREFIX_REACH plan=%zu net=%zu pin=%d entry=%zu exit=%zu sink_view=%d reaches=%d\n",
++                                prefix_trace, size_t(net), leaf.pin, size_t(entry), size_t(exit->inode),
++                                int(sink_view != sink_views_.end()), int(reaches));
++                    }
++                    const auto& prior = prior_guides->at(leaf.pin).preferred;
++                    const bool was_preferred = std::find(prior.begin(), prior.end(), entry) != prior.end();
++                    auto choice = proposed.find(leaf.pin);
++                    VTR_LOG("H3D_PREFIX_PAIR plan=%zu net=%zu pin=%d entry=%zu sink_view=%d reachable_exits=%zu expandable_exits=%zu best_exit_tdel_seconds=%.17g branch_units=%.17g prior=%d proposed=%d\n",
++                            prefix_trace, size_t(net), leaf.pin, size_t(entry), int(sink_view != sink_views_.end()),
++                            reachable_exits, expandable_exits, reachable_exits ? best_exit_tdel : missing,
++                            candidate.branch_cost, int(was_preferred), int(choice != proposed.end() && choice->second == candidate.channel));
++                }
++            }
++        }
+         profile.enter(Phase::PRIOR);
+         if (prior_guides) {
+             std::vector<std::pair<int, size_t>> prior_assignment;
+@@ -838,6 +920,9 @@
+             VTR_LOG("H3D_REFRESH_SOLVER net=%zu independent=%d leaves=%zu candidates=%zu old_cost=%.17g new_cost=%.17g groups=%zu accepted=%d\n",
+                     size_t(net), independent, leaves.size(), table.size(), result.previous_cost, result.proposed_cost,
+                     planned.groups, result.refresh_accepted);
++            if (prefix_trace)
++                VTR_LOG("H3D_PREFIX_DECISION plan=%zu net=%zu accepted=%d old_cost=%.17g new_cost=%.17g\n",
++                        prefix_trace, size_t(net), int(result.refresh_accepted), result.previous_cost, result.proposed_cost);
+             if (!result.refresh_accepted) {
+                 result.guides = *prior_guides;
+                 return result;
+--- relative_pressure_candidate_01/h3d_fast_plan.h
++++ src/h3d_fast_plan.h
+@@ -87,6 +87,8 @@
+     bool trace_estimates_ = false; ///< Decision-neutral candidate component records for independent distance validation.
+     bool trace_guide_margin_ = false; ///< Diagnostic leaf-local surrogate margins; not a shared-DP or physical-delay confidence bound.
+     bool trace_dp_sensitivity_ = false; ///< Diagnostic exact fixed-hierarchy exclusion costs, no change to guidance.
++    bool trace_retained_prefix_ = false; ///< Read-only retained edge/RC observations on finite target-refresh tables.
++    size_t retained_trace_plans_ = 0; ///< Diagnostic-only refresh identity, including explicitly uncovered calls.
+     bool dp_tie_pressure_ = false; ///< Zero extra congestion preference only on strict finite shared-DP exclusion ties.
+     bool dp_margin_pressure_ = false; ///< Separate bounded relative surrogate-sensitivity pressure ablation.
+     size_t estimate_trace_rows_ = 0; ///< Number of emitted candidate records across diagnostic phases.

@@ -1,0 +1,32 @@
+{
+  "status": "registered_before_implementation",
+  "time": 1794567361.4125874,
+  "hypothesis": "Fixed critical seconds substitution can increase guide pressure early when original(1-c)*extra is small, while reducing large late premiums. Cap-only substitution must preserve the original operation exactly when its analytical extra is already below the proposed bound; this tests removal of excess pressure without that amplification.",
+  "evidence": [
+    "bounded_critical_eltwise_dev_01/bounded_critical_analysis.json",
+    "bounded_critical_count1_eltwise_dev_01/completion.json",
+    "bounded_after_legal_eltwise_dev_01/completion.json"
+  ],
+  "base_stage": "bounded_after_legal_stage_01",
+  "arms": {
+    "C": "original method, boundedflagabsent",
+    "Z": "critical noextra beta0 as suppression control",
+    "K": "beta.25,caponly1,allstage: substitute only if original analytical extra exceeds c*float(beta*r*unit)"
+  },
+  "common": "Same immutable binary, eltwise HybridO P0 W100 seed11 count2, physical/price0, gateflags0, afterlegal0, guideinfluence1; same source/RRG/place. Explicit count1 K followup required before any promotion.",
+  "cap": "At actualc>=.9f configurable missed edge, setup only: old_extra=(1-doublec)*(doubleold_congestion-doublenative_congestion). bound=double(float(c*bounded_seconds)). If old_extra<=bound return original congestion and original timing unchanged. Else preserve native congestion and add bounded_seconds to timing search objective. Never alter physical Tdel/STA/native pres/history; no late flag combo.",
+  "reliability": "Same already-audited exact legacy side-coverage r; caponly mode is stored in full guide state and included in retained-target assertion/final metadata, not a new predictor.",
+  "gates": [
+    "C exact old count2C original costs/route/guide; explicit Z control independently measured",
+    "Helper properties: analytical extra never increases, original raw operation bit-exact below bound and outside scope, beta0 matches critical suppression, RCV untouched and float boundary covered",
+    "Actual raw operator samples/fullRRG/coverage oracle and final state attributes checked, cumulative applications/omissions explicit; all native/independent/guide/inputseals",
+    "Compare K with C,Z and existing fixedT/postlegalP as matched-context external references. Count2 final benefit does not excuse firstlegal degradation; count1 fullSTA and prefix replay needed.",
+    "Only freeze/expand if evidence supports robust candidate, otherwise analyze and continue evidence-supported branches. Perprocess guards unchanged."
+  ],
+  "limits": {
+    "timeout": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "qualification": "Seen-case developer refinement, no a priori QoR advantage. Native accumulator rounding/full queue priority are not analytically bounded by this local added-cost comparison. Original and postlegal negatives retained."
+}

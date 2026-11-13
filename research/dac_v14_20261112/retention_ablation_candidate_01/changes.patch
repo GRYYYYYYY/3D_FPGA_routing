@@ -1,0 +1,51 @@
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/persistent_query_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/persistent_query_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp	2026-11-12 18:17:59.315011000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp	2026-11-12 18:35:56.762704000 +0000
+@@ -24,6 +24,13 @@
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_FRONTIER_SLOTS must be an integer in [1,64]");
+         frontier_slots_ = slots;
+     }
++    if (const char* value = std::getenv("VPR_H3D_FRONTIER_RETAIN")) {
++        if (std::string(value) != "0" && std::string(value) != "1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_FRONTIER_RETAIN must be 0 or 1");
++        frontier_retain_ = std::string(value) == "1";
++        if (!frontier_retain_ && !persistent_frontier_)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Retention ablation requires universal-terminal frontier queries");
++    }
+     if (const char* value = std::getenv("VPR_H3D_TARGET_REUSE")) {
+         if (std::string(value) != "0" && std::string(value) != "1")
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TARGET_REUSE must be 0 or 1");
+@@ -380,13 +387,19 @@
+         }
+         if (answer.exact) { values[candidate] = *answer.exact; ++targeted_exact_; }
+         else { ++targeted_unknown_; targeted_memory_stops_ += answer.stop == H3dPersistentBidirectional::Stop::MEMORY_LIMIT; }
++        if (!frontier_retain_) {
++            // The lifetime endpoint work ledger and exact-answer map above
++            // survive. Rebuilding the endpoint frontier is charged normally.
++            frontiers_.erase(state);
++            ++frontier_discards_;
++        }
+     }
+     return values;
+ }
+ 
+ void H3dDelayPlan::log() const {
+-    VTR_LOG("H3D_PERSISTENT_DELAY enabled=%d slots=%zu peak_states=%zu evictions=%zu restarts=%zu forward_settled=%zu reverse_settled=%zu terminal_certificates=%zu ledger_endpoints=%zu\n",
+-            persistent_frontier_, frontier_slots_, frontier_peak_states_, frontier_evictions_, frontier_restarts_, frontier_forward_work_, frontier_reverse_work_, frontier_terminals_, forward_work_.size()+reverse_work_.size());
++    VTR_LOG("H3D_PERSISTENT_DELAY enabled=%d slots=%zu peak_states=%zu evictions=%zu restarts=%zu forward_settled=%zu reverse_settled=%zu terminal_certificates=%zu ledger_endpoints=%zu retain=%d discards=%zu live_states=%zu\n",
++            persistent_frontier_, frontier_slots_, frontier_peak_states_, frontier_evictions_, frontier_restarts_, frontier_forward_work_, frontier_reverse_work_, frontier_terminals_, forward_work_.size()+reverse_work_.size(), frontier_retain_, frontier_discards_, frontiers_.size());
+     VTR_LOG("H3D_TARGET_REUSE enabled=%d settled_labels=%zu inserted=%zu duplicates=%zu uncertified_edges=%zu capacity_stops=%zu endpoint_entry_cap=200000\n",
+             targeted_reuse_, reuse_labels_, reuse_inserted_, reuse_duplicates_, reuse_uncertified_, reuse_capacity_stops_);
+     VTR_LOG("H3D_TARGET_DELAY queries=%zu cache_hits=%zu exact=%zu unknown=%zu settled=%zu memory_stops=%zu endpoint_budget=%zu candidate_quota=%zu quota_stops=%zu\n",
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/persistent_query_candidate_01/src/vpr/src/route/h3d_delay_plan.h /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_delay_plan.h
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/persistent_query_candidate_01/src/vpr/src/route/h3d_delay_plan.h	2026-11-12 18:17:59.310112025 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_delay_plan.h	2026-11-12 18:35:56.631081950 +0000
+@@ -47,6 +47,8 @@
+     struct FrontierState { std::unique_ptr<H3dPersistentBidirectional> search; size_t used; };
+     std::map<std::pair<RRNodeId, bool>, FrontierState> frontiers_; ///< Bounded LRU; exact answer caches and work ledgers outlive eviction.
+     bool persistent_frontier_ = false;
++    bool frontier_retain_ = true; ///< Ablation: discard only the search frontier after each target, retaining exact values and work charges.
++    size_t frontier_discards_ = 0;
+     size_t frontier_slots_ = 8, frontier_clock_ = 0, frontier_evictions_ = 0, frontier_restarts_ = 0;
+     size_t frontier_forward_work_ = 0, frontier_reverse_work_ = 0, frontier_terminals_ = 0, frontier_peak_states_ = 0;
+ };

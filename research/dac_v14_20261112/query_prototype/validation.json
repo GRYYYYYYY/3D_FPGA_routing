@@ -1,0 +1,31 @@
+{
+  "status": "standalone_prototype_tested_not_integrated",
+  "oracle_terminal_checks": 2000,
+  "random_directed_graphs": 500,
+  "covers": [
+    "zero weights",
+    "cycles",
+    "unreachable terminals",
+    "tentative distance not exposed",
+    "one cumulative endpoint budget across all calls",
+    "cached targets use zero additional settlements",
+    "duplicate targets",
+    "memory stop prevents unsafe partial-expansion continuation"
+  ],
+  "toy_example": {
+    "resumed_settlements": 7,
+    "restarted_settlements": 10,
+    "qualification": "Synthetic unit example, not RRG speedup"
+  },
+  "source_sha256": {
+    "test_resumable.cpp": "8bab82b979e2274dfacd94e6f66c2dbbc8b64ef1bce4e0627b1c8548ca2eff6b",
+    "h3d_resumable_delay_search.h": "97412a73616683b43a274477bc368e1210807548c57dac530a9a123bd2278a4a"
+  },
+  "next_required": [
+    "RRG adapter with fixed candidate targets and cache lifetime",
+    "aggregate frontier memory cap and explicit eviction accounting",
+    "criticality/ranking-uncertainty work allocation under matched total budget",
+    "real graph exact-distance oracle",
+    "paired development routes and formal timing"
+  ]
+}

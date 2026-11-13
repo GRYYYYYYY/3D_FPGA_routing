@@ -1,0 +1,140 @@
+--- parent/vpr/src/route/h3d_timing_regret.h
++++ new/vpr/src/route/h3d_timing_regret.h
+@@ -0,0 +1,14 @@
++#pragma once
++
++#include <algorithm>
++#include <cmath>
++
++/** @brief Bounded regret of an exactly measured alternative; not a physical delay correction.
++ * Both complete source-to-crossing and crossing-to-sink distances must be known
++ * before calling. A small dead band suppresses floating-point and near-tie noise.
++ */
++inline double h3d_timing_regret_seconds(double chosen, double alternative, double unit, double weight) {
++    if (!std::isfinite(chosen) || !std::isfinite(alternative) || !std::isfinite(unit)
++        || !std::isfinite(weight) || chosen < 0. || alternative < 0. || unit <= 0. || weight <= 0.) return 0.;
++    return std::min(weight, 1.) * std::min(unit, std::max(0., alternative - chosen - .02 * unit));
++}
+--- parent/vpr/src/route/h3d_routing.h
++++ new/vpr/src/route/h3d_routing.h
+@@ -3,13 +3,25 @@
+ #include "router_stats.h"
+ #include "rr_graph_fwd.h"
+ #include <vector>
++#include <algorithm>
++#include <utility>
+ 
+ /** @brief Soft channel preference for a connection; other channels remain legal. */
+ struct t_h3d_connection_guide {
+     std::vector<RRNodeId> preferred; ///< Sorted, individually reachable native CHANZ resources.
+     float timing_miss_penalty = 0.f; ///< Search-only seconds, excluded from Tdel and STA.
++    bool timing_regret = false; ///< Use only certified two-sided alternatives; absent entries carry no timing preference.
++    std::vector<std::pair<RRNodeId, float>> timing_alternatives; ///< Sorted sparse crossing IDs and bounded search-only seconds.
+     float miss_weight = 0.f;         ///< Additional relative congestion charge for other CHANZ nodes.
+     bool edge_encoding = false;      ///< Preferred IDs identify crossing-edge sources, not CHANZ nodes.
++
++    /** @brief Return an alternative-specific search preference without changing physical delay. */
++    float timing_penalty(RRNodeId crossing) const {
++        if (!timing_regret) return timing_miss_penalty;
++        auto found = std::lower_bound(timing_alternatives.begin(), timing_alternatives.end(), crossing,
++                                     [](const auto& item, RRNodeId node) { return item.first < node; });
++        return found != timing_alternatives.end() && found->first == crossing ? found->second : 0.f;
++    }
+ };
+ 
+ /** @brief Whether finite candidate planning is explicitly enabled. */
+--- parent/vpr/src/route/h3d_fast_plan.cpp
++++ new/vpr/src/route/h3d_fast_plan.cpp
+@@ -3,6 +3,7 @@
+ #include "h3d_calibrated_cost.h"
+ #include "h3d_independent_plan.h"
+ #include "h3d_feedback_policy.h"
++#include "h3d_timing_regret.h"
+ 
+ #include <cmath>
+ #include <bit>
+@@ -113,6 +114,13 @@
+         if (end == timing || *end || !std::isfinite(timing_guide_weight_) || timing_guide_weight_ < 0. || timing_guide_weight_ > 1.)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TIMING_GUIDE must be in [0,1]");
+     }
++    const char* timing_mode = std::getenv("VPR_H3D_TIMING_GUIDE_MODE");
++    std::string mode = timing_mode ? timing_mode : "coverage";
++    if (mode != "coverage" && mode != "regret")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TIMING_GUIDE_MODE must be coverage or regret");
++    timing_regret_ = mode == "regret";
++    if (timing_regret_ && (!mixed_delay_ || !edge_encoding_))
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Regret timing guidance requires mixed edge-delay scoring");
+     const char* assignment = std::getenv("VPR_H3D_ASSIGNMENT");
+     std::string solver = assignment ? assignment : "shared";
+     if (solver != "shared" && solver != "independent")
+@@ -764,7 +772,29 @@
+             }
+             selected_delay_informed_ += informed;
+         }
+-        if (timing_guide_weight_ > 0. && forward && !guide.preferred.empty()) {
++        if (timing_regret_) guide.timing_regret = true;
++        if (timing_regret_ && timing_guide_weight_ > 0. && forward && guide.preferred.size() == 1) {
++            auto back = reverse.find(pin);
++            RRNodeId chosen = guide.preferred.front();
++            if (back != reverse.end() && forward->contains(chosen) && back->second->contains(chosen)) {
++                double chosen_seconds = double(forward->at(chosen)) + double(back->second->at(chosen));
++                // Reuse only existing exact distances in the finite table. No
++                // additional query, changed assignment, or penalty for unknowns.
++                for (size_t c : pool) {
++                    RRNodeId node = channels_[c];
++                    if (node == chosen || !forward->contains(node) || !back->second->contains(node)) continue;
++                    double alternative = double(forward->at(node)) + double(back->second->at(node));
++                    double penalty = h3d_timing_regret_seconds(chosen_seconds, alternative, delay_plan_->delay_unit(), timing_guide_weight_);
++                    if (penalty <= 0.) continue;
++                    guide.timing_alternatives.emplace_back(node, float(penalty));
++                    VTR_LOG("H3D_TIMING_REGRET net=%zu pin=%d chosen=%zu alternative=%zu chosen_seconds=%.17g alternative_seconds=%.17g unit=%.17g weight=%.17g penalty=%.17g\n",
++                            size_t(net), pin, size_t(chosen), size_t(node), chosen_seconds, alternative, delay_plan_->delay_unit(), timing_guide_weight_, penalty);
++                }
++                std::sort(guide.timing_alternatives.begin(), guide.timing_alternatives.end());
++                timing_regret_guides_ += !guide.timing_alternatives.empty();
++                timing_regret_pairs_ += guide.timing_alternatives.size();
++            }
++        } else if (!timing_regret_ && timing_guide_weight_ > 0. && forward && !guide.preferred.empty()) {
+             // Confidence is measured-side coverage of the selected preference,
+             // not whole-query coverage. No measurements => no timing penalty.
+             double reliability = 0.;
+@@ -784,6 +814,8 @@
+ }
+ 
+ void H3dFastPlan::log() const {
++    VTR_LOG("H3D_TIMING_REGRET_SUMMARY enabled=%d guides=%zu pairs=%zu weight=%g\n",
++            timing_regret_, timing_regret_guides_, timing_regret_pairs_, timing_guide_weight_);
+     profile_.log();
+     VTR_LOG("H3D_BOUND_SELECTED_SUMMARY missing_sides=%zu positive_bound_sides=%zu below_bound_sides=%zu sum_shortfall_units=%.17g\n",
+             bound_missing_sides_, bound_positive_sides_, bound_below_sides_, bound_gap_units_);
+--- parent/vpr/src/route/h3d_fast_plan.h
++++ new/vpr/src/route/h3d_fast_plan.h
+@@ -69,6 +69,8 @@
+     double reach_miss_seconds_ = 0.;                                   ///< Inclusive closure time, overlaps planner phases.
+     const RRGraphView& graph_;                                          ///< Exact immutable graph used by detailed routing.
+     double timing_guide_weight_ = 0.;                                  ///< Bounded timing-preference amplitude in graph delay units.
++    bool timing_regret_ = false; ///< Restrict timing guidance to measured positive alternative delay gaps.
++    size_t timing_regret_guides_ = 0, timing_regret_pairs_ = 0; ///< Connections with positive penalties and stored alternative entries.
+     bool independent_ = false;                                        ///< Same-table independent top-1 solver control.
+     size_t timing_guides_ = 0;                                         ///< Selected guides with at least one measured side.
+     bool targeted_delay_ = false;                                      ///< Candidate-specific bidirectional search, mixed scoring only.
+--- parent/vpr/src/route/connection_router.tpp
++++ new/vpr/src/route/connection_router.tpp
+@@ -352,7 +352,7 @@
+         if (cost_params.h3d_guide
+             && !std::binary_search(cost_params.h3d_guide->preferred.begin(), cost_params.h3d_guide->preferred.end(), to->index)) {
+             extra_weight += cost_params.h3d_guide->miss_weight;
+-            guide_timing_cost = cost_params.h3d_guide->timing_miss_penalty;
++            guide_timing_cost = cost_params.h3d_guide->timing_penalty(to->index);
+         }
+         cong_cost *= 1.f + extra_weight;
+     }
+@@ -365,7 +365,7 @@
+         && rr_graph_->node_layer_low(from_node) != rr_graph_->node_layer_low(to->index)
+         && !std::binary_search(cost_params.h3d_guide->preferred.begin(), cost_params.h3d_guide->preferred.end(), from_node)) {
+         cong_cost *= 1.f + cost_params.h3d_guide->miss_weight;
+-        guide_timing_cost = cost_params.h3d_guide->timing_miss_penalty;
++        guide_timing_cost = cost_params.h3d_guide->timing_penalty(from_node);
+     }
+     if (cost_params.h3d_planar_guide && reached_configurably)
+         cong_cost *= h3d_control_multiplier(*cost_params.h3d_planar_guide, to->index);

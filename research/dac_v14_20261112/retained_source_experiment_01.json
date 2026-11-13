@@ -1,0 +1,44 @@
+{
+  "registered_at": 1794549395.005489,
+  "question": "Does refresh-only partial-tree source delay improve candidate decisions and final QoR when the legacy branch fallback otherwise uses a positive source geometry floor?",
+  "arms": {
+    "C": "feature0 exact frozen Tf",
+    "Ps": "feature1 opening credit0"
+  },
+  "cases": [
+    {
+      "circuit": "eltwise_layer",
+      "seed": 11,
+      "batch": "retained_source_eltwise_dev_01"
+    },
+    {
+      "circuit": "tpu_like.small.os",
+      "seed": 21,
+      "batch": "retained_source_tpu_dev_01"
+    }
+  ],
+  "fixed": {
+    "family": "hybrid_o",
+    "flow": "p0",
+    "width": 100,
+    "K": 16,
+    "query_budget": 4096,
+    "criticality": 0.7,
+    "opening_weight": 16,
+    "miss_weight": 2
+  },
+  "scope": "Only finite nonnegative Tdel of owned re_expand candidate entry, normalized by existing physical unit; opening full price preserved and original source/sink estimates unchanged elsewhere. Native routing and final STA unchanged.",
+  "reverse_query_policy": "Current source retains reverse distance request under forward/nonempty/ranked condition and bilateral timed activation. No early skip based on candidate source-coverage count is introduced or assumed equivalent. Record actual query summaries; any later pruning needs a separate equivalence experiment.",
+  "protections": {
+    "timeout": 1800,
+    "memory_gib": 64,
+    "disk_reserve_gib": 80
+  },
+  "bindings": {
+    "run_retained_source.py": "dcee83a146afc662d1e49c740287ceacf42369f2e9af85eed6e55dd743e23233",
+    "retained_source_implementation.json": "e2913c795f1110699faf6b7578c341ec2af416827ed07ca59dcd45981bb0e502",
+    "retained_source_candidate_01/binding.json": "ac595f94ab0d9066ca315f2275fabaf756f16e18614e7882cdd7302a53c32fd3"
+  },
+  "quality_gate": "C exact complete-route/metrics/guides/original-record reproduction then independent graph/guide audits and seal. Ps outcomes, failure and regressions retained. Source component and unmodified opening premiums require native trace checks before interpretation.",
+  "research_complete": false
+}

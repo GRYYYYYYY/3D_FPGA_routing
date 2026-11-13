@@ -1,0 +1,61 @@
+{
+  "utc": "2026-11-12T18:11:54.309230+00:00",
+  "passed": true,
+  "registered_route_count": 2,
+  "legal_count": 2,
+  "failed_count": 0,
+  "legal": [
+    {
+      "name": "eltwise_layer_Q",
+      "passed": true,
+      "metrics": {
+        "critical_path_ns": 6.78852,
+        "wirelength": 229952,
+        "router_seconds": 18.58,
+        "iterations": 59,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 229952,
+        "sb_pairs_used": 119,
+        "sb_pair_net_occupancy": 119,
+        "cb_crossing_output_sources_used": 952,
+        "cb_crossing_output_source_net_occupancy": 952,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 557,
+          "CHANX->CHANX": 119,
+          "OPIN->CHANY": 455
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      }
+    },
+    {
+      "name": "eltwise_layer_E",
+      "passed": true,
+      "metrics": {
+        "critical_path_ns": 6.5642,
+        "wirelength": 229546,
+        "router_seconds": 18.38,
+        "iterations": 58,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 229546,
+        "sb_pairs_used": 110,
+        "sb_pair_net_occupancy": 110,
+        "cb_crossing_output_sources_used": 956,
+        "cb_crossing_output_source_net_occupancy": 956,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 557,
+          "CHANX->CHANX": 110,
+          "OPIN->CHANY": 445
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      }
+    }
+  ],
+  "failed": [],
+  "graph_sha256": "3bbcf7321f86f222241ab597020e8dacaffa594c060297ad61b5c5773abd3e93"
+}

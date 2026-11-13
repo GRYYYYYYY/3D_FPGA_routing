@@ -1,0 +1,32 @@
+{
+  "status": "registered_before_implementation",
+  "time": 1794561885.9550269,
+  "hypothesis": "Repricing already-settled reverse shortest-path witnesses adds within-leaf alternative observations at unchanged fresh-query work, overcoming mostly geometric one-sample calibration.",
+  "base_stage": "candidate_path_score_stage_01",
+  "evidence": [
+    "candidate_path_cache_opportunity_01.json",
+    "candidate_path_score_eltwise_dev_01/price_score_analysis.json"
+  ],
+  "arms": {
+    "K0": "capture=1,use_cached=0,score=1; exact prior S1 control",
+    "K1": "capture=1,use_cached=1,score=1"
+  },
+  "inputs": "eltwise_layer HybridO seed11 P0 W100 identical packed/place/RRG/native count2 command",
+  "query_work": "same ranked requests; 256 expansions/plan; no extra distance queries",
+  "scope": "Only selected query leaves, previously known reverse candidates; cache-only flag does not emit old full witness trace; current per-plan toll and ownership, dedup sink/entry, bounded score unchanged.",
+  "toll": "Each original-edge destination unowned CHANX/Y: .25*delay_unit*max(0,p-1)/max(1,p), p=acc*(1+pres*max(0,occ+1-cap)), nonfinite fraction=1.",
+  "reliability": "Use exact priced certificate only when cached physical shortest path has zero toll; positive-toll path is upper bound. Common plan reliability 1 if all samples exact else .25.",
+  "guards": {
+    "timeout_seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920,
+    "cache_record_cap": 2000000
+  },
+  "gates": [
+    "K0 exact old S1 physical/query/decision/route/guide outputs excluding elapsed and new capture summary",
+    "physical RRG edge/path and current logged price formula for each cached observation",
+    "independent calibration/base+scored fingerprints/fixed-hierarchy optimum/same-score prior hysteresis",
+    "native/independent final route and guide audits; preserve all failures"
+  ],
+  "qualification": "Single seen-case development; no QoR or formal time claim without evidence; old source-coverage reverse skip not applied."
+}

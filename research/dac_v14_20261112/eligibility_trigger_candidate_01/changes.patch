@@ -1,0 +1,96 @@
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/prior_trace_candidate_01/src/vpr/src/route/h3d_feedback_policy.h /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/eligibility_trigger_candidate_01/src/vpr/src/route/h3d_feedback_policy.h
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/prior_trace_candidate_01/src/vpr/src/route/h3d_feedback_policy.h	2026-11-12 17:25:41.308233580 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/eligibility_trigger_candidate_01/src/vpr/src/route/h3d_feedback_policy.h	2026-11-12 17:47:21.126516724 +0000
+@@ -6,9 +6,9 @@
+ 
+ /** @brief Deterministic refresh gate, called only after VPR chooses this net to reroute. */
+ inline bool h3d_feedback_due(int iteration, int last_attempt, int cooldown,
+-                             bool resource_overused, double criticality_drift, double crossing_change) {
++                             bool resource_overused, double criticality_drift, double crossing_change, bool newly_eligible_missing = false) {
+     return iteration - last_attempt >= cooldown
+-           && (resource_overused || criticality_drift >= .15 || crossing_change >= .25);
++           && (resource_overused || criticality_drift >= .15 || crossing_change >= .25 || newly_eligible_missing);
+ }
+ 
+ /** @brief Refresh must improve the same current surrogate by a relative margin. */
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/prior_trace_candidate_01/src/vpr/src/route/h3d_routing.cpp /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/eligibility_trigger_candidate_01/src/vpr/src/route/h3d_routing.cpp
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/prior_trace_candidate_01/src/vpr/src/route/h3d_routing.cpp	2026-11-12 17:41:25.266749000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/eligibility_trigger_candidate_01/src/vpr/src/route/h3d_routing.cpp	2026-11-12 17:47:21.130114000 +0000
+@@ -56,6 +56,7 @@
+     float min_criticality = 0.f;
+     std::string feedback_action_name = "all"; ///< Exact label for action-ablation provenance.
+     e_h3d_feedback_action feedback_action = e_h3d_feedback_action::ALL; ///< Development action ablation; full selective policy remains default.
++    bool eligibility_trigger = false; ///< Refresh missing guides when a remote pin newly crosses the selection threshold.
+     bool trace_prior = false; ///< Diagnose old-assignment coverage without changing refresh decisions.
+     bool feedback = false;            ///< Selective refresh of guides on VPR-selected reroute nets.
+     int cooldown = 3;                  ///< Minimum iterations between refresh attempts.
+@@ -124,6 +125,12 @@
+         if (trace_prior != 0.f && trace_prior != 1.f)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_PRIOR must be 0 or 1");
+         result.trace_prior = trace_prior == 1.f;
++        float eligibility = read_number("VPR_H3D_ELIGIBILITY_TRIGGER", 0.f);
++        if (eligibility != 0.f && eligibility != 1.f)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_ELIGIBILITY_TRIGGER must be 0 or 1");
++        result.eligibility_trigger = eligibility == 1.f;
++        if (result.eligibility_trigger && !result.feedback)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Eligibility trigger requires selective feedback");
+         const char* action_env = std::getenv("VPR_H3D_FEEDBACK_ACTION");
+         std::string action = action_env ? action_env : "all";
+         result.feedback_action_name = action;
+@@ -250,20 +257,36 @@
+             const auto& graph = g_vpr_ctx.device().rr_graph;
+             const auto& terminals = g_vpr_ctx.routing().net_rr_terminals[net];
+             double drift = 0.;
+-            for (size_t pin = 1; pin < criticality.size(); ++pin)
++            size_t newly_missing = 0;
++            for (size_t pin = 1; pin < criticality.size(); ++pin) {
+                 if (graph.node_layer_low(terminals[0]) != graph.node_layer_low(terminals[pin])
+-                    && std::max(criticality[pin], state.criticality[pin]) >= settings().min_criticality)
++                    && std::max(criticality[pin], state.criticality[pin]) >= settings().min_criticality) {
+                     drift = std::max(drift, double(std::abs(criticality[pin] - state.criticality[pin])));
++                    newly_missing += state.criticality[pin] < settings().min_criticality
++                                     && criticality[pin] >= settings().min_criticality
++                                     && guides_.at(net).at(pin).preferred.empty();
++                }
++            }
++            eligibility_checks_ += newly_missing > 0;
+             size_t difference = 0;
+             for (RRNodeId node : captured_actual_) difference += !state.actual.contains(node);
+             for (RRNodeId node : state.actual) difference += !captured_actual_.contains(node);
+             size_t union_size = (difference + captured_actual_.size() + state.actual.size()) / 2;
+             double change = state.observed && union_size ? double(difference) / union_size : 0.;
+-            if (!h3d_feedback_due(iteration, state.last_attempt, settings().cooldown, captured_overuse_, drift, change)) {
++            bool original_due = h3d_feedback_due(iteration, state.last_attempt, settings().cooldown, captured_overuse_, drift, change);
++            bool with_eligibility = h3d_feedback_due(iteration, state.last_attempt, settings().cooldown, captured_overuse_, drift, change, newly_missing > 0);
++            eligibility_opportunities_ += with_eligibility && !original_due;
++            bool due = settings().eligibility_trigger ? with_eligibility : original_due;
++            if (!due) {
+                 ++refresh_skips_;
+                 refresh_check_seconds_ += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
+                 return;
+             }
++            if (settings().trace_prior)
++                VTR_LOG("H3D_REFRESH_TRIGGER net=%zu iter=%d last_attempt=%d newly_missing=%zu original_due=%d eligibility_enabled=%d extra_attempt=%d\n",
++                        size_t(net), iteration, state.last_attempt, newly_missing, original_due,
++                        settings().eligibility_trigger, !original_due);
++            eligibility_extra_attempts_ += !original_due;
+             state.last_attempt = iteration;
+             ++refresh_attempts_;
+             refresh_overuse_ += captured_overuse_;
+@@ -432,6 +455,8 @@
+         VTR_LOG("H3D_PLAN plans=%zu groups=%zu bfs_nodes=%zu cache_entries=%zu no_candidate=%zu fallback=%zu planning_seconds=%.6f\n",
+                 plans_, groups_, bfs_nodes_, forward_cache_.size() + reverse_cache_.size(), no_candidate_, fallbacks_, planning_seconds_);
+         VTR_LOG("H3D_TREE guided_paths=%zu preferred_paths=%zu rollbacks=%zu\n", guided_observations_, preferred_observations_, rollbacks_);
++        VTR_LOG("H3D_ELIGIBILITY_TRIGGER enabled=%d checks_newly_missing=%zu opportunities_after_cooldown=%zu extra_attempts=%zu\n",
++                settings().eligibility_trigger, eligibility_checks_, eligibility_opportunities_, eligibility_extra_attempts_);
+         VTR_LOG("H3D_FEEDBACK checks=%zu skipped=%zu attempts=%zu accepted=%zu overuse=%zu criticality=%zu path=%zu check_seconds=%.6f\n",
+                 refresh_checks_, refresh_skips_, refresh_attempts_, refresh_accepts_, refresh_overuse_, refresh_drift_, refresh_path_, refresh_check_seconds_);
+         if (fast_plan_) fast_plan_->log();
+@@ -599,6 +624,7 @@
+     std::vector<t_h3d_connection_guide> backup_guides_; ///< Transaction snapshot.
+     t_feedback_state backup_state_;              ///< Transaction feedback snapshot.
+     std::set<RRNodeId> captured_actual_;          ///< Pre-prune actual crossing resources.
++    size_t eligibility_checks_ = 0, eligibility_opportunities_ = 0, eligibility_extra_attempts_ = 0; ///< Repeated eligible-gap check/trigger counts, not unique pins or nets.
+     bool captured_overuse_ = false;               ///< Recommended crossing currently overloaded.
+     size_t refresh_checks_ = 0, refresh_skips_ = 0, refresh_attempts_ = 0, refresh_accepts_ = 0; ///< Refresh work accounting.
+     size_t refresh_overuse_ = 0, refresh_drift_ = 0, refresh_path_ = 0, guide_rollbacks_ = 0; ///< Trigger and restoration counts.

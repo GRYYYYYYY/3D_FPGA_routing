@@ -1,0 +1,23 @@
+{
+  "registered_at": 1794552148.1388226,
+  "question": "Does continued guide pressure obstruct native post-legal timing repair in Tf?",
+  "evidence": "native_reconvergence_eltwise_dev_01/reconvergence_analysis.json",
+  "evidence_sha256": "9f0ef534a3566bc8a4f0da5bd7efe4eafc5e2fa2b8cd06f4b4a8d058e7fa89ae",
+  "hypothesis": "On eltwise, count2 improves A0 and old R1 to6.01810ns while Tf remains6.20812ns and restores its first route. Test suppressing only per-connection guide use after the first native legal convergence. This is not proof that refresh or pressure caused the existing gap.",
+  "implementation": "Default-off flag; planner-local epoch bit set only by native is_iteration_complete after saving the best route/guides. Return nullptr from guide lookup in subsequent native searches. Preserve planning/refresh, candidate tables, queries, costs, XY/layer bounds, native selected targets, all transactions, actual Tdel and final STA. Reset with the per-trial planner.",
+  "case": "eltwise_layer seed11 Hybrid-O P0 W100",
+  "arms": {
+    "C": "new flag0, exact same complete count2 Tf route/metrics/guides and original records",
+    "P": "new flag1, guide use suppressed after first legal; refresh remains unchanged for independent ablation"
+  },
+  "parameters": "Both max_convergence_count2; all Tf parameters unchanged, no retained-source/opening credit or new critical-scope trigger.",
+  "gates": "C exact count2 Tf; P first-legal iteration and original planning-record prefix equals C; one release event at C first legal iteration; all new legal routes independently graph/guide audited. Count2 A0/R1/A1 used as strong references.",
+  "metrics": "All statuses, legal-only CPD, physical SB/CB occupancy and WL, actual legal cycles/iterations, planning/full-process times, final restored-guide provenance. Final guide overlap is descriptive metadata after release, not causal adoption.",
+  "next": "Only if quality or resource tradeoff warrants it, transfer unchanged settings. Separately disabling wasted planning must later prove exact-route equivalence to P before runtime claims. Do not combine failed source/opening/critical branches.",
+  "limits": {
+    "timeout_seconds": 1800,
+    "memory_gib": 64,
+    "disk_reserve_gib": 80
+  },
+  "research_complete": false
+}

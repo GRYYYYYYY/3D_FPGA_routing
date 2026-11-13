@@ -1,0 +1,74 @@
+--- a/vpr/src/route/h3d_routing.cpp
++++ b/vpr/src/route/h3d_routing.cpp
+@@ -70,6 +70,7 @@
+     int cooldown = 3;                  ///< Minimum iterations between refresh attempts.
+     double refresh_margin = .05;       ///< Required relative surrogate improvement.
+     bool final_trace = false;          ///< Emit one final per-connection guide/path table.
++    bool post_legal_release = false;   ///< Release guide use after native first legal convergence.
+     bool edge_encoding = false;       ///< Prefer actual crossing-edge sources in imported single-layer-node graphs.
+ };
+ 
+@@ -98,6 +99,10 @@
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_CANDIDATES must be an integer in [1,64]");
+         result.candidates = static_cast<size_t>(candidates);
+         result.miss_weight = read_number("VPR_H3D_MISS_WEIGHT", 2.f);
++        const char* release = std::getenv("VPR_H3D_POST_LEGAL_RELEASE");
++        if (release && std::string(release) != "0" && std::string(release) != "1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_POST_LEGAL_RELEASE must be 0 or 1");
++        result.post_legal_release = release && std::string(release) == "1";
+         const char* tie_pressure = std::getenv("VPR_H3D_DP_TIE_PRESSURE");
+         if (tie_pressure && std::string(tie_pressure) != "0" && std::string(tie_pressure) != "1")
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_DP_TIE_PRESSURE must be 0 or 1");
+@@ -636,10 +641,18 @@
+ 
+     /** @brief Read the stable guide storage while a net's sink searches execute. */
+     const t_h3d_connection_guide* guide(ParentNetId net, int pin) const {
++        if (guides_released_) return nullptr;
+         auto found = guides_.find(net);
+         if (found == guides_.end() || found->second.at(pin).preferred.empty())
+             return nullptr;
+         return &found->second[pin];
++    }
++
++    /** @brief Keep planning independent while releasing future search pressure. */
++    void enter_legal_refinement(int iteration) {
++        if (!settings().post_legal_release || guides_released_) return;
++        guides_released_ = true;
++        VTR_LOG("H3D_POST_LEGAL_RELEASE iter=%d guide_use=0 feedback_unchanged=1\n", iteration);
+     }
+ 
+     /** @brief Report cumulative preprocessing/search overhead separately from native A*. */
+@@ -816,6 +829,7 @@
+     };
+     std::unordered_map<ParentNetId, t_feedback_state> feedback_state_, best_feedback_state_; ///< Per-net and best-route state.
+     std::unordered_map<ParentNetId, std::vector<t_h3d_connection_guide>> best_guides_; ///< Best-route diagnostic guide versions.
++    bool guides_released_ = false; ///< Per-trial monotone epoch, independent of route transactions.
+     ParentNetId captured_net_;                    ///< Current serial routing transaction.
+     bool backup_had_guide_ = false, backup_had_state_ = false; ///< Exact restoration membership.
+     std::vector<t_h3d_connection_guide> backup_guides_; ///< Transaction snapshot.
+@@ -975,4 +989,5 @@
+ }
+ 
+ void h3d_save_best_guides() { if (planner) planner->save_best(); }
++void h3d_enter_legal_refinement(int iteration) { if (planner) planner->enter_legal_refinement(iteration); }
+ void h3d_report_final_guides(bool success) { if (planner) planner->final_trace(success); }
+--- a/vpr/src/route/h3d_routing.h
++++ b/vpr/src/route/h3d_routing.h
+@@ -69,5 +69,7 @@
+ 
+ /** @brief Bind guide state to VPR's selected best routing for final observation. */
+ void h3d_save_best_guides();
++/** @brief Optionally release soft preferences after native legal convergence. */
++void h3d_enter_legal_refinement(int iteration);
+ /** @brief Write optional per-connection trace against restored final route trees. */
+ void h3d_report_final_guides(bool success);
+--- a/vpr/src/route/route.cpp
++++ b/vpr/src/route/route.cpp
+@@ -397,6 +397,7 @@
+             itry_since_last_convergence = 0;
+ 
+             VTR_ASSERT(success);
++            h3d_enter_legal_refinement(itry);
+         }
+ 
+         if (itry_since_last_convergence == 1) {

@@ -1,0 +1,192 @@
+--- a/vpr/src/route/h3d_fast_plan.cpp
++++ b/vpr/src/route/h3d_fast_plan.cpp
+@@ -6,8 +6,10 @@
+ #include "h3d_timing_regret.h"
+ #include "h3d_equivalent_guides.h"
+ #include "h3d_exit_price.h"
++#include "h3d_partition_sensitivity.h"
+ 
+ #include <cmath>
++#include <chrono>
+ #include <bit>
+ #include <cstdint>
+ #include <cstdlib>
+@@ -111,6 +113,12 @@
+     if (guide_margin && std::string(guide_margin) != "0" && std::string(guide_margin) != "1")
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_GUIDE_MARGIN must be 0 or 1");
+     trace_guide_margin_ = guide_margin && std::string(guide_margin) == "1";
++    const char* sensitivity = std::getenv("VPR_H3D_TRACE_DP_SENSITIVITY");
++    if (sensitivity && std::string(sensitivity) != "0" && std::string(sensitivity) != "1")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_DP_SENSITIVITY must be 0 or 1");
++    trace_dp_sensitivity_ = sensitivity && std::string(sensitivity) == "1";
++    if (trace_dp_sensitivity_ && !trace_guide_margin_)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "DP sensitivity diagnostic requires the paired local-margin trace");
+     if (trace_estimates_ && !targeted_delay_)
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Estimate tracing requires candidate-targeted mixed delay scoring");
+     const char* timing = std::getenv("VPR_H3D_TIMING_GUIDE");
+@@ -159,6 +167,8 @@
+     if (refresh_solver != "inherit" && refresh_solver != "independent")
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_REFRESH_ASSIGNMENT must be inherit or independent");
+     refresh_independent_ = refresh_solver == "independent";
++    if (trace_dp_sensitivity_ && (independent_ || refresh_independent_))
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "DP sensitivity diagnostic requires shared assignment throughout");
+     const char* target_feedback = std::getenv("VPR_H3D_TARGET_FEEDBACK");
+     if (refresh_independent_ && (independent_ || !feedback || std::string(feedback) != "1"
+                                 || !target_feedback || std::string(target_feedback) != "1"))
+@@ -827,6 +837,22 @@
+             for (const auto& [pin, c] : planned.assignment)
+                 result.guides[pin].preferred = {channels_[table[c]]};
+             if (trace_guide_margin_) {
++                if (trace_dp_sensitivity_) {
++                    auto sensitivity_start = std::chrono::steady_clock::now();
++                    auto sensitivity = h3d_partition_exclusion_costs(leaves, openings, planned.assignment);
++                    double seconds = std::chrono::duration<double>(std::chrono::steady_clock::now() - sensitivity_start).count();
++                    VTR_ASSERT(std::abs(sensitivity.base_cost - planned.cost) <= 1e-10 * std::max(1., planned.cost));
++                    for (size_t i = 0; i < planned.assignment.size(); ++i) {
++                        const auto& [pin, candidate] = planned.assignment[i];
++                        double alternative = sensitivity.exclusion_costs.at(i);
++                        VTR_ASSERT(alternative + 1e-10 * std::max(1., planned.cost) >= planned.cost);
++                        VTR_LOG("H3D_DP_MARGIN net=%zu pin=%d refresh=%d candidate=%zu base=%.17g exclusion=%.17g delta=%.17g\n",
++                                size_t(net), pin, prior_guides != nullptr, size_t(channels_[table[candidate]]),
++                                sensitivity.base_cost, alternative, alternative - sensitivity.base_cost);
++                    }
++                    VTR_LOG("H3D_DP_SENSITIVITY_TIME net=%zu refresh=%d leaves=%zu requests=%zu seconds=%.9g\n",
++                            size_t(net), prior_guides != nullptr, leaves.size(), planned.assignment.size(), seconds);
++                }
+                 // Read the already constructed table, without queries or re-solving.
+                 // A shared assignment can be worse for one leaf in isolation.
+                 // Count co-assigned leaves, not DP groups or physical sharing.
+--- a/vpr/src/route/h3d_fast_plan.h
++++ b/vpr/src/route/h3d_fast_plan.h
+@@ -86,6 +86,7 @@
+     size_t source_floor_selected_ = 0; ///< Selected unknown-source candidates whose fitted scale is below the unit prior.
+     bool trace_estimates_ = false; ///< Decision-neutral candidate component records for independent distance validation.
+     bool trace_guide_margin_ = false; ///< Diagnostic leaf-local surrogate margins; not a shared-DP or physical-delay confidence bound.
++    bool trace_dp_sensitivity_ = false; ///< Diagnostic exact fixed-hierarchy exclusion costs, no change to guidance.
+     size_t estimate_trace_rows_ = 0; ///< Number of emitted candidate records across diagnostic phases.
+     bool reverse_rerank_ = false; ///< Re-evaluate reverse targets after source measurements with unchanged limits and diversity.
+     size_t reverse_rerank_pins_ = 0, reverse_rerank_changed_ = 0; ///< Pins considered and target sequences changed by source-informed reranking.
+--- /dev/null
++++ b/vpr/src/route/h3d_partition_sensitivity.h
+@@ -0,0 +1,121 @@
++#pragma once
++
++#include "h3d_partition_dp.h"
++#include <unordered_map>
++
++/** @brief Fixed-hierarchy optimal costs after forbidding one leaf/candidate pair.
++ * These are surrogate sensitivities, not physical timing guarantees. The current
++ * standalone diagnostic rebuilds the hierarchy from an existing finite table;
++ * it performs no graph query and does not change the production plan.
++ */
++struct t_h3d_partition_sensitivity {
++    double base_cost = 0.;
++    std::vector<double> exclusion_costs; ///< Same order as requested (pin, candidate) pairs.
++};
++
++namespace h3d_sensitivity_detail {
++constexpr size_t none = std::numeric_limits<size_t>::max();
++constexpr double infinity = std::numeric_limits<double>::infinity();
++struct node {
++    size_t parent = none, left = none, right = none;
++    size_t shared_channel = none;
++    double shared_first = infinity, shared_second = infinity, best = infinity;
++    double excluding(size_t channel) const {
++        return channel == shared_channel ? shared_second : shared_first;
++    }
++};
++
++inline std::vector<t_h3d_candidate_cost> build(std::vector<t_h3d_plan_leaf> leaves,
++                                              const std::vector<double>& opening,
++                                              size_t id, std::vector<node>& nodes,
++                                              std::unordered_map<int, size_t>& pin_nodes) {
++    std::vector<t_h3d_candidate_cost> common;
++    if (leaves.size() == 1) {
++        bool inserted = pin_nodes.emplace(leaves.front().pin, id).second;
++        VTR_ASSERT(inserted);
++        (void)inserted;
++        common = leaves.front().candidates;
++    } else {
++        int xmin = leaves.front().x, xmax = xmin, ymin = leaves.front().y, ymax = ymin;
++        for (const auto& leaf : leaves) {
++            xmin = std::min(xmin, leaf.x); xmax = std::max(xmax, leaf.x);
++            ymin = std::min(ymin, leaf.y); ymax = std::max(ymax, leaf.y);
++        }
++        bool split_x = xmax - xmin >= ymax - ymin;
++        std::stable_sort(leaves.begin(), leaves.end(), [split_x](const auto& a, const auto& b) {
++            if (split_x && a.x != b.x) return a.x < b.x;
++            if (!split_x && a.y != b.y) return a.y < b.y;
++            return a.pin < b.pin;
++        });
++        size_t left = nodes.size(); nodes.emplace_back();
++        size_t right = nodes.size(); nodes.emplace_back();
++        nodes[id].left = left; nodes[id].right = right;
++        nodes[left].parent = nodes[right].parent = id;
++        auto middle = leaves.begin() + leaves.size() / 2;
++        auto a = build({leaves.begin(), middle}, opening, left, nodes, pin_nodes);
++        auto b = build({middle, leaves.end()}, opening, right, nodes, pin_nodes);
++        nodes[id].best = nodes[left].best + nodes[right].best;
++        size_t i = 0, j = 0;
++        while (i < a.size() && j < b.size()) {
++            if (a[i].channel < b[j].channel) ++i;
++            else if (a[i].channel > b[j].channel) ++j;
++            else {
++                common.push_back({a[i].channel, a[i].branch_cost + b[j].branch_cost});
++                ++i; ++j;
++            }
++        }
++    }
++    for (const auto& c : common) {
++        double cost = opening.at(c.channel) + c.branch_cost;
++        auto& n = nodes[id];
++        if (cost < n.shared_first) {
++            n.shared_second = n.shared_first;
++            n.shared_first = cost; n.shared_channel = c.channel;
++        } else if (cost < n.shared_second) n.shared_second = cost;
++        n.best = std::min(n.best, cost);
++    }
++    return common;
++}
++} // namespace h3d_sensitivity_detail
++
++/** @brief Compute each exclusion by walking only that leaf's ancestor chain.
++ * At an ancestor, sharing must avoid the excluded channel; splitting changes
++ * only the child containing the constrained leaf. The two cheapest common
++ * choices therefore suffice. This is exact for the same median hierarchy and
++ * additive finite objective as h3d_plan_partition, including tied alternatives.
++ * An infinite exclusion cost means no alternative in this finite model only.
++ */
++inline t_h3d_partition_sensitivity h3d_partition_exclusion_costs(
++    const std::vector<t_h3d_plan_leaf>& leaves,
++    const std::vector<double>& opening,
++    const std::vector<std::pair<int, size_t>>& requests) {
++    using namespace h3d_sensitivity_detail;
++    if (leaves.empty()) { VTR_ASSERT(requests.empty()); return {}; }
++    for (double cost : opening) VTR_ASSERT(std::isfinite(cost) && cost >= 0.);
++    for (const auto& leaf : leaves)
++        for (size_t i = 0; i < leaf.candidates.size(); ++i) {
++            const auto& c = leaf.candidates[i];
++            VTR_ASSERT(c.channel < opening.size() && std::isfinite(c.branch_cost) && c.branch_cost >= 0.);
++            VTR_ASSERT(i == 0 || leaf.candidates[i-1].channel < c.channel);
++        }
++    std::vector<node> nodes(1);
++    nodes.reserve(2 * leaves.size() - 1);
++    std::unordered_map<int, size_t> pin_nodes;
++    build(leaves, opening, 0, nodes, pin_nodes);
++    t_h3d_partition_sensitivity result;
++    result.base_cost = nodes.front().best;
++    for (const auto& [pin, channel] : requests) {
++        VTR_ASSERT(channel < opening.size() && pin_nodes.count(pin));
++        size_t id = pin_nodes.at(pin);
++        double cost = nodes[id].excluding(channel);
++        while (nodes[id].parent != none) {
++            size_t parent = nodes[id].parent;
++            const auto& p = nodes[parent];
++            double split = p.left == id ? cost + nodes[p.right].best : nodes[p.left].best + cost;
++            cost = std::min(p.excluding(channel), split);
++            id = parent;
++        }
++        result.exclusion_costs.push_back(cost);
++    }
++    return result;
++}

@@ -1,0 +1,56 @@
+{
+  "registered_at": 1794514982.5336928,
+  "status": "queued_not_executed",
+  "question": "Do the observed scope-dependent native and guided outcomes transfer to gemm, with both scope policies retained rather than per-case selection?",
+  "circuit": "gemm_layer",
+  "seed": 11,
+  "architecture": "hybrid_o",
+  "width": 100,
+  "flow": "p0",
+  "arms": [
+    "F",
+    "A1",
+    "F1",
+    "U1",
+    "A3",
+    "F3",
+    "U3"
+  ],
+  "comparisons": [
+    "A1/F1/U1 sameinitialscope",
+    "A3/F3/U3 samedelayedscope",
+    "A1/A3,F1/F3,U1/U3 scopeeffect",
+    "F reproduction",
+    "originalA0/R1/U matched quality"
+  ],
+  "selected_parameters": {
+    "K": 16,
+    "delay_budget": 4096,
+    "min_criticality": 0.7,
+    "opening": 16,
+    "miss": 2
+  },
+  "dependencies": [
+    "layer_bbox_expansion_dev_01",
+    "delayed_scope_expansion_dev_01"
+  ],
+  "timeout_seconds": 1800,
+  "memory_bytes": 68719476736,
+  "disk_reserve_bytes": 85899345920,
+  "source_stage": "delayed_layer_candidate_01",
+  "binary_sha256": "997b7b1098eac723d33edb2f6ee57ebbd1a911d64c298c99f92a839cbaf81756",
+  "runner_sha256": "39872902cf8a48e958003e9f21e06d66076d0fcbf250d3ea39c8f2a977eb934d",
+  "admission_sha256": "b6690adf83d6fa2af14ca8bd070922af42d4d64176d7fb4c37af004a53e0ad29",
+  "required_outputs": [
+    "status includingfailuretimeoutmissing",
+    "CPD onlywhen independentlylegal andsealed",
+    "auditedactualcrossingresources",
+    "iterations",
+    "planningseconds",
+    "fullprocessseconds",
+    "route/control/guideaudits",
+    "inputseal"
+  ],
+  "timing_scope": "development only, no historical time ratios",
+  "scope": "pre-execution prospective plan; final registration and source/input bindings produced by sole queue owner at start"
+}

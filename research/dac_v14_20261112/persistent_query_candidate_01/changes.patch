@@ -1,0 +1,292 @@
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_reuse_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/persistent_query_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_reuse_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp	2026-11-12 18:01:39.850934000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/persistent_query_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp	2026-11-12 18:17:59.315011000 +0000
+@@ -9,6 +9,21 @@
+ 
+ H3dDelayPlan::H3dDelayPlan(const RRGraphView& graph, size_t budget, bool edge_encoding)
+     : graph_(graph), budget_(budget), edge_encoding_(edge_encoding) {
++    if (const char* value = std::getenv("VPR_H3D_TARGET_FRONTIER")) {
++        if (std::string(value) != "0" && std::string(value) != "1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TARGET_FRONTIER must be 0 or 1");
++        persistent_frontier_ = std::string(value) == "1";
++        const char* targeted = std::getenv("VPR_H3D_TARGET_DELAY");
++        if (persistent_frontier_ && (!targeted || std::string(targeted) != "1" || !edge_encoding_))
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Persistent frontiers require targeted edge-encoding queries");
++    }
++    if (const char* value = std::getenv("VPR_H3D_FRONTIER_SLOTS")) {
++        char* end = nullptr;
++        auto slots = std::strtoull(value, &end, 10);
++        if (end == value || *end || value[0] == '-' || slots < 1 || slots > 64)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_FRONTIER_SLOTS must be an integer in [1,64]");
++        frontier_slots_ = slots;
++    }
+     if (const char* value = std::getenv("VPR_H3D_TARGET_REUSE")) {
+         if (std::string(value) != "0" && std::string(value) != "1")
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TARGET_REUSE must be 0 or 1");
+@@ -17,6 +32,8 @@
+         if (targeted_reuse_ && (!targeted || std::string(targeted) != "1" || !edge_encoding_))
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Target reuse requires targeted edge-encoding delay queries");
+     }
++    if (persistent_frontier_ && targeted_reuse_)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Persistent universal-terminal queries and one-shot incidental reuse are separate experimental strategies");
+     if (const char* value = std::getenv("VPR_H3D_TARGET_QUOTA")) {
+         char* end = nullptr;
+         unsigned long long quota = std::strtoull(value, &end, 10);
+@@ -171,6 +188,7 @@
+ const H3dDelayPlan::Distances& H3dDelayPlan::targeted_distances(RRNodeId endpoint, bool reverse, const std::vector<RRNodeId>& targets) {
+     if (!supported_) return empty_;
+     VTR_ASSERT(edge_encoding_);
++    if (persistent_frontier_) return persistent_distances_(endpoint, reverse, targets);
+     auto& cache = reverse ? reverse_ : forward_;
+     auto& work = reverse ? reverse_work_ : forward_work_;
+     auto& values = cache[endpoint];
+@@ -276,7 +294,99 @@
+     return values;
+ }
+ 
++const H3dDelayPlan::Distances& H3dDelayPlan::persistent_distances_(RRNodeId endpoint, bool reverse, const std::vector<RRNodeId>& targets) {
++    auto& values = (reverse ? reverse_ : forward_)[endpoint];
++    auto& used = (reverse ? reverse_work_ : forward_work_)[endpoint];
++    int layer = graph_.node_layer_low(endpoint);
++    size_t nodes = graph_.num_nodes();
++    auto terminal = [&](size_t raw) { return raw >= nodes; };
++    auto outgoing = [&](size_t raw, auto visit) {
++        if (terminal(raw)) return;
++        RRNodeId node(raw);
++        if (!reverse && edge_source_index_[node] >= 0)
++            visit(nodes + edge_source_index_[node], 0.);
++        if (reverse) {
++            for (size_t i = reverse_start_[raw]; i < reverse_start_[raw+1]; ++i) {
++                const auto& p = predecessors_[i];
++                if (h3d_crosses_layers(graph_, p.node, node))
++                    visit(nodes + edge_source_index_[p.node], p.delay);
++                else if (graph_.node_layer_low(p.node) == layer) visit(size_t(p.node), p.delay);
++            }
++        } else {
++            for (auto edge : graph_.node_out_edges(node)) {
++                RRNodeId next = graph_.edge_sink_node(node, edge);
++                if (graph_.node_layer_low(next) == layer)
++                    visit(size_t(next), graph_.rr_switch()[RRSwitchId(graph_.edge_switch(node, edge))].Tdel);
++            }
++        }
++    };
++    auto incoming = [&](size_t raw, auto visit) {
++        if (terminal(raw)) {
++            RRNodeId entry = edge_sources_.at(raw - nodes);
++            if (!reverse) visit(size_t(entry), 0.);
++            else for (auto edge : graph_.node_out_edges(entry)) {
++                RRNodeId next = graph_.edge_sink_node(entry, edge);
++                if (h3d_crosses_layers(graph_, entry, next) && graph_.node_layer_low(next) == layer)
++                    visit(size_t(next), graph_.rr_switch()[RRSwitchId(graph_.edge_switch(entry, edge))].Tdel);
++            }
++        } else if (reverse) {
++            RRNodeId node(raw);
++            for (auto edge : graph_.node_out_edges(node)) {
++                RRNodeId next = graph_.edge_sink_node(node, edge);
++                if (graph_.node_layer_low(next) == layer)
++                    visit(size_t(next), graph_.rr_switch()[RRSwitchId(graph_.edge_switch(node, edge))].Tdel);
++            }
++        } else {
++            for (size_t i = reverse_start_[raw]; i < reverse_start_[raw+1]; ++i) {
++                const auto& p = predecessors_[i];
++                if (graph_.node_layer_low(p.node) == layer) visit(size_t(p.node), p.delay);
++            }
++        }
++    };
++    for (RRNodeId candidate : targets) {
++        if (values.contains(candidate)) { ++targeted_hits_; continue; }
++        if (used >= budget_) { ++targeted_unknown_; continue; }
++        auto key = std::make_pair(endpoint, reverse);
++        auto state = frontiers_.find(key);
++        if (state == frontiers_.end()) {
++            if (frontiers_.size() >= frontier_slots_) {
++                auto victim = std::min_element(frontiers_.begin(), frontiers_.end(),
++                    [](const auto& a, const auto& b) { return a.second.used < b.second.used; });
++                frontiers_.erase(victim); ++frontier_evictions_;
++            }
++            frontier_restarts_ += used > 0;
++            state = frontiers_.emplace(key, FrontierState{std::make_unique<H3dPersistentBidirectional>(size_t(endpoint)), 0}).first;
++            frontier_peak_states_ = std::max(frontier_peak_states_, frontiers_.size());
++        }
++        state->second.used = ++frontier_clock_;
++        size_t remaining = budget_ - used;
++        size_t allowance = targeted_quota_ ? std::min(targeted_quota_, remaining) : remaining;
++        VTR_ASSERT(edge_source_index_[candidate] >= 0);
++        auto answer = state->second.search->query(nodes + edge_source_index_[candidate], allowance,
++                                                  200000, 500000, terminal, outgoing, incoming);
++        ++targeted_queries_;
++        size_t charged = answer.forward_settled + answer.reverse_settled;
++        used += charged; targeted_settled_ += charged;
++        frontier_forward_work_ += answer.forward_settled;
++        frontier_reverse_work_ += answer.reverse_settled;
++        VTR_ASSERT(used <= budget_);
++        targeted_quota_stops_ += allowance < remaining && answer.stop == H3dPersistentBidirectional::Stop::WORK_LIMIT;
++        for (auto [raw, distance] : answer.new_terminals) {
++            RRNodeId identity = edge_sources_.at(raw - nodes);
++            auto old = values.find(identity);
++            if (old != values.end() && std::abs(old->second-distance) > 1.e-18)
++                VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Conflicting persistent terminal distances");
++            values.emplace(identity, distance); ++frontier_terminals_;
++        }
++        if (answer.exact) { values[candidate] = *answer.exact; ++targeted_exact_; }
++        else { ++targeted_unknown_; targeted_memory_stops_ += answer.stop == H3dPersistentBidirectional::Stop::MEMORY_LIMIT; }
++    }
++    return values;
++}
++
+ void H3dDelayPlan::log() const {
++    VTR_LOG("H3D_PERSISTENT_DELAY enabled=%d slots=%zu peak_states=%zu evictions=%zu restarts=%zu forward_settled=%zu reverse_settled=%zu terminal_certificates=%zu ledger_endpoints=%zu\n",
++            persistent_frontier_, frontier_slots_, frontier_peak_states_, frontier_evictions_, frontier_restarts_, frontier_forward_work_, frontier_reverse_work_, frontier_terminals_, forward_work_.size()+reverse_work_.size());
+     VTR_LOG("H3D_TARGET_REUSE enabled=%d settled_labels=%zu inserted=%zu duplicates=%zu uncertified_edges=%zu capacity_stops=%zu endpoint_entry_cap=200000\n",
+             targeted_reuse_, reuse_labels_, reuse_inserted_, reuse_duplicates_, reuse_uncertified_, reuse_capacity_stops_);
+     VTR_LOG("H3D_TARGET_DELAY queries=%zu cache_hits=%zu exact=%zu unknown=%zu settled=%zu memory_stops=%zu endpoint_budget=%zu candidate_quota=%zu quota_stops=%zu\n",
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_reuse_candidate_01/src/vpr/src/route/h3d_delay_plan.h /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/persistent_query_candidate_01/src/vpr/src/route/h3d_delay_plan.h
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_reuse_candidate_01/src/vpr/src/route/h3d_delay_plan.h	2026-11-12 18:01:39.847728489 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/persistent_query_candidate_01/src/vpr/src/route/h3d_delay_plan.h	2026-11-12 18:17:59.310112025 +0000
+@@ -1,7 +1,9 @@
+ #pragma once
+ 
+ #include "h3d_delay_search.h"
++#include "h3d_persistent_bidirectional.h"
+ #include "rr_graph_view.h"
++#include <map>
+ #include <memory>
+ #include <unordered_map>
+ 
+@@ -41,4 +43,10 @@
+     size_t targeted_queries_ = 0, targeted_hits_ = 0, targeted_exact_ = 0, targeted_unknown_ = 0; ///< Candidate-level accounting.
+     size_t targeted_settled_ = 0, targeted_memory_stops_ = 0; ///< Both directions charged together.
+     size_t validation_queries_ = 0;                     ///< Limit the optional unbounded reference comparisons to eight queries.
++    const Distances& persistent_distances_(RRNodeId endpoint, bool reverse, const std::vector<RRNodeId>& targets);
++    struct FrontierState { std::unique_ptr<H3dPersistentBidirectional> search; size_t used; };
++    std::map<std::pair<RRNodeId, bool>, FrontierState> frontiers_; ///< Bounded LRU; exact answer caches and work ledgers outlive eviction.
++    bool persistent_frontier_ = false;
++    size_t frontier_slots_ = 8, frontier_clock_ = 0, frontier_evictions_ = 0, frontier_restarts_ = 0;
++    size_t frontier_forward_work_ = 0, frontier_reverse_work_ = 0, frontier_terminals_ = 0, frontier_peak_states_ = 0;
+ };
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_reuse_candidate_01/src/vpr/src/route/h3d_persistent_bidirectional.h /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/persistent_query_candidate_01/src/vpr/src/route/h3d_persistent_bidirectional.h
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_reuse_candidate_01/src/vpr/src/route/h3d_persistent_bidirectional.h	1970-01-01 00:00:00.000000000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/persistent_query_candidate_01/src/vpr/src/route/h3d_persistent_bidirectional.h	2026-11-12 18:16:12.724976000 +0000
+@@ -0,0 +1,122 @@
++#pragma once
++
++#include <algorithm>
++#include <cmath>
++#include <functional>
++#include <limits>
++#include <optional>
++#include <queue>
++#include <stdexcept>
++#include <unordered_map>
++#include <unordered_set>
++#include <vector>
++
++/** @brief Reuse one endpoint's Dijkstra frontier across directed terminal queries.
++ * Both graph adapters and the terminal predicate must describe one immutable
++ * graph. All terminals exist from the first query and have no outgoing edges.
++ * Each candidate gets a fresh reverse frontier. Work reports include both
++ * directions; callers preserve their lifetime budget even after state eviction.
++ */
++class H3dPersistentBidirectional {
++  public:
++    enum class Stop { EXACT, UNREACHABLE, WORK_LIMIT, MEMORY_LIMIT };
++    struct Result {
++        Stop stop;
++        std::optional<double> exact;
++        size_t forward_settled, reverse_settled, peak_labels, peak_heap;
++        std::vector<std::pair<size_t, double>> new_terminals;
++    };
++
++    explicit H3dPersistentBidirectional(size_t source) : endpoint_(source), forward_(source) {}
++
++    /** @brief Target and incidental terminal values are returned only if proved. */
++    template<typename Terminal, typename Forward, typename Reverse>
++    Result query(size_t target, size_t budget, size_t label_limit, size_t heap_limit,
++                 Terminal terminal, Forward outgoing, Reverse incoming) {
++        if (!terminal(target)) throw std::invalid_argument("persistent goal must be a terminal");
++        if (label_limit < 2 || heap_limit < 2) throw std::invalid_argument("limits must admit two roots");
++        if (forward_.settled.contains(target) || target == endpoint_)
++            return {Stop::EXACT, forward_.distance.at(target), 0, 0, forward_.distance.size(), forward_.heap.size(), {}};
++        if (poisoned_) return {Stop::MEMORY_LIMIT, std::nullopt, 0, 0, forward_.distance.size(), forward_.heap.size(), {}};
++        Side back(target);
++        size_t initial = forward_.settled.size();
++        size_t peak_labels = forward_.distance.size() + back.distance.size();
++        size_t peak_heap = forward_.heap.size() + back.heap.size();
++        double best = std::numeric_limits<double>::infinity();
++        bool memory_hit = peak_labels > label_limit || peak_heap > heap_limit;
++        std::vector<std::pair<size_t, double>> measured;
++        auto finish = [&](Stop stop) {
++            return Result{stop, stop == Stop::EXACT ? std::optional<double>(best) : std::nullopt,
++                          forward_.settled.size() - initial, back.settled.size(), peak_labels, peak_heap,
++                          std::move(measured)};
++        };
++        auto meet = [&](size_t node, double cost, const Side& other) {
++            auto found = other.distance.find(node);
++            if (found != other.distance.end()) best = std::min(best, cost + found->second);
++        };
++        // The old frontier may already label this new goal before this call.
++        meet(target, 0., forward_);
++        auto step = [&](Side& active, const Side& other, bool endpoint_side, auto expand) {
++            auto [cost, node] = active.heap.top(); active.heap.pop();
++            active.settled.insert(node);
++            meet(node, cost, other);
++            if (endpoint_side && terminal(node)) {
++                measured.emplace_back(node, cost);
++                return;
++            }
++            expand(node, [&](size_t next, double weight) {
++                if (!std::isfinite(weight) || weight < 0.) throw std::invalid_argument("finite nonnegative delay required");
++                if (memory_hit || active.settled.contains(next)) return;
++                double candidate = cost + weight;
++                if (!std::isfinite(candidate)) throw std::overflow_error("delay sum overflow");
++                auto found = active.distance.find(next);
++                if (found != active.distance.end() && found->second <= candidate) return;
++                if ((found == active.distance.end() && forward_.distance.size() + back.distance.size() >= label_limit)
++                    || forward_.heap.size() + back.heap.size() >= heap_limit) {
++                    memory_hit = true;
++                    // Dropping an endpoint-side relaxation corrupts that saved
++                    // frontier. A reverse-side stop does not corrupt its state.
++                    poisoned_ |= endpoint_side;
++                    return;
++                }
++                active.distance[next] = candidate;
++                active.heap.emplace(candidate, next);
++                meet(next, candidate, other);
++                peak_labels = std::max(peak_labels, forward_.distance.size() + back.distance.size());
++                peak_heap = std::max(peak_heap, forward_.heap.size() + back.heap.size());
++            });
++        };
++        while (true) {
++            forward_.clean(); back.clean();
++            if (memory_hit) return finish(Stop::MEMORY_LIMIT);
++            if (forward_.heap.empty() || back.heap.empty())
++                return finish(std::isfinite(best) ? Stop::EXACT : Stop::UNREACHABLE);
++            double a = forward_.heap.top().first, b = back.heap.top().first;
++            if (std::isfinite(best) && a + b >= best) return finish(Stop::EXACT);
++            size_t new_forward = forward_.settled.size() - initial;
++            if (new_forward + back.settled.size() >= budget) return finish(Stop::WORK_LIMIT);
++            if (a < b || (a == b && new_forward <= back.settled.size()))
++                step(forward_, back, true, outgoing);
++            else step(back, forward_, false, incoming);
++        }
++    }
++
++  private:
++    struct Side {
++        using Item = std::pair<double, size_t>;
++        std::unordered_map<size_t, double> distance;
++        std::unordered_set<size_t> settled;
++        std::priority_queue<Item, std::vector<Item>, std::greater<Item>> heap;
++        explicit Side(size_t root) { distance[root] = 0.; heap.emplace(0., root); }
++        void clean() {
++            while (!heap.empty()) {
++                auto [cost, node] = heap.top();
++                if (!settled.contains(node) && cost == distance.at(node)) break;
++                heap.pop();
++            }
++        }
++    };
++    size_t endpoint_;
++    Side forward_;
++    bool poisoned_ = false;
++};

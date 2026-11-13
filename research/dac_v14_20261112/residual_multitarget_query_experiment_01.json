@@ -1,0 +1,31 @@
+{
+  "status": "registered_not_implemented_not_submitted",
+  "research_complete": false,
+  "question": "Can a fixed-budget query directed to actual same-layer queued seeds find useful residual no-new-cross walk alternatives, where legacy crossing-terminal Dijkstra does not settle those seeds?",
+  "evidence": {
+    "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/residual_seed_oracle_01/analysis.json",
+    "sha256": "952280ca0914e1cd655ef6a660fedcc2eee1021d72b41f59ea07edfb57988b96",
+    "complete_seed_groups": 31,
+    "guided_groups": 10,
+    "guided_no_cross_no_worse": 6,
+    "known_sink_layer_seed_events": 23,
+    "total_sink_layer_seed_events": 565,
+    "qualification": "Physical walk comparisons not congestion-aware dominance or legal-extension/final STA certificates. Four guided groups favor an additional preferred crossing, so blanket suppress-on-sink-layer-seed is not justified."
+  },
+  "scope": "Offline saved actual complete seed groups first, no native route or router changes in first stage.",
+  "arms": [
+    "Q0 zero heuristic, one shared256 expansion budget per actual seed-group",
+    "Qh multi-target spatial ordering toward current source set with partial-tree Tdel as terminal cost, same shared256/label16384/heap65536 caps",
+    "Optional sequential-single-seed control with same total256 work, only if needed to distinguish multi-target allocation from heuristic ordering"
+  ],
+  "method": "Reverse same-layer BB-admitted RR walk from sink toward all actual queued sink-layer source IDs; virtual target edges at sources carry saved physical seedTdel. Virtual edges are analysis only, never RR resources. Use existing independently tested H3dCandidatePath generic query engine or exact parity port. Non-admissible geometry orders work only; frontier-g lower bound alone certifies optimum, discovered path is only UB until certified. Validate every real directed edge/weight and compare all exact claims to sealed offline full-Dijkstra oracle. Include storage/work-limit and source==sink cases. Record query work, unknown, actual best seed and physical witness. No enlarged legacy4096 or concealed fresh query work.",
+  "followup": "Only after useful coverage/validity: native read-only integration using actual successful seed set, static reverse-distance/path reuse and current price snapshots, then separately registered reliability-weighted guide/planning no-new-cross alternative. Compare default-off and query-only controls before scoring; no blanket attenuation based solely on sink-layer seed existence.",
+  "limits": {
+    "offline_seconds": 1800,
+    "offline_memory_bytes": 25769803776,
+    "native_timeout_seconds": 1800,
+    "native_memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "formal_timing": "Any candidate timing claim needs same-environment fresh measurement. Saved offline oracle work is research cost, not unchanged online planning cost."
+}

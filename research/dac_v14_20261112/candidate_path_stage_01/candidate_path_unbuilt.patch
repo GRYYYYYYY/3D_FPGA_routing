@@ -1,0 +1,384 @@
+--- a/vpr/src/route/h3d_delay_plan.h
++++ b/vpr/src/route/h3d_delay_plan.h
+@@ -2,10 +2,12 @@
+ 
+ #include "h3d_delay_search.h"
+ #include "h3d_persistent_bidirectional.h"
++#include "h3d_candidate_path.h"
+ #include "rr_graph_view.h"
+ #include <map>
+ #include <memory>
+ #include <unordered_map>
++#include <unordered_set>
+ 
+ /** Exact first-crossing switch-delay distances on verified zero-RC graphs.
+  * Reverse edges are an analysis index only; the router's graph is unchanged. */
+@@ -34,6 +36,12 @@
+     };
+     bool trace_paths() const { return trace_paths_; }
+     PathWitness path_witness(RRNodeId endpoint, bool reverse, RRNodeId entry) const;
++    /** @brief Independent reverse candidate query; never modifies old distance
++     * caches. Result edges are in the reverse adapter's order, ending at the
++     * virtual target graph.num_nodes(), which represents this crossing entry. */
++    H3dCandidatePath::Result probe_reverse_candidate(RRNodeId sink, RRNodeId entry, size_t work,
++        double heuristic_per_grid_seconds, double toll_weight, float pres_fac,
++        const std::unordered_set<RRNodeId>& owned);
+     void log() const;
+ 
+   private:
+@@ -60,6 +68,8 @@
+     std::unordered_map<RRNodeId, WitnessForest> forward_witness_, reverse_witness_;
+     size_t witness_records_ = 0, witness_cache_skips_ = 0;
+     static constexpr size_t witness_record_limit_ = 2000000;
++    struct CandidateBox { int xmin, xmax, ymin, ymax; };
++    std::map<std::pair<RRNodeId,int>,CandidateBox> candidate_boxes_; ///< Immutable geometry only, never current prices.
+     std::unordered_map<RRNodeId, size_t> forward_work_, reverse_work_; ///< Work survives changing candidate requests.
+     size_t targeted_queries_ = 0, targeted_hits_ = 0, targeted_exact_ = 0, targeted_unknown_ = 0; ///< Candidate-level accounting.
+     size_t targeted_settled_ = 0, targeted_memory_stops_ = 0; ///< Both directions charged together.
+--- a/vpr/src/route/h3d_delay_plan.cpp
++++ b/vpr/src/route/h3d_delay_plan.cpp
+@@ -5,6 +5,7 @@
+ #include "globals.h"
+ #include "vtr_log.h"
+ #include "vpr_error.h"
++#include "route_common.h"
+ #include <cstdlib>
+ 
+ H3dDelayPlan::H3dDelayPlan(const RRGraphView& graph, size_t budget, bool edge_encoding)
+@@ -465,6 +466,53 @@
+     return clamp_bounds_ ? std::max(estimate, lower_bound_seconds(endpoint, reverse) / delay_unit_) : estimate;
+ }
+ 
++H3dCandidatePath::Result H3dDelayPlan::probe_reverse_candidate(RRNodeId sink, RRNodeId entry, size_t work,
++        double heuristic_per_grid_seconds, double toll_weight, float pres_fac,
++        const std::unordered_set<RRNodeId>& owned) {
++    VTR_ASSERT(supported_ && edge_encoding_ && heuristic_per_grid_seconds >= 0. && toll_weight >= 0.);
++    const int layer=graph_.node_layer_low(sink);
++    const auto key=std::make_pair(entry,layer);
++    auto cached=candidate_boxes_.find(key);
++    if (cached==candidate_boxes_.end()) {
++        CandidateBox box{std::numeric_limits<int>::max(),std::numeric_limits<int>::min(),
++                         std::numeric_limits<int>::max(),std::numeric_limits<int>::min()};
++        for (auto edge:graph_.node_out_edges(entry)) {
++            RRNodeId next=graph_.edge_sink_node(entry,edge);
++            if (!h3d_crosses_layers(graph_,entry,next) || graph_.node_layer_low(next)!=layer) continue;
++            box.xmin=std::min(box.xmin,int(graph_.node_xlow(next)));box.xmax=std::max(box.xmax,int(graph_.node_xhigh(next)));
++            box.ymin=std::min(box.ymin,int(graph_.node_ylow(next)));box.ymax=std::max(box.ymax,int(graph_.node_yhigh(next)));
++        }
++        VTR_ASSERT(box.xmin<=box.xmax && box.ymin<=box.ymax);
++        cached=candidate_boxes_.emplace(key,box).first;
++    }
++    const auto box=cached->second;
++    const auto& routing=g_vpr_ctx.routing();
++    auto heuristic=[&](size_t raw) {
++        RRNodeId node(raw);
++        int dx=std::max({0,box.xmin-int(graph_.node_xhigh(node)),int(graph_.node_xlow(node))-box.xmax});
++        int dy=std::max({0,box.ymin-int(graph_.node_yhigh(node)),int(graph_.node_ylow(node))-box.ymax});
++        return heuristic_per_grid_seconds*(double(dx)+double(dy));
++    };
++    auto expand=[&](size_t raw,auto visit) {
++        RRNodeId current(raw);double toll=0.;auto type=graph_.node_type(current);
++        if (toll_weight>0. && (type==e_rr_type::CHANX || type==e_rr_type::CHANY) && !owned.contains(current)) {
++            const auto& info=routing.rr_node_route_inf[current];
++            double price=double(info.acc_cost)*(1.+double(pres_fac)*std::max(0,info.occ()+1-graph_.node_capacity(current)));
++            double bounded=std::isfinite(price) ? std::max(0.,price-1.)/std::max(1.,price) : 1.;
++            toll=toll_weight*delay_unit_*bounded;
++        }
++        for (size_t i=reverse_start_[raw];i<reverse_start_[raw+1];++i) {
++            const auto& pred=predecessors_[i];
++            if (h3d_crosses_layers(graph_,pred.node,current)) {
++                if (pred.node==entry) visit(graph_.num_nodes(),double(pred.delay),toll);
++            } else if (graph_.node_layer_low(pred.node)==layer) {
++                visit(size_t(pred.node),double(pred.delay),toll);
++            }
++        }
++    };
++    return H3dCandidatePath::query(size_t(sink),graph_.num_nodes(),work,16384,65536,expand,heuristic);
++}
++
+ H3dDelayPlan::PathWitness H3dDelayPlan::path_witness(RRNodeId endpoint, bool reverse, RRNodeId entry) const {
+     if (!trace_paths_) return {"disabled", 0., {}, {}};
+     const auto& distances = reverse ? reverse_ : forward_;
+--- a/vpr/src/route/h3d_fast_plan.h
++++ b/vpr/src/route/h3d_fast_plan.h
+@@ -8,6 +8,7 @@
+ #include "h3d_routing.h"
+ #include "h3d_delay_plan.h"
+ #include "h3d_plan_profile.h"
++#include "h3d_partition_dp.h"
+ #include "rr_graph_view.h"
+ #include "vtr_vector.h"
+ 
+@@ -63,6 +64,11 @@
+ 
+     /** @brief Diversity selection within a cost-ranked, finite feasible list. */
+     std::vector<size_t> diversify_(const std::vector<std::pair<double, size_t>>& ranked, size_t count) const;
++    void probe_candidates_(ParentNetId net, size_t plan_id, const std::vector<RRNodeId>& terminals,
++        const std::vector<float>& criticality, const std::vector<size_t>& targets, float pres_fac,
++        const std::vector<size_t>& table, const std::vector<double>& openings,
++        const std::vector<t_h3d_plan_leaf>& leaves, const t_h3d_partition_plan& planned,
++        const std::unordered_map<int,const H3dDelayPlan::Distances*>& reverse);
+ 
+     H3dPlanProfile profile_;                                           ///< Optional disjoint stage accounting.
+     size_t reach_misses_ = 0;                                          ///< Endpoint closure cache misses.
+@@ -93,6 +99,10 @@
+     size_t retained_trace_plans_ = 0; ///< Diagnostic-only refresh identity, including explicitly uncovered calls.
+     size_t path_trace_rows_ = 0, path_trace_omitted_ = 0; ///< Bounded, read-only witness telemetry.
+     size_t path_measured_[2] = {0, 0}, path_unmeasured_[2] = {0, 0}, path_cache_limit_[2] = {0, 0};
++    int candidate_path_mode_ = 0; ///< 0 off,1 uniform,2 spatial,3 spatial plus bounded current-price toll; query only.
++    size_t candidate_path_plans_=0,candidate_path_records_=0,candidate_path_calls_=0,candidate_path_hits_=0;
++    size_t candidate_path_work_=0,candidate_path_found_=0,candidate_path_exact_=0,candidate_path_memory_=0;
++    double candidate_path_seconds_=0.;
+     bool dp_tie_pressure_ = false; ///< Zero extra congestion preference only on strict finite shared-DP exclusion ties.
+     bool dp_margin_pressure_ = false; ///< Separate bounded relative surrogate-sensitivity pressure ablation.
+     size_t estimate_trace_rows_ = 0; ///< Number of emitted candidate records across diagnostic phases.
+--- a/vpr/src/route/h3d_fast_plan.cpp
++++ b/vpr/src/route/h3d_fast_plan.cpp
+@@ -219,6 +219,17 @@
+                                   || !feedback || std::string(feedback) != "1"
+                                   || !target_feedback || std::string(target_feedback) != "1"))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Retained-prefix tracing requires target feedback, edge delay scoring and cached closure views");
++    const char* candidate_path=std::getenv("VPR_H3D_CANDIDATE_PATH");
++    if (candidate_path) {
++        const std::string mode(candidate_path);
++        if (mode=="off") candidate_path_mode_=0;
++        else if (mode=="uniform") candidate_path_mode_=1;
++        else if (mode=="spatial") candidate_path_mode_=2;
++        else if (mode=="priced") candidate_path_mode_=3;
++        else VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_CANDIDATE_PATH must be off, uniform, spatial or priced");
++    }
++    if (candidate_path_mode_ && (!trace_retained_prefix_ || targeted_delay_ || mixed_delay_))
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Candidate path prototype requires separate legacy-delay target-feedback prefix tracing");
+     if (refresh_independent_ && (independent_ || !feedback || std::string(feedback) != "1"
+                                 || !target_feedback || std::string(target_feedback) != "1"))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Independent refresh ablation requires initial shared planning and target-restricted feedback");
+@@ -867,6 +878,9 @@
+         profile.enter(Phase::SOLVE);
+         const bool independent = independent_ || (prior_guides && refresh_independent_);
+         auto planned = independent ? h3d_plan_independent(leaves, openings) : h3d_plan_partition(leaves, openings);
++        if (candidate_path_mode_ && prior_guides && refresh_targets && prefix_trace
++            && delay_plan_ && delay_plan_->supported() && std::isfinite(planned.cost))
++            probe_candidates_(net,prefix_trace,terminals,criticality,*refresh_targets,pres_fac,table,openings,leaves,planned,reverse);
+         if (prior_guides) {
+             refresh_independent_calls_ += independent;
+             refresh_shared_calls_ += !independent;
+@@ -1240,7 +1254,106 @@
+     return result;
+ }
+ 
++void H3dFastPlan::probe_candidates_(ParentNetId net,size_t plan_id,const std::vector<RRNodeId>& terminals,
++        const std::vector<float>& criticality,const std::vector<size_t>& targets,float pres_fac,
++        const std::vector<size_t>& table,const std::vector<double>& openings,
++        const std::vector<t_h3d_plan_leaf>& leaves,const t_h3d_partition_plan& planned,
++        const std::unordered_map<int,const H3dDelayPlan::Distances*>& reverse) {
++    const auto started=std::chrono::steady_clock::now();
++    struct Request {int pin;size_t candidate,alternatives;double priority,gap;bool proposed;};
++    struct LeafRequests {int pin;double priority;std::vector<Request> requests;};
++    std::vector<LeafRequests> pending;
++    for (const auto& leaf:leaves) {
++        auto assignment=std::find_if(planned.assignment.begin(),planned.assignment.end(),[&](const auto& x){return x.first==leaf.pin;});
++        if (assignment==planned.assignment.end()) continue;
++        VTR_ASSERT(std::find(targets.begin(),targets.end(),size_t(leaf.pin))!=targets.end());
++        size_t chosen=assignment->second;double chosen_cost=0.;
++        std::vector<std::pair<double,size_t>> ranked,unknown;
++        for (const auto& candidate:leaf.candidates) {
++            double cost=openings[candidate.channel]+candidate.branch_cost;
++            if (!std::isfinite(cost)) continue;
++            ranked.emplace_back(cost,candidate.channel);
++            if (candidate.channel==chosen) chosen_cost=cost;
++            auto back=reverse.find(leaf.pin);RRNodeId entry=channels_[table[candidate.channel]];
++            if (back==reverse.end() || !back->second->contains(entry)) unknown.emplace_back(cost,candidate.channel);
++        }
++        if (unknown.empty()) continue;
++        std::sort(ranked.begin(),ranked.end());std::sort(unknown.begin(),unknown.end());
++        double alternative=chosen_cost;bool has_alternative=false;
++        for (auto [cost,c]:ranked) if (c!=chosen) {alternative=cost;has_alternative=true;break;}
++        double gap=alternative-chosen_cost;
++        double uncertainty=has_alternative ? 1./(1.+std::abs(gap)/std::max(1.,std::abs(chosen_cost))) : 0.;
++        double priority=double(criticality[leaf.pin])*(.25+.75*uncertainty);
++        LeafRequests selected{leaf.pin,priority,{}};
++        auto chosen_unknown=std::find_if(unknown.begin(),unknown.end(),[&](const auto& x){return x.second==chosen;});
++        if (chosen_unknown!=unknown.end()) selected.requests.push_back({leaf.pin,chosen,ranked.size()-1,priority,gap,true});
++        RRNodeId proposed=channels_[table[chosen]];size_t alternate=table.size();
++        for (size_t i=0;i<std::min(size_t(4),unknown.size());++i) {
++            size_t c=unknown[i].second;if(c==chosen)continue;
++            if(alternate==table.size())alternate=c;
++            RRNodeId entry=channels_[table[c]];
++            if(graph_.node_xlow(entry)!=graph_.node_xlow(proposed) || graph_.node_ylow(entry)!=graph_.node_ylow(proposed)) {alternate=c;break;}
++        }
++        if(alternate<table.size())selected.requests.push_back({leaf.pin,alternate,ranked.size()-1,priority,gap,false});
++        if(!selected.requests.empty())pending.push_back(std::move(selected));
++    }
++    std::sort(pending.begin(),pending.end(),[](const auto& a,const auto& b){return a.priority!=b.priority ? a.priority>b.priority : a.pin<b.pin;});
++    std::vector<Request> requests;
++    for(size_t i=0;i<std::min(size_t(2),pending.size());++i)
++        requests.insert(requests.end(),pending[i].requests.begin(),pending[i].requests.end());
++    if(requests.empty())return;
++    ++candidate_path_plans_;
++    const auto& routing=g_vpr_ctx.routing();std::unordered_set<RRNodeId> owned;
++    if(routing.route_trees[net])for(const auto& node:routing.route_trees[net]->all_nodes())owned.insert(node.inode);
++    std::map<std::pair<RRNodeId,RRNodeId>,H3dCandidatePath::Result> memo;
++    size_t remaining=256;double unit=delay_plan_->delay_unit();
++    const double heuristic=candidate_path_mode_>=2 ? 4.*unit/std::max(1.,mean_span_) : 0.;
++    const double weight=candidate_path_mode_==3 ? .25 : 0.;
++    const char* names[]={"exact_proxy","path_upper","unreachable","work_limit","memory_limit"};
++    for(size_t i=0;i<requests.size();++i) {
++        const auto request=requests[i];RRNodeId entry=channels_[table[request.candidate]],sink=terminals[request.pin];
++        size_t allowance=remaining ? std::max(size_t(1),remaining/(requests.size()-i)) : 0;
++        auto key=std::make_pair(sink,entry);auto found=memo.find(key);bool hit=found!=memo.end(),attempted=hit || allowance>0;
++        H3dCandidatePath::Result result{H3dCandidatePath::Stop::WORK_LIMIT,{},{},{},{},{}};
++        size_t charged=0;
++        if(hit) {result=found->second;++candidate_path_hits_;}
++        else if(allowance) {
++            result=delay_plan_->probe_reverse_candidate(sink,entry,allowance,heuristic,weight,pres_fac,owned);
++            charged=result.expansions;VTR_ASSERT(charged<=remaining);remaining-=charged;
++            memo.emplace(key,result);++candidate_path_calls_;candidate_path_work_+=charged;
++        }
++        ++candidate_path_records_;
++        candidate_path_found_+=result.priced_upper_seconds.has_value();
++        candidate_path_exact_+=result.stop==H3dCandidatePath::Stop::EXACT;
++        candidate_path_memory_+=result.stop==H3dCandidatePath::Stop::MEMORY_LIMIT;
++        std::vector<RRNodeId> nodes;std::vector<double> physical,tolls;
++        if(result.priced_upper_seconds) {
++            for(auto it=result.edges.rbegin();it!=result.edges.rend();++it) {
++                size_t raw=it->to;nodes.push_back(raw==graph_.num_nodes() ? entry : RRNodeId(raw));
++                physical.push_back(it->physical_seconds);tolls.push_back(it->toll_seconds);
++            }
++            nodes.push_back(sink);
++        }
++        std::ostringstream path;path<<std::setprecision(17);
++        for(size_t j=0;j<nodes.size();++j) {
++            RRNodeId node=nodes[j];const auto& info=routing.rr_node_route_inf[node];if(j)path<<';';
++            path<<size_t(node)<<','<<(j<physical.size()?physical[j]:0.)<<','<<(j<tolls.size()?tolls[j]:0.)
++                <<','<<info.occ()<<','<<graph_.node_capacity(node)<<','<<double(info.acc_cost)<<','<<int(owned.contains(node));
++        }
++        double missing=std::numeric_limits<double>::quiet_NaN();
++        VTR_LOG("H3D_CANDIDATE_PATH plan=%zu net=%zu pin=%d entry=%zu mode=%d request=%zu requests=%zu proposed=%d native_target=1 criticality=%.17g local_gap=%.17g rank_alternatives=%zu priority=%.17g allowance=%zu charged=%zu remaining=%zu attempted=%d cache_hit=%d stop=%s search_expansions=%zu labels=%zu peak_heap=%zu unit_seconds=%.17g heuristic_per_grid_seconds=%.17g toll_weight=%.17g pres_fac=%.17g priced_upper_seconds=%.17g physical_path_seconds=%.17g toll_path_seconds=%.17g lower_priced_seconds=%.17g sink=%zu path=%s\n",
++                plan_id,size_t(net),request.pin,size_t(entry),candidate_path_mode_,i+1,requests.size(),int(request.proposed),double(criticality[request.pin]),request.gap,request.alternatives,request.priority,
++                allowance,charged,remaining,int(attempted),int(hit),names[int(result.stop)],result.expansions,result.labels,result.peak_heap,unit,heuristic,weight,double(pres_fac),
++                result.priced_upper_seconds.value_or(missing),result.physical_path_seconds.value_or(missing),result.toll_path_seconds.value_or(missing),result.lower_seconds.value_or(missing),size_t(sink),
++                nodes.empty()?"-":path.str().c_str());
++    }
++    candidate_path_seconds_+=std::chrono::duration<double>(std::chrono::steady_clock::now()-started).count();
++}
++
+ void H3dFastPlan::log() const {
++    if(candidate_path_mode_)
++        VTR_LOG("H3D_CANDIDATE_PATH_SUMMARY mode=%d plans=%zu records=%zu calls=%zu cache_hits=%zu charged_expansions=%zu paths=%zu exact_proxy=%zu memory_stops=%zu per_plan_work_cap=256 label_cap=16384 heap_cap=65536 seconds=%.9g\n",
++                candidate_path_mode_,candidate_path_plans_,candidate_path_records_,candidate_path_calls_,candidate_path_hits_,candidate_path_work_,candidate_path_found_,candidate_path_exact_,candidate_path_memory_,candidate_path_seconds_);
+     if (delay_plan_ && delay_plan_->trace_paths())
+         VTR_LOG("H3D_PATH_TRACE records=%zu omitted=%zu limit=50000 forward_measured=%zu reverse_measured=%zu forward_unmeasured=%zu reverse_unmeasured=%zu forward_cache_limit=%zu reverse_cache_limit=%zu\n",
+                 path_trace_rows_, path_trace_omitted_, path_measured_[0], path_measured_[1], path_unmeasured_[0], path_unmeasured_[1], path_cache_limit_[0], path_cache_limit_[1]);
+--- a/vpr/src/route/h3d_candidate_path.h
++++ b/vpr/src/route/h3d_candidate_path.h
+@@ -0,0 +1,110 @@
++#pragma once
++#include <algorithm>
++#include <cmath>
++#include <limits>
++#include <optional>
++#include <queue>
++#include <stdexcept>
++#include <tuple>
++#include <unordered_map>
++#include <unordered_set>
++#include <vector>
++
++/** @brief Bounded directed path discovery with an independently certified bound.
++ * Heuristic values need not be admissible: they only order expansion. Every
++ * label is an immutable path prefix, so reopening does not corrupt witnesses.
++ * Only the minimum pending g-cost, never g+h, can certify optimality. Expand
++ * must describe one fixed graph/price snapshot throughout the call.
++ */
++class H3dCandidatePath {
++  public:
++    enum class Stop { EXACT, FOUND_PATH, UNREACHABLE, WORK_LIMIT, MEMORY_LIMIT };
++    struct Edge { size_t from, to; double physical_seconds, toll_seconds; };
++    struct Result {
++        Stop stop;
++        std::optional<double> priced_upper_seconds, physical_path_seconds, toll_path_seconds;
++        std::optional<double> lower_seconds;
++        std::vector<Edge> edges;
++        size_t expansions=0, labels=0, peak_heap=0;
++    };
++
++    template<typename Expand, typename Heuristic>
++    static Result query(size_t source, size_t target, size_t budget,
++                        size_t label_limit, size_t heap_limit,
++                        Expand expand, Heuristic heuristic, bool stop_at_first_path=true) {
++        if (!label_limit || heap_limit<2) throw std::invalid_argument("candidate path storage must admit root and two queues");
++        constexpr size_t none=std::numeric_limits<size_t>::max();
++        struct Label {
++            size_t node, parent;
++            double g, physical, toll, edge_physical, edge_toll;
++            bool expanded=false;
++        };
++        using Priority=std::tuple<double,double,size_t,size_t>; // priority,g,node,label
++        using Lower=std::tuple<double,size_t,size_t>; // g,node,label
++        std::priority_queue<Priority,std::vector<Priority>,std::greater<Priority>> open;
++        std::priority_queue<Lower,std::vector<Lower>,std::greater<Lower>> lower;
++        std::vector<Label> labels;
++        labels.reserve(std::min(label_limit,size_t(16384)));
++        std::unordered_map<size_t,size_t> best;
++        auto h=[&](size_t node) {
++            double value=node==target ? 0. : heuristic(node);
++            if (!std::isfinite(value) || value<0.) throw std::invalid_argument("finite nonnegative heuristic required");
++            return value;
++        };
++        labels.push_back({source,none,0.,0.,0.,0.,0.});best[source]=0;
++        open.emplace(h(source),0.,source,0);lower.emplace(0.,source,0);
++        size_t used=0,peak_heap=2,goal=source==target ? 0 : none;
++        bool memory_hit=false,goal_expanded=false;
++        auto pending=[&](size_t id) {
++            return !labels[id].expanded && best.at(labels[id].node)==id;
++        };
++        auto finish=[&](Stop stop,std::optional<double> bound) {
++            Result answer{stop,std::nullopt,std::nullopt,std::nullopt,bound,{},used,labels.size(),peak_heap};
++            if (goal==none) return answer;
++            const auto& chosen=labels[goal];
++            answer.priced_upper_seconds=chosen.g;answer.physical_path_seconds=chosen.physical;answer.toll_path_seconds=chosen.toll;
++            std::unordered_set<size_t> seen;
++            for (size_t id=goal;labels[id].parent!=none;id=labels[id].parent) {
++                const auto& x=labels[id];
++                if (!seen.insert(x.node).second || x.parent>=id) throw std::logic_error("invalid candidate path ancestry");
++                answer.edges.push_back({labels[x.parent].node,x.node,x.edge_physical,x.edge_toll});
++            }
++            std::reverse(answer.edges.begin(),answer.edges.end());
++            return answer;
++        };
++        while (true) {
++            while (!open.empty() && !pending(std::get<3>(open.top()))) open.pop();
++            while (!lower.empty() && !pending(std::get<2>(lower.top()))) lower.pop();
++            // A dropped relaxation can conceal a cheaper path; expose no lower
++            // certificate after storage loss, even when a valid witness exists.
++            if (memory_hit) return finish(Stop::MEMORY_LIMIT,std::nullopt);
++            double frontier=lower.empty() ? std::numeric_limits<double>::infinity() : std::get<0>(lower.top());
++            if (goal!=none && labels[goal].g<=frontier) return finish(Stop::EXACT,labels[goal].g);
++            if (open.empty()) return finish(Stop::UNREACHABLE,std::numeric_limits<double>::infinity());
++            if (goal_expanded && stop_at_first_path) return finish(Stop::FOUND_PATH,frontier);
++            if (used>=budget) return finish(Stop::WORK_LIMIT,frontier);
++            size_t id=std::get<3>(open.top());open.pop();
++            // Copy before relaxations: labels can reallocate while expanding.
++            Label active=labels[id];labels[id].expanded=true;++used;
++            if (active.node==target) { goal_expanded=true;continue; }
++            expand(active.node,[&](size_t next,double physical,double toll) {
++                if (!std::isfinite(physical) || physical<0. || !std::isfinite(toll) || toll<0.)
++                    throw std::invalid_argument("finite nonnegative physical delay and price toll required");
++                if (memory_hit) return;
++                double value=active.g+(physical+toll);
++                double p=active.physical+physical,t=active.toll+toll;
++                if (!std::isfinite(value) || !std::isfinite(p) || !std::isfinite(t)) throw std::overflow_error("candidate path cost overflow");
++                auto old=best.find(next);
++                if (old!=best.end() && labels[old->second].g<=value) return;
++                double priority=value+h(next);
++                if (!std::isfinite(priority)) throw std::overflow_error("candidate priority overflow");
++                if (labels.size()>=label_limit || open.size()+lower.size()+2>heap_limit) { memory_hit=true;return; }
++                size_t new_id=labels.size();
++                labels.push_back({next,id,value,p,t,physical,toll});best[next]=new_id;
++                open.emplace(priority,value,next,new_id);lower.emplace(value,next,new_id);
++                peak_heap=std::max(peak_heap,open.size()+lower.size());
++                if (next==target) goal=new_id;
++            });
++        }
++    }
++};

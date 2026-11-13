@@ -1,0 +1,285 @@
+--- a/vpr/src/route/h3d_delay_search.h
++++ b/vpr/src/route/h3d_delay_search.h
+@@ -15,16 +15,21 @@
+  * The caller supplies directed edges; terminal nodes are not expanded. */
+ class H3dDelaySearch {
+   public:
++    struct WitnessStep {
++        size_t node, parent;
++        double edge_weight; ///< The exact directed adapter edge used to label node.
++    };
+     struct Result {
+         std::vector<std::pair<size_t, double>> terminals;
+         size_t settled = 0;
+         bool budget_exhausted = false;
++        std::vector<WitnessStep> witness; ///< Optional forest for settled nodes only.
+     };
+     explicit H3dDelaySearch(size_t nodes)
+         : distance_(nodes), generation_(nodes, 0), settled_(nodes, 0) {}
+ 
+     template<typename Terminal, typename Expand>
+-    Result query(size_t source, size_t budget, Terminal terminal, Expand expand) {
++    Result query(size_t source, size_t budget, Terminal terminal, Expand expand, bool capture_witness = false) {
+         if (++epoch_ == 0) {
+             std::fill(generation_.begin(), generation_.end(), 0);
+             std::fill(settled_.begin(), settled_.end(), 0);
+@@ -34,6 +39,15 @@
+         std::priority_queue<Item, std::vector<Item>, std::greater<Item>> queue;
+         distance_.at(source) = 0.;
+         generation_[source] = epoch_;
++        if (capture_witness) {
++            // Allocate lazily; the disabled path retains the original storage
++            // and relaxation decisions. Parent links always originate at an
++            // already settled node, including in graphs with zero-cost cycles.
++            parent_.resize(distance_.size());
++            parent_weight_.resize(distance_.size());
++            parent_[source] = source;
++            parent_weight_[source] = 0.;
++        }
+         queue.emplace(0., source);
+         Result result;
+         while (!queue.empty() && result.settled < budget) {
+@@ -42,6 +56,7 @@
+             if (settled_[node] == epoch_ || cost != distance_[node]) continue;
+             settled_[node] = epoch_;
+             ++result.settled;
++            if (capture_witness) result.witness.push_back({node, parent_[node], parent_weight_[node]});
+             if (terminal(node)) {
+                 result.terminals.emplace_back(node, cost);
+                 continue;
+@@ -53,6 +68,10 @@
+                 if (generation_.at(next) != epoch_ || candidate < distance_[next]) {
+                     generation_[next] = epoch_;
+                     distance_[next] = candidate;
++                    if (capture_witness) {
++                        parent_[next] = node;
++                        parent_weight_[next] = weight;
++                    }
+                     queue.emplace(candidate, next);
+                 }
+             });
+@@ -63,6 +82,8 @@
+ 
+   private:
+     std::vector<double> distance_;
++    std::vector<size_t> parent_;
++    std::vector<double> parent_weight_;
+     std::vector<uint32_t> generation_, settled_;
+     uint32_t epoch_ = 0;
+ };
+--- a/vpr/src/route/h3d_delay_plan.cpp
++++ b/vpr/src/route/h3d_delay_plan.cpp
+@@ -9,6 +9,16 @@
+ 
+ H3dDelayPlan::H3dDelayPlan(const RRGraphView& graph, size_t budget, bool edge_encoding)
+     : graph_(graph), budget_(budget), edge_encoding_(edge_encoding) {
++    if (const char* value = std::getenv("VPR_H3D_TRACE_PATH_WITNESS")) {
++        if (std::string(value) != "0" && std::string(value) != "1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_PATH_WITNESS must be 0 or 1");
++        trace_paths_ = std::string(value) == "1";
++        const char* targeted = std::getenv("VPR_H3D_TARGET_DELAY");
++        const char* prefix = std::getenv("VPR_H3D_TRACE_RETAINED_PREFIX");
++        if (trace_paths_ && (!edge_encoding_ || (targeted && std::string(targeted) == "1")
++                            || !prefix || std::string(prefix) != "1"))
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Path-witness diagnostics require edge encoding, retained-prefix tracing and non-targeted queries");
++    }
+     if (const char* value = std::getenv("VPR_H3D_TARGET_FRONTIER")) {
+         if (std::string(value) != "0" && std::string(value) != "1")
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TARGET_FRONTIER must be 0 or 1");
+@@ -149,7 +159,17 @@
+                 accept(graph_.edge_sink_node(current, edge), graph_.rr_switch()[RRSwitchId(graph_.edge_switch(current, edge))].Tdel);
+         }
+     };
+-    auto result = search_->query(size_t(endpoint), budget_, terminal, expand);
++    auto result = search_->query(size_t(endpoint), budget_, terminal, expand, trace_paths_);
++    if (trace_paths_) {
++        if (result.witness.size() <= witness_record_limit_ - witness_records_) {
++            auto& forest = (reverse ? reverse_witness_ : forward_witness_)[endpoint];
++            forest.reserve(result.witness.size());
++            for (const auto& step : result.witness) forest.emplace(step.node, step);
++            witness_records_ += result.witness.size();
++        } else {
++            ++witness_cache_skips_; // Exact distances remain available and unchanged.
++        }
++    }
+     ++queries_; settled_ += result.settled; truncated_ += result.budget_exhausted;
+     Distances distances;
+     for (auto [node, delay] : result.terminals)
+@@ -445,7 +465,53 @@
+     return clamp_bounds_ ? std::max(estimate, lower_bound_seconds(endpoint, reverse) / delay_unit_) : estimate;
+ }
+ 
++H3dDelayPlan::PathWitness H3dDelayPlan::path_witness(RRNodeId endpoint, bool reverse, RRNodeId entry) const {
++    if (!trace_paths_) return {"disabled", 0., {}, {}};
++    const auto& distances = reverse ? reverse_ : forward_;
++    auto values = distances.find(endpoint);
++    if (values == distances.end() || !values->second.contains(entry)) return {"unmeasured", 0., {}, {}};
++    const auto& caches = reverse ? reverse_witness_ : forward_witness_;
++    auto cached = caches.find(endpoint);
++    if (cached == caches.end()) return {"cache_limit", 0., {}, {}};
++    const auto& forest = cached->second;
++    VTR_ASSERT(edge_source_index_[entry] >= 0);
++    size_t current = graph_.num_nodes() + edge_source_index_[entry];
++    std::vector<size_t> chain;
++    std::vector<double> weights;
++    while (current != size_t(endpoint)) {
++        auto found = forest.find(current);
++        VTR_ASSERT(found != forest.end() && chain.size() < forest.size());
++        chain.push_back(current);
++        weights.push_back(found->second.edge_weight);
++        current = found->second.parent;
++    }
++    chain.push_back(size_t(endpoint));
++    PathWitness answer{"measured", values->second.at(entry), {}, {}};
++    if (reverse) {
++        // The virtual terminal is the physical crossing entry. Its reverse
++        // parent is the crossing destination; all subsequent edges lead to sink.
++        chain.front() = size_t(entry);
++        for (size_t node : chain) answer.nodes.push_back(RRNodeId(node));
++        answer.edge_delays = std::move(weights);
++    } else {
++        // Remove the synthetic zero edge entry->terminal, then orient the
++        // physical source-to-entry path in forward order.
++        VTR_ASSERT(!weights.empty() && weights.front() == 0.);
++        chain.erase(chain.begin());
++        weights.erase(weights.begin());
++        std::reverse(chain.begin(), chain.end());
++        std::reverse(weights.begin(), weights.end());
++        for (size_t node : chain) answer.nodes.push_back(RRNodeId(node));
++        answer.edge_delays = std::move(weights);
++    }
++    VTR_ASSERT(answer.nodes.size() == answer.edge_delays.size() + 1);
++    return answer;
++}
++
+ void H3dDelayPlan::log() const {
++    if (trace_paths_)
++        VTR_LOG("H3D_PATH_CACHE records=%zu record_limit=%zu skipped_queries=%zu forward_endpoints=%zu reverse_endpoints=%zu\n",
++                witness_records_, witness_record_limit_, witness_cache_skips_, forward_witness_.size(), reverse_witness_.size());
+     VTR_LOG("H3D_DELAY_BOUNDS trace=%d updates=%zu forward_endpoints=%zu reverse_endpoints=%zu clamp=%d\n",
+             trace_bounds_, bound_updates_, forward_bounds_.size(), reverse_bounds_.size(), clamp_bounds_);
+     VTR_LOG("H3D_PERSISTENT_DELAY enabled=%d slots=%zu peak_states=%zu evictions=%zu restarts=%zu forward_settled=%zu reverse_settled=%zu terminal_certificates=%zu ledger_endpoints=%zu retain=%d discards=%zu live_states=%zu\n",
+--- a/vpr/src/route/h3d_delay_plan.h
++++ b/vpr/src/route/h3d_delay_plan.h
+@@ -26,6 +26,14 @@
+     bool clamp_bounds() const { return clamp_bounds_; }
+     double lower_bound_seconds(RRNodeId endpoint, bool reverse) const;
+     double adjust_estimate_units(RRNodeId endpoint, bool reverse, double estimate) const;
++    struct PathWitness {
++        const char* status;
++        double delay_seconds = 0.;
++        std::vector<RRNodeId> nodes; ///< Always in actual forward RR-edge order.
++        std::vector<double> edge_delays; ///< nodes[i] -> nodes[i+1].
++    };
++    bool trace_paths() const { return trace_paths_; }
++    PathWitness path_witness(RRNodeId endpoint, bool reverse, RRNodeId entry) const;
+     void log() const;
+ 
+   private:
+@@ -47,6 +55,11 @@
+     std::unordered_map<RRNodeId, Distances> forward_, reverse_;
+     Distances empty_;
+     size_t queries_ = 0, settled_ = 0, truncated_ = 0, hits_ = 0;
++    bool trace_paths_ = false; ///< Decision-neutral canonical shortest witnesses, legacy queries only.
++    using WitnessForest = std::unordered_map<size_t, H3dDelaySearch::WitnessStep>;
++    std::unordered_map<RRNodeId, WitnessForest> forward_witness_, reverse_witness_;
++    size_t witness_records_ = 0, witness_cache_skips_ = 0;
++    static constexpr size_t witness_record_limit_ = 2000000;
+     std::unordered_map<RRNodeId, size_t> forward_work_, reverse_work_; ///< Work survives changing candidate requests.
+     size_t targeted_queries_ = 0, targeted_hits_ = 0, targeted_exact_ = 0, targeted_unknown_ = 0; ///< Candidate-level accounting.
+     size_t targeted_settled_ = 0, targeted_memory_stops_ = 0; ///< Both directions charged together.
+--- a/vpr/src/route/h3d_fast_plan.cpp
++++ b/vpr/src/route/h3d_fast_plan.cpp
+@@ -15,6 +15,8 @@
+ #include <cstdlib>
+ #include <limits>
+ #include <set>
++#include <sstream>
++#include <iomanip>
+ 
+ #include "globals.h"
+ #include "h3d_partition_dp.h"
+@@ -873,6 +875,54 @@
+             // No distance/closure construction or mutable routing state access.
+             const double missing = std::numeric_limits<double>::quiet_NaN();
+             const double unit = delay_plan_ && delay_plan_->supported() ? delay_plan_->delay_unit() : 0.;
++            const bool path_trace = delay_plan_ && delay_plan_->trace_paths();
++            std::set<RRNodeId> path_owned;
++            if (path_trace && routing.route_trees[net])
++                for (const auto& node : routing.route_trees[net]->all_nodes()) path_owned.insert(node.inode);
++            auto observe_path = [&](int pin, RRNodeId entry, bool reverse_side, bool prior, bool proposed) {
++                if (!path_trace) return;
++                if (path_trace_rows_ >= 50000) { ++path_trace_omitted_; return; }
++                ++path_trace_rows_;
++                RRNodeId endpoint = reverse_side ? terminals[pin] : source;
++                auto witness = delay_plan_->path_witness(endpoint, reverse_side, entry);
++                size_t ordinary = 0, overused = 0, projected = 0;
++                double premium = 0., maximum = 1.;
++                bool finite_price = true;
++                std::ostringstream path;
++                path << std::setprecision(17);
++                for (size_t i = 0; i < witness.nodes.size(); ++i) {
++                    RRNodeId node = witness.nodes[i];
++                    const auto& info = routing.rr_node_route_inf[node];
++                    const bool owned_node = path_owned.contains(node);
++                    int demand = info.occ() + (owned_node ? 0 : 1);
++                    auto type = graph_.node_type(node);
++                    bool crossing_adjacent = (i && h3d_crosses_layers(graph_, witness.nodes[i-1], node))
++                                             || (i+1 < witness.nodes.size() && h3d_crosses_layers(graph_, node, witness.nodes[i+1]));
++                    bool planar = (type == e_rr_type::CHANX || type == e_rr_type::CHANY)
++                                  && node != entry && !crossing_adjacent;
++                    if (planar) {
++                        ++ordinary;
++                        overused += info.occ() > graph_.node_capacity(node);
++                        projected += demand > graph_.node_capacity(node);
++                        // Ownership-aware negotiated multiplier only: exclude
++                        // native base costs and configurability assumptions.
++                        double price = double(info.acc_cost) * (1. + double(pres_fac) * std::max(0, demand - graph_.node_capacity(node)));
++                        finite_price &= std::isfinite(price);
++                        if (std::isfinite(price)) {
++                            premium += std::max(0., price - 1.);
++                            maximum = std::max(maximum, price);
++                        }
++                    }
++                    if (i) path << ';';
++                    path << size_t(node) << ',' << (i < witness.edge_delays.size() ? witness.edge_delays[i] : 0.)
++                         << ',' << info.occ() << ',' << graph_.node_capacity(node) << ',' << double(info.acc_cost)
++                         << ',' << int(owned_node) << ',' << int(planar);
++                }
++                VTR_LOG("H3D_PATH_WITNESS plan=%zu net=%zu pin=%d entry=%zu reverse=%d endpoint=%zu prior=%d proposed=%d status=%s delay_seconds=%.17g pres_fac=%.17g ordinary=%zu overused=%zu projected_overused=%zu premium_sum=%.17g max_price=%.17g finite_price=%d path=%s\n",
++                        prefix_trace, size_t(net), pin, size_t(entry), int(reverse_side), size_t(endpoint), int(prior), int(proposed), witness.status,
++                        witness.nodes.empty() ? missing : witness.delay_seconds, double(pres_fac), ordinary, overused, projected, premium, maximum, int(finite_price),
++                        witness.nodes.empty() ? "-" : path.str().c_str());
++            };
+             std::unordered_map<RRNodeId, const RouteTreeNode*> retained_entries;
+             if (routing.route_trees[net]) {
+                 for (const auto& node : routing.route_trees[net]->all_nodes())
+@@ -934,6 +984,9 @@
+                             prefix_trace, size_t(net), leaf.pin, size_t(entry), int(sink_view != sink_views_.end()),
+                             reachable_exits, expandable_exits, reachable_exits ? best_exit_tdel : missing,
+                             candidate.branch_cost, int(was_preferred), int(choice != proposed.end() && choice->second == candidate.channel));
++                    bool is_proposed = choice != proposed.end() && choice->second == candidate.channel;
++                    observe_path(leaf.pin, entry, false, was_preferred, is_proposed);
++                    observe_path(leaf.pin, entry, true, was_preferred, is_proposed);
+                 }
+             }
+         }
+@@ -1181,6 +1234,8 @@
+ }
+ 
+ void H3dFastPlan::log() const {
++    if (delay_plan_ && delay_plan_->trace_paths())
++        VTR_LOG("H3D_PATH_TRACE records=%zu omitted=%zu limit=50000\n", path_trace_rows_, path_trace_omitted_);
+     VTR_LOG("H3D_REFRESH_SOLVER_SUMMARY independent=%d shared_calls=%zu independent_calls=%zu\n",
+             refresh_independent_, refresh_shared_calls_, refresh_independent_calls_);
+     VTR_LOG("H3D_EXIT_PRICE_SUMMARY weight=%g pairs=%zu positive=%zu cross_edges=%zu\n",
+--- a/vpr/src/route/h3d_fast_plan.h
++++ b/vpr/src/route/h3d_fast_plan.h
+@@ -91,6 +91,7 @@
+     double retained_opening_credit_ = 0.; ///< Refresh-only credit for the base opening charge of an already owned entry; congestion premiums remain.
+     bool retained_source_cost_ = false; ///< Separate refresh ablation: use expandable retained-entry partial Tdel for source scoring.
+     size_t retained_trace_plans_ = 0; ///< Diagnostic-only refresh identity, including explicitly uncovered calls.
++    size_t path_trace_rows_ = 0, path_trace_omitted_ = 0; ///< Bounded, read-only witness telemetry.
+     bool dp_tie_pressure_ = false; ///< Zero extra congestion preference only on strict finite shared-DP exclusion ties.
+     bool dp_margin_pressure_ = false; ///< Separate bounded relative surrogate-sensitivity pressure ablation.
+     size_t estimate_trace_rows_ = 0; ///< Number of emitted candidate records across diagnostic phases.

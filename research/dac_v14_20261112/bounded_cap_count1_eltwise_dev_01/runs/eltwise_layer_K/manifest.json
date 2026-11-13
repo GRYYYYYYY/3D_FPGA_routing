@@ -1,0 +1,580 @@
+{
+  "name": "eltwise_layer_K",
+  "command": [
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/bin/vpr",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/import_only.xml",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/eltwise_layer.blif",
+    "--route",
+    "--analysis",
+    "--device",
+    "fixture",
+    "--route_chan_width",
+    "100",
+    "--num_workers",
+    "1",
+    "--seed",
+    "11",
+    "--clock_modeling",
+    "ideal",
+    "--check_route",
+    "full",
+    "--verify_file_digests",
+    "off",
+    "--read_rr_graph",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/rr_graph.xml",
+    "--max_router_iterations",
+    "200",
+    "--routing_failure_predictor",
+    "off",
+    "--timing_report_npaths",
+    "0",
+    "--net_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/runs/eltwise_layer_K/packed.net",
+    "--place_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/runs/eltwise_layer_K/placed.place",
+    "--route_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/runs/eltwise_layer_K/routed.route",
+    "--merge_constant_generators",
+    "off"
+  ],
+  "cwd": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/runs/eltwise_layer_K",
+  "shared_inputs": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/bin/vpr": {
+      "sha256": "4151ae3627bb8c221671a8306a386179fc0a0426f2543c572be026927db38946",
+      "stat_identity": [
+        1048620,
+        147449846290,
+        11590760,
+        1794567618821222142,
+        1794567893267193564
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/import_only.xml": {
+      "sha256": "ef1f056e2ed60d0693b20cba261a3d590036960a45a2d0704a67e701354ad283",
+      "stat_identity": [
+        1048620,
+        138191346189,
+        28917,
+        1793138937905281000,
+        1793138937905173502
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/eltwise_layer.blif": {
+      "sha256": "bc65aca459bce5d18e84ff95fe5c63e541568ab48101279dc56438615a734b46",
+      "stat_identity": [
+        1048620,
+        64553551818,
+        4504768,
+        1792671464239020337,
+        1792671464239020337
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/rr_graph.xml": {
+      "sha256": "e695cd129be100079b479a58aefa84d69e5221df4e06f189b1f632b898e30895",
+      "stat_identity": [
+        1048620,
+        138191346221,
+        500374725,
+        1793138951814985380,
+        1793138951814985380
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/registration.json": {
+      "sha256": "1ad6c23aae316b7987fcf6ffcfdfc3599a5e3e3c06d99f0c71ad77580226fdb7",
+      "stat_identity": [
+        1048620,
+        30204811357,
+        15893,
+        1794567893364790000,
+        1794567893364738102
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/runtime_dependency_binding.json": {
+      "sha256": "c23ba091fc4ec78bc96523fe53467ed99e9f4af27bc97f30dacbfd5481cf1978",
+      "stat_identity": [
+        1048620,
+        30204811356,
+        4092,
+        1793689175345944000,
+        1794567893325487904
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libtcl8.6.so": {
+      "sha256": "8aa8d78367d409e0a53ae62608b52a1c3899da60d03c52a2fd3cc94e162db7a8",
+      "stat_identity": [
+        1048597,
+        2987437778,
+        1762056,
+        1648202329000000000,
+        1792669934136919867
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libz.so.1.2.11": {
+      "sha256": "64c206f0146cc58bbddc4f22054436f4ff278f5a554aa3ce6921ddf7e9133370",
+      "stat_identity": [
+        1048597,
+        15058497874,
+        108936,
+        1665783180000000000,
+        1774940171183771598
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0": {
+      "sha256": "d46f9225c1883039e8a6853e6d96ca1af11d034ce186a090952e4a7c8a7c2fdc",
+      "stat_identity": [
+        1048597,
+        13083214380,
+        298776,
+        1766181126000000000,
+        1792237081486955548
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30": {
+      "sha256": "ff0825e113603c3866680d5d52216bc6d8eedf3a59f52a0aef67ff01994db128",
+      "stat_identity": [
+        1048597,
+        13083214461,
+        2260296,
+        1766181126000000000,
+        1792237081702956290
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libm.so.6": {
+      "sha256": "df621c68dbfed7e843434ef2faedb9f4d4b0543ad161e9a55eaf4d4ce2443176",
+      "stat_identity": [
+        1048597,
+        13083214408,
+        940560,
+        1784895077000000000,
+        1792237081578955864
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1": {
+      "sha256": "fc9d43b2f6c20e53b009238f767c5b949d202389e20de9e202ea684b4ba3729a",
+      "stat_identity": [
+        1048597,
+        13083214374,
+        125488,
+        1766181126000000000,
+        1792237081482955535
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libc.so.6": {
+      "sha256": "e01b1ce7be2987f3b8560e26d0df2623f9dd5cec17be923ae28a785bc0d32d50",
+      "stat_identity": [
+        1048597,
+        13083214328,
+        2220400,
+        1784895077000000000,
+        1792237081446955411
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": {
+      "sha256": "8d06f393f4a93bcf9b81145a259524d66a95522a646bf8d7e05b6ffdf2e63dcc",
+      "stat_identity": [
+        1048597,
+        13083214278,
+        240936,
+        1784895077000000000,
+        1792237080450951993
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/a0_serial_build/vpr/vpr": {
+      "sha256": "a3fe24c59b8862ec1f6f13a7009a0df683dd0a8f7dec249bdd1569e2d14408f0",
+      "stat_identity": [
+        1048620,
+        75004637879,
+        12544264,
+        1793687062900116021,
+        1793687062900821101
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/r1_serial_build/vpr/vpr": {
+      "sha256": "1441c77e25e6a4fea62231e16914542952ff9790368ea68cd108ef50db472be6",
+      "stat_identity": [
+        1048620,
+        81802623263,
+        11184856,
+        1793686628677842573,
+        1793686628678138735
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libcrypto.so.3": {
+      "sha256": "7cc817ff1841b59516d684f357bc0c3fc2cc52c3fa9b4ffb8ce8bdc215f02915",
+      "stat_identity": [
+        1048597,
+        2987437811,
+        4455728,
+        1789655784000000000,
+        1792765849742065446
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/b2_serial_build/vpr/vpr": {
+      "sha256": "0a5b314bcacdc61987b3ab8fb5ea77ce4b33242b8b1cdf0ba9b7ad39c31737d5",
+      "stat_identity": [
+        1048620,
+        81800754884,
+        8689528,
+        1793686403292198895,
+        1793686403292441676
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/vpr_serial_bridge_build/vpr/vpr": {
+      "sha256": "ec0877666894210de715bb39cdee1fb32adfd1e3e86af338ff316b5b04c6f337",
+      "stat_identity": [
+        1048620,
+        99924708401,
+        6769376,
+        1793685149852395614,
+        1793685149852988040
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/openroad-local/root/usr/lib/x86_64-linux-gnu/libtclreadline-2.3.8.so": {
+      "sha256": "73f2caec3c775907178585c45e5b99f42f2f4e156dd944843bf4de7e6f0e3c83",
+      "stat_identity": [
+        1048620,
+        35284212032,
+        18760,
+        1574607291000000000,
+        1793133791071481715
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/openroad-local/root/opt/or-tools/lib/libortools.so.9.11.4210": {
+      "sha256": "e362f5d8acebd1bc3485d270e20a0801991f6ec4829245ecf1ff92ac4f0c059f",
+      "stat_identity": [
+        1048620,
+        94610736851,
+        38660240,
+        1733932577000000000,
+        1793133664808772354
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/deps/root/usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2": {
+      "sha256": "1de96ba8296808433bf3ad601f2410c179a3e422a05ad012b49e4ad364f72bc0",
+      "stat_identity": [
+        1048620,
+        57545416850,
+        498040,
+        1639845430000000000,
+        1793682704652006551
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/deps/root/usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1": {
+      "sha256": "d463bedd51d449b2346d329fad8080e0900120ad0aeab8bf93e325b6cff4a587",
+      "stat_identity": [
+        1048620,
+        57526140041,
+        133816,
+        1642615671000000000,
+        1793682704631311646
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libreadline.so.8.1": {
+      "sha256": "57419e3b177639246ecf7ffd2eba170bde779b7369d70e68b9b4c5fc3051cbc1",
+      "stat_identity": [
+        1048597,
+        4845150216,
+        335936,
+        1641486414000000000,
+        1774940172891776184
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libdl.so.2": {
+      "sha256": "d255ba9c9e3a7c35115e578c898147edaba1a2bcf742cc3a76995ceed9d5ac4f",
+      "stat_identity": [
+        1048597,
+        13083214350,
+        14432,
+        1784895077000000000,
+        1792237081466955480
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libpthread.so.0": {
+      "sha256": "fbed9505adacada2abb37c6b43be2df6de81e742712c6025694ba48de62c7e78",
+      "stat_identity": [
+        1048597,
+        13083214450,
+        21448,
+        1784895077000000000,
+        1792237081674956194
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libtinfo.so.6.3": {
+      "sha256": "856b8451914abc2277c3d91c64ba3e72b2e0d519806397afecae92fda1a6b10c",
+      "stat_identity": [
+        1048597,
+        2966304252,
+        200136,
+        1788176217000000000,
+        1792669675324051907
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/openroad_build_boost183/src/openroad": {
+      "sha256": "d072d1f1acac9cea70a0296e0f19dce5dfb55c9bdca9a9b51892b664b539c532",
+      "stat_identity": [
+        1048620,
+        81740007366,
+        83350152,
+        1793684542300152631,
+        1793684542300492815
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/seccomp_thread_guard": {
+      "sha256": "e1a990f2884c3b332d8561bfb3decc1bdb8a9affc5db6f9d672506c591fbf877",
+      "stat_identity": [
+        1048620,
+        57643898038,
+        16200,
+        1793690286802292905,
+        1793690286806919348
+      ]
+    },
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/seccomp_guard_unit_validation.json": {
+      "sha256": "e4a7f16757c73d34aba7c41b85bf2b70c30796d2276169d41d68f36c5d6ff7ce",
+      "stat_identity": [
+        1048620,
+        99997487247,
+        1457,
+        1793690415385308423,
+        1793690415385308423
+      ]
+    },
+    "/usr/bin/time": {
+      "sha256": "7310b9b4c51a8f4d26c1af0da250f03a49ec8a8141033123e79196ad18f6c81b",
+      "stat_identity": [
+        1048597,
+        16880235753,
+        27160,
+        1648201942000000000,
+        1792669675852053665
+      ]
+    },
+    "/usr/bin/prlimit": {
+      "sha256": "a63d6a3b741b085776716c55a23f763280b509095faf43e5d435af7191b5e3e7",
+      "stat_identity": [
+        1048597,
+        5921941645,
+        27536,
+        1712676776000000000,
+        1774940170763770470
+      ]
+    }
+  },
+  "private_input_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/runs/eltwise_layer_K/packed.net": "80407d8982581f80e837796ee76d7bd513f54f391390bad9946d4c64051deded",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/runs/eltwise_layer_K/placed.place": "f43377f776bdb2fb67d1b287e1d22263514d2ba5e9831936087d853e18b1dd8b"
+  },
+  "environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VPR_H3D_MODE": "static",
+    "VPR_H3D_REACHABILITY": "scc",
+    "VPR_H3D_GRAPH_ENCODING": "edge",
+    "VPR_H3D_STATS": "1",
+    "VPR_H3D_CANDIDATES": "16",
+    "VPR_H3D_MISS_WEIGHT": "2",
+    "VPR_H3D_OPENING_WEIGHT": "16",
+    "VPR_H3D_DELAY_BUDGET": "4096",
+    "VPR_H3D_CANDIDATE_COST": "delay",
+    "VPR_H3D_MIN_CRITICALITY": "0.7",
+    "VPR_H3D_TRACE_TABLE": "1",
+    "VPR_H3D_FINAL_TRACE": "1",
+    "VPR_H3D_MIXED_DELAY": "0",
+    "VPR_H3D_TIMING_GUIDE": "0",
+    "VPR_H3D_ASSIGNMENT": "shared",
+    "VPR_H3D_FEEDBACK": "1",
+    "VPR_H3D_PLAN_PROFILE": "1",
+    "VPR_H3D_GENERATION_CLOSURE": "1",
+    "VPR_H3D_SHARED_CLOSURE": "1",
+    "VPR_H3D_COMPACT_CLOSURE": "1",
+    "VPR_H3D_CLOSURE_VIEW": "1",
+    "VPR_H3D_TRACE_PRIOR": "0",
+    "VPR_H3D_TRACE_PLANAR_FEEDBACK": "0",
+    "VPR_H3D_PLANAR_FEEDBACK": "0",
+    "VPR_H3D_TARGET_FEEDBACK": "1",
+    "VPR_H3D_EXIT_PRICE": "0",
+    "VPR_H3D_TRACE_UPDATE_PINS": "1",
+    "VPR_H3D_TIMING_GUIDE_MODE": "coverage",
+    "VPR_H3D_EQUIVALENT_GUIDES": "0",
+    "VPR_H3D_TARGET_DELAY": "0",
+    "VPR_H3D_TARGET_FRONTIER": "0",
+    "VPR_H3D_SOURCE_GEOMETRY_FLOOR": "0",
+    "VPR_H3D_REVERSE_RERANK": "0",
+    "VPR_H3D_QUERY_CRITICALITY_ORDER": "0",
+    "VPR_H3D_SOURCE_QUERY_SHARE": "0",
+    "VPR_H3D_LAYER_BB_DELAYED": "0",
+    "VPR_H3D_ALL_LAYER_BB": "0",
+    "VPR_H3D_LAYER_BB_FEEDBACK": "0",
+    "VPR_H3D_RETAINED_OPENING_CREDIT": "0",
+    "VPR_H3D_TRACE_RETAINED_PREFIX": "1",
+    "VPR_H3D_TRACE_GUIDE_MARGIN": "0",
+    "VPR_H3D_TRACE_DP_SENSITIVITY": "0",
+    "VPR_H3D_DP_TIE_PRESSURE": "0",
+    "VPR_H3D_DP_MARGIN_PRESSURE": "0",
+    "VPR_H3D_REFRESH_ASSIGNMENT": "inherit",
+    "VPR_H3D_POST_LEGAL_RELEASE": "0",
+    "VPR_H3D_POST_LEGAL_FREEZE": "0",
+    "VPR_H3D_TRACE_PATH_WITNESS": "0",
+    "VPR_H3D_CANDIDATE_PATH": "priced",
+    "VPR_H3D_CANDIDATE_PATH_SCORE": "0",
+    "VPR_H3D_CANDIDATE_PATH_CAPTURE": "1",
+    "VPR_H3D_CANDIDATE_PATH_USE_CACHED": "1",
+    "VPR_H3D_CANDIDATE_PATH_COMPACT": "1",
+    "VPR_H3D_CANDIDATE_PATH_DELAY": "0",
+    "VPR_H3D_SOURCE_EMPTY_REVERSE": "0",
+    "VPR_H3D_SOURCE_COVERAGE_SKIP": "0",
+    "VPR_H3D_TRACE_GUIDE_INFLUENCE": "0",
+    "VPR_H3D_BOUNDED_CRITICAL_GUIDE": "0.25",
+    "VPR_H3D_BOUNDED_CRITICAL_CAP_ONLY": "1",
+    "VPR_H3D_BOUNDED_AFTER_LEGAL": "0"
+  },
+  "timeout_seconds": 1800,
+  "tags": {
+    "circuit": "eltwise_layer",
+    "arm": "K",
+    "phase": "development",
+    "hypothesis": "bounded_critical_count1"
+  },
+  "start_utc": "2026-11-13T11:04:54.860512+00:00",
+  "status": "completed",
+  "supervisor_pid": 3407496,
+  "runner_sha256": "de3f4ad7886df8291e6420e2c50314c071cd29bdb1367af5adc59e58c231db31",
+  "execution_limit": {
+    "address_space_bytes": 68719476736,
+    "core_dump_bytes": 0,
+    "enforcement": "/usr/bin/prlimit --as=soft:hard --core=0:0, inherited by children"
+  },
+  "thread_enforcement": {
+    "method": "seccomp_guard_no_ptrace",
+    "guard": {
+      "sha256": "e1a990f2884c3b332d8561bfb3decc1bdb8a9affc5db6f9d672506c591fbf877",
+      "stat_identity": [
+        1048620,
+        57643898038,
+        16200,
+        1793690286802292905,
+        1793690286806919348
+      ]
+    },
+    "validation": {
+      "sha256": "e4a7f16757c73d34aba7c41b85bf2b70c30796d2276169d41d68f36c5d6ff7ce",
+      "stat_identity": [
+        1048620,
+        99997487247,
+        1457,
+        1793690415385308423,
+        1793690415385308423
+      ]
+    },
+    "qualification": "Linux x86-64 seccomp filter denies clone3 and kills a caller of clone with CLONE_THREAD; inherited by exec and descendants. BPF overhead and behavior change require workload validation.",
+    "top_level_sigsys_observed": false
+  },
+  "launch_command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/runs/eltwise_layer_K/time.txt",
+    "/usr/bin/prlimit",
+    "--as=68719476736:68719476736",
+    "--core=0:0",
+    "--",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/seccomp_thread_guard",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/bin/vpr",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/import_only.xml",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/eltwise_layer.blif",
+    "--route",
+    "--analysis",
+    "--device",
+    "fixture",
+    "--route_chan_width",
+    "100",
+    "--num_workers",
+    "1",
+    "--seed",
+    "11",
+    "--clock_modeling",
+    "ideal",
+    "--check_route",
+    "full",
+    "--verify_file_digests",
+    "off",
+    "--read_rr_graph",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/rr_graph.xml",
+    "--max_router_iterations",
+    "200",
+    "--routing_failure_predictor",
+    "off",
+    "--timing_report_npaths",
+    "0",
+    "--net_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/runs/eltwise_layer_K/packed.net",
+    "--place_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/runs/eltwise_layer_K/placed.place",
+    "--route_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_count1_eltwise_dev_01/runs/eltwise_layer_K/routed.route",
+    "--merge_constant_generators",
+    "off"
+  ],
+  "environment_sanitization": "Remove inherited VPR_H3D_*, LD_PRELOAD, LD_AUDIT and LD_LIBRARY_PATH; explicit overrides and bridge-local settings remain.",
+  "process_group_id": 3408376,
+  "process_tree_observation": {
+    "method": "proc_process_tree_polling",
+    "interval_seconds": 0.01,
+    "samples": 2900,
+    "read_errors": 0,
+    "peak_threads": 1,
+    "violation_observed": false,
+    "processes": [
+      {
+        "pid": 3408376,
+        "start_ticks": "1934066257",
+        "name": "time",
+        "peak_threads": 1,
+        "samples": 2900
+      },
+      {
+        "pid": 3408379,
+        "start_ticks": "1934066257",
+        "name": "prlimit",
+        "peak_threads": 1,
+        "samples": 2899
+      }
+    ],
+    "limitation": "Polling can miss transient threads/processes and introduces supervisor overhead; absence is not proof."
+  },
+  "execution_status": "completed",
+  "returncode": 0,
+  "finish_utc": "2026-11-13T11:05:25.841169+00:00",
+  "wall_seconds": 30.979294806718826,
+  "metrics": {
+    "critical_path_ns": 8.25683,
+    "wirelength": 229742,
+    "router_seconds": 15.49,
+    "iterations": 57,
+    "native_full_check_passed": true,
+    "routing_success_reported": true
+  },
+  "outputs": {
+    "packed.net": {
+      "sha256": "80407d8982581f80e837796ee76d7bd513f54f391390bad9946d4c64051deded",
+      "bytes": 25912182
+    },
+    "placed.place": {
+      "sha256": "f43377f776bdb2fb67d1b287e1d22263514d2ba5e9831936087d853e18b1dd8b",
+      "bytes": 128525
+    },
+    "routed.route": {
+      "sha256": "71ad92ba265515c84c0bee3fb7ef66c1262293354cf693d609594fa8625f66de",
+      "bytes": 9328621
+    },
+    "stdout.log": {
+      "sha256": "af167e8198bdd489834eb57658327bde9984311068410cb88c1bc6b259150d2d",
+      "bytes": 4709001
+    },
+    "time.txt": {
+      "sha256": "57e15afd840348587e8d1e16ebb4a99b64d8369e8ab8ee576334e7e2d7a5f206",
+      "bytes": 2514
+    }
+  }
+}

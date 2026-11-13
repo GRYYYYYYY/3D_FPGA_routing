@@ -1,0 +1,96 @@
+--- target_query_candidate_02/h3d_delay_plan.cpp
++++ target_query_quota_candidate_01/h3d_delay_plan.cpp
+@@ -9,6 +9,13 @@
+ 
+ H3dDelayPlan::H3dDelayPlan(const RRGraphView& graph, size_t budget, bool edge_encoding)
+     : graph_(graph), budget_(budget), edge_encoding_(edge_encoding) {
++    if (const char* value = std::getenv("VPR_H3D_TARGET_QUOTA")) {
++        char* end = nullptr;
++        unsigned long long quota = std::strtoull(value, &end, 10);
++        if (end == value || *end || value[0] == '-' || quota > budget_)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TARGET_QUOTA must be an integer in [0, endpoint budget]");
++        targeted_quota_ = quota;
++    }
+     double total = 0.;
+     size_t positive = 0;
+     for (const auto& sw : graph_.rr_switch()) {
+@@ -209,9 +216,12 @@
+                 }
+             }
+         };
+-        auto answer = H3dBidirectionalDelay::query(size_t(endpoint), goal, budget_ - used,
++        size_t remaining = budget_ - used;
++        size_t allowance = targeted_quota_ ? std::min(targeted_quota_, remaining) : remaining;
++        auto answer = H3dBidirectionalDelay::query(size_t(endpoint), goal, allowance,
+                                                    200000, 500000, outgoing, incoming);
+         ++targeted_queries_;
++        targeted_quota_stops_ += allowance < remaining && answer.stop == H3dBidirectionalDelay::Stop::WORK_LIMIT;
+         size_t charged = answer.forward_settled + answer.reverse_settled;
+         used += charged; targeted_settled_ += charged;
+         VTR_ASSERT(used <= budget_);
+@@ -222,8 +232,8 @@
+ }
+ 
+ void H3dDelayPlan::log() const {
+-    VTR_LOG("H3D_TARGET_DELAY queries=%zu cache_hits=%zu exact=%zu unknown=%zu settled=%zu memory_stops=%zu endpoint_budget=%zu\n",
+-            targeted_queries_, targeted_hits_, targeted_exact_, targeted_unknown_, targeted_settled_, targeted_memory_stops_, budget_);
++    VTR_LOG("H3D_TARGET_DELAY queries=%zu cache_hits=%zu exact=%zu unknown=%zu settled=%zu memory_stops=%zu endpoint_budget=%zu candidate_quota=%zu quota_stops=%zu\n",
++            targeted_queries_, targeted_hits_, targeted_exact_, targeted_unknown_, targeted_settled_, targeted_memory_stops_, budget_, targeted_quota_, targeted_quota_stops_);
+     VTR_LOG("H3D_DELAY queries=%zu settled=%zu truncated=%zu cache_hits=%zu cached_endpoints=%zu\n",
+             queries_, settled_, truncated_, hits_, forward_.size()+reverse_.size());
+ }
+--- target_query_candidate_02/h3d_delay_plan.h
++++ target_query_quota_candidate_01/h3d_delay_plan.h
+@@ -22,6 +22,8 @@
+     struct Predecessor { RRNodeId node; float delay; };
+     const RRGraphView& graph_;
+     size_t budget_;
++    size_t targeted_quota_ = 0; ///< Optional per-candidate work slice; cumulative endpoint budget remains unchanged.
++    size_t targeted_quota_stops_ = 0; ///< Local work slices exhausted before endpoint budget.
+     bool edge_encoding_ = false;                       ///< Use virtual query terminals for actual crossing-edge sources.
+     std::vector<RRNodeId> edge_sources_;                ///< Query terminal index to real crossing source.
+     vtr::vector<RRNodeId, int> edge_source_index_;        ///< Real source ID to synthetic query terminal index.
+--- target_query_candidate_02/h3d_fast_plan.cpp
++++ target_query_quota_candidate_01/h3d_fast_plan.cpp
+@@ -550,6 +550,21 @@
+     for (int pin : pins) {
+         auto& guide = result.guides[pin];
+         std::sort(guide.preferred.begin(), guide.preferred.end());
++        if (mixed && !guide.preferred.empty()) {
++            ++selected_delay_pins_;
++            bool informed = false;
++            auto back = reverse.find(pin);
++            for (RRNodeId node : guide.preferred) {
++                bool from = forward->contains(node);
++                bool to = back != reverse.end() && back->second->contains(node);
++                selected_both_ += from && to;
++                selected_source_ += from && !to;
++                selected_sink_ += !from && to;
++                selected_estimated_ += !from && !to;
++                informed |= from || to;
++            }
++            selected_delay_informed_ += informed;
++        }
+         if (timing_guide_weight_ > 0. && forward && !guide.preferred.empty()) {
+             // Confidence is measured-side coverage of the selected preference,
+             // not whole-query coverage. No measurements => no timing penalty.
+@@ -570,6 +585,8 @@
+ }
+ 
+ void H3dFastPlan::log() const {
++    VTR_LOG("H3D_SELECTED_DELAY pins=%zu informed_pins=%zu both=%zu source_only=%zu sink_only=%zu estimated=%zu\n",
++            selected_delay_pins_, selected_delay_informed_, selected_both_, selected_source_, selected_sink_, selected_estimated_);
+     VTR_LOG("H3D_SCC queries=%zu endpoint_cache=%zu sampled_candidates=%zu high_fanout_fallbacks=%zu\n",
+             queries_, source_cache_.size() + sink_cache_.size(), spatial_candidates_, high_fanout_fallbacks_);
+     VTR_LOG("H3D_SCORE eligible=%zu skipped=%zu delay_scored=%zu unmeasured=%zu\n",
+--- target_query_candidate_02/h3d_fast_plan.h
++++ target_query_quota_candidate_01/h3d_fast_plan.h
+@@ -63,6 +63,8 @@
+     bool mixed_delay_ = false;                                         ///< Experimental calibrated candidate-level delay, off by default.
+     size_t mixed_pins_ = 0, mixed_informed_pins_ = 0;                    ///< Eligible and measurement-informed connections.
+     size_t mixed_both_ = 0, mixed_source_only_ = 0, mixed_sink_only_ = 0, mixed_estimated_ = 0; ///< Sampled candidate coverage.
++    size_t selected_delay_pins_ = 0, selected_delay_informed_ = 0; ///< Final selected-guide delay availability, separate from sampled-pool coverage.
++    size_t selected_both_ = 0, selected_source_ = 0, selected_sink_ = 0, selected_estimated_ = 0; ///< Selected candidate counts, possibly several per pin.
+     bool edge_encoding_ = false;                                       ///< Explicit imported edge encoding, independent of native CHANZ mode.
+     std::unique_ptr<H3dReachabilityIndex> reachability_;                ///< SCC DAG for same-layer non-Z edges.
+     std::vector<RRNodeId> channels_;                                    ///< Candidate table of native CHANZ resources.

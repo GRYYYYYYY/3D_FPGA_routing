@@ -1,0 +1,49 @@
+--- a/vpr/src/route/h3d_fast_plan.cpp
++++ b/vpr/src/route/h3d_fast_plan.cpp
+@@ -17,6 +17,7 @@
+ #include <set>
+ #include <sstream>
+ #include <iomanip>
++#include <cstring>
+ 
+ #include "globals.h"
+ #include "h3d_partition_dp.h"
+@@ -881,10 +882,16 @@
+                 for (const auto& node : routing.route_trees[net]->all_nodes()) path_owned.insert(node.inode);
+             auto observe_path = [&](int pin, RRNodeId entry, bool reverse_side, bool prior, bool proposed) {
+                 if (!path_trace) return;
++                RRNodeId endpoint = reverse_side ? terminals[pin] : source;
++                auto witness = delay_plan_->path_witness(endpoint, reverse_side, entry);
++                if (witness.nodes.empty()) {
++                    if (std::strcmp(witness.status, "cache_limit") == 0) ++path_cache_limit_[reverse_side];
++                    else ++path_unmeasured_[reverse_side];
++                    return;
++                }
++                ++path_measured_[reverse_side];
+                 if (path_trace_rows_ >= 50000) { ++path_trace_omitted_; return; }
+                 ++path_trace_rows_;
+-                RRNodeId endpoint = reverse_side ? terminals[pin] : source;
+-                auto witness = delay_plan_->path_witness(endpoint, reverse_side, entry);
+                 size_t ordinary = 0, overused = 0, projected = 0;
+                 double premium = 0., maximum = 1.;
+                 bool finite_price = true;
+@@ -1235,7 +1242,8 @@
+ 
+ void H3dFastPlan::log() const {
+     if (delay_plan_ && delay_plan_->trace_paths())
+-        VTR_LOG("H3D_PATH_TRACE records=%zu omitted=%zu limit=50000\n", path_trace_rows_, path_trace_omitted_);
++        VTR_LOG("H3D_PATH_TRACE records=%zu omitted=%zu limit=50000 forward_measured=%zu reverse_measured=%zu forward_unmeasured=%zu reverse_unmeasured=%zu forward_cache_limit=%zu reverse_cache_limit=%zu\n",
++                path_trace_rows_, path_trace_omitted_, path_measured_[0], path_measured_[1], path_unmeasured_[0], path_unmeasured_[1], path_cache_limit_[0], path_cache_limit_[1]);
+     VTR_LOG("H3D_REFRESH_SOLVER_SUMMARY independent=%d shared_calls=%zu independent_calls=%zu\n",
+             refresh_independent_, refresh_shared_calls_, refresh_independent_calls_);
+     VTR_LOG("H3D_EXIT_PRICE_SUMMARY weight=%g pairs=%zu positive=%zu cross_edges=%zu\n",
+--- a/vpr/src/route/h3d_fast_plan.h
++++ b/vpr/src/route/h3d_fast_plan.h
+@@ -92,6 +92,7 @@
+     bool retained_source_cost_ = false; ///< Separate refresh ablation: use expandable retained-entry partial Tdel for source scoring.
+     size_t retained_trace_plans_ = 0; ///< Diagnostic-only refresh identity, including explicitly uncovered calls.
+     size_t path_trace_rows_ = 0, path_trace_omitted_ = 0; ///< Bounded, read-only witness telemetry.
++    size_t path_measured_[2] = {0, 0}, path_unmeasured_[2] = {0, 0}, path_cache_limit_[2] = {0, 0};
+     bool dp_tie_pressure_ = false; ///< Zero extra congestion preference only on strict finite shared-DP exclusion ties.
+     bool dp_margin_pressure_ = false; ///< Separate bounded relative surrogate-sensitivity pressure ablation.
+     size_t estimate_trace_rows_ = 0; ///< Number of emitted candidate records across diagnostic phases.

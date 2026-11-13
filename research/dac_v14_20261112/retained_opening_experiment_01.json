@@ -1,0 +1,45 @@
+{
+  "registered_at": 1794548473.2988203,
+  "question": "Does refresh-only baseline opening credit for owned entries improve final timing/resources/convergence without suppressing native congestion premiums?",
+  "cases": [
+    {
+      "circuit": "eltwise_layer",
+      "seed": 11,
+      "batch": "retained_opening_eltwise_dev_01"
+    },
+    {
+      "circuit": "tpu_like.small.os",
+      "seed": 21,
+      "batch": "retained_opening_tpu_dev_01"
+    }
+  ],
+  "fixed": {
+    "family": "hybrid_o",
+    "flow": "p0",
+    "width": 100,
+    "K": 16,
+    "delay_budget": 4096,
+    "min_criticality": 0.7,
+    "opening": 16,
+    "miss": 2,
+    "refresh_margin": 0.05,
+    "cooldown": 3
+  },
+  "arms": {
+    "C": 0,
+    "Mo": 1
+  },
+  "protections": {
+    "timeout": 1800,
+    "memory_gib": 64,
+    "disk_reserve_gib": 80
+  },
+  "source_sha256": {
+    "run_retained_opening.py": "1a770d5e574b70e3dc9dd45d2f1a8db30485763f297f26f47d2db0f558f58289",
+    "retained_opening_implementation.json": "c0bc8c9a622740483aa2cc51bf7772a8ead15b8c28e369fc00a6ed43bf0229de",
+    "retained_opening_candidate_01/binding.json": "339324128ec86d3e4085fb7e871e1eb692a81c2c82327b8370c0a9b670559655"
+  },
+  "analysis": "Disabled control exact full-route/metrics/guides/original-counter gate. Native FULL plus independent graph/guide audit and input seal. Retain failed/timeout/missing, legal CPD and physical occupancy, iterations, planning and full-process times. Native stdout prefix entry records must match the registered bounded credit formula. Single-seed development; no formal runtime claim.",
+  "legacy_query_qualification": "No source/sink delay score or bilateral timing-enable gate changed. Source-coverage reverse-query skip retains its original legacy all-or-nothing condition; no equivalence claim for mixed scoring.",
+  "research_complete": false
+}

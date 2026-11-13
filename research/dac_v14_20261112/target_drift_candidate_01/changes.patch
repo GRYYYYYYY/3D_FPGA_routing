@@ -1,0 +1,39 @@
+--- parent/vpr/src/route/h3d_routing.cpp
++++ candidate/vpr/src/route/h3d_routing.cpp
+@@ -60,6 +60,7 @@
+     bool trace_prior = false; ///< Diagnose old-assignment coverage without changing refresh decisions.
+     bool trace_planar = false; ///< Decision-neutral pre-prune planar overuse diagnostics on native-selected reroutes.
+     bool trace_target_gate = false; ///< Compare whole-net and actual-target timing drift without changing refresh decisions.
++    bool target_drift = false; ///< Only native remaining targets contribute timing drift to target-restricted refresh.
+     bool target_feedback = false; ///< Limit refresh optimization and guide replacement to actual native remaining targets.
+     bool trace_update_pins = false; ///< Observe accepted preference changes against the exact native remaining-target list.
+     bool planar_feedback = false; ///< Also consider guided-path ordinary planar overuse after the normal cooldown.
+@@ -138,6 +139,14 @@
+         result.target_feedback = target_feedback == 1.f;
+         if (result.target_feedback && (!result.feedback || !result.use_scc))
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Target feedback requires selective SCC feedback");
++        float target_drift = read_number("VPR_H3D_TARGET_DRIFT", 0.f);
++        if (target_drift != 0.f && target_drift != 1.f)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TARGET_DRIFT must be 0 or 1");
++        result.target_drift = target_drift == 1.f;
++        if (result.target_drift && !result.target_feedback)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Target drift requires target-restricted selective feedback");
++        if (result.target_drift && result.trace_target_gate)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Original-trajectory target-gate trace must be used with target drift disabled");
+         float trace_update_pins = read_number("VPR_H3D_TRACE_UPDATE_PINS", 0.f);
+         if (trace_update_pins != 0.f && trace_update_pins != 1.f)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_UPDATE_PINS must be 0 or 1");
+@@ -340,7 +349,13 @@
+             const auto& terminals = g_vpr_ctx.routing().net_rr_terminals[net];
+             double drift = 0.;
+             size_t newly_missing = 0;
++            std::vector<bool> drift_targets;
++            if (settings().target_drift) {
++                drift_targets.assign(criticality.size(), false);
++                for (size_t pin : remaining_targets) drift_targets.at(pin) = true;
++            }
+             for (size_t pin = 1; pin < criticality.size(); ++pin) {
++                if (settings().target_drift && !drift_targets[pin]) continue;
+                 if (graph.node_layer_low(terminals[0]) != graph.node_layer_low(terminals[pin])
+                     && std::max(criticality[pin], state.criticality[pin]) >= settings().min_criticality) {
+                     drift = std::max(drift, double(std::abs(criticality[pin] - state.criticality[pin])));

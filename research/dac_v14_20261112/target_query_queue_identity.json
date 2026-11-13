@@ -1,0 +1,30 @@
+{
+  "pid": 3387603,
+  "start_ticks": "1927240293",
+  "host": "fpgaacc--cc6e3aed63e1-kloi3p6yyx",
+  "boot_id": "72faa1f8-35f2-4ad1-be94-e8479b77f2fa",
+  "runner_sha256": "c84da24cd73792daf61d448cb9d13553bea779eac29dd8380076c0c6e3f70370",
+  "candidate_binary_sha256": "f26e28bc196dc74346d2c399e397c13d3b89cf08a5595dfac3b72dceba830d8c",
+  "dependency": {
+    "pid": 2394324,
+    "host": "fpgaacc--cc6e3aed63e1-kloi3p6yyx",
+    "boot_id": "72faa1f8-35f2-4ad1-be94-e8479b77f2fa",
+    "start_ticks": "1927042768",
+    "dependency_pid": 2152834,
+    "dependency_start_ticks": "1926994542",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_feedback.py",
+      "--out",
+      "feedback_dev_01"
+    ],
+    "policy": "Start after >=2 of four expansion cases are terminal, every case has started, and at most 2 expansion VPR processes remain. Total VPR concurrency <=3; formal timing excluded."
+  },
+  "command": [
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_target_query.py",
+    "--out",
+    "target_query_dev_01"
+  ],
+  "policy": "After feedback pilot terminal, <=2 other live development VPR processes; one serial F/M/T pilot, max total3. Failure of independent feedback does not cancel query research."
+}

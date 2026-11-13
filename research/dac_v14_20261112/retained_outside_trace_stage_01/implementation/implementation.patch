@@ -1,0 +1,112 @@
+--- a/h3d_delay_plan.h
++++ b/h3d_delay_plan.h
+@@ -53,6 +53,14 @@
+     };
+     ResidualAnswer probe_residual_sources(RRNodeId sink,const std::vector<std::pair<RRNodeId,double>>& sources,
+         const t_bb& box,int mode,double heuristic_per_grid,size_t search);
++    struct RetainedSuffix { RRNodeId anchor;size_t origin;std::vector<H3dCandidatePath::Edge> reverse_edges; };
++    std::vector<RetainedSuffix> retained_suffixes(RRNodeId sink) const {
++        std::vector<RetainedSuffix> result;
++        auto found=residual_cache_.lower_bound({sink,RRNodeId(0)});
++        for(;found!=residual_cache_.end() && found->first.first==sink;++found)
++            for(const auto& v:found->second)result.push_back({found->first.second,v.origin,v.reverse_edges});
++        return result;
++    }
+     void log() const;
+ 
+   private:
+--- a/h3d_fast_plan.h
++++ b/h3d_fast_plan.h
+@@ -75,6 +75,8 @@
+         std::vector<t_h3d_plan_leaf>& leaves, const t_h3d_partition_plan& planned,
+         const std::unordered_map<int,const H3dDelayPlan::Distances*>& reverse, const std::set<int>& timed);
+ 
++    bool trace_outside_=false;
++    size_t outside_plan_=0,outside_trace_rows_=0;
+     H3dPlanProfile profile_;                                           ///< Optional disjoint stage accounting.
+     size_t reach_misses_ = 0;                                          ///< Endpoint closure cache misses.
+     double reach_miss_seconds_ = 0.;                                   ///< Inclusive closure time, overlaps planner phases.
+--- a/h3d_fast_plan.cpp
++++ b/h3d_fast_plan.cpp
+@@ -64,6 +64,12 @@
+ 
+ H3dFastPlan::H3dFastPlan(const RRGraphView& graph, bool delay_cost, size_t delay_budget, bool edge_encoding)
+     : graph_(graph), edge_encoding_(edge_encoding) {
++    if(const char* value=std::getenv("VPR_H3D_TRACE_OUTSIDE")) {
++        if(std::string(value)!="0" && std::string(value)!="1")VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_TRACE_OUTSIDE must be0/1");
++        trace_outside_=std::string(value)=="1";
++        const char* query=std::getenv("VPR_H3D_RESIDUAL_QUERY");
++        if(trace_outside_ && (!query || std::string(query)!="reuse" || !delay_cost || !edge_encoding))VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Outside trace requires zeroRC delay planner, edge encoding and residual reuse mode");
++    }
+     const char* profile = std::getenv("VPR_H3D_PLAN_PROFILE");
+     profile_.enabled = profile && std::string(profile) == "1";
+     const char* shared = std::getenv("VPR_H3D_SHARED_CLOSURE");
+@@ -940,6 +946,68 @@
+             }
+             leaves.push_back(std::move(leaf));
+         }
++        if(trace_outside_ && delay_plan_ && delay_plan_->supported()) {
++            const size_t event=++outside_plan_;
++            struct TreeValue { bool expand;double delay; };
++            std::unordered_map<RRNodeId,TreeValue> tree_nodes;
++            std::vector<const RouteTreeNode*> tree_order;
++            if(routing.route_trees[net])for(const auto& node:routing.route_trees[net]->all_nodes()) {
++                tree_nodes[node.inode]={bool(node.re_expand),double(node.Tdel)};tree_order.push_back(&node);
++            }
++            std::map<int,std::vector<H3dDelayPlan::RetainedSuffix>> cached;
++            size_t witnesses=0,edges=0;
++            for(const auto& leaf:leaves) {
++                auto paths=delay_plan_->retained_suffixes(terminals[leaf.pin]);
++                witnesses+=paths.size();for(const auto& path:paths)edges+=path.reverse_edges.size();
++                cached.emplace(leaf.pin,std::move(paths));
++            }
++            const auto& bb=routing.route_bb[net];
++            const bool guard=tree_order.size()>32768 || tree_order.size()+edges>2000000-outside_trace_rows_;
++            VTR_LOG("H3D_OUTSIDE_CONTEXT event=%zu net=%zu refresh=%d leaves=%zu tree_nodes=%zu witnesses=%zu edges=%zu guard=%d pres=%.17g opening=%.17g unit=%.17g xmin=%d xmax=%d ymin=%d ymax=%d layer_min=%d layer_max=%d\n",event,size_t(net),int(prior_guides!=nullptr),leaves.size(),tree_order.size(),witnesses,edges,int(guard),double(pres_fac),double(opening_weight),delay_plan_->delay_unit(),bb.xmin,bb.xmax,bb.ymin,bb.ymax,bb.layer_min,bb.layer_max);
++            if(witnesses && !guard) {
++                for(size_t seq=0;seq<tree_order.size();++seq) {
++                    const auto& node=*tree_order[seq];const auto parent=node.parent();
++                    VTR_LOG("H3D_OUTSIDE_TREE event=%zu seq=%zu node=%zu expand=%d delay=%.17g parent=%lld switch=%lld\n",event,seq,size_t(node.inode),int(node.re_expand),double(node.Tdel),parent?static_cast<long long>(size_t(parent->inode)):-1ll,parent?static_cast<long long>(size_t(node.parent_switch)):-1ll);
++                }
++                outside_trace_rows_+=tree_order.size()+edges;
++            }
++            for(const auto& leaf:leaves) {
++                const RRNodeId sink=terminals[leaf.pin];double standalone=std::numeric_limits<double>::infinity();
++                for(const auto& c:leaf.candidates)standalone=std::min(standalone,openings[c.channel]+c.branch_cost);
++                VTR_LOG("H3D_OUTSIDE_LEAF event=%zu net=%zu pin=%d sink=%zu criticality=%.17g standalone=%.17g witnesses=%zu\n",event,size_t(net),leaf.pin,size_t(sink),double(criticality[leaf.pin]),standalone,cached.at(leaf.pin).size());
++                if(guard)continue;
++                size_t number=0;
++                for(const auto& path:cached.at(leaf.pin)) {
++                    const auto anchor=tree_nodes.find(path.anchor);const char* reason="valid";
++                    if(anchor==tree_nodes.end())reason="anchor_absent";
++                    else if(!anchor->second.expand)reason="anchor_inactive";
++                    else if(graph_.node_layer_low(path.anchor)!=graph_.node_layer_low(sink))reason="wrong_layer";
++                    double physical=0.,premium=0.;bool bb_ok=inside_bb(graph_,path.anchor,bb),simple=true,tree_hit=false;
++                    std::set<size_t> visited;size_t previous=size_t(sink);
++                    for(size_t i=0;i<path.reverse_edges.size();++i) {
++                        const auto& e=path.reverse_edges[i];const auto node=RRNodeId(e.from);const auto next=RRNodeId(e.to);
++                        simple=simple && e.from==previous && visited.insert(e.from).second;previous=e.to;
++                        bb_ok=bb_ok && inside_bb(graph_,node,bb) && inside_bb(graph_,next,bb);
++                        tree_hit=tree_hit || tree_nodes.contains(node);
++                        const auto& info=routing.rr_node_route_inf[node];const int occ=info.occ(),capacity=graph_.node_capacity(node);
++                        const bool ordinary=(graph_.node_type(node)==e_rr_type::CHANX || graph_.node_type(node)==e_rr_type::CHANY) && graph_.node_direction(node)!=Direction::NONE;
++                        const double price=double(info.acc_cost)*(1.+double(pres_fac)*std::max(0,occ+1-capacity));
++                        const double toll=ordinary ? std::max(0.,price-1.)/std::max(1.,price) : 0.;
++                        physical+=e.physical_seconds;premium+=toll;
++                        VTR_LOG("H3D_OUTSIDE_EDGE event=%zu pin=%d witness=%zu index=%zu from=%zu to=%zu delay=%.17g occ=%d capacity=%d acc=%.17g ordinary=%d price=%.17g premium=%.17g\n",event,leaf.pin,number,i,e.from,e.to,e.physical_seconds,occ,capacity,double(info.acc_cost),int(ordinary),price,toll);
++                    }
++                    simple=simple && previous==size_t(path.anchor) && !visited.contains(size_t(path.anchor));
++                    if(std::string(reason)=="valid") {
++                        if(!simple)reason="not_simple";
++                        else if(!bb_ok)reason="outside_bb";
++                        else if(tree_hit)reason="tree_intersection";
++                    }
++                    const double prefix=anchor==tree_nodes.end()?0.:anchor->second.delay;
++                    const double raw=(1.+4.*double(criticality[leaf.pin]))*(prefix+physical)/delay_plan_->delay_unit()+double(opening_weight)*premium;
++                    VTR_LOG("H3D_OUTSIDE_WITNESS event=%zu net=%zu pin=%d witness=%zu anchor=%zu origin=%zu edges=%zu reason=%s prefix=%.17g physical=%.17g premium=%.17g raw=%.17g\n",event,size_t(net),leaf.pin,number++,size_t(path.anchor),path.origin,path.reverse_edges.size(),reason,prefix,physical,premium,raw);
++                }
++            }
++        }
+         // Diagnostic-only exact-cost fingerprint, before either solver.
+         static const bool trace_table = std::getenv("VPR_H3D_TRACE_TABLE") != nullptr;
+         auto fingerprint_table=[&]() {

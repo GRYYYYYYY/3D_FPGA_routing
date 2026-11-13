@@ -1,0 +1,50 @@
+--- parent/vpr/src/route/h3d_routing.cpp
++++ candidate/vpr/src/route/h3d_routing.cpp
+@@ -59,6 +59,7 @@
+     bool eligibility_trigger = false; ///< Refresh missing guides when a remote pin newly crosses the selection threshold.
+     bool trace_prior = false; ///< Diagnose old-assignment coverage without changing refresh decisions.
+     bool trace_planar = false; ///< Decision-neutral pre-prune planar overuse diagnostics on native-selected reroutes.
++    bool trace_target_gate = false; ///< Compare whole-net and actual-target timing drift without changing refresh decisions.
+     bool target_feedback = false; ///< Limit refresh optimization and guide replacement to actual native remaining targets.
+     bool trace_update_pins = false; ///< Observe accepted preference changes against the exact native remaining-target list.
+     bool planar_feedback = false; ///< Also consider guided-path ordinary planar overuse after the normal cooldown.
+@@ -125,6 +126,12 @@
+         if (feedback != 0.f && feedback != 1.f)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_FEEDBACK must be 0 or 1");
+         result.feedback = feedback == 1.f;
++        float trace_target_gate = read_number("VPR_H3D_TRACE_TARGET_GATE", 0.f);
++        if (trace_target_gate != 0.f && trace_target_gate != 1.f)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_TARGET_GATE must be 0 or 1");
++        result.trace_target_gate = trace_target_gate == 1.f;
++        if (result.trace_target_gate && !result.feedback)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Target-gate tracing requires selective feedback");
+         float target_feedback = read_number("VPR_H3D_TARGET_FEEDBACK", 0.f);
+         if (target_feedback != 0.f && target_feedback != 1.f)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TARGET_FEEDBACK must be 0 or 1");
+@@ -355,6 +362,26 @@
+             bool planar_due = h3d_feedback_due(iteration, state.last_attempt, settings().cooldown,
+                                               captured_planar_paths_ > 0, 0., 0.);
+             bool due = base_due || (settings().planar_feedback && planar_due);
++            if (settings().trace_target_gate) {
++                double target_drift = 0.;
++                size_t target_missing = 0, target_eligible = 0, target_guided = 0;
++                for (size_t pin : remaining_targets) {
++                    target_guided += !guides_.at(net).at(pin).preferred.empty();
++                    if (graph.node_layer_low(terminals[0]) == graph.node_layer_low(terminals[pin])) continue;
++                    target_eligible += criticality[pin] >= settings().min_criticality;
++                    if (std::max(criticality[pin], state.criticality[pin]) < settings().min_criticality) continue;
++                    target_drift = std::max(target_drift, double(std::abs(criticality[pin] - state.criticality[pin])));
++                    target_missing += state.criticality[pin] < settings().min_criticality
++                                      && criticality[pin] >= settings().min_criticality
++                                      && guides_.at(net).at(pin).preferred.empty();
++                }
++                bool target_original_due = h3d_feedback_due(iteration, state.last_attempt, settings().cooldown,
++                                                           captured_overuse_, target_drift, change);
++                VTR_LOG("H3D_TARGET_GATE net=%zu iter=%d last_attempt=%d cooldown=%d targets=%zu eligible=%zu guided=%zu crossing_overuse=%d drift=%.17g target_drift=%.17g missing=%zu target_missing=%zu change=%.17g original_due=%d target_original_due=%d due=%d\n",
++                        size_t(net), iteration, state.last_attempt, settings().cooldown, remaining_targets.size(),
++                        target_eligible, target_guided, captured_overuse_, drift, target_drift, newly_missing,
++                        target_missing, change, original_due, target_original_due, due);
++            }
+             if (settings().trace_planar)
+                 VTR_LOG("H3D_PLANAR_CONTEXT net=%zu iter=%d last_attempt=%d cooldown=%d crossing_overuse=%d drift=%.17g change=%.17g original_due=%d due=%d planar_nodes=%zu guided_paths=%zu affected_paths=%zu\n",
+                         size_t(net), iteration, state.last_attempt, settings().cooldown, captured_overuse_, drift, change,

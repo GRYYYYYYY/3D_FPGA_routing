@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/test_bounded_critical_guide.cpp": "6727ab0b7076681853a089d73ba800635097596ddcdfca33bb67371c11f6911f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/src/vpr/src/route/h3d_bounded_critical_guide.h": "fe7fecb1c59d7d431c505cc718a153b2cb965bd9fbe757de6a3e5bc2c5854d8d"
+  },
+  "compile_command": [
+    "timeout",
+    "120s",
+    "prlimit",
+    "--as=4294967296",
+    "--",
+    "g++",
+    "-std=c++20",
+    "-O1",
+    "-g",
+    "-D_GLIBCXX_ASSERTIONS",
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/test_bounded_critical_guide.cpp",
+    "-o",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_critical_unit_01/test_bounded_critical"
+  ],
+  "run_command": [
+    "timeout",
+    "120s",
+    "prlimit",
+    "--as=4294967296",
+    "--",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_critical_unit_01/test_bounded_critical"
+  ],
+  "returncode": 0,
+  "stdout": "cases=200000 applied=1253 unchanged=198747 nativebase/cap/disabled/RCV/boundary passed\n",
+  "stderr": "",
+  "scope": "Native-base preservation and bounded seconds properties, disabled compatibility, RCV/edge exclusions and float criticality boundary. Actual RR/native quality integration pending."
+}

@@ -1,0 +1,107 @@
+--- before/h3d_routing.cpp
++++ after/h3d_routing.cpp
+@@ -26,6 +26,8 @@
+ 
+ namespace {
+ 
++bool bounded_legal_phase=false; ///< Native legal milestone, reset on each width trial.
++
+ /** @brief Strictly parse a finite nonnegative experiment setting. */
+ float read_number(const char* name, float default_value) {
+     const char* text = std::getenv(name);
+@@ -50,6 +52,7 @@
+ /** @brief Immutable per-process settings, recorded at the first routing iteration. */
+ struct t_settings {
+     bool trace_guide_influence = false; ///< Read-only actual crossing-cost trace.
++    bool bounded_after_legal = false;
+     bool use_scc = false;              ///< Exact SCC reachability with geometric costs instead of full BFS distances.
+     e_h3d_mode mode = e_h3d_mode::OFF; ///< Candidate-planning ablation.
+     size_t candidates = 8;             ///< Diverse preferred candidates per remote terminal.
+@@ -215,6 +218,13 @@
+         if (!result.feedback && result.feedback_action != e_h3d_feedback_action::ALL)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Feedback action ablation requires selective feedback");
+         result.final_trace = std::getenv("VPR_H3D_FINAL_TRACE") != nullptr;
++        if(const char* text=std::getenv("VPR_H3D_BOUNDED_AFTER_LEGAL")) {
++            if(std::string(text)!="0" && std::string(text)!="1")
++                VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_BOUNDED_AFTER_LEGAL must be0 or1");
++            result.bounded_after_legal=std::string(text)=="1";
++        }
++        if(result.bounded_after_legal && (!std::getenv("VPR_H3D_BOUNDED_CRITICAL_GUIDE") || result.post_legal_release || result.post_legal_freeze))
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"After-legal bounded policy requires its configured cost and separate release/freeze controls disabled");
+         if(const char* text=std::getenv("VPR_H3D_TRACE_GUIDE_INFLUENCE")) {
+             if(std::string(text)!="0" && std::string(text)!="1")
+                 VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_TRACE_GUIDE_INFLUENCE must be 0 or 1");
+@@ -677,6 +687,10 @@
+ 
+     /** @brief Keep planning independent while releasing future search pressure. */
+     void enter_legal_refinement(int iteration) {
++        if(settings().bounded_after_legal && !bounded_legal_phase) {
++            bounded_legal_phase=true;
++            VTR_LOG("H3D_BOUNDED_PHASE iter=%d active=1 reason=native_legal_convergence\n",iteration);
++        }
+         if (settings().post_legal_release && !guides_released_) {
+             guides_released_ = true;
+             VTR_LOG("H3D_POST_LEGAL_RELEASE iter=%d guide_use=0 feedback_unchanged=1\n", iteration);
+@@ -762,6 +776,7 @@
+         if (!settings().final_trace) return;
+         best_guides_ = guides_;
+         best_feedback_state_ = feedback_state_;
++        best_bounded_phase_ = !settings().bounded_after_legal || bounded_legal_phase;
+     }
+ 
+     /** @brief Observe restored final route trees once, without affecting routing or STA. */
+@@ -771,6 +786,9 @@
+         const auto& states = success ? best_feedback_state_ : feedback_state_;
+         const auto& graph = g_vpr_ctx.device().rr_graph;
+         const auto& routing = g_vpr_ctx.routing();
++        if(settings().bounded_after_legal)
++            VTR_LOG("H3D_FINAL_BOUNDED_PHASE success=%d milestone_seen=%d active_when_saved=%d\n",
++                int(success),int(bounded_legal_phase),int(success ? best_bounded_phase_ : bounded_legal_phase));
+         std::ofstream out("h3d_final_guides.csv");
+         if (!out) VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Cannot create final guide trace");
+         out << "net,pin,source,sink,planned_criticality,preferred,actual_crossings,routed,adopted,timing_penalty_seconds\n";
+@@ -823,6 +841,7 @@
+     }
+ 
+   private:
++    bool best_bounded_phase_=false;
+     /** @brief Cache directed same-die BFS distances to every first-crossing channel. */
+     const std::vector<int>& distances_(RRNodeId terminal, bool reverse) {
+         auto& cache = reverse ? reverse_cache_ : forward_cache_;
+@@ -956,6 +975,7 @@
+ } // namespace
+ 
+ bool h3d_trace_guide_influence() {return settings().trace_guide_influence;}
++bool h3d_bounded_critical_stage_active() {return !settings().bounded_after_legal || bounded_legal_phase;}
+ 
+ void h3d_influence_begin(ParentNetId net,int pin,RRNodeId sink,bool high_fanout,
+                         float criticality,const t_h3d_connection_guide* guide) {
+@@ -1047,6 +1067,7 @@
+ void h3d_prepare_iteration(int iteration, bool is_flat) {
+     if (!h3d_enabled()) return;
+     if (iteration == 1) {
++        bounded_legal_phase=false;
+         influence.reset();
+         if(settings().trace_guide_influence) {
+             influence=std::make_unique<InfluenceState>();
+--- before/h3d_routing.h
++++ after/h3d_routing.h
+@@ -29,6 +29,7 @@
+ 
+ /** Read-only serial search diagnostics, separate from physical costs/state. */
+ bool h3d_trace_guide_influence();
++bool h3d_bounded_critical_stage_active();
+ void h3d_influence_begin(ParentNetId net, int pin, RRNodeId sink, bool high_fanout,
+                         float criticality, const t_h3d_connection_guide* guide);
+ void h3d_influence_edge(ParentNetId net, int pin, RRNodeId from, RRNodeId to, int sw,
+--- before/connection_router.tpp
++++ after/connection_router.tpp
+@@ -386,7 +386,7 @@
+     if(guided_crossing && cost_params.h3d_guide->bounded_critical) {
+         const auto& guide=*cost_params.h3d_guide;
+         const bool preferred=std::binary_search(guide.preferred.begin(),guide.preferred.end(),from_node);
+-        auto bounded=h3d_bounded_critical_cost(true,reached_configurably,true,preferred,rcv_path_manager.is_enabled(),
++        auto bounded=h3d_bounded_critical_cost(h3d_bounded_critical_stage_active(),reached_configurably,true,preferred,rcv_path_manager.is_enabled(),
+             cost_params.criticality,guide_before_congestion,cong_cost,guide_timing_cost,guide.bounded_penalty_seconds);
+         bounded_applied=bounded.applied;cong_cost=bounded.congestion;guide_timing_cost=bounded.timing_seconds;
+     }

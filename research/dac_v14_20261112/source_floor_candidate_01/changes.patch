@@ -1,0 +1,62 @@
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/estimate_trace_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp	2026-11-12 20:27:02.131954000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/source_floor_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp	2026-11-12 20:44:27.408902000 +0000
+@@ -94,6 +94,12 @@
+     reverse_rerank_ = rerank && std::string(rerank) == "1";
+     if (reverse_rerank_ && !targeted_delay_)
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Reverse reranking requires candidate-targeted mixed delay scoring");
++    const char* source_floor = std::getenv("VPR_H3D_SOURCE_GEOMETRY_FLOOR");
++    if (source_floor && std::string(source_floor) != "0" && std::string(source_floor) != "1")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_SOURCE_GEOMETRY_FLOOR must be 0 or 1");
++    source_geometry_floor_ = source_floor && std::string(source_floor) == "1";
++    if (source_geometry_floor_ && (!mixed_delay_ || !delay_cost || !edge_encoding_))
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Source geometry floor requires mixed delay on edge-encoded delay graphs");
+     const char* estimates = std::getenv("VPR_H3D_TRACE_ESTIMATES");
+     if (estimates && std::string(estimates) != "0" && std::string(estimates) != "1")
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_ESTIMATES must be 0 or 1");
+@@ -406,7 +412,10 @@
+             auto found = forward->find(channels_[c]);
+             if (found != forward->end()) return found->second / delay_plan_->delay_unit();
+         }
+-        double estimate = source_scale * proxy_(source, c);
++        // Bounded source measurements may not represent the unmeasured pool.
++        // This prior floor is a model choice, not a certified distance bound.
++        double scale = source_geometry_floor_ ? std::max(1., source_scale) : source_scale;
++        double estimate = scale * proxy_(source, c);
+         return delay_plan_ ? delay_plan_->adjust_estimate_units(source, false, estimate) : estimate;
+     };
+     std::set<RRNodeId> owned;
+@@ -727,6 +736,7 @@
+             for (RRNodeId node : guide.preferred) {
+                 trace_estimate("selected", pin, channel_index_[node]);
+                 bool from = forward->contains(node);
++                source_floor_selected_ += source_geometry_floor_ && !from && source_scale < 1.;
+                 bool to = back != reverse.end() && back->second->contains(node);
+                 selected_both_ += from && to;
+                 selected_source_ += from && !to;
+@@ -748,7 +758,7 @@
+                                     size_t(net), pin, backward ? "sink" : "source", size_t(node), estimate, bound, double(criticality[pin]), effective, delay_plan_->clamp_bounds());
+                         }
+                     };
+-                    inspect(from, source, false, source_scale * proxy_(source, c));
++                    inspect(from, source, false, (source_geometry_floor_ ? std::max(1., source_scale) : source_scale) * proxy_(source, c));
+                     inspect(to, terminals[pin], true, proxy_(terminals[pin], c) * (back != reverse.end() ? sink_scales.at(pin) : 1.));
+                 }
+             }
+@@ -794,5 +804,6 @@
+     VTR_LOG("H3D_REVERSE_RERANK enabled=%d pins=%zu changed=%zu\n",
+             int(reverse_rerank_), reverse_rerank_pins_, reverse_rerank_changed_);
+     VTR_LOG("H3D_ESTIMATE_SUMMARY enabled=%d rows=%zu\n", int(trace_estimates_), estimate_trace_rows_);
++    VTR_LOG("H3D_SOURCE_ESTIMATE floor_geometry=%d selected_adjusted=%zu\n", int(source_geometry_floor_), source_floor_selected_);
+     if (delay_plan_) delay_plan_->log();
+ }
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/estimate_trace_candidate_01/src/vpr/src/route/h3d_fast_plan.h	2026-11-12 20:27:02.129524000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/source_floor_candidate_01/src/vpr/src/route/h3d_fast_plan.h	2026-11-12 20:43:46.302324000 +0000
+@@ -74,6 +74,8 @@
+     bool targeted_delay_ = false;                                      ///< Candidate-specific bidirectional search, mixed scoring only.
+     bool criticality_query_order_ = false; ///< Allocate shared source query work to critical pins first; DP pin order stays fixed.
+     bool balance_source_queries_ = false; ///< Divide remaining source work among remaining pins without increasing lifetime/candidate limits.
++    bool source_geometry_floor_ = false; ///< Keep the original geometric prior as a floor for unknown source estimates; exact distances unchanged.
++    size_t source_floor_selected_ = 0; ///< Selected unknown-source candidates whose fitted scale is below the unit prior.
+     bool trace_estimates_ = false; ///< Decision-neutral candidate component records for independent distance validation.
+     size_t estimate_trace_rows_ = 0; ///< Number of emitted candidate records across diagnostic phases.
+     bool reverse_rerank_ = false; ///< Re-evaluate reverse targets after source measurements with unchanged limits and diversity.

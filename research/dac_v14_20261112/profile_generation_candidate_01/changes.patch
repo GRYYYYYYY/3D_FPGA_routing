@@ -1,0 +1,285 @@
+--- target_query_quota_candidate_01/h3d_fast_plan.cpp
++++ profile_generation_candidate_01/h3d_fast_plan.cpp
+@@ -56,6 +56,11 @@
+ 
+ H3dFastPlan::H3dFastPlan(const RRGraphView& graph, bool delay_cost, size_t delay_budget, bool edge_encoding)
+     : graph_(graph), edge_encoding_(edge_encoding) {
++    const char* profile = std::getenv("VPR_H3D_PLAN_PROFILE");
++    profile_.enabled = profile && std::string(profile) == "1";
++    const char* generation = std::getenv("VPR_H3D_GENERATION_CLOSURE");
++    bool generation_closure = generation && std::string(generation) == "1";
++    VTR_LOG("H3D_REACH_MODE generation_closure=%d profile=%d\n", generation_closure, profile_.enabled);
+     const char* mixed = std::getenv("VPR_H3D_MIXED_DELAY");
+     if (mixed && std::string(mixed) != "0" && std::string(mixed) != "1")
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_MIXED_DELAY must be 0 or 1");
+@@ -109,7 +114,7 @@
+         }
+     }
+     if (planar_count) mean_span_ = planar_length / planar_count;
+-    reachability_ = std::make_unique<H3dReachabilityIndex>(graph_.num_nodes(), planar_edges);
++    reachability_ = std::make_unique<H3dReachabilityIndex>(graph_.num_nodes(), planar_edges, generation_closure);
+     entries_.resize(channels_.size());
+     exits_.resize(channels_.size());
+     for (RRNodeId node : graph_.nodes()) {
+@@ -227,7 +232,10 @@
+     auto& cache = reverse ? sink_cache_ : source_cache_;
+     auto found = cache.find(endpoint);
+     if (found != cache.end()) return found->second;
++    auto start = profile_.enabled ? std::chrono::steady_clock::now() : std::chrono::steady_clock::time_point{};
++    ++reach_misses_;
+     auto result = reachability_->relevant_components(size_t(endpoint), reverse, reverse ? reverse_allowed_ : forward_allowed_, edge_encoding_);
++    if (profile_.enabled) reach_miss_seconds_ += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
+     return cache.emplace(endpoint, std::move(result)).first->second;
+ }
+ 
+@@ -287,6 +295,8 @@
+ }
+ 
+ t_h3d_fast_plan H3dFastPlan::plan(ParentNetId net, const std::vector<float>& criticality, const std::vector<RRNodeId>& previous_channels, float pres_fac, size_t candidate_count, float opening_weight, float miss_weight, bool use_tree, float min_criticality, const std::vector<t_h3d_connection_guide>* prior_guides, double refresh_margin) {
++    H3dPlanProfile::Scope profile(profile_, prior_guides != nullptr);
++    using Phase = H3dPlanProfile::Phase;
+     const auto& routing = g_vpr_ctx.routing();
+     const auto& terminals = routing.net_rr_terminals[net];
+     RRNodeId source = terminals[0];
+@@ -314,6 +324,7 @@
+     }
+     center_x /= pins.size();
+     center_y /= pins.size();
++    profile.enter(Phase::SOURCE);
+     const H3dDelayPlan::Distances* forward = nullptr;
+     if (delay_plan_ && delay_plan_->supported())
+         forward = targeted_delay_ ? &delay_plan_->targeted_distances(source, false, {})
+@@ -375,6 +386,7 @@
+     };
+     std::set<size_t> pool;
+     for (int pin : pins) {
++        profile.enter(Phase::CANDIDATES);
+         auto candidates = nearby_(source, terminals[pin], center_x, center_y, candidate_count * 8);
+         for (RRNodeId node : previous_channels)
+             if (channel_index_[node] >= 0) candidates.push_back(channel_index_[node]);
+@@ -393,6 +405,7 @@
+         if (ranked.empty())
+             for (size_t c = 0; c < channels_.size() && ranked.size() < candidate_count * 8; ++c)
+                 if (feasible_(source, c, terminals[pin])) ranked.emplace_back(opening(c) + branch(pin, c), c);
++        profile.enter(Phase::DISTANCE);
+         if (mixed && !ranked.empty()) {
+             // Unlike the legacy all-or-nothing rule, reverse-only measurements
+             // are useful even when the bounded source query found no candidate.
+@@ -437,6 +450,7 @@
+                 ++measured_pins_;
+             } else ++unmeasured_pins_;
+         } else if (delay_plan_) ++unmeasured_pins_;
++        profile.enter(Phase::SELECT);
+         std::sort(ranked.begin(), ranked.end());
+         auto selected = diversify_(ranked, candidate_count);
+         for (RRNodeId node : previous_channels) {
+@@ -457,6 +471,7 @@
+         }
+         result.guides[pin].miss_weight = miss_weight;
+     }
++    profile.enter(Phase::TABLE);
+     if (targeted_delay_)
+         for (const auto& [pin, distances] : reverse)
+             sink_scales[pin] = calibrate(terminals[pin], *distances);
+@@ -514,7 +529,9 @@
+             VTR_LOG("H3D_TABLE net=%zu fingerprint=%016llx candidates=%zu leaves=%zu\n",
+                     size_t(net), static_cast<unsigned long long>(fingerprint), table.size(), leaves.size());
+         }
++        profile.enter(Phase::SOLVE);
+         auto planned = independent_ ? h3d_plan_independent(leaves, openings) : h3d_plan_partition(leaves, openings);
++        profile.enter(Phase::PRIOR);
+         if (prior_guides) {
+             std::vector<std::pair<int, size_t>> prior_assignment;
+             for (const auto& leaf : leaves) {
+@@ -537,6 +554,7 @@
+                 return result;
+             }
+         }
++        profile.enter(Phase::OUTPUT);
+         if (std::isfinite(planned.cost)) {
+             result.groups = planned.groups;
+             for (const auto& [pin, c] : planned.assignment)
+@@ -547,6 +565,7 @@
+         result.guides = *prior_guides;
+         return result;
+     }
++    profile.enter(Phase::OUTPUT);
+     for (int pin : pins) {
+         auto& guide = result.guides[pin];
+         std::sort(guide.preferred.begin(), guide.preferred.end());
+@@ -585,6 +604,8 @@
+ }
+ 
+ void H3dFastPlan::log() const {
++    profile_.log();
++    if (profile_.enabled) VTR_LOG("H3D_REACH_PROFILE misses=%zu seconds=%.9f scope=inclusive_not_additive\n", reach_misses_, reach_miss_seconds_);
+     VTR_LOG("H3D_SELECTED_DELAY pins=%zu informed_pins=%zu both=%zu source_only=%zu sink_only=%zu estimated=%zu\n",
+             selected_delay_pins_, selected_delay_informed_, selected_both_, selected_source_, selected_sink_, selected_estimated_);
+     VTR_LOG("H3D_SCC queries=%zu endpoint_cache=%zu sampled_candidates=%zu high_fanout_fallbacks=%zu\n",
+--- target_query_quota_candidate_01/h3d_fast_plan.h
++++ profile_generation_candidate_01/h3d_fast_plan.h
+@@ -7,6 +7,7 @@
+ #include "h3d_reachability.h"
+ #include "h3d_routing.h"
+ #include "h3d_delay_plan.h"
++#include "h3d_plan_profile.h"
+ #include "rr_graph_view.h"
+ #include "vtr_vector.h"
+ 
+@@ -55,6 +56,9 @@
+     /** @brief Diversity selection within a cost-ranked, finite feasible list. */
+     std::vector<size_t> diversify_(const std::vector<std::pair<double, size_t>>& ranked, size_t count) const;
+ 
++    H3dPlanProfile profile_;                                           ///< Optional disjoint stage accounting.
++    size_t reach_misses_ = 0;                                          ///< Endpoint closure cache misses.
++    double reach_miss_seconds_ = 0.;                                   ///< Inclusive closure time, overlaps planner phases.
+     const RRGraphView& graph_;                                          ///< Exact immutable graph used by detailed routing.
+     double timing_guide_weight_ = 0.;                                  ///< Bounded timing-preference amplitude in graph delay units.
+     bool independent_ = false;                                        ///< Same-table independent top-1 solver control.
+--- target_query_quota_candidate_01/h3d_plan_profile.h
++++ profile_generation_candidate_01/h3d_plan_profile.h
+@@ -0,0 +1,55 @@
++#pragma once
++#include <array>
++#include <chrono>
++#include "vtr_log.h"
++
++/** @brief Opt-in non-overlapping planner phase times, split initial/refresh.
++ * These are instrumented development diagnostics, not formal speedup evidence.
++ */
++class H3dPlanProfile {
++  public:
++    enum class Phase { ELIGIBILITY, SOURCE, CANDIDATES, DISTANCE, SELECT, TABLE, SOLVE, PRIOR, OUTPUT, COUNT };
++    bool enabled = false; ///< Set before the first plan; disabled scopes read no clock.
++    /** @brief One plan's timing scope; early returns flush the active phase. */
++    class Scope {
++      public:
++        /** @brief Bind the scope to its initial or refresh aggregate. */
++        Scope(H3dPlanProfile& owner, bool refresh) : owner_(owner), group_(refresh ? 1 : 0) {
++            if (owner_.enabled) {++owner_.calls_[group_]; start_ = Clock::now();}
++        }
++        Scope(const Scope&) = delete;
++        Scope& operator=(const Scope&) = delete;
++        /** @brief Flush the final phase, including on an early return. */
++        ~Scope() {enter(Phase::OUTPUT);}
++        /** @brief Attribute elapsed time to the previous phase and switch. */
++        void enter(Phase next) {
++            if (!owner_.enabled) return;
++            auto now = Clock::now();
++            owner_.seconds_[group_][size_t(phase_)] += std::chrono::duration<double>(now - start_).count();
++            start_ = now; phase_ = next;
++        }
++      private:
++        using Clock = std::chrono::steady_clock;
++        H3dPlanProfile& owner_; ///< Aggregate owner, alive longer than the scope.
++        size_t group_;         ///< Initial=0, refresh=1.
++        Phase phase_ = Phase::ELIGIBILITY; ///< Currently measured phase.
++        Clock::time_point start_;          ///< Beginning of current phase.
++    };
++    /** @brief Emit cumulative, disjoint phase totals for each planning mode. */
++    void log() const {
++        if (!enabled) return;
++        static constexpr std::array<const char*, size_t(Phase::COUNT)> names{
++            "eligibility", "source", "candidates", "distance", "select", "table", "solve", "prior", "output"};
++        for (size_t group = 0; group < 2; ++group) {
++            double total = 0.;
++            for (double value : seconds_[group]) total += value;
++            VTR_LOG("H3D_PLAN_PROFILE mode=%s calls=%zu total_seconds=%.9f", group ? "refresh" : "initial", calls_[group], total);
++            for (size_t phase = 0; phase < names.size(); ++phase)
++                VTR_LOG(" %s_seconds=%.9f", names[phase], seconds_[group][phase]);
++            VTR_LOG("\n");
++        }
++    }
++  private:
++    std::array<size_t, 2> calls_{}; ///< Number of entered scopes per mode.
++    std::array<std::array<double, size_t(Phase::COUNT)>, 2> seconds_{}; ///< Non-overlapping wall seconds.
++};
+--- target_query_quota_candidate_01/h3d_reachability.h
++++ profile_generation_candidate_01/h3d_reachability.h
+@@ -8,6 +8,7 @@
+ #include <vector>
+ 
+ #include "vtr_assert.h"
++#include "h3d_visit_epoch.h"
+ 
+ /** @brief Exact directed reachability through a strongly connected component DAG.
+  *
+@@ -18,7 +19,8 @@
+ class H3dReachabilityIndex {
+   public:
+     /** @brief Build SCCs iteratively (no deep recursion) and deduplicated DAGs. */
+-    H3dReachabilityIndex(size_t vertices, const std::vector<std::pair<size_t, size_t>>& edges) {
++    H3dReachabilityIndex(size_t vertices, const std::vector<std::pair<size_t, size_t>>& edges, bool generation_closure = false)
++        : generation_closure_(generation_closure) {
+         std::vector<size_t> out_begin(vertices + 1, 0), in_begin(vertices + 1, 0);
+         for (const auto& [source, sink] : edges) {
+             VTR_ASSERT(source < vertices && sink < vertices);
+@@ -88,6 +90,7 @@
+             for (int b : outgoing)
+                 reverse_[b].push_back(a);
+         }
++        if (generation_closure_) visits_ = H3dVisitEpoch<>(component_count);
+     }
+ 
+     /** @brief Map a graph vertex to its strongly connected component. */
+@@ -129,12 +132,15 @@
+         if (!allowed[root]) return {};
+         std::vector<int> visited{root};
+         std::unordered_set<int> seen;
+-        if (large_closure) seen.insert(root);
++        if (large_closure) {
++            if (generation_closure_) {visits_.begin(); visits_.insert(root);}
++            else seen.insert(root);
++        }
+         // Relevant pin-to-wire DAGs are small. Keeping the work set sparse
+         // avoids clearing a device-sized bitmap for every endpoint query.
+         for (size_t i = 0; i < visited.size(); ++i)
+             for (int next : adjacency[visited[i]])
+-                if (allowed[next] && (large_closure ? seen.insert(next).second
++                if (allowed[next] && (large_closure ? (generation_closure_ ? visits_.insert(next) : seen.insert(next).second)
+                                                   : std::find(visited.begin(), visited.end(), next) == visited.end()))
+                     visited.push_back(next);
+         std::sort(visited.begin(), visited.end());
+@@ -142,6 +148,8 @@
+     }
+ 
+   private:
++    bool generation_closure_ = false;       ///< Reuse visit stamps for sequential large-closure queries.
++    mutable H3dVisitEpoch<> visits_;        ///< Scratch marks; graph and returned closures remain immutable.
+     std::vector<int> components_;           ///< Component id for every generic input vertex.
+     std::vector<std::vector<int>> forward_; ///< Deduplicated DAG successors.
+     std::vector<std::vector<int>> reverse_; ///< DAG predecessors, used only for analysis.
+--- target_query_quota_candidate_01/h3d_visit_epoch.h
++++ profile_generation_candidate_01/h3d_visit_epoch.h
+@@ -0,0 +1,31 @@
++#pragma once
++#include <algorithm>
++#include <cstdint>
++#include <type_traits>
++#include <vector>
++#include "vtr_assert.h"
++
++/** @brief Reusable visit marks, cleared only on unsigned generation rollover.
++ * One instance is used sequentially, never by simultaneous graph queries.
++ */
++template<typename Stamp = uint32_t>
++class H3dVisitEpoch {
++  public:
++    static_assert(std::is_unsigned_v<Stamp>);
++    /** @brief Allocate one stamp per graph component. */
++    explicit H3dVisitEpoch(size_t count = 0) : marks_(count, 0) {}
++    /** @brief Start an empty logical visited set without resetting its storage. */
++    void begin() {
++        if (++epoch_ == 0) {std::fill(marks_.begin(), marks_.end(), 0); epoch_ = 1;}
++    }
++    /** @brief Return true exactly on this generation's first visit to node. */
++    bool insert(size_t node) {
++        VTR_ASSERT(epoch_ != 0 && node < marks_.size());
++        if (marks_[node] == epoch_) return false;
++        marks_[node] = epoch_;
++        return true;
++    }
++  private:
++    std::vector<Stamp> marks_; ///< Bounded storage proportional to component count.
++    Stamp epoch_ = 0;         ///< Zero is reserved for never-visited/reset entries.
++};

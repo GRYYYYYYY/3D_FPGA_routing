@@ -1,0 +1,114 @@
+--- a/h3d_routing.cpp
++++ b/h3d_routing.cpp
+@@ -56,6 +56,7 @@
+     float min_criticality = 0.f;
+     std::string feedback_action_name = "all"; ///< Exact label for action-ablation provenance.
+     e_h3d_feedback_action feedback_action = e_h3d_feedback_action::ALL; ///< Development action ablation; full selective policy remains default.
++    bool trace_prior = false; ///< Diagnose old-assignment coverage without changing refresh decisions.
+     bool feedback = false;            ///< Selective refresh of guides on VPR-selected reroute nets.
+     int cooldown = 3;                  ///< Minimum iterations between refresh attempts.
+     double refresh_margin = .05;       ///< Required relative surrogate improvement.
+@@ -119,6 +120,10 @@
+         if (feedback != 0.f && feedback != 1.f)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_FEEDBACK must be 0 or 1");
+         result.feedback = feedback == 1.f;
++        float trace_prior = read_number("VPR_H3D_TRACE_PRIOR", 0.f);
++        if (trace_prior != 0.f && trace_prior != 1.f)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_PRIOR must be 0 or 1");
++        result.trace_prior = trace_prior == 1.f;
+         const char* action_env = std::getenv("VPR_H3D_FEEDBACK_ACTION");
+         std::string action = action_env ? action_env : "all";
+         result.feedback_action_name = action;
+@@ -272,12 +277,32 @@
+             auto result = fast_plan_->plan(net, criticality, previous, pres_fac, settings().candidates,
+                                            settings().opening_weight, settings().miss_weight,
+                                            settings().mode != e_h3d_mode::CANDIDATES, settings().min_criticality,
+-                                           refresh ? &guides_.at(net) : nullptr, settings().refresh_margin);
++                                           refresh ? &guides_.at(net) : nullptr, settings().refresh_margin, settings().trace_prior);
+             ++plans_;
+             groups_ += result.groups;
+             no_candidate_ += result.no_candidate;
+             bool accept = !refresh || (result.refresh_accepted
+                                       && h3d_allow_refresh_action(settings().feedback_action, result.refresh_clear, std::isfinite(result.previous_cost)));
++            if (refresh && settings().trace_prior) {
++                const auto& old_guides = guides_.at(net);
++                const auto& old_criticality = feedback_state_.at(net).criticality;
++                size_t newly_eligible_empty = 0, previously_eligible_empty = 0, old_guided = 0;
++                for (const auto& guide : old_guides) old_guided += !guide.preferred.empty();
++                for (int pin : result.prior_empty_pins) {
++                    bool newly_eligible = old_criticality.at(pin) < settings().min_criticality
++                                          && criticality.at(pin) >= settings().min_criticality;
++                    newly_eligible_empty += newly_eligible;
++                    previously_eligible_empty += !newly_eligible;
++                    VTR_LOG("H3D_PRIOR_PIN net=%zu iter=%d pin=%d reason=empty old_criticality=%.9g new_criticality=%.9g newly_eligible=%d\n",
++                            size_t(net), iteration, pin, old_criticality.at(pin), criticality.at(pin), newly_eligible);
++                }
++                VTR_LOG("H3D_PRIOR_REASON net=%zu iter=%d table=%d clear=%d old_guided=%zu leaves=%zu pairs=%zu empty=%zu multiple=%zu outside=%zu branch_missing=%zu branch_nonfinite=%zu opening_nonfinite=%zu empty_newly_eligible=%zu empty_previously_eligible=%zu proposed_accepted=%d accepted=%d old_cost=%g new_cost=%g\n",
++                        size_t(net), iteration, result.prior_table_diagnosed, result.refresh_clear, old_guided,
++                        result.prior_leaves, result.prior_pairs, result.prior_empty_pins.size(), result.prior_multiple,
++                        result.prior_outside_table, result.prior_branch_missing, result.prior_branch_nonfinite,
++                        result.prior_opening_nonfinite, newly_eligible_empty, previously_eligible_empty,
++                        result.refresh_accepted, accept, result.previous_cost, result.proposed_cost);
++            }
+             if (refresh && settings().feedback_action != e_h3d_feedback_action::ALL)
+                 VTR_LOG("H3D_REFRESH_ACTION net=%zu iter=%d policy=%s proposed_accepted=%d clear=%d accepted=%d prior_finite=%d\n",
+                         size_t(net), iteration,
+--- a/h3d_fast_plan.cpp
++++ b/h3d_fast_plan.cpp
+@@ -325,7 +325,7 @@
+     return chosen;
+ }
+ 
+-t_h3d_fast_plan H3dFastPlan::plan(ParentNetId net, const std::vector<float>& criticality, const std::vector<RRNodeId>& previous_channels, float pres_fac, size_t candidate_count, float opening_weight, float miss_weight, bool use_tree, float min_criticality, const std::vector<t_h3d_connection_guide>* prior_guides, double refresh_margin) {
++t_h3d_fast_plan H3dFastPlan::plan(ParentNetId net, const std::vector<float>& criticality, const std::vector<RRNodeId>& previous_channels, float pres_fac, size_t candidate_count, float opening_weight, float miss_weight, bool use_tree, float min_criticality, const std::vector<t_h3d_connection_guide>* prior_guides, double refresh_margin, bool trace_prior) {
+     H3dPlanProfile::Scope profile(profile_, prior_guides != nullptr);
+     using Phase = H3dPlanProfile::Phase;
+     const auto& routing = g_vpr_ctx.routing();
+@@ -574,6 +574,24 @@
+                 if (found != table.end() && *found == size_t(old_channel))
+                     prior_assignment.emplace_back(leaf.pin, found - table.begin());
+             }
++            if (trace_prior) {
++                result.prior_table_diagnosed = true;
++                result.prior_leaves = leaves.size();
++                result.prior_pairs = prior_assignment.size();
++                for (const auto& leaf : leaves) {
++                    const auto& guide = prior_guides->at(leaf.pin);
++                    if (guide.preferred.empty()) { result.prior_empty_pins.push_back(leaf.pin); continue; }
++                    if (guide.preferred.size() != 1) { ++result.prior_multiple; continue; }
++                    auto assigned = std::find_if(prior_assignment.begin(), prior_assignment.end(),
++                                                 [&](const auto& a) { return a.first == leaf.pin; });
++                    if (assigned == prior_assignment.end()) { ++result.prior_outside_table; continue; }
++                    auto candidate = std::find_if(leaf.candidates.begin(), leaf.candidates.end(),
++                                                  [&](const auto& c) { return c.channel == assigned->second; });
++                    if (candidate == leaf.candidates.end()) ++result.prior_branch_missing;
++                    else if (!std::isfinite(candidate->branch_cost)) ++result.prior_branch_nonfinite;
++                    if (!std::isfinite(openings.at(assigned->second))) ++result.prior_opening_nonfinite;
++                }
++            }
+             result.previous_cost = 0.;
+             if (independent_) {
+                 for (const auto& leaf : leaves)
+--- a/h3d_fast_plan.h
++++ b/h3d_fast_plan.h
+@@ -14,6 +14,11 @@
+ /** @brief SCC-backed finite candidate result; all costs remain planning proxies. */
+ struct t_h3d_fast_plan {
+     std::vector<t_h3d_connection_guide> guides; ///< Per-terminal soft preferences.
++    bool prior_table_diagnosed = false; ///< Opt-in diagnostic counters refer to an evaluated finite table.
++    size_t prior_leaves = 0, prior_pairs = 0; ///< Current eligible table leaves and representable old choices.
++    size_t prior_multiple = 0, prior_outside_table = 0; ///< Old guides with non-singleton choices or absent candidates.
++    size_t prior_branch_missing = 0, prior_branch_nonfinite = 0, prior_opening_nonfinite = 0; ///< Unavailable old costs after table lookup.
++    std::vector<int> prior_empty_pins; ///< Current leaves without any old preferred candidate, diagnostic only.
+     bool refresh_clear = false; ///< Proposed deactivation because no remote pin remains eligible.
+     bool refresh_accepted = false;                 ///< Candidate assignment passes same-cost hysteresis.
+     double proposed_cost = 0., previous_cost = 0.; ///< Current surrogate values on identical finite table.
+@@ -33,7 +38,7 @@
+     explicit H3dFastPlan(const RRGraphView& graph, bool delay_cost = false, size_t delay_budget = 4096, bool edge_encoding = false);
+ 
+     /** @brief Generate diverse feasible candidates and optionally solve a finite shared/split DP. */
+-    t_h3d_fast_plan plan(ParentNetId net, const std::vector<float>& criticality, const std::vector<RRNodeId>& previous_channels, float pres_fac, size_t candidate_count, float opening_weight, float miss_weight, bool use_tree, float min_criticality = 0.f, const std::vector<t_h3d_connection_guide>* prior_guides = nullptr, double refresh_margin = .05);
++    t_h3d_fast_plan plan(ParentNetId net, const std::vector<float>& criticality, const std::vector<RRNodeId>& previous_channels, float pres_fac, size_t candidate_count, float opening_weight, float miss_weight, bool use_tree, float min_criticality = 0.f, const std::vector<t_h3d_connection_guide>* prior_guides = nullptr, double refresh_margin = .05, bool trace_prior = false);
+ 
+     /** @brief Report cache, candidate and high-fanout fallback counts. */
+     void log() const;

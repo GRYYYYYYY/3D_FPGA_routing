@@ -1,0 +1,68 @@
+--- a/vpr/src/route/h3d_fast_plan.cpp
++++ b/vpr/src/route/h3d_fast_plan.cpp
+@@ -107,6 +107,10 @@
+     if (estimates && std::string(estimates) != "0" && std::string(estimates) != "1")
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_ESTIMATES must be 0 or 1");
+     trace_estimates_ = estimates && std::string(estimates) == "1";
++    const char* guide_margin = std::getenv("VPR_H3D_TRACE_GUIDE_MARGIN");
++    if (guide_margin && std::string(guide_margin) != "0" && std::string(guide_margin) != "1")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_GUIDE_MARGIN must be 0 or 1");
++    trace_guide_margin_ = guide_margin && std::string(guide_margin) == "1";
+     if (trace_estimates_ && !targeted_delay_)
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Estimate tracing requires candidate-targeted mixed delay scoring");
+     const char* timing = std::getenv("VPR_H3D_TIMING_GUIDE");
+@@ -822,6 +826,44 @@
+             result.groups = planned.groups;
+             for (const auto& [pin, c] : planned.assignment)
+                 result.guides[pin].preferred = {channels_[table[c]]};
++            if (trace_guide_margin_) {
++                // Read the already constructed table, without queries or re-solving.
++                // A shared assignment can be worse for one leaf in isolation.
++                // Count co-assigned leaves, not DP groups or physical sharing.
++                std::vector<size_t> users(table.size(), 0);
++                std::unordered_map<int, size_t> assignments;
++                for (const auto& [pin, c] : planned.assignment) {
++                    ++users.at(c);
++                    assignments.emplace(pin, c);
++                }
++                for (const auto& leaf : leaves) {
++                    auto selected = assignments.find(leaf.pin);
++                    VTR_ASSERT(selected != assignments.end());
++                    size_t chosen = selected->second;
++                    double chosen_branch = std::numeric_limits<double>::infinity();
++                    double alternative = std::numeric_limits<double>::infinity();
++                    size_t alternatives = 0;
++                    for (const auto& candidate : leaf.candidates) {
++                        double total = openings.at(candidate.channel) + candidate.branch_cost;
++                        if (candidate.channel == chosen) chosen_branch = candidate.branch_cost;
++                        else if (std::isfinite(total)) {
++                            alternative = std::min(alternative, total);
++                            ++alternatives;
++                        }
++                    }
++                    double chosen_total = openings.at(chosen) + chosen_branch;
++                    VTR_ASSERT(std::isfinite(chosen_total));
++                    RRNodeId node = channels_[table[chosen]];
++                    auto backward = reverse.find(leaf.pin);
++                    bool source_measured = forward && forward->contains(node);
++                    bool sink_measured = backward != reverse.end() && backward->second->contains(node);
++                    VTR_LOG("H3D_GUIDE_MARGIN net=%zu pin=%d refresh=%d independent=%d candidate=%zu users=%zu alternatives=%zu opening=%.17g branch=%.17g chosen=%.17g alternative=%.17g criticality=%.9g source_measured=%d sink_measured=%d\n",
++                            size_t(net), leaf.pin, prior_guides != nullptr, independent,
++                            size_t(node), users.at(chosen), alternatives, openings.at(chosen),
++                            chosen_branch, chosen_total, alternative, double(criticality.at(leaf.pin)),
++                            source_measured, sink_measured);
++                }
++            }
+         }
+     }
+     if (prior_guides && !result.refresh_accepted) {
+--- a/vpr/src/route/h3d_fast_plan.h
++++ b/vpr/src/route/h3d_fast_plan.h
+@@ -85,6 +85,7 @@
+     bool source_geometry_floor_ = false; ///< Keep the original geometric prior as a floor for unknown source estimates; exact distances unchanged.
+     size_t source_floor_selected_ = 0; ///< Selected unknown-source candidates whose fitted scale is below the unit prior.
+     bool trace_estimates_ = false; ///< Decision-neutral candidate component records for independent distance validation.
++    bool trace_guide_margin_ = false; ///< Diagnostic leaf-local surrogate margins; not a shared-DP or physical-delay confidence bound.
+     size_t estimate_trace_rows_ = 0; ///< Number of emitted candidate records across diagnostic phases.
+     bool reverse_rerank_ = false; ///< Re-evaluate reverse targets after source measurements with unchanged limits and diversity.
+     size_t reverse_rerank_pins_ = 0, reverse_rerank_changed_ = 0; ///< Pins considered and target sequences changed by source-informed reranking.

@@ -1,0 +1,183 @@
+diff --git a/libs/EXTERNAL/libtatum/libtatum/tatum/TimingReporter.hpp b/libs/EXTERNAL/libtatum/libtatum/tatum/TimingReporter.hpp
+--- a/libs/EXTERNAL/libtatum/libtatum/tatum/TimingReporter.hpp
++++ b/libs/EXTERNAL/libtatum/libtatum/tatum/TimingReporter.hpp
+@@ -9,8 +9,8 @@
+ #include "tatum/report/TimingPath.hpp"
+ #include "tatum/report/TimingPathCollector.hpp"
+ #include "tatum/report/TimingReportTagRetriever.hpp"
+-#include "/path/to/vpr/src/base/vpr_context.h"
+-#include "/path/to/vpr/src/pack/prepack.h"
++#include "vpr_context.h"
++#include "prepack.h"
+ 
+ namespace tatum { namespace detail {
+ 
+diff --git a/vpr/CMakeLists.txt b/vpr/CMakeLists.txt
+--- a/vpr/CMakeLists.txt
++++ b/vpr/CMakeLists.txt
+@@ -75,6 +75,16 @@
+ 
+ 
+ target_include_directories(libvpr PUBLIC ${LIB_INCLUDE_DIRS})
++
++# The published TimingReporter uses VPR's Prepacker. Supply its headers and
++# transitive library includes without introducing a libtatum/libvpr cycle.
++add_library(vpr_interface INTERFACE)
++target_include_directories(vpr_interface INTERFACE ${LIB_INCLUDE_DIRS})
++target_link_libraries(vpr_interface INTERFACE libarchfpga libvtrutil librrgraph)
++target_link_libraries(libtatum vpr_interface)
++if(NOT VPR_USE_SERVER)
++    target_compile_definitions(libtatum PRIVATE NO_SERVER)
++endif()
+ 
+ 
+ # Find if Eigen is installed. Eigen is used within the Analytical Solver of the
+diff --git a/vpr/src/base/partition_creator.cpp b/vpr/src/base/partition_creator.cpp
+--- a/vpr/src/base/partition_creator.cpp
++++ b/vpr/src/base/partition_creator.cpp
+@@ -11,6 +11,7 @@
+ #include "PreClusterDelayCalculator.h"
+ #include "concrete_timing_info.h"
+ #include "vtr_time.h"
++#include "vpr_error.h"
+ 
+ 
+ 
+@@ -97,8 +98,10 @@
+     
+     // Run partitioning
+     ClusterPartitioningEngine engine(hypergraph, num_partitions, imbalance_rate, cost_alpha, cost_beta, config_file);
+-    std::string triton_path = "/path/to/tritonpart_run_script.sh";
+-    engine.partition_with_triton(triton_path,1, atom_criticality, atoms_lookup);
++    std::string triton_path = "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/run_serial_triton_bridge.py";
++    if (!engine.partition_with_triton(triton_path, 1, atom_criticality, atoms_lookup)) {
++        VPR_FATAL_ERROR(VPR_ERROR_PLACE, "TritonPart failed; refusing unpartitioned fallback");
++    }
+     // engine.partition(atom_criticality, atoms_lookup);
+     
+     //Create Vector of Partition objects
+diff --git a/libs/EXTERNAL/capnproto/c++/build/configure.bzl b/libs/EXTERNAL/capnproto/c++/build/configure.bzl
+deleted file mode 100644
+--- a/libs/EXTERNAL/capnproto/c++/build/configure.bzl
++++ /dev/null
+@@ -1,103 +0,0 @@
+-load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "int_flag")
+-
+-def kj_configure():
+-    """Generates set of flag, settings for kj configuration.
+-
+-    Creates kj-defines cc_library with all necessary preprocessor defines.
+-    """
+-
+-    # Flags to configure KJ library build.
+-    bool_flag(
+-        name = "openssl",
+-        build_setting_default = False,
+-    )
+-
+-    bool_flag(
+-        name = "zlib",
+-        build_setting_default = False,
+-    )
+-
+-    bool_flag(
+-        name = "brotli",
+-        build_setting_default = False,
+-    )
+-
+-    bool_flag(
+-        name = "libdl",
+-        build_setting_default = False,
+-    )
+-
+-    bool_flag(
+-        name = "save_acquired_lock_info",
+-        build_setting_default = False,
+-    )
+-
+-    bool_flag(
+-        name = "track_lock_blocking",
+-        build_setting_default = False,
+-    )
+-
+-    bool_flag(
+-        name = "coroutines",
+-        build_setting_default = False,
+-    )
+-
+-    # Settings to use in select() expressions
+-    native.config_setting(
+-        name = "use_openssl",
+-        flag_values = {"openssl": "True"},
+-        visibility = ["//visibility:public"],
+-    )
+-
+-    native.config_setting(
+-        name = "use_zlib",
+-        flag_values = {"zlib": "True"},
+-    )
+-
+-    native.config_setting(
+-        name = "use_brotli",
+-        flag_values = {"brotli": "True"},
+-    )
+-
+-    native.config_setting(
+-        name = "use_libdl",
+-        flag_values = {"libdl": "True"},
+-    )
+-
+-    native.config_setting(
+-        name = "use_coroutines",
+-        flag_values = {"coroutines": "True"},
+-    )
+-
+-    native.config_setting(
+-        name = "use_save_acquired_lock_info",
+-        flag_values = {"save_acquired_lock_info": "True"},
+-    )
+-
+-    native.config_setting(
+-        name = "use_track_lock_blocking",
+-        flag_values = {"track_lock_blocking": "True"},
+-    )
+-
+-    native.cc_library(
+-        name = "kj-defines",
+-        defines = select({
+-            "//src/kj:use_openssl": ["KJ_HAS_OPENSSL"],
+-            "//conditions:default": [],
+-        }) + select({
+-            "//src/kj:use_zlib": ["KJ_HAS_ZLIB"],
+-            "//conditions:default": [],
+-        }) + select({
+-            "//src/kj:use_brotli": ["KJ_HAS_BROTLI"],
+-            "//conditions:default": [],
+-        }) + select({
+-            "//src/kj:use_libdl": ["KJ_HAS_LIBDL"],
+-            "//conditions:default": [],
+-        }) + select({
+-            "//src/kj:use_save_acquired_lock_info": ["KJ_SAVE_ACQUIRED_LOCK_INFO=1"],
+-            "//conditions:default": ["KJ_SAVE_ACQUIRED_LOCK_INFO=0"],
+-        }) + select({
+-            "//src/kj:use_track_lock_blocking": ["KJ_TRACK_LOCK_BLOCKING=1"],
+-            "//conditions:default": ["KJ_TRACK_LOCK_BLOCKING=0"],
+-        }),
+-    )
+diff --git a/libs/EXTERNAL/capnproto/c++/build/load_br.bzl b/libs/EXTERNAL/capnproto/c++/build/load_br.bzl
+deleted file mode 100644
+--- a/libs/EXTERNAL/capnproto/c++/build/load_br.bzl
++++ /dev/null
+@@ -1,12 +0,0 @@
+-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+-
+-# Defined in a bzl file to allow dependents to pull in brotli via capnproto. Using latest brotli
+-# commit due to macOS compile issues with v1.0.9, switch to a release version later
+-def load_brotli():
+-    http_archive(
+-        name = "brotli",
+-        sha256 = "e33f397d86aaa7f3e786bdf01a7b5cff4101cfb20041c04b313b149d34332f64",
+-        strip_prefix = "google-brotli-ed1995b",
+-        type = "tgz",
+-        urls = ["https://github.com/google/brotli/tarball/ed1995b6bda19244070ab5d331111f16f67c8054"],
+-    )

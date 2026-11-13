@@ -1,0 +1,12 @@
+{
+  "status": "registered_before_reuse_analysis",
+  "native_route_calls": 0,
+  "question": "Can chronological reuse of validated physical suffixes improve residual multi-source coverage without increasing the fixed per-query budget or storing dynamic seedTdel?",
+  "arms": [
+    "P:always run same Qh, pool old and current valid suffixes",
+    "S:skip Qh only when a prior valid suffix is already available to a current seed; record lost opportunities"
+  ],
+  "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/residual_query_offline_01",
+  "cache": "Immutable physical suffix paths keyed by(sink,RRsource); up to16 unique alternative witnesses/key and16384witnesses total. Explicit cap counts. No future records, no saved seedTdel/occupancy/prices. BB/layer admission and current prefix recomputed on each lookup.",
+  "qualification": "Offline deterministic counterfactual on fixed saved contexts, not native rerouting or timing claim; previous native contexts are not allowed to change. Cached suffixes remain graph-walk UBs, not exact distances or legal tree extensions."
+}

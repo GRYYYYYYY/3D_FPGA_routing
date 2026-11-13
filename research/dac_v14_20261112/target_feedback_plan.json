@@ -1,0 +1,24 @@
+{
+  "hypothesis": "Net-wide refresh optimizes retained connections whose guides cannot affect this reroute. Restrict current finite shared/split optimization to actual native remaining targets; preserve all non-target guides and per-pin criticality generation state. Test quality/cost, not presumed benefit.",
+  "control": "optimized U, all new features off",
+  "variant": "Tf VPR_H3D_TARGET_FEEDBACK=1, original U triggers/cooldown3/margin.05, no Pl/Xp/mixed/timing/scope changes",
+  "inputs": "eltwise_layer HybridO n40 W100 seed11 p0 from strictly matched frozen A0/R1/U inputs",
+  "validation": [
+    "V complete route/table/refresh/guide equals sealed U",
+    "initial tables unchanged",
+    "accepted preference differences only on native targeted pins; never retained",
+    "FULL route, independent physical/guide audits, complete input seal",
+    "forced transaction rollback separately"
+  ],
+  "limits": {
+    "timeout_seconds": 1800,
+    "memory_GiB": 64,
+    "disk_reserve_GiB": 80,
+    "max_live_VPR": 3
+  },
+  "caveats": [
+    "Retained guide choices may still enter candidate pool and existing owned-resource discount; no forced rip-up",
+    "Gate still evaluates original net-level signals; non-target drift can trigger work but only native-selected nets and cooldown apply",
+    "No claims from development process timing; formal timing unstarted"
+  ]
+}

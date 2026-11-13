@@ -1,0 +1,31 @@
+{
+  "pid": 430872,
+  "start_ticks": "1927484746",
+  "host": "fpgaacc--cc6e3aed63e1-kloi3p6yyx",
+  "boot_id": "72faa1f8-35f2-4ad1-be94-e8479b77f2fa",
+  "runner_sha256": "09cd7933c9352f87eb1dd19479c64fc5b1065c469952439b306ee623bce0f147",
+  "candidate_binary_sha256": "87e7a48563bf2082b54b8fe334e00084e1991e239c9de20c33d78ebcbee6b276",
+  "dependency": {
+    "pid": 4113540,
+    "start_ticks": "1927384054",
+    "host": "fpgaacc--cc6e3aed63e1-kloi3p6yyx",
+    "dependency_pid": 3963070,
+    "dependency_start_ticks": "1927354498",
+    "runner_sha256": "5fb265091fcab21e3ba58df872b03b515a96a3269fc612f5f3c9e3165ad2e212",
+    "binary_sha256": "cf97397377f526f2edb5c18af8dcada1795ad94d42b54fc4d35f038b4fa1896d",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_feedback_bnn.py",
+      "--out",
+      "feedback_bnn_dev_01"
+    ],
+    "policy": "After quota pilot completed with input seal and <=2 other live VPR; serial bnn F/U, unchanged candidate02. Total VPR<=3."
+  },
+  "command": [
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_generation_confirmation.py",
+    "--out",
+    "generation_confirmation_dev_01"
+  ],
+  "policy": "After bnn F/U terminal and <=2 other live VPR, confirm bnn O against sealed U; one worker, normal max3, original64GiB. Failure of prerequisite is diagnosed, not silently treated as a quality reference."
+}

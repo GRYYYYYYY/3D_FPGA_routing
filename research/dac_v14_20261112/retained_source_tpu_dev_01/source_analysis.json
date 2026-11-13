@@ -1,0 +1,246 @@
+{
+  "passed": true,
+  "circuit": "tpu_like.small.os",
+  "seed": 21,
+  "statuses": {
+    "legal": 5
+  },
+  "observations": [
+    {
+      "arm": "A0",
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0_a0",
+      "status": "legal",
+      "legal_cpd_ns": 7.87599,
+      "native_cpd_ns": 7.87599,
+      "iterations": 24,
+      "planning_seconds": 0.0,
+      "process_seconds": 43.528802555054426,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 361078,
+        "sb_pairs_used": 35,
+        "sb_pair_net_occupancy": 35,
+        "cb_crossing_output_sources_used": 1561,
+        "cb_crossing_output_source_net_occupancy": 1561,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 785,
+          "OPIN->CHANX": 850,
+          "CHANX->CHANX": 35
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "route_body_sha256": "11d264058d0c25148054a3ef4f0e41c878b89cf9a3e9ace587814c9c86640407"
+    },
+    {
+      "arm": "R1",
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0_delay_critical_c6",
+      "status": "legal",
+      "legal_cpd_ns": 7.81221,
+      "native_cpd_ns": 7.81221,
+      "iterations": 18,
+      "planning_seconds": 63.461007,
+      "process_seconds": 107.09719222411513,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 360498,
+        "sb_pairs_used": 31,
+        "sb_pair_net_occupancy": 31,
+        "cb_crossing_output_sources_used": 1563,
+        "cb_crossing_output_source_net_occupancy": 1563,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 782,
+          "OPIN->CHANX": 841,
+          "CHANX->CHANX": 31
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "route_body_sha256": "613ee3d7930417276656f3e9e424aea01378081efbe64d93c4a9c2db09878d86"
+    },
+    {
+      "arm": "Tf",
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_expansion_dev_01/runs/tpu_like.small.os_Tf",
+      "status": "legal",
+      "legal_cpd_ns": 7.81221,
+      "native_cpd_ns": 7.81221,
+      "iterations": 20,
+      "planning_seconds": 4.417536,
+      "process_seconds": 50.75725755095482,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 360633,
+        "sb_pairs_used": 32,
+        "sb_pair_net_occupancy": 32,
+        "cb_crossing_output_sources_used": 1562,
+        "cb_crossing_output_source_net_occupancy": 1562,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 781,
+          "OPIN->CHANX": 841,
+          "CHANX->CHANX": 32
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "route_body_sha256": "19ff091bc55c40bc4fdce71bebfb8497df1e770b5177c9115f4a1e5f378da8d8"
+    },
+    {
+      "arm": "C",
+      "path": "research/dac_v14_20261112/retained_source_tpu_dev_01/runs/tpu_like.small.os_C",
+      "status": "legal",
+      "legal_cpd_ns": 7.81221,
+      "native_cpd_ns": 7.81221,
+      "iterations": 20,
+      "planning_seconds": 4.964787,
+      "process_seconds": 51.061548966914415,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 360633,
+        "sb_pairs_used": 32,
+        "sb_pair_net_occupancy": 32,
+        "cb_crossing_output_sources_used": 1562,
+        "cb_crossing_output_source_net_occupancy": 1562,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 781,
+          "OPIN->CHANX": 841,
+          "CHANX->CHANX": 32
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "route_body_sha256": "19ff091bc55c40bc4fdce71bebfb8497df1e770b5177c9115f4a1e5f378da8d8",
+      "mechanism": {
+        "trace": {
+          "table_plans": 60,
+          "skipped_plans": 96,
+          "skip_reasons": {
+            "no_eligible_pins": 96
+          },
+          "accepted_plans": 17,
+          "leaf_events": 303,
+          "leaves_with_retained_reachable_option": 260,
+          "counters": {
+            "finite_candidate_events": 89286,
+            "owned_candidate_events": 270,
+            "retained_crossing_candidate_events": 269,
+            "retained_reachable_candidate_events": 269,
+            "retained_expandable_candidate_events": 269,
+            "proposed_retained_reachable_events": 81,
+            "missing_cached_view_events": 0
+          },
+          "scope": "Repeated finite refresh events, not independent observations. Rejected proposals included. Reachability flags come from cached SCC views, not a new independent graph audit. Retained partial-tree Tdel/RC is not final STA or a certified extension-delay bound."
+        },
+        "credit": {
+          "entry_table_records": 3698,
+          "owned_entry_table_records": 31,
+          "credited_entry_table_records": 0,
+          "negotiated_premium_records": 0,
+          "formula_passed": true,
+          "scope": "Unique plan/entry records; repeated trajectory observations, not independent samples."
+        },
+        "source": {
+          "effective_source_formula_passed": true,
+          "expandable_retained_entry_records": 0,
+          "differs_from_legacy_opening_source_records": 0,
+          "differs_from_geometry_branch_source_records": 0,
+          "qualification": "Partial current-tree Tdel, not final RC or a certified extension bound. Entry/table records are repeated observations."
+        }
+      }
+    },
+    {
+      "arm": "Ps",
+      "path": "research/dac_v14_20261112/retained_source_tpu_dev_01/runs/tpu_like.small.os_Ps",
+      "status": "legal",
+      "legal_cpd_ns": 7.86071,
+      "native_cpd_ns": 7.86071,
+      "iterations": 18,
+      "planning_seconds": 5.893258,
+      "process_seconds": 51.75805316865444,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 360239,
+        "sb_pairs_used": 32,
+        "sb_pair_net_occupancy": 32,
+        "cb_crossing_output_sources_used": 1563,
+        "cb_crossing_output_source_net_occupancy": 1563,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 782,
+          "OPIN->CHANX": 845,
+          "CHANX->CHANX": 32
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "route_body_sha256": "5e1105c51042c89468ae66e454b59d2c6ce69cfb5cc8d8eaebbf0973d65da210",
+      "mechanism": {
+        "trace": {
+          "table_plans": 59,
+          "skipped_plans": 91,
+          "skip_reasons": {
+            "no_eligible_pins": 91
+          },
+          "accepted_plans": 15,
+          "leaf_events": 354,
+          "leaves_with_retained_reachable_option": 307,
+          "counters": {
+            "finite_candidate_events": 101791,
+            "owned_candidate_events": 313,
+            "retained_crossing_candidate_events": 312,
+            "retained_reachable_candidate_events": 312,
+            "retained_expandable_candidate_events": 312,
+            "proposed_retained_reachable_events": 287,
+            "missing_cached_view_events": 0
+          },
+          "scope": "Repeated finite refresh events, not independent observations. Rejected proposals included. Reachability flags come from cached SCC views, not a new independent graph audit. Retained partial-tree Tdel/RC is not final STA or a certified extension-delay bound."
+        },
+        "credit": {
+          "entry_table_records": 3784,
+          "owned_entry_table_records": 23,
+          "credited_entry_table_records": 0,
+          "negotiated_premium_records": 0,
+          "formula_passed": true,
+          "scope": "Unique plan/entry records; repeated trajectory observations, not independent samples."
+        },
+        "source": {
+          "effective_source_formula_passed": true,
+          "expandable_retained_entry_records": 23,
+          "differs_from_legacy_opening_source_records": 1,
+          "differs_from_geometry_branch_source_records": 23,
+          "qualification": "Partial current-tree Tdel, not final RC or a certified extension bound. Entry/table records are repeated observations."
+        }
+      }
+    }
+  ],
+  "comparisons": {
+    "A0->Ps": {
+      "both_legal": true,
+      "cpd_improvement_pct": 0.19400735653549253,
+      "same_route": false
+    },
+    "R1->Ps": {
+      "both_legal": true,
+      "cpd_improvement_pct": -0.6208230449514256,
+      "same_route": false
+    },
+    "Tf->Ps": {
+      "both_legal": true,
+      "cpd_improvement_pct": -0.6208230449514256,
+      "same_route": false
+    },
+    "C->Ps": {
+      "both_legal": true,
+      "cpd_improvement_pct": -0.6208230449514256,
+      "same_route": false
+    }
+  },
+  "input_sha256": {
+    "research/dac_v14_20261112/retained_source_tpu_dev_01/registration.json": "0425ab2c79510eebfd7c5d2a78487988baf975506d815f22affc8f40951886f6",
+    "research/dac_v14_20261112/retained_source_tpu_dev_01/completion.json": "ba085d004ec76f89f77b195e62723bf1e204fbef44974efb6896676fbe4f7b35",
+    "research/dac_v14_20261112/retained_source_tpu_dev_01/input_seal.json": "c8017c8004c84bb4c67e57f9c019cd0887ae60dfd806e977486ddb1d7f4ca57b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0_a0/manifest.json": "46be10399b8e79ca9d24ed05a309d97bda4cd88ef29c06e604916682fe283a35",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0_a0/independent_audit.json": "09d7acf96f7b99017fac0e5a396a732032bd6a97c7e9443df1c6cd58fc4f4040",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0_delay_critical_c6/manifest.json": "c16f98c96e7120a1ce78924d21c749ef70d96f4df7ab632ee808cccd33b67c81",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0_delay_critical_c6/independent_audit.json": "f3a7b02b6912e2c5f09ee33d02d5f884aad1f8764e2f24ead281f3df3ae11984",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_expansion_dev_01/runs/tpu_like.small.os_Tf/manifest.json": "ae77ed9b885a8c715781e5bc79a662ffb03f612f30f6c7869288d61b5074c13f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_expansion_dev_01/runs/tpu_like.small.os_Tf/independent_audit.json": "10e9bbdc74fa63e401b20a2746231633de3cf14f4d1593bfa9dd703502822c46",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_transfer_expansion_dev_01/runs/tpu_like.small.os_Tf/final_guide_audit.json": "07f9b4b33974c729fbde4dbbe656a176a66e43bde77d9239a9e24e5a519c8843",
+    "research/dac_v14_20261112/retained_source_tpu_dev_01/runs/tpu_like.small.os_C/manifest.json": "964aaaefdc453f120863325a16f6c7731c34bf37273448b68d7369e79a8f04b1",
+    "research/dac_v14_20261112/retained_source_tpu_dev_01/runs/tpu_like.small.os_C/independent_audit.json": "8e8c9e3d78e8ece8172fa66d689fe372dacef53644df700c0ef997bb4b957989",
+    "research/dac_v14_20261112/retained_source_tpu_dev_01/runs/tpu_like.small.os_C/final_guide_audit.json": "b7d45b87cb74feb4d7d011475dabf4c568aa202a7cd813cbabbd6db8a596f8a2",
+    "research/dac_v14_20261112/retained_source_tpu_dev_01/runs/tpu_like.small.os_Ps/manifest.json": "d8d0d2f09b41632ed10eea3731b2586fde89923e41d885e4b3d925eea93152ee",
+    "research/dac_v14_20261112/retained_source_tpu_dev_01/runs/tpu_like.small.os_Ps/independent_audit.json": "7b0854680d2a7229d03e5cf2323c22a23909a02cca997dd10abfcb97a6c38a9a",
+    "research/dac_v14_20261112/retained_source_tpu_dev_01/runs/tpu_like.small.os_Ps/final_guide_audit.json": "7c2a6560032694d2b46590896e06315926dcfa1c14266273b35dab2059b127b6"
+  },
+  "script_sha256": "b6124f4598bc71884a069f2ff48f1340b105b0214316a9dce66370fb725ee9c4",
+  "qualification": "Separate retained-source development ablation. Raw failure delay excluded from legal CPD. Opening credit disabled and full opening-price formula audited. Process costs include tracing, not formal speedup evidence; partial tree delay is not final STA."
+}

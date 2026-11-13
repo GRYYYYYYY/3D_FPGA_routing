@@ -1,0 +1,24 @@
+{
+  "status": "next_research_decision_not_submitted",
+  "time": 1794564948.8635416,
+  "priority": "Implement actual guide influence mechanism trace next; do not spend next phase only optimizing a scorer with no demonstrated QoR.",
+  "evidence": [
+    "candidate_path_delay_guide_diagnostic_01.json",
+    "source_coverage_gate_summary_01.json",
+    "guide_influence_native_settings_01.json"
+  ],
+  "observations": [
+    "Partial sink scoring changes24proposals/3accepted plans and3savedguides but no physical route; price pooling similarly changesacceptedguides but no route.",
+    "Two changed guide targets have planned criticality .890831/.947453 and actual crossing244875 rather than preferred773147. Another target4675/pin23 merely comes to prefer already-routed crossing97355.",
+    "Current ConnectionRouter adds guidance only in configurable crossing congestion before multiplication by(1-criticality), unless prior timing_miss_penalty is nonzero; pilot timing penalty0. Existing remote-layer tree seeds may avoid charging any new crossing at all. Neither mechanism is proven as sole cause."
+  ],
+  "implementation_notes": [
+    "Use current ConnectionParameters.net_id_ and target_pin_num_ to tag actual crossing evaluations. Snapshot raw native float congestion after native choke modifications but before guide and after guide before planar modifier; never replace existing arithmetic.",
+    "Double analytic contributions (1-c)*(post-pre),c*Tdel,effective c*guide_timing_cost are audit fields; label distinct from backward accumulator rounding/full lookahead priority. Include from/to/switch/configurable/RCV/current preferred/missweight.",
+    "Serial planner-scope trace resets at h3d_prepare_iteration(iter1). Cumulative bins all events, capped raw rows by focus3connections2000each and nonfocus4criticalitybins1000each. State/no-state branches exact native route/guides/heap counters required.",
+    "Outer normal/highfanout connection begin for focus targets only: existing pruned route-tree crossing IDs/node re_expand/Tdel; label present state, not queued seed without observing actualqueue. Keep retries identifiable.",
+    "Use fresh RR edge/switch/config/Tdel and contribution formula audit; donot infer whole event distribution from censored rows. Control must exactly reproduce currentF/D1 before any new quality algorithm."
+  ],
+  "after_trace": "Choose and implement evidence-supported bounded reliability-weighted timing guidance or correct guide semantics for retained-tree competition; native Tdel/STA/congestion/reroute transactions stay unchanged. Prior blanketH/regret alternatives were already negative/sparse; do not repeat unchanged settings.",
+  "independent_optimization": "lazy_reverse_experiment_01.json registered as a separate exact query-allocation follow-up, after quality mechanism evidence or as nonconfounding companion. No speedup/quality benefit presumed."
+}

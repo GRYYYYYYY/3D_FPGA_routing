@@ -1,0 +1,152 @@
+--- a/h3d_fast_plan.cpp
++++ b/h3d_fast_plan.cpp
+@@ -58,6 +58,8 @@
+     : graph_(graph), edge_encoding_(edge_encoding) {
+     const char* profile = std::getenv("VPR_H3D_PLAN_PROFILE");
+     profile_.enabled = profile && std::string(profile) == "1";
++    const char* shared = std::getenv("VPR_H3D_SHARED_CLOSURE");
++    shared_closure_ = edge_encoding_ && shared && std::string(shared) == "1";
+     const char* generation = std::getenv("VPR_H3D_GENERATION_CLOSURE");
+     bool generation_closure = generation && std::string(generation) == "1";
+     VTR_LOG("H3D_REACH_MODE generation_closure=%d profile=%d\n", generation_closure, profile_.enabled);
+@@ -145,6 +147,10 @@
+     }
+     forward_allowed_ = reachability_->mark(all_entries, true);
+     reverse_allowed_ = reachability_->mark(all_exits, false);
++    if (shared_closure_) {
++        reachability_->configure_shared_closures(forward_allowed_, reverse_allowed_);
++        VTR_LOG("H3D_SHARED_CLOSURE entries=%zu entry_cap=4194304 hub_cap=8 min_members=64\n", reachability_->shared_entries());
++    }
+     VTR_LOG("H3D_SCC_INIT components=%zu planar_edges=%zu channels=%zu mean_planar_span=%g\n",
+             reachability_->num_components(), planar_edges.size(), channels_.size(), mean_span_);
+     if (std::getenv("VPR_H3D_VALIDATE_SCC")) validate_against_bfs();
+@@ -234,7 +240,8 @@
+     if (found != cache.end()) return found->second;
+     auto start = profile_.enabled ? std::chrono::steady_clock::now() : std::chrono::steady_clock::time_point{};
+     ++reach_misses_;
+-    auto result = reachability_->relevant_components(size_t(endpoint), reverse, reverse ? reverse_allowed_ : forward_allowed_, edge_encoding_);
++    auto result = shared_closure_ ? reachability_->shared_relevant_components(size_t(endpoint), reverse)
++                                  : reachability_->relevant_components(size_t(endpoint), reverse, reverse ? reverse_allowed_ : forward_allowed_, edge_encoding_);
+     if (profile_.enabled) reach_miss_seconds_ += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
+     return cache.emplace(endpoint, std::move(result)).first->second;
+ }
+--- a/h3d_reachability.h
++++ b/h3d_reachability.h
+@@ -1,6 +1,8 @@
+ #pragma once
+ 
+ #include <algorithm>
++#include <array>
++#include <iterator>
+ #include <cstddef>
+ #include <numeric>
+ #include <utility>
+@@ -147,7 +149,98 @@
+         return visited;
+     }
+ 
++    /** @brief Cache bounded closures of large SCCs for two immutable allowed masks.
++     *
++     * The entry cap is shared across both directions. Reconfiguration discards
++     * all prior masks and closures. Refused caches retain the exact BFS fallback.
++     * Graph size and SCC membership choose hubs; no route outcomes are inputs.
++     */
++    void configure_shared_closures(const std::vector<bool>& forward_allowed,
++                                   const std::vector<bool>& reverse_allowed,
++                                   size_t entry_cap = 4 * 1024 * 1024,
++                                   size_t hub_cap = 8, size_t min_members = 64) {
++        VTR_ASSERT(forward_allowed.size() == num_components());
++        VTR_ASSERT(reverse_allowed.size() == num_components());
++        shared_allowed_ = {forward_allowed, reverse_allowed};
++        shared_hubs_ = {};
++        shared_entries_ = 0;
++        // Shared queries use stamps even when the legacy query mode is off.
++        visits_ = H3dVisitEpoch<>(num_components());
++        std::vector<size_t> counts(num_components(), 0), representative(num_components(), 0);
++        for (size_t vertex = 0; vertex < components_.size(); ++vertex) {
++            ++counts[components_[vertex]];
++            representative[components_[vertex]] = vertex;
++        }
++        std::vector<std::pair<size_t, int>> ranked;
++        for (size_t c = 0; c < counts.size(); ++c)
++            if (counts[c] >= min_members) ranked.emplace_back(counts[c], int(c));
++        std::sort(ranked.rbegin(), ranked.rend());
++        if (ranked.size() > hub_cap) ranked.resize(hub_cap);
++        for (int direction = 0; direction < 2; ++direction) {
++            for (const auto& [members, component_id] : ranked) {
++                (void)members;
++                if (!shared_allowed_[direction][component_id]) continue;
++                auto closure = relevant_components(representative[component_id], direction != 0,
++                                                   shared_allowed_[direction], true);
++                if (closure.size() <= entry_cap - shared_entries_) {
++                    shared_entries_ += closure.size();
++                    shared_hubs_[direction].push_back({component_id, std::move(closure)});
++                }
++            }
++        }
++    }
++
++    /** @brief Exact closure with shared hub suffixes and local traversal.
++     *
++     * Encountering a cached hub replaces expansion by its full sorted closure.
++     * Local traversal and set union preserve all components including endpoints;
++     * overlapping hubs and alternate paths are deduplicated. Scratch is serial.
++     */
++    std::vector<int> shared_relevant_components(size_t vertex, bool backwards) const {
++        const size_t direction = backwards ? 1 : 0;
++        const auto& allowed = shared_allowed_[direction];
++        VTR_ASSERT(allowed.size() == num_components());
++        const int root = component(vertex);
++        if (!allowed[root]) return {};
++        const auto& adjacency = backwards ? reverse_ : forward_;
++        const auto& hubs = shared_hubs_[direction];
++        visits_.begin();
++        visits_.insert(root);
++        std::vector<int> local{root};
++        std::vector<size_t> used;
++        for (size_t i = 0; i < local.size(); ++i) {
++            size_t hub = 0;
++            for (; hub < hubs.size(); ++hub)
++                if (hubs[hub].root == local[i]) break;
++            if (hub < hubs.size()) {
++                used.push_back(hub);
++                continue;
++            }
++            for (int next : adjacency[local[i]])
++                if (allowed[next] && visits_.insert(next)) local.push_back(next);
++        }
++        std::sort(local.begin(), local.end());
++        for (size_t hub : used) {
++            const auto& suffix = hubs[hub].closure;
++            std::vector<int> merged;
++            merged.reserve(local.size() + suffix.size());
++            std::set_union(local.begin(), local.end(), suffix.begin(), suffix.end(), std::back_inserter(merged));
++            local = std::move(merged);
++        }
++        return local;
++    }
++
++    /** @brief Number of component entries retained in shared closures. */
++    size_t shared_entries() const { return shared_entries_; }
++
+   private:
++    struct t_shared_hub {
++        int root;                  ///< Cached component id.
++        std::vector<int> closure;  ///< Complete sorted allowed closure.
++    };
++    std::array<std::vector<bool>, 2> shared_allowed_; ///< Owned static masks, isolated from caller mutation.
++    std::array<std::vector<t_shared_hub>, 2> shared_hubs_; ///< Bounded forward/reverse hub closures.
++    size_t shared_entries_ = 0; ///< Total retained component entries across both directions.
+     bool generation_closure_ = false;       ///< Reuse visit stamps for sequential large-closure queries.
+     mutable H3dVisitEpoch<> visits_;        ///< Scratch marks; graph and returned closures remain immutable.
+     std::vector<int> components_;           ///< Component id for every generic input vertex.
+--- a/h3d_fast_plan.h
++++ b/h3d_fast_plan.h
+@@ -69,6 +69,7 @@
+     size_t mixed_both_ = 0, mixed_source_only_ = 0, mixed_sink_only_ = 0, mixed_estimated_ = 0; ///< Sampled candidate coverage.
+     size_t selected_delay_pins_ = 0, selected_delay_informed_ = 0; ///< Final selected-guide delay availability, separate from sampled-pool coverage.
+     size_t selected_both_ = 0, selected_source_ = 0, selected_sink_ = 0, selected_estimated_ = 0; ///< Selected candidate counts, possibly several per pin.
++    bool shared_closure_ = false; ///< Reuse exact large-SCC closures under static allowed masks.
+     bool edge_encoding_ = false;                                       ///< Explicit imported edge encoding, independent of native CHANZ mode.
+     std::unique_ptr<H3dReachabilityIndex> reachability_;                ///< SCC DAG for same-layer non-Z edges.
+     std::vector<RRNodeId> channels_;                                    ///< Candidate table of native CHANZ resources.

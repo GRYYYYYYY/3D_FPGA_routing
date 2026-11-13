@@ -1,0 +1,76 @@
+--- a/h3d_routing.cpp
++++ b/h3d_routing.cpp
+@@ -54,6 +54,7 @@
+     bool delay_cost = false;
+     size_t delay_budget = 4096;
+     float min_criticality = 0.f;
++    e_h3d_feedback_action feedback_action = e_h3d_feedback_action::ALL; ///< Development action ablation; full selective policy remains default.
+     bool feedback = false;            ///< Selective refresh of guides on VPR-selected reroute nets.
+     int cooldown = 3;                  ///< Minimum iterations between refresh attempts.
+     double refresh_margin = .05;       ///< Required relative surrogate improvement.
+@@ -117,6 +118,14 @@
+         if (feedback != 0.f && feedback != 1.f)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_FEEDBACK must be 0 or 1");
+         result.feedback = feedback == 1.f;
++        const char* action_env = std::getenv("VPR_H3D_FEEDBACK_ACTION");
++        std::string action = action_env ? action_env : "all";
++        if (action == "all") result.feedback_action = e_h3d_feedback_action::ALL;
++        else if (action == "clear") result.feedback_action = e_h3d_feedback_action::CLEAR_ONLY;
++        else if (action == "reassign") result.feedback_action = e_h3d_feedback_action::REASSIGN_ONLY;
++        else VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_FEEDBACK_ACTION must be all, clear or reassign");
++        if (!result.feedback && result.feedback_action != e_h3d_feedback_action::ALL)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Feedback action ablation requires selective feedback");
+         result.final_trace = std::getenv("VPR_H3D_FINAL_TRACE") != nullptr;
+         if (result.feedback && (!result.use_scc || result.mode != e_h3d_mode::STATIC))
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Selective feedback requires static SCC planning");
+@@ -263,7 +272,13 @@
+             ++plans_;
+             groups_ += result.groups;
+             no_candidate_ += result.no_candidate;
+-            bool accept = !refresh || result.refresh_accepted;
++            bool accept = !refresh || (result.refresh_accepted
++                                      && h3d_allow_refresh_action(settings().feedback_action, result.refresh_clear));
++            if (refresh && settings().feedback_action != e_h3d_feedback_action::ALL)
++                VTR_LOG("H3D_REFRESH_ACTION net=%zu iter=%d policy=%s proposed_accepted=%d clear=%d accepted=%d\n",
++                        size_t(net), iteration,
++                        settings().feedback_action == e_h3d_feedback_action::CLEAR_ONLY ? "clear" : "reassign",
++                        result.refresh_accepted, result.refresh_clear, accept);
+             if (refresh) {
+                 refresh_accepts_ += accept;
+                 VTR_LOG("H3D_REFRESH net=%zu iter=%d accepted=%d old_cost=%g new_cost=%g\n",
+--- a/h3d_fast_plan.cpp
++++ b/h3d_fast_plan.cpp
+@@ -349,6 +349,7 @@
+             // Deactivation is a criticality eligibility change, not an
+             // objective-improvement claim: no eligible connection needs a guide.
+             result.refresh_accepted = true;
++            result.refresh_clear = true;
+             VTR_LOG("H3D_REFRESH_CLEAR net=%zu reason=no_eligible_pins\n", size_t(net));
+         }
+         return result;
+--- a/h3d_feedback_policy.h
++++ b/h3d_feedback_policy.h
+@@ -16,3 +16,13 @@
+     return std::isfinite(new_cost)
+            && (!std::isfinite(old_cost) || new_cost < old_cost * (1. - margin));
+ }
++
++/** @brief Isolate guide deactivation from candidate reassignment in development. */
++enum class e_h3d_feedback_action { ALL, CLEAR_ONLY, REASSIGN_ONLY };
++
++/** @brief Filter accepted proposals without changing their computation or cost. */
++inline bool h3d_allow_refresh_action(e_h3d_feedback_action action, bool clear) {
++    return action == e_h3d_feedback_action::ALL
++           || (clear ? action == e_h3d_feedback_action::CLEAR_ONLY
++                     : action == e_h3d_feedback_action::REASSIGN_ONLY);
++}
+--- a/h3d_fast_plan.h
++++ b/h3d_fast_plan.h
+@@ -14,6 +14,7 @@
+ /** @brief SCC-backed finite candidate result; all costs remain planning proxies. */
+ struct t_h3d_fast_plan {
+     std::vector<t_h3d_connection_guide> guides; ///< Per-terminal soft preferences.
++    bool refresh_clear = false; ///< Proposed deactivation because no remote pin remains eligible.
+     bool refresh_accepted = false;                 ///< Candidate assignment passes same-cost hysteresis.
+     double proposed_cost = 0., previous_cost = 0.; ///< Current surrogate values on identical finite table.
+     size_t groups = 0;                          ///< Groups in the hierarchical DP.

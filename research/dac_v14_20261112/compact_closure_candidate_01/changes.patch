@@ -1,0 +1,182 @@
+--- a/h3d_fast_plan.cpp
++++ b/h3d_fast_plan.cpp
+@@ -148,7 +148,12 @@
+     forward_allowed_ = reachability_->mark(all_entries, true);
+     reverse_allowed_ = reachability_->mark(all_exits, false);
+     if (shared_closure_) {
+-        reachability_->configure_shared_closures(forward_allowed_, reverse_allowed_);
++        const char* compact_env = std::getenv("VPR_H3D_COMPACT_CLOSURE");
++        bool compact = compact_env && std::string(compact_env) == "1";
++        reachability_->configure_shared_closures(forward_allowed_, reverse_allowed_, 4 * 1024 * 1024, 8, 64, compact);
++        VTR_LOG("H3D_SHARED_STORAGE compact=%d logical_entries=%zu stored_words=%zu admitted=%zu refused=%zu\n", compact,
++                reachability_->shared_logical_entries(), reachability_->shared_entries(),
++                reachability_->shared_admitted(), reachability_->shared_refused());
+         VTR_LOG("H3D_SHARED_CLOSURE entries=%zu entry_cap=4194304 hub_cap=8 min_members=64\n", reachability_->shared_entries());
+     }
+     VTR_LOG("H3D_SCC_INIT components=%zu planar_edges=%zu channels=%zu mean_planar_span=%g\n",
+--- a/h3d_reachability.h
++++ b/h3d_reachability.h
+@@ -11,6 +11,7 @@
+ 
+ #include "vtr_assert.h"
+ #include "h3d_visit_epoch.h"
++#include "h3d_component_set.h"
+ 
+ /** @brief Exact directed reachability through a strongly connected component DAG.
+  *
+@@ -158,12 +159,15 @@
+     void configure_shared_closures(const std::vector<bool>& forward_allowed,
+                                    const std::vector<bool>& reverse_allowed,
+                                    size_t entry_cap = 4 * 1024 * 1024,
+-                                   size_t hub_cap = 8, size_t min_members = 64) {
++                                   size_t hub_cap = 8, size_t min_members = 64, bool compact = false) {
+         VTR_ASSERT(forward_allowed.size() == num_components());
+         VTR_ASSERT(reverse_allowed.size() == num_components());
+         shared_allowed_ = {forward_allowed, reverse_allowed};
+         shared_hubs_ = {};
+         shared_entries_ = 0;
++        shared_logical_entries_ = 0;
++        shared_admitted_ = 0;
++        shared_refused_ = 0;
+         // Shared queries use stamps even when the legacy query mode is off.
+         visits_ = H3dVisitEpoch<>(num_components());
+         std::vector<size_t> counts(num_components(), 0), representative(num_components(), 0);
+@@ -182,10 +186,13 @@
+                 if (!shared_allowed_[direction][component_id]) continue;
+                 auto closure = relevant_components(representative[component_id], direction != 0,
+                                                    shared_allowed_[direction], true);
+-                if (closure.size() <= entry_cap - shared_entries_) {
+-                    shared_entries_ += closure.size();
+-                    shared_hubs_[direction].push_back({component_id, std::move(closure)});
+-                }
++                H3dComponentSet stored(std::move(closure), compact);
++                if (stored.stored_words() <= entry_cap - shared_entries_) {
++                    shared_entries_ += stored.stored_words();
++                    shared_logical_entries_ += stored.size();
++                    ++shared_admitted_;
++                    shared_hubs_[direction].push_back({component_id, std::move(stored)});
++                } else ++shared_refused_;
+             }
+         }
+     }
+@@ -221,26 +228,31 @@
+         }
+         std::sort(local.begin(), local.end());
+         for (size_t hub : used) {
+-            const auto& suffix = hubs[hub].closure;
+-            std::vector<int> merged;
+-            merged.reserve(local.size() + suffix.size());
+-            std::set_union(local.begin(), local.end(), suffix.begin(), suffix.end(), std::back_inserter(merged));
+-            local = std::move(merged);
++            local = hubs[hub].closure.merge(local);
+         }
+         return local;
+     }
+ 
+     /** @brief Number of component entries retained in shared closures. */
+     size_t shared_entries() const { return shared_entries_; }
++    /** @brief Uncompressed cardinality of admitted cached closures. */
++    size_t shared_logical_entries() const { return shared_logical_entries_; }
++    /** @brief Count of admitted hub/direction pairs. */
++    size_t shared_admitted() const { return shared_admitted_; }
++    /** @brief Count of hub/direction pairs declined by storage limit. */
++    size_t shared_refused() const { return shared_refused_; }
+ 
+   private:
+     struct t_shared_hub {
+         int root;                  ///< Cached component id.
+-        std::vector<int> closure;  ///< Complete sorted allowed closure.
++        H3dComponentSet closure;  ///< Complete allowed closure, optionally encoded as runs.
+     };
+     std::array<std::vector<bool>, 2> shared_allowed_; ///< Owned static masks, isolated from caller mutation.
+     std::array<std::vector<t_shared_hub>, 2> shared_hubs_; ///< Bounded forward/reverse hub closures.
+-    size_t shared_entries_ = 0; ///< Total retained component entries across both directions.
++    size_t shared_entries_ = 0; ///< Stored integer words across both directions, charged to the cap.
++    size_t shared_logical_entries_ = 0; ///< Total represented components.
++    size_t shared_admitted_ = 0; ///< Cached hub/direction pairs.
++    size_t shared_refused_ = 0; ///< Hub/direction pairs declined by storage cap.
+     bool generation_closure_ = false;       ///< Reuse visit stamps for sequential large-closure queries.
+     mutable H3dVisitEpoch<> visits_;        ///< Scratch marks; graph and returned closures remain immutable.
+     std::vector<int> components_;           ///< Component id for every generic input vertex.
+--- a/h3d_component_set.h
++++ b/h3d_component_set.h
+@@ -0,0 +1,79 @@
++#pragma once
++
++#include <algorithm>
++#include <cstddef>
++#include <utility>
++#include <vector>
++
++#include "vtr_assert.h"
++
++/** @brief Immutable sorted component set, optionally encoded as inclusive runs.
++ *
++ * Choose runs only when their two integer endpoints use fewer words than the
++ * plain set. Merge expands directly into the caller's result, so the cache
++ * does not retain a second uncompressed copy. Input sets are sorted and unique.
++ */
++class H3dComponentSet {
++  public:
++    H3dComponentSet(std::vector<int> values, bool compress)
++        : logical_size_(values.size()) {
++        VTR_ASSERT_SAFE(std::is_sorted(values.begin(), values.end()));
++        VTR_ASSERT_SAFE(std::adjacent_find(values.begin(), values.end()) == values.end());
++        if (!compress) { words_ = std::move(values); return; }
++        size_t runs = 0;
++        for (size_t i = 0; i < values.size(); ++i)
++            runs += i == 0 || static_cast<long long>(values[i]) != static_cast<long long>(values[i - 1]) + 1;
++        compressed_ = runs < values.size() - runs;
++        if (!compressed_) {
++            words_ = std::move(values);
++            return;
++        }
++        words_.reserve(2 * runs);
++        for (size_t i = 0; i < values.size(); ++i) {
++            if (i == 0 || static_cast<long long>(values[i]) != static_cast<long long>(values[i - 1]) + 1) {
++                words_.push_back(values[i]);
++                words_.push_back(values[i]);
++            } else {
++                words_.back() = values[i];
++            }
++        }
++    }
++
++    /** @brief Stored integer words charged against the cache limit. */
++    size_t stored_words() const { return words_.size(); }
++    /** @brief Number of represented components. */
++    size_t size() const { return logical_size_; }
++    /** @brief True if word pairs encode inclusive runs. */
++    bool compressed() const { return compressed_; }
++
++    /** @brief Return the exact sorted union with another sorted unique set. */
++    std::vector<int> merge(const std::vector<int>& local) const {
++        std::vector<int> result;
++        result.reserve(local.size() + logical_size_);
++        size_t cursor = 0;
++        auto emit = [&](int value) {
++            while (cursor < local.size() && local[cursor] < value) result.push_back(local[cursor++]);
++            if (cursor < local.size() && local[cursor] == value) ++cursor;
++            result.push_back(value);
++        };
++        if (compressed_) {
++            for (size_t run = 0; run < words_.size(); run += 2) {
++                int value = words_[run];
++                while (true) {
++                    emit(value);
++                    if (value == words_[run + 1]) break;
++                    ++value;
++                }
++            }
++        } else {
++            for (int value : words_) emit(value);
++        }
++        result.insert(result.end(), local.begin() + cursor, local.end());
++        return result;
++    }
++
++  private:
++    std::vector<int> words_; ///< Either plain ids or inclusive run endpoint pairs.
++    size_t logical_size_ = 0; ///< Exact uncompressed cardinality.
++    bool compressed_ = false; ///< Interpretation of words_.
++};

@@ -1,0 +1,224 @@
+--- a/h3d_routing.cpp
++++ b/h3d_routing.cpp
+@@ -51,6 +51,7 @@
+ 
+ /** @brief Immutable per-process settings, recorded at the first routing iteration. */
+ struct t_settings {
++    int residual_query_mode=-1;
+     bool box_guide_admission = false;
+     bool trace_search_domain = false;
+     bool trace_guide_influence = false; ///< Read-only actual crossing-cost trace.
+@@ -232,6 +233,17 @@
+                 VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_TRACE_GUIDE_INFLUENCE must be 0 or 1");
+             result.trace_guide_influence=std::string(text)=="1";
+         }
++        if(const char* text=std::getenv("VPR_H3D_RESIDUAL_QUERY")) {
++            const std::string value=text;
++            if(value=="off")result.residual_query_mode=-1;
++            else if(value=="zero")result.residual_query_mode=0;
++            else if(value=="spatial")result.residual_query_mode=1;
++            else if(value=="reuse")result.residual_query_mode=2;
++            else VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_RESIDUAL_QUERY must be off/zero/spatial/reuse");
++            const char* domain=std::getenv("VPR_H3D_TRACE_SEARCH_DOMAIN");
++            if(result.residual_query_mode>=0 && (!domain || std::string(domain)!="1" || !result.use_scc || !result.delay_cost))
++                VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Residual query diagnostic requires domain trace, SCC and delay planner");
++        }
+         if(const char* text=std::getenv("VPR_H3D_BOX_GUIDE_ADMISSION")) {
+             if(std::string(text)!="0" && std::string(text)!="1")
+                 VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_BOX_GUIDE_ADMISSION must be 0 or 1");
+@@ -694,6 +706,10 @@
+     }
+ 
+     /** @brief Read the stable guide storage while a net's sink searches execute. */
++    H3dDelayPlan::ResidualAnswer probe_residual(RRNodeId sink,const std::vector<std::pair<RRNodeId,double>>& sources,const t_bb& bb,int mode,size_t search) {
++        if(!fast_plan_)return {};
++        return fast_plan_->probe_residual(sink,sources,bb,mode,search);
++    }
+     const t_h3d_connection_guide* guide(ParentNetId net, int pin) const {
+         if (guides_released_) return nullptr;
+         auto found = guides_.find(net);
+@@ -957,6 +973,9 @@
+     double minimum_total=std::numeric_limits<double>::infinity();
+ };
+ struct InfluenceState {
++    size_t residual_requests=0,residual_queries=0,residual_hits=0,residual_paths=0,residual_work=0,residual_labels=0,residual_edges=0,residual_edge_omitted=0;
++    double residual_seconds=0.;
++    std::vector<std::pair<RRNodeId,double>> residual_sources;
+     size_t box_suppressed=0,box_rows=0;
+     size_t domain_searches=0,domain_rows=0,domain_omitted=0,domain_seed_rows=0,domain_seed_omitted=0,domain_local_seed_rows=0;
+     std::vector<DomainLayer> domain_layers;
+@@ -989,6 +1008,8 @@
+ void log_influence() {
+     if(!influence)return;
+     const auto& s=*influence;
++    if(settings().residual_query_mode>=0)
++        VTR_LOG("H3D_RESIDUAL_SUMMARY mode=%d requests=%zu queries=%zu hits=%zu paths=%zu expansions=%zu labels=%zu edges=%zu edge_omitted=%zu seconds=%.17g\n",settings().residual_query_mode,s.residual_requests,s.residual_queries,s.residual_hits,s.residual_paths,s.residual_work,s.residual_labels,s.residual_edges,s.residual_edge_omitted,s.residual_seconds);
+     if(settings().box_guide_admission)
+         VTR_LOG("H3D_BOX_GUIDE_SUMMARY suppressed=%zu rows=%zu omitted=%zu\n",s.box_suppressed,s.box_rows,s.box_suppressed-s.box_rows);
+     if(settings().trace_search_domain)
+@@ -1032,12 +1053,13 @@
+ bool h3d_trace_search_domain() {return settings().trace_search_domain;}
+ void h3d_domain_reset() {
+     VTR_ASSERT(influence);auto& s=*influence;
+-    ++s.domain_searches;s.domain_local_seed_rows=0;
++    ++s.domain_searches;s.domain_local_seed_rows=0;s.residual_sources.clear();
+     s.domain_layers.assign(g_vpr_ctx.device().grid.get_num_layers(),DomainLayer{});
+ }
+ void h3d_domain_seed(RRNodeId node,float delay,float backward,float total,bool rcv) {
+     VTR_ASSERT(influence);auto& s=*influence;const auto& graph=g_vpr_ctx.device().rr_graph;
+     const size_t layer=graph.node_layer_low(node);VTR_ASSERT(layer<s.domain_layers.size());
++    if(settings().residual_query_mode>=0)s.residual_sources.emplace_back(node,double(delay));
+     auto& l=s.domain_layers[layer];++l.pushes;
+     l.minimum_delay=std::min(l.minimum_delay,double(delay));
+     l.minimum_backward=std::min(l.minimum_backward,double(backward));
+@@ -1053,6 +1075,30 @@
+     if(!guide && influence_focus(s.current_net,s.current_pin)<0)return;
+     if(s.domain_rows>=20000) {++s.domain_omitted;return;}
+     ++s.domain_rows;const auto& graph=g_vpr_ctx.device().rr_graph;
++    if(settings().residual_query_mode>=0 && guide && !rcv) {
++        std::map<RRNodeId,double> unique;
++        for(auto [node,delay]:s.residual_sources) {
++            if(graph.node_layer_low(node)!=graph.node_layer_low(sink))continue;
++            auto found=unique.find(node);if(found==unique.end() || delay<found->second)unique[node]=delay;
++        }
++        const std::vector<std::pair<RRNodeId,double>> sources(unique.begin(),unique.end());
++        auto start=std::chrono::steady_clock::now();const auto r=planner->probe_residual(sink,sources,bb,settings().residual_query_mode,s.domain_searches);
++        const double seconds=std::chrono::duration<double>(std::chrono::steady_clock::now()-start).count();
++        ++s.residual_requests;s.residual_queries+=r.query.expansions>0;s.residual_hits+=r.cache_hit;s.residual_paths+=r.query.physical_path_seconds.has_value();
++        s.residual_work+=r.query.expansions;s.residual_labels+=r.query.labels;s.residual_seconds+=seconds;
++        std::ostringstream seed_text;seed_text<<std::setprecision(17);size_t seed_rows=0;
++        for(auto [node,delay]:sources) {if(seed_rows>=2048)break;if(seed_rows++)seed_text<<';';seed_text<<size_t(node)<<','<<delay;}
++        const size_t path_rows=r.query.edges.size()<=200000-s.residual_edges ? r.query.edges.size() : 0;
++        s.residual_edge_omitted+=r.query.edges.size()-path_rows;
++        VTR_LOG("H3D_RESIDUAL_QUERY iter=%d attempt=%zu search=%zu net=%zu pin=%d sink=%zu mode=%d criticality=%.17g status=%d hit=%d origin=%zu sources=%zu source_rows=%zu seeds=%s expansions=%zu labels=%zu peak_heap=%zu has_path=%d upper_seconds=%.17g has_lower=%d lower_seconds=%.17g path_edges=%zu edge_rows=%zu cache_records=%zu cache_stops=%zu seconds=%.17g\n",
++            s.iteration,s.attempts,s.domain_searches,s.current_net,s.current_pin,size_t(sink),settings().residual_query_mode,double(criticality),r.status,int(r.cache_hit),r.origin,sources.size(),seed_rows,seed_rows?seed_text.str().c_str():"-",r.query.expansions,r.query.labels,r.query.peak_heap,int(r.query.physical_path_seconds.has_value()),r.query.physical_path_seconds.value_or(0.),int(r.query.lower_seconds.has_value()),r.query.lower_seconds.value_or(0.),r.query.edges.size(),path_rows,r.cache_records,r.cache_stops,seconds);
++        for(size_t i=0;i<path_rows;++i) {
++            const auto& e=r.query.edges[i];
++            VTR_LOG("H3D_RESIDUAL_EDGE search=%zu index=%zu from=%zu to=%zu physical_seconds=%.17g toll_seconds=%.17g\n",s.domain_searches,i,e.from,e.to,e.physical_seconds,e.toll_seconds);
++        }
++        s.residual_edges+=path_rows;
++    }
++
+     size_t preferred_inside=0,preferred_cross_heads=0,admitted_cross_heads=0;
+     if(guide)for(auto node:guide->preferred) {
+         const bool from_inside=inside_bb(graph,node,bb);preferred_inside+=from_inside;
+--- a/h3d_delay_plan.h
++++ b/h3d_delay_plan.h
+@@ -8,6 +8,8 @@
+ #include <memory>
+ #include <unordered_map>
+ #include <unordered_set>
++
++struct t_bb;
+ 
+ /** Exact first-crossing switch-delay distances on verified zero-RC graphs.
+  * Reverse edges are an analysis index only; the router's graph is unchanged. */
+@@ -45,9 +47,18 @@
+     H3dCandidatePath::Result probe_reverse_candidate(RRNodeId sink, RRNodeId entry, size_t work,
+         double heuristic_per_grid_seconds, double toll_weight, float pres_fac,
+         const std::unordered_set<RRNodeId>& owned);
++    struct ResidualAnswer {
++        int status=-4; bool cache_hit=false; size_t origin=0,cache_records=0,cache_stops=0;
++        H3dCandidatePath::Result query{H3dCandidatePath::Stop::WORK_LIMIT,std::nullopt,std::nullopt,std::nullopt,std::nullopt,{},0,0,0};
++    };
++    ResidualAnswer probe_residual_sources(RRNodeId sink,const std::vector<std::pair<RRNodeId,double>>& sources,
++        const t_bb& box,int mode,double heuristic_per_grid,size_t search);
+     void log() const;
+ 
+   private:
++    struct ResidualSuffix { size_t origin;std::vector<H3dCandidatePath::Edge> reverse_edges; };
++    std::map<std::pair<RRNodeId,RRNodeId>,std::vector<ResidualSuffix>> residual_cache_;
++    size_t residual_cache_records_=0,residual_cache_stops_=0;
+     struct Predecessor { RRNodeId node; float delay; };
+     const RRGraphView& graph_;
+     size_t budget_;
+--- a/h3d_delay_plan.cpp
++++ b/h3d_delay_plan.cpp
+@@ -601,3 +601,74 @@
+     VTR_LOG("H3D_DELAY queries=%zu settled=%zu truncated=%zu cache_hits=%zu cached_endpoints=%zu\n",
+             queries_, settled_, truncated_, hits_, forward_.size()+reverse_.size());
+ }
++
++
++H3dDelayPlan::ResidualAnswer H3dDelayPlan::probe_residual_sources(RRNodeId sink,const std::vector<std::pair<RRNodeId,double>>& sources,
++    const t_bb& box,int mode,double heuristic_per_grid,size_t search) {
++    ResidualAnswer answer;
++    if(!supported_ || !edge_encoding_)return answer;
++    if(sources.empty()) {answer.status=-2;return answer;}
++    if(sources.size()>2048) {answer.status=-3;return answer;}
++    const size_t virtual_target=graph_.num_nodes();const auto layer=graph_.node_layer_low(sink);
++    std::unordered_map<size_t,double> seeds;
++    for(auto [node,delay]:sources) {
++        VTR_ASSERT(graph_.node_layer_low(node)==layer && std::isfinite(delay) && delay>=0.);
++        auto found=seeds.find(size_t(node));if(found==seeds.end() || delay<found->second)seeds[size_t(node)]=delay;
++    }
++    if(mode==2) {
++        double best=std::numeric_limits<double>::infinity();const ResidualSuffix* chosen=nullptr;RRNodeId selected;
++        for(auto [raw,prefix]:seeds) {
++            const auto found=residual_cache_.find({sink,RRNodeId(raw)});if(found==residual_cache_.end())continue;
++            for(const auto& candidate:found->second) {
++                VTR_ASSERT(candidate.origin<search);double cost=prefix;bool valid=true;
++                for(const auto& edge:candidate.reverse_edges) {
++                    valid=valid && inside_bb(graph_,RRNodeId(edge.from),box) && inside_bb(graph_,RRNodeId(edge.to),box);
++                    cost+=edge.physical_seconds;
++                }
++                if(valid && cost<best) {best=cost;chosen=&candidate;selected=RRNodeId(raw);}
++            }
++        }
++        if(chosen) {
++            answer.status=1;answer.cache_hit=true;answer.origin=chosen->origin;
++            answer.query.stop=H3dCandidatePath::Stop::FOUND_PATH;answer.query.priced_upper_seconds=best;answer.query.physical_path_seconds=best;answer.query.toll_path_seconds=0.;
++            answer.query.edges=chosen->reverse_edges;answer.query.edges.push_back({size_t(selected),virtual_target,seeds.at(size_t(selected)),0.});
++            answer.cache_records=residual_cache_records_;answer.cache_stops=residual_cache_stops_;return answer;
++        }
++    }
++    auto expand=[&](size_t raw,auto visit) {
++        if(raw==virtual_target)return;
++        auto seed=seeds.find(raw);if(seed!=seeds.end())visit(virtual_target,seed->second,0.);
++        for(size_t i=reverse_start_[raw];i<reverse_start_[raw+1];++i) {
++            const auto& edge=predecessors_[i];
++            if(graph_.node_layer_low(edge.node)==layer && inside_bb(graph_,edge.node,box))visit(size_t(edge.node),double(edge.delay),0.);
++        }
++    };
++    auto heuristic=[&](size_t raw) {
++        if(mode==0 || raw==virtual_target)return 0.;
++        const auto node=RRNodeId(raw);double best=std::numeric_limits<double>::infinity();
++        for(auto [seed,prefix]:seeds) {
++            const auto target=RRNodeId(seed);int d=std::abs(graph_.node_xlow(node)-graph_.node_xlow(target))+std::abs(graph_.node_ylow(node)-graph_.node_ylow(target));
++            best=std::min(best,prefix+heuristic_per_grid*d);
++        }
++        return best;
++    };
++    answer.query=H3dCandidatePath::query(size_t(sink),virtual_target,256,16384,65536,expand,heuristic,true);
++    answer.status=int(answer.query.stop);answer.origin=search;
++    if(mode==2 && answer.query.physical_path_seconds) {
++        const auto& path=answer.query.edges;VTR_ASSERT(!path.empty() && path.back().to==virtual_target);
++        for(size_t count=0;count<path.size();++count) {
++            const auto source=count ? RRNodeId(path[count-1].to) : sink;
++            if(residual_cache_records_>=16384 && !residual_cache_.contains({sink,source})) {++residual_cache_stops_;continue;}
++            auto& variants=residual_cache_[{sink,source}];bool duplicate=false;
++            for(const auto& variant:variants) {
++                if(variant.reverse_edges.size()!=count)continue;
++                bool same=true;for(size_t i=0;i<count;++i)same=same && variant.reverse_edges[i].from==path[i].from && variant.reverse_edges[i].to==path[i].to && variant.reverse_edges[i].physical_seconds==path[i].physical_seconds;
++                duplicate=duplicate || same;
++            }
++            if(duplicate)continue;
++            if(variants.size()>=16 || residual_cache_records_>=16384) {++residual_cache_stops_;continue;}
++            variants.push_back({search,{path.begin(),path.begin()+count}});++residual_cache_records_;
++        }
++    }
++    answer.cache_records=residual_cache_records_;answer.cache_stops=residual_cache_stops_;return answer;
++}
+--- a/h3d_fast_plan.h
++++ b/h3d_fast_plan.h
+@@ -43,6 +43,10 @@
+     t_h3d_fast_plan plan(ParentNetId net, const std::vector<float>& criticality, const std::vector<RRNodeId>& previous_channels, float pres_fac, size_t candidate_count, float opening_weight, float miss_weight, bool use_tree, float min_criticality = 0.f, const std::vector<t_h3d_connection_guide>* prior_guides = nullptr, double refresh_margin = .05, bool trace_prior = false, const std::vector<size_t>* refresh_targets = nullptr);
+ 
+     /** @brief Report cache, candidate and high-fanout fallback counts. */
++    H3dDelayPlan::ResidualAnswer probe_residual(RRNodeId sink,const std::vector<std::pair<RRNodeId,double>>& sources,const t_bb& bb,int mode,size_t search) {
++        if(!delay_plan_)return {};
++        return delay_plan_->probe_residual_sources(sink,sources,bb,mode,4.*delay_plan_->delay_unit()/std::max(1.,mean_span_),search);
++    }
+     void log() const;
+ 
+     /** @brief Opt-in real-RRG adapter check against independent planar BFS. */

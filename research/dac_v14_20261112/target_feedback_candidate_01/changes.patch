@@ -1,0 +1,120 @@
+--- parent/vpr/src/route/h3d_routing.cpp
++++ candidate/vpr/src/route/h3d_routing.cpp
+@@ -59,6 +59,7 @@
+     bool eligibility_trigger = false; ///< Refresh missing guides when a remote pin newly crosses the selection threshold.
+     bool trace_prior = false; ///< Diagnose old-assignment coverage without changing refresh decisions.
+     bool trace_planar = false; ///< Decision-neutral pre-prune planar overuse diagnostics on native-selected reroutes.
++    bool target_feedback = false; ///< Limit refresh optimization and guide replacement to actual native remaining targets.
+     bool trace_update_pins = false; ///< Observe accepted preference changes against the exact native remaining-target list.
+     bool planar_feedback = false; ///< Also consider guided-path ordinary planar overuse after the normal cooldown.
+     bool feedback = false;            ///< Selective refresh of guides on VPR-selected reroute nets.
+@@ -124,6 +125,12 @@
+         if (feedback != 0.f && feedback != 1.f)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_FEEDBACK must be 0 or 1");
+         result.feedback = feedback == 1.f;
++        float target_feedback = read_number("VPR_H3D_TARGET_FEEDBACK", 0.f);
++        if (target_feedback != 0.f && target_feedback != 1.f)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TARGET_FEEDBACK must be 0 or 1");
++        result.target_feedback = target_feedback == 1.f;
++        if (result.target_feedback && (!result.feedback || !result.use_scc))
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Target feedback requires selective SCC feedback");
+         float trace_update_pins = read_number("VPR_H3D_TRACE_UPDATE_PINS", 0.f);
+         if (trace_update_pins != 0.f && trace_update_pins != 1.f)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_UPDATE_PINS must be 0 or 1");
+@@ -380,7 +387,8 @@
+             auto result = fast_plan_->plan(net, criticality, previous, pres_fac, settings().candidates,
+                                            settings().opening_weight, settings().miss_weight,
+                                            settings().mode != e_h3d_mode::CANDIDATES, settings().min_criticality,
+-                                           refresh ? &guides_.at(net) : nullptr, settings().refresh_margin, settings().trace_prior);
++                                           refresh ? &guides_.at(net) : nullptr, settings().refresh_margin, settings().trace_prior,
++                                           refresh && settings().target_feedback ? &remaining_targets : nullptr);
+             ++plans_;
+             groups_ += result.groups;
+             no_candidate_ += result.no_candidate;
+@@ -440,9 +448,28 @@
+                                 size_t(net), iteration, pin, retained, targeted, double(criticality[pin]), old_ids.c_str(), new_ids.c_str());
+                     }
+                 }
++                // Non-target preferences and their timing-generation metadata remain
++                // unchanged. The transaction/best-route snapshots still own the full state.
++                auto generation_criticality = criticality;
++                if (refresh && settings().target_feedback) {
++                    generation_criticality = feedback_state_.at(net).criticality;
++                    for (size_t pin : remaining_targets) generation_criticality.at(pin) = criticality.at(pin);
++                    for (size_t pin = 1; pin < result.guides.size(); ++pin) {
++                        if (std::find(remaining_targets.begin(), remaining_targets.end(), pin) != remaining_targets.end()) continue;
++                        const auto& before = guides_.at(net).at(pin);
++                        const auto& after = result.guides.at(pin);
++                        VTR_ASSERT(before.preferred == after.preferred
++                                   && before.miss_weight == after.miss_weight
++                                   && before.edge_encoding == after.edge_encoding
++                                   && before.timing_miss_penalty == after.timing_miss_penalty
++                                   && before.timing_regret == after.timing_regret
++                                   && before.timing_alternatives == after.timing_alternatives);
++                        VTR_ASSERT(generation_criticality.at(pin) == feedback_state_.at(net).criticality.at(pin));
++                    }
++                }
+                 guides_[net] = std::move(result.guides);
+                 if (settings().feedback || settings().final_trace)
+-                    feedback_state_[net] = {iteration, criticality, captured_actual_, false};
++                    feedback_state_[net] = {iteration, std::move(generation_criticality), captured_actual_, false};
+             }
+             planning_seconds_ += std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
+             return;
+--- parent/vpr/src/route/h3d_fast_plan.cpp
++++ candidate/vpr/src/route/h3d_fast_plan.cpp
+@@ -388,7 +388,7 @@
+     return chosen;
+ }
+ 
+-t_h3d_fast_plan H3dFastPlan::plan(ParentNetId net, const std::vector<float>& criticality, const std::vector<RRNodeId>& previous_channels, float pres_fac, size_t candidate_count, float opening_weight, float miss_weight, bool use_tree, float min_criticality, const std::vector<t_h3d_connection_guide>* prior_guides, double refresh_margin, bool trace_prior) {
++t_h3d_fast_plan H3dFastPlan::plan(ParentNetId net, const std::vector<float>& criticality, const std::vector<RRNodeId>& previous_channels, float pres_fac, size_t candidate_count, float opening_weight, float miss_weight, bool use_tree, float min_criticality, const std::vector<t_h3d_connection_guide>* prior_guides, double refresh_margin, bool trace_prior, const std::vector<size_t>* refresh_targets) {
+     H3dPlanProfile::Scope profile(profile_, prior_guides != nullptr);
+     using Phase = H3dPlanProfile::Phase;
+     const auto& routing = g_vpr_ctx.routing();
+@@ -397,10 +397,23 @@
+     t_h3d_fast_plan result;
+     result.guides.resize(terminals.size());
+     for (auto& guide : result.guides) guide.edge_encoding = edge_encoding_;
++    std::vector<bool> active(terminals.size(), true);
++    if (refresh_targets) {
++        VTR_ASSERT(prior_guides && prior_guides->size() == terminals.size());
++        std::fill(active.begin(), active.end(), false);
++        for (size_t pin : *refresh_targets) {
++            VTR_ASSERT(pin > 0 && pin < terminals.size() && !active.at(pin));
++            active.at(pin) = true;
++        }
++        for (size_t pin = 0; pin < terminals.size(); ++pin)
++            if (!active[pin]) result.guides[pin] = prior_guides->at(pin);
++        VTR_LOG("H3D_TARGET_REFRESH net=%zu targets=%zu preserved=%zu\n",
++                size_t(net), refresh_targets->size(), terminals.size() - 1 - refresh_targets->size());
++    }
+     std::vector<int> pins;
+     int center_x = 0, center_y = 0;
+     for (size_t pin = 1; pin < terminals.size(); ++pin)
+-        if (graph_.node_layer_low(source) != graph_.node_layer_low(terminals[pin])) {
++        if (active[pin] && graph_.node_layer_low(source) != graph_.node_layer_low(terminals[pin])) {
+             if (criticality[pin] < min_criticality) { ++skipped_pins_; continue; }
+             ++eligible_pins_;
+             pins.push_back(pin);
+@@ -410,7 +423,8 @@
+     if (pins.empty()) {
+         if (prior_guides) {
+             // Deactivation is a criticality eligibility change, not an
+-            // objective-improvement claim: no eligible connection needs a guide.
++            // objective-improvement claim: no active eligible connection needs a guide.
++            // In target feedback, other connections retain their prior guides.
+             result.refresh_accepted = true;
+             result.refresh_clear = true;
+             VTR_LOG("H3D_REFRESH_CLEAR net=%zu reason=no_eligible_pins\n", size_t(net));
+--- parent/vpr/src/route/h3d_fast_plan.h
++++ candidate/vpr/src/route/h3d_fast_plan.h
+@@ -38,7 +38,7 @@
+     explicit H3dFastPlan(const RRGraphView& graph, bool delay_cost = false, size_t delay_budget = 4096, bool edge_encoding = false);
+ 
+     /** @brief Generate diverse feasible candidates and optionally solve a finite shared/split DP. */
+-    t_h3d_fast_plan plan(ParentNetId net, const std::vector<float>& criticality, const std::vector<RRNodeId>& previous_channels, float pres_fac, size_t candidate_count, float opening_weight, float miss_weight, bool use_tree, float min_criticality = 0.f, const std::vector<t_h3d_connection_guide>* prior_guides = nullptr, double refresh_margin = .05, bool trace_prior = false);
++    t_h3d_fast_plan plan(ParentNetId net, const std::vector<float>& criticality, const std::vector<RRNodeId>& previous_channels, float pres_fac, size_t candidate_count, float opening_weight, float miss_weight, bool use_tree, float min_criticality = 0.f, const std::vector<t_h3d_connection_guide>* prior_guides = nullptr, double refresh_margin = .05, bool trace_prior = false, const std::vector<size_t>* refresh_targets = nullptr);
+ 
+     /** @brief Report cache, candidate and high-fanout fallback counts. */
+     void log() const;

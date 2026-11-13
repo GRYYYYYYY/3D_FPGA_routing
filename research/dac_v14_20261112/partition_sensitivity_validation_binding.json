@@ -1,0 +1,14 @@
+{
+  "status": "unit_validated_not_native_validated_or_qor_proven",
+  "checked_at": 1794526152.246126,
+  "oracle": "For each requested leaf/candidate, delete only that candidate in a copy of the input leaves and rerun the existing independently validated partition solver. Preserve every leaf and its coordinates, including empty candidate lists.",
+  "coverage": "1000 randomized tables,20187 exclusions including absent candidates,1718 infeasible exclusions,14872 tied alternatives; deterministic sharing counterexample, empty input. Optimized and ASan+UBSan builds pass.",
+  "scope": "Fixed finite hierarchy surrogate sensitivity only. Native table integration and decision-neutral reproduction pending. Does not establish a calibrated reliability weight or improved routing.",
+  "source_sha256": {
+    "test_partition_sensitivity.cpp": "b366cb266fc2fdbb8e5b44c65ae9ba5c9a880aa758f385cf95ef49afd6691164",
+    "src/vpr/src/route/h3d_partition_sensitivity.h": "3849a2f552e8ac13e85d045e991dd782aa406174825435d8e3a02c9930873d90",
+    "src/vpr/src/route/h3d_partition_dp.h": "d451c1de1809d5ad8aa2ef04f0de206e85d2cef26685d09d4960975686777f0a",
+    "partition_sensitivity_validation.json": "ae6de6576c626a7dcf9ae17f8f9f42261dc24f6ceb7baaa3cba7dacd56064d9b",
+    "partition_sensitivity_sanitized.json": "ae6de6576c626a7dcf9ae17f8f9f42261dc24f6ceb7baaa3cba7dacd56064d9b"
+  }
+}

@@ -1,0 +1,112 @@
+--- parent/vpr/src/route/h3d_routing.cpp
++++ new/vpr/src/route/h3d_routing.cpp
+@@ -59,6 +59,7 @@
+     bool eligibility_trigger = false; ///< Refresh missing guides when a remote pin newly crosses the selection threshold.
+     bool trace_prior = false; ///< Diagnose old-assignment coverage without changing refresh decisions.
+     bool trace_planar = false; ///< Decision-neutral pre-prune planar overuse diagnostics on native-selected reroutes.
++    bool trace_update_pins = false; ///< Observe accepted preference changes against the exact native remaining-target list.
+     bool planar_feedback = false; ///< Also consider guided-path ordinary planar overuse after the normal cooldown.
+     bool feedback = false;            ///< Selective refresh of guides on VPR-selected reroute nets.
+     int cooldown = 3;                  ///< Minimum iterations between refresh attempts.
+@@ -123,6 +124,12 @@
+         if (feedback != 0.f && feedback != 1.f)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_FEEDBACK must be 0 or 1");
+         result.feedback = feedback == 1.f;
++        float trace_update_pins = read_number("VPR_H3D_TRACE_UPDATE_PINS", 0.f);
++        if (trace_update_pins != 0.f && trace_update_pins != 1.f)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_UPDATE_PINS must be 0 or 1");
++        result.trace_update_pins = trace_update_pins == 1.f;
++        if (result.trace_update_pins && !result.feedback)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Update-pin tracing requires selective feedback");
+         float trace_planar = read_number("VPR_H3D_TRACE_PLANAR_FEEDBACK", 0.f);
+         if (trace_planar != 0.f && trace_planar != 1.f)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_PLANAR_FEEDBACK must be 0 or 1");
+@@ -308,7 +315,7 @@
+     }
+ 
+     /** @brief Build source/sink feasible sets, then rank independently or solve the hierarchy. */
+-    void plan(ParentNetId net, int iteration, float pres_fac, const std::vector<float>& criticality) {
++    void plan(ParentNetId net, int iteration, float pres_fac, const std::vector<float>& criticality, const std::vector<size_t>& remaining_targets) {
+         bool refresh = settings().mode == e_h3d_mode::STATIC && guides_.contains(net);
+         if (refresh && !settings().feedback) return;
+         auto start = std::chrono::steady_clock::now();
+@@ -410,6 +417,27 @@
+                         size_t(net), iteration, accept, result.previous_cost, result.proposed_cost);
+             }
+             if (accept) {
++                if (refresh && settings().trace_update_pins) {
++                    const auto& prior = guides_.at(net);
++                    const auto& tree = g_vpr_ctx.routing().route_trees[net];
++                    VTR_ASSERT(prior.size() == result.guides.size());
++                    for (size_t pin = 1; pin < prior.size(); ++pin) {
++                        const auto& before = prior[pin].preferred;
++                        const auto& after = result.guides[pin].preferred;
++                        if (before == after) continue;
++                        bool retained = tree && bool(tree->find_by_isink(pin));
++                        bool targeted = std::find(remaining_targets.begin(), remaining_targets.end(), pin) != remaining_targets.end();
++                        VTR_ASSERT(!retained || !targeted);
++                        std::string old_ids, new_ids;
++                        for (RRNodeId node : before) old_ids += std::to_string(size_t(node)) + ";";
++                        for (RRNodeId node : after) new_ids += std::to_string(size_t(node)) + ";";
++                        ++update_pin_records_;
++                        update_pin_retained_ += retained;
++                        update_pin_targeted_ += targeted;
++                        VTR_LOG("H3D_UPDATE_PIN net=%zu iter=%d pin=%zu retained=%d targeted=%d criticality=%.17g old=%s new=%s\n",
++                                size_t(net), iteration, pin, retained, targeted, double(criticality[pin]), old_ids.c_str(), new_ids.c_str());
++                    }
++                }
+                 guides_[net] = std::move(result.guides);
+                 if (settings().feedback || settings().final_trace)
+                     feedback_state_[net] = {iteration, criticality, captured_actual_, false};
+@@ -525,6 +553,8 @@
+ 
+     /** @brief Report cumulative preprocessing/search overhead separately from native A*. */
+     void log() const {
++        VTR_LOG("H3D_UPDATE_PINS_SUMMARY enabled=%d records=%zu retained=%zu targeted=%zu\n",
++                settings().trace_update_pins, update_pin_records_, update_pin_retained_, update_pin_targeted_);
+         VTR_LOG("H3D_PLANAR_FEEDBACK enabled=%d extra_attempts=%zu\n", settings().planar_feedback, planar_extra_attempts_);
+         VTR_LOG("H3D_PLAN plans=%zu groups=%zu bfs_nodes=%zu cache_entries=%zu no_candidate=%zu fallback=%zu planning_seconds=%.6f\n",
+                 plans_, groups_, bfs_nodes_, forward_cache_.size() + reverse_cache_.size(), no_candidate_, fallbacks_, planning_seconds_);
+@@ -700,7 +730,8 @@
+     std::set<RRNodeId> captured_actual_;          ///< Pre-prune actual crossing resources.
+     size_t eligibility_checks_ = 0, eligibility_opportunities_ = 0, eligibility_extra_attempts_ = 0; ///< Repeated eligible-gap check/trigger counts, not unique pins or nets.
+     bool captured_overuse_ = false;               ///< Recommended crossing currently overloaded.
+-    size_t captured_planar_nodes_ = 0, captured_guided_paths_ = 0, captured_planar_paths_ = 0; ///< Diagnostic-only pre-prune ordinary planar overuse and guided path counts.
++    size_t captured_planar_nodes_ = 0, captured_guided_paths_ = 0, captured_planar_paths_ = 0; ///< Pre-prune ordinary planar overuse and guided path counts.
++    size_t update_pin_records_ = 0, update_pin_retained_ = 0, update_pin_targeted_ = 0; ///< Accepted preference-change observations, no influence on planning.
+     size_t planar_extra_attempts_ = 0; ///< Refresh attempts newly admitted by guided-path planar overuse.
+     size_t refresh_checks_ = 0, refresh_skips_ = 0, refresh_attempts_ = 0, refresh_accepts_ = 0; ///< Refresh work accounting.
+     size_t refresh_overuse_ = 0, refresh_drift_ = 0, refresh_path_ = 0, guide_rollbacks_ = 0; ///< Trigger and restoration counts.
+@@ -776,8 +807,8 @@
+     planner->capture(net);
+ }
+ 
+-void h3d_prepare_net(ParentNetId net, int iteration, float pres_fac, const std::vector<float>& criticality) {
+-    if (h3d_enabled()) planner->plan(net, iteration, pres_fac, criticality);
++void h3d_prepare_net(ParentNetId net, int iteration, float pres_fac, const std::vector<float>& criticality, const std::vector<size_t>& remaining_targets) {
++    if (h3d_enabled()) planner->plan(net, iteration, pres_fac, criticality, remaining_targets);
+ }
+ 
+ const t_h3d_connection_guide* h3d_connection_guide(ParentNetId net, int pin) {
+--- parent/vpr/src/route/h3d_routing.h
++++ new/vpr/src/route/h3d_routing.h
+@@ -50,7 +50,7 @@
+ void h3d_capture_net(ParentNetId net);
+ 
+ /** @brief Compute or reuse a finite candidate plan using real directed RRG reachability. */
+-void h3d_prepare_net(ParentNetId net, int iteration, float pres_fac, const std::vector<float>& criticality);
++void h3d_prepare_net(ParentNetId net, int iteration, float pres_fac, const std::vector<float>& criticality, const std::vector<size_t>& remaining_targets);
+ 
+ /** @brief Return a net's connection preference, or nullptr for unrestricted search. */
+ const t_h3d_connection_guide* h3d_connection_guide(ParentNetId net, int pin);
+--- parent/vpr/src/route/route_net.tpp
++++ new/vpr/src/route/route_net.tpp
+@@ -275,7 +275,7 @@
+ 
+     /* Update base costs according to fanout and criticality rules */
+     update_rr_base_costs(num_sinks);
+-    h3d_prepare_net(net_id, itry, pres_fac, pin_criticality);
++    h3d_prepare_net(net_id, itry, pres_fac, pin_criticality, remaining_targets);
+     h3d_control_prepare(net_id);
+     h3d_control_sort(net_id, remaining_targets, pin_criticality);
+ 

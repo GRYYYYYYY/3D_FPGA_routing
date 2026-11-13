@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "circuits": {
+    "eltwise_layer": {
+      "V": {
+        "status": "legal",
+        "metrics": {
+          "critical_path_ns": 6.37264,
+          "wirelength": 226840,
+          "router_seconds": 12.06,
+          "iterations": 34,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 226840,
+          "sb_pairs_used": 84,
+          "sb_pair_net_occupancy": 84,
+          "cb_crossing_output_sources_used": 972,
+          "cb_crossing_output_source_net_occupancy": 972,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANX": 566,
+            "OPIN->CHANY": 447,
+            "CHANX->CHANX": 84
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        },
+        "counters": {
+          "H3D_EXIT_PRICE_SUMMARY": {
+            "weight": "0",
+            "pairs": "0",
+            "positive": "0",
+            "cross_edges": "0"
+          },
+          "H3D_FEEDBACK": {
+            "checks": "38524",
+            "skipped": "38374",
+            "attempts": "150",
+            "accepted": "87",
+            "overuse": "34",
+            "criticality": "70",
+            "path": "53",
+            "check_seconds": "0.002932"
+          },
+          "H3D_DELAY": {
+            "queries": "372",
+            "settled": "1523712",
+            "truncated": "372",
+            "cache_hits": "455",
+            "cached_endpoints": "372"
+          }
+        },
+        "initial_tables": 87,
+        "same_route_as_V": true,
+        "same_final_guides": true,
+        "positive_surcharge_records": 0,
+        "positive_sum": 0.0,
+        "min_positive": null,
+        "max_positive": 0.0,
+        "planning_seconds": 1.341991,
+        "process_seconds": 27.216748766601086
+      },
+      "Xp": {
+        "status": "legal",
+        "metrics": {
+          "critical_path_ns": 6.37264,
+          "wirelength": 226840,
+          "router_seconds": 11.8,
+          "iterations": 34,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 226840,
+          "sb_pairs_used": 84,
+          "sb_pair_net_occupancy": 84,
+          "cb_crossing_output_sources_used": 972,
+          "cb_crossing_output_source_net_occupancy": 972,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANX": 566,
+            "OPIN->CHANY": 447,
+            "CHANX->CHANX": 84
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        },
+        "counters": {
+          "H3D_EXIT_PRICE_SUMMARY": {
+            "weight": "0.25",
+            "pairs": "349180",
+            "positive": "76",
+            "cross_edges": "352662"
+          },
+          "H3D_FEEDBACK": {
+            "checks": "38524",
+            "skipped": "38374",
+            "attempts": "150",
+            "accepted": "90",
+            "overuse": "34",
+            "criticality": "70",
+            "path": "53",
+            "check_seconds": "0.002945"
+          },
+          "H3D_DELAY": {
+            "queries": "372",
+            "settled": "1523712",
+            "truncated": "372",
+            "cache_hits": "455",
+            "cached_endpoints": "372"
+          }
+        },
+        "initial_tables": 87,
+        "same_route_as_V": true,
+        "same_final_guides": false,
+        "positive_surcharge_records": 76,
+        "positive_sum": 270.1188430786133,
+        "min_positive": 0.2610344886779785,
+        "max_positive": 4.0,
+        "planning_seconds": 1.407556,
+        "process_seconds": 35.8914527669549
+      }
+    }
+  },
+  "scope": "Exact Uoff control; identical initial planning-table sequence; bounded positive exit-price log formula and accounting; native/independent final route/guide audits and seal. Destination feasibility and minimum selection use production SCC; these log checks are not an independent reconstruction of intermediate occupancy or joint delay/congestion optimum. Development instrumentation costs not formal speedup.",
+  "script_sha256": "b01e0d763e3c0ced56709ec834592d804965cf34b4e737e2905b5863eca4098e"
+}

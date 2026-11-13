@@ -1,0 +1,36 @@
+{
+  "status": "prepared_not_launched",
+  "created_at": 1794531587.014436,
+  "scripts_sha256": {
+    "retained_prefix_workflow.py": "0ceaf39cc96af7dfd775d0a909bb4cd3265b66301afab36aa7f63962f67e5ba7",
+    "prepare_retained_prefix_candidate.py": "55aff036d1b2e559356b7ba02b5521477278184a7766258075b8b1f021ea2277",
+    "run_retained_prefix.py": "b5cd169d157e11be2190168a2b571946ffad8f01713bbcd6e2452cd686c5663a",
+    "queue_retained_prefix.py": "c7a55a682ca9219461776f62f1a2ac47d9f715dca61443f0495971b1fb29d817",
+    "analyze_retained_prefix.py": "1a02169bd8e8d74331b409a39f616199196fad4f716bc92fb10c28d7ce03d7e0",
+    "test_retained_prefix_parser.py": "8b39b9cd3b8f6e495c2f5295eb57b0d95226e4dc3bc2f4dcf3065ea340e6add7"
+  },
+  "python_syntax": "passed",
+  "formal_admission_guard": "live_formal_owner_rejected",
+  "planned_stage": "retained_prefix_candidate_01",
+  "cases": [
+    {
+      "circuit": "eltwise_layer",
+      "seed": 11,
+      "batch": "retained_prefix_eltwise_dev_01"
+    },
+    {
+      "circuit": "tpu_like.small.os",
+      "seed": 21,
+      "batch": "retained_prefix_tpu_dev_01"
+    }
+  ],
+  "arms": [
+    "C_default_off",
+    "T_trace_on"
+  ],
+  "native_calls_launched": 0,
+  "build_launched": false,
+  "qualification": "No native or C++ validation yet. Keep separate seed-specific batches; frozen Tf reproduction followed by current-binary exact neutrality. Per-process1800s64GiB80GiB; no automatic restart.",
+  "build_pwd": "Explicit actual src cwd and PWD agree; Makefile reads SOURCE_DIR from PWD",
+  "updated_at": 1794531962.8321295
+}

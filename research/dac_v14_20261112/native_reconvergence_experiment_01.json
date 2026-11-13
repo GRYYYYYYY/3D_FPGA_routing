@@ -1,0 +1,32 @@
+{
+  "registered_at": 1794551235.0720284,
+  "question": "Does native post-legal reconvergence improve CPD beyond first legal convergence, and does Tf still differ from matched native and old R1 controls?",
+  "case": "eltwise_layer seed11 Hybrid-O P0 W100",
+  "arms": [
+    "A0",
+    "R1",
+    "Tf",
+    "A1"
+  ],
+  "treatment": {
+    "router_max_convergence_count": 2,
+    "router_reconvergence_cpd_threshold": 0.99
+  },
+  "control": "Reuse each arm count1 only with identical immutable binary, full environment, all other CLI arguments, packed net/place/architecture/RR graph and netlist; verify hashes and audits.",
+  "preserve": "No source/opening credit or critical-scope trigger combined. Original layer scope for A0/R1/Tf; A1 is explicitly full-layer native strong scope control.",
+  "source_evidence": [
+    "src/vpr/src/route/route.cpp: legal convergence block and best-route restore",
+    "src/vpr/src/route/route_utils.cpp: early heuristic uses sWNS ratio, comparator setup WNS then TNS then hold metrics and wirelength",
+    "src/vpr/src/base/read_options.cpp: default max convergence1 and threshold.99"
+  ],
+  "hypothesis": "Fewer iterations with worse final CPD could reflect differing opportunities for legal post-convergence timing repair; this is not yet a causal result.",
+  "measurement": "All declared statuses, legal-only CPD, iteration table legal cycles, stop message, restoration, final STA, graph and guide audit, physical SB/CB occupancy, planning and full process times. Count2 is a maximum, not a guarantee of two legal convergences.",
+  "gates": "Count1 iteration numeric fields excluding elapsed time must equal count2 prefix through first legal convergence. Retain gate failures and stop dependent interpretation, not research. Native best comparator does not guarantee minimum CPD; quantify regressions.",
+  "limits": {
+    "timeout_seconds": 1800,
+    "memory_gib": 64,
+    "disk_reserve_gib": 80
+  },
+  "timing": "Development observations; no speedup ratio against historical wall time. Formal paired timing after stable QoR candidate.",
+  "research_complete": false
+}

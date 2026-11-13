@@ -1,0 +1,35 @@
+--- parent/vpr/src/route/h3d_routing.cpp
++++ candidate/vpr/src/route/h3d_routing.cpp
+@@ -467,6 +467,14 @@
+                         size_t(net), iteration, accept, result.previous_cost, result.proposed_cost);
+             }
+             if (accept) {
++                // Construct membership once. Repeated linear scans here cost
++                // O(sinks * targets) on high-fanout reroutes without changing
++                // any planning or native routing decisions.
++                std::vector<bool> target_membership;
++                if (refresh && (settings().target_feedback || settings().trace_update_pins)) {
++                    target_membership.assign(result.guides.size(), false);
++                    for (size_t pin : remaining_targets) target_membership.at(pin) = true;
++                }
+                 if (refresh && settings().trace_update_pins) {
+                     const auto& prior = guides_.at(net);
+                     const auto& tree = g_vpr_ctx.routing().route_trees[net];
+@@ -478,7 +486,7 @@
+                         // The sink lookup may retain a pointer after pruning; the native
+                         // reached bitmap is the authoritative membership state.
+                         bool retained = tree && tree->get_is_isink_reached().get(pin);
+-                        bool targeted = std::find(remaining_targets.begin(), remaining_targets.end(), pin) != remaining_targets.end();
++                        bool targeted = target_membership.at(pin);
+                         VTR_ASSERT(!retained || !targeted);
+                         std::string old_ids, new_ids;
+                         for (RRNodeId node : before) old_ids += std::to_string(size_t(node)) + ";";
+@@ -497,7 +505,7 @@
+                     generation_criticality = feedback_state_.at(net).criticality;
+                     for (size_t pin : remaining_targets) generation_criticality.at(pin) = criticality.at(pin);
+                     for (size_t pin = 1; pin < result.guides.size(); ++pin) {
+-                        if (std::find(remaining_targets.begin(), remaining_targets.end(), pin) != remaining_targets.end()) continue;
++                        if (target_membership.at(pin)) continue;
+                         const auto& before = guides_.at(net).at(pin);
+                         const auto& after = result.guides.at(pin);
+                         VTR_ASSERT(before.preferred == after.preferred

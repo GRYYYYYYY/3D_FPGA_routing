@@ -1,0 +1,137 @@
+--- a/vpr/src/route/h3d_calibrated_cost.h
++++ b/vpr/src/route/h3d_calibrated_cost.h
+@@ -0,0 +1,21 @@
++#pragma once
++
++#include <algorithm>
++#include <cmath>
++#include <vector>
++
++/** @brief Fit an endpoint-local robust delay/proxy scale in normalized delay units.
++ * Eight prior observations at unit scale shrink small samples toward geometry.
++ * Measurements themselves are never shrunk; only missing distances use this fit.
++ * A zero measured distance is valid. Absent/nonfinite samples are not distances.
++ */
++inline double h3d_calibrated_scale(std::vector<double> ratios) {
++    ratios.erase(std::remove_if(ratios.begin(), ratios.end(), [](double x) {
++        return !std::isfinite(x) || x < 0.;
++    }), ratios.end());
++    if (ratios.empty()) return 1.;
++    std::sort(ratios.begin(), ratios.end());
++    size_t n = ratios.size();
++    double median = n % 2 ? ratios[n / 2] : .5 * (ratios[n / 2 - 1] + ratios[n / 2]);
++    return (n * median + 8.) / (n + 8.);
++}
+--- a/vpr/src/route/h3d_fast_plan.cpp
++++ b/vpr/src/route/h3d_fast_plan.cpp
+@@ -1,5 +1,6 @@
+ #include "h3d_fast_plan.h"
+ #include "h3d_crossing.h"
++#include "h3d_calibrated_cost.h"
+ 
+ #include <cmath>
+ #include <cstdlib>
+@@ -51,6 +52,11 @@
+ 
+ H3dFastPlan::H3dFastPlan(const RRGraphView& graph, bool delay_cost, size_t delay_budget, bool edge_encoding)
+     : graph_(graph), edge_encoding_(edge_encoding) {
++    const char* mixed = std::getenv("VPR_H3D_MIXED_DELAY");
++    if (mixed && std::string(mixed) != "0" && std::string(mixed) != "1")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_MIXED_DELAY must be 0 or 1");
++    mixed_delay_ = mixed && std::string(mixed) == "1";
++    VTR_LOG("H3D_EXPERIMENT mixed_delay=%d\n", mixed_delay_);
+     channel_index_.resize(graph_.num_nodes(), -1);
+     size_t planar_count = 0;
+     double planar_length = 0.;
+@@ -284,12 +290,25 @@
+     if (delay_plan_ && delay_plan_->supported()) forward = &delay_plan_->distances(source, false);
+     std::unordered_map<int, const H3dDelayPlan::Distances*> reverse;
+     std::set<int> timed;
++    // Normalize observed delay by the same physical unit before fitting a
++    // robust endpoint-local scale. Unknown distance is not infeasibility.
++    auto calibrate = [&](RRNodeId endpoint, const H3dDelayPlan::Distances& distances) {
++        std::vector<double> ratios;
++        for (const auto& [node, delay] : distances) {
++            int c = channel_index_[node];
++            if (c >= 0) ratios.push_back(delay / delay_plan_->delay_unit() / proxy_(endpoint, c));
++        }
++        return h3d_calibrated_scale(std::move(ratios));
++    };
++    const bool mixed = mixed_delay_ && forward;
++    const double source_scale = mixed ? calibrate(source, *forward) : 1.;
++    std::unordered_map<int, double> sink_scales;
+     auto source_cost = [&](size_t c) {
+         if (forward) {
+             auto found = forward->find(channels_[c]);
+             if (found != forward->end()) return found->second / delay_plan_->delay_unit();
+         }
+-        return proxy_(source, c);
++        return source_scale * proxy_(source, c);
+     };
+     std::set<RRNodeId> owned;
+     if (routing.route_trees[net])
+@@ -304,6 +323,16 @@
+         return source_cost(c) + opening_weight * negotiated;
+     };
+     auto branch = [&](int pin, size_t c) {
++        if (mixed) {
++            double sink_cost = proxy_(terminals[pin], c);
++            auto back = reverse.find(pin);
++            if (back != reverse.end()) {
++                auto found = back->second->find(channels_[c]);
++                sink_cost = found != back->second->end() ? found->second / delay_plan_->delay_unit()
++                                                       : sink_cost * sink_scales.at(pin);
++            }
++            return sink_cost * (1. + 4. * criticality[pin]) + 4. * criticality[pin] * source_cost(c);
++        }
+         if (timed.contains(pin)) {
+             const auto& distances = *reverse.at(pin);
+             auto found = distances.find(channels_[c]);
+@@ -330,7 +359,26 @@
+         if (ranked.empty())
+             for (size_t c = 0; c < channels_.size() && ranked.size() < candidate_count * 8; ++c)
+                 if (feasible_(source, c, terminals[pin])) ranked.emplace_back(opening(c) + branch(pin, c), c);
+-        if (forward && !forward->empty() && !ranked.empty()) {
++        if (mixed && !ranked.empty()) {
++            // Unlike the legacy all-or-nothing rule, reverse-only measurements
++            // are useful even when the bounded source query found no candidate.
++            const auto& back = delay_plan_->distances(terminals[pin], true);
++            reverse[pin] = &back;
++            sink_scales[pin] = calibrate(terminals[pin], back);
++            ++mixed_pins_;
++            size_t measured = 0;
++            for (auto& [cost, c] : ranked) {
++                bool from = forward->contains(channels_[c]);
++                bool to = back.contains(channels_[c]);
++                measured += from || to;
++                mixed_both_ += from && to;
++                mixed_source_only_ += from && !to;
++                mixed_sink_only_ += !from && to;
++                mixed_estimated_ += !from && !to;
++                cost = opening(c) + branch(pin, c);
++            }
++            mixed_informed_pins_ += measured > 0;
++        } else if (forward && !forward->empty() && !ranked.empty()) {
+             const auto& back = delay_plan_->distances(terminals[pin], true);
+             reverse[pin] = &back;
+             std::vector<size_t> covered;
+@@ -403,5 +451,7 @@
+             queries_, source_cache_.size() + sink_cache_.size(), spatial_candidates_, high_fanout_fallbacks_);
+     VTR_LOG("H3D_SCORE eligible=%zu skipped=%zu delay_scored=%zu unmeasured=%zu\n",
+             eligible_pins_, skipped_pins_, measured_pins_, unmeasured_pins_);
++    VTR_LOG("H3D_MIXED pins=%zu informed_pins=%zu both=%zu source_only=%zu sink_only=%zu estimated=%zu\n",
++            mixed_pins_, mixed_informed_pins_, mixed_both_, mixed_source_only_, mixed_sink_only_, mixed_estimated_);
+     if (delay_plan_) delay_plan_->log();
+ }
+--- a/vpr/src/route/h3d_fast_plan.h
++++ b/vpr/src/route/h3d_fast_plan.h
+@@ -54,6 +54,9 @@
+     std::vector<size_t> diversify_(const std::vector<std::pair<double, size_t>>& ranked, size_t count) const;
+ 
+     const RRGraphView& graph_;                                          ///< Exact immutable graph used by detailed routing.
++    bool mixed_delay_ = false;                                         ///< Experimental calibrated candidate-level delay, off by default.
++    size_t mixed_pins_ = 0, mixed_informed_pins_ = 0;                    ///< Eligible and measurement-informed connections.
++    size_t mixed_both_ = 0, mixed_source_only_ = 0, mixed_sink_only_ = 0, mixed_estimated_ = 0; ///< Sampled candidate coverage.
+     bool edge_encoding_ = false;                                       ///< Explicit imported edge encoding, independent of native CHANZ mode.
+     std::unique_ptr<H3dReachabilityIndex> reachability_;                ///< SCC DAG for same-layer non-Z edges.
+     std::vector<RRNodeId> channels_;                                    ///< Candidate table of native CHANZ resources.

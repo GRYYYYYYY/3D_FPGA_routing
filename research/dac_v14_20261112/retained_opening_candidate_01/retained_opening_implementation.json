@@ -1,0 +1,30 @@
+{
+  "status": "implemented_unbuilt_not_native_validated",
+  "created_at": 1794548329.4129128,
+  "source_binding": {
+    "h3d_fast_plan.cpp": {
+      "before_sha256": "5f3a55a6f242d8dce80329647ca22dd5bdd5ceada037e088c04f279e58f82623",
+      "after_sha256": "6edebdaf90db12751c3e82011efc95569488aff7ec1a392a1fe1c25d7d90492e"
+    },
+    "h3d_fast_plan.h": {
+      "before_sha256": "b5c75dd58b43a2ec587ff803101fc3536a77a18ee13b50a4a65b1c7e605206d2",
+      "after_sha256": "8bfdb88d758a4ed0db7df9fbb6763b19f0eb2b41e7c0fe8ae562f5a59909bd48"
+    }
+  },
+  "baseline": "retained_prefix_candidate_01",
+  "hypothesis": "An owned crossing entry need not pay the same fixed opening component as a new entry. Credit only min(1,negotiated) times alpha; preserve all negotiated premiums and native costs.",
+  "planned_arms": {
+    "C": 0,
+    "Mo": 1
+  },
+  "scope": "Only feedback-stage opening objective; unchanged initial plans, candidate legality/diversity/query budgets, branch/source costs, DP/prior same-objective hysteresis and transactions.",
+  "input_population": [
+    "eltwise_layer seed11 Hybrid-O/P0/W100",
+    "tpu_like.small.os seed21 Hybrid-O/P0/W100"
+  ],
+  "evidence": [
+    "retained_prefix_eltwise_dev_01/retained_prefix_costs.json",
+    "retained_prefix_tpu_dev_02/retained_prefix_costs.json"
+  ],
+  "qualification": "Owned entry credit does not guarantee adoption of a particular retained child; route/STA experiments required. Prefix delay remains separate and deferred because accepted proposed retained candidates were source-measured in both diagnostics."
+}

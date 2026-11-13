@@ -1,0 +1,10 @@
+{
+  "classification": "build_execution_engine_mismatch",
+  "runs": 4,
+  "effective_result": "all_invalid_thread_constraint_violated_no_CPD_claim",
+  "reason": "TATUM_EXECUTION_ENGINE=serial but VPR_EXECUTION_ENGINE=auto selected TBB; seccomp SIGSYS in analysis",
+  "recovery": "Match frozen VPR_EXECUTION_ENGINE=serial, preserve attempt, rerun functional gate",
+  "preserved_binary": "bin/vpr",
+  "original_binary_path_will_be_rebuilt": true,
+  "runner_fix": "Do not run dependent M if F fails functional gate; snapshot each binary under its attempt"
+}

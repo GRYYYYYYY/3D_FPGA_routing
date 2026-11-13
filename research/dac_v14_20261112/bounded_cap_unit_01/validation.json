@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/test_bounded_critical_guide.cpp": "6727ab0b7076681853a089d73ba800635097596ddcdfca33bb67371c11f6911f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/test_bounded_cap.cpp": "fac9b80d1cf7da3c2dfdfc3f83932b7b87c5a47822af8b1a28d1eb1c248cf587",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/src/vpr/src/route/h3d_bounded_critical_guide.h": "8b241f58881e25736565d3dd0da485063a7f3cab2b3e2e2c62f62fd67206cbb6"
+  },
+  "results": [
+    {
+      "compile_command": [
+        "timeout",
+        "120s",
+        "prlimit",
+        "--as=4294967296",
+        "--",
+        "g++",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-D_GLIBCXX_ASSERTIONS",
+        "-fsanitize=undefined",
+        "-fno-sanitize-recover=all",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/test_bounded_critical_guide.cpp",
+        "-o",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_unit_01/test_bounded_critical_guide"
+      ],
+      "run_command": [
+        "timeout",
+        "120s",
+        "prlimit",
+        "--as=4294967296",
+        "--",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_unit_01/test_bounded_critical_guide"
+      ],
+      "returncode": 0,
+      "stdout": "cases=200000 applied=1253 unchanged=198747 nativebase/cap/disabled/RCV/boundary passed\n",
+      "stderr": ""
+    },
+    {
+      "compile_command": [
+        "timeout",
+        "120s",
+        "prlimit",
+        "--as=4294967296",
+        "--",
+        "g++",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-D_GLIBCXX_ASSERTIONS",
+        "-fsanitize=undefined",
+        "-fno-sanitize-recover=all",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/test_bounded_cap.cpp",
+        "-o",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_unit_01/test_bounded_cap"
+      ],
+      "run_command": [
+        "timeout",
+        "120s",
+        "prlimit",
+        "--as=4294967296",
+        "--",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bounded_cap_unit_01/test_bounded_cap"
+      ],
+      "returncode": 0,
+      "stdout": "cases=300000 reduced=671 preserved=299329 applicable_scope=1904 no-amplification/exact-low-cost/zero/RCV/boundary passed\n",
+      "stderr": ""
+    }
+  ],
+  "scope": "500000 core cases: prior fixed operator compatibility and new analytical guide-extra nonamplification, exact original cost below bound, native base/RCV/float boundaries. Native RRG/quality pending."
+}

@@ -1,0 +1,1421 @@
+{
+  "status": "partial_aggregate_not_final",
+  "case_states": {
+    "eltwise_layer": "sealed",
+    "spmv": "sealed",
+    "softmax": "sealed",
+    "bnn": "pending"
+  },
+  "status_counts": {
+    "legal": 24,
+    "pending_batch_seal": 8
+  },
+  "observations": [
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_eltwise_layer_s11_hybrid_o_n40_w100_p0_a0",
+      "status": "legal",
+      "legal_cpd_ns": 9.93208,
+      "iterations": 43,
+      "legal_iteration_numbers": [
+        43
+      ],
+      "planning_seconds": 0.0,
+      "process_seconds": 26.47356989607215,
+      "router_seconds": 10.48,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 229175,
+        "sb_pairs_used": 127,
+        "sb_pair_net_occupancy": 127,
+        "cb_crossing_output_sources_used": 956,
+        "cb_crossing_output_source_net_occupancy": 956,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 558,
+          "OPIN->CHANY": 449,
+          "CHANX->CHANX": 127
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "A0",
+      "count": 1,
+      "reused": true,
+      "circuit": "eltwise_layer",
+      "prefix_gate_passed": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_A0",
+      "status": "legal",
+      "legal_cpd_ns": 6.0181,
+      "iterations": 68,
+      "legal_iteration_numbers": [
+        43,
+        68
+      ],
+      "planning_seconds": 0.0,
+      "process_seconds": 34.68127205222845,
+      "router_seconds": 19.21,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 217065,
+        "sb_pairs_used": 30,
+        "sb_pair_net_occupancy": 30,
+        "cb_crossing_output_sources_used": 968,
+        "cb_crossing_output_source_net_occupancy": 968,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 564,
+          "CHANX->CHANX": 30,
+          "OPIN->CHANY": 452
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "A0",
+      "count": 2,
+      "reused": false,
+      "prefix_gate_passed": true,
+      "circuit": "eltwise_layer"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_eltwise_layer_s11_hybrid_o_n40_w100_p0_delay_critical_c6",
+      "status": "legal",
+      "legal_cpd_ns": 6.96208,
+      "iterations": 46,
+      "legal_iteration_numbers": [
+        46
+      ],
+      "planning_seconds": 4.113475,
+      "process_seconds": 30.338064294308424,
+      "router_seconds": 15.47,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 229485,
+        "sb_pairs_used": 134,
+        "sb_pair_net_occupancy": 134,
+        "cb_crossing_output_sources_used": 958,
+        "cb_crossing_output_source_net_occupancy": 958,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 559,
+          "CHANX->CHANX": 134,
+          "OPIN->CHANY": 451
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "R1",
+      "count": 1,
+      "reused": true,
+      "circuit": "eltwise_layer",
+      "prefix_gate_passed": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_R1",
+      "status": "legal",
+      "legal_cpd_ns": 6.0181,
+      "iterations": 65,
+      "legal_iteration_numbers": [
+        46,
+        65
+      ],
+      "planning_seconds": 4.819069,
+      "process_seconds": 39.643369030207396,
+      "router_seconds": 24.27,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 218164,
+        "sb_pairs_used": 39,
+        "sb_pair_net_occupancy": 39,
+        "cb_crossing_output_sources_used": 969,
+        "cb_crossing_output_source_net_occupancy": 969,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 560,
+          "CHANX->CHANX": 39,
+          "OPIN->CHANY": 458
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "R1",
+      "count": 2,
+      "reused": false,
+      "prefix_gate_passed": true,
+      "circuit": "eltwise_layer"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retained_opening_eltwise_dev_01/runs/eltwise_layer_C",
+      "status": "legal",
+      "legal_cpd_ns": 6.20812,
+      "iterations": 42,
+      "legal_iteration_numbers": [
+        42
+      ],
+      "planning_seconds": 1.280201,
+      "process_seconds": 28.016454938799143,
+      "router_seconds": 12.91,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 228420,
+        "sb_pairs_used": 118,
+        "sb_pair_net_occupancy": 118,
+        "cb_crossing_output_sources_used": 955,
+        "cb_crossing_output_source_net_occupancy": 955,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 554,
+          "CHANX->CHANX": 118,
+          "OPIN->CHANY": 453
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "Tf",
+      "count": 1,
+      "reused": true,
+      "circuit": "eltwise_layer",
+      "prefix_gate_passed": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_Tf",
+      "status": "legal",
+      "legal_cpd_ns": 6.20812,
+      "iterations": 62,
+      "legal_iteration_numbers": [
+        42,
+        62
+      ],
+      "planning_seconds": 2.531358,
+      "process_seconds": 39.444592241197824,
+      "router_seconds": 23.56,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 228420,
+        "sb_pairs_used": 118,
+        "sb_pair_net_occupancy": 118,
+        "cb_crossing_output_sources_used": 955,
+        "cb_crossing_output_source_net_occupancy": 955,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 554,
+          "CHANX->CHANX": 118,
+          "OPIN->CHANY": 453
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "Tf",
+      "count": 2,
+      "reused": false,
+      "prefix_gate_passed": true,
+      "circuit": "eltwise_layer"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/layer_bbox_dev_01/runs/eltwise_layer_A1",
+      "status": "legal",
+      "legal_cpd_ns": 6.0181,
+      "iterations": 22,
+      "legal_iteration_numbers": [
+        22
+      ],
+      "planning_seconds": 0.0,
+      "process_seconds": 26.31660781800747,
+      "router_seconds": 10.52,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 222926,
+        "sb_pairs_used": 243,
+        "sb_pair_net_occupancy": 243,
+        "cb_crossing_output_sources_used": 1144,
+        "cb_crossing_output_source_net_occupancy": 1144,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 670,
+          "CHANX->CHANX": 243,
+          "OPIN->CHANY": 521
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "A1",
+      "count": 1,
+      "reused": true,
+      "circuit": "eltwise_layer",
+      "prefix_gate_passed": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_A1",
+      "status": "legal",
+      "legal_cpd_ns": 6.0181,
+      "iterations": 23,
+      "legal_iteration_numbers": [
+        22
+      ],
+      "planning_seconds": 0.0,
+      "process_seconds": 26.776069600135088,
+      "router_seconds": 10.54,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 222926,
+        "sb_pairs_used": 243,
+        "sb_pair_net_occupancy": 243,
+        "cb_crossing_output_sources_used": 1144,
+        "cb_crossing_output_source_net_occupancy": 1144,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 670,
+          "CHANX->CHANX": 243,
+          "OPIN->CHANY": 521
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [
+        "Giving up routing since additional routing convergences seem unlikely to improve quality (CPD ratio: 1)"
+      ],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "A1",
+      "count": 2,
+      "reused": false,
+      "prefix_gate_passed": true,
+      "circuit": "eltwise_layer"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_spmv_s11_hybrid_o_n40_w100_p0_a0",
+      "status": "legal",
+      "legal_cpd_ns": 7.0347,
+      "iterations": 17,
+      "legal_iteration_numbers": [
+        17
+      ],
+      "planning_seconds": 0.0,
+      "process_seconds": 16.373151622712612,
+      "router_seconds": 2.96,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148463,
+        "sb_pairs_used": 0,
+        "sb_pair_net_occupancy": 0,
+        "cb_crossing_output_sources_used": 967,
+        "cb_crossing_output_source_net_occupancy": 967,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "OPIN->CHANX": 582
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "A0",
+      "count": 1,
+      "reused": true,
+      "circuit": "spmv",
+      "prefix_gate_passed": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_spmv_dev_01/runs/spmv_A0",
+      "status": "legal",
+      "legal_cpd_ns": 7.0347,
+      "iterations": 18,
+      "legal_iteration_numbers": [
+        17
+      ],
+      "planning_seconds": 0.0,
+      "process_seconds": 17.196762803941965,
+      "router_seconds": 3.14,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148463,
+        "sb_pairs_used": 0,
+        "sb_pair_net_occupancy": 0,
+        "cb_crossing_output_sources_used": 967,
+        "cb_crossing_output_source_net_occupancy": 967,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "OPIN->CHANX": 582
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [
+        "Giving up routing since additional routing convergences seem unlikely to improve quality (CPD ratio: 1)"
+      ],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "A0",
+      "count": 2,
+      "reused": false,
+      "prefix_gate_passed": true,
+      "circuit": "spmv"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_spmv_s11_hybrid_o_n40_w100_p0_delay_critical_c6",
+      "status": "legal",
+      "legal_cpd_ns": 7.04599,
+      "iterations": 19,
+      "legal_iteration_numbers": [
+        19
+      ],
+      "planning_seconds": 2.596888,
+      "process_seconds": 19.86840895563364,
+      "router_seconds": 5.79,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148617,
+        "sb_pairs_used": 1,
+        "sb_pair_net_occupancy": 1,
+        "cb_crossing_output_sources_used": 967,
+        "cb_crossing_output_source_net_occupancy": 967,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "OPIN->CHANX": 584,
+          "CHANX->CHANX": 1
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "R1",
+      "count": 1,
+      "reused": true,
+      "circuit": "spmv",
+      "prefix_gate_passed": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_spmv_dev_01/runs/spmv_R1",
+      "status": "legal",
+      "legal_cpd_ns": 7.04599,
+      "iterations": 20,
+      "legal_iteration_numbers": [
+        19
+      ],
+      "planning_seconds": 3.394599,
+      "process_seconds": 20.806132905185223,
+      "router_seconds": 6.82,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148617,
+        "sb_pairs_used": 1,
+        "sb_pair_net_occupancy": 1,
+        "cb_crossing_output_sources_used": 967,
+        "cb_crossing_output_source_net_occupancy": 967,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "OPIN->CHANX": 584,
+          "CHANX->CHANX": 1
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [
+        "Giving up routing since additional routing convergences seem unlikely to improve quality (CPD ratio: 1.03382)"
+      ],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "R1",
+      "count": 2,
+      "reused": false,
+      "prefix_gate_passed": true,
+      "circuit": "spmv"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/spmv_Tf",
+      "status": "legal",
+      "legal_cpd_ns": 7.04599,
+      "iterations": 19,
+      "legal_iteration_numbers": [
+        19
+      ],
+      "planning_seconds": 0.866985,
+      "process_seconds": 18.101729404181242,
+      "router_seconds": 4.32,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148617,
+        "sb_pairs_used": 1,
+        "sb_pair_net_occupancy": 1,
+        "cb_crossing_output_sources_used": 967,
+        "cb_crossing_output_source_net_occupancy": 967,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "OPIN->CHANX": 584,
+          "CHANX->CHANX": 1
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "Tf",
+      "count": 1,
+      "reused": true,
+      "circuit": "spmv",
+      "prefix_gate_passed": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_spmv_dev_01/runs/spmv_Tf",
+      "status": "legal",
+      "legal_cpd_ns": 7.04599,
+      "iterations": 20,
+      "legal_iteration_numbers": [
+        19
+      ],
+      "planning_seconds": 1.261755,
+      "process_seconds": 19.152029398828745,
+      "router_seconds": 4.94,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148617,
+        "sb_pairs_used": 1,
+        "sb_pair_net_occupancy": 1,
+        "cb_crossing_output_sources_used": 967,
+        "cb_crossing_output_source_net_occupancy": 967,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "OPIN->CHANX": 584,
+          "CHANX->CHANX": 1
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [
+        "Giving up routing since additional routing convergences seem unlikely to improve quality (CPD ratio: 1.03382)"
+      ],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "Tf",
+      "count": 2,
+      "reused": false,
+      "prefix_gate_passed": true,
+      "circuit": "spmv"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/layer_bbox_expansion_dev_01/runs/spmv_A1",
+      "status": "legal",
+      "legal_cpd_ns": 7.0347,
+      "iterations": 16,
+      "legal_iteration_numbers": [
+        16
+      ],
+      "planning_seconds": 0.0,
+      "process_seconds": 17.14693160355091,
+      "router_seconds": 3.06,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148593,
+        "sb_pairs_used": 2,
+        "sb_pair_net_occupancy": 2,
+        "cb_crossing_output_sources_used": 969,
+        "cb_crossing_output_source_net_occupancy": 969,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "CHANX->CHANX": 2,
+          "OPIN->CHANX": 580
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "A1",
+      "count": 1,
+      "reused": true,
+      "circuit": "spmv",
+      "prefix_gate_passed": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_spmv_dev_01/runs/spmv_A1",
+      "status": "legal",
+      "legal_cpd_ns": 7.0347,
+      "iterations": 17,
+      "legal_iteration_numbers": [
+        16
+      ],
+      "planning_seconds": 0.0,
+      "process_seconds": 17.54960922896862,
+      "router_seconds": 3.05,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148593,
+        "sb_pairs_used": 2,
+        "sb_pair_net_occupancy": 2,
+        "cb_crossing_output_sources_used": 969,
+        "cb_crossing_output_source_net_occupancy": 969,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "CHANX->CHANX": 2,
+          "OPIN->CHANX": 580
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [
+        "Giving up routing since additional routing convergences seem unlikely to improve quality (CPD ratio: 1)"
+      ],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "A1",
+      "count": 2,
+      "reused": false,
+      "prefix_gate_passed": true,
+      "circuit": "spmv"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_softmax_s11_hybrid_o_n60_w100_p0_a0",
+      "status": "legal",
+      "legal_cpd_ns": 8.97575,
+      "iterations": 13,
+      "legal_iteration_numbers": [
+        13
+      ],
+      "planning_seconds": 0.0,
+      "process_seconds": 35.810159884393215,
+      "router_seconds": 2.34,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169490,
+        "sb_pairs_used": 6,
+        "sb_pair_net_occupancy": 6,
+        "cb_crossing_output_sources_used": 713,
+        "cb_crossing_output_source_net_occupancy": 713,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 424,
+          "OPIN->CHANY": 352,
+          "CHANX->CHANX": 6
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "A0",
+      "count": 1,
+      "reused": true,
+      "circuit": "softmax",
+      "prefix_gate_passed": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_softmax_dev_01/runs/softmax_A0",
+      "status": "legal",
+      "legal_cpd_ns": 8.97575,
+      "iterations": 14,
+      "legal_iteration_numbers": [
+        13,
+        14
+      ],
+      "planning_seconds": 0.0,
+      "process_seconds": 36.33707333356142,
+      "router_seconds": 2.58,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169490,
+        "sb_pairs_used": 6,
+        "sb_pair_net_occupancy": 6,
+        "cb_crossing_output_sources_used": 713,
+        "cb_crossing_output_source_net_occupancy": 713,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 424,
+          "OPIN->CHANY": 352,
+          "CHANX->CHANX": 6
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "A0",
+      "count": 2,
+      "reused": false,
+      "prefix_gate_passed": true,
+      "circuit": "softmax"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c6",
+      "status": "legal",
+      "legal_cpd_ns": 8.97575,
+      "iterations": 13,
+      "legal_iteration_numbers": [
+        13
+      ],
+      "planning_seconds": 3.415593,
+      "process_seconds": 44.5787456035614,
+      "router_seconds": 5.88,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169431,
+        "sb_pairs_used": 6,
+        "sb_pair_net_occupancy": 6,
+        "cb_crossing_output_sources_used": 713,
+        "cb_crossing_output_source_net_occupancy": 713,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 422,
+          "OPIN->CHANY": 352,
+          "CHANX->CHANX": 6
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "R1",
+      "count": 1,
+      "reused": true,
+      "circuit": "softmax",
+      "prefix_gate_passed": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_softmax_dev_01/runs/softmax_R1",
+      "status": "legal",
+      "legal_cpd_ns": 8.97575,
+      "iterations": 14,
+      "legal_iteration_numbers": [
+        13,
+        14
+      ],
+      "planning_seconds": 4.710533,
+      "process_seconds": 41.13986713439226,
+      "router_seconds": 7.52,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169431,
+        "sb_pairs_used": 6,
+        "sb_pair_net_occupancy": 6,
+        "cb_crossing_output_sources_used": 713,
+        "cb_crossing_output_source_net_occupancy": 713,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 422,
+          "OPIN->CHANY": 352,
+          "CHANX->CHANX": 6
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "R1",
+      "count": 2,
+      "reused": false,
+      "prefix_gate_passed": true,
+      "circuit": "softmax"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/softmax_Tf",
+      "status": "legal",
+      "legal_cpd_ns": 8.97575,
+      "iterations": 13,
+      "legal_iteration_numbers": [
+        13
+      ],
+      "planning_seconds": 1.96361,
+      "process_seconds": 39.68940610811114,
+      "router_seconds": 4.84,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169431,
+        "sb_pairs_used": 6,
+        "sb_pair_net_occupancy": 6,
+        "cb_crossing_output_sources_used": 713,
+        "cb_crossing_output_source_net_occupancy": 713,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 422,
+          "OPIN->CHANY": 352,
+          "CHANX->CHANX": 6
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "Tf",
+      "count": 1,
+      "reused": true,
+      "circuit": "softmax",
+      "prefix_gate_passed": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_softmax_dev_01/runs/softmax_Tf",
+      "status": "legal",
+      "legal_cpd_ns": 8.97575,
+      "iterations": 14,
+      "legal_iteration_numbers": [
+        13,
+        14
+      ],
+      "planning_seconds": 1.74121,
+      "process_seconds": 37.98566288873553,
+      "router_seconds": 4.58,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169431,
+        "sb_pairs_used": 6,
+        "sb_pair_net_occupancy": 6,
+        "cb_crossing_output_sources_used": 713,
+        "cb_crossing_output_source_net_occupancy": 713,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 422,
+          "OPIN->CHANY": 352,
+          "CHANX->CHANX": 6
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "Tf",
+      "count": 2,
+      "reused": false,
+      "prefix_gate_passed": true,
+      "circuit": "softmax"
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/layer_bbox_expansion_dev_01/runs/softmax_A1",
+      "status": "legal",
+      "legal_cpd_ns": 8.97575,
+      "iterations": 12,
+      "legal_iteration_numbers": [
+        12
+      ],
+      "planning_seconds": 0.0,
+      "process_seconds": 36.64830205217004,
+      "router_seconds": 2.48,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169688,
+        "sb_pairs_used": 14,
+        "sb_pair_net_occupancy": 14,
+        "cb_crossing_output_sources_used": 721,
+        "cb_crossing_output_source_net_occupancy": 721,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 417,
+          "OPIN->CHANY": 362,
+          "CHANX->CHANX": 14
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "A1",
+      "count": 1,
+      "reused": true,
+      "circuit": "softmax",
+      "prefix_gate_passed": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_softmax_dev_01/runs/softmax_A1",
+      "status": "legal",
+      "legal_cpd_ns": 8.97575,
+      "iterations": 13,
+      "legal_iteration_numbers": [
+        12,
+        13
+      ],
+      "planning_seconds": 0.0,
+      "process_seconds": 36.585098061710596,
+      "router_seconds": 2.5,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169688,
+        "sb_pairs_used": 14,
+        "sb_pair_net_occupancy": 14,
+        "cb_crossing_output_sources_used": 721,
+        "cb_crossing_output_source_net_occupancy": 721,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 417,
+          "OPIN->CHANY": 362,
+          "CHANX->CHANX": 14
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "restored_best": true,
+      "early_exit_messages": [],
+      "qualification": "Legal iteration rows are observed feasibility, not independently reconstructed native convergence state. Best route ranks setup slack then other timing metrics and wirelength, not minimum CPD alone.",
+      "arm": "A1",
+      "count": 2,
+      "reused": false,
+      "prefix_gate_passed": true,
+      "circuit": "softmax"
+    },
+    {
+      "circuit": "bnn",
+      "count": 1,
+      "arm": "A0",
+      "status": "pending_batch_seal",
+      "legal_cpd_ns": null,
+      "prefix_gate_passed": null
+    },
+    {
+      "circuit": "bnn",
+      "count": 1,
+      "arm": "R1",
+      "status": "pending_batch_seal",
+      "legal_cpd_ns": null,
+      "prefix_gate_passed": null
+    },
+    {
+      "circuit": "bnn",
+      "count": 1,
+      "arm": "Tf",
+      "status": "pending_batch_seal",
+      "legal_cpd_ns": null,
+      "prefix_gate_passed": null
+    },
+    {
+      "circuit": "bnn",
+      "count": 1,
+      "arm": "A1",
+      "status": "pending_batch_seal",
+      "legal_cpd_ns": null,
+      "prefix_gate_passed": null
+    },
+    {
+      "circuit": "bnn",
+      "count": 2,
+      "arm": "A0",
+      "status": "pending_batch_seal",
+      "legal_cpd_ns": null,
+      "prefix_gate_passed": null
+    },
+    {
+      "circuit": "bnn",
+      "count": 2,
+      "arm": "R1",
+      "status": "pending_batch_seal",
+      "legal_cpd_ns": null,
+      "prefix_gate_passed": null
+    },
+    {
+      "circuit": "bnn",
+      "count": 2,
+      "arm": "Tf",
+      "status": "pending_batch_seal",
+      "legal_cpd_ns": null,
+      "prefix_gate_passed": null
+    },
+    {
+      "circuit": "bnn",
+      "count": 2,
+      "arm": "A1",
+      "status": "pending_batch_seal",
+      "legal_cpd_ns": null,
+      "prefix_gate_passed": null
+    }
+  ],
+  "comparisons": {
+    "A0:count1->count2": {
+      "label": "A0:count1->count2",
+      "declared_circuit_count": 4,
+      "comparable_circuit_count": 3,
+      "improve": 1,
+      "tie": 2,
+      "regress": 0,
+      "circuit_geomean_improvement_pct": 15.379991690637429,
+      "worst_circuit_improvement_pct": 0.0,
+      "pairs": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 9.93208,
+          "new_cpd_ns": 6.0181
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.0347,
+          "new_cpd_ns": 7.0347
+        },
+        {
+          "circuit": "softmax",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 8.97575,
+          "new_cpd_ns": 8.97575
+        },
+        {
+          "circuit": "bnn",
+          "reference_status": "pending_batch_seal",
+          "new_status": "pending_batch_seal",
+          "comparable": false,
+          "reference_cpd_ns": null,
+          "new_cpd_ns": null
+        }
+      ],
+      "regression_tail": []
+    },
+    "R1:count1->count2": {
+      "label": "R1:count1->count2",
+      "declared_circuit_count": 4,
+      "comparable_circuit_count": 3,
+      "improve": 1,
+      "tie": 2,
+      "regress": 0,
+      "circuit_geomean_improvement_pct": 4.7408291883934695,
+      "worst_circuit_improvement_pct": 0.0,
+      "pairs": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 6.96208,
+          "new_cpd_ns": 6.0181
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.04599,
+          "new_cpd_ns": 7.04599
+        },
+        {
+          "circuit": "softmax",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 8.97575,
+          "new_cpd_ns": 8.97575
+        },
+        {
+          "circuit": "bnn",
+          "reference_status": "pending_batch_seal",
+          "new_status": "pending_batch_seal",
+          "comparable": false,
+          "reference_cpd_ns": null,
+          "new_cpd_ns": null
+        }
+      ],
+      "regression_tail": []
+    },
+    "Tf:count1->count2": {
+      "label": "Tf:count1->count2",
+      "declared_circuit_count": 4,
+      "comparable_circuit_count": 3,
+      "improve": 0,
+      "tie": 3,
+      "regress": 0,
+      "circuit_geomean_improvement_pct": 0.0,
+      "worst_circuit_improvement_pct": 0.0,
+      "pairs": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 6.20812,
+          "new_cpd_ns": 6.20812
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.04599,
+          "new_cpd_ns": 7.04599
+        },
+        {
+          "circuit": "softmax",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 8.97575,
+          "new_cpd_ns": 8.97575
+        },
+        {
+          "circuit": "bnn",
+          "reference_status": "pending_batch_seal",
+          "new_status": "pending_batch_seal",
+          "comparable": false,
+          "reference_cpd_ns": null,
+          "new_cpd_ns": null
+        }
+      ],
+      "regression_tail": []
+    },
+    "A1:count1->count2": {
+      "label": "A1:count1->count2",
+      "declared_circuit_count": 4,
+      "comparable_circuit_count": 3,
+      "improve": 0,
+      "tie": 3,
+      "regress": 0,
+      "circuit_geomean_improvement_pct": 0.0,
+      "worst_circuit_improvement_pct": 0.0,
+      "pairs": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 6.0181,
+          "new_cpd_ns": 6.0181
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.0347,
+          "new_cpd_ns": 7.0347
+        },
+        {
+          "circuit": "softmax",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 8.97575,
+          "new_cpd_ns": 8.97575
+        },
+        {
+          "circuit": "bnn",
+          "reference_status": "pending_batch_seal",
+          "new_status": "pending_batch_seal",
+          "comparable": false,
+          "reference_cpd_ns": null,
+          "new_cpd_ns": null
+        }
+      ],
+      "regression_tail": []
+    },
+    "count1:A0->Tf": {
+      "label": "count1:A0->Tf",
+      "declared_circuit_count": 4,
+      "comparable_circuit_count": 3,
+      "improve": 1,
+      "tie": 1,
+      "regress": 1,
+      "circuit_geomean_improvement_pct": 14.452869809484415,
+      "worst_circuit_improvement_pct": -0.16049014172601073,
+      "pairs": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 9.93208,
+          "new_cpd_ns": 6.20812
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.0347,
+          "new_cpd_ns": 7.04599
+        },
+        {
+          "circuit": "softmax",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 8.97575,
+          "new_cpd_ns": 8.97575
+        },
+        {
+          "circuit": "bnn",
+          "reference_status": "pending_batch_seal",
+          "new_status": "pending_batch_seal",
+          "comparable": false,
+          "reference_cpd_ns": null,
+          "new_cpd_ns": null
+        }
+      ],
+      "regression_tail": [
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.0347,
+          "new_cpd_ns": 7.04599
+        }
+      ]
+    },
+    "count1:R1->Tf": {
+      "label": "count1:R1->Tf",
+      "declared_circuit_count": 4,
+      "comparable_circuit_count": 3,
+      "improve": 1,
+      "tie": 2,
+      "regress": 0,
+      "circuit_geomean_improvement_pct": 3.748605302450625,
+      "worst_circuit_improvement_pct": 0.0,
+      "pairs": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 6.96208,
+          "new_cpd_ns": 6.20812
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.04599,
+          "new_cpd_ns": 7.04599
+        },
+        {
+          "circuit": "softmax",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 8.97575,
+          "new_cpd_ns": 8.97575
+        },
+        {
+          "circuit": "bnn",
+          "reference_status": "pending_batch_seal",
+          "new_status": "pending_batch_seal",
+          "comparable": false,
+          "reference_cpd_ns": null,
+          "new_cpd_ns": null
+        }
+      ],
+      "regression_tail": []
+    },
+    "count1:A1->Tf": {
+      "label": "count1:A1->Tf",
+      "declared_circuit_count": 4,
+      "comparable_circuit_count": 3,
+      "improve": 0,
+      "tie": 1,
+      "regress": 2,
+      "circuit_geomean_improvement_pct": -1.0956296266995569,
+      "worst_circuit_improvement_pct": -3.1574749505657973,
+      "pairs": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 6.0181,
+          "new_cpd_ns": 6.20812
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.0347,
+          "new_cpd_ns": 7.04599
+        },
+        {
+          "circuit": "softmax",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 8.97575,
+          "new_cpd_ns": 8.97575
+        },
+        {
+          "circuit": "bnn",
+          "reference_status": "pending_batch_seal",
+          "new_status": "pending_batch_seal",
+          "comparable": false,
+          "reference_cpd_ns": null,
+          "new_cpd_ns": null
+        }
+      ],
+      "regression_tail": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 6.0181,
+          "new_cpd_ns": 6.20812
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.0347,
+          "new_cpd_ns": 7.04599
+        }
+      ]
+    },
+    "count2:A0->Tf": {
+      "label": "count2:A0->Tf",
+      "declared_circuit_count": 4,
+      "comparable_circuit_count": 3,
+      "improve": 0,
+      "tie": 1,
+      "regress": 2,
+      "circuit_geomean_improvement_pct": -1.0956296266995569,
+      "worst_circuit_improvement_pct": -3.1574749505657973,
+      "pairs": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 6.0181,
+          "new_cpd_ns": 6.20812
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.0347,
+          "new_cpd_ns": 7.04599
+        },
+        {
+          "circuit": "softmax",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 8.97575,
+          "new_cpd_ns": 8.97575
+        },
+        {
+          "circuit": "bnn",
+          "reference_status": "pending_batch_seal",
+          "new_status": "pending_batch_seal",
+          "comparable": false,
+          "reference_cpd_ns": null,
+          "new_cpd_ns": null
+        }
+      ],
+      "regression_tail": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 6.0181,
+          "new_cpd_ns": 6.20812
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.0347,
+          "new_cpd_ns": 7.04599
+        }
+      ]
+    },
+    "count2:R1->Tf": {
+      "label": "count2:R1->Tf",
+      "declared_circuit_count": 4,
+      "comparable_circuit_count": 3,
+      "improve": 0,
+      "tie": 2,
+      "regress": 1,
+      "circuit_geomean_improvement_pct": -1.0416045798941065,
+      "worst_circuit_improvement_pct": -3.1574749505657973,
+      "pairs": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 6.0181,
+          "new_cpd_ns": 6.20812
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.04599,
+          "new_cpd_ns": 7.04599
+        },
+        {
+          "circuit": "softmax",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 8.97575,
+          "new_cpd_ns": 8.97575
+        },
+        {
+          "circuit": "bnn",
+          "reference_status": "pending_batch_seal",
+          "new_status": "pending_batch_seal",
+          "comparable": false,
+          "reference_cpd_ns": null,
+          "new_cpd_ns": null
+        }
+      ],
+      "regression_tail": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 6.0181,
+          "new_cpd_ns": 6.20812
+        }
+      ]
+    },
+    "count2:A1->Tf": {
+      "label": "count2:A1->Tf",
+      "declared_circuit_count": 4,
+      "comparable_circuit_count": 3,
+      "improve": 0,
+      "tie": 1,
+      "regress": 2,
+      "circuit_geomean_improvement_pct": -1.0956296266995569,
+      "worst_circuit_improvement_pct": -3.1574749505657973,
+      "pairs": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 6.0181,
+          "new_cpd_ns": 6.20812
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.0347,
+          "new_cpd_ns": 7.04599
+        },
+        {
+          "circuit": "softmax",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 8.97575,
+          "new_cpd_ns": 8.97575
+        },
+        {
+          "circuit": "bnn",
+          "reference_status": "pending_batch_seal",
+          "new_status": "pending_batch_seal",
+          "comparable": false,
+          "reference_cpd_ns": null,
+          "new_cpd_ns": null
+        }
+      ],
+      "regression_tail": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 6.0181,
+          "new_cpd_ns": 6.20812
+        },
+        {
+          "circuit": "spmv",
+          "reference_status": "legal",
+          "new_status": "legal",
+          "comparable": true,
+          "reference_cpd_ns": 7.0347,
+          "new_cpd_ns": 7.04599
+        }
+      ]
+    }
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/reconvergence_analysis.json": "9f0ef534a3566bc8a4f0da5bd7efe4eafc5e2fa2b8cd06f4b4a8d058e7fa89ae",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/input_seal.json": "4cd6ba3973dc2f0d8c6be679fa8891f54815ebee88a910d178cf77cad380ac92",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/completion.json": "6cf8136db7175be24a7a7d8d0fc0caccf4c6cb29c6f4d3d9f52aa2be1cc92f04",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_spmv_dev_01/reconvergence_analysis.json": "ebe3c5dbac10d14ffabaf135304a638373b073718034015edecb05ad141b2b06",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_spmv_dev_01/input_seal.json": "b0c4380e197ca9436b172f01b8f850ad7209950da64756a4e387481a352b3eeb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_spmv_dev_01/completion.json": "6cf8136db7175be24a7a7d8d0fc0caccf4c6cb29c6f4d3d9f52aa2be1cc92f04",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_softmax_dev_01/reconvergence_analysis.json": "bae691f476b58c1e538bb0143149d4c2802fbc0a367e61b981f04e7329dbbbbc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_softmax_dev_01/input_seal.json": "c453c806286d6e6f87b1311a99ab9955093a873b5c8842dc2a654507678ba904",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_softmax_dev_01/completion.json": "6cf8136db7175be24a7a7d8d0fc0caccf4c6cb29c6f4d3d9f52aa2be1cc92f04"
+  },
+  "aggregator_sha256": "bc51ec538cc862796ae4787af013eb90a39ad0f6b562857998ee370d370f7327",
+  "broader_cohort_qualification": "Count2 study covers four seen circuits, one seed each. Gemm remains unmeasured in this extension, and original attention A0/R1 failures remain in the broader six-circuit quality denominator. This is not a success-rate improvement or blind transfer result.",
+  "timing_qualification": "Planning, router and full-process costs are retained per run. No historical-count1/count2 wall-time ratios are formal acceleration evidence; native legal-cycle counts may be below the maximum."
+}

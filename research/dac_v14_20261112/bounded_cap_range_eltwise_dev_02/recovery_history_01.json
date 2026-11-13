@@ -1,0 +1,32 @@
+{
+  "original_native_runner": {
+    "path": "runner.py",
+    "native_roles_completed": 4,
+    "terminal_returncode": 1,
+    "reason": "Missing pair_check.json after all four native runs"
+  },
+  "setup_attempt": {
+    "batch": "bounded_cap_range_eltwise_dev_01",
+    "native_route_calls": 0,
+    "reason": "A0 guide-audit artifact absent by design; optional files fixed in version2"
+  },
+  "recovery_attempts": [
+    {
+      "script": "recover_bounded_cap_range_audit_initial.py",
+      "reason": "No direct historical CSV hash; resolved through prior-bound final_guide_audit trace_sha256",
+      "native_route_calls": 0
+    },
+    {
+      "script": "recover_bounded_cap_range_audit_v1.py",
+      "reason": "context lookup after setting study.BASE to new batch; moved lookup before assignment; no native reruns",
+      "native_route_calls": 0
+    },
+    {
+      "script": "recover_bounded_cap_range_audit_v2.py",
+      "status": "passed",
+      "native_route_calls": 0,
+      "binding": "recovery_binding_v2.json"
+    }
+  ],
+  "qualification": "Original scripts, partial recovery binding and postrun failure receipts retained. pair_check generated posthoc from original private-input digests and prior-bound parent, not invented prelaunch receipt."
+}

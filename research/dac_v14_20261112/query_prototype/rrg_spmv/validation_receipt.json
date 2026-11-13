@@ -1,0 +1,29 @@
+{
+  "status": "passed_real_rrg_subset_not_router_integration",
+  "graph_nodes": 1028568,
+  "graph_edges": 4994132,
+  "requests": 16,
+  "unique_endpoint_directions": 11,
+  "measured_exact": 10,
+  "budget_unknown_but_reference_reachable": 6,
+  "resumed_settlements": 11510,
+  "fresh_state_per_request_settlements": 31187,
+  "per_endpoint_lifetime_cap": 4096,
+  "all_lifetime_caps_observed": true,
+  "reference": "Full same-layer directed Dijkstra with crossing costs recorded on physical edges directly, independent of synthetic query terminals",
+  "limitations": [
+    "One actual Hybrid-O W100 graph and eight previously routed cross-layer connections, fixed ascending net selection",
+    "Targets taken from frozen final routes for diagnosis; not a deployable candidate-selection policy",
+    "Fresh-state comparison illustrates repeated-query work, not a comparison to existing R1 endpoint caching or a speedup claim",
+    "Production aggregate frontier memory/eviction and criticality/uncertainty scheduler still pending"
+  ],
+  "sha256": {
+    "validate_rrg.cpp": "ddd8e4c3165aa6b33c5065bb59e38613fd22bbcb7fbd98e9c9407a8de5d97a5d",
+    "validate_rrg_independent_requests.cpp": "170a7e8096880e9f1ae9e89640a9cb11423c4539faecb5a2cb1b213caca70c0b",
+    "h3d_resumable_delay_search.h": "97412a73616683b43a274477bc368e1210807548c57dac530a9a123bd2278a4a",
+    "export_rrg.py": "933ea732b03620537974628834f42369344c8421dde3453e970b9da65c4210b8",
+    "rrg_spmv/binding.json": "8e25270d5ce7068de56ecbbb2e402a1883d01c82fa28c7f858256472eb814b5c",
+    "rrg_spmv/validation.csv": "e932b50e033c27c6ad6d5d49008fe705005ccdb6d659196dad084e8b3a54d48d",
+    "rrg_spmv/resumed_validation.csv": "1eb837f4936cd810b006fb49ead8bfc0faddbaaefff0ff9bb0892da9d6889106"
+  }
+}

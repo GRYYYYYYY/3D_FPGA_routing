@@ -1,0 +1,188 @@
+{
+  "circuits": {
+    "eltwise_layer": {
+      "Rq": {
+        "status": "legal",
+        "counters": {
+          "H3D_PERSISTENT_DELAY": {
+            "enabled": 1,
+            "slots": 8,
+            "peak_states": 8,
+            "evictions": 217,
+            "restarts": 9,
+            "forward_settled": 302214,
+            "reverse_settled": 160346,
+            "terminal_certificates": 34329,
+            "ledger_endpoints": 216,
+            "retain": 1,
+            "discards": 0,
+            "live_states": 8
+          },
+          "H3D_TARGET_DELAY": {
+            "queries": 3763,
+            "cache_hits": 446,
+            "exact": 2294,
+            "unknown": 2028,
+            "settled": 462560,
+            "memory_stops": 0,
+            "endpoint_budget": 4096,
+            "candidate_quota": 256,
+            "quota_stops": 1451
+          },
+          "H3D_SELECTED_DELAY": {
+            "pins": 149,
+            "informed_pins": 128,
+            "both": 39,
+            "source_only": 71,
+            "sink_only": 18,
+            "estimated": 21
+          },
+          "H3D_QUERY_PRIORITY": {
+            "enabled": 0,
+            "plans": 87,
+            "reordered": 0
+          },
+          "H3D_REVERSE_RERANK": {
+            "enabled": 1,
+            "pins": 149,
+            "changed": 106
+          },
+          "H3D_MIXED": {
+            "pins": 149,
+            "informed_pins": 149,
+            "both": 238,
+            "source_only": 1809,
+            "sink_only": 1785,
+            "estimated": 74731
+          }
+        },
+        "reverse_rerank": {
+          "pins": 149,
+          "changed": 106,
+          "introduced": 1280,
+          "old_source_known": 1144,
+          "new_source_known": 394
+        },
+        "metrics": {
+          "critical_path_ns": 8.21844,
+          "wirelength": 231177,
+          "router_seconds": 13.02,
+          "iterations": 38,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 231177,
+          "sb_pairs_used": 113,
+          "sb_pair_net_occupancy": 113,
+          "cb_crossing_output_sources_used": 960,
+          "cb_crossing_output_source_net_occupancy": 960,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANX": 558,
+            "OPIN->CHANY": 452,
+            "CHANX->CHANX": 113
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        },
+        "process_seconds": 28.220271408557892,
+        "peak_rss_kib": 1067872,
+        "planning_seconds": 1.373337,
+        "log_sha256": "eb00ae44525b8c4537ead6ae5967883489be3f05d97159652fb2e1396d29cd1d"
+      }
+    },
+    "bnn": {
+      "Rq": {
+        "status": "legal",
+        "counters": {
+          "H3D_PERSISTENT_DELAY": {
+            "enabled": 1,
+            "slots": 8,
+            "peak_states": 8,
+            "evictions": 1946,
+            "restarts": 483,
+            "forward_settled": 1962814,
+            "reverse_settled": 1455319,
+            "terminal_certificates": 129045,
+            "ledger_endpoints": 1471,
+            "retain": 1,
+            "discards": 0,
+            "live_states": 8
+          },
+          "H3D_TARGET_DELAY": {
+            "queries": 29476,
+            "cache_hits": 7820,
+            "exact": 18867,
+            "unknown": 15457,
+            "settled": 3418133,
+            "memory_stops": 0,
+            "endpoint_budget": 4096,
+            "candidate_quota": 256,
+            "quota_stops": 10379
+          },
+          "H3D_SELECTED_DELAY": {
+            "pins": 1317,
+            "informed_pins": 1237,
+            "both": 365,
+            "source_only": 551,
+            "sink_only": 321,
+            "estimated": 80
+          },
+          "H3D_QUERY_PRIORITY": {
+            "enabled": 0,
+            "plans": 836,
+            "reordered": 0
+          },
+          "H3D_REVERSE_RERANK": {
+            "enabled": 1,
+            "pins": 1317,
+            "changed": 1037
+          },
+          "H3D_MIXED": {
+            "pins": 1317,
+            "informed_pins": 1317,
+            "both": 2758,
+            "source_only": 12091,
+            "sink_only": 18672,
+            "estimated": 610934
+          }
+        },
+        "reverse_rerank": {
+          "pins": 1317,
+          "changed": 1037,
+          "introduced": 11724,
+          "old_source_known": 9181,
+          "new_source_known": 1756
+        },
+        "metrics": {
+          "critical_path_ns": 13.4216,
+          "wirelength": 2069011,
+          "router_seconds": 88.3,
+          "iterations": 19,
+          "native_full_check_passed": true,
+          "routing_success_reported": true
+        },
+        "physical_metrics": {
+          "planar_wirelength_excluding_sb_half_nodes": 2069011,
+          "sb_pairs_used": 93,
+          "sb_pair_net_occupancy": 93,
+          "cb_crossing_output_sources_used": 5060,
+          "cb_crossing_output_source_net_occupancy": 5060,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANY": 2495,
+            "OPIN->CHANX": 3066,
+            "CHANX->CHANX": 93
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        },
+        "process_seconds": 266.54497338086367,
+        "peak_rss_kib": 10731628,
+        "planning_seconds": 12.604908,
+        "log_sha256": "a102916392e0b57adf05ae4969f0fbd3d74045223b011fcb3d26da2b344fe14f"
+      }
+    }
+  },
+  "passed": true,
+  "scope": "Source-informed reverse-target selection, same candidate cardinality/diversity/feasible pool and lifetime budgets. Native assertions and event reconciliation are consistency checks; direct route legality comes from independent graph audit. No claim that selected coverage or target changes imply QoR improvement. Default-off P route/table/guide must reproduce. Development times only",
+  "script_sha256": "2afebbd31c74e0281741b9439ae721eb1ea6acfbdbc57388b19d16127ff0ece1",
+  "seal_sha256": "813e260c22eb7ffcb9a05994602b42f3de038120ee91e506c943afb84313be25"
+}

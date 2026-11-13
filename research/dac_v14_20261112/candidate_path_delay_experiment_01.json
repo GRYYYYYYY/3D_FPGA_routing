@@ -1,0 +1,29 @@
+{
+  "status": "registered_before_implementation",
+  "time": 1794562794.09503,
+  "hypothesis": "Candidate-level exact sink delay remains hidden by legacy whole-leaf two-sided coverage gate. Refresh-only physical-sink replacement using existing exact cached distances and calibrated estimates can improve comparisons without needing source coverage or more searches.",
+  "base_stage": "compact_witness_stage_01",
+  "arms": {
+    "P": "price1 delay0; exact compact C1 reproduction",
+    "D0": "price0 delay0; query-only control with cache capture",
+    "D1": "price0 delay0.25; isolate physical-delay component"
+  },
+  "inputs": "eltwise_layer HybridO W100 P0 seed11 fixed packed/place/RRG native count2, all other routing parameters same",
+  "scope": "Same selected native refresh leaves as query policy. Physical measurements only legacy-settled cache witnesses; priced-query paths remain upper bounds and cannot enter exact physical calibration. Only sink component replaced, source and opening costs unchanged.",
+  "calibration": "Per leaf median clipped [0.25,4] physical_units/geometry_units from unique measured candidate paths. Exact cached candidate uses physical_units; all others use geometry*scale. No samples -> unchanged geometry fallback.",
+  "delta": "alpha*(1+4*criticality)*clip(new_sink_units - old_sink_units,-2,2), alpha=0.25. old sink is actual cached value if old whole-leaf timed gate on else geometry. Same signed finite branch correction in shared proposed and prior cost.",
+  "queries": "Legacy4096 and new256 work unchanged; no source-coverage reverse-skip equivalence claim under new score. New priced-query UBs never promoted to shortest physical measurements.",
+  "guards": {
+    "timeout": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "gates": [
+    "P exact frozen compactC1",
+    "D0 same full physical route and base decisions as query-only, allowing separately logged cache observations",
+    "D0/D1 first initial-iteration equivalence",
+    "Actual RRG directed edges/current-price formulas, exact physical provenance, median calibration, signed caps, base+combined fingerprints, shared optimum and same-score hysteresis; fresh audit if trajectories differ",
+    "Native/independent/guide/input seals, preserve legal/failure/timeout/missing"
+  ],
+  "qualification": "Refresh-only isolated physical-delay test; no blanket timing-guide change, no physical Tdel/STA or congestion alteration. One development case; formal time requires separate matched environment."
+}

@@ -1,0 +1,169 @@
+--- a/h3d_routing.cpp
++++ b/h3d_routing.cpp
+@@ -51,6 +51,7 @@
+ 
+ /** @brief Immutable per-process settings, recorded at the first routing iteration. */
+ struct t_settings {
++    bool trace_search_domain = false;
+     bool trace_guide_influence = false; ///< Read-only actual crossing-cost trace.
+     bool bounded_after_legal = false;
+     bool use_scc = false;              ///< Exact SCC reachability with geometric costs instead of full BFS distances.
+@@ -230,6 +231,13 @@
+                 VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_TRACE_GUIDE_INFLUENCE must be 0 or 1");
+             result.trace_guide_influence=std::string(text)=="1";
+         }
++        if(const char* text=std::getenv("VPR_H3D_TRACE_SEARCH_DOMAIN")) {
++            if(std::string(text)!="0" && std::string(text)!="1")
++                VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_TRACE_SEARCH_DOMAIN must be 0 or 1");
++            result.trace_search_domain=std::string(text)=="1";
++        }
++        if(result.trace_search_domain && !result.trace_guide_influence)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Search domain tracing requires influence tracing");
+         if(result.trace_guide_influence && (!result.edge_encoding || result.mode==e_h3d_mode::OFF))
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Guide influence tracing requires serial edge-encoding H3D routing");
+         if (result.feedback && (!result.use_scc || result.mode != e_h3d_mode::STATIC))
+@@ -934,7 +942,16 @@
+     size_t count=0,rows=0,finite=0,positive=0,below_unit=0;
+     double extra=0.,physical=0.,timing=0.,maximum_extra=0.;
+ };
++struct DomainLayer {
++    size_t pushes=0;
++    double minimum_delay=std::numeric_limits<double>::infinity();
++    double minimum_backward=std::numeric_limits<double>::infinity();
++    double minimum_total=std::numeric_limits<double>::infinity();
++};
+ struct InfluenceState {
++    size_t domain_searches=0,domain_rows=0,domain_omitted=0,domain_seed_rows=0,domain_seed_omitted=0,domain_local_seed_rows=0;
++    std::vector<DomainLayer> domain_layers;
++
+     size_t events=0,rows=0,attempts=0,contexts=0,context_omitted=0,current_net=0;
+     int iteration=0,current_pin=0;
+     std::array<size_t,7> group_rows{};
+@@ -963,6 +980,9 @@
+ void log_influence() {
+     if(!influence)return;
+     const auto& s=*influence;
++    if(settings().trace_search_domain)
++        VTR_LOG("H3D_SEARCH_DOMAIN_SUMMARY searches=%zu rows=%zu omitted=%zu seed_rows=%zu seed_omitted=%zu row_cap=20000 seed_cap=6000\n",
++                s.domain_searches,s.domain_rows,s.domain_omitted,s.domain_seed_rows,s.domain_seed_omitted);
+     VTR_LOG("H3D_GUIDE_INFLUENCE_SUMMARY iter=%d events=%zu rows=%zu omitted=%zu attempts=%zu contexts=%zu context_omitted=%zu row_cap=10000 unit_seconds=%.17g\n",
+         s.iteration,s.events,s.rows,s.events-s.rows,s.attempts,s.contexts,s.context_omitted,s.unit);
+     if(s.bounded_mode)
+@@ -978,6 +998,50 @@
+ } // namespace
+ 
+ bool h3d_trace_guide_influence() {return settings().trace_guide_influence;}
++bool h3d_trace_search_domain() {return settings().trace_search_domain;}
++void h3d_domain_reset() {
++    VTR_ASSERT(influence);auto& s=*influence;
++    ++s.domain_searches;s.domain_local_seed_rows=0;
++    s.domain_layers.assign(g_vpr_ctx.device().grid.get_num_layers(),DomainLayer{});
++}
++void h3d_domain_seed(RRNodeId node,float delay,float backward,float total,bool rcv) {
++    VTR_ASSERT(influence);auto& s=*influence;const auto& graph=g_vpr_ctx.device().rr_graph;
++    const size_t layer=graph.node_layer_low(node);VTR_ASSERT(layer<s.domain_layers.size());
++    auto& l=s.domain_layers[layer];++l.pushes;
++    l.minimum_delay=std::min(l.minimum_delay,double(delay));
++    l.minimum_backward=std::min(l.minimum_backward,double(backward));
++    l.minimum_total=std::min(l.minimum_total,double(total));
++    if(influence_focus(s.current_net,s.current_pin)<0)return;
++    if(s.domain_seed_rows>=6000 || s.domain_local_seed_rows>=100) {++s.domain_seed_omitted;return;}
++    ++s.domain_seed_rows;++s.domain_local_seed_rows;
++    VTR_LOG("H3D_SEARCH_DOMAIN_SEED iter=%d attempt=%zu search=%zu net=%zu pin=%d node=%zu layer=%zu delay_seconds=%.17g backward=%.17g total=%.17g rcv=%d\n",
++        s.iteration,s.attempts,s.domain_searches,s.current_net,s.current_pin,size_t(node),layer,double(delay),double(backward),double(total),int(rcv));
++}
++void h3d_domain_search(RRNodeId sink,float criticality,const t_h3d_connection_guide* guide,const t_bb& bb,bool rcv) {
++    VTR_ASSERT(influence);auto& s=*influence;
++    if(!guide && influence_focus(s.current_net,s.current_pin)<0)return;
++    if(s.domain_rows>=20000) {++s.domain_omitted;return;}
++    ++s.domain_rows;const auto& graph=g_vpr_ctx.device().rr_graph;
++    size_t preferred_inside=0,preferred_cross_heads=0,admitted_cross_heads=0;
++    if(guide)for(auto node:guide->preferred) {
++        const bool from_inside=inside_bb(graph,node,bb);preferred_inside+=from_inside;
++        for(auto edge:graph.edges(node)) {
++            const auto head=graph.edge_sink_node(node,edge);
++            if(!h3d_crosses_layers(graph,node,head))continue;
++            ++preferred_cross_heads;
++            admitted_cross_heads+=from_inside && (rcv || inside_bb(graph,head,bb));
++        }
++    }
++    std::ostringstream layers;layers<<std::setprecision(17);
++    for(size_t i=0;i<s.domain_layers.size();++i) {
++        if(i)layers<<';';
++        const auto& l=s.domain_layers[i];
++        layers<<i<<','<<l.pushes<<','<<l.minimum_delay<<','<<l.minimum_backward<<','<<l.minimum_total;
++    }
++    VTR_LOG("H3D_SEARCH_DOMAIN iter=%d attempt=%zu search=%zu net=%zu pin=%d sink=%zu sink_layer=%d guide=%d criticality=%.17g preferred=%s preferred_inside=%zu crossing_heads=%zu admitted_heads=%zu xmin=%d xmax=%d ymin=%d ymax=%d layer_min=%d layer_max=%d rcv=%d layers=%s\n",
++        s.iteration,s.attempts,s.domain_searches,s.current_net,s.current_pin,size_t(sink),int(graph.node_layer_low(sink)),int(guide!=nullptr),double(criticality),influence_preferences(guide).c_str(),preferred_inside,preferred_cross_heads,admitted_cross_heads,bb.xmin,bb.xmax,bb.ymin,bb.ymax,bb.layer_min,bb.layer_max,int(rcv),layers.str().c_str());
++}
++
+ bool h3d_bounded_critical_stage_active() {return !settings().bounded_after_legal || bounded_legal_phase;}
+ 
+ void h3d_influence_begin(ParentNetId net,int pin,RRNodeId sink,bool high_fanout,
+--- a/h3d_routing.h
++++ b/h3d_routing.h
+@@ -30,6 +30,11 @@
+ 
+ /** Read-only serial search diagnostics, separate from physical costs/state. */
+ bool h3d_trace_guide_influence();
++struct t_bb;
++bool h3d_trace_search_domain();
++void h3d_domain_reset();
++void h3d_domain_seed(RRNodeId node,float delay,float backward,float total,bool rcv);
++void h3d_domain_search(RRNodeId sink,float criticality,const t_h3d_connection_guide* guide,const t_bb& bb,bool rcv);
+ bool h3d_bounded_critical_stage_active();
+ void h3d_influence_begin(ParentNetId net, int pin, RRNodeId sink, bool high_fanout,
+                         float criticality, const t_h3d_connection_guide* guide);
+--- a/connection_router.tpp
++++ b/connection_router.tpp
+@@ -75,6 +75,7 @@
+ 
+     // re-explore route tree from root to add any new nodes (buildheap afterwards)
+     // route tree needs to be repushed onto the heap since each node's cost is target specific
++    if(h3d_trace_search_domain())h3d_domain_reset();
+     t_bb high_fanout_bb = add_high_fanout_route_tree_to_heap(rt_root, sink_node, cost_params, spatial_rt_lookup, net_bounding_box);
+     heap_.build_heap();
+ 
+@@ -135,6 +136,7 @@
+     // Re-add route nodes from the existing route tree to the heap.
+     // They need to be repushed onto the heap since each node's cost is target specific.
+ 
++    if(h3d_trace_search_domain())h3d_domain_reset();
+     add_route_tree_to_heap(rt_root, sink_node, cost_params, bounding_box);
+     heap_.build_heap(); // via sifting down everything
+ 
+@@ -178,6 +180,8 @@
+                                                                       const t_conn_cost_params& cost_params,
+                                                                       const t_bb& bounding_box) {
+     VTR_ASSERT_SAFE(heap_.is_valid());
++    if(h3d_trace_search_domain())
++        h3d_domain_search(sink_node,cost_params.criticality,cost_params.h3d_guide,bounding_box,rcv_path_manager.is_enabled());
+ 
+     if (heap_.is_empty_heap()) { // No source
+         VTR_LOGV_DEBUG(router_debug_, "  Initial heap empty (no source)\n");
+--- a/serial_connection_router.cpp
++++ b/serial_connection_router.cpp
+@@ -4,6 +4,7 @@
+ #include "d_ary_heap.h"
+ #include "rr_graph_fwd.h"
+ #include "vpr_context.h"
++#include "h3d_routing.h"
+ 
+ /** Used to update router statistics for serial connection router */
+ inline void update_serial_router_stats(RouterStats* router_stats,
+@@ -458,6 +459,7 @@
+         this->rr_node_route_inf_[inode].backward_path_cost = backward_path_cost;
+         this->rr_node_route_inf_[inode].R_upstream = R_upstream;
+         this->heap_.push_back({tot_cost, inode});
++        if(h3d_trace_search_domain())h3d_domain_seed(inode,rt_node.Tdel,backward_path_cost,tot_cost,false);
+     } else {
+         float expected_total_cost = this->compute_node_cost_using_rcv(cost_params, inode, target_node, rt_node.Tdel, 0, R_upstream);
+ 
+@@ -471,6 +473,7 @@
+         this->rcv_path_data[inode]->backward_delay = rt_node.Tdel;
+ 
+         this->heap_.push_back({expected_total_cost, inode});
++        if(h3d_trace_search_domain())h3d_domain_seed(inode,rt_node.Tdel,backward_path_cost,expected_total_cost,true);
+     }
+ 
+     update_serial_router_stats(this->router_stats_,

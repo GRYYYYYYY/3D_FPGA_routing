@@ -1,0 +1,128 @@
+--- parent/vpr/src/route/h3d_fast_plan.cpp
++++ new/vpr/src/route/h3d_fast_plan.cpp
+@@ -5,6 +5,7 @@
+ #include "h3d_feedback_policy.h"
+ #include "h3d_timing_regret.h"
+ #include "h3d_equivalent_guides.h"
++#include "h3d_exit_price.h"
+ 
+ #include <cmath>
+ #include <bit>
+@@ -135,6 +136,15 @@
+     const char* feedback = std::getenv("VPR_H3D_FEEDBACK");
+     if (equivalent_guide_cap_ && feedback && std::string(feedback) != "0")
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Equivalent guides are currently an independent static-guide experiment");
++    const char* exit_price = std::getenv("VPR_H3D_EXIT_PRICE");
++    if (exit_price) {
++        char* end = nullptr;
++        exit_price_weight_ = std::strtod(exit_price, &end);
++        if (end == exit_price || *end || !std::isfinite(exit_price_weight_) || exit_price_weight_ < 0. || exit_price_weight_ > 1.)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_EXIT_PRICE must be in [0,1]");
++    }
++    if (exit_price_weight_ > 0. && (!edge_encoding_ || !feedback || std::string(feedback) != "1"))
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Exit pricing requires selective feedback on an edge-encoded graph");
+     const char* assignment = std::getenv("VPR_H3D_ASSIGNMENT");
+     std::string solver = assignment ? assignment : "shared";
+     if (solver != "shared" && solver != "independent")
+@@ -443,7 +453,7 @@
+     std::set<RRNodeId> owned;
+     if (routing.route_trees[net])
+         for (const auto& node : routing.route_trees[net]->all_nodes())
+-            if (channel_index_[node.inode] >= 0) owned.insert(node.inode);
++            if (channel_index_[node.inode] >= 0 || (exit_price_weight_ > 0. && prior_guides)) owned.insert(node.inode);
+     auto opening = [&](size_t c) {
+         RRNodeId node = channels_[c];
+         const auto& info = routing.rr_node_route_inf[node];
+@@ -452,7 +462,7 @@
+         double negotiated = info.acc_cost * (1. + pres_fac * std::max(0, demand - graph_.node_capacity(node)));
+         return source_cost(c) + opening_weight * negotiated;
+     };
+-    auto branch = [&](int pin, size_t c) {
++    auto branch_base = [&](int pin, size_t c) {
+         if (mixed) {
+             double sink_cost = proxy_(terminals[pin], c);
+             bool measured = false;
+@@ -474,6 +484,46 @@
+                    + 4. * criticality[pin] * source_cost(c);
+         }
+         return proxy_(terminals[pin], c) * (1. + 4. * criticality[pin]) + 4. * criticality[pin] * proxy_(source, c);
++    };
++    // Prices depend on this refresh's occupancy and present factor. Cache only
++    // within the call, while reusing the static SCC endpoint reachability view.
++    std::unordered_map<int, std::unordered_map<size_t, double>> exit_premiums;
++    auto branch = [&](int pin, size_t c) {
++        double base = branch_base(pin, c);
++        if (exit_price_weight_ == 0. || !prior_guides || !std::isfinite(base)) return base;
++        auto& cached = exit_premiums[pin];
++        if (auto found = cached.find(c); found != cached.end()) return base + found->second;
++        double best = std::numeric_limits<double>::infinity();
++        RRNodeId best_exit = RRNodeId::INVALID();
++        RRNodeId entry = channels_[c];
++        for (auto edge : graph_.node_out_edges(entry)) {
++            RRNodeId destination = graph_.edge_sink_node(entry, edge);
++            if (!h3d_crosses_layers(graph_, entry, destination)) continue;
++            ++exit_price_edges_;
++            std::vector<int> component{reachability_->component(size_t(destination))};
++            bool reaches_sink = closure_view_ ? reach_view_(terminals[pin], true).intersects(component)
++                                              : intersects(reach_(terminals[pin], true), component);
++            if (!reaches_sink) continue;
++            const auto& info = routing.rr_node_route_inf[destination];
++            int demand = info.occ() + (owned.contains(destination) ? 0 : 1);
++            // Native search does not separately charge a nonconfigurable edge.
++            double price = graph_.edge_is_configurable(entry, edge)
++                               ? info.acc_cost * (1. + pres_fac * std::max(0, demand - graph_.node_capacity(destination)))
++                               : 1.;
++            if (price < best || (price == best && destination < best_exit)) {
++                best = price;
++                best_exit = destination;
++            }
++        }
++        VTR_ASSERT(std::isfinite(best));
++        double premium = h3d_exit_price_premium(best, opening_weight, exit_price_weight_);
++        cached.emplace(c, premium);
++        ++exit_price_pairs_;
++        exit_price_positive_ += premium > 0.;
++        if (premium > 0.)
++            VTR_LOG("H3D_EXIT_PRICE net=%zu pin=%d candidate=%zu destination=%zu price=%.17g opening_weight=%.17g weight=%.17g premium=%.17g\n",
++                    size_t(net), pin, size_t(entry), size_t(best_exit), best, double(opening_weight), exit_price_weight_, premium);
++        return base + premium;
+     };
+     // Read-only observations: never query, recalibrate, sort, or alter a score.
+     auto trace_estimate = [&](const char* phase, int pin, size_t c) {
+@@ -859,6 +909,8 @@
+ }
+ 
+ void H3dFastPlan::log() const {
++    VTR_LOG("H3D_EXIT_PRICE_SUMMARY weight=%g pairs=%zu positive=%zu cross_edges=%zu\n",
++            exit_price_weight_, exit_price_pairs_, exit_price_positive_, exit_price_edges_);
+     VTR_LOG("H3D_EQUIVALENT_GUIDES cap=%zu pins=%zu added=%zu\n",
+             equivalent_guide_cap_, equivalent_guide_pins_, equivalent_guide_added_);
+     VTR_LOG("H3D_TIMING_REGRET_SUMMARY enabled=%d guides=%zu pairs=%zu weight=%g\n",
+--- parent/vpr/src/route/h3d_fast_plan.h
++++ new/vpr/src/route/h3d_fast_plan.h
+@@ -69,6 +69,8 @@
+     double reach_miss_seconds_ = 0.;                                   ///< Inclusive closure time, overlaps planner phases.
+     const RRGraphView& graph_;                                          ///< Exact immutable graph used by detailed routing.
+     double timing_guide_weight_ = 0.;                                  ///< Bounded timing-preference amplitude in graph delay units.
++    double exit_price_weight_ = 0.; ///< Opt-in bounded feasible-destination congestion premium during selective refresh only.
++    size_t exit_price_pairs_ = 0, exit_price_positive_ = 0, exit_price_edges_ = 0; ///< Per-refresh cached pairs, positive surcharges and tested cross edges.
+     bool timing_regret_ = false; ///< Restrict timing guidance to measured positive alternative delay gaps.
+     size_t equivalent_guide_cap_ = 0; ///< Opt-in total acceptable crossings per singleton DP guide, preserving its chosen crossing.
+     size_t equivalent_guide_pins_ = 0, equivalent_guide_added_ = 0; ///< Expanded connections and additional exactly measured alternatives.
+--- parent/vpr/src/route/h3d_exit_price.h
++++ new/vpr/src/route/h3d_exit_price.h
+@@ -0,0 +1,14 @@
++#pragma once
++
++#include <algorithm>
++#include <cmath>
++
++/** @brief Bounded dimensionless branch surcharge above an uncongested crossing destination.
++ * The caller supplies the minimum negotiated price over feasible exits. This
++ * is a relaxed congestion surrogate, not a joint delay/congestion path cost.
++ */
++inline double h3d_exit_price_premium(double price, double opening_weight, double weight) {
++    if (!std::isfinite(price) || !std::isfinite(opening_weight) || !std::isfinite(weight)
++        || opening_weight <= 0. || weight <= 0.) return 0.;
++    return opening_weight * std::min(1., weight) * std::clamp(price - 1., 0., 1.);
++}

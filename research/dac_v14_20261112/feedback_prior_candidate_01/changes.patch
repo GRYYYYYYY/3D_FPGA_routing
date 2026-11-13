@@ -1,0 +1,63 @@
+--- a/h3d_routing.cpp
++++ b/h3d_routing.cpp
+@@ -54,6 +54,7 @@
+     bool delay_cost = false;
+     size_t delay_budget = 4096;
+     float min_criticality = 0.f;
++    std::string feedback_action_name = "all"; ///< Exact label for action-ablation provenance.
+     e_h3d_feedback_action feedback_action = e_h3d_feedback_action::ALL; ///< Development action ablation; full selective policy remains default.
+     bool feedback = false;            ///< Selective refresh of guides on VPR-selected reroute nets.
+     int cooldown = 3;                  ///< Minimum iterations between refresh attempts.
+@@ -120,10 +121,13 @@
+         result.feedback = feedback == 1.f;
+         const char* action_env = std::getenv("VPR_H3D_FEEDBACK_ACTION");
+         std::string action = action_env ? action_env : "all";
++        result.feedback_action_name = action;
+         if (action == "all") result.feedback_action = e_h3d_feedback_action::ALL;
+         else if (action == "clear") result.feedback_action = e_h3d_feedback_action::CLEAR_ONLY;
+         else if (action == "reassign") result.feedback_action = e_h3d_feedback_action::REASSIGN_ONLY;
+-        else VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_FEEDBACK_ACTION must be all, clear or reassign");
++        else if (action == "finite") result.feedback_action = e_h3d_feedback_action::FINITE_ONLY;
++        else if (action == "incomplete") result.feedback_action = e_h3d_feedback_action::INCOMPLETE_ONLY;
++        else VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_FEEDBACK_ACTION must be all, clear, reassign, finite or incomplete");
+         if (!result.feedback && result.feedback_action != e_h3d_feedback_action::ALL)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Feedback action ablation requires selective feedback");
+         result.final_trace = std::getenv("VPR_H3D_FINAL_TRACE") != nullptr;
+@@ -273,12 +277,12 @@
+             groups_ += result.groups;
+             no_candidate_ += result.no_candidate;
+             bool accept = !refresh || (result.refresh_accepted
+-                                      && h3d_allow_refresh_action(settings().feedback_action, result.refresh_clear));
++                                      && h3d_allow_refresh_action(settings().feedback_action, result.refresh_clear, std::isfinite(result.previous_cost)));
+             if (refresh && settings().feedback_action != e_h3d_feedback_action::ALL)
+-                VTR_LOG("H3D_REFRESH_ACTION net=%zu iter=%d policy=%s proposed_accepted=%d clear=%d accepted=%d\n",
++                VTR_LOG("H3D_REFRESH_ACTION net=%zu iter=%d policy=%s proposed_accepted=%d clear=%d accepted=%d prior_finite=%d\n",
+                         size_t(net), iteration,
+-                        settings().feedback_action == e_h3d_feedback_action::CLEAR_ONLY ? "clear" : "reassign",
+-                        result.refresh_accepted, result.refresh_clear, accept);
++                        settings().feedback_action_name.c_str(),
++                        result.refresh_accepted, result.refresh_clear, accept, std::isfinite(result.previous_cost));
+             if (refresh) {
+                 refresh_accepts_ += accept;
+                 VTR_LOG("H3D_REFRESH net=%zu iter=%d accepted=%d old_cost=%g new_cost=%g\n",
+--- a/h3d_feedback_policy.h
++++ b/h3d_feedback_policy.h
+@@ -18,11 +18,13 @@
+ }
+ 
+ /** @brief Isolate guide deactivation from candidate reassignment in development. */
+-enum class e_h3d_feedback_action { ALL, CLEAR_ONLY, REASSIGN_ONLY };
++enum class e_h3d_feedback_action { ALL, CLEAR_ONLY, REASSIGN_ONLY, FINITE_ONLY, INCOMPLETE_ONLY };
+ 
+ /** @brief Filter accepted proposals without changing their computation or cost. */
+-inline bool h3d_allow_refresh_action(e_h3d_feedback_action action, bool clear) {
+-    return action == e_h3d_feedback_action::ALL
+-           || (clear ? action == e_h3d_feedback_action::CLEAR_ONLY
+-                     : action == e_h3d_feedback_action::REASSIGN_ONLY);
++inline bool h3d_allow_refresh_action(e_h3d_feedback_action action, bool clear, bool prior_finite) {
++    if (action == e_h3d_feedback_action::ALL) return true;
++    if (clear) return action == e_h3d_feedback_action::CLEAR_ONLY;
++    return action == e_h3d_feedback_action::REASSIGN_ONLY
++           || (action == e_h3d_feedback_action::FINITE_ONLY && prior_finite)
++           || (action == e_h3d_feedback_action::INCOMPLETE_ONLY && !prior_finite);
+ }

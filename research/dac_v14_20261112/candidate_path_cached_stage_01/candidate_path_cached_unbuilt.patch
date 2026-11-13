@@ -1,0 +1,159 @@
+--- before/h3d_delay_plan.h
++++ after/h3d_delay_plan.h
+@@ -35,6 +35,7 @@
+         std::vector<double> edge_delays; ///< nodes[i] -> nodes[i+1].
+     };
+     bool trace_paths() const { return trace_paths_; }
++    bool cache_paths() const { return cache_paths_; }
+     PathWitness path_witness(RRNodeId endpoint, bool reverse, RRNodeId entry) const;
+     /** @brief Independent reverse candidate query; never modifies old distance
+      * caches. Result edges are in the reverse adapter's order, ending at the
+@@ -64,6 +65,7 @@
+     Distances empty_;
+     size_t queries_ = 0, settled_ = 0, truncated_ = 0, hits_ = 0;
+     bool trace_paths_ = false; ///< Decision-neutral canonical shortest witnesses, legacy queries only.
++    bool cache_paths_ = false; ///< Capture settled paths independently of verbose diagnostics.
+     using WitnessForest = std::unordered_map<size_t, H3dDelaySearch::WitnessStep>;
+     std::unordered_map<RRNodeId, WitnessForest> forward_witness_, reverse_witness_;
+     size_t witness_records_ = 0, witness_cache_skips_ = 0;
+--- before/h3d_delay_plan.cpp
++++ after/h3d_delay_plan.cpp
+@@ -19,6 +19,17 @@
+         if (trace_paths_ && (!edge_encoding_ || (targeted && std::string(targeted) == "1")
+                             || !prefix || std::string(prefix) != "1"))
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Path-witness diagnostics require edge encoding, retained-prefix tracing and non-targeted queries");
++    }
++    cache_paths_ = trace_paths_;
++    if (const char* value = std::getenv("VPR_H3D_CANDIDATE_PATH_CAPTURE")) {
++        if (std::string(value) != "0" && std::string(value) != "1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_CANDIDATE_PATH_CAPTURE must be 0 or 1");
++        cache_paths_ |= std::string(value) == "1";
++    }
++    if (cache_paths_) {
++        const char* targeted = std::getenv("VPR_H3D_TARGET_DELAY");
++        if (!edge_encoding_ || (targeted && std::string(targeted) == "1"))
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Cached path capture requires legacy edge-encoding distance queries");
+     }
+     if (const char* value = std::getenv("VPR_H3D_TARGET_FRONTIER")) {
+         if (std::string(value) != "0" && std::string(value) != "1")
+@@ -160,8 +171,8 @@
+                 accept(graph_.edge_sink_node(current, edge), graph_.rr_switch()[RRSwitchId(graph_.edge_switch(current, edge))].Tdel);
+         }
+     };
+-    auto result = search_->query(size_t(endpoint), budget_, terminal, expand, trace_paths_);
+-    if (trace_paths_) {
++    auto result = search_->query(size_t(endpoint), budget_, terminal, expand, cache_paths_);
++    if (cache_paths_) {
+         if (result.witness.size() <= witness_record_limit_ - witness_records_) {
+             auto& forest = (reverse ? reverse_witness_ : forward_witness_)[endpoint];
+             forest.reserve(result.witness.size());
+@@ -514,7 +525,7 @@
+ }
+ 
+ H3dDelayPlan::PathWitness H3dDelayPlan::path_witness(RRNodeId endpoint, bool reverse, RRNodeId entry) const {
+-    if (!trace_paths_) return {"disabled", 0., {}, {}};
++    if (!cache_paths_) return {"disabled", 0., {}, {}};
+     const auto& distances = reverse ? reverse_ : forward_;
+     auto values = distances.find(endpoint);
+     if (values == distances.end() || !values->second.contains(entry)) return {"unmeasured", 0., {}, {}};
+@@ -557,6 +568,9 @@
+ }
+ 
+ void H3dDelayPlan::log() const {
++    if (cache_paths_ && !trace_paths_)
++        VTR_LOG("H3D_CANDIDATE_PATH_CAPTURE records=%zu record_limit=%zu skipped_queries=%zu forward_endpoints=%zu reverse_endpoints=%zu\n",
++                witness_records_, witness_record_limit_, witness_cache_skips_, forward_witness_.size(), reverse_witness_.size());
+     if (trace_paths_)
+         VTR_LOG("H3D_PATH_CACHE records=%zu record_limit=%zu skipped_queries=%zu forward_endpoints=%zu reverse_endpoints=%zu\n",
+                 witness_records_, witness_record_limit_, witness_cache_skips_, forward_witness_.size(), reverse_witness_.size());
+--- before/h3d_fast_plan.h
++++ after/h3d_fast_plan.h
+@@ -104,6 +104,7 @@
+     size_t candidate_path_work_=0,candidate_path_found_=0,candidate_path_exact_=0,candidate_path_memory_=0;
+     double candidate_path_seconds_=0.;
+     double candidate_path_score_weight_=0.,candidate_path_score_seconds_=0.,candidate_path_resolve_seconds_=0.;
++    bool candidate_path_use_cached_=false; ///< Current-price observations from already-settled reverse witnesses.
+     size_t candidate_path_score_plans_=0,candidate_path_score_records_=0,candidate_path_score_observed_=0,candidate_path_score_estimated_=0;
+     size_t candidate_path_score_changed_=0,candidate_path_resolves_=0;
+     bool dp_tie_pressure_ = false; ///< Zero extra congestion preference only on strict finite shared-DP exclusion ties.
+--- before/h3d_fast_plan.cpp
++++ after/h3d_fast_plan.cpp
+@@ -237,6 +237,13 @@
+     }
+     if(candidate_path_score_weight_>0. && candidate_path_mode_!=3)
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Candidate price score requires the independently tested priced query mode");
++    if(const char* text=std::getenv("VPR_H3D_CANDIDATE_PATH_USE_CACHED")) {
++        if(std::string(text)!="0" && std::string(text)!="1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_CANDIDATE_PATH_USE_CACHED must be 0 or 1");
++        candidate_path_use_cached_=std::string(text)=="1";
++    }
++    if(candidate_path_use_cached_ && candidate_path_score_weight_<=0.)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Cached price observations require enabled candidate path score");
+     if (refresh_independent_ && (independent_ || !feedback || std::string(feedback) != "1"
+                                 || !target_feedback || std::string(target_feedback) != "1"))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Independent refresh ablation requires initial shared planning and target-restricted feedback");
+@@ -319,6 +326,8 @@
+     if (channels_.empty() && !edge_encoding_)
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "No CHANZ candidates; select an explicit supported graph encoding");
+     if (delay_cost) delay_plan_ = std::make_unique<H3dDelayPlan>(graph_, delay_budget, edge_encoding_);
++    if(candidate_path_use_cached_ && (!delay_plan_ || !delay_plan_->cache_paths()))
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Cached price observations require enabled legacy path capture");
+ }
+ 
+ void H3dFastPlan::validate_against_bfs() {
+@@ -1381,6 +1390,47 @@
+                 result.priced_upper_seconds.value_or(missing),result.physical_path_seconds.value_or(missing),result.toll_path_seconds.value_or(missing),result.lower_seconds.value_or(missing),size_t(sink),
+                 nodes.empty()?"-":path.str().c_str());
+     }
++    std::set<int> selected_pins;for(const auto& request:requests)selected_pins.insert(request.pin);
++    if(candidate_path_use_cached_) {
++        VTR_ASSERT(delay_plan_->cache_paths());
++        // Only read legacy-known witnesses on the same selected native-target
++        // leaves. Distances/forests are static; prices and ownership are not.
++        for(const auto& leaf:leaves) {
++            if(!selected_pins.contains(leaf.pin))continue;
++            auto back=reverse.find(leaf.pin);if(back==reverse.end())continue;
++            RRNodeId sink=terminals[leaf.pin];
++            for(const auto& candidate:leaf.candidates) {
++                RRNodeId entry=channels_[table[candidate.channel]];
++                if(!back->second->contains(entry))continue;
++                auto witness=delay_plan_->path_witness(sink,true,entry);
++                if(std::string(witness.status)!="measured")continue;
++                double toll=0.;std::vector<double> tolls;
++                for(size_t j=1;j<witness.nodes.size();++j) {
++                    RRNodeId node=witness.nodes[j];double edge_toll=0.;
++                    auto type=graph_.node_type(node);
++                    if((type==e_rr_type::CHANX || type==e_rr_type::CHANY) && !owned.contains(node)) {
++                        const auto& info=routing.rr_node_route_inf[node];
++                        double price=double(info.acc_cost)*(1.+double(pres_fac)*std::max(0,int(info.occ())+1-int(graph_.node_capacity(node))));
++                        double fraction=std::isfinite(price) ? std::max(0.,price-1.)/std::max(1.,price) : 1.;
++                        edge_toll=weight*unit*fraction;
++                    }
++                    tolls.push_back(edge_toll);toll+=edge_toll;
++                }
++                Observation observation{witness.delay_seconds/unit,toll/unit,proxy_(sink,table[candidate.channel]),toll==0.};
++                VTR_ASSERT(!observations.contains({leaf.pin,candidate.channel}));
++                observations[{leaf.pin,candidate.channel}]=observation;
++                bool sample=calibration.emplace(std::make_pair(sink,entry),observation).second;
++                std::ostringstream path;path<<std::setprecision(17);
++                for(size_t j=0;j<witness.nodes.size();++j) {
++                    RRNodeId node=witness.nodes[j];const auto& info=routing.rr_node_route_inf[node];if(j)path<<';';
++                    path<<size_t(node)<<','<<(j<witness.edge_delays.size()?witness.edge_delays[j]:0.)<<','<<(j<tolls.size()?tolls[j]:0.)
++                        <<','<<info.occ()<<','<<graph_.node_capacity(node)<<','<<double(info.acc_cost)<<','<<int(owned.contains(node));
++                }
++                VTR_LOG("H3D_PATH_PRICE_CACHE_OBSERVATION plan=%zu net=%zu pin=%d entry=%zu sink=%zu physical_units=%.17g toll_units=%.17g geometry_units=%.17g exact_proxy=%d calibration_sample=%d unit_seconds=%.17g pres_fac=%.17g toll_weight=%.17g path=%s\n",
++                        plan_id,size_t(net),leaf.pin,size_t(entry),size_t(sink),observation.physical,observation.toll,observation.geometry,int(observation.exact),int(sample),unit,double(pres_fac),weight,path.str().c_str());
++            }
++        }
++    }
+     candidate_path_seconds_+=std::chrono::duration<double>(std::chrono::steady_clock::now()-started).count();
+     if(candidate_path_score_weight_==0. || calibration.empty())return false;
+     const auto score_started=std::chrono::steady_clock::now();
+@@ -1393,7 +1443,6 @@
+     }
+     scale/=calibration.size();rate/=calibration.size();
+     const double reliability=all_exact ? 1. : .25;
+-    std::set<int> selected_pins;for(const auto& request:requests)selected_pins.insert(request.pin);
+     bool changed=false;
+     for(auto& leaf:leaves) {
+         if(!selected_pins.contains(leaf.pin))continue;

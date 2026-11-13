@@ -1,0 +1,13 @@
+--- parent/vpr/src/route/h3d_routing.cpp
++++ candidate/vpr/src/route/h3d_routing.cpp
+@@ -425,7 +425,9 @@
+                         const auto& before = prior[pin].preferred;
+                         const auto& after = result.guides[pin].preferred;
+                         if (before == after) continue;
+-                        bool retained = tree && bool(tree->find_by_isink(pin));
++                        // The sink lookup may retain a pointer after pruning; the native
++                        // reached bitmap is the authoritative membership state.
++                        bool retained = tree && tree->get_is_isink_reached().get(pin);
+                         bool targeted = std::find(remaining_targets.begin(), remaining_targets.end(), pin) != remaining_targets.end();
+                         VTR_ASSERT(!retained || !targeted);
+                         std::string old_ids, new_ids;

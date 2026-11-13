@@ -1,0 +1,654 @@
+{
+  "scope": "Four seen seed11HybridO/P0/W100 cases, fixed per-arm environment after explicitly normalizing absent default-off flags. Same Ri binary, paired C exactTf pilot plus strict matched sealed Tf controls reused for transfer; NOT all-row samebinary formal timing. Initial sharedplanning preserved; refresh solver/objective isolated. Later routing contexts may differ.",
+  "statuses": {
+    "A0": {
+      "legal": 4
+    },
+    "R1": {
+      "legal": 4
+    },
+    "Tf": {
+      "legal": 4
+    },
+    "Ri": {
+      "legal": 4
+    }
+  },
+  "comparisons": {
+    "Tf->Ri": {
+      "declared_circuits": 4,
+      "both_legal": 4,
+      "improve": 0,
+      "tie": 3,
+      "regress": 1,
+      "circuit_geomean_improvement_pct": -0.6560353925994855,
+      "worst_improvement_pct": -2.6500776402518023,
+      "cases": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_ns": 6.20812,
+          "new_ns": 6.37264,
+          "ratio": 1.026500776402518,
+          "improvement_pct": -2.6500776402518023
+        },
+        {
+          "circuit": "spmv",
+          "reference_ns": 7.04599,
+          "new_ns": 7.04599,
+          "ratio": 1.0,
+          "improvement_pct": 0.0
+        },
+        {
+          "circuit": "softmax",
+          "reference_ns": 8.97575,
+          "new_ns": 8.97575,
+          "ratio": 1.0,
+          "improvement_pct": 0.0
+        },
+        {
+          "circuit": "bnn",
+          "reference_ns": 13.4216,
+          "new_ns": 13.4216,
+          "ratio": 1.0,
+          "improvement_pct": 0.0
+        }
+      ]
+    },
+    "A0->Ri": {
+      "declared_circuits": 4,
+      "both_legal": 4,
+      "improve": 2,
+      "tie": 1,
+      "regress": 1,
+      "circuit_geomean_improvement_pct": 10.77199368048406,
+      "worst_improvement_pct": -0.16049014172601073,
+      "cases": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_ns": 9.93208,
+          "new_ns": 6.37264,
+          "ratio": 0.6416218959170688,
+          "improvement_pct": 35.83781040829312
+        },
+        {
+          "circuit": "spmv",
+          "reference_ns": 7.0347,
+          "new_ns": 7.04599,
+          "ratio": 1.00160490141726,
+          "improvement_pct": -0.16049014172601073
+        },
+        {
+          "circuit": "softmax",
+          "reference_ns": 8.97575,
+          "new_ns": 8.97575,
+          "ratio": 1.0,
+          "improvement_pct": 0.0
+        },
+        {
+          "circuit": "bnn",
+          "reference_ns": 13.6074,
+          "new_ns": 13.4216,
+          "ratio": 0.9863456648588268,
+          "improvement_pct": 1.3654335141173202
+        }
+      ]
+    },
+    "R1->Ri": {
+      "declared_circuits": 4,
+      "both_legal": 4,
+      "improve": 1,
+      "tie": 3,
+      "regress": 0,
+      "circuit_geomean_improvement_pct": 2.187334521480766,
+      "worst_improvement_pct": 0.0,
+      "cases": [
+        {
+          "circuit": "eltwise_layer",
+          "reference_ns": 6.96208,
+          "new_ns": 6.37264,
+          "ratio": 0.9153356468181921,
+          "improvement_pct": 8.466435318180787
+        },
+        {
+          "circuit": "spmv",
+          "reference_ns": 7.04599,
+          "new_ns": 7.04599,
+          "ratio": 1.0,
+          "improvement_pct": 0.0
+        },
+        {
+          "circuit": "softmax",
+          "reference_ns": 8.97575,
+          "new_ns": 8.97575,
+          "ratio": 1.0,
+          "improvement_pct": 0.0
+        },
+        {
+          "circuit": "bnn",
+          "reference_ns": 13.4216,
+          "new_ns": 13.4216,
+          "ratio": 1.0,
+          "improvement_pct": 0.0
+        }
+      ]
+    }
+  },
+  "observations": [
+    {
+      "circuit": "eltwise_layer",
+      "arm": "A0",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 9.93208,
+        "wirelength": 229175,
+        "router_seconds": 10.48,
+        "iterations": 43,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 229175,
+        "sb_pairs_used": 127,
+        "sb_pair_net_occupancy": 127,
+        "cb_crossing_output_sources_used": 956,
+        "cb_crossing_output_source_net_occupancy": 956,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 558,
+          "OPIN->CHANY": 449,
+          "CHANX->CHANX": 127
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 26.47356989607215,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_eltwise_layer_s11_hybrid_o_n40_w100_p0_a0",
+      "reference_semantics": "A0"
+    },
+    {
+      "circuit": "eltwise_layer",
+      "arm": "R1",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 6.96208,
+        "wirelength": 229485,
+        "router_seconds": 15.47,
+        "iterations": 46,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 229485,
+        "sb_pairs_used": 134,
+        "sb_pair_net_occupancy": 134,
+        "cb_crossing_output_sources_used": 958,
+        "cb_crossing_output_source_net_occupancy": 958,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 559,
+          "CHANX->CHANX": 134,
+          "OPIN->CHANY": 451
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 30.338064294308424,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_eltwise_layer_s11_hybrid_o_n40_w100_p0_delay_critical_c6",
+      "reference_semantics": "R1"
+    },
+    {
+      "circuit": "eltwise_layer",
+      "arm": "Tf",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 6.20812,
+        "wirelength": 228420,
+        "router_seconds": 12.77,
+        "iterations": 42,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 228420,
+        "sb_pairs_used": 118,
+        "sb_pair_net_occupancy": 118,
+        "cb_crossing_output_sources_used": 955,
+        "cb_crossing_output_source_net_occupancy": 955,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 554,
+          "CHANX->CHANX": 118,
+          "OPIN->CHANY": 453
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 28.317327607423067,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_dev_01/runs/eltwise_layer_C",
+      "reference_semantics": "CexactTf"
+    },
+    {
+      "circuit": "eltwise_layer",
+      "arm": "Ri",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 6.37264,
+        "wirelength": 226840,
+        "router_seconds": 11.65,
+        "iterations": 34,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 226840,
+        "sb_pairs_used": 84,
+        "sb_pair_net_occupancy": 84,
+        "cb_crossing_output_sources_used": 972,
+        "cb_crossing_output_source_net_occupancy": 972,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 566,
+          "OPIN->CHANY": 447,
+          "CHANX->CHANX": 84
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 26.815715089440346,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_dev_01/runs/eltwise_layer_Ri",
+      "reference_semantics": "Ri"
+    },
+    {
+      "circuit": "spmv",
+      "arm": "A0",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 7.0347,
+        "wirelength": 148463,
+        "router_seconds": 2.96,
+        "iterations": 17,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148463,
+        "sb_pairs_used": 0,
+        "sb_pair_net_occupancy": 0,
+        "cb_crossing_output_sources_used": 967,
+        "cb_crossing_output_source_net_occupancy": 967,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "OPIN->CHANX": 582
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 16.373151622712612,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_spmv_s11_hybrid_o_n40_w100_p0_a0",
+      "reference_semantics": "A0"
+    },
+    {
+      "circuit": "spmv",
+      "arm": "R1",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 7.04599,
+        "wirelength": 148617,
+        "router_seconds": 5.79,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148617,
+        "sb_pairs_used": 1,
+        "sb_pair_net_occupancy": 1,
+        "cb_crossing_output_sources_used": 967,
+        "cb_crossing_output_source_net_occupancy": 967,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "OPIN->CHANX": 584,
+          "CHANX->CHANX": 1
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 19.86840895563364,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_spmv_s11_hybrid_o_n40_w100_p0_delay_critical_c6",
+      "reference_semantics": "R1"
+    },
+    {
+      "circuit": "spmv",
+      "arm": "Tf",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 7.04599,
+        "wirelength": 148617,
+        "router_seconds": 4.32,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148617,
+        "sb_pairs_used": 1,
+        "sb_pair_net_occupancy": 1,
+        "cb_crossing_output_sources_used": 967,
+        "cb_crossing_output_source_net_occupancy": 967,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "OPIN->CHANX": 584,
+          "CHANX->CHANX": 1
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 18.101729404181242,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/spmv_Tf",
+      "reference_semantics": "Tf"
+    },
+    {
+      "circuit": "spmv",
+      "arm": "Ri",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 7.04599,
+        "wirelength": 148617,
+        "router_seconds": 4.23,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 148617,
+        "sb_pairs_used": 1,
+        "sb_pair_net_occupancy": 1,
+        "cb_crossing_output_sources_used": 967,
+        "cb_crossing_output_source_net_occupancy": 967,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "OPIN->CHANX": 584,
+          "CHANX->CHANX": 1
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 18.09910462424159,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/runs/spmv_Ri",
+      "reference_semantics": "Ri"
+    },
+    {
+      "circuit": "softmax",
+      "arm": "A0",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 8.97575,
+        "wirelength": 169490,
+        "router_seconds": 2.34,
+        "iterations": 13,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169490,
+        "sb_pairs_used": 6,
+        "sb_pair_net_occupancy": 6,
+        "cb_crossing_output_sources_used": 713,
+        "cb_crossing_output_source_net_occupancy": 713,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 424,
+          "OPIN->CHANY": 352,
+          "CHANX->CHANX": 6
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 35.810159884393215,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_softmax_s11_hybrid_o_n60_w100_p0_a0",
+      "reference_semantics": "A0"
+    },
+    {
+      "circuit": "softmax",
+      "arm": "R1",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 8.97575,
+        "wirelength": 169431,
+        "router_seconds": 5.88,
+        "iterations": 13,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169431,
+        "sb_pairs_used": 6,
+        "sb_pair_net_occupancy": 6,
+        "cb_crossing_output_sources_used": 713,
+        "cb_crossing_output_source_net_occupancy": 713,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 422,
+          "OPIN->CHANY": 352,
+          "CHANX->CHANX": 6
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 44.5787456035614,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c6",
+      "reference_semantics": "R1"
+    },
+    {
+      "circuit": "softmax",
+      "arm": "Tf",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 8.97575,
+        "wirelength": 169431,
+        "router_seconds": 4.84,
+        "iterations": 13,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169431,
+        "sb_pairs_used": 6,
+        "sb_pair_net_occupancy": 6,
+        "cb_crossing_output_sources_used": 713,
+        "cb_crossing_output_source_net_occupancy": 713,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 422,
+          "OPIN->CHANY": 352,
+          "CHANX->CHANX": 6
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 39.68940610811114,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/softmax_Tf",
+      "reference_semantics": "Tf"
+    },
+    {
+      "circuit": "softmax",
+      "arm": "Ri",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 8.97575,
+        "wirelength": 169431,
+        "router_seconds": 4.61,
+        "iterations": 13,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 169431,
+        "sb_pairs_used": 6,
+        "sb_pair_net_occupancy": 6,
+        "cb_crossing_output_sources_used": 713,
+        "cb_crossing_output_source_net_occupancy": 713,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 422,
+          "OPIN->CHANY": 352,
+          "CHANX->CHANX": 6
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 39.34284256026149,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/runs/softmax_Ri",
+      "reference_semantics": "Ri"
+    },
+    {
+      "circuit": "bnn",
+      "arm": "A0",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 13.6074,
+        "wirelength": 2070833,
+        "router_seconds": 69.89,
+        "iterations": 18,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 2070833,
+        "sb_pairs_used": 98,
+        "sb_pair_net_occupancy": 98,
+        "cb_crossing_output_sources_used": 5067,
+        "cb_crossing_output_source_net_occupancy": 5067,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 2479,
+          "OPIN->CHANX": 3042,
+          "CHANX->CHANX": 98
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 251.6555270627141,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_bnn_s11_hybrid_o_n125_w100_p0_a0",
+      "reference_semantics": "A0"
+    },
+    {
+      "circuit": "bnn",
+      "arm": "R1",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 13.4216,
+        "wirelength": 2068908,
+        "router_seconds": 297.57,
+        "iterations": 35,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 2068908,
+        "sb_pairs_used": 86,
+        "sb_pair_net_occupancy": 86,
+        "cb_crossing_output_sources_used": 5072,
+        "cb_crossing_output_source_net_occupancy": 5072,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 2494,
+          "OPIN->CHANX": 3060,
+          "CHANX->CHANX": 86
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 472.3193605802953,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_bnn_s11_hybrid_o_n125_w100_p0_delay_critical_c6",
+      "reference_semantics": "R1"
+    },
+    {
+      "circuit": "bnn",
+      "arm": "Tf",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 13.4216,
+        "wirelength": 2074317,
+        "router_seconds": 87.94,
+        "iterations": 19,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 2074317,
+        "sb_pairs_used": 105,
+        "sb_pair_net_occupancy": 105,
+        "cb_crossing_output_sources_used": 5062,
+        "cb_crossing_output_source_net_occupancy": 5062,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 2482,
+          "CHANX->CHANX": 105,
+          "OPIN->CHANX": 3057
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 266.4325393475592,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/bnn_Tf",
+      "reference_semantics": "Tf"
+    },
+    {
+      "circuit": "bnn",
+      "arm": "Ri",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 13.4216,
+        "wirelength": 2073244,
+        "router_seconds": 93.81,
+        "iterations": 21,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 2073244,
+        "sb_pairs_used": 100,
+        "sb_pair_net_occupancy": 100,
+        "cb_crossing_output_sources_used": 5067,
+        "cb_crossing_output_source_net_occupancy": 5067,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 2491,
+          "OPIN->CHANX": 3049,
+          "CHANX->CHANX": 100
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "process_seconds": 278.33562882244587,
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/runs/bnn_Ri",
+      "reference_semantics": "Ri"
+    }
+  ],
+  "input_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_membership_dev_02/target_membership_mechanisms.json": "0e7b370e9c5dc40e133e78cd2a382ae07ec11eb1f9bc45c55a1f0a3fa9c58a9b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_dev_01/runs/eltwise_layer_C/refresh_assignment_control_equivalence.json": "e0ffd8b9c9aebbc10880d9c45500c119e2b2ee14fde5cd7aa3c10902d4c96d4d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_dev_01/input_seal.json": "3c06f69095f72be1b99d17d528ee387d349a0af8db9bd5e8e84338447a3c1698",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_dev_01/eltwise_layer_references.json": "7fd8e9c0c52de2f51bb25835d40e34cfe122c61747df1989b89852d72cc735fe",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_dev_01/refresh_assignment_mechanisms.json": "8b8e6b707cc4faf7fa21217a601c5e16761fd524edc00aff4e63b13c31dc9eb1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_eltwise_layer_s11_hybrid_o_n40_w100_p0_a0/manifest.json": "42f9d75c957eadff6f7c12aad4638a2df1e68de84c1fe4daddd1ff7fe36a0d37",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_eltwise_layer_s11_hybrid_o_n40_w100_p0_a0/independent_audit.json": "c9308183a315f9fd4ffb608fcf7201d2636b28b665c4f9ae94e261860d48a611",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_eltwise_layer_s11_hybrid_o_n40_w100_p0_delay_critical_c6/manifest.json": "b59d84c46cdfec0eedb7a7a58be660f442b196686816e8ff185f654e5b19a512",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_eltwise_layer_s11_hybrid_o_n40_w100_p0_delay_critical_c6/independent_audit.json": "b9d071725a81cebae2808d187d926f404fd3a9aafaa43176db94fa051c2d34b0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_dev_01/runs/eltwise_layer_C/manifest.json": "3f20259919dc9cc94b647e21379798cf587e182f9a77e22c10975330701c148b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_dev_01/runs/eltwise_layer_C/independent_audit.json": "27862327ace03e7800f627eff1165a1f40e98f6d86ed09cda5814bf11fcc30d4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_dev_01/runs/eltwise_layer_C/final_guide_audit.json": "69992fa52194707adb39135686a9562998cc38b9e6ffcba0e7f24394869d6464",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_dev_01/runs/eltwise_layer_Ri/manifest.json": "10d2511a97c263b78cbae552187b3ae5bee295639e182ece9769c89c007a4ef9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_dev_01/runs/eltwise_layer_Ri/independent_audit.json": "1608c4fbca270fc08f3e9cf6dee54deb471b987842ed9140475aada557956ef5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_dev_01/runs/eltwise_layer_Ri/final_guide_audit.json": "0f1cd7c03f267894b65df768497a93437bf91b1655cb18e73fd0f3b3eccf6594",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/input_seal.json": "d69de6f83c1c7873c499245a034521e8b3f88f3326cc95ae0134b430236f60fa",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/spmv_references.json": "241ae426fd9277c67187c656a7b65f5eb9e6c253f63266cc4b8e651191301f39",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/refresh_assignment_mechanisms.json": "c41aa0b333d9f03112595e5ae4a9f63d2327ea019563df0bdd3ee6fd63d3942f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_spmv_s11_hybrid_o_n40_w100_p0_a0/manifest.json": "b0f70a9fa060b14be20be9e7ff80f22ce2d420936140c46a9ca067b50a0667a0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_spmv_s11_hybrid_o_n40_w100_p0_a0/independent_audit.json": "4dd192db3609f05cb0b370d465a254b6c9b419c1d6557a8e51e136256fff6439",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_spmv_s11_hybrid_o_n40_w100_p0_delay_critical_c6/manifest.json": "6a635f77bf9f4a715712fc0d5d0403288f4c94544c1c61f578b60da5d5820dc4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_spmv_s11_hybrid_o_n40_w100_p0_delay_critical_c6/independent_audit.json": "97d022ffb5496f095164b5355af003df22f80b67096f6cb254ab38eed99402e5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/spmv_Tf/manifest.json": "2eeff040daaff20efe7fe59c232021d16c9ae32df4735225ce9657583afb63c8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/spmv_Tf/independent_audit.json": "10b3d73c45c18e21d6d2affa93cad9f418129acfe89504178012f1083386248b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/input_seal.json": "76258d312fa710d47783d56e023d1928f474a8aa23899e043f38448ca35dde94",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/spmv_Tf/final_guide_audit.json": "47cac7f2d4c42e55ed4625952b0ed4c2ac9496444769ac952901de79cdd6be3e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/runs/spmv_Ri/manifest.json": "ed5c22f16df9d77665e5a5e0d42460848f15c16acf190c6bc9dcaa3e37d1e227",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/runs/spmv_Ri/independent_audit.json": "4422a8fb39adc509a119155d447ddc41f380668aa974a9168e89412e192b1237",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/runs/spmv_Ri/final_guide_audit.json": "5b9c4ef7c3030225c1a33b167fa6f98820763bbdb4d4771902caae701ee2ca6e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/softmax_references.json": "4086fd2633f0a69eb70296afda8b226cfca40d10481f5794cc9130f9e0fdb56f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_softmax_s11_hybrid_o_n60_w100_p0_a0/manifest.json": "c9104a823e9181760e0bf80771be2ca85428049f41c39d668ea9ddf2f6b53533",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_softmax_s11_hybrid_o_n60_w100_p0_a0/independent_audit.json": "87aa7d2bd6cc0955498ed6a41cd8e09a33069f409078afda5bbbdb7a7828e3c2",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c6/manifest.json": "bbdc4c9458bb8a2b65b5bf78df5f55c3546c8987c9459da5d95e6b43283f39e7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c6/independent_audit.json": "54c2e6b463908005cf3e772fef7de744879f40dce94ef8742dd17bea12e6af66",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/softmax_Tf/manifest.json": "795ea5428c8ce14430478a8e30e15cefbfb0fd08182fba9a0ce0afcf5f29a670",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/softmax_Tf/independent_audit.json": "eee696c920e3ad486facbbe6be4b655da68e254a33f498ecb513ee461ea0d5ef",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/softmax_Tf/final_guide_audit.json": "8a12008bd188c8fb638e7fc68eb599cfb535916ff45909860fefac58af2c1b69",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/runs/softmax_Ri/manifest.json": "7af5f370ff710e7b96872a447dd051159a7a4c5bc7fd5af8bbe4d049477dead8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/runs/softmax_Ri/independent_audit.json": "64b1f26e6eaff3f62fe0c638bfb093968bda1557c0a9bb2087a88261b75e3fce",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/runs/softmax_Ri/final_guide_audit.json": "8ad4d2e0769819ccf1a114fc12719b44ab6de634b5a5cbae8df830151a511625",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/bnn_references.json": "a15c755fafd38c518a7e359eec1899b8805f7118c14eb2dc767cf116821f1227",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_bnn_s11_hybrid_o_n125_w100_p0_a0/manifest.json": "6e6c97b60f5f56401cf61e5e6ac1d6d49615a0414d2a0843fa253a9c9d6455c6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_bnn_s11_hybrid_o_n125_w100_p0_a0/independent_audit.json": "b9db56678da4fecdc1f6ed2ed17f22d19cc1162d07e2286353f05b9388ad5fbd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_bnn_s11_hybrid_o_n125_w100_p0_delay_critical_c6/manifest.json": "adc8e4fbed69b9dee10065ce974e3dc85dc3f57126e14ed971cd7c3079ce2614",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_bnn_s11_hybrid_o_n125_w100_p0_delay_critical_c6/independent_audit.json": "9e99419043bd2197f8f0baae137526a199c1fe887ef589bd9cfae6a058dc8dbc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/bnn_Tf/manifest.json": "8113efe4e7c300764f19b88dde3c6fbda39b80c45c2ddb1bce831d1f9ba48bd3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/bnn_Tf/independent_audit.json": "f6e9bc94f3d4586485ea02e76d97a12ce7451bc555a3278073eff69ed48a249f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/target_feedback_expansion_dev_01/runs/bnn_Tf/final_guide_audit.json": "5ca44ffe67cb60b64c4e984840d7d70f61df50caa10be956ff8ede2195b227ba",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/runs/bnn_Ri/manifest.json": "a373c2fbed889f64e3d5403f3b77ccf48d36f794c6605b337e053794d46097d4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/runs/bnn_Ri/independent_audit.json": "9ffc85fecde9007eb533c9bd8ed33ba8404eea9400e148b72cb8879789e8cc61",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_assignment_expansion_dev_01/runs/bnn_Ri/final_guide_audit.json": "43215817c57f33505546c4eeb381d2f32d9842e7ccfb311a90846923e5a1d0ab"
+  }
+}

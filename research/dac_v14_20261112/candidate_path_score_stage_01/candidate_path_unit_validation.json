@@ -1,0 +1,44 @@
+{
+  "status": "unit_passed_native_integration_pending",
+  "time": 1794557266.6653535,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/test_candidate_path.cpp": "cfe78e4109f9012a5b98f0a051d18a230d7d41ed1090e9d4bc4d4c697d3978b0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/src/vpr/src/route/h3d_candidate_path.h": "27cc86e679923e709a47018e952c186176ccaa0971c48bf3586809a1802df2fc"
+  },
+  "archived_source_sha256": {
+    "candidate_path_unit_01/src/test_candidate_path.cpp": "cfe78e4109f9012a5b98f0a051d18a230d7d41ed1090e9d4bc4d4c697d3978b0",
+    "candidate_path_unit_01/src/h3d_candidate_path.h": "27cc86e679923e709a47018e952c186176ccaa0971c48bf3586809a1802df2fc"
+  },
+  "compile_command": [
+    "timeout",
+    "120s",
+    "prlimit",
+    "--as=4294967296",
+    "--core=0",
+    "--",
+    "g++",
+    "-std=c++20",
+    "-O1",
+    "-g",
+    "-D_GLIBCXX_ASSERTIONS",
+    "-fsanitize=undefined",
+    "-fno-sanitize-recover=all",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/test_candidate_path.cpp",
+    "-o",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/candidate_path_unit_01/test_candidate_path"
+  ],
+  "run_command": [
+    "timeout",
+    "120s",
+    "prlimit",
+    "--as=4294967296",
+    "--core=0",
+    "--",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/candidate_path_unit_01/test_candidate_path"
+  ],
+  "run_returncode": 0,
+  "stdout": "random_queries=60000 exact=21978 witnesses=27407 targeted_fixtures=4 passed\n",
+  "stderr": "",
+  "binary_sha256": "6c1d61b5fec7f4623dac1b981a5be6902c61615c5d533e0debbf77233cf8fc64",
+  "scope": "Independent Floyd weighted optimum, valid immutable physical/priced paths, deliberately non-admissible heuristic and reopening, work/storage bounds, zero cycles, unequal parallel edges. Native RR adapters, candidate scheduling, equivalence and extra overhead still unverified."
+}

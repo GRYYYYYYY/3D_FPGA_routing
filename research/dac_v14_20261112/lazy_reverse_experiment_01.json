@@ -1,0 +1,31 @@
+{
+  "status": "registered_not_implemented_not_submitted",
+  "time": 1794564674.9675624,
+  "hypothesis": "The old source-coverage gate saves queries but discards612 exact sink observations used by new scoring. Defer low-source-coverage reverse queries until they are actually needed by the same criticality/uncertainty-ranked selected refresh leaves, preserving the full scorer and reducing unused work.",
+  "evidence": "source_coverage_gate_summary_01.json",
+  "base_stage": "source_coverage_gate_stage_01",
+  "arms": {
+    "C": "physical.25 price0 full legacy reverse, both prior gate flags0; exact currentF/D1",
+    "L": "new defaultoff lazy reverse mode; defer only calls whose available<need proves the legacy base cost cannot use delay"
+  },
+  "inputs": "Initial eltwise_layer same HybridO P0 W100 seed11 count2 packed/place/RRG; expand matched circuits after exact gates if useful.",
+  "algorithm": [
+    "In original legacy source-nonempty/ranked-nonempty branch, if available<min(K,ranked.size), omit the reverse call only from initial base construction and mark the pin deferred; preserve unmeasured counters, candidate selection, pool and base DP. No deferral for source-empty cases, which were unexercised and are a separate rule.",
+    "In candidate-query helper rank all potential leaves by exactly the existing pre-score criticality/local-gap priority. Nondeferred leaves can be filtered by their known maps as before. For deferred leaves inspect in priority order, issue the same old bounded reverse query, recompute unknown subset and current chosen/diverse alternative requests, and continue until exactly two eligible leaves or exhaustion. A deferred fully-known leaf is not scored/queried prospectively, matching the full-control policy.",
+    "Build the same fresh priced query requests, current-price cached path observations and physical calibration on the exact same selected leaves; same fresh256 work and solver/hysteresis. No reverse warm-up for low-source initial/highfanout fallback calls that never consume partial scoring."
+  ],
+  "restrictions": "Native target feedback, nonmixed/nontargeted legacy distances, physical alpha.25 price0, no blanket timing guide/regret/exit-price/equivalent-guide expansion; gate/sourceempty flags independent and disabled. Cache cap2m remains; claim exactness only when both controls show no cache protection/eviction effects and full source/graph/params match.",
+  "gates": [
+    "Same-binary C exact current F/D1 including physical queries/score/decision/guide/fullroute",
+    "L exact all base+scored fingerprints, all prefix tables/decisions, every raw fresh query/path/node-price/work record, every cached observation/calibration/delay score, finalguides and fullroute; normalize only explicit elapsed and new lazy/cache accounting",
+    "Distinct legacy endpoint queries and settlements cannot increase relative to control under matched trajectory; log deferred, resolved, fullyknown-skipped, selected leaf ranks, original endpoint work/hits and incomplete cache states",
+    "Independent code/path provenance and realRRG physics/objective audit; prior certificate reuse only on exact raw identity +samegraph. Per-process guards unchanged; native oldA0/R1 references retained",
+    "If exactness fails preserve failed treatment and debug rather than label improved-equivalent. Runtime benefit requires same-environment formally repeated timing after trace-off equivalence."
+  ],
+  "limits": {
+    "timeout_seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "qualification": "Upcoming algorithmic query-allocation/deferral test, not a submitted queue or demonstrated speedup. It preserves the new physical scorer instead of reinstating the old information-dropping gate. Critical-connection influence trace remains an independent next mechanism study."
+}

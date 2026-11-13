@@ -1,0 +1,67 @@
+--- a/vpr/src/route/h3d_routing.cpp
++++ b/vpr/src/route/h3d_routing.cpp
+@@ -71,6 +71,7 @@
+     double refresh_margin = .05;       ///< Required relative surrogate improvement.
+     bool final_trace = false;          ///< Emit one final per-connection guide/path table.
+     bool post_legal_release = false;   ///< Release guide use after native first legal convergence.
++    bool post_legal_freeze = false;    ///< Independently freeze planning, retaining guide use.
+     bool edge_encoding = false;       ///< Prefer actual crossing-edge sources in imported single-layer-node graphs.
+ };
+ 
+@@ -103,6 +104,12 @@
+         if (release && std::string(release) != "0" && std::string(release) != "1")
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_POST_LEGAL_RELEASE must be 0 or 1");
+         result.post_legal_release = release && std::string(release) == "1";
++        const char* freeze = std::getenv("VPR_H3D_POST_LEGAL_FREEZE");
++        if (freeze && std::string(freeze) != "0" && std::string(freeze) != "1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_POST_LEGAL_FREEZE must be 0 or 1");
++        result.post_legal_freeze = freeze && std::string(freeze) == "1";
++        if (result.post_legal_freeze && result.post_legal_release)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Post-legal freeze and release are independent experiments; do not combine");
+         const char* tie_pressure = std::getenv("VPR_H3D_DP_TIE_PRESSURE");
+         if (tie_pressure && std::string(tie_pressure) != "0" && std::string(tie_pressure) != "1")
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_DP_TIE_PRESSURE must be 0 or 1");
+@@ -356,6 +363,10 @@
+ 
+     /** @brief Build source/sink feasible sets, then rank independently or solve the hierarchy. */
+     void plan(ParentNetId net, int iteration, float pres_fac, const std::vector<float>& criticality, const std::vector<size_t>& remaining_targets) {
++        if (plans_frozen_) {
++            ++frozen_prepare_calls_;
++            return;
++        }
+         bool refresh = settings().mode == e_h3d_mode::STATIC && guides_.contains(net);
+         if (refresh && !settings().feedback) return;
+         auto start = std::chrono::steady_clock::now();
+@@ -650,13 +661,20 @@
+ 
+     /** @brief Keep planning independent while releasing future search pressure. */
+     void enter_legal_refinement(int iteration) {
+-        if (!settings().post_legal_release || guides_released_) return;
+-        guides_released_ = true;
+-        VTR_LOG("H3D_POST_LEGAL_RELEASE iter=%d guide_use=0 feedback_unchanged=1\n", iteration);
++        if (settings().post_legal_release && !guides_released_) {
++            guides_released_ = true;
++            VTR_LOG("H3D_POST_LEGAL_RELEASE iter=%d guide_use=0 feedback_unchanged=1\n", iteration);
++        }
++        if (settings().post_legal_freeze && !plans_frozen_) {
++            plans_frozen_ = true;
++            VTR_LOG("H3D_POST_LEGAL_FREEZE iter=%d guide_use=1 feedback_plans=0\n", iteration);
++        }
+     }
+ 
+     /** @brief Report cumulative preprocessing/search overhead separately from native A*. */
+     void log() const {
++        if (plans_frozen_)
++            VTR_LOG("H3D_POST_LEGAL_FREEZE_SUMMARY skipped_prepare_calls=%zu\n", frozen_prepare_calls_);
+         VTR_LOG("H3D_UPDATE_PINS_SUMMARY enabled=%d records=%zu retained=%zu targeted=%zu\n",
+                 settings().trace_update_pins, update_pin_records_, update_pin_retained_, update_pin_targeted_);
+         VTR_LOG("H3D_PLANAR_FEEDBACK enabled=%d extra_attempts=%zu\n", settings().planar_feedback, planar_extra_attempts_);
+@@ -830,6 +848,8 @@
+     std::unordered_map<ParentNetId, t_feedback_state> feedback_state_, best_feedback_state_; ///< Per-net and best-route state.
+     std::unordered_map<ParentNetId, std::vector<t_h3d_connection_guide>> best_guides_; ///< Best-route diagnostic guide versions.
+     bool guides_released_ = false; ///< Per-trial monotone epoch, independent of route transactions.
++    bool plans_frozen_ = false; ///< Separate epoch: preserve existing guide pressure.
++    size_t frozen_prepare_calls_ = 0;
+     ParentNetId captured_net_;                    ///< Current serial routing transaction.
+     bool backup_had_guide_ = false, backup_had_state_ = false; ///< Exact restoration membership.
+     std::vector<t_h3d_connection_guide> backup_guides_; ///< Transaction snapshot.

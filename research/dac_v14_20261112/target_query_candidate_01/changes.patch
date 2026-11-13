@@ -1,0 +1,272 @@
+--- feedback_candidate_02/h3d_bidirectional_delay.h
++++ target_query_candidate_01/h3d_bidirectional_delay.h
+@@ -0,0 +1,100 @@
++#pragma once
++#include <algorithm>
++#include <cmath>
++#include <functional>
++#include <limits>
++#include <optional>
++#include <queue>
++#include <stdexcept>
++#include <unordered_map>
++#include <unordered_set>
++#include <vector>
++
++/** @brief Candidate-specific directed shortest path with one shared work cap.
++ * Forward and reverse adapters must describe exactly the same immutable graph.
++ * Costs must be finite and nonnegative. A meeting path is only an upper bound;
++ * it becomes a measurement after the two frontier lower bounds prove optimality.
++ * This one-shot prototype deliberately exposes no partially completed state.
++ */
++class H3dBidirectionalDelay {
++  public:
++    enum class Stop { EXACT, UNREACHABLE, WORK_LIMIT, MEMORY_LIMIT };
++    struct Result {
++        Stop stop;
++        std::optional<double> exact;
++        size_t forward_settled, reverse_settled, peak_labels, peak_heap;
++    };
++
++    /** @brief Prove one exact directed distance or return an explicit resource stop. */
++    template<typename Forward, typename Reverse>
++    static Result query(size_t source, size_t target, size_t budget,
++                        size_t label_limit, size_t heap_limit,
++                        Forward forward, Reverse reverse) {
++        if (label_limit < 2 || heap_limit < 2)
++            throw std::invalid_argument("bidirectional storage limits must admit two roots");
++        if (source == target) return {Stop::EXACT, 0., 0, 0, 0, 0};
++        Side a(source), b(target);
++        double best = std::numeric_limits<double>::infinity();
++        size_t peak_labels = 2, peak_heap = 2;
++        bool memory_hit = false;
++        auto result = [&](Stop stop) {
++            return Result{stop, stop == Stop::EXACT ? std::optional<double>(best) : std::nullopt,
++                          a.settled.size(), b.settled.size(), peak_labels, peak_heap};
++        };
++        auto meet = [&](size_t node, double value, const Side& other) {
++            auto opposite = other.distance.find(node);
++            if (opposite != other.distance.end()) best = std::min(best, value + opposite->second);
++        };
++        auto step = [&](Side& active, const Side& other, auto expand) {
++            auto [cost, node] = active.heap.top(); active.heap.pop();
++            active.settled.insert(node);
++            meet(node, cost, other);
++            expand(node, [&](size_t next, double delay) {
++                if (!std::isfinite(delay) || delay < 0.)
++                    throw std::invalid_argument("finite nonnegative delay required");
++                if (memory_hit || active.settled.contains(next)) return;
++                double value = cost + delay;
++                if (!std::isfinite(value)) throw std::overflow_error("delay sum overflow");
++                auto old = active.distance.find(next);
++                if (old != active.distance.end() && old->second <= value) return;
++                if ((old == active.distance.end() && a.distance.size() + b.distance.size() >= label_limit)
++                    || a.heap.size() + b.heap.size() >= heap_limit) {
++                    memory_hit = true; return;
++                }
++                active.distance[next] = value;
++                active.heap.emplace(value, next);
++                meet(next, value, other);
++                peak_labels = std::max(peak_labels, a.distance.size() + b.distance.size());
++                peak_heap = std::max(peak_heap, a.heap.size() + b.heap.size());
++            });
++        };
++        while (true) {
++            a.clean(); b.clean();
++            if (memory_hit) return result(Stop::MEMORY_LIMIT);
++            if (a.heap.empty() || b.heap.empty())
++                return result(std::isfinite(best) ? Stop::EXACT : Stop::UNREACHABLE);
++            double lo_a = a.heap.top().first, lo_b = b.heap.top().first;
++            if (std::isfinite(best) && lo_a + lo_b >= best) return result(Stop::EXACT);
++            if (a.settled.size() + b.settled.size() >= budget) return result(Stop::WORK_LIMIT);
++            if (lo_a < lo_b || (lo_a == lo_b && a.settled.size() <= b.settled.size()))
++                step(a, b, forward);
++            else step(b, a, reverse);
++        }
++    }
++
++  private:
++    struct Side {
++        using Item = std::pair<double,size_t>;
++        std::unordered_map<size_t,double> distance;
++        std::unordered_set<size_t> settled;
++        std::priority_queue<Item,std::vector<Item>,std::greater<Item>> heap;
++        explicit Side(size_t root) {distance[root] = 0.; heap.emplace(0., root);}
++        void clean() {
++            while (!heap.empty()) {
++                auto [cost,node] = heap.top();
++                if (!settled.contains(node) && cost == distance.at(node)) break;
++                heap.pop();
++            }
++        }
++    };
++};
+--- feedback_candidate_02/h3d_delay_plan.cpp
++++ target_query_candidate_01/h3d_delay_plan.cpp
+@@ -1,5 +1,6 @@
+ #include "h3d_delay_plan.h"
+ #include "h3d_crossing.h"
++#include "h3d_bidirectional_delay.h"
+ 
+ #include "globals.h"
+ #include "vtr_log.h"
+@@ -152,7 +153,77 @@
+     return cache.emplace(endpoint, std::move(distances)).first->second;
+ }
+ 
++const H3dDelayPlan::Distances& H3dDelayPlan::targeted_distances(RRNodeId endpoint, bool reverse, const std::vector<RRNodeId>& targets) {
++    if (!supported_) return empty_;
++    VTR_ASSERT(edge_encoding_);
++    auto& cache = reverse ? reverse_ : forward_;
++    auto& work = reverse ? reverse_work_ : forward_work_;
++    auto& values = cache[endpoint];
++    auto& used = work[endpoint];
++    int layer = graph_.node_layer_low(endpoint);
++    const size_t goal = graph_.num_nodes(); // One ephemeral synthetic goal, never a physical RR node.
++    for (RRNodeId candidate : targets) {
++        VTR_ASSERT(edge_source_index_[candidate] >= 0);
++        if (values.contains(candidate)) { ++targeted_hits_; continue; }
++        if (used >= budget_) { ++targeted_unknown_; continue; }
++        auto outgoing = [&](size_t raw, auto visit) {
++            if (raw == goal) return;
++            RRNodeId node(raw);
++            if (!reverse && node == candidate) visit(goal, 0.);
++            if (reverse) {
++                for (size_t i = reverse_start_[raw]; i < reverse_start_[raw+1]; ++i) {
++                    const auto& p = predecessors_[i];
++                    if (h3d_crosses_layers(graph_, p.node, node)) {
++                        if (p.node == candidate) visit(goal, p.delay);
++                    } else if (graph_.node_layer_low(p.node) == layer) visit(size_t(p.node), p.delay);
++                }
++            } else {
++                for (auto edge : graph_.node_out_edges(node)) {
++                    RRNodeId next = graph_.edge_sink_node(node, edge);
++                    if (graph_.node_layer_low(next) == layer)
++                        visit(size_t(next), graph_.rr_switch()[RRSwitchId(graph_.edge_switch(node, edge))].Tdel);
++                }
++            }
++        };
++        auto incoming = [&](size_t raw, auto visit) {
++            if (raw == goal) {
++                if (!reverse) visit(size_t(candidate), 0.);
++                else for (auto edge : graph_.node_out_edges(candidate)) {
++                    RRNodeId next = graph_.edge_sink_node(candidate, edge);
++                    if (h3d_crosses_layers(graph_, candidate, next) && graph_.node_layer_low(next) == layer)
++                        visit(size_t(next), graph_.rr_switch()[RRSwitchId(graph_.edge_switch(candidate, edge))].Tdel);
++                }
++                return;
++            }
++            RRNodeId node(raw);
++            if (reverse) {
++                for (auto edge : graph_.node_out_edges(node)) {
++                    RRNodeId next = graph_.edge_sink_node(node, edge);
++                    if (graph_.node_layer_low(next) == layer)
++                        visit(size_t(next), graph_.rr_switch()[RRSwitchId(graph_.edge_switch(node, edge))].Tdel);
++                }
++            } else {
++                for (size_t i = reverse_start_[raw]; i < reverse_start_[raw+1]; ++i) {
++                    const auto& p = predecessors_[i];
++                    if (graph_.node_layer_low(p.node) == layer) visit(size_t(p.node), p.delay);
++                }
++            }
++        };
++        auto answer = H3dBidirectionalDelay::query(size_t(endpoint), goal, budget_ - used,
++                                                   200000, 500000, outgoing, incoming);
++        ++targeted_queries_;
++        size_t charged = answer.forward_settled + answer.reverse_settled;
++        used += charged; targeted_settled_ += charged;
++        VTR_ASSERT(used <= budget_);
++        if (answer.exact) {values[candidate] = *answer.exact; ++targeted_exact_;}
++        else {++targeted_unknown_; targeted_memory_stops_ += answer.stop == H3dBidirectionalDelay::Stop::MEMORY_LIMIT;}
++    }
++    return values;
++}
++
+ void H3dDelayPlan::log() const {
++    VTR_LOG("H3D_TARGET_DELAY queries=%zu cache_hits=%zu exact=%zu unknown=%zu settled=%zu memory_stops=%zu endpoint_budget=%zu\n",
++            targeted_queries_, targeted_hits_, targeted_exact_, targeted_unknown_, targeted_settled_, targeted_memory_stops_, budget_);
+     VTR_LOG("H3D_DELAY queries=%zu settled=%zu truncated=%zu cache_hits=%zu cached_endpoints=%zu\n",
+             queries_, settled_, truncated_, hits_, forward_.size()+reverse_.size());
+ }
+--- feedback_candidate_02/h3d_delay_plan.h
++++ target_query_candidate_01/h3d_delay_plan.h
+@@ -12,6 +12,8 @@
+     using Distances = std::unordered_map<RRNodeId, double>;
+     H3dDelayPlan(const RRGraphView& graph, size_t budget, bool edge_encoding = false);
+     const Distances& distances(RRNodeId endpoint, bool reverse);
++    /** @brief Measure ordered candidate targets with one cumulative endpoint budget. */
++    const Distances& targeted_distances(RRNodeId endpoint, bool reverse, const std::vector<RRNodeId>& targets);
+     bool supported() const { return supported_; }
+     double delay_unit() const { return delay_unit_; }
+     void log() const;
+@@ -31,5 +33,8 @@
+     std::unordered_map<RRNodeId, Distances> forward_, reverse_;
+     Distances empty_;
+     size_t queries_ = 0, settled_ = 0, truncated_ = 0, hits_ = 0;
++    std::unordered_map<RRNodeId, size_t> forward_work_, reverse_work_; ///< Work survives changing candidate requests.
++    size_t targeted_queries_ = 0, targeted_hits_ = 0, targeted_exact_ = 0, targeted_unknown_ = 0; ///< Candidate-level accounting.
++    size_t targeted_settled_ = 0, targeted_memory_stops_ = 0; ///< Both directions charged together.
+     size_t validation_queries_ = 0;                     ///< Limit the optional unbounded reference comparisons to eight queries.
+ };
+--- feedback_candidate_02/h3d_fast_plan.cpp
++++ target_query_candidate_01/h3d_fast_plan.cpp
+@@ -60,6 +60,10 @@
+     if (mixed && std::string(mixed) != "0" && std::string(mixed) != "1")
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_MIXED_DELAY must be 0 or 1");
+     mixed_delay_ = mixed && std::string(mixed) == "1";
++    const char* targeted = std::getenv("VPR_H3D_TARGET_DELAY");
++    targeted_delay_ = targeted && std::string(targeted) == "1";
++    if (targeted_delay_ && (!mixed_delay_ || !delay_cost || !edge_encoding_))
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Target delay requires mixed delay scoring on edge-encoded delay graphs");
+     const char* timing = std::getenv("VPR_H3D_TIMING_GUIDE");
+     if (timing) {
+         char* end = nullptr;
+@@ -311,7 +315,9 @@
+     center_x /= pins.size();
+     center_y /= pins.size();
+     const H3dDelayPlan::Distances* forward = nullptr;
+-    if (delay_plan_ && delay_plan_->supported()) forward = &delay_plan_->distances(source, false);
++    if (delay_plan_ && delay_plan_->supported())
++        forward = targeted_delay_ ? &delay_plan_->targeted_distances(source, false, {})
++                                  : &delay_plan_->distances(source, false);
+     std::unordered_map<int, const H3dDelayPlan::Distances*> reverse;
+     std::set<int> timed;
+     // Normalize observed delay by the same physical unit before fitting a
+@@ -325,7 +331,7 @@
+         return h3d_calibrated_scale(std::move(ratios));
+     };
+     const bool mixed = mixed_delay_ && forward;
+-    const double source_scale = mixed ? calibrate(source, *forward) : 1.;
++    double source_scale = mixed ? calibrate(source, *forward) : 1.;
+     std::unordered_map<int, double> sink_scales;
+     auto source_cost = [&](size_t c) {
+         if (forward) {
+@@ -390,7 +396,17 @@
+         if (mixed && !ranked.empty()) {
+             // Unlike the legacy all-or-nothing rule, reverse-only measurements
+             // are useful even when the bounded source query found no candidate.
+-            const auto& back = delay_plan_->distances(terminals[pin], true);
++            std::vector<RRNodeId> query_targets;
++            if (targeted_delay_) {
++                // Targets use only current geometry, congestion, known distances
++                // and SCC feasibility. No final-route information is consulted.
++                std::sort(ranked.begin(), ranked.end());
++                for (size_t c : diversify_(ranked, candidate_count)) query_targets.push_back(channels_[c]);
++                forward = &delay_plan_->targeted_distances(source, false, query_targets);
++                source_scale = calibrate(source, *forward);
++            }
++            const auto& back = targeted_delay_ ? delay_plan_->targeted_distances(terminals[pin], true, query_targets)
++                                               : delay_plan_->distances(terminals[pin], true);
+             reverse[pin] = &back;
+             sink_scales[pin] = calibrate(terminals[pin], back);
+             ++mixed_pins_;
+--- feedback_candidate_02/h3d_fast_plan.h
++++ target_query_candidate_01/h3d_fast_plan.h
+@@ -59,6 +59,7 @@
+     double timing_guide_weight_ = 0.;                                  ///< Bounded timing-preference amplitude in graph delay units.
+     bool independent_ = false;                                        ///< Same-table independent top-1 solver control.
+     size_t timing_guides_ = 0;                                         ///< Selected guides with at least one measured side.
++    bool targeted_delay_ = false;                                      ///< Candidate-specific bidirectional search, mixed scoring only.
+     bool mixed_delay_ = false;                                         ///< Experimental calibrated candidate-level delay, off by default.
+     size_t mixed_pins_ = 0, mixed_informed_pins_ = 0;                    ///< Eligible and measurement-informed connections.
+     size_t mixed_both_ = 0, mixed_source_only_ = 0, mixed_sink_only_ = 0, mixed_estimated_ = 0; ///< Sampled candidate coverage.

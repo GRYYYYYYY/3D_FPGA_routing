@@ -1,0 +1,29 @@
+{
+  "status": "design_only_not_implemented_not_launched",
+  "created_at": 1794530765.8421338,
+  "question": "Does target-restricted refresh ignore useful retained crossing prefixes in its candidate objective, and is the effect large enough to justify a marginal-cost or actual-prefix-delay variant?",
+  "basis": [
+    "Original-scope Tf gain remains localized: six seen circuits one legal CPD improvement/four ties, four transferred circuits three ties; no success-rate gain.",
+    "Target state is preserved but opening still charges source_cost + opening_weight*negotiated even for owned candidates; ownership already comes from the post-prune tree. This is an objective hypothesis, not a stale-cache bug.",
+    "route_net.cpp setup_net reloads timing after pruning; h3d_prepare_net occurs later in route_net.tpp. Retained RouteTreeNode Tdel/R_upstream/C_downstream therefore describe that partial tree, not final post-extension STA.",
+    "Entry ownership alone is insufficient: CB OPIN may be retained only for a planar branch. Actual cross-layer child edge and its same-layer sink reachability must be distinguished."
+  ],
+  "implementation": [
+    "Opt-in read-only trace on finite target-refresh candidate tables; no query, score, ordering, candidate, guide or routing changes.",
+    "Trace entry ownership, retained crossing exits, cached SCC reachability of each retained exit to the candidate sink, retained entry/exit Tdel and RC state, graph/proxy source cost, opening/branch cost and current occupancy/price.",
+    "Read existing immutable sink closure views via lookup/intersects, without creating endpoint queries or mutating counters; explicitly record unavailable views.",
+    "Keep rejected refresh attempts and high-fanout uncovered cases explicit. Final candidate and prior selection are context, not independent samples."
+  ],
+  "validation": [
+    "After formal timing owner terminates, build isolated new diagnostic stage; never modify frozen timing binary or its inputs.",
+    "Use same original-scope Tf settings, all pressure/query/timing variants off, initially eltwise plus tpu_like.small.os (a seen gain and a new legal tie with iteration penalty).",
+    "Default-off and trace-on must reproduce complete original Tf routes, original non-time counters, initial/refresh tables, guides and transaction state. Query counts must remain unchanged.",
+    "Only after prevalence/ranking evidence consider an independent bounded marginal-opening or actual-prefix-delay intervention; preserve physical Tdel, final STA, native congestion and rollback."
+  ],
+  "timing_barrier": "formal_timing_01 active: no C++ compilation, VPR or large graph audit until exact PID/start-tick owner terminates and measured trial state is checked; light source review/writing only.",
+  "not_claimed": [
+    "No algorithm change or QoR gain implemented yet",
+    "Retained-tree Tdel is not final STA or a certified extension-delay lower bound",
+    "No per-circuit selected policy, no extra query-budget-only fix"
+  ]
+}

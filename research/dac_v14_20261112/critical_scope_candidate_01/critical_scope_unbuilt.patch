@@ -1,0 +1,94 @@
+--- source_baseline/route_common.cpp
++++ critical_scope/route_common.cpp
+@@ -21,6 +21,7 @@
+ #include <utility>
+ #include <cstdlib>
+ #include <cstring>
++#include <cmath>
+ 
+ #if defined(VPR_USE_TBB)
+ #include <tbb/parallel_for_each.h>
+@@ -756,6 +757,51 @@
+     }
+ }
+ 
++void h3d_expand_layer_bb_for_critical_targets(const Netlist<>& net_list,
++                                            ParentNetId net_id,
++                                            int iteration,
++                                            bool is_flat,
++                                            bool should_setup,
++                                            const t_bb& net_bb,
++                                            const std::vector<float>& criticality,
++                                            const std::vector<int>& remaining_targets) {
++    static const double threshold = [] {
++        const char* setting = std::getenv("VPR_H3D_LAYER_BB_CRITICALITY");
++        if (!setting) return -1.;
++        char* end = nullptr;
++        const double value = std::strtod(setting, &end);
++        if (end == setting || *end || !std::isfinite(value) || value < 0. || value > 1.)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_LAYER_BB_CRITICALITY must be in [0,1], or absent to disable");
++        const char* all = std::getenv("VPR_H3D_ALL_LAYER_BB");
++        if ((all && std::strcmp(all, "1") == 0) || h3d_layer_bb_delayed_enabled())
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Criticality layer BB is a separate alternative to initial-global or delayed-global expansion");
++        return value;
++    }();
++    if (threshold < 0. || !should_setup || net_list.net_is_global(net_id) || remaining_targets.empty()) return;
++#if defined(VPR_USE_TBB)
++    VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Criticality layer BB requires a serial VPR build");
++#endif
++    auto& routing = g_vpr_ctx.mutable_routing();
++    if (is_flat || &net_bb != &routing.route_bb[net_id])
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Criticality layer BB requires clustered routing and the native net BB");
++    auto& bb = routing.route_bb[net_id];
++    const int last_layer = g_vpr_ctx.device().grid.get_num_layers() - 1;
++    if (bb.layer_min == 0 && bb.layer_max == last_layer) return;
++    int witness = -1;
++    float peak = -1.f;
++    for (int pin : remaining_targets) {
++        VTR_ASSERT(pin > 0 && size_t(pin) < criticality.size());
++        VTR_ASSERT(std::isfinite(criticality[pin]));
++        if (criticality[pin] > peak) { peak = criticality[pin]; witness = pin; }
++    }
++    if (peak < threshold) return;
++    const int old_min = bb.layer_min, old_max = bb.layer_max;
++    bb.layer_min = 0;
++    bb.layer_max = last_layer;
++    VTR_LOG("H3D_LAYER_BB_CRITICAL iter=%d net=%zu remaining=%zu witness_pin=%d criticality=%.17g threshold=%.17g old_min=%d old_max=%d new_min=0 new_max=%d\n",
++            iteration, size_t(net_id), remaining_targets.size(), witness, double(peak), threshold, old_min, old_max, last_layer);
++}
++
+ vtr::vector<ParentNetId, t_bb> load_route_bb(const Netlist<>& net_list,
+                                              int bb_factor) {
+     vtr::vector<ParentNetId, t_bb> route_bb;
+--- source_baseline/route_common.h
++++ critical_scope/route_common.h
+@@ -117,6 +117,17 @@
+  * from overuse-based selection. Exclusive with initial/feedback expansion. */
+ void h3d_expand_layer_bb_iteration(int iteration, bool is_flat);
+ 
++/** @brief Optional early timing trigger for native-selected nets. Only remaining
++ * target pins participate; full layer bounds persist as in native BB recovery. */
++void h3d_expand_layer_bb_for_critical_targets(const Netlist<>& net_list,
++                                            ParentNetId net_id,
++                                            int iteration,
++                                            bool is_flat,
++                                            bool should_setup,
++                                            const t_bb& net_bb,
++                                            const std::vector<float>& criticality,
++                                            const std::vector<int>& remaining_targets);
++
+ void pathfinder_update_single_node_occupancy(RRNodeId inode, int add_or_sub);
+ 
+ void pathfinder_update_acc_cost_and_overuse_info(float acc_fac, OveruseInfo& overuse_info);
+--- source_baseline/route_net.tpp
++++ critical_scope/route_net.tpp
+@@ -194,6 +194,9 @@
+                                                         is_flat);
+     }
+ 
++    h3d_expand_layer_bb_for_critical_targets(net_list, net_id, itry, is_flat, should_setup,
++                                            net_bb, pin_criticality, remaining_targets);
++
+     // Determines the order remaining_targets is routed in. Starts as a copy of
+     // pin_criticality, but may be further adjusted (e.g. for interposer die crossings
+     // below) to influence routing order without disturbing pin_criticality itself,

@@ -1,0 +1,99 @@
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reverse_rerank_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp	2026-11-12 20:14:39.017575000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/estimate_trace_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp	2026-11-12 20:27:02.131954000 +0000
+@@ -94,6 +94,12 @@
+     reverse_rerank_ = rerank && std::string(rerank) == "1";
+     if (reverse_rerank_ && !targeted_delay_)
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Reverse reranking requires candidate-targeted mixed delay scoring");
++    const char* estimates = std::getenv("VPR_H3D_TRACE_ESTIMATES");
++    if (estimates && std::string(estimates) != "0" && std::string(estimates) != "1")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_ESTIMATES must be 0 or 1");
++    trace_estimates_ = estimates && std::string(estimates) == "1";
++    if (trace_estimates_ && !targeted_delay_)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Estimate tracing requires candidate-targeted mixed delay scoring");
+     const char* timing = std::getenv("VPR_H3D_TIMING_GUIDE");
+     if (timing) {
+         char* end = nullptr;
+@@ -438,6 +444,25 @@
+         }
+         return proxy_(terminals[pin], c) * (1. + 4. * criticality[pin]) + 4. * criticality[pin] * proxy_(source, c);
+     };
++    // Read-only observations: never query, recalibrate, sort, or alter a score.
++    auto trace_estimate = [&](const char* phase, int pin, size_t c) {
++        if (!trace_estimates_ || !mixed) return;
++        RRNodeId node = channels_[c];
++        auto back = reverse.find(pin);
++        bool from = forward->contains(node);
++        bool to = back != reverse.end() && back->second->contains(node);
++        double sink_scale = back != reverse.end() ? sink_scales.at(pin) : 1.;
++        double sink_proxy = proxy_(terminals[pin], c);
++        double sink_value = to ? back->second->at(node) / delay_plan_->delay_unit()
++                               : delay_plan_->adjust_estimate_units(terminals[pin], true, sink_proxy * sink_scale);
++        double source_value = source_cost(c);
++        double open_value = opening(c), branch_value = branch(pin, c);
++        VTR_ASSERT(std::isfinite(open_value) && std::isfinite(branch_value));
++        ++estimate_trace_rows_;
++        VTR_LOG("H3D_ESTIMATE phase=%s net=%zu pin=%d source=%zu sink=%zu candidate=%zu criticality=%.17g source_known=%d sink_known=%d source_value=%.17g sink_value=%.17g source_scale=%.17g sink_scale=%.17g source_proxy=%.17g sink_proxy=%.17g opening=%.17g branch=%.17g unit=%.17g\n",
++                phase, size_t(net), pin, size_t(source), size_t(terminals[pin]), size_t(node), double(criticality[pin]), int(from), int(to),
++                source_value, sink_value, source_scale, sink_scale, proxy_(source, c), sink_proxy, open_value, branch_value, delay_plan_->delay_unit());
++    };
+     std::set<size_t> pool;
+     // Each sink has its own reverse ledger, but source work is shared across
+     // this net's pins. Only the measurement/candidate pass is reordered: keep
+@@ -472,6 +497,7 @@
+         if (ranked.empty())
+             for (size_t c = 0; c < channels_.size() && ranked.size() < candidate_count * 8; ++c)
+                 if (feasible_(source, c, terminals[pin])) ranked.emplace_back(opening(c) + branch(pin, c), c);
++        if (trace_estimates_) for (const auto& candidate : ranked) trace_estimate("pre", pin, candidate.second);
+         profile.enter(Phase::DISTANCE);
+         if (mixed && !ranked.empty()) {
+             // Unlike the legacy all-or-nothing rule, reverse-only measurements
+@@ -493,6 +519,7 @@
+                             size_t(net), pin, size_t(source), users, before, allowance, after, before - after);
+                 }
+                 source_scale = calibrate(source, *forward);
++                if (trace_estimates_) for (const auto& candidate : ranked) trace_estimate("source", pin, candidate.second);
+                 if (reverse_rerank_) {
+                     // Source measurements can change which alternatives merit
+                     // sink-side work. Reuse the same feasible population and
+@@ -554,6 +581,7 @@
+                 ++measured_pins_;
+             } else ++unmeasured_pins_;
+         } else if (delay_plan_) ++unmeasured_pins_;
++        if (trace_estimates_) for (const auto& candidate : ranked) trace_estimate("post", pin, candidate.second);
+         profile.enter(Phase::SELECT);
+         std::sort(ranked.begin(), ranked.end());
+         auto selected = diversify_(ranked, candidate_count);
+@@ -599,6 +627,7 @@
+             t_h3d_plan_leaf leaf{pin, graph_.node_xlow(sink), graph_.node_ylow(sink), {}};
+             for (size_t i = 0; i < table.size(); ++i) {
+                 if (!feasible_(source, table[i], sink)) continue;
++                trace_estimate("table", pin, table[i]);
+                 double cost = branch(pin, table[i]);
+                 // A delay-scored leaf may not have measured a candidate
+                 // contributed by another leaf. The finite DP model omits
+@@ -696,6 +725,7 @@
+             bool informed = false;
+             auto back = reverse.find(pin);
+             for (RRNodeId node : guide.preferred) {
++                trace_estimate("selected", pin, channel_index_[node]);
+                 bool from = forward->contains(node);
+                 bool to = back != reverse.end() && back->second->contains(node);
+                 selected_both_ += from && to;
+@@ -763,5 +793,6 @@
+             int(criticality_query_order_), query_order_nets_, query_order_changed_);
+     VTR_LOG("H3D_REVERSE_RERANK enabled=%d pins=%zu changed=%zu\n",
+             int(reverse_rerank_), reverse_rerank_pins_, reverse_rerank_changed_);
++    VTR_LOG("H3D_ESTIMATE_SUMMARY enabled=%d rows=%zu\n", int(trace_estimates_), estimate_trace_rows_);
+     if (delay_plan_) delay_plan_->log();
+ }
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reverse_rerank_candidate_01/src/vpr/src/route/h3d_fast_plan.h	2026-11-12 20:14:39.015625000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/estimate_trace_candidate_01/src/vpr/src/route/h3d_fast_plan.h	2026-11-12 20:27:02.129524000 +0000
+@@ -74,6 +74,8 @@
+     bool targeted_delay_ = false;                                      ///< Candidate-specific bidirectional search, mixed scoring only.
+     bool criticality_query_order_ = false; ///< Allocate shared source query work to critical pins first; DP pin order stays fixed.
+     bool balance_source_queries_ = false; ///< Divide remaining source work among remaining pins without increasing lifetime/candidate limits.
++    bool trace_estimates_ = false; ///< Decision-neutral candidate component records for independent distance validation.
++    size_t estimate_trace_rows_ = 0; ///< Number of emitted candidate records across diagnostic phases.
+     bool reverse_rerank_ = false; ///< Re-evaluate reverse targets after source measurements with unchanged limits and diversity.
+     size_t reverse_rerank_pins_ = 0, reverse_rerank_changed_ = 0; ///< Pins considered and target sequences changed by source-informed reranking.
+     size_t query_order_nets_ = 0, query_order_changed_ = 0; ///< Nonempty plans considered and reordered by query priority.

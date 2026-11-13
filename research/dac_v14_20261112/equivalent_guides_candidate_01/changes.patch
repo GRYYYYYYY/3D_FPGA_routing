@@ -1,0 +1,107 @@
+--- parent/vpr/src/route/h3d_equivalent_guides.h
++++ new/vpr/src/route/h3d_equivalent_guides.h
+@@ -0,0 +1,16 @@
++#pragma once
++
++#include <algorithm>
++#include <cmath>
++
++/** @brief Admit an exactly measured alternative that is no slower within a small dead band and no pricier.
++ * Delay inputs use graph-delay units; negotiated opening charges use the same
++ * dimensionless planner scale. This local criterion is not a global QoR proof.
++ */
++inline bool h3d_equivalent_guide(double chosen_delay, double alternative_delay, double chosen_charge, double alternative_charge) {
++    if (!std::isfinite(chosen_delay) || !std::isfinite(alternative_delay)
++        || !std::isfinite(chosen_charge) || !std::isfinite(alternative_charge)
++        || chosen_delay < 0. || alternative_delay < 0. || chosen_charge < 0. || alternative_charge < 0.) return false;
++    return alternative_delay <= chosen_delay + .02
++           && alternative_charge <= chosen_charge + 1.e-10 * std::max(1., chosen_charge);
++}
+--- parent/vpr/src/route/h3d_fast_plan.cpp
++++ new/vpr/src/route/h3d_fast_plan.cpp
+@@ -4,6 +4,7 @@
+ #include "h3d_independent_plan.h"
+ #include "h3d_feedback_policy.h"
+ #include "h3d_timing_regret.h"
++#include "h3d_equivalent_guides.h"
+ 
+ #include <cmath>
+ #include <bit>
+@@ -121,6 +122,19 @@
+     timing_regret_ = mode == "regret";
+     if (timing_regret_ && (!mixed_delay_ || !edge_encoding_))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Regret timing guidance requires mixed edge-delay scoring");
++    const char* equivalent = std::getenv("VPR_H3D_EQUIVALENT_GUIDES");
++    if (equivalent) {
++        char* end = nullptr;
++        long cap = std::strtol(equivalent, &end, 10);
++        if (end == equivalent || *end || cap < 0 || cap > 16)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_EQUIVALENT_GUIDES must be an integer in [0,16]");
++        equivalent_guide_cap_ = size_t(cap);
++    }
++    if (equivalent_guide_cap_ && (!mixed_delay_ || !edge_encoding_ || timing_guide_weight_ > 0. || timing_regret_))
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Equivalent guides require mixed edge scoring and a separate timing-guidance ablation");
++    const char* feedback = std::getenv("VPR_H3D_FEEDBACK");
++    if (equivalent_guide_cap_ && feedback && std::string(feedback) != "0")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Equivalent guides are currently an independent static-guide experiment");
+     const char* assignment = std::getenv("VPR_H3D_ASSIGNMENT");
+     std::string solver = assignment ? assignment : "shared";
+     if (solver != "shared" && solver != "independent")
+@@ -736,6 +750,37 @@
+     profile.enter(Phase::OUTPUT);
+     for (int pin : pins) {
+         auto& guide = result.guides[pin];
++        if (equivalent_guide_cap_ > 1 && forward && guide.preferred.size() == 1) {
++            VTR_ASSERT(prior_guides == nullptr);
++            RRNodeId chosen = guide.preferred.front();
++            auto back = reverse.find(pin);
++            if (back != reverse.end() && forward->contains(chosen) && back->second->contains(chosen)) {
++                size_t selected = channel_index_[chosen];
++                double unit = delay_plan_->delay_unit();
++                double chosen_delay = (double(forward->at(chosen)) + double(back->second->at(chosen))) / unit;
++                double chosen_charge = opening(selected) - source_cost(selected);
++                std::vector<std::pair<double, size_t>> alternatives;
++                for (size_t c : pool) {
++                    RRNodeId node = channels_[c];
++                    if (node == chosen || !forward->contains(node) || !back->second->contains(node)) continue;
++                    double delay = (double(forward->at(node)) + double(back->second->at(node))) / unit;
++                    double charge = opening(c) - source_cost(c);
++                    if (h3d_equivalent_guide(chosen_delay, delay, chosen_charge, charge))
++                        alternatives.emplace_back(opening(c) + branch(pin, c), c);
++                }
++                std::sort(alternatives.begin(), alternatives.end());
++                for (size_t c : diversify_(alternatives, equivalent_guide_cap_ - 1)) {
++                    RRNodeId node = channels_[c];
++                    guide.preferred.push_back(node);
++                    double delay = (double(forward->at(node)) + double(back->second->at(node))) / unit;
++                    VTR_LOG("H3D_EQUIVALENT_GUIDE net=%zu pin=%d chosen=%zu alternative=%zu chosen_delay_units=%.17g alternative_delay_units=%.17g chosen_charge=%.17g alternative_charge=%.17g\n",
++                            size_t(net), pin, size_t(chosen), size_t(node), chosen_delay, delay, chosen_charge, opening(c) - source_cost(c));
++                }
++                equivalent_guide_pins_ += guide.preferred.size() > 1;
++                equivalent_guide_added_ += guide.preferred.size() - 1;
++                VTR_ASSERT(guide.preferred.size() <= equivalent_guide_cap_);
++            }
++        }
+         std::sort(guide.preferred.begin(), guide.preferred.end());
+         if (mixed && !guide.preferred.empty()) {
+             ++selected_delay_pins_;
+@@ -814,6 +859,8 @@
+ }
+ 
+ void H3dFastPlan::log() const {
++    VTR_LOG("H3D_EQUIVALENT_GUIDES cap=%zu pins=%zu added=%zu\n",
++            equivalent_guide_cap_, equivalent_guide_pins_, equivalent_guide_added_);
+     VTR_LOG("H3D_TIMING_REGRET_SUMMARY enabled=%d guides=%zu pairs=%zu weight=%g\n",
+             timing_regret_, timing_regret_guides_, timing_regret_pairs_, timing_guide_weight_);
+     profile_.log();
+--- parent/vpr/src/route/h3d_fast_plan.h
++++ new/vpr/src/route/h3d_fast_plan.h
+@@ -70,6 +70,8 @@
+     const RRGraphView& graph_;                                          ///< Exact immutable graph used by detailed routing.
+     double timing_guide_weight_ = 0.;                                  ///< Bounded timing-preference amplitude in graph delay units.
+     bool timing_regret_ = false; ///< Restrict timing guidance to measured positive alternative delay gaps.
++    size_t equivalent_guide_cap_ = 0; ///< Opt-in total acceptable crossings per singleton DP guide, preserving its chosen crossing.
++    size_t equivalent_guide_pins_ = 0, equivalent_guide_added_ = 0; ///< Expanded connections and additional exactly measured alternatives.
+     size_t timing_regret_guides_ = 0, timing_regret_pairs_ = 0; ///< Connections with positive penalties and stored alternative entries.
+     bool independent_ = false;                                        ///< Same-table independent top-1 solver control.
+     size_t timing_guides_ = 0;                                         ///< Selected guides with at least one measured side.

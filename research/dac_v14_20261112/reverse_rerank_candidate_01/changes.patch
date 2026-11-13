@@ -1,0 +1,69 @@
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/source_share_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp	2026-11-12 19:53:29.825033000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reverse_rerank_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp	2026-11-12 20:14:39.017575000 +0000
+@@ -88,6 +88,12 @@
+     const char* persistent = std::getenv("VPR_H3D_TARGET_FRONTIER");
+     if (balance_source_queries_ && (!targeted_delay_ || !persistent || std::string(persistent) != "1"))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Source query sharing requires persistent candidate-targeted delay queries");
++    const char* rerank = std::getenv("VPR_H3D_REVERSE_RERANK");
++    if (rerank && std::string(rerank) != "0" && std::string(rerank) != "1")
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_REVERSE_RERANK must be 0 or 1");
++    reverse_rerank_ = rerank && std::string(rerank) == "1";
++    if (reverse_rerank_ && !targeted_delay_)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Reverse reranking requires candidate-targeted mixed delay scoring");
+     const char* timing = std::getenv("VPR_H3D_TIMING_GUIDE");
+     if (timing) {
+         char* end = nullptr;
+@@ -487,6 +493,34 @@
+                             size_t(net), pin, size_t(source), users, before, allowance, after, before - after);
+                 }
+                 source_scale = calibrate(source, *forward);
++                if (reverse_rerank_) {
++                    // Source measurements can change which alternatives merit
++                    // sink-side work. Reuse the same feasible population and
++                    // diversity rule; unknown source costs retain calibration.
++                    // Reverse requests still run even with no source coverage.
++                    auto original_targets = query_targets;
++                    for (auto& [cost, c] : ranked) cost = opening(c) + branch(pin, c);
++                    std::sort(ranked.begin(), ranked.end());
++                    query_targets.clear();
++                    for (size_t c : diversify_(ranked, candidate_count)) query_targets.push_back(channels_[c]);
++                    VTR_ASSERT(query_targets.size() == original_targets.size());
++                    ++reverse_rerank_pins_;
++                    reverse_rerank_changed_ += query_targets != original_targets;
++                    size_t old_known = 0, new_known = 0, introduced = 0;
++                    std::string old_ids, new_ids;
++                    for (RRNodeId node : original_targets) {
++                        old_known += forward->contains(node);
++                        old_ids += std::to_string(size_t(node)) + ";";
++                    }
++                    for (RRNodeId node : query_targets) {
++                        new_known += forward->contains(node);
++                        introduced += std::find(original_targets.begin(), original_targets.end(), node) == original_targets.end();
++                        new_ids += std::to_string(size_t(node)) + ";";
++                    }
++                    VTR_LOG("H3D_REVERSE_TARGETS net=%zu pin=%d targets=%zu changed=%d introduced=%zu old_source_known=%zu new_source_known=%zu old=%s new=%s\n",
++                            size_t(net), pin, query_targets.size(), int(query_targets != original_targets), introduced,
++                            old_known, new_known, old_ids.c_str(), new_ids.c_str());
++                }
+             }
+             const auto& back = targeted_delay_ ? delay_plan_->targeted_distances(terminals[pin], true, query_targets)
+                                                : delay_plan_->distances(terminals[pin], true);
+@@ -727,5 +761,7 @@
+     VTR_LOG("H3D_TIMING_GUIDE nonzero_guides=%zu weight=%g\n", timing_guides_, timing_guide_weight_);
+     VTR_LOG("H3D_QUERY_PRIORITY enabled=%d plans=%zu reordered=%zu\n",
+             int(criticality_query_order_), query_order_nets_, query_order_changed_);
++    VTR_LOG("H3D_REVERSE_RERANK enabled=%d pins=%zu changed=%zu\n",
++            int(reverse_rerank_), reverse_rerank_pins_, reverse_rerank_changed_);
+     if (delay_plan_) delay_plan_->log();
+ }
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/source_share_candidate_01/src/vpr/src/route/h3d_fast_plan.h	2026-11-12 19:52:35.784010000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reverse_rerank_candidate_01/src/vpr/src/route/h3d_fast_plan.h	2026-11-12 20:14:39.015625000 +0000
+@@ -74,6 +74,8 @@
+     bool targeted_delay_ = false;                                      ///< Candidate-specific bidirectional search, mixed scoring only.
+     bool criticality_query_order_ = false; ///< Allocate shared source query work to critical pins first; DP pin order stays fixed.
+     bool balance_source_queries_ = false; ///< Divide remaining source work among remaining pins without increasing lifetime/candidate limits.
++    bool reverse_rerank_ = false; ///< Re-evaluate reverse targets after source measurements with unchanged limits and diversity.
++    size_t reverse_rerank_pins_ = 0, reverse_rerank_changed_ = 0; ///< Pins considered and target sequences changed by source-informed reranking.
+     size_t query_order_nets_ = 0, query_order_changed_ = 0; ///< Nonempty plans considered and reordered by query priority.
+     bool mixed_delay_ = false;                                         ///< Experimental calibrated candidate-level delay, off by default.
+     size_t mixed_pins_ = 0, mixed_informed_pins_ = 0;                    ///< Eligible and measurement-informed connections.

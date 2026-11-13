@@ -1,0 +1,20 @@
+{
+  "status": "registered_before_runner_implementation",
+  "time": 1794566423.8653433,
+  "question": "Does turning read-only influence tracking off preserve the complete C/Z/T trajectories and candidate/table/guide state, including the observed T timing recovery?",
+  "stage": "bounded_critical_stage_01",
+  "reference_batch": "bounded_critical_eltwise_dev_01",
+  "arms": [
+    "C",
+    "Z",
+    "T"
+  ],
+  "only_change": "VPR_H3D_TRACE_GUIDE_INFLUENCE1->0; all other perarm inputs/env/native CLI same.",
+  "gate": "For each arm original non-time records, all prefix tables/decisions, raw query/cache observations, planner/final bounded guide metadata, all native heap counters and complete route/guides exact; exclude only explicit influence and bounded application/cumulative diagnostics plus exact elapsed fields. Native/independent/guide/input seals required.",
+  "scope": "Development reproducibility; no formal speedup from sequential traced/nontraced wall clocks. Preserve any status mismatch as failure of reproduction, not a research goal blocker.",
+  "limits": {
+    "timeout": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  }
+}

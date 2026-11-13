@@ -1,0 +1,117 @@
+--- before/h3d_fast_plan.cpp
++++ after/h3d_fast_plan.cpp
+@@ -261,6 +261,13 @@
+         if(candidate_path_delay_weight_<=0. || mixed_delay_ || targeted_delay_ || !compact || std::string(compact)!="1")
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Source-empty reverse revalidation requires legacy physical-sink scoring with compact witnesses");
+     }
++    if(const char* text=std::getenv("VPR_H3D_SOURCE_COVERAGE_SKIP")) {
++        if(std::string(text)!="0" && std::string(text)!="1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"VPR_H3D_SOURCE_COVERAGE_SKIP must be 0 or 1");
++        source_coverage_skip_=std::string(text)=="1";
++    }
++    if(source_coverage_skip_ && (source_empty_reverse_ || candidate_path_mode_!=3 || !candidate_path_use_cached_))
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE,"Source-coverage skip ablation requires separate legacy cached-query mode without source-empty admission");
+     if (refresh_independent_ && (independent_ || !feedback || std::string(feedback) != "1"
+                                 || !target_feedback || std::string(target_feedback) != "1"))
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Independent refresh ablation requires initial shared planning and target-restricted feedback");
+@@ -810,32 +817,53 @@
+             }
+             mixed_informed_pins_ += measured > 0;
+         } else if (forward && (!forward->empty() || source_empty_reverse_) && !ranked.empty()) {
+-            H3dDelayPlan::WorkSnapshot before{0,0,0};
+-            if(source_empty_reverse_ && forward->empty())before=delay_plan_->work_snapshot();
+-            const auto& back = delay_plan_->distances(terminals[pin], true);
+-            reverse[pin] = &back;
+-            if(source_empty_reverse_ && forward->empty()) {
+-                auto after=delay_plan_->work_snapshot();
+-                ++empty_reverse_requests_;empty_reverse_queries_+=after.queries-before.queries;
+-                empty_reverse_work_+=after.settled-before.settled;empty_reverse_hits_+=after.hits-before.hits;
+-                empty_reverse_measured_+=back.size();
+-                if(empty_reverse_rows_<20000) {
+-                    ++empty_reverse_rows_;
+-                    VTR_LOG("H3D_SOURCE_EMPTY_REVERSE net=%zu pin=%d source=%zu sink=%zu refresh=%d source_entries=0 ranked=%zu measured_entries=%zu before_queries=%zu after_queries=%zu before_settled=%zu after_settled=%zu before_hits=%zu after_hits=%zu\n",
+-                            size_t(net),pin,size_t(source),size_t(terminals[pin]),int(prior_guides!=nullptr),ranked.size(),back.size(),before.queries,after.queries,before.settled,after.settled,before.hits,after.hits);
+-                } else ++empty_reverse_omitted_;
+-            }
+-            std::vector<size_t> covered;
+-            for (auto [cost, c] : ranked)
+-                if (forward->contains(channels_[c]) && back.contains(channels_[c])) covered.push_back(c);
+-            // Preserve K alternatives when possible; a bounded search miss is
+-            // not a failed reachability proof and does not remove router edges.
+-            if (covered.size() >= std::min(candidate_count, ranked.size())) {
+-                timed.insert(pin);
+-                ranked.clear();
+-                for (size_t c : covered) ranked.emplace_back(opening(c) + branch(pin, c), c);
+-                ++measured_pins_;
+-            } else ++unmeasured_pins_;
++            bool skip_reverse=false;
++            if(source_coverage_skip_) {
++                ++coverage_gate_checks_;
++                size_t available=0,need=std::min(candidate_count,ranked.size());
++                for(const auto& [cost,c]:ranked)available+=forward->contains(channels_[c]);
++                skip_reverse=available<need;
++                if(skip_reverse) {
++                    ++coverage_gate_skips_;++unmeasured_pins_;
++                    if(coverage_gate_rows_<20000) {
++                        ++coverage_gate_rows_;std::ostringstream entries;
++                        for(const auto& [cost,c]:ranked) {
++                            if(entries.tellp()>0)entries<<';';
++                            entries<<size_t(channels_[c])<<','<<int(forward->contains(channels_[c]));
++                        }
++                        VTR_LOG("H3D_SOURCE_COVERAGE_SKIP net=%zu pin=%d source=%zu sink=%zu refresh=%d ranked=%zu need=%zu available=%zu entries=%s\n",
++                                size_t(net),pin,size_t(source),size_t(terminals[pin]),int(prior_guides!=nullptr),ranked.size(),need,available,entries.str().c_str());
++                    } else ++coverage_gate_omitted_;
++                }
++            }
++            if(!skip_reverse) {
++                H3dDelayPlan::WorkSnapshot before{0,0,0};
++                if(source_empty_reverse_ && forward->empty())before=delay_plan_->work_snapshot();
++                const auto& back = delay_plan_->distances(terminals[pin], true);
++                reverse[pin] = &back;
++                if(source_empty_reverse_ && forward->empty()) {
++                    auto after=delay_plan_->work_snapshot();
++                    ++empty_reverse_requests_;empty_reverse_queries_+=after.queries-before.queries;
++                    empty_reverse_work_+=after.settled-before.settled;empty_reverse_hits_+=after.hits-before.hits;
++                    empty_reverse_measured_+=back.size();
++                    if(empty_reverse_rows_<20000) {
++                        ++empty_reverse_rows_;
++                        VTR_LOG("H3D_SOURCE_EMPTY_REVERSE net=%zu pin=%d source=%zu sink=%zu refresh=%d source_entries=0 ranked=%zu measured_entries=%zu before_queries=%zu after_queries=%zu before_settled=%zu after_settled=%zu before_hits=%zu after_hits=%zu\n",
++                                size_t(net),pin,size_t(source),size_t(terminals[pin]),int(prior_guides!=nullptr),ranked.size(),back.size(),before.queries,after.queries,before.settled,after.settled,before.hits,after.hits);
++                    } else ++empty_reverse_omitted_;
++                }
++                std::vector<size_t> covered;
++                for (auto [cost, c] : ranked)
++                    if (forward->contains(channels_[c]) && back.contains(channels_[c])) covered.push_back(c);
++                // Preserve K alternatives when possible; a bounded search miss is
++                // not a failed reachability proof and does not remove router edges.
++                if (covered.size() >= std::min(candidate_count, ranked.size())) {
++                    timed.insert(pin);
++                    ranked.clear();
++                    for (size_t c : covered) ranked.emplace_back(opening(c) + branch(pin, c), c);
++                    ++measured_pins_;
++                } else ++unmeasured_pins_;
++            }
+         } else if (delay_plan_) ++unmeasured_pins_;
+         if (trace_estimates_) for (const auto& candidate : ranked) trace_estimate("post", pin, candidate.second);
+         profile.enter(Phase::SELECT);
+@@ -1513,6 +1541,9 @@
+ }
+ 
+ void H3dFastPlan::log() const {
++    if(source_coverage_skip_)
++        VTR_LOG("H3D_SOURCE_COVERAGE_SKIP_SUMMARY checks=%zu skips=%zu rows=%zu omitted=%zu row_cap=20000\n",
++                coverage_gate_checks_,coverage_gate_skips_,coverage_gate_rows_,coverage_gate_omitted_);
+     if(source_empty_reverse_)
+         VTR_LOG("H3D_SOURCE_EMPTY_REVERSE_SUMMARY requests=%zu new_queries=%zu settled=%zu cache_hits=%zu measured_entry_events=%zu rows=%zu omitted=%zu row_cap=20000\n",
+                 empty_reverse_requests_,empty_reverse_queries_,empty_reverse_work_,empty_reverse_hits_,empty_reverse_measured_,empty_reverse_rows_,empty_reverse_omitted_);
+--- before/h3d_fast_plan.h
++++ after/h3d_fast_plan.h
+@@ -111,6 +111,8 @@
+     bool source_empty_reverse_=false; ///< Revalidate old skip under candidate-level physical sink scoring.
+     size_t empty_reverse_requests_=0,empty_reverse_queries_=0,empty_reverse_work_=0,empty_reverse_hits_=0;
+     size_t empty_reverse_measured_=0,empty_reverse_rows_=0,empty_reverse_omitted_=0;
++    bool source_coverage_skip_=false; ///< Original available<need reverse gate; separate changed-score ablation.
++    size_t coverage_gate_checks_=0,coverage_gate_skips_=0,coverage_gate_rows_=0,coverage_gate_omitted_=0;
+     size_t candidate_path_score_plans_=0,candidate_path_score_records_=0,candidate_path_score_observed_=0,candidate_path_score_estimated_=0;
+     size_t candidate_path_score_changed_=0,candidate_path_resolves_=0;
+     bool dp_tie_pressure_ = false; ///< Zero extra congestion preference only on strict finite shared-DP exclusion ties.

@@ -1,0 +1,138 @@
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp	2026-11-12 18:35:56.762704000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_delay_plan.cpp	2026-11-12 18:38:15.191582000 +0000
+@@ -31,6 +31,13 @@
+         if (!frontier_retain_ && !persistent_frontier_)
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Retention ablation requires universal-terminal frontier queries");
+     }
++    if (const char* value = std::getenv("VPR_H3D_TRACE_DELAY_BOUND")) {
++        if (std::string(value) != "0" && std::string(value) != "1")
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TRACE_DELAY_BOUND must be 0 or 1");
++        trace_bounds_ = std::string(value) == "1";
++        if (trace_bounds_ && !persistent_frontier_)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Delay-bound diagnostics require universal-terminal frontier queries");
++    }
+     if (const char* value = std::getenv("VPR_H3D_TARGET_REUSE")) {
+         if (std::string(value) != "0" && std::string(value) != "1")
+             VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "VPR_H3D_TARGET_REUSE must be 0 or 1");
+@@ -387,6 +394,13 @@
+         }
+         if (answer.exact) { values[candidate] = *answer.exact; ++targeted_exact_; }
+         else { ++targeted_unknown_; targeted_memory_stops_ += answer.stop == H3dPersistentBidirectional::Stop::MEMORY_LIMIT; }
++        if (trace_bounds_) {
++            auto bound = state->second.search->unsettled_lower_bound();
++            if (bound && std::isfinite(*bound)) {
++                auto& saved = (reverse ? reverse_bounds_ : forward_bounds_)[endpoint];
++                if (*bound > saved) { saved = *bound; ++bound_updates_; }
++            }
++        }
+         if (!frontier_retain_) {
+             // The lifetime endpoint work ledger and exact-answer map above
+             // survive. Rebuilding the endpoint frontier is charged normally.
+@@ -397,7 +411,15 @@
+     return values;
+ }
+ 
++double H3dDelayPlan::lower_bound_seconds(RRNodeId endpoint, bool reverse) const {
++    const auto& bounds = reverse ? reverse_bounds_ : forward_bounds_;
++    auto found = bounds.find(endpoint);
++    return found == bounds.end() ? 0. : found->second;
++}
++
+ void H3dDelayPlan::log() const {
++    VTR_LOG("H3D_DELAY_BOUNDS trace=%d updates=%zu forward_endpoints=%zu reverse_endpoints=%zu\n",
++            trace_bounds_, bound_updates_, forward_bounds_.size(), reverse_bounds_.size());
+     VTR_LOG("H3D_PERSISTENT_DELAY enabled=%d slots=%zu peak_states=%zu evictions=%zu restarts=%zu forward_settled=%zu reverse_settled=%zu terminal_certificates=%zu ledger_endpoints=%zu retain=%d discards=%zu live_states=%zu\n",
+             persistent_frontier_, frontier_slots_, frontier_peak_states_, frontier_evictions_, frontier_restarts_, frontier_forward_work_, frontier_reverse_work_, frontier_terminals_, forward_work_.size()+reverse_work_.size(), frontier_retain_, frontier_discards_, frontiers_.size());
+     VTR_LOG("H3D_TARGET_REUSE enabled=%d settled_labels=%zu inserted=%zu duplicates=%zu uncertified_edges=%zu capacity_stops=%zu endpoint_entry_cap=200000\n",
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_delay_plan.h /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_delay_plan.h
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_delay_plan.h	2026-11-12 18:35:56.631081950 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_delay_plan.h	2026-11-12 18:38:15.189053279 +0000
+@@ -18,6 +18,8 @@
+     const Distances& targeted_distances(RRNodeId endpoint, bool reverse, const std::vector<RRNodeId>& targets);
+     bool supported() const { return supported_; }
+     double delay_unit() const { return delay_unit_; }
++    bool trace_bounds() const { return trace_bounds_; }
++    double lower_bound_seconds(RRNodeId endpoint, bool reverse) const;
+     void log() const;
+ 
+   private:
+@@ -49,6 +51,9 @@
+     bool persistent_frontier_ = false;
+     bool frontier_retain_ = true; ///< Ablation: discard only the search frontier after each target, retaining exact values and work charges.
+     size_t frontier_discards_ = 0;
++    bool trace_bounds_ = false; ///< Decision-neutral diagnostic; no scoring clamp is applied.
++    std::unordered_map<RRNodeId, double> forward_bounds_, reverse_bounds_; ///< Certified maxima survive frontier eviction.
++    size_t bound_updates_ = 0;
+     size_t frontier_slots_ = 8, frontier_clock_ = 0, frontier_evictions_ = 0, frontier_restarts_ = 0;
+     size_t frontier_forward_work_ = 0, frontier_reverse_work_ = 0, frontier_terminals_ = 0, frontier_peak_states_ = 0;
+ };
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp	2026-11-12 17:41:25.263990000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_fast_plan.cpp	2026-11-12 18:38:15.195445000 +0000
+@@ -631,6 +631,23 @@
+                 selected_sink_ += !from && to;
+                 selected_estimated_ += !from && !to;
+                 informed |= from || to;
++                if (delay_plan_->trace_bounds()) {
++                    size_t c = channel_index_[node];
++                    auto inspect = [&](bool measured, RRNodeId endpoint, bool backward, double estimate) {
++                        if (measured) return;
++                        ++bound_missing_sides_;
++                        double bound = delay_plan_->lower_bound_seconds(endpoint, backward) / delay_plan_->delay_unit();
++                        bound_positive_sides_ += bound > 0.;
++                        if (estimate < bound) {
++                            ++bound_below_sides_;
++                            bound_gap_units_ += bound - estimate;
++                            VTR_LOG("H3D_BOUND_SELECTED net=%zu pin=%d side=%s candidate=%zu estimate_units=%.17g lower_units=%.17g criticality=%.9g\n",
++                                    size_t(net), pin, backward ? "sink" : "source", size_t(node), estimate, bound, double(criticality[pin]));
++                        }
++                    };
++                    inspect(from, source, false, source_scale * proxy_(source, c));
++                    inspect(to, terminals[pin], true, proxy_(terminals[pin], c) * (back != reverse.end() ? sink_scales.at(pin) : 1.));
++                }
+             }
+             selected_delay_informed_ += informed;
+         }
+@@ -655,6 +672,8 @@
+ 
+ void H3dFastPlan::log() const {
+     profile_.log();
++    VTR_LOG("H3D_BOUND_SELECTED_SUMMARY missing_sides=%zu positive_bound_sides=%zu below_bound_sides=%zu sum_shortfall_units=%.17g\n",
++            bound_missing_sides_, bound_positive_sides_, bound_below_sides_, bound_gap_units_);
+     if (closure_view_) VTR_LOG("H3D_CLOSURE_VIEW endpoints=%zu local_entries=%zu shared_references=%zu\n",
+                               source_views_.size() + sink_views_.size(), view_local_entries_, view_shared_references_);
+     if (profile_.enabled) VTR_LOG("H3D_REACH_PROFILE misses=%zu seconds=%.9f scope=inclusive_not_additive\n", reach_misses_, reach_miss_seconds_);
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_fast_plan.h /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_fast_plan.h
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_fast_plan.h	2026-11-12 17:41:25.262207000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_fast_plan.h	2026-11-12 18:38:15.193250000 +0000
+@@ -77,6 +77,8 @@
+     size_t mixed_both_ = 0, mixed_source_only_ = 0, mixed_sink_only_ = 0, mixed_estimated_ = 0; ///< Sampled candidate coverage.
+     size_t selected_delay_pins_ = 0, selected_delay_informed_ = 0; ///< Final selected-guide delay availability, separate from sampled-pool coverage.
+     size_t selected_both_ = 0, selected_source_ = 0, selected_sink_ = 0, selected_estimated_ = 0; ///< Selected candidate counts, possibly several per pin.
++    size_t bound_missing_sides_ = 0, bound_positive_sides_ = 0, bound_below_sides_ = 0; ///< Selected missing-side events, not cost-callback invocations.
++    double bound_gap_units_ = 0.; ///< Sum of positive estimated-cost shortfalls in graph delay units.
+     bool closure_view_ = false; ///< Exact union-view intersection without expanded endpoint vectors.
+     size_t view_local_entries_ = 0, view_shared_references_ = 0; ///< Cache storage counters, no duplicated shared components.
+     std::unordered_map<RRNodeId, H3dReachabilityView> source_views_, sink_views_; ///< Lifetime-safe immutable endpoint views.
+diff -ruN /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_persistent_bidirectional.h /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_persistent_bidirectional.h
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retention_ablation_candidate_01/src/vpr/src/route/h3d_persistent_bidirectional.h	2026-11-12 18:16:12.724976000 +0000
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/delay_bound_diagnostic_candidate_01/src/vpr/src/route/h3d_persistent_bidirectional.h	2026-11-12 18:38:15.188388000 +0000
+@@ -29,6 +29,17 @@
+ 
+     explicit H3dPersistentBidirectional(size_t source) : endpoint_(source), forward_(source) {}
+ 
++    /** @brief Finite lower bound for every unsettled universal terminal.
++     * No certificate is exposed after a dropped endpoint relaxation. Empty
++     * frontier is deliberately not translated into a new infeasibility claim.
++     */
++    std::optional<double> unsettled_lower_bound() {
++        if (poisoned_) return std::nullopt;
++        forward_.clean();
++        if (forward_.heap.empty()) return std::nullopt;
++        return forward_.heap.top().first;
++    }
++
+     /** @brief Target and incidental terminal values are returned only if proved. */
+     template<typename Terminal, typename Forward, typename Reverse>
+     Result query(size_t target, size_t budget, size_t label_limit, size_t heap_limit,
