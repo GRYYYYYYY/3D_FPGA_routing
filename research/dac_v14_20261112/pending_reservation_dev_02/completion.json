@@ -1,0 +1,491 @@
+{
+  "status": "development_batch_terminal",
+  "passed": false,
+  "roles": {
+    "A0_target_only_weighted_soft_reserve_off": {
+      "status": "legal_evaluated",
+      "scope": "target_only",
+      "baseline": "A0",
+      "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bnn_strong_release_joint_dev_01/A0_target_only_weighted_soft_evaluation",
+      "reused_FULL_STA": true,
+      "cpd_s": 1.3607436066820355e-08,
+      "resources": {
+        "wirelength": 2070813,
+        "SB_pairs": 98,
+        "CB_sources": 5067
+      },
+      "native_core_seconds": 0.378626117,
+      "changed_connections": [],
+      "policies": {
+        "strict": {
+          "accepted": false,
+          "reason": "No full-precision strict CPD improvement"
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "reason": "Setup endpoint/domain vector unchanged"
+        },
+        "timing_under_resources": {
+          "accepted": false,
+          "reason": "No exact CPD reduction within resource limits"
+        },
+        "resources_under_timing": {
+          "accepted": true,
+          "reason": "Exact fixed-budget conditions satisfied"
+        }
+      },
+      "successor_selection_passed": true
+    },
+    "A0_target_only_weighted_soft_reserve_on": {
+      "status": "native_or_candidate_audit_failed",
+      "scope": "target_only",
+      "baseline": "A0",
+      "accepted": false
+    },
+    "A0_target_only_physical_capacity_reserve_off": {
+      "status": "legal_evaluated",
+      "scope": "target_only",
+      "baseline": "A0",
+      "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bnn_strong_release_joint_dev_01/A0_target_only_physical_capacity_evaluation",
+      "reused_FULL_STA": true,
+      "cpd_s": 1.3785623309559014e-08,
+      "resources": {
+        "wirelength": 2070813,
+        "SB_pairs": 98,
+        "CB_sources": 5067
+      },
+      "native_core_seconds": 0.515452797,
+      "changed_connections": [
+        {
+          "net": 73897,
+          "pin": 1,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.2209908917260037e-09
+        }
+      ],
+      "policies": {
+        "strict": {
+          "accepted": false,
+          "reason": "No full-precision strict CPD improvement"
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "reason": "Full-precision CPD regression"
+        },
+        "timing_under_resources": {
+          "accepted": false,
+          "reason": "Fixed registered CPD budget exceeded; no tolerance or rolling anchor"
+        },
+        "resources_under_timing": {
+          "accepted": false,
+          "reason": "Fixed registered CPD budget exceeded; no tolerance or rolling anchor"
+        }
+      }
+    },
+    "A0_target_only_physical_capacity_reserve_on": {
+      "status": "native_or_candidate_audit_failed",
+      "scope": "target_only",
+      "baseline": "A0",
+      "accepted": false
+    },
+    "A0_combined_weighted_soft_reserve_off": {
+      "status": "legal_evaluated",
+      "scope": "combined",
+      "baseline": "A0",
+      "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bnn_strong_release_joint_dev_01/A0_combined_weighted_soft_evaluation",
+      "reused_FULL_STA": true,
+      "cpd_s": 1.3413972155262854e-08,
+      "resources": {
+        "wirelength": 2070921,
+        "SB_pairs": 98,
+        "CB_sources": 5067
+      },
+      "native_core_seconds": 1.442752324,
+      "changed_connections": [
+        {
+          "net": 29784,
+          "pin": 1,
+          "before_s": 1.7784682893040582e-09,
+          "after_s": 1.6002814906546092e-09
+        },
+        {
+          "net": 47878,
+          "pin": 2,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.0428040930765548e-09
+        },
+        {
+          "net": 47982,
+          "pin": 23,
+          "before_s": 1.2209908917260037e-09,
+          "after_s": 1.035165092533319e-09
+        },
+        {
+          "net": 57596,
+          "pin": 1,
+          "before_s": 2.918618957625796e-10,
+          "after_s": 8.493392933406341e-10
+        },
+        {
+          "net": 57667,
+          "pin": 18,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.4068166909186886e-09
+        },
+        {
+          "net": 57667,
+          "pin": 15,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.2209908917260037e-09
+        },
+        {
+          "net": 57667,
+          "pin": 13,
+          "before_s": 1.4144556914619244e-09,
+          "after_s": 1.4068166909186886e-09
+        },
+        {
+          "net": 57667,
+          "pin": 11,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.035165092533319e-09
+        },
+        {
+          "net": 57667,
+          "pin": 21,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.5926424901113734e-09
+        },
+        {
+          "net": 57667,
+          "pin": 17,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.5926424901113734e-09
+        },
+        {
+          "net": 57667,
+          "pin": 2,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.5926424901113734e-09
+        },
+        {
+          "net": 57667,
+          "pin": 19,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.4068166909186886e-09
+        },
+        {
+          "net": 57667,
+          "pin": 33,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.4068166909186886e-09
+        },
+        {
+          "net": 57667,
+          "pin": 28,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.4068166909186886e-09
+        },
+        {
+          "net": 57667,
+          "pin": 26,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.2209908917260037e-09
+        },
+        {
+          "net": 66400,
+          "pin": 28,
+          "before_s": 1.035165092533319e-09,
+          "after_s": 1.7784682893040582e-09
+        },
+        {
+          "net": 66400,
+          "pin": 24,
+          "before_s": 1.4068166909186886e-09,
+          "after_s": 2.150119887689428e-09
+        },
+        {
+          "net": 66543,
+          "pin": 1,
+          "before_s": 6.635134941479492e-10,
+          "after_s": 1.2209908917260037e-09
+        },
+        {
+          "net": 68613,
+          "pin": 1,
+          "before_s": 8.569782938838699e-10,
+          "after_s": 8.493392933406341e-10
+        },
+        {
+          "net": 71919,
+          "pin": 12,
+          "before_s": 4.776876949552644e-10,
+          "after_s": 8.493392933406341e-10
+        },
+        {
+          "net": 71949,
+          "pin": 2,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.6002814906546092e-09
+        },
+        {
+          "net": 71949,
+          "pin": 1,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.4144556914619244e-09
+        },
+        {
+          "net": 73082,
+          "pin": 2,
+          "before_s": 6.635134941479492e-10,
+          "after_s": 1.0428040930765548e-09
+        },
+        {
+          "net": 73082,
+          "pin": 1,
+          "before_s": 1.5926424901113734e-09,
+          "after_s": 1.6002814906546092e-09
+        },
+        {
+          "net": 73896,
+          "pin": 1,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.035165092533319e-09
+        },
+        {
+          "net": 73897,
+          "pin": 1,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.035165092533319e-09
+        }
+      ],
+      "policies": {
+        "strict": {
+          "accepted": true,
+          "reason": "Exact policy conditions satisfied"
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "reason": "Setup endpoint/domain vector has regressions"
+        },
+        "timing_under_resources": {
+          "accepted": true,
+          "reason": "Exact fixed-budget conditions satisfied"
+        },
+        "resources_under_timing": {
+          "accepted": false,
+          "reason": "Fixed registered resource budget exceeded"
+        }
+      },
+      "successor_selection_passed": true
+    },
+    "A0_combined_weighted_soft_reserve_on": {
+      "status": "native_or_candidate_audit_failed",
+      "scope": "combined",
+      "baseline": "A0",
+      "accepted": false
+    },
+    "A0_combined_physical_capacity_reserve_off": {
+      "status": "legal_evaluated",
+      "scope": "combined",
+      "baseline": "A0",
+      "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bnn_strong_release_joint_dev_01/A0_combined_physical_capacity_evaluation",
+      "reused_FULL_STA": true,
+      "cpd_s": 1.3413972155262854e-08,
+      "resources": {
+        "wirelength": 2071005,
+        "SB_pairs": 103,
+        "CB_sources": 5070
+      },
+      "native_core_seconds": 3.592440137,
+      "changed_connections": [
+        {
+          "net": 29784,
+          "pin": 1,
+          "before_s": 1.7784682893040582e-09,
+          "after_s": 1.6002814906546092e-09
+        },
+        {
+          "net": 47878,
+          "pin": 2,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.0428040930765548e-09
+        },
+        {
+          "net": 47982,
+          "pin": 23,
+          "before_s": 1.2209908917260037e-09,
+          "after_s": 1.035165092533319e-09
+        },
+        {
+          "net": 57596,
+          "pin": 1,
+          "before_s": 2.918618957625796e-10,
+          "after_s": 8.493392933406341e-10
+        },
+        {
+          "net": 57667,
+          "pin": 28,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.123989817886084e-09
+        },
+        {
+          "net": 57667,
+          "pin": 21,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.123989817886084e-09
+        },
+        {
+          "net": 57667,
+          "pin": 18,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.2209908917260037e-09
+        },
+        {
+          "net": 57667,
+          "pin": 15,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.2209908917260037e-09
+        },
+        {
+          "net": 57667,
+          "pin": 13,
+          "before_s": 1.4144556914619244e-09,
+          "after_s": 1.4068166909186886e-09
+        },
+        {
+          "net": 57667,
+          "pin": 2,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.4068166909186886e-09
+        },
+        {
+          "net": 57667,
+          "pin": 33,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.035165092533319e-09
+        },
+        {
+          "net": 57667,
+          "pin": 11,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.035165092533319e-09
+        },
+        {
+          "net": 57667,
+          "pin": 17,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.4068166909186886e-09
+        },
+        {
+          "net": 57667,
+          "pin": 26,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.035165092533319e-09
+        },
+        {
+          "net": 66400,
+          "pin": 28,
+          "before_s": 1.035165092533319e-09,
+          "after_s": 1.3174546176220048e-09
+        },
+        {
+          "net": 66400,
+          "pin": 24,
+          "before_s": 1.4068166909186886e-09,
+          "after_s": 1.6891062160073744e-09
+        },
+        {
+          "net": 66543,
+          "pin": 1,
+          "before_s": 6.635134941479492e-10,
+          "after_s": 1.2209908917260037e-09
+        },
+        {
+          "net": 68613,
+          "pin": 1,
+          "before_s": 8.569782938838699e-10,
+          "after_s": 8.493392933406341e-10
+        },
+        {
+          "net": 71949,
+          "pin": 2,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.5926424901113734e-09
+        },
+        {
+          "net": 71949,
+          "pin": 1,
+          "before_s": 1.2286298922692396e-09,
+          "after_s": 1.309815617078769e-09
+        },
+        {
+          "net": 73896,
+          "pin": 1,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.035165092533319e-09
+        },
+        {
+          "net": 73897,
+          "pin": 1,
+          "before_s": 1.0428040930765548e-09,
+          "after_s": 1.035165092533319e-09
+        }
+      ],
+      "policies": {
+        "strict": {
+          "accepted": true,
+          "reason": "Exact policy conditions satisfied"
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "reason": "Setup endpoint/domain vector has regressions"
+        },
+        "timing_under_resources": {
+          "accepted": false,
+          "reason": "Fixed registered resource budget exceeded"
+        },
+        "resources_under_timing": {
+          "accepted": false,
+          "reason": "Fixed registered resource budget exceeded"
+        }
+      },
+      "successor_selection_passed": true
+    },
+    "A0_combined_physical_capacity_reserve_on": {
+      "status": "native_or_candidate_audit_failed",
+      "scope": "combined",
+      "baseline": "A0",
+      "accepted": false
+    }
+  },
+  "complete_orchestrator_seconds": 1315.4327318556607,
+  "complete_child_process_seconds": 1281.299396444112,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/registration.json": "0e3e09e92677936aafb40d0125987eccbba92bfd43ee89c55c3477c5f3cb63f1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/execution_registration.json": "1030da89db9e2a762c14f6daef214fcbb798701c7257444a817213b7dc269c28",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/process_costs.json": "d7f681a577d91d36825477471ae5cd496d057a1a74d48b70e3e9fe5e30163436",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/progress.json": "114e747fd4b3a69e9ba69c0b824e409b4a820d55ac723d88a98b230e4da5cc8a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_weighted_soft_reserve_off_decisions.json": "2c9e91eb8f38b9ce8cb91ed0253d5117a66cbf7c2ca4add6236c7fa9feb75d3d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_physical_capacity_reserve_off_decisions.json": "e705a84f0ca60af5578d825cc490495f82a7989140962255d9cb77aff740779f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_weighted_soft_reserve_off_decisions.json": "ed84207d9a10e5ee6d93fb96b0e0956b8d39d77e1a2fb1e81fd97f0bab428f3f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_physical_capacity_reserve_off_decisions.json": "fd9832259cf4aa56680c1871c9fa6253b087aebbb748cd20cd88a9bd69e65f7f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_physical_capacity_reserve_off_timing_under_resources_state.json": "840e5da927a8bcb5c1ea5160c154535225da397b49b7a2bd6923530108476055",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_physical_capacity_reserve_off_resources_under_timing_state.json": "33e860b2aa9341a671717393a7c16800bd4848a71222a0a09a7357be4f173637",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_weighted_soft_reserve_off_resources_under_timing_state.json": "f08e335455c21bc202d64719ef62ccce6b91f3a4a271b7216e057831ed18b723",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_weighted_soft_reserve_off_endpoint_vector_state.json": "f08e335455c21bc202d64719ef62ccce6b91f3a4a271b7216e057831ed18b723",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_physical_capacity_reserve_off_strict_state.json": "8fb0aa86a127ccf252c060f3b3b365c1d71a5a5997f6f3617948aa6640f38971",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_weighted_soft_reserve_off_timing_under_resources_state.json": "a6b1391d8b66d14ef9783331345becae32e5488e8f674d93b2bffb6df1c92367",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_weighted_soft_reserve_off_timing_under_resources_state.json": "cc5af377d597af6a101493983e7fa37996c305e6b0843bd9494e02e81e8a34fa",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_weighted_soft_reserve_off_strict_state.json": "cc5af377d597af6a101493983e7fa37996c305e6b0843bd9494e02e81e8a34fa",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_weighted_soft_reserve_off_strict_state.json": "a6b1391d8b66d14ef9783331345becae32e5488e8f674d93b2bffb6df1c92367",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_physical_capacity_reserve_off_timing_under_resources_state.json": "33e860b2aa9341a671717393a7c16800bd4848a71222a0a09a7357be4f173637",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_physical_capacity_reserve_off_strict_state.json": "33e860b2aa9341a671717393a7c16800bd4848a71222a0a09a7357be4f173637",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_physical_capacity_reserve_off_endpoint_vector_state.json": "33e860b2aa9341a671717393a7c16800bd4848a71222a0a09a7357be4f173637",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_physical_capacity_reserve_off_endpoint_vector_state.json": "840e5da927a8bcb5c1ea5160c154535225da397b49b7a2bd6923530108476055",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_weighted_soft_reserve_off_resources_under_timing_state.json": "9d9c736f4f36ec6fdc5b1965baca40025077b9b2dcfb02c14ea51b4134588549",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_weighted_soft_reserve_off_endpoint_vector_state.json": "a6b1391d8b66d14ef9783331345becae32e5488e8f674d93b2bffb6df1c92367",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_physical_capacity_reserve_off_resources_under_timing_state.json": "840e5da927a8bcb5c1ea5160c154535225da397b49b7a2bd6923530108476055"
+  },
+  "qualification": "Complete shared multi-arm development workflow cost, not a standalone configuration runtime. Individual failures do not stop other arms or the research goal. Further searches must use each accepted current state and updated occupancy/STA."
+}

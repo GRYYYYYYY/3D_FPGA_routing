@@ -1,0 +1,80 @@
+{
+  "status": "current_worst_path_targets_selected",
+  "targets": [
+    {
+      "net": 6592,
+      "pin": 3,
+      "sink": 94269,
+      "observations": [
+        {
+          "source_atom_pin": "bram_select[4].inpad[0]",
+          "sink_atom_pin": "$abc$87764$new_n16766.in[0]",
+          "sink_location_matches": 1,
+          "route_pins_at_sink": 1,
+          "report_increment_ns_rounded": 1.218
+        }
+      ]
+    },
+    {
+      "net": 7981,
+      "pin": 1,
+      "sink": 94458,
+      "observations": [
+        {
+          "source_atom_pin": "$abc$87764$new_n16766.out[0]",
+          "sink_atom_pin": "$abc$87764$new_n16765.in[0]",
+          "sink_location_matches": 1,
+          "route_pins_at_sink": 1,
+          "report_increment_ns_rounded": 0.412
+        }
+      ]
+    },
+    {
+      "net": 7614,
+      "pin": 69,
+      "sink": 82095,
+      "observations": [
+        {
+          "source_atom_pin": "$abc$87764$new_n22678.out[0]",
+          "sink_atom_pin": "$abc$87764$new_n22677.in[1]",
+          "sink_location_matches": 1,
+          "route_pins_at_sink": 1,
+          "report_increment_ns_rounded": 0.784
+        }
+      ]
+    },
+    {
+      "net": 7647,
+      "pin": 56,
+      "sink": 134709,
+      "observations": [
+        {
+          "source_atom_pin": "$abc$87764$new_n22677.out[0]",
+          "sink_atom_pin": "$0\\bram_wdata_c_5_ext[63:0][53].in[0]",
+          "sink_location_matches": 1,
+          "route_pins_at_sink": 1,
+          "report_increment_ns_rounded": 2.278
+        }
+      ]
+    }
+  ],
+  "unresolved": [],
+  "current_cpd_ns": 6.09618,
+  "startpoint": "bram_select[4].inpad[0] (.input clocked by virtual_io_clock)",
+  "endpoint": "bram_wdata_c_5_ext[53].D[0] (.latch clocked by clk)",
+  "input_run": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/coordinated_native_01/runs/eltwise_layer_R",
+  "source_sha256": {
+    "report_timing.setup.rpt": "0d1d923ead16225a1bef084b3578cc66e17ae1f33a77c647096d482f43de874f",
+    "packed.net": "80407d8982581f80e837796ee76d7bd513f54f391390bad9946d4c64051deded",
+    "placed.place": "f43377f776bdb2fb67d1b287e1d22263514d2ba5e9831936087d853e18b1dd8b",
+    "routed.route": "ed9a1f0c8e644dc2022caa797c4383112a3e84ff4b0945fd7bf3bf1cd48cc3eb",
+    "manifest.json": "137fbdf40262257b863d1fba56464000d25e07bcdbdbde4c906c83184c6f28b2",
+    "independent_audit.json": "e70f0e72913ee5486b6fcec3094847fa5046a20223ceeb75d7f6f6b671989e77",
+    "selector": "2930d6fb6df1ddc52423e239f1386a2bc58bdd04817b63fdc6105f9a2461231b",
+    "inspector": "514ec486051e56348cfc6818936a4684b77d62a83bbd184115be26443811865b"
+  },
+  "mapping_scope": "Current reported atom-driver net and placed sink cluster location; include every matching routed sink/pin. Ambiguous locations are explicitly retained as a conservative target set, not exact pin identity.",
+  "selection_scope": "Worst reported setup path only. Re-run selection on each newly accepted state; near-critical multi-path extension remains a separate factor.",
+  "route_search_calls": 0,
+  "native_analysis_calls": 0
+}

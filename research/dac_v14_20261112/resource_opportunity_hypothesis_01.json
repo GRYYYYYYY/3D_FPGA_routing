@@ -1,0 +1,29 @@
+{
+  "status": "subsequent_independent_development_not_started",
+  "question": "Are current resource gains small because candidates are restricted to positive-delay/current-winning-path opportunities, rather than because noncritical resource reduction has no potential?",
+  "evidence": [
+    "portfolio_zero_bounds_summary_01.json: Tf zero-resource trajectory reduces only40wire on2074317 and noSB/CB",
+    "A0_endpoint_bridge_checkpoint_01.json: owner release unlocks same-request timing gain and reduceswire36",
+    "critical_exchange_results_summary_01.json: target-first versusowner-first changesresource/timing outcome under identicalscope/nativekernel"
+  ],
+  "mechanism": "Construct a separate resource proposal class from actual occupied crossings and wire detours of slack-bearing noncritical branches; then test their release alone and before critical/near-critical repair in a private sequentially updated transaction.",
+  "potential_diagnostic": [
+    "Count actual per-net unique SB pairs, CB crossing output sources and planar wire from existing audited routes; compare terminal-layer cut requirements and observed crossing excursions. Layer-only cut requirements are an optimistic structural reference, not a feasible routing algorithm or global timing/resource optimum. SB and CB may substitute, so do not give each a separate unqualified lower bound.",
+    "Check whether high-resource slack-bearing branches actually hold capacity on the relaxed critical/near-critical alternative paths; state the reachable donor set and unknowns before expensive whole-router trials."
+  ],
+  "selection_rule": "Uniform objective-specific rankings from current state (marginal resource release, downstream slack, actual scarce-resource overlap), never per-circuit historical best; protect current critical/near-critical retained branches and compare the same scope/opportunity in native controls.",
+  "implementation_plan": [
+    "New resource-opportunity analyzer reusing immutable RRG mapping and current route/resource owners; no change to runningv3 or its frozen request menus.",
+    "Independent candidate interface with explicit resource objective and fixed timing/hold requirements. Use real physical Tdel, capacity updates after each connection, original sink/retained-branch legality, whole FULLSTA and atomic accept/rollback.",
+    "Small path Pareto/penalty queries may use delay as feasibility screen; record nondominated-label/query caps as per-query resource guards and retain unknown status, never a research termination condition.",
+    "If native weighted searches choose identical routes, fold implementations and attribute benefit to selector/schedule; if a new resource cost changes routes, compare resource-only, timing-only and combination under the same domain/tree/acceptance opportunities."
+  ],
+  "falsifiers_and_actions": [
+    "No feasible alternative crossing/wire on exposed slack branches: quantify the restriction and shift scope or donor/receiver assignment; do not repeat neighboring penalty values without new mechanism evidence.",
+    "Resource release exists but does not reach scarce resources or key timing cones: retain feasible resource Pareto candidates and revise critical-overlap scheduling.",
+    "Combined release/repair helps while isolated components do not improve CPD: retain the combination and validate dependencies with matching ablations."
+  ],
+  "requirements": "Define common absolute design envelopes for matched strongA0/R1/Tf; preserve strict CPD comparator and own-current states, classify full runtime unknown until a complete configuration flow is measured.",
+  "running_batch_unchanged": true,
+  "no_overall_stopping_rule": true
+}

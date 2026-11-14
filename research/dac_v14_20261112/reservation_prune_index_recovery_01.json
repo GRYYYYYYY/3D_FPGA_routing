@@ -1,0 +1,13 @@
+{
+  "status": "independent_fix_before_build",
+  "failed_native": "pending_reservation_dev_02/A0_target_only_weighted_soft_reserve_on",
+  "failure": "RouteTree::prune updates reached-bitset but does not clear sink pointer lookup; partial multi-sink pruning leaves a stale lookup entry",
+  "fix": "Use the existing prune-maintained get_is_isink_reached().get(pin) for both pruned-tree membership checks; original unpruned copy continues supplying path nodes",
+  "old_stage": "native_reservation_stage_03",
+  "new_stage": "native_reservation_stage_04",
+  "existing_batch_unchanged": true,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reservation_workspace_01/vpr/src/route/route_tree.cpp": "7ec3706268f27a4a9af70a60e1b9ae93aeb23d327397602088ff041cd5b57ad4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reservation_workspace_01/vpr/src/route/route_tree.h": "054f8ea23f54790389831509a9d8ac68d6f6f8190f430646fffe577bfbf06d38"
+  }
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "tag": "Tf_cut_order_native",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_joint_native_state_analysis_v2.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_01/evaluation_002/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_native_cut_order_dev_01/Tf_cut_order",
+      "--native-cases",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_native_cut_order_dev_01/Tf_cut_order.txt"
+    ],
+    "returncode": 0,
+    "timed_out": false,
+    "complete_process_seconds": 14.537517204880714
+  },
+  {
+    "tag": "Tf_cut_order_audit",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_joint_native_repair_v2.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_native_cut_order_dev_01",
+      "--role",
+      "Tf_cut_order"
+    ],
+    "returncode": 0,
+    "timed_out": false,
+    "complete_process_seconds": 28.4103531986475
+  },
+  {
+    "tag": "Tf_cut_order_evaluation",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_endpoint_state_analysis.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_01/evaluation_002/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_native_cut_order_dev_01/Tf_cut_order_evaluation",
+      "--candidate-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_native_cut_order_dev_01/Tf_cut_order_audit/candidate.route"
+    ],
+    "returncode": 0,
+    "timed_out": false,
+    "complete_process_seconds": 38.525648422539234
+  }
+]

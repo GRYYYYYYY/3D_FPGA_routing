@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "analysis_workers": 5,
+  "successful_workers": 4,
+  "reused_completed_native_parent_processes": 3,
+  "new_native_parent_processes": 2,
+  "total_native_parent_processes": 5,
+  "full_precision_STA_and_graph_exact": true,
+  "equivalent_pin_changed": {
+    "net": 0,
+    "before": [
+      236
+    ],
+    "after": [
+      208
+    ]
+  },
+  "invalid_child_followed_by_valid": true,
+  "invalid_native_loader_signal": 11,
+  "same_binary_invalid_standalone_signal": 11,
+  "duplicate_directories_rejected": true,
+  "original_inputs_unchanged": true,
+  "route_search_flow_calls": 0,
+  "complete_recovery_seconds": 0.5652780458331108,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/analysis_fork_tiny_regression_02/registration.json": "f2d8b15047f1b0fcdb338afdf75116b9dce5872b0f10ed14d34167a276d8b8ad",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/analysis_fork_tiny_regression_02/process_costs.json": "b1280d4b37784c79046fe077fa0ec64f949694c7b0a32ca8d5319b6aaca76491",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/analysis_fork_tiny_regression_02/duplicate.txt": "027868a7333b2b65a4f3ecabb375de5c572af46cc23e66381e044962b9a8565e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/recover_analysis_fork_tiny_validation.py": "027fa9be8416d30c90223b31c77cdde3a596acea4695441987a3410a18aa7e86"
+  },
+  "qualification": "Actual native tiny FULLSTA/constraints/full graph exact equality after equivalent-IPIN change. Parent loads packing once. Malformed-route loader segfault is reproduced in standalone and isolated worker; subsequent valid worker is unchanged, not graceful in-process rollback. Corrected only a timer-label test assumption; native observations were not rerun. No large-case equivalence or cold algorithm speedup claim."
+}

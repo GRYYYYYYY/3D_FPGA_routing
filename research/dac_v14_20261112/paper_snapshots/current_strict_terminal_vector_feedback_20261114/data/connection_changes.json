@@ -1,0 +1,314 @@
+{
+  "utc": "2026-11-09T20:19:55.823238+00:00",
+  "status": "paired_terminals_verified",
+  "scope": "Same net IDs/names and Net_pin_index, same SOURCE/SINK RR IDs and coordinates verified in saved routes; actual switch-delay sums from independent zero-RC audits. Excludes local/logic timing and is not a native STA critical-path decomposition, final-guide adoption measurement or isolated DP causal effect.",
+  "cases": [
+    {
+      "circuit": "clstm_like.small",
+      "seed": 23,
+      "family": "hybrid_o",
+      "flow": "p0",
+      "width": 100,
+      "arms": [
+        "heldout_clstm_like.small_s23_hybrid_o_n60_w100_p0_a0",
+        "heldout_clstm_like.small_s23_hybrid_o_n60_w100_p0_delay_critical_c6"
+      ],
+      "terminal_identity_equal": true,
+      "groups": {
+        "all": {
+          "count": 26676,
+          "improved": 1874,
+          "tied": 22912,
+          "regressed": 1890,
+          "a0_mean_ns": 0.9517507601710152,
+          "r1_mean_ns": 0.9493111629160295,
+          "mean_delta_ns": -0.002439597254985761,
+          "largest_improvements": [
+            {
+              "net_id": "3378",
+              "net_pin_index": "240",
+              "net_name": "reset",
+              "remote": false,
+              "a0_ns": 3.659643280999999,
+              "r1_ns": 1.4144556910000003,
+              "delta_ns": -2.2451875899999987
+            },
+            {
+              "net_id": "3378",
+              "net_pin_index": "1317",
+              "net_name": "reset",
+              "remote": true,
+              "a0_ns": 4.710819535999998,
+              "r1_ns": 2.4961879499999995,
+              "delta_ns": -2.2146315859999985
+            },
+            {
+              "net_id": "3378",
+              "net_pin_index": "1132",
+              "net_name": "reset",
+              "remote": true,
+              "a0_ns": 4.524993736999998,
+              "r1_ns": 2.4961879499999995,
+              "delta_ns": -2.0288057869999987
+            }
+          ],
+          "largest_regressions": [
+            {
+              "net_id": "5606",
+              "net_pin_index": "452",
+              "net_name": "$abc$109867$flatten\\C_LSTM_stage_2_18_10_16_1_inst_zumzzzfdoh.\\elementwise_mult_core_18_18_10_16_1_ot_tanh_mult.\\dsp_signed_mult_18x18_unit_18_18_1_inst0.$0\\valid_rr[0:0]",
+              "remote": false,
+              "a0_ns": 1.2209908910000002,
+              "r1_ns": 2.7228752849999998,
+              "delta_ns": 1.5018843939999995
+            },
+            {
+              "net_id": "5606",
+              "net_pin_index": "320",
+              "net_name": "$abc$109867$flatten\\C_LSTM_stage_2_18_10_16_1_inst_zumzzzfdoh.\\elementwise_mult_core_18_18_10_16_1_ot_tanh_mult.\\dsp_signed_mult_18x18_unit_18_18_1_inst0.$0\\valid_rr[0:0]",
+              "remote": false,
+              "a0_ns": 1.4068166900000003,
+              "r1_ns": 2.9087010839999996,
+              "delta_ns": 1.5018843939999993
+            },
+            {
+              "net_id": "5608",
+              "net_pin_index": "192",
+              "net_name": "$abc$109867$new_n37846",
+              "remote": false,
+              "a0_ns": 0.8493392930000001,
+              "r1_ns": 2.3435846860000003,
+              "delta_ns": 1.4942453930000001
+            }
+          ]
+        },
+        "remote": {
+          "count": 3902,
+          "improved": 626,
+          "tied": 2735,
+          "regressed": 541,
+          "a0_mean_ns": 1.5587835389559201,
+          "r1_mean_ns": 1.5330477716412096,
+          "mean_delta_ns": -0.025735767314710452,
+          "largest_improvements": [
+            {
+              "net_id": "3378",
+              "net_pin_index": "1317",
+              "net_name": "reset",
+              "remote": true,
+              "a0_ns": 4.710819535999998,
+              "r1_ns": 2.4961879499999995,
+              "delta_ns": -2.2146315859999985
+            },
+            {
+              "net_id": "3378",
+              "net_pin_index": "1132",
+              "net_name": "reset",
+              "remote": true,
+              "a0_ns": 4.524993736999998,
+              "r1_ns": 2.4961879499999995,
+              "delta_ns": -2.0288057869999987
+            },
+            {
+              "net_id": "5608",
+              "net_pin_index": "668",
+              "net_name": "$abc$109867$new_n37846",
+              "remote": true,
+              "a0_ns": 3.030748344,
+              "r1_ns": 1.1724903540000002,
+              "delta_ns": -1.8582579899999998
+            }
+          ],
+          "largest_regressions": [
+            {
+              "net_id": "6023",
+              "net_pin_index": "200",
+              "net_name": "$abc$109867$new_n50944",
+              "remote": true,
+              "a0_ns": 0.8008387560000001,
+              "r1_ns": 2.295084149,
+              "delta_ns": 1.494245393
+            },
+            {
+              "net_id": "3378",
+              "net_pin_index": "493",
+              "net_name": "reset",
+              "remote": true,
+              "a0_ns": 2.4809099480000003,
+              "r1_ns": 3.7969685429999984,
+              "delta_ns": 1.316058594999998
+            },
+            {
+              "net_id": "8789",
+              "net_pin_index": "1",
+              "net_name": "C_LSTM_stage_3_18_10_64_2048_1_16_1_inst_skqzqwirvv.multiple_c_matrix_vec_mult_and_sum_18_10_16_1_1_64_inst_gwxvknsryv.idft_16_top_18_inst_odzdqwqjpl.codeBlock98050_18_inst_apzkvgqore.Y8[12]",
+              "remote": true,
+              "a0_ns": 1.358316153,
+              "r1_ns": 2.6667357469999997,
+              "delta_ns": 1.3084195939999996
+            }
+          ]
+        }
+      }
+    },
+    {
+      "circuit": "clstm_like.large",
+      "seed": 23,
+      "family": "hybrid_o",
+      "flow": "p0",
+      "width": 100,
+      "arms": [
+        "heldout_clstm_like.large_s23_hybrid_o_n80_w100_p0_a0",
+        "heldout_clstm_like.large_s23_hybrid_o_n80_w100_p0_delay_critical_c6"
+      ],
+      "terminal_identity_equal": true,
+      "groups": {
+        "all": {
+          "count": 63556,
+          "improved": 11304,
+          "tied": 41568,
+          "regressed": 10684,
+          "a0_mean_ns": 1.1712719959831173,
+          "r1_mean_ns": 1.1636453244929825,
+          "mean_delta_ns": -0.007626671490134681,
+          "largest_improvements": [
+            {
+              "net_id": "7468",
+              "net_pin_index": "1",
+              "net_name": "C_LSTM_stage_3_18_10_64_2048_3_16_1_inst_siyrhbrrne.stage3_parameter_buffer_18_3_16_64_2048_inst_cysdmwxqvl.weight_buffer_18_9_3_64_2048_Wym_imag_half_0_inst_lbzuazhzae_imag.addrs_2[7]",
+              "remote": false,
+              "a0_ns": 4.960423873999998,
+              "r1_ns": 1.4220946920000002,
+              "delta_ns": -3.5383291819999982
+            },
+            {
+              "net_id": "7292",
+              "net_pin_index": "4",
+              "net_name": "C_LSTM_stage_3_18_10_64_2048_3_16_1_inst_siyrhbrrne.stage3_parameter_buffer_18_3_16_64_2048_inst_cysdmwxqvl.weight_buffer_18_9_3_64_2048_Wym_imag_half_0_inst_lbzuazhzae_imag.addrs_1[10]",
+              "remote": false,
+              "a0_ns": 5.347353473999998,
+              "r1_ns": 2.165397888,
+              "delta_ns": -3.181955585999998
+            },
+            {
+              "net_id": "14990",
+              "net_pin_index": "2462",
+              "net_name": "$abc$263065$new_n92841",
+              "remote": true,
+              "a0_ns": 3.6035037429999988,
+              "r1_ns": 0.8008387560000001,
+              "delta_ns": -2.8026649869999987
+            }
+          ],
+          "largest_regressions": [
+            {
+              "net_id": "12907",
+              "net_pin_index": "384",
+              "net_name": "$abc$263065$new_n103703",
+              "remote": true,
+              "a0_ns": 0.9866645550000002,
+              "r1_ns": 4.517354735999999,
+              "delta_ns": 3.530690180999999
+            },
+            {
+              "net_id": "12907",
+              "net_pin_index": "728",
+              "net_name": "$abc$263065$new_n103703",
+              "remote": true,
+              "a0_ns": 1.1724903540000002,
+              "r1_ns": 4.331528936999999,
+              "delta_ns": 3.1590385829999987
+            },
+            {
+              "net_id": "12907",
+              "net_pin_index": "396",
+              "net_name": "$abc$263065$new_n103703",
+              "remote": true,
+              "a0_ns": 1.1724903540000002,
+              "r1_ns": 4.331528936999999,
+              "delta_ns": 3.1590385829999987
+            }
+          ]
+        },
+        "remote": {
+          "count": 10863,
+          "improved": 3485,
+          "tied": 4617,
+          "regressed": 2761,
+          "a0_mean_ns": 1.9297253122808617,
+          "r1_mean_ns": 1.8778050072527848,
+          "mean_delta_ns": -0.05192030502807691,
+          "largest_improvements": [
+            {
+              "net_id": "14990",
+              "net_pin_index": "2462",
+              "net_name": "$abc$263065$new_n92841",
+              "remote": true,
+              "a0_ns": 3.6035037429999988,
+              "r1_ns": 0.8008387560000001,
+              "delta_ns": -2.8026649869999987
+            },
+            {
+              "net_id": "23948",
+              "net_pin_index": "36",
+              "net_name": "C_LSTM_stage_2_18_10_48_1_inst_poousgrtem.elementwise_mult_core_18_18_10_48_1_ot_tanh_mult.dsp_signed_mult_18x18_unit_18_18_1_inst0.valid_r",
+              "remote": true,
+              "a0_ns": 4.1533421389999985,
+              "r1_ns": 1.3659551540000001,
+              "delta_ns": -2.7873869849999986
+            },
+            {
+              "net_id": "8426",
+              "net_pin_index": "647",
+              "net_name": "reset",
+              "remote": true,
+              "a0_ns": 5.818135328999998,
+              "r1_ns": 3.030748344,
+              "delta_ns": -2.7873869849999977
+            }
+          ],
+          "largest_regressions": [
+            {
+              "net_id": "12907",
+              "net_pin_index": "384",
+              "net_name": "$abc$263065$new_n103703",
+              "remote": true,
+              "a0_ns": 0.9866645550000002,
+              "r1_ns": 4.517354735999999,
+              "delta_ns": 3.530690180999999
+            },
+            {
+              "net_id": "12907",
+              "net_pin_index": "728",
+              "net_name": "$abc$263065$new_n103703",
+              "remote": true,
+              "a0_ns": 1.1724903540000002,
+              "r1_ns": 4.331528936999999,
+              "delta_ns": 3.1590385829999987
+            },
+            {
+              "net_id": "12907",
+              "net_pin_index": "396",
+              "net_name": "$abc$263065$new_n103703",
+              "remote": true,
+              "a0_ns": 1.1724903540000002,
+              "r1_ns": 4.331528936999999,
+              "delta_ns": 3.1590385829999987
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "source_sha256": {
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_clstm_like.small_s23_hybrid_o_n60_w100_p0_a0/independent_audit.json": "a8e4138daba396558a141c0a16292900856388641e15a89e312c5bb3766f19e7",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_clstm_like.small_s23_hybrid_o_n60_w100_p0_a0/routed.route": "ec706c9d786f2f594d0a7184984f10e88e500562da3753693335a6e570dd181e",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_clstm_like.small_s23_hybrid_o_n60_w100_p0_delay_critical_c6/independent_audit.json": "2a55059d5ff41967f3645f2729103c05e3f45b5a8ed2d1b84830532d51b3c15e",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_clstm_like.small_s23_hybrid_o_n60_w100_p0_delay_critical_c6/routed.route": "68af583f68d7b13fe23508921ff6ff86bb98fa3dbbd88e7975d57a64b13d0e21",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_clstm_like.large_s23_hybrid_o_n80_w100_p0_a0/independent_audit.json": "7be93461753fb7e7407635ae40a19ec60946dddf25a2d7c5b5ad1d45185eb422",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_clstm_like.large_s23_hybrid_o_n80_w100_p0_a0/routed.route": "e935a8da74847797105a128313c031640948ef95c7c7b841a234f54ecf14aa12",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_clstm_like.large_s23_hybrid_o_n80_w100_p0_delay_critical_c6/independent_audit.json": "30ca50a01566d0f50cde2b3cef75406e17f91a9748796654c0a6817371f6c342",
+    "results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/heldout_clstm_like.large_s23_hybrid_o_n80_w100_p0_delay_critical_c6/routed.route": "becc4dd7fa068ed8938d079809519bf33ded53b33dc07ad8da1d7ba5526ad836",
+    "scripts/check_route.py": "bac0d05ab363cee28afad1b38afaf8d03772cab474cb672c0cc25fd8428c94f5"
+  }
+}

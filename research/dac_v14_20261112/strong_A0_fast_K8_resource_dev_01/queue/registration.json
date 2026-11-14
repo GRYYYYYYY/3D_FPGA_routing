@@ -1,0 +1,41 @@
+{
+  "pid": 4075707,
+  "start_ticks": "1942024890",
+  "prior_owner": {
+    "pid": 2999180,
+    "start_ticks": "1941811173"
+  },
+  "after": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_fast_resource_dev_01",
+  "initial_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_timing_trajectories_01/strict/round_002/proposal_01/transaction/current_group_evaluation",
+  "cases": {
+    "native_only_K8": {
+      "domain_mode": "unrestricted",
+      "bundle_size": 8
+    },
+    "paired_K8": {
+      "domain_mode": "paired",
+      "bundle_size": 8
+    }
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/queue_strong_A0_fast_K8.py": "bad45ffba5a5b57cb46ba662fd3d99f6b2ce7caafb38f7440b97bc52ea189095",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_serial_current_resource_repair_v2.py": "714ee52cdaffbd421ed17216a69a0a934ecc2d179e314f3bc00ee0bdb8c8a3a6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_serial_resource_transactions_v3.py": "9e70e1e4a66b998a2870544cfbc86bd6586f832df875c08b01a5fcb5773c0072",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/resource_native_reuse.py": "ad961a53a702d69e948b17a4e046a30e8f33005225d039c0f92ff87472ba9f14",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_native_reuse_resource.py": "b0ffe727dd00eb6efb9b1df7097acde47098b3f9e859cc1baf4a05e247d63099",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cross_actor_resource_reuse_validation_02/completion.json": "91b3202b636fcec7ecbe7f7880aa0c84ccbf2b776ab53f23b13948b1ae42b134",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_fast_resource_dev_01/queue/registration.json": "300633d47eb1f51a493f5f549a068464934203e57b68178554be13dc81b246de",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_native_only_K4_resource_summary_01.json": "22ac7b3b0bd0cd57a4c6de9bc088e719a2b4cea43577370cf80cd8733b459da7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/K8_first_equals_K4_final_pending_seal_01.json": "8bca785a34601cb6428b8e4d04f4521fba191f23b61215502e99af89706d5b20",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_timing_trajectories_01/strict/round_002/proposal_01/transaction/current_group_evaluation/completion.json": "54bcbcc84cdfa649e2a46a316e26304ab20746e24f99e29f630cf255b7fc952a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_timing_trajectories_01/strict/round_002/proposal_01/transaction/current_group_evaluation/endpoint_vector.json": "16be807be83c9160346bb64cb0cf040a62efc107a86dcbf26c0fb14bcf3fd1d0"
+  },
+  "question": "Does whole K8 amortize candidate validation on the same strong-A0 fast root versus K4 and preserve or improve the observed timing/resource frontier? R1 first K8 reaches the identical K4-final physical state with fewer candidate gates, pending its actor seal.",
+  "reuse": "Only fully sealed exact standalone free-native matches; domain ON and forced paths are never aliased to OFF. Source/request/binary/pressure guards and fresh acceptance validated with zero new native calls. Costs of reused creation remain excluded and separate.",
+  "concurrency": {
+    "this_chain_native_max": 1,
+    "main_chain_native_max": 2,
+    "total_native_max": 3
+  },
+  "qualification": "Subsequent independent development; waits for the preserved K4 owner and receipt, never cancels or changes it. Same initial root, budget rule, ranks and restoration order across policies; own-current state after divergence. Local probe is not a global stopping matrix. Concurrent imported-state costs are not formal cold timing or per-circuit historical-best configuration selection."
+}

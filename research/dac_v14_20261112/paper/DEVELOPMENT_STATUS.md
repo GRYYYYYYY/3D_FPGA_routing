@@ -1,3 +1,124 @@
+# C182–C183：strict三步终封与同源失败反馈组合
+
+当前联合档案333，BNN220观察124坐标。strict从注册45SB prefix至13.228146ns，资源仍45/5060；endpoint原始批6提案0接受。新反馈组合仅准备并登记待原生验证，未放宽规则、不改变当前/已完成批。最终43SB与诊断45SB两起点区分。恢复指令继续服务器研究；平台Goal工具状态单列于continuation，不据此改写科研证据。新增本地未推送。
+
+# C179–C181：43SB资源终封、45SB真实时序组合、快计数接受接口
+
+联合档案332观测，含强基线与全部封存资源/seed及新增局部时序接受。完整原生5步82SB，对应paired9步43SB/5060CB，同CPD；导入开销和额外native搜索均保留。两次strict时序接受从注册45SB prefix到13.413972ns，不是从最终43SB点起步；完整strict/vector流程继续，不能合并接续两条状态。原生计数consumer真实2receipt/7负例及非空4候选验证通过，完整live等价性单owner等待前置批次。完整冷时间、全体策略与跨电路确认未完成，Goal active，无总次数/日期/矩阵/作者终止，新增本地未推送。
+
+# C177–C178：低资源后的时序潜力与双接受策略
+
+45SB/5060CB注册诊断prefix不是资源actor最终分数；该actor原版本继续并观察到后续44SB。current-cone10连接中5项正乐观gap，7复用+3新查询；完整native观察两段及审查错误保留，未反复跑已成功native/query。双策略原生composition诊断已启动，同绝对资源上限，当前还无接受结果，不预告CPD提升。Goal active，新内容本地未推送。
+
+# C176：直接实际候选scope审查，完整集成仍待验证
+
+六封存事务+六损坏检查通过，无新VPR。新独立完整工程等价性owner已登记，待原global-seed cohort结束后运行，原实验输入/接受规则不改。BNN7接受45SB/5060CB仅私有prefix，未终封、不进入主图/最终方法分数。Goal active；未推送。
+
+# C173–C175：强化原生对照、显式seed和原生计数前置验证
+
+封存native BNN5接受82SB/5062CB、2059591wire、13.607436ns；paired原版本继续，归档/归并单owner等待。6臂seed策略验证表示不变，单源delay/RR候选217183wire/24/965，资源策略接受但不是完整自动算法。C++计数器与完整独立资源审查相符，2新worker+2封存复用纠正header误比较；不冒充独立审查、不宣称完整速度。新actual client验证与全局固定delay/RR从pristine A0/R1/Tf的8actor shadow迁移已登记，原批次不改，快消费者待实现。主档案52=295观测，另有6新诊断观测的301记录分支，终封归并已登记。Goal active，无总日期/调用/固定矩阵停止，新增本地未推送。
+
+# C172：自动迁移与保留树顺序的因果局部对照
+
+新Eltwise native/paired两actor已终封，6.018101ns下217050/26/968与217191/24/965，均来自自动原生起点。新paired比旧217214少23wire，经三臂仅6719改序局部干预复现old/new/old，属于serialization/seed遍历影响，不是图文本优化带来的数学质量提升。source树/完整向量等价不允许忽略有序路由缓存身份。档案52现295观测；新BNN无两步前缀上限的own-current原生/配对轨迹继续，未终封私有prefix不作正式点。后续归档单owner队列已登记，强A0/R1/U/Tf始终留在联合人口。所有计时分层、Goal active、新增本地未推送。
+
+# C170–C171：资源先行局部轨迹完成，实际图导出优化验证
+
+3次接受最终13.228145689936355ns/2059882wire/79SB/5061CB，与既有timing-first/guided-K8完整endpoint向量相同，route body不同。无新四轴前沿；临界组合证实非关键余量可支持关键修复，不能标为endpoint-vector接受。档案285观测、原始失败与强A0/R1/U/Tf保留，缺失冷完整时间仍未知。10tiny和timing/resource实际导出同值验证通过，组件开销另列、未宣称全方法加速。原批次版本不改，后续独立compact/fused自动资源actor已登记并保留相同选择/搜索scope/预算/接受规则的native-only对照。Goal active，无日期/总调用/固定矩阵终止，新增本地。
+
+# C168–C169：精确流式端点解码与资源先行时序首步
+
+流式解码组件约11→5s、峰值1.73GiB→0.18–0.21GiB，完整精度/身份精确相同；7损坏输入和实际candidate接入通过，0新native。运行中timing不改版本。资源先行首步已接受13.607436→13.421610ns、79SB/5061CB保持，wire2059882≤原始cap2061627，winning连接10→13要求当前STA重选；完整阶段仍在运行。短稿方法/结果/开销已同步，旧64页开发证据与所有失败保留。完整冷routing+repair时间仍未知，Goal active、无总日期/次数/矩阵停止条件，新增本地。
+
+# C164–C167：统一原生根资源取舍、源根潜力与实际候选STA集成
+
+最新档案47=282合法观察，失败另列。current_repair_main.tex是问题—机制—整体结果—Pareto—消融—开销主线短稿；main.tex保留完整开发证据，旧conclusion84wire已纠正为当前强A0 native8序列40wire。原快照均保留。
+统一K8四actor完整通过，BNN/eltwise都有CPD持平的资源取舍；源根诊断十个当前最坏连接在更宽放松下距离仍等于现状。真实candidate同worker FULL/新STA/恢复及独立LOAD大图通过；两个Python检查错误保留且0重复repair恢复，输入态/验证段/核心分开，冷完整时间仍未知。资源先行后timing当前STA实验正在执行，固定79SB/5061CB与原始wire上限2061627，不重新抬高包络。导出I/O优化只有测量依据和后续假设，尚未实现。Goal active，新增本地未推送。
+
+# C163：自动失败释放已完整通过，统一起点K8后续已启动
+
+新C++ kernel/queue与Python pool默认关闭；tiny 8-child兼容/恢复、BNN真实替换/FULLSTA/最终封存通过。自动起步8域仅释放31767p1，复现合法72SB点；strict拒绝、端点9改善零退化接受，固定源近关键23项不变。287.624s为输入态流程，非冷完整算法时间。后续uniform_feedback_resource_dev_01从pristine strong-native eltwise/BNN A0根运行同K8 native-only及paired-feedback，独立自当前态选择。Goal active，全部新增本地。
+
+# C159–C162：强基线联合前沿、选择性域释放与迁移控制
+
+档案44=264合法观察；219完整时间待定。新主结果位于selective_frontier_v14.tex，旧分节是历史封存记录。A0 fast K8形成86SB/低wire与79SB/低CB取舍；R1按网释放72SB真实通过。Eltwise有资源收益，SPMV仍被强A0支配。自动native failure-release独立构建/验证队列运行；原批次均完整保留。Goal active，无日期/次数/矩阵总停止条件，新增均本地未推送。
+
+# C156–C158：K8低SB终态、容量反例与exact跨批次复用
+
+R1 K8完整封存13.228145689936355ns/2069040wire/74SB/5071CB；A0 resource-only13.607436066820355ns/2059667/86/5062。档案40=233观察。31767p1固定scope/domain在最小占用仍无容量路，故不继续仅调顺序/加预算。跨批次OFF复用零native验证通过，A0 fast K8独立后续已登记，原main/paired/native-first继续。冷完整算法时间未知，Goal active，新增本地。
+
+# C155：强A0 timing后原生资源两步完成
+
+13.228145689936355ns/2059623wire/88SB/5062CB，较快态+16wire/−6SB；第二步1setup改善、strict拒绝/endpoint接受，关键锥不变。224观察，配对K4、原main K8/迁移继续，native-first等main。835.666s为导入态流程，冷完整时间未知。
+
+# C153–C154：强A0时序后资源首步已真实接受
+
+13.228145689936355ns/2059659wire/90SB/5062CB，setup向量平、真实4连接delay变化、resource接受，外层继续。新点质量支配旧E；档案38=223观察。预算slice仅经验参考，冷完整时间未知，main K8/native-first及独立组合继续。
+
+# C150–C152：K4减少7SB/1CB与强A0组合验证
+
+K4两步完整封存13.228145689936355ns/2069048wire/79SB/5071CB，关键锥不变，1198.820s是导入态配对流程。档案37=222观察；原K8继续，native-first仍等待，强A0低线长快速态K4独立原生/配对实验已启动，结果未知。新内容本地，Goal active。
+
+# C149：两时序策略局部终态均完成，主资源cohort继续
+
+严格与fixed-vertical各自当前态的三步终态一致；新原生执行数2与0、流程2155.627s与77.873s不能作算法速度比。当前主paired bundle和后续native-first继续，Goal active。
+
+# 最新C146–C148：强A0自动前缀与外部原生前沿
+
+档案36现217观察；强A0三步已接受前缀13.228145689936355ns/2059607wire/94SB/5062CB，轨迹继续。R1纯原生资源selector终态13.228145689936355ns/2068888/84/5072，与域paired(2068988/85/5071)互不支配。原三resource actors已完整封存，新repair池大图验证通过，bundle批次已运行，native-first独立后续已排队。冷完整算法时间未知，Goal active，新内容未推送。
+
+# 最新C143–C145：封存资源轨迹与工程/迁移验证
+
+R1_fast两步终态完整封存：CPD13.228145689936355ns，wire2068988/SB85/CB5071；根对比+108wire、−1SB/−1CB。关键锥不变，第二步OFF=ON，原态native-only控制已登记。档案31=198观察。A0_native8/R1_native8原批次继续；新的native-worker池大图验证排在其后，再执行独立bundle/selector/跨电路cohort。新tiny通过不等于大图通过。Goal active，新内容未推送。
+
+# 最新C141–C142：实际原生机会与公共前缀诊断
+
+原native_extra_opportunity_bnn_01全部完成且合法；档案30=193观察。A0实际8次合法并降低资源，R1/Tf各2次、末轮0重布且恢复原质量。R1快速态SOURCE-only十连接仍0延迟gap。新pooled_resource_repair_dev_01已实际启动R1_fast，初态重新FULL/STA精确一致、当前资源重新选择完成，正在执行原生OFF/ON事务。旧批次未改。Goal active，新增仅本地。
+
+# 最新C137–C140：R1、资源配对、强原生机会与状态复用
+
+档案28=191条观察，旧候选不再仅因CPD丢弃。强R1自动修复到13.228145690ns；共享跨层域各少1CB但wire增加，A0域候选被新的原生额外收敛支配。R1/Tf额外原生机会批次继续；独立pooled_resource_repair_dev_01已排队，固定原批次不变。新内容仅本地未推送，Goal active。
+
+# 最新C136：强A0严格三步完成
+
+封存强A0出发达到13.228145689936355ns/wire2070917/SB98/CB5067，CPD好2.787376%、wire+84，SB/CB不变；第三步唯一新增native还比其前态少16wire。与Tf快速态同CPD但少3396wire/7SB、多5CB，形成联合取舍。另保留A0低wire合法拒绝点。档案25=130观察、6个BNN质量前沿组。
+
+A0严格导入态工作流1017.807s，与端点3909.490s复用机会不同，非成对加速/冷完整算法时间。R1严格及Tf资源仍接续；共享跨层六臂实际排在原portfolio之后。旧版本/接受规则不改，Goal active，新内容仅本地未推送。
+
+# 最新：C133–C135（资源共享独立开发）
+
+A0 endpoint本轮终态13提案/2接受；另有合法13.413972155ns、wire2070781/SB98/CB5067被端点策略拒绝但保留非支配，较原A0少52wire，同CPD较旧组合少140。完整导入态工作流3909.490s，非冷完整算法时间。档案24=129观察，五个BNN质量前沿组包含强原生R1、A0候选、U与Tf。
+
+四态census无层返回绕行，改研究跨层树干共享。resource_domain_stage01已构建、双层回归通过；shared_crossing_repair_dev01六角色在既有portfolio后接续，实际大图资源收益未知。共同绝对预算已登记，旧v3运行版本不改；所有新增仅本地，未推送。
+
+# 最新观察补充 C131–C132
+
+强A0 endpoint已接受两步，达到13.599797732410934ns/wire2070797/SB98/CB5067；较封存起点CPD好7.638334ps、wire少36，11setup改善0退化。首步CPD持平、严格策略拒绝；后续4目标请求同初态字节完全一致但初态无CPD收益。当前actor仍继续，不是终态性能结论。档案23=123观察。
+
+独立analysis_fork_stage_02构建及小图恢复验证通过，实际pin映射更换仍与同二进制独立完整分析完全相同。大BNN工程等价已通过：3worker完整精度同独立参考，父进程192.688s；非正式配对加速或冷完整算法时间。active quality cohort版本不变。所有新内容仅本地、未推送；冷完整算法时间未知。
+
+# 当前开发状态（2026-11-14）
+
+权威结果：C127–C130。原生自由选路在扩展关键持有者依赖闭包后达到CPD13.228145690ns，wire2074313/SB105/CB5062；与preset完全相同，贡献归于闭包和调度，非新搜索核。owner-first保持13.413972155ns且wire2074277，完整端点向量不变。两者保留Pareto取舍；fast有2端点退化但距新最坏≥2.114957ns。
+
+封存原Tf起点的自动portfolio已取得两步结果，零增量根资源限制下时序方案CPD降低、wire比起点少4；零增量根时序限制下资源方案wire少40，后续候选尚待native。质量严格复用已完成真实路由，没有新native用于回放；不声称冷完整算法加速。A0/R1新原生轨迹正在运行，实时进程以live_handoff为准。
+
+大图静态批处理2进程10事务等价、新鲜STA一致；stage04保留修复避免physical退化，但只匹配已有weighted结果。档案22含120观察与明确共享评估，未知时间不替换。下一步推进强原生等机会轨迹、共享绝对预算与跨电路确认，并依据已测加载成本优化独立分析进程。研究active，无整体停止日期、次数或矩阵上限，作者信息不阻塞。
+
+以下为原样保留的历史记录，其“最新/待实施/无后台”措辞均不描述当前状态。
+
+当前进展：默认关闭的原生全连接STA导出已完成4状态开关验证，95620条连接复算/映射一致。Tf全部4条数值并列最差连接未在原guided搜索群体出现；下一重点为统一全连接关键组选择、联合容量决策和事务恢复。观察器不增加质量收益；最强本地仍R1联合修复5.85466ns。研究active，新增仅本地。
+
+当前状态（优先于历史）：plateau接受后下一5目标无收益；同目标反事实确认资源挤占。联合两目标兼容路径+4阻塞汇恢复通过nativeFULL/STA，强R1 CPD6.01810→5.85466ns（2.715807%），SB/CB各+1、线长+12。35新查询/1新legalanalysis，旧plateau native复用，未推广一般方法。下一原生全连接STA/精确pin信息用于统一关键组选择和A0/R1/Tf完整策略对照；研究active，新增仅本地。
+
+当前状态（优先于历史）：协调事务10汇重接且nativeFULL/STA通过，Tf6.20393→6.09618；新STA单连接再改善到6.01928，仍差强A0/R1的6.01810。R1合法局部缩短但CPD/TNS持平且最差起点迁移，strictCPD拒绝保留。当前轮24新查询/3legalanalysis，未推广，额外开销和资源明确记录。下一plateau接受准则实验已登记未实施，随后统一A0/R1/Tf完整策略比较；研究active，新内容仅本地。
+
+当前状态（优先于历史）：当前STA的5连接及冻结2连接固定容量查询均精确0收益；5连接放松后仅net6587pin4有0.379291ns机会。其3阻塞网的6个非空真子集均0收益，需在该集合内同时释放3网；其中1个阻塞资源影响8汇共享子树。18新查询，0native，接受路由未变。下一协调修复已登记未实施；研究active，新增仅本地。
+
+当前状态（优先于历史）：固定容量最短扩展与原生FULL/STA验证完成；net5479局部缩短1.955259ns，CPD仅改善0.00419ns且最差路径迁移。强A0/R1仍更好，未推广。下一为当前STA驱动的事务式修复，通用目标选择器已实施，后续查询尚未提交。2个analysis-only调用，0个新route-search调用；研究active，新增仅本地。
+
+当前状态（本段优先于下方历史状态）：树感知P/I/L/IL离线15236查询及真实RRG/上下界审计完成；P→IL可接入路径910→1091，但新增322/丢失227，无exact/支配证书。37双类有效witness无一highcritical。当前Tf最差路径两跨簇连接不在guided总体；强基线对net5479有2.601561ns局部物理差，但3资源冲突。下一为独立固定其他网络容量约束潜力诊断，已登记未实施。无新增native调用，研究active；这些结果仅本地，公开仍f7167bd。
+
 # 独立开发稿：当前证据状态
 
 最新封存：原生outside四quality/control和两test-only回滚角色全部合法并审计通过，两停止规则CPD仍6.20812ns且完整route同C。7/4实际outside叶选择、所有extendedcost/currentprior/最好解hash核对；new和retained真实差异回滚均触发一次并恢复。此分支不推广。下一独立实际criticality guide资格gate仅登记，未实施。研究active，Git快照整理中；仓库实际为public，公开未投稿稿范围需由用户明确。
@@ -260,3 +381,21 @@ Synthetic test_retained_prefix_costs.py passed all six states, the faster-nonexp
 
 
 2026-11-13 增补：半单位/一单位cap的四个配对角色和精确物理路径诊断已封存，见[C46/C47](claims_evidence.md)及[完整CSV](data/cap_range_v14.csv)。一个seen电路下未发现兼顾首次合法和后续恢复的稳健候选；不推广，也不终止研究。下一独立只读诊断记录真正成功入堆的多源节点与本次搜索BB，避免把tree存在误作入堆事实。顺序开发费用保留，无正式速度主张。
+
+
+2026-11-13 当前实际关键度资格消融完成（[C61证据](claims_evidence.md)）。仅搜索局部指针、原计划保留，native float门槛0.7；outside模式关闭，预算不变。首批日志覆盖问题经独立stage02纠正并完成三角色严格等价复现。E2/E1实际534/79次停用与121/15次同偏好重新启用有完整guide-search记录；仍同完整物理route6.20812ns和118/955资源，count2多7轮(69 vs62)，首次合法42不变，不推广。成本与失效历史完整保留，不以诊断复现作为独立样本、也不作正式速度结论。此批晚于GitHub已推f7167bd，仅在本地论文更新；研究目标保持active。
+
+
+2026-11-13 离线推荐候选查询与索引证据见[C62/C63](claims_evidence.md)。同256工作限额，10focus contexts中路径3→4、总展开2242→2094，所有路径/非时间输出在索引前后精确，查询候选记录8582160→31；一次性索引扫描858216条及构建费用未进入query timer，不作native速度结论。依然无exact/dominance证书，prefix floor均0，physical单cross步行非全树合法或STA保证。native Qs在同10上下文cachehit0，offline sparse history为3，历史不可混用。下一actual_search_tree_experiment_01仅登记，尚无新路由调用，公开快照仍f7167bd。
+
+
+2026-11-13 actual_search_tree只读原生两角色已封存，C64/C65完整证据及成本同步。3809guided搜索/141798实际入堆/476698当前树节点无省略；1595 no-cross真实图路径有76额外交树，在最近真实入堆交点截断后68同价、8变贵(max1.300781ns)。1159上下文真实树prefix已经满足preferred-cross，516 native no-cross路径利用这类seed。下一独立I/L 2×2查询图消融已登记未执行；原生路由合法分支/物理Tdel/STA不改。两trace角色仍精确原6.20812/62/SB118CB955，诊断neutral不当作质量收益。
+
+
+2026-11-14 continuation recovery / verified delta C184--C185 (pending main-text integration)
+
+Five old orchestration processes disappeared without terminal receipts; cause unknown. Their artifacts are preserved. Actual replacement owners continue the43SB timing checkpoint, the unchanged45SB five-connection feedback intervention, untouched R1/Tf cases, and engineering equivalence controls. The interrupted R1-native four-accept private checkpoint awaits dedicated pool/materialization recovery; it is not a numerical failure.
+
+The335-observation archive now includes actual legal native82SB/5062CB/2059627wire and paired43SB/5060CB/2061389wire timing states, both at13.228145689936355ns. The paired state spends1762more wire for39fewer SB and2fewer CB. Both are nondominated among collected four-axis quality observations; complete cold times remain unknown. The native timing trajectory is sealed (3093.901s imported timing phase), whereas paired trajectory closure is pending recovery. Fixed full endpoint comparison has550setup improvements and799regressions; do not claim endpointwise dominance.
+
+Evidence: `data/complete_resource_timing_delta_01.json` and `../multiobjective_complete_resource_timing_01/composition_summary.json`. C183v2 and its PDF snapshot remain unchanged; integrate this delta after recovery results, preserving historical45SB composition as a distinct diagnostic.

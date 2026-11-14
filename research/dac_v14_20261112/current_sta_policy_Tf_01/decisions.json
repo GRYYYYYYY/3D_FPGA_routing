@@ -1,0 +1,94 @@
+[
+  {
+    "policy": "strict",
+    "step": 0,
+    "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_endpoint_diagnostics_01/Tf",
+    "source_identity": "0bbf85f0b9d61454e453828872fd14398b474ed7080caf62b674b9c5c58695b1",
+    "candidate": {
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_01/queries_000/repair_net5479_pin36.route",
+      "targets": [
+        {
+          "net": 5479,
+          "pin": 36
+        }
+      ],
+      "kind": "single_capacity"
+    },
+    "evaluated_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_01/evaluation_002",
+    "reused_evaluation": false,
+    "decision": {
+      "accepted": true,
+      "policy": "strict",
+      "reason": "Exact policy conditions satisfied",
+      "comparison": {
+        "compatible": true,
+        "cpd_before_s": 6.208121572370828e-09,
+        "cpd_after_s": 6.203926705694585e-09,
+        "cpd_strictly_better": true,
+        "cpd_nonworse": true,
+        "setup_improved": 1,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 14032,
+        "hold_components": 14032,
+        "changes": [
+          {
+            "kind": "setup",
+            "endpoint_domain": "[83567,68347,\"bram_rdata_ext[15].D[0]\",0,1]",
+            "before_s": -6.208121572370828e-09,
+            "after_s": -5.059306307231282e-09,
+            "delta_s": 1.1488152651395467e-09
+          }
+        ]
+      }
+    },
+    "rollback_seconds": 0.0,
+    "decision_complete_seconds": 39.003990944474936
+  },
+  {
+    "policy": "endpoint_vector",
+    "step": 0,
+    "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_endpoint_diagnostics_01/Tf",
+    "source_identity": "0bbf85f0b9d61454e453828872fd14398b474ed7080caf62b674b9c5c58695b1",
+    "candidate": {
+      "route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_01/queries_000/repair_net5479_pin36.route",
+      "targets": [
+        {
+          "net": 5479,
+          "pin": 36
+        }
+      ],
+      "kind": "single_capacity"
+    },
+    "evaluated_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_01/evaluation_002",
+    "reused_evaluation": true,
+    "decision": {
+      "accepted": true,
+      "policy": "endpoint_vector",
+      "reason": "Exact policy conditions satisfied",
+      "comparison": {
+        "compatible": true,
+        "cpd_before_s": 6.208121572370828e-09,
+        "cpd_after_s": 6.203926705694585e-09,
+        "cpd_strictly_better": true,
+        "cpd_nonworse": true,
+        "setup_improved": 1,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 14032,
+        "hold_components": 14032,
+        "changes": [
+          {
+            "kind": "setup",
+            "endpoint_domain": "[83567,68347,\"bram_rdata_ext[15].D[0]\",0,1]",
+            "before_s": -6.208121572370828e-09,
+            "after_s": -5.059306307231282e-09,
+            "delta_s": 1.1488152651395467e-09
+          }
+        ]
+      }
+    },
+    "rollback_seconds": 0.0,
+    "decision_complete_seconds": 0.1536460630595684
+  }
+]

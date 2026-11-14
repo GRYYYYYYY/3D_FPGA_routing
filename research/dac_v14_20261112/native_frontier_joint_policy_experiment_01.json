@@ -1,0 +1,51 @@
+{
+  "status": "registered_not_submitted",
+  "question": "Can one native-STA-selected joint repair policy improve matched A0/R1/Tf states without relying on manually selected net IDs or sequentially consuming resources needed by ties?",
+  "evidence": "Four exported final states contain23905 exact mapped routed connections each. Allfour Tf worst-slack ties are absent from3809 earlier guided contexts. StrongR1 has6 numerically tied connections, including6587/4 and6590/4; their previous joint repair gave native CPD5.85466. Rawcriticality==1 misses all6 R1 ties; per-domain normalization must not substitute for globalCPD rank.",
+  "inputs": {
+    "A0": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_A0",
+    "R1": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_R1",
+    "Tf": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_Tf"
+  },
+  "mapping_observer": "native_sta_frontier_stage_03/bin/vpr, analysis only; frozen final exports in native_sta_frontier_dev_03. Preserve original router binaries/results.",
+  "hypotheses": [
+    {
+      "name": "coverage_and_selection",
+      "change": "Use exact all-connection native atom/domain/slack data. Begin with numerical worst-slack ties on the shared current state, validated against native reported CPD path/domain. Eight float ULPs are only a numerical grouping tolerance; nearcritical0.2ns is a separate exploratory factor, not a permanent bound. No rawcriticality==1 or guide-only filter.",
+      "intervention": "Compare old one-worst-report targets, all tied targets, and nearcritical groups; same objective/route inputs. Count actionable finite alternatives and path/domain coverage before native proposals.",
+      "outcomes": "If additional relevant targets have no feasible/relaxed potential, move to another module; if potential appears but current policy misses it, change selection/consumer."
+    },
+    {
+      "name": "independent_vs_joint",
+      "change": "Generate fixed-tree/free-capacity and endpoint-relaxed witnesses on the same original accepted state. Keep alternative paths when conflicts require diversity; resolve mutual target capacities before reserving resources. Restore all displaced blockers transactionally.",
+      "intervention": "Independent single-target, plateau sequence, and joint compatible selection use same target pool and complete per-invocation opportunity. Reuse matching completed query records only after graph/targets/prefixes/occupancy/caps/model equivalence checks; log missing/failed/timeout separately.",
+      "outcomes": "Joint-only gain supports resource coupling; equally successful independent repair favors simpler policy; infeasible blocker restoration leads to changed group/order/objective, not adjacent strength tuning."
+    },
+    {
+      "name": "CPD_objective",
+      "change": "Evaluate domain-aware timing impact and nearcritical slack of targets and displaced sinks. Do not sum local physical delay gains as CPD. Final native FULL/STA is authoritative; preserve input accepted state on failure. Separate strict CPD acceptance from bounded plateau exploration.",
+      "intervention": "Compare physical-delay-only vs path/slack-aware candidate ordering on same feasible path pool before native evaluation. Reject unsupported global CPD bounds.",
+      "outcomes": "If route delay improves but CPD migrates repeatedly, enlarge critical group/path objective or alter intervention site; do not simply increase query precision."
+    }
+  ],
+  "correctness": [
+    "Actual RRG edges/switches/capacities and all terminal identities retained; static SCC/graph caches reused, dynamic occupancy/current prefix refreshed.",
+    "Native physical Tdel, setup/hold STA, congestion and original route status preserved. NonzeroRC requires RC-aware replay or native path evaluation, not the present zeroRC certificate.",
+    "Compare entire policy A0/R1/Tf including rejected/failed proposals and full costs. New seeds/circuits follow a stable development policy; no universal improvement claim from oneeltwise seed."
+  ],
+  "runtime": "Record original routingprocess, preparation, querycore/queryprocess, nativeSTA/check and audit separately; nestedtimers not additive. Then replace repeated graph loading/full audits with persistent or in-process state under equivalent decisions and re-time same environment.",
+  "success_branch": "Postrepair begins from legal routes and cannot alone improve failed-route success. Continue independent matched prelegal failure/scope/guide research.",
+  "limits": {
+    "per_process_timeout_seconds": 1800,
+    "per_process_memory_bytes": 68719476736,
+    "query_memory_bytes": 25769803776,
+    "disk_reserve_bytes": 85899345920
+  },
+  "stopping_policy": "No overall date/count/fixedmatrix stop. A branch is revised using mechanism evidence; individual process guards remain.",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/frontier_validation.json": "97b3f93873be4d0b552b4db63db9d84dab98295cef8459afcc64320a411b2933",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/frontier_mechanism_analysis.json": "fff073cafb4a1a881982cccb1e31bc15c17cb0fbd6dad17326b99df9cf53d755",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/guided_history_identity.json": "6cb6818498af39aa582a658aec95af512f1b21cbcfe620c6d9096249c5a78761",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/plateau_joint_repair_summary_01.json": "f1886b68396accd7a8eae95e4242093748f92ffba9877bf2be269be3fb89308a"
+  }
+}

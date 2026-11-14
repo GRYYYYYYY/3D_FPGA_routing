@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "checks": {
+    "selected_worst_endpoints_equal": true,
+    "complete_winning_cones_equal": true,
+    "winning_connection_ids_equal": true
+  },
+  "steps": 2,
+  "final_CPD_ns": 13.228145689936355,
+  "resource_delta": {
+    "wirelength": 108,
+    "SB_pairs": -1,
+    "CB_sources": -1
+  },
+  "newly_quality_dominated_prior_frontier_records": [
+    {
+      "id": "shared_crossing_repair_dev_01/R1_reuse_on_evaluation/runs/state",
+      "arm": "R1_first_ranked_crossing_share_weighted_soft_reuse_on",
+      "CPD_ns": 13.421610489672275,
+      "wirelength": 2069004,
+      "SB_pairs": 86,
+      "CB_sources": 5071,
+      "dominated_by": [
+        "pooled_resource_repair_dev_01/R1_fast/round_000/candidate_00/reuse_on_evaluation/runs/state",
+        "pooled_resource_repair_dev_01/R1_fast/round_001/candidate_00/reuse_off_evaluation/runs/state",
+        "pooled_resource_repair_dev_01/R1_fast/round_001/candidate_00/reuse_on_evaluation/runs/state"
+      ]
+    },
+    {
+      "id": "h2_expansion_01/runs/bnn_N",
+      "arm": "historical_N",
+      "CPD_ns": 13.4216,
+      "wirelength": 2069228,
+      "SB_pairs": 90,
+      "CB_sources": 5071,
+      "dominated_by": [
+        "pooled_resource_repair_dev_01/R1_fast/round_000/candidate_00/reuse_on_evaluation/runs/state",
+        "pooled_resource_repair_dev_01/R1_fast/round_001/candidate_00/reuse_off_evaluation/runs/state",
+        "pooled_resource_repair_dev_01/R1_fast/round_001/candidate_00/reuse_on_evaluation/runs/state"
+      ]
+    }
+  ],
+  "second_step_OFF_ON_same_quality_and_candidate_FULLSTA_reused": true,
+  "frontier_group_count_not_a_progress_metric": true,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bind_resource_trajectory_mechanism.py": "18d20acaf77136334f64a20f6cc2c48a008dc9fdfe34a42dfa3b34716ccc954f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/R1_fast_resource_trajectory_summary_01.json": "4f788079e13c4d9835ba0b5ed752bc8c3906d9b3fdb090f0287b1dfff5a3a11b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/R1_fast_resource_final_cone_01.json": "66a8adac5a2122cebcbf6088b3b4e0d74bc91a825ffa9e3d749076a230fc7c9d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/portfolio_execution_dev_01/R1_strict/round_002/feedback/cone.json": "97fbbf81f11aec253e4d6f965de049ad79f964b122328ca7b11c5ff9fb122262",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/multiobjective_archive_31/completion.json": "54e280045d38843e88531215435a8677a807789e7289ace525ca8944b2cb1b53",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/multiobjective_archive_31/points.json": "321220d5420cc6a7190d8e9d39c703339008cdd9ea6b87d02f004cb0fcbd49f6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/multiobjective_archive_30/points.json": "37ec33e6574f239106ed10adfa22d700134e5c97ddff43d3d3db5b84f979ad0d"
+  },
+  "native_calls": 0,
+  "qualification": "Sealed joint quality improvement, not all attribution to crossing-domain restriction. First domain ON releases CB where OFF does not; later current-state selection lets unrestricted native search attain the same SB reduction as ON. A native-only own-current trajectory from the common original state is queued to test independent selection/scheduling versus sequence dependence. Winning cone/endpoints unchanged, no critical-path migration on this two-step trajectory."
+}

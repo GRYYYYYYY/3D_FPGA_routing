@@ -1,0 +1,28 @@
+{
+  "status": "registered_not_implemented_not_submitted",
+  "question": "Can an authoritative native all-connection timing frontier identify tied/near-critical groups and exact cluster-pin endpoints for a reproducible common repair policy?",
+  "evidence": "A one-target plateau step preserves all other sink delays but occupies resources required by the next tied connection. Two-target joint resource-compatible repair of strongR1 passes nativeFULL/STA and improves6.01810\u21925.85466ns. Current target discovery still depends on sequential worst-path reports and location matching; robust group selection and equal-policy comparison require exact native pin/STA information.",
+  "inputs": "Frozen matched count-two eltwise A0/R1/Tf packed/place/RRG/route states, plus accepted jointR1 state for frontier migration diagnosis. Preserve all old binaries, sources, routes and public snapshot.",
+  "implementation": [
+    "Inspect existing native timing echo/report capabilities first; vpr_api.cpp::vpr_analysis already calls tatum::write_echo under E_ECHO_ANALYSIS_TIMING_GRAPH. Reuse if it contains the necessary mappings.",
+    "If needed, add a default-off read-only analysis exporter in an independent frozen stage, after timing_info->update(). Export all clustered net/pin identities, exact atom mappings, available SOURCE/SINK RR identities, actual native net_delay, raw setup/hold slack/criticality, and timing-domain information where supported. Record ignored/global/unmapped cases explicitly.",
+    "Use native calculate_clb_net_pin_criticality/setup-slack and actual ClusteredPinAtomPinsLookup interfaces after inspecting their signatures. Do not infer exact atom pins from placement location or collect only guided connections.",
+    "Use full precision and explicit seconds units; preserve original physical Tdel, native congestion and finalSTA. No selection/policy change in the observer stage."
+  ],
+  "validation": "Compare trace-off/on analysis on identical route inputs; require unchanged route/net/place hashes and nativeFULL/STA metrics. Compare exported native delays to audited zeroRC paths and ensure exact mapping to selected current ties and blocker connections. Existing completed route-search results are reused; new analysis calls answer observer questions, not repeated routing.",
+  "policy_followup": "Build a common policy that groups tied/nearcritical connections on the original accepted state, generates jointly capacity-compatible alternatives and restores blockers transactionally. Use plateau lookahead as information without committing a scarce resource before joint selection. Normalize candidate costs by current path/slack effects; test independent versus joint selection separately.",
+  "matched_comparison": "Once group selection/acceptance are stable, run the same entire policy and per-invocation work/scope from frozen A0/R1/Tf states, then additional seeds/circuits. CurrentR1 joint5.85466 is a development intervention, not a fully compared general router. Legal-input postrepair does not by itself improve failed-route success; retain the original prelegal guide/scope/failure research branch.",
+  "overhead": "Separate original full-route, preparation/query, nativeSTA and audit costs. Reuse static graph/distances; evaluate persistent graph worker or in-process integration under equivalent decisions before formal same-environment timing.",
+  "per_process_limits": {
+    "timeout_seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "global_limits": "No global date, route-call or matrix stopping condition; an unhelpful branch changes the mechanism or development focus, not the overall objective.",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/plateau_joint_opportunity_01.json": "b433c6abdd034e843829c54ffa1b87409f6a164d62fe92076acc51b466bd6107",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_coordinated_native_01/completion.json": "132081832df4ce328dcf2f243db0f70495700d2fa2f2ca1ef2e9eec0314700c5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_coordinated_native_01/path_migration_analysis.json": "ca0d8da2dae9601b704e9604c2688c8b3fdea7b94a6ee121741a4e8947da0cad",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_critical_repair_experiment_01.json": "943d329523eda23f92f261a7cccd89b3ede9620b8192e27e8e784b8bfc07a16f"
+  }
+}

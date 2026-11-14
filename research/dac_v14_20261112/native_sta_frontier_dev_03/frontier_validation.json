@@ -1,0 +1,3078 @@
+{
+  "passed": true,
+  "roles": {
+    "A0": {
+      "pins": 36391,
+      "routed_connections": 23905,
+      "unique_routed_atom_pins": 31108,
+      "drivers": 9920,
+      "ignored_pin_rows": 2583,
+      "global_pin_rows": 1560,
+      "unmapped_pin_rows": 0,
+      "exact_rr_mapping": true,
+      "native_float_mismatches": 0,
+      "native_float_mismatch_examples": [],
+      "max_float_vs_double_error_s": 2.248201624865942e-15,
+      "domains": [
+        {
+          "type": "domain",
+          "id": 0,
+          "name": "virtual_io_clock"
+        },
+        {
+          "type": "domain",
+          "id": 1,
+          "name": "clk"
+        },
+        {
+          "type": "domain",
+          "id": 2,
+          "name": "clk_mem"
+        }
+      ],
+      "worst_setup_slack_s": -6.018100684457295e-09,
+      "exact_worst_slack_connections": 3,
+      "near_worst_within_0p2ns_connections": 12,
+      "top10_report_exact_connections": [
+        {
+          "path": 1,
+          "source_atom": "bram_select[4].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16756.in[5]",
+          "net": 6592,
+          "pin": 4,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 1,
+          "source_atom": "$abc$87764$new_n16756.out[0]",
+          "sink_atom": "$abc$87764$new_n16923.in[0]",
+          "net": 5470,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 1,
+          "source_atom": "$abc$87764$new_n16923.out[0]",
+          "sink_atom": "$abc$87764$new_n16922.in[0]",
+          "net": 5481,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 1,
+          "source_atom": "$abc$87764$new_n16922.out[0]",
+          "sink_atom": "$abc$87764$new_n17267.in[0]",
+          "net": 5485,
+          "pin": 9,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 1,
+          "source_atom": "$abc$87764$new_n17266.out[0]",
+          "sink_atom": "$0\\bram_rdata_ext[63:0][60].in[1]",
+          "net": 6639,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "clk.inpad[0]",
+          "sink_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.B[5].clk[0]",
+          "net": 4242,
+          "pin": 590,
+          "ignored": 1,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.B[5].Q[0]",
+          "sink_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.Mp[0].B[13]",
+          "net": 56,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.Mp[0].Y[21]",
+          "sink_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.ExecuteModule.Mp[15].D[0]",
+          "net": 76,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "bram_select[2].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16745.in[4]",
+          "net": 5490,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "$abc$87764$new_n16745.out[0]",
+          "sink_atom": "$abc$87764$new_n23306.in[0]",
+          "net": 6595,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "$abc$87764$new_n23306.out[0]",
+          "sink_atom": "$0\\bram_wdata_b_3_ext[63:0][58].in[0]",
+          "net": 6171,
+          "pin": 47,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 4,
+          "source_atom": "bram_select[2].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16745.in[4]",
+          "net": 5490,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 4,
+          "source_atom": "$abc$87764$new_n16745.out[0]",
+          "sink_atom": "$abc$87764$new_n23306.in[0]",
+          "net": 6595,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 4,
+          "source_atom": "$abc$87764$new_n23306.out[0]",
+          "sink_atom": "$0\\bram_wdata_b_3_ext[63:0][54].in[0]",
+          "net": 6171,
+          "pin": 18,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 5,
+          "source_atom": "bram_select[0].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16857.in[1]",
+          "net": 5475,
+          "pin": 63,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 5,
+          "source_atom": "$abc$87764$new_n16857.out[0]",
+          "sink_atom": "$abc$87764$new_n16856.in[1]",
+          "net": 7467,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "clk.inpad[0]",
+          "sink_atom": "iterations[28].clk[0]",
+          "net": 4242,
+          "pin": 127,
+          "ignored": 1,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "iterations[28].Q[0]",
+          "sink_atom": "$abc$87764$new_n18106.in[3]",
+          "net": 5947,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "$abc$87764$new_n18106.out[0]",
+          "sink_atom": "$abc$87764$new_n18104.in[2]",
+          "net": 5926,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "$abc$87764$new_n18104.out[0]",
+          "sink_atom": "$abc$87764$new_n19926.in[0]",
+          "net": 5538,
+          "pin": 7,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "$abc$87764$new_n19926.out[0]",
+          "sink_atom": "$abc$87764$new_n19921.in[0]",
+          "net": 5717,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "$abc$87764$new_n19921.out[0]",
+          "sink_atom": "$abc$87764$flatten\\u_eltwise_cu_2.\\u_input_logic.$0\\a_mem_access[0:0].in[1]",
+          "net": 5731,
+          "pin": 7,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "clk.inpad[0]",
+          "sink_atom": "iterations[28].clk[0]",
+          "net": 4242,
+          "pin": 127,
+          "ignored": 1,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "iterations[28].Q[0]",
+          "sink_atom": "$abc$87764$new_n18106.in[3]",
+          "net": 5947,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "$abc$87764$new_n18106.out[0]",
+          "sink_atom": "$abc$87764$new_n18104.in[2]",
+          "net": 5926,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "$abc$87764$new_n18104.out[0]",
+          "sink_atom": "$abc$87764$new_n19926.in[0]",
+          "net": 5538,
+          "pin": 7,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "$abc$87764$new_n19926.out[0]",
+          "sink_atom": "$abc$87764$new_n19921.in[0]",
+          "net": 5717,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "$abc$87764$new_n19921.out[0]",
+          "sink_atom": "$abc$87764$flatten\\u_eltwise_cu_2.\\u_input_logic.$0\\b_mem_access[0:0].in[1]",
+          "net": 5731,
+          "pin": 6,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "bram_select[2].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16745.in[4]",
+          "net": 5490,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "$abc$87764$new_n16764.out[0]",
+          "sink_atom": "$abc$87764$new_n16846.in[4]",
+          "net": 5482,
+          "pin": 8,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "clk.inpad[0]",
+          "sink_atom": "iterations[28].clk[0]",
+          "net": 4242,
+          "pin": 127,
+          "ignored": 1,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "iterations[28].Q[0]",
+          "sink_atom": "$abc$87764$new_n18106.in[3]",
+          "net": 5947,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "$abc$87764$new_n18106.out[0]",
+          "sink_atom": "$abc$87764$new_n18104.in[2]",
+          "net": 5926,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "$abc$87764$new_n18104.out[0]",
+          "sink_atom": "$abc$87764$new_n19926.in[0]",
+          "net": 5538,
+          "pin": 7,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "$abc$87764$new_n19926.out[0]",
+          "sink_atom": "$abc$87764$new_n19921.in[0]",
+          "net": 5717,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "$abc$87764$new_n19921.out[0]",
+          "sink_atom": "$abc$87764$new_n19959.in[3]",
+          "net": 5731,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "clk.inpad[0]",
+          "sink_atom": "iterations[28].clk[0]",
+          "net": 4242,
+          "pin": 127,
+          "ignored": 1,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "iterations[28].Q[0]",
+          "sink_atom": "$abc$87764$new_n18106.in[3]",
+          "net": 5947,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n18106.out[0]",
+          "sink_atom": "$abc$87764$new_n18104.in[2]",
+          "net": 5926,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n18104.out[0]",
+          "sink_atom": "$abc$87764$new_n19926.in[0]",
+          "net": 5538,
+          "pin": 7,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n19926.out[0]",
+          "sink_atom": "$abc$87764$new_n19921.in[0]",
+          "net": 5717,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n19921.out[0]",
+          "sink_atom": "$abc$87764$new_n19959.in[3]",
+          "net": 5731,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        }
+      ],
+      "exact_ties": [
+        {
+          "net": 6592,
+          "pin": 4,
+          "delay_ns": 1.0428040653209791,
+          "criticality": 0.9999999403953552,
+          "atoms": [
+            "$abc$87764$new_n16751.in[4]",
+            "$abc$87764$new_n16756.in[5]",
+            "$abc$87764$new_n22679.in[3]"
+          ]
+        },
+        {
+          "net": 5485,
+          "pin": 9,
+          "delay_ns": 0.8493392655850585,
+          "criticality": 0.9999999403953552,
+          "atoms": [
+            "$abc$87764$new_n17267.in[0]"
+          ]
+        },
+        {
+          "net": 6639,
+          "pin": 1,
+          "delay_ns": 0.6635134663923736,
+          "criticality": 0.9999999403953552,
+          "atoms": [
+            "$0\\bram_rdata_ext[63:0][60].in[1]"
+          ]
+        }
+      ],
+      "known_connections": [
+        {
+          "type": "pin",
+          "net": 6587,
+          "pin": 4,
+          "pin_id": 35133,
+          "net_name": "bram_select[6]",
+          "pin_name": "$abc$87764$new_n16756.I[6]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 8.569782661282943e-10,
+          "terminal_rr": 82095,
+          "route_tree_present": 1,
+          "tree_rr": 82095,
+          "setup_criticality_raw": 0.9691199660301208,
+          "setup_slack_s": -5.832274663220005e-09,
+          "atoms": [
+            {
+              "id": 3407,
+              "name": "$abc$87764$new_n16751.in[2]",
+              "net": 71,
+              "tnode_external": 10103,
+              "setup_slack_s": -4.67237626367023e-09,
+              "setup_criticality_raw": 0.7763717174530029,
+              "hold_slack_s": 2.7009372516317853e-09,
+              "hold_criticality_raw": 0.4868418574333191,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -4.67237626367023e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.7009372516317853e-09
+                }
+              ]
+            },
+            {
+              "id": 3435,
+              "name": "$abc$87764$new_n16756.in[2]",
+              "net": 71,
+              "tnode_external": 10104,
+              "setup_slack_s": -5.832274663220005e-09,
+              "setup_criticality_raw": 0.9691199660301208,
+              "hold_slack_s": 1.7764238968709378e-09,
+              "hold_criticality_raw": 0.6672013998031616,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -5.832274663220005e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 1.7764238968709378e-09
+                }
+              ]
+            },
+            {
+              "id": 33353,
+              "name": "$abc$87764$new_n22679.in[1]",
+              "net": 71,
+              "tnode_external": 10107,
+              "setup_slack_s": -3.2638505231830095e-09,
+              "setup_criticality_raw": 0.5423073768615723,
+              "hold_slack_s": 1.8515980970690293e-09,
+              "hold_criticality_raw": 0.6525359153747559,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -3.2638505231830095e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 1.8515980970690293e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 6590,
+          "pin": 4,
+          "pin_id": 35127,
+          "net_name": "bram_select[7]",
+          "pin_name": "$abc$87764$new_n16756.I[0]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 8.569782661282943e-10,
+          "terminal_rr": 82095,
+          "route_tree_present": 1,
+          "tree_rr": 82095,
+          "setup_criticality_raw": 0.9691199660301208,
+          "setup_slack_s": -5.832274663220005e-09,
+          "atoms": [
+            {
+              "id": 3406,
+              "name": "$abc$87764$new_n16751.in[1]",
+              "net": 72,
+              "tnode_external": 10110,
+              "setup_slack_s": -4.67237626367023e-09,
+              "setup_criticality_raw": 0.7763717174530029,
+              "hold_slack_s": 2.7009372516317853e-09,
+              "hold_criticality_raw": 0.4868418574333191,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -4.67237626367023e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.7009372516317853e-09
+                }
+              ]
+            },
+            {
+              "id": 3434,
+              "name": "$abc$87764$new_n16756.in[1]",
+              "net": 72,
+              "tnode_external": 10111,
+              "setup_slack_s": -5.832274663220005e-09,
+              "setup_criticality_raw": 0.9691199660301208,
+              "hold_slack_s": 1.7764238968709378e-09,
+              "hold_criticality_raw": 0.6672013998031616,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -5.832274663220005e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 1.7764238968709378e-09
+                }
+              ]
+            },
+            {
+              "id": 33352,
+              "name": "$abc$87764$new_n22679.in[0]",
+              "net": 72,
+              "tnode_external": 10114,
+              "setup_slack_s": -3.2638505231830095e-09,
+              "setup_criticality_raw": 0.5423073768615723,
+              "hold_slack_s": 1.8515980970690293e-09,
+              "hold_criticality_raw": 0.6525359153747559,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -3.2638505231830095e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 1.8515980970690293e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 5479,
+          "pin": 36,
+          "pin_id": 12136,
+          "net_name": "$abc$87764$new_n16747",
+          "pin_name": "$0\\bram_rdata_ext[63:0][15].I[21]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 6.635134663923736e-10,
+          "terminal_rr": 68640,
+          "route_tree_present": 1,
+          "tree_rr": 68640,
+          "setup_criticality_raw": 0.6597481966018677,
+          "setup_slack_s": -3.97057231538156e-09,
+          "atoms": [
+            {
+              "id": 4152,
+              "name": "$abc$87764$new_n16890.in[0]",
+              "net": 881,
+              "tnode_external": 55412,
+              "setup_slack_s": -3.97057231538156e-09,
+              "setup_criticality_raw": 0.6597481966018677,
+              "hold_slack_s": 2.745249583213649e-09,
+              "hold_criticality_raw": 0.4781971573829651,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -3.97057231538156e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.745249583213649e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 6563,
+          "pin": 1,
+          "pin_id": 10988,
+          "net_name": "$abc$87764$new_n22316",
+          "pin_name": "$abc$87764$flatten\\u_eltwise_cu_5.$0\\done_eltwise_op[0:0].I[8]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 1.0351650647777433e-09,
+          "terminal_rr": 131810,
+          "route_tree_present": 1,
+          "tree_rr": 131810,
+          "setup_criticality_raw": 0.678930401802063,
+          "setup_slack_s": -3.969852890861603e-09,
+          "atoms": [
+            {
+              "id": 31709,
+              "name": "$abc$87764$new_n22315.in[0]",
+              "net": 10041,
+              "tnode_external": 53730,
+              "setup_slack_s": -3.969852890861603e-09,
+              "setup_criticality_raw": 0.678930401802063,
+              "hold_slack_s": 2.671681098576073e-09,
+              "hold_criticality_raw": 0.4925493001937866,
+              "setup_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": -3.969852890861603e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": 2.671681098576073e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 7963,
+          "pin": 2,
+          "pin_id": 24399,
+          "net_name": "u_eltwise_cu_5.u_pe_array.pe1.u_add.u_FPAddSub.RoundModule.NormM[6]",
+          "pin_name": "$0\\bram_wdata_c_5_ext[63:0][21].I[5]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 8.493392655850585e-10,
+          "terminal_rr": 81843,
+          "route_tree_present": 1,
+          "tree_rr": 81843,
+          "setup_criticality_raw": 0.25329655408859253,
+          "setup_slack_s": -1.481339273468052e-09,
+          "atoms": [
+            {
+              "id": 30133,
+              "name": "$abc$87764$flatten\\u_eltwise_cu_5.\\u_pe_array.\\pe1.\\u_add.$0\\sum_out_temp_reg[15:0][6].in[1]",
+              "net": 9487,
+              "tnode_external": 40158,
+              "setup_slack_s": -1.481339273468052e-09,
+              "setup_criticality_raw": 0.25329655408859253,
+              "hold_slack_s": 1.1808549693625991e-09,
+              "hold_criticality_raw": 0.7833884954452515,
+              "setup_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": -1.481339273468052e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": 1.1808549693625991e-09
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "R1": {
+      "pins": 36391,
+      "routed_connections": 23905,
+      "unique_routed_atom_pins": 31108,
+      "drivers": 9920,
+      "ignored_pin_rows": 2583,
+      "global_pin_rows": 1560,
+      "unmapped_pin_rows": 0,
+      "exact_rr_mapping": true,
+      "native_float_mismatches": 0,
+      "native_float_mismatch_examples": [],
+      "max_float_vs_double_error_s": 2.248201624865942e-15,
+      "domains": [
+        {
+          "type": "domain",
+          "id": 0,
+          "name": "virtual_io_clock"
+        },
+        {
+          "type": "domain",
+          "id": 1,
+          "name": "clk"
+        },
+        {
+          "type": "domain",
+          "id": 2,
+          "name": "clk_mem"
+        }
+      ],
+      "worst_setup_slack_s": -6.018100684457295e-09,
+      "exact_worst_slack_connections": 4,
+      "near_worst_within_0p2ns_connections": 14,
+      "top10_report_exact_connections": [
+        {
+          "path": 1,
+          "source_atom": "bram_select[7].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16756.in[1]",
+          "net": 6590,
+          "pin": 4,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 1,
+          "source_atom": "$abc$87764$new_n16756.out[0]",
+          "sink_atom": "$abc$87764$new_n16923.in[0]",
+          "net": 5470,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 1,
+          "source_atom": "$abc$87764$new_n16923.out[0]",
+          "sink_atom": "$abc$87764$new_n16922.in[0]",
+          "net": 5481,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 1,
+          "source_atom": "$abc$87764$new_n16922.out[0]",
+          "sink_atom": "$abc$87764$new_n17267.in[0]",
+          "net": 5485,
+          "pin": 9,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 1,
+          "source_atom": "$abc$87764$new_n17266.out[0]",
+          "sink_atom": "$0\\bram_rdata_ext[63:0][60].in[1]",
+          "net": 6639,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "bram_select[7].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16756.in[1]",
+          "net": 6590,
+          "pin": 4,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "$abc$87764$new_n16756.out[0]",
+          "sink_atom": "$abc$87764$new_n16923.in[0]",
+          "net": 5470,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "$abc$87764$new_n16923.out[0]",
+          "sink_atom": "$abc$87764$new_n16922.in[0]",
+          "net": 5481,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "$abc$87764$new_n16922.out[0]",
+          "sink_atom": "$abc$87764$new_n16921.in[0]",
+          "net": 5485,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "clk.inpad[0]",
+          "sink_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.A[6].clk[0]",
+          "net": 4242,
+          "pin": 591,
+          "ignored": 1,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.A[6].Q[0]",
+          "sink_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.Mp[0].A[11]",
+          "net": 48,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.Mp[0].Y[21]",
+          "sink_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.ExecuteModule.Mp[15].D[0]",
+          "net": 76,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 4,
+          "source_atom": "bram_select[3].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16745.in[0]",
+          "net": 6589,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 4,
+          "source_atom": "$abc$87764$new_n16743.out[0]",
+          "sink_atom": "$abc$87764$new_n16997.in[0]",
+          "net": 5478,
+          "pin": 38,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 4,
+          "source_atom": "$abc$87764$new_n16997.out[0]",
+          "sink_atom": "$abc$87764$new_n16996.in[2]",
+          "net": 6666,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 5,
+          "source_atom": "bram_select[3].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16745.in[0]",
+          "net": 6589,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 5,
+          "source_atom": "$abc$87764$new_n16743.out[0]",
+          "sink_atom": "$abc$87764$new_n16981.in[0]",
+          "net": 5478,
+          "pin": 37,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 5,
+          "source_atom": "$abc$87764$new_n16981.out[0]",
+          "sink_atom": "$abc$87764$new_n16980.in[2]",
+          "net": 6664,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "bram_select[3].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16766.in[5]",
+          "net": 6589,
+          "pin": 3,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "$abc$87764$new_n16766.out[0]",
+          "sink_atom": "$abc$87764$new_n16765.in[0]",
+          "net": 7981,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "$abc$87764$new_n22678.out[0]",
+          "sink_atom": "$abc$87764$new_n22677.in[1]",
+          "net": 7614,
+          "pin": 69,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "$abc$87764$new_n22677.out[0]",
+          "sink_atom": "$0\\bram_wdata_c_5_ext[63:0][13].in[0]",
+          "net": 7647,
+          "pin": 19,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "bram_select[3].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16766.in[5]",
+          "net": 6589,
+          "pin": 3,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "$abc$87764$new_n16766.out[0]",
+          "sink_atom": "$abc$87764$new_n16765.in[0]",
+          "net": 7981,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "$abc$87764$new_n22678.out[0]",
+          "sink_atom": "$abc$87764$new_n22677.in[1]",
+          "net": 7614,
+          "pin": 69,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "$abc$87764$new_n22677.out[0]",
+          "sink_atom": "$0\\bram_wdata_c_5_ext[63:0][26].in[0]",
+          "net": 7647,
+          "pin": 32,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "bram_select[3].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16748.in[0]",
+          "net": 6589,
+          "pin": 3,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "$abc$87764$new_n16747.out[0]",
+          "sink_atom": "$abc$87764$new_n16771.in[0]",
+          "net": 5479,
+          "pin": 62,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "$abc$87764$new_n16771.out[0]",
+          "sink_atom": "$abc$87764$new_n16769.in[4]",
+          "net": 5468,
+          "pin": 99,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "$abc$87764$new_n16769.out[0]",
+          "sink_atom": "$abc$87764$new_n16768.in[3]",
+          "net": 6593,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "bram_select[7].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16759.in[0]",
+          "net": 6590,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "$abc$87764$new_n16763.out[0]",
+          "sink_atom": "$abc$87764$new_n17010.in[2]",
+          "net": 5487,
+          "pin": 24,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "$abc$87764$new_n17010.out[0]",
+          "sink_atom": "$abc$87764$new_n17007.in[0]",
+          "net": 6613,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "clk.inpad[0]",
+          "sink_atom": "iterations[28].clk[0]",
+          "net": 4242,
+          "pin": 127,
+          "ignored": 1,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "iterations[28].Q[0]",
+          "sink_atom": "$abc$87764$new_n18106.in[3]",
+          "net": 5947,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n18106.out[0]",
+          "sink_atom": "$abc$87764$new_n18104.in[2]",
+          "net": 5926,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n18104.out[0]",
+          "sink_atom": "$abc$87764$new_n19926.in[0]",
+          "net": 5538,
+          "pin": 7,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n19926.out[0]",
+          "sink_atom": "$abc$87764$new_n19921.in[0]",
+          "net": 5717,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n19921.out[0]",
+          "sink_atom": "$abc$87764$flatten\\u_eltwise_cu_2.\\u_input_logic.$0\\b_mem_access[0:0].in[1]",
+          "net": 5731,
+          "pin": 6,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        }
+      ],
+      "exact_ties": [
+        {
+          "net": 6587,
+          "pin": 4,
+          "delay_ns": 1.0428040653209791,
+          "criticality": 0.9999999403953552,
+          "atoms": [
+            "$abc$87764$new_n16751.in[2]",
+            "$abc$87764$new_n16756.in[2]",
+            "$abc$87764$new_n22679.in[1]"
+          ]
+        },
+        {
+          "net": 6590,
+          "pin": 4,
+          "delay_ns": 1.0428040653209791,
+          "criticality": 0.9999999403953552,
+          "atoms": [
+            "$abc$87764$new_n16751.in[1]",
+            "$abc$87764$new_n16756.in[1]",
+            "$abc$87764$new_n22679.in[0]"
+          ]
+        },
+        {
+          "net": 5485,
+          "pin": 9,
+          "delay_ns": 0.8493392655850585,
+          "criticality": 0.9999999403953552,
+          "atoms": [
+            "$abc$87764$new_n17267.in[0]"
+          ]
+        },
+        {
+          "net": 6639,
+          "pin": 1,
+          "delay_ns": 0.6635134663923736,
+          "criticality": 0.9999999403953552,
+          "atoms": [
+            "$0\\bram_rdata_ext[63:0][60].in[1]"
+          ]
+        }
+      ],
+      "known_connections": [
+        {
+          "type": "pin",
+          "net": 6587,
+          "pin": 4,
+          "pin_id": 35133,
+          "net_name": "bram_select[6]",
+          "pin_name": "$abc$87764$new_n16756.I[6]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 1.0428040653209791e-09,
+          "terminal_rr": 82095,
+          "route_tree_present": 1,
+          "tree_rr": 82095,
+          "setup_criticality_raw": 0.9999999403953552,
+          "setup_slack_s": -6.018100684457295e-09,
+          "atoms": [
+            {
+              "id": 3407,
+              "name": "$abc$87764$new_n16751.in[2]",
+              "net": 71,
+              "tnode_external": 10103,
+              "setup_slack_s": -5.051666640554231e-09,
+              "setup_criticality_raw": 0.8394010066986084,
+              "hold_slack_s": 2.7009372516317853e-09,
+              "hold_criticality_raw": 0.45690256357192993,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -5.051666640554231e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.7009372516317853e-09
+                }
+              ]
+            },
+            {
+              "id": 3435,
+              "name": "$abc$87764$new_n16756.in[2]",
+              "net": 71,
+              "tnode_external": 10104,
+              "setup_slack_s": -6.018100684457295e-09,
+              "setup_criticality_raw": 0.9999999403953552,
+              "hold_slack_s": 1.9622496960636227e-09,
+              "hold_criticality_raw": 0.6094177961349487,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -6.018100684457295e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 1.9622496960636227e-09
+                }
+              ]
+            },
+            {
+              "id": 33353,
+              "name": "$abc$87764$new_n22679.in[1]",
+              "net": 71,
+              "tnode_external": 10107,
+              "setup_slack_s": -3.6355018995237742e-09,
+              "setup_criticality_raw": 0.6040672659873962,
+              "hold_slack_s": 2.0374240072840166e-09,
+              "hold_criticality_raw": 0.593896746635437,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -3.6355018995237742e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.0374240072840166e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 6590,
+          "pin": 4,
+          "pin_id": 35127,
+          "net_name": "bram_select[7]",
+          "pin_name": "$abc$87764$new_n16756.I[0]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 1.0428040653209791e-09,
+          "terminal_rr": 82095,
+          "route_tree_present": 1,
+          "tree_rr": 82095,
+          "setup_criticality_raw": 0.9999999403953552,
+          "setup_slack_s": -6.018100684457295e-09,
+          "atoms": [
+            {
+              "id": 3406,
+              "name": "$abc$87764$new_n16751.in[1]",
+              "net": 72,
+              "tnode_external": 10110,
+              "setup_slack_s": -5.051666640554231e-09,
+              "setup_criticality_raw": 0.8394010066986084,
+              "hold_slack_s": 2.7009372516317853e-09,
+              "hold_criticality_raw": 0.45690256357192993,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -5.051666640554231e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.7009372516317853e-09
+                }
+              ]
+            },
+            {
+              "id": 3434,
+              "name": "$abc$87764$new_n16756.in[1]",
+              "net": 72,
+              "tnode_external": 10111,
+              "setup_slack_s": -6.018100684457295e-09,
+              "setup_criticality_raw": 0.9999999403953552,
+              "hold_slack_s": 1.9622496960636227e-09,
+              "hold_criticality_raw": 0.6094177961349487,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -6.018100684457295e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 1.9622496960636227e-09
+                }
+              ]
+            },
+            {
+              "id": 33352,
+              "name": "$abc$87764$new_n22679.in[0]",
+              "net": 72,
+              "tnode_external": 10114,
+              "setup_slack_s": -3.6355018995237742e-09,
+              "setup_criticality_raw": 0.6040672659873962,
+              "hold_slack_s": 2.0374240072840166e-09,
+              "hold_criticality_raw": 0.593896746635437,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -3.6355018995237742e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.0374240072840166e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 6563,
+          "pin": 1,
+          "pin_id": 10988,
+          "net_name": "$abc$87764$new_n22316",
+          "pin_name": "$abc$87764$flatten\\u_eltwise_cu_5.$0\\done_eltwise_op[0:0].I[8]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 1.2209908639704281e-09,
+          "terminal_rr": 131810,
+          "route_tree_present": 1,
+          "tree_rr": 131810,
+          "setup_criticality_raw": 0.7097864151000977,
+          "setup_slack_s": -4.1556784680096825e-09,
+          "atoms": [
+            {
+              "id": 31709,
+              "name": "$abc$87764$new_n22315.in[0]",
+              "net": 10041,
+              "tnode_external": 53730,
+              "setup_slack_s": -4.1556784680096825e-09,
+              "setup_criticality_raw": 0.7097864151000977,
+              "hold_slack_s": 2.857506675724153e-09,
+              "hold_criticality_raw": 0.4245760440826416,
+              "setup_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": -4.1556784680096825e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": 2.857506675724153e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 5479,
+          "pin": 36,
+          "pin_id": 12136,
+          "net_name": "$abc$87764$new_n16747",
+          "pin_name": "$0\\bram_rdata_ext[63:0][15].I[21]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 6.635134663923736e-10,
+          "terminal_rr": 68640,
+          "route_tree_present": 1,
+          "tree_rr": 68640,
+          "setup_criticality_raw": 0.6597481966018677,
+          "setup_slack_s": -3.97057231538156e-09,
+          "atoms": [
+            {
+              "id": 4152,
+              "name": "$abc$87764$new_n16890.in[0]",
+              "net": 881,
+              "tnode_external": 55412,
+              "setup_slack_s": -3.97057231538156e-09,
+              "setup_criticality_raw": 0.6597481966018677,
+              "hold_slack_s": 2.745249583213649e-09,
+              "hold_criticality_raw": 0.4477534890174866,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -3.97057231538156e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.745249583213649e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 7963,
+          "pin": 2,
+          "pin_id": 24399,
+          "net_name": "u_eltwise_cu_5.u_pe_array.pe1.u_add.u_FPAddSub.RoundModule.NormM[6]",
+          "pin_name": "$0\\bram_wdata_c_5_ext[63:0][21].I[5]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 1.5926424623557978e-09,
+          "terminal_rr": 81843,
+          "route_tree_present": 1,
+          "tree_rr": 81843,
+          "setup_criticality_raw": 0.3799341917037964,
+          "setup_slack_s": -2.2246424702387912e-09,
+          "atoms": [
+            {
+              "id": 30133,
+              "name": "$abc$87764$flatten\\u_eltwise_cu_5.\\u_pe_array.\\pe1.\\u_add.$0\\sum_out_temp_reg[15:0][6].in[1]",
+              "net": 9487,
+              "tnode_external": 40158,
+              "setup_slack_s": -2.2246424702387912e-09,
+              "setup_criticality_raw": 0.3799341917037964,
+              "hold_slack_s": 1.9241581661333385e-09,
+              "hold_criticality_raw": 0.617282509803772,
+              "setup_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": -2.2246424702387912e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": 1.9241581661333385e-09
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "Tf": {
+      "pins": 36391,
+      "routed_connections": 23905,
+      "unique_routed_atom_pins": 31108,
+      "drivers": 9920,
+      "ignored_pin_rows": 2583,
+      "global_pin_rows": 1560,
+      "unmapped_pin_rows": 0,
+      "exact_rr_mapping": true,
+      "native_float_mismatches": 0,
+      "native_float_mismatch_examples": [],
+      "max_float_vs_double_error_s": 3.3584246494910985e-15,
+      "domains": [
+        {
+          "type": "domain",
+          "id": 0,
+          "name": "virtual_io_clock"
+        },
+        {
+          "type": "domain",
+          "id": 1,
+          "name": "clk"
+        },
+        {
+          "type": "domain",
+          "id": 2,
+          "name": "clk_mem"
+        }
+      ],
+      "worst_setup_slack_s": -6.2081211282816184e-09,
+      "exact_worst_slack_connections": 4,
+      "near_worst_within_0p2ns_connections": 23,
+      "top10_report_exact_connections": [
+        {
+          "path": 1,
+          "source_atom": "bram_select[7].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16748.in[2]",
+          "net": 6590,
+          "pin": 3,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 1,
+          "source_atom": "$abc$87764$new_n16747.out[0]",
+          "sink_atom": "$abc$87764$new_n16890.in[0]",
+          "net": 5479,
+          "pin": 36,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "bram_select[6].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16756.in[2]",
+          "net": 6587,
+          "pin": 4,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "$abc$87764$new_n16756.out[0]",
+          "sink_atom": "$abc$87764$new_n16923.in[0]",
+          "net": 5470,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "$abc$87764$new_n16923.out[0]",
+          "sink_atom": "$abc$87764$new_n16922.in[0]",
+          "net": 5481,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "$abc$87764$new_n16922.out[0]",
+          "sink_atom": "$abc$87764$new_n17267.in[0]",
+          "net": 5485,
+          "pin": 9,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "$abc$87764$new_n17266.out[0]",
+          "sink_atom": "$0\\bram_rdata_ext[63:0][60].in[1]",
+          "net": 6639,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "bram_select[4].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16766.in[0]",
+          "net": 6592,
+          "pin": 3,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "$abc$87764$new_n16766.out[0]",
+          "sink_atom": "$abc$87764$new_n16765.in[0]",
+          "net": 7981,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "$abc$87764$new_n22678.out[0]",
+          "sink_atom": "$abc$87764$new_n22677.in[1]",
+          "net": 7614,
+          "pin": 69,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "$abc$87764$new_n22677.out[0]",
+          "sink_atom": "$0\\bram_wdata_c_5_ext[63:0][53].in[0]",
+          "net": 7647,
+          "pin": 56,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 4,
+          "source_atom": "bram_select[7].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16759.in[0]",
+          "net": 6590,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 4,
+          "source_atom": "$abc$87764$new_n16760.out[0]",
+          "sink_atom": "$abc$87764$new_n16933.in[2]",
+          "net": 6583,
+          "pin": 24,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 5,
+          "source_atom": "bram_select[7].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16748.in[2]",
+          "net": 6590,
+          "pin": 3,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 5,
+          "source_atom": "$abc$87764$new_n16747.out[0]",
+          "sink_atom": "$abc$87764$new_n16903.in[1]",
+          "net": 5479,
+          "pin": 48,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "bram_select[2].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16745.in[4]",
+          "net": 5490,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "$abc$87764$new_n16745.out[0]",
+          "sink_atom": "$abc$87764$new_n23306.in[0]",
+          "net": 6595,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "$abc$87764$new_n23306.out[0]",
+          "sink_atom": "$0\\bram_wdata_b_3_ext[63:0][54].in[0]",
+          "net": 6171,
+          "pin": 18,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "resetn.inpad[0]",
+          "sink_atom": "$abc$87764$auto$wreduce.cc:461:run$1880[7].in[1]",
+          "net": 5882,
+          "pin": 32,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "$abc$87764$auto$wreduce.cc:461:run$1880[7].out[0]",
+          "sink_atom": "$abc$87764$new_n20056.in[0]",
+          "net": 4672,
+          "pin": 597,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "$abc$87764$new_n20056.out[0]",
+          "sink_atom": "$abc$87764$flatten\\u_eltwise_cu_3.\\u_pe_array.\\pe3.\\u_add.$0\\b_flopped[15:0][6].in[0]",
+          "net": 7005,
+          "pin": 24,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "bram_select[6].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16756.in[2]",
+          "net": 6587,
+          "pin": 4,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "$abc$87764$new_n16756.out[0]",
+          "sink_atom": "$abc$87764$new_n16923.in[0]",
+          "net": 5470,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "$abc$87764$new_n16923.out[0]",
+          "sink_atom": "$abc$87764$new_n16922.in[0]",
+          "net": 5481,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "$abc$87764$new_n16922.out[0]",
+          "sink_atom": "$abc$87764$new_n17188.in[0]",
+          "net": 5485,
+          "pin": 6,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "bram_select[6].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16756.in[2]",
+          "net": 6587,
+          "pin": 4,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "$abc$87764$new_n16756.out[0]",
+          "sink_atom": "$abc$87764$new_n16923.in[0]",
+          "net": 5470,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "$abc$87764$new_n16923.out[0]",
+          "sink_atom": "$abc$87764$new_n16922.in[0]",
+          "net": 5481,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "$abc$87764$new_n16922.out[0]",
+          "sink_atom": "$abc$87764$new_n17140.in[0]",
+          "net": 5485,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "bram_select[6].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16756.in[2]",
+          "net": 6587,
+          "pin": 4,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n16756.out[0]",
+          "sink_atom": "$abc$87764$new_n16923.in[0]",
+          "net": 5470,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n16923.out[0]",
+          "sink_atom": "$abc$87764$new_n16922.in[0]",
+          "net": 5481,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n16922.out[0]",
+          "sink_atom": "$abc$87764$new_n17282.in[0]",
+          "net": 5485,
+          "pin": 4,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        }
+      ],
+      "exact_ties": [
+        {
+          "net": 5479,
+          "pin": 36,
+          "delay_ns": 3.265074655089961,
+          "criticality": 0.9999999403953552,
+          "atoms": [
+            "$abc$87764$new_n16890.in[0]"
+          ]
+        },
+        {
+          "net": 6587,
+          "pin": 3,
+          "delay_ns": 1.0428040653209791,
+          "criticality": 0.9999999403953552,
+          "atoms": [
+            "$abc$87764$new_n16748.in[3]",
+            "$abc$87764$new_n16766.in[2]"
+          ]
+        },
+        {
+          "net": 6590,
+          "pin": 3,
+          "delay_ns": 1.0428040653209791,
+          "criticality": 0.9999999403953552,
+          "atoms": [
+            "$abc$87764$new_n16748.in[2]",
+            "$abc$87764$new_n16766.in[1]"
+          ]
+        },
+        {
+          "net": 6592,
+          "pin": 3,
+          "delay_ns": 1.0428040653209791,
+          "criticality": 0.9999999403953552,
+          "atoms": [
+            "$abc$87764$new_n16748.in[5]",
+            "$abc$87764$new_n16766.in[0]"
+          ]
+        }
+      ],
+      "known_connections": [
+        {
+          "type": "pin",
+          "net": 5479,
+          "pin": 36,
+          "pin_id": 12136,
+          "net_name": "$abc$87764$new_n16747",
+          "pin_name": "$0\\bram_rdata_ext[63:0][15].I[21]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 3.265074655089961e-09,
+          "terminal_rr": 68640,
+          "route_tree_present": 1,
+          "tree_rr": 68640,
+          "setup_criticality_raw": 0.9999999403953552,
+          "setup_slack_s": -6.2081211282816184e-09,
+          "atoms": [
+            {
+              "id": 4152,
+              "name": "$abc$87764$new_n16890.in[0]",
+              "net": 881,
+              "tnode_external": 55412,
+              "setup_slack_s": -6.2081211282816184e-09,
+              "setup_criticality_raw": 0.9999999403953552,
+              "hold_slack_s": 5.346810993955842e-09,
+              "hold_criticality_raw": 0,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -6.2081211282816184e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 5.346810993955842e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 6587,
+          "pin": 4,
+          "pin_id": 35133,
+          "net_name": "bram_select[6]",
+          "pin_name": "$abc$87764$new_n16756.I[6]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 1.228629864513664e-09,
+          "terminal_rr": 82095,
+          "route_tree_present": 1,
+          "tree_rr": 82095,
+          "setup_criticality_raw": 0.9993242025375366,
+          "setup_slack_s": -6.203926261605375e-09,
+          "atoms": [
+            {
+              "id": 3407,
+              "name": "$abc$87764$new_n16751.in[2]",
+              "net": 71,
+              "tnode_external": 10103,
+              "setup_slack_s": -5.98079630265147e-09,
+              "setup_criticality_raw": 0.9633801579475403,
+              "hold_slack_s": 3.3103659813349395e-09,
+              "hold_criticality_raw": 0.3859611749649048,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -5.98079630265147e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 3.3103659813349395e-09
+                }
+              ]
+            },
+            {
+              "id": 3435,
+              "name": "$abc$87764$new_n16756.in[2]",
+              "net": 71,
+              "tnode_external": 10104,
+              "setup_slack_s": -6.203926261605375e-09,
+              "setup_criticality_raw": 0.9993242025375366,
+              "hold_slack_s": 2.1480754952563075e-09,
+              "hold_criticality_raw": 0.6062465310096741,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -6.203926261605375e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.1480754952563075e-09
+                }
+              ]
+            },
+            {
+              "id": 33353,
+              "name": "$abc$87764$new_n22679.in[1]",
+              "net": 71,
+              "tnode_external": 10107,
+              "setup_slack_s": -4.564630895487198e-09,
+              "setup_criticality_raw": 0.7352499961853027,
+              "hold_slack_s": 2.2232495844320965e-09,
+              "hold_criticality_raw": 0.5919990539550781,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -4.564630895487198e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.2232495844320965e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 6590,
+          "pin": 4,
+          "pin_id": 35127,
+          "net_name": "bram_select[7]",
+          "pin_name": "$abc$87764$new_n16756.I[0]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 1.0428040653209791e-09,
+          "terminal_rr": 82095,
+          "route_tree_present": 1,
+          "tree_rr": 82095,
+          "setup_criticality_raw": 0.9693894982337952,
+          "setup_slack_s": -6.018100684457295e-09,
+          "atoms": [
+            {
+              "id": 3406,
+              "name": "$abc$87764$new_n16751.in[1]",
+              "net": 72,
+              "tnode_external": 10110,
+              "setup_slack_s": -5.79497072550339e-09,
+              "setup_criticality_raw": 0.9334455132484436,
+              "hold_slack_s": 3.1245401821422547e-09,
+              "hold_criticality_raw": 0.42118018865585327,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -5.79497072550339e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 3.1245401821422547e-09
+                }
+              ]
+            },
+            {
+              "id": 3434,
+              "name": "$abc$87764$new_n16756.in[1]",
+              "net": 72,
+              "tnode_external": 10111,
+              "setup_slack_s": -6.018100684457295e-09,
+              "setup_criticality_raw": 0.9693894982337952,
+              "hold_slack_s": 1.9622496960636227e-09,
+              "hold_criticality_raw": 0.6414655447006226,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -6.018100684457295e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 1.9622496960636227e-09
+                }
+              ]
+            },
+            {
+              "id": 33352,
+              "name": "$abc$87764$new_n22679.in[0]",
+              "net": 72,
+              "tnode_external": 10114,
+              "setup_slack_s": -4.378804874249909e-09,
+              "setup_criticality_raw": 0.7053152322769165,
+              "hold_slack_s": 2.0374240072840166e-09,
+              "hold_criticality_raw": 0.6272180080413818,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -4.378804874249909e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.0374240072840166e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 6563,
+          "pin": 1,
+          "pin_id": 10988,
+          "net_name": "$abc$87764$new_n22316",
+          "pin_name": "$abc$87764$flatten\\u_eltwise_cu_5.$0\\done_eltwise_op[0:0].I[8]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 1.0351650647777433e-09,
+          "terminal_rr": 131810,
+          "route_tree_present": 1,
+          "tree_rr": 131810,
+          "setup_criticality_raw": 0.6780444383621216,
+          "setup_slack_s": -3.969852890861603e-09,
+          "atoms": [
+            {
+              "id": 31709,
+              "name": "$abc$87764$new_n22315.in[0]",
+              "net": 10041,
+              "tnode_external": 53730,
+              "setup_slack_s": -3.969852890861603e-09,
+              "setup_criticality_raw": 0.6780444383621216,
+              "hold_slack_s": 2.671681098576073e-09,
+              "hold_criticality_raw": 0.5070091485977173,
+              "setup_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": -3.969852890861603e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": 2.671681098576073e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 7963,
+          "pin": 2,
+          "pin_id": 24399,
+          "net_name": "u_eltwise_cu_5.u_pe_array.pe1.u_add.u_FPAddSub.RoundModule.NormM[6]",
+          "pin_name": "$0\\bram_wdata_c_5_ext[63:0][21].I[5]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 8.493392655850585e-10,
+          "terminal_rr": 81843,
+          "route_tree_present": 1,
+          "tree_rr": 81843,
+          "setup_criticality_raw": 0.2529659867286682,
+          "setup_slack_s": -1.481339273468052e-09,
+          "atoms": [
+            {
+              "id": 30133,
+              "name": "$abc$87764$flatten\\u_eltwise_cu_5.\\u_pe_array.\\pe1.\\u_add.$0\\sum_out_temp_reg[15:0][6].in[1]",
+              "net": 9487,
+              "tnode_external": 40158,
+              "setup_slack_s": -1.481339273468052e-09,
+              "setup_criticality_raw": 0.2529659867286682,
+              "hold_slack_s": 1.1808549693625991e-09,
+              "hold_criticality_raw": 0.789560854434967,
+              "setup_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": -1.481339273468052e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": 1.1808549693625991e-09
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "jointR1": {
+      "pins": 36391,
+      "routed_connections": 23905,
+      "unique_routed_atom_pins": 31108,
+      "drivers": 9920,
+      "ignored_pin_rows": 2583,
+      "global_pin_rows": 1560,
+      "unmapped_pin_rows": 0,
+      "exact_rr_mapping": true,
+      "native_float_mismatches": 0,
+      "native_float_mismatch_examples": [],
+      "max_float_vs_double_error_s": 2.248201624865942e-15,
+      "domains": [
+        {
+          "type": "domain",
+          "id": 0,
+          "name": "virtual_io_clock"
+        },
+        {
+          "type": "domain",
+          "id": 1,
+          "name": "clk"
+        },
+        {
+          "type": "domain",
+          "id": 2,
+          "name": "clk_mem"
+        }
+      ],
+      "worst_setup_slack_s": -5.854659868020917e-09,
+      "exact_worst_slack_connections": 1,
+      "near_worst_within_0p2ns_connections": 51,
+      "top10_report_exact_connections": [
+        {
+          "path": 1,
+          "source_atom": "clk.inpad[0]",
+          "sink_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.A[6].clk[0]",
+          "net": 4242,
+          "pin": 591,
+          "ignored": 1,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 1,
+          "source_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.A[6].Q[0]",
+          "sink_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.Mp[0].A[11]",
+          "net": 48,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 1,
+          "source_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.Mp[0].Y[21]",
+          "sink_atom": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.ExecuteModule.Mp[15].D[0]",
+          "net": 76,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "bram_select[2].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16756.in[0]",
+          "net": 5490,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "$abc$87764$new_n16756.out[0]",
+          "sink_atom": "$abc$87764$new_n16923.in[0]",
+          "net": 5470,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "$abc$87764$new_n16923.out[0]",
+          "sink_atom": "$abc$87764$new_n16922.in[0]",
+          "net": 5481,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "$abc$87764$new_n16922.out[0]",
+          "sink_atom": "$abc$87764$new_n17267.in[0]",
+          "net": 5485,
+          "pin": 9,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 2,
+          "source_atom": "$abc$87764$new_n17266.out[0]",
+          "sink_atom": "$0\\bram_rdata_ext[63:0][60].in[1]",
+          "net": 6639,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "bram_select[3].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16745.in[0]",
+          "net": 6589,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "$abc$87764$new_n16743.out[0]",
+          "sink_atom": "$abc$87764$new_n16997.in[0]",
+          "net": 5478,
+          "pin": 38,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 3,
+          "source_atom": "$abc$87764$new_n16997.out[0]",
+          "sink_atom": "$abc$87764$new_n16996.in[2]",
+          "net": 6666,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 4,
+          "source_atom": "bram_select[3].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16745.in[0]",
+          "net": 6589,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 4,
+          "source_atom": "$abc$87764$new_n16743.out[0]",
+          "sink_atom": "$abc$87764$new_n16981.in[0]",
+          "net": 5478,
+          "pin": 37,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 4,
+          "source_atom": "$abc$87764$new_n16981.out[0]",
+          "sink_atom": "$abc$87764$new_n16980.in[2]",
+          "net": 6664,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 5,
+          "source_atom": "bram_select[3].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16766.in[5]",
+          "net": 6589,
+          "pin": 3,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 5,
+          "source_atom": "$abc$87764$new_n16766.out[0]",
+          "sink_atom": "$abc$87764$new_n16765.in[0]",
+          "net": 7981,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 5,
+          "source_atom": "$abc$87764$new_n22678.out[0]",
+          "sink_atom": "$abc$87764$new_n22677.in[1]",
+          "net": 7614,
+          "pin": 69,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 5,
+          "source_atom": "$abc$87764$new_n22677.out[0]",
+          "sink_atom": "$0\\bram_wdata_c_5_ext[63:0][13].in[0]",
+          "net": 7647,
+          "pin": 19,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "bram_select[3].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16766.in[5]",
+          "net": 6589,
+          "pin": 3,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "$abc$87764$new_n16766.out[0]",
+          "sink_atom": "$abc$87764$new_n16765.in[0]",
+          "net": 7981,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "$abc$87764$new_n22678.out[0]",
+          "sink_atom": "$abc$87764$new_n22677.in[1]",
+          "net": 7614,
+          "pin": 69,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 6,
+          "source_atom": "$abc$87764$new_n22677.out[0]",
+          "sink_atom": "$0\\bram_wdata_c_5_ext[63:0][26].in[0]",
+          "net": 7647,
+          "pin": 32,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "bram_select[2].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16756.in[0]",
+          "net": 5490,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "$abc$87764$new_n16756.out[0]",
+          "sink_atom": "$abc$87764$new_n16923.in[0]",
+          "net": 5470,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "$abc$87764$new_n16923.out[0]",
+          "sink_atom": "$abc$87764$new_n16922.in[0]",
+          "net": 5481,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 7,
+          "source_atom": "$abc$87764$new_n16922.out[0]",
+          "sink_atom": "$abc$87764$new_n16921.in[0]",
+          "net": 5485,
+          "pin": 5,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "bram_select[3].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16748.in[0]",
+          "net": 6589,
+          "pin": 3,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "$abc$87764$new_n16747.out[0]",
+          "sink_atom": "$abc$87764$new_n16771.in[0]",
+          "net": 5479,
+          "pin": 62,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "$abc$87764$new_n16771.out[0]",
+          "sink_atom": "$abc$87764$new_n16769.in[4]",
+          "net": 5468,
+          "pin": 99,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 8,
+          "source_atom": "$abc$87764$new_n16769.out[0]",
+          "sink_atom": "$abc$87764$new_n16768.in[3]",
+          "net": 6593,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "bram_select[7].inpad[0]",
+          "sink_atom": "$abc$87764$new_n16759.in[0]",
+          "net": 6590,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "$abc$87764$new_n16763.out[0]",
+          "sink_atom": "$abc$87764$new_n17010.in[2]",
+          "net": 5487,
+          "pin": 24,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 9,
+          "source_atom": "$abc$87764$new_n17010.out[0]",
+          "sink_atom": "$abc$87764$new_n17007.in[0]",
+          "net": 6613,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "clk.inpad[0]",
+          "sink_atom": "iterations[28].clk[0]",
+          "net": 4242,
+          "pin": 127,
+          "ignored": 1,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "iterations[28].Q[0]",
+          "sink_atom": "$abc$87764$new_n18106.in[3]",
+          "net": 5947,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n18106.out[0]",
+          "sink_atom": "$abc$87764$new_n18104.in[2]",
+          "net": 5926,
+          "pin": 1,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n18104.out[0]",
+          "sink_atom": "$abc$87764$new_n19926.in[0]",
+          "net": 5538,
+          "pin": 7,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n19926.out[0]",
+          "sink_atom": "$abc$87764$new_n19921.in[0]",
+          "net": 5717,
+          "pin": 2,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        },
+        {
+          "path": 10,
+          "source_atom": "$abc$87764$new_n19921.out[0]",
+          "sink_atom": "$abc$87764$flatten\\u_eltwise_cu_2.\\u_input_logic.$0\\a_mem_access[0:0].in[1]",
+          "net": 5731,
+          "pin": 7,
+          "ignored": 0,
+          "exact_pin_mapping": true,
+          "location_matching_used": false
+        }
+      ],
+      "exact_ties": [
+        {
+          "net": 76,
+          "pin": 1,
+          "delay_ns": 1.0428040653209791,
+          "criticality": 1,
+          "atoms": [
+            "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.ExecuteModule.Mp[15].D[0]"
+          ]
+        }
+      ],
+      "known_connections": [
+        {
+          "type": "pin",
+          "net": 6587,
+          "pin": 4,
+          "pin_id": 35133,
+          "net_name": "bram_select[6]",
+          "pin_name": "$abc$87764$new_n16756.I[6]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 8.493392655850585e-10,
+          "terminal_rr": 82095,
+          "route_tree_present": 1,
+          "tree_rr": 82095,
+          "setup_criticality_raw": 0.9986901879310608,
+          "setup_slack_s": -5.824635884721374e-09,
+          "atoms": [
+            {
+              "id": 3407,
+              "name": "$abc$87764$new_n16751.in[2]",
+              "net": 71,
+              "tnode_external": 10103,
+              "setup_slack_s": -4.85820184081831e-09,
+              "setup_criticality_raw": 0.8329738974571228,
+              "hold_slack_s": 2.5074724518958647e-09,
+              "hold_criticality_raw": 0.49684685468673706,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -4.85820184081831e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.5074724518958647e-09
+                }
+              ]
+            },
+            {
+              "id": 3435,
+              "name": "$abc$87764$new_n16756.in[2]",
+              "net": 71,
+              "tnode_external": 10104,
+              "setup_slack_s": -5.824635884721374e-09,
+              "setup_criticality_raw": 0.9986901879310608,
+              "hold_slack_s": 1.768784896327702e-09,
+              "hold_criticality_raw": 0.6493620872497559,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -5.824635884721374e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 1.768784896327702e-09
+                }
+              ]
+            },
+            {
+              "id": 33353,
+              "name": "$abc$87764$new_n22679.in[1]",
+              "net": 71,
+              "tnode_external": 10107,
+              "setup_slack_s": -3.4420370997878535e-09,
+              "setup_criticality_raw": 0.5901415348052979,
+              "hold_slack_s": 1.8439590965257935e-09,
+              "hold_criticality_raw": 0.6338410377502441,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -3.4420370997878535e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 1.8439590965257935e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 6590,
+          "pin": 4,
+          "pin_id": 35127,
+          "net_name": "bram_select[7]",
+          "pin_name": "$abc$87764$new_n16756.I[0]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 8.493392655850585e-10,
+          "terminal_rr": 82095,
+          "route_tree_present": 1,
+          "tree_rr": 82095,
+          "setup_criticality_raw": 0.9986901879310608,
+          "setup_slack_s": -5.824635884721374e-09,
+          "atoms": [
+            {
+              "id": 3406,
+              "name": "$abc$87764$new_n16751.in[1]",
+              "net": 72,
+              "tnode_external": 10110,
+              "setup_slack_s": -4.85820184081831e-09,
+              "setup_criticality_raw": 0.8329738974571228,
+              "hold_slack_s": 2.5074724518958647e-09,
+              "hold_criticality_raw": 0.49684685468673706,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -4.85820184081831e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.5074724518958647e-09
+                }
+              ]
+            },
+            {
+              "id": 3434,
+              "name": "$abc$87764$new_n16756.in[1]",
+              "net": 72,
+              "tnode_external": 10111,
+              "setup_slack_s": -5.824635884721374e-09,
+              "setup_criticality_raw": 0.9986901879310608,
+              "hold_slack_s": 1.768784896327702e-09,
+              "hold_criticality_raw": 0.6493620872497559,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -5.824635884721374e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 1.768784896327702e-09
+                }
+              ]
+            },
+            {
+              "id": 33352,
+              "name": "$abc$87764$new_n22679.in[0]",
+              "net": 72,
+              "tnode_external": 10114,
+              "setup_slack_s": -3.4420370997878535e-09,
+              "setup_criticality_raw": 0.5901415348052979,
+              "hold_slack_s": 1.8439590965257935e-09,
+              "hold_criticality_raw": 0.6338410377502441,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -3.4420370997878535e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 1.8439590965257935e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 6563,
+          "pin": 1,
+          "pin_id": 10988,
+          "net_name": "$abc$87764$new_n22316",
+          "pin_name": "$abc$87764$flatten\\u_eltwise_cu_5.$0\\done_eltwise_op[0:0].I[8]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 1.406816663163113e-09,
+          "terminal_rr": 131810,
+          "route_tree_present": 1,
+          "tree_rr": 131810,
+          "setup_criticality_raw": 0.7415284514427185,
+          "setup_slack_s": -4.3415040451577624e-09,
+          "atoms": [
+            {
+              "id": 31709,
+              "name": "$abc$87764$new_n22315.in[0]",
+              "net": 10041,
+              "tnode_external": 53730,
+              "setup_slack_s": -4.3415040451577624e-09,
+              "setup_criticality_raw": 0.7415284514427185,
+              "hold_slack_s": 3.0433326969614427e-09,
+              "hold_criticality_raw": 0.3862088918685913,
+              "setup_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": -4.3415040451577624e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": 3.0433326969614427e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 5479,
+          "pin": 36,
+          "pin_id": 12136,
+          "net_name": "$abc$87764$new_n16747",
+          "pin_name": "$0\\bram_rdata_ext[63:0][15].I[21]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 6.635134663923736e-10,
+          "terminal_rr": 68640,
+          "route_tree_present": 1,
+          "tree_rr": 68640,
+          "setup_criticality_raw": 0.6807703971862793,
+          "setup_slack_s": -3.97057231538156e-09,
+          "atoms": [
+            {
+              "id": 4152,
+              "name": "$abc$87764$new_n16890.in[0]",
+              "net": 881,
+              "tnode_external": 55412,
+              "setup_slack_s": -3.97057231538156e-09,
+              "setup_criticality_raw": 0.6807703971862793,
+              "hold_slack_s": 2.745249583213649e-09,
+              "hold_criticality_raw": 0.4477534890174866,
+              "setup_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": -3.97057231538156e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 0,
+                  "capture": 1,
+                  "slack_s": 2.745249583213649e-09
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pin",
+          "net": 7963,
+          "pin": 2,
+          "pin_id": 24399,
+          "net_name": "u_eltwise_cu_5.u_pe_array.pe1.u_add.u_FPAddSub.RoundModule.NormM[6]",
+          "pin_name": "$0\\bram_wdata_c_5_ext[63:0][21].I[5]",
+          "driver": 0,
+          "ignored": 0,
+          "global": 0,
+          "native_net_delay_s": 1.0351650647777433e-09,
+          "terminal_rr": 81843,
+          "route_tree_present": 1,
+          "tree_rr": 81843,
+          "setup_criticality_raw": 0.28470802307128906,
+          "setup_slack_s": -1.6671650726607368e-09,
+          "atoms": [
+            {
+              "id": 30133,
+              "name": "$abc$87764$flatten\\u_eltwise_cu_5.\\u_pe_array.\\pe1.\\u_add.$0\\sum_out_temp_reg[15:0][6].in[1]",
+              "net": 9487,
+              "tnode_external": 40158,
+              "setup_slack_s": -1.6671650726607368e-09,
+              "setup_criticality_raw": 0.28470802307128906,
+              "hold_slack_s": 1.366680768555284e-09,
+              "hold_criticality_raw": 0.7323836088180542,
+              "setup_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": -1.6671650726607368e-09
+                }
+              ],
+              "hold_tags": [
+                {
+                  "launch": 1,
+                  "capture": 1,
+                  "slack_s": 1.366680768555284e-09
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_native_sta_frontier_v3.py": "f08c80ba8812551932ea9431eb96aabee2d58a10189ece2423a920ef2ac470ba",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/completion.json": "b649f9e59d64358c402f13455131973728c954efba30e7b859384a8b9176f8b7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/registration.json": "8d1a9559cdaf9bb2b52bba34425b834f58296e3a7442eda6794908e3525261fe",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/rr_graph.xml": "e695cd129be100079b479a58aefa84d69e5221df4e06f189b1f632b898e30895",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/A0_on/native_sta_frontier.jsonl": "5f1c0dc744f35cb0d5a6374ba1c02d6f7a332d20d1422663ebfc600c745238de",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/A0_on/routed.route": "f3aaf9ce70d2c9fe1f0ecc5369ae7ceb9b7bab235aeba98cea5fc3fb186d30dd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/A0_on/manifest.json": "ed87c53cbe91cce2374a965c29318507dd7cb2c8d8aaee2afbf309aae6cd8d47",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/A0_on/observer_gate.json": "8e12d604def1f0a2912f87ecd50e6aa4e45897df729ae8eafae1c12c0f0f520a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/R1_on/native_sta_frontier.jsonl": "8fc6ea36837e18584e35a2e95a0a29ac3ca21a16df084a4a79f98439eefaa1ea",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/R1_on/routed.route": "bab64a5cd963b450cbe2bf6c583753edc51476aea5b768dcc4fac9d36f5d82a8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/R1_on/manifest.json": "566b6f1d593b5cc2b35274e6629a783f2cc9b5a222e0ed01a87e8f7f9b983adc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/R1_on/observer_gate.json": "4a83c8c6c25247cef2450eab311ab35fc41c6ebc886dcadb049b0b3a174e0b63",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/Tf_on/native_sta_frontier.jsonl": "0803e51e6d7a5cba1d338e4f3ff4bdfb0ab7d3be856b0de67c787741b815348a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/Tf_on/routed.route": "7dc47e4e2d1deb332d7ff7d3f92c0e43ba9a2596bc829c9133196aa76931b62f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/Tf_on/manifest.json": "f53aa53ec29fec4de3be343d7817a854f689b478c71eb706686dd7f42cab6323",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/Tf_on/observer_gate.json": "eb04b87015d08aed92b0ee7a5f498a2dee0c46c7fe5c58b5e97306d14ba269f7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/jointR1_on/native_sta_frontier.jsonl": "a38357fd670f4d2bebd52f2172346745fe94dedfd881a9991ec310ca8b8b8d71",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/jointR1_on/routed.route": "f1c1ebdbb386a80ea49e99354ee09a93d3baec0d50be76457d2a8d4d4d4dbad1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/jointR1_on/manifest.json": "debe74eebe08075697a73450abfb1f7479e6b4360d476012532eae558be97662",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_dev_03/runs/jointR1_on/observer_gate.json": "857b19392fe5c6cc5481d147945282694d9af17e058a00ac5c26ea155180bad8"
+  },
+  "native_analysis_calls_added": 0,
+  "route_search_calls": 0,
+  "scope": "All four already-completed observer exports; exact native float delay recurrence on the bound zero-RC graph, direct route pin/RR mapping and atom uniqueness. 0.2ns near-slack window is descriptive, not a frozen policy.",
+  "limitations": "Atom mapping is authoritative native lookup; no independent reimplementation of intra-cluster traversal. Nonzero-RC/flat circuits not validated by this fixture. Pin slack measures worst paths through a pin, not causal CPD derivative."
+}

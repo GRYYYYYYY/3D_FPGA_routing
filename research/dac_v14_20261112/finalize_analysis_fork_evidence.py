@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+"""Record completed large native analysis reuse; do not change running algorithms."""
+import shutil
+from retained_prefix_workflow import D,read,write,sha
+b=D/'analysis_fork_equivalence_bnn_01';c=read(b/'completion.json');assert c['passed'] and all(sha(p)==h for p,h in c['source_sha256'].items())
+p=D/'paper';tex=p/'data/endpoint_bridge_and_fork_v14.tex';old=tex.read_text();needle='Large-BNN equality is independently registered and running; no cold full-algorithm or formal speedup claim follows from the tiny test.';assert needle in old
+history=p/'data/ledger_history_20261113';shutil.copy2(tex,history/'endpoint_bridge_before_large_fork_01.tex');shutil.copy2(p/'data/evidence_v14_ledger.json',history/'before_large_fork_01.json')
+new='Large-BNN validation now passes for strong A0, the accepted owner-then-target state and a return to A0. Each worker repeats FULL checking and pin synchronization, and its complete endpoint STA, constraints and precision timing graph match fresh same-binary standalone references. The three-analysis parent takes192.688 s; worker observations take41.087,37.810 and40.164 s. The two standalone references take105.842 and101.505 s; the complete engineering workflow, including references and integrity checks, takes452.819 s. The workloads have different counts, so these observations are not a formal paired speedup or complete algorithm timing. Dynamic submission into the preloaded parent and integration with the automatic controller remain subsequent independent work; the active quality cohort continues using its frozen original implementation.'
+tex.write_text(old.replace(needle,new))
+claims=p/'claims_evidence.md';s=claims.read_text();old='大图等价仍进行，无完整算法加速结论 |';new='[大BNN已完成](../analysis_fork_equivalence_bnn_01/completion.json)：A0/接受态/再A0三worker完整精度一致，父进程192.688s；独立参考105.842/101.505s。次数不同、非正式配对；无冷完整算法加速结论 |';assert old in s;claims.write_text(s.replace(old,new))
+status=p/'DEVELOPMENT_STATUS.md';s=status.read_text();s=s.replace('大BNN工程等价运行中；active quality cohort版本不变。','大BNN工程等价已通过：3worker完整精度同独立参考，父进程192.688s；非正式配对加速或冷完整算法时间。active quality cohort版本不变。');status.write_text(s)
+a=read(p/'data/evidence_v14_ledger.json');a['sources_sha256'][str(tex.relative_to(D))]=sha(tex)
+for path in [b/'registration.json',b/'completion.json',b/'process_costs.json',b/'workers.tsv',D/'validate_analysis_fork_large.py']:a['sources_sha256'][str(path.relative_to(D))]=sha(path)
+write(p/'data/evidence_v14_ledger.json',a)
+write(D/'analysis_fork_engineering_summary_01.json',dict(passed=True,tiny='analysis_fork_tiny_regression_02/completion.json',large=str(b/'completion.json'),large_native_process_seconds=c['observed_native_processes'],large_worker_costs=c['child_observations'],whole_engineering_workflow_seconds=c['complete_engineering_workflow_seconds'],whole_single_configuration_algorithm_seconds=None,formal_speedup=None,next='Independent dynamic worker submission and automatic-flow integration, preserving fresh native route/pin/STA state and epoch recovery; existing v3 quality actors unchanged.',source_sha256={str(path):sha(path) for path in [b/'completion.json',D/'analysis_fork_tiny_regression_02/completion.json',D/'analysis_fork_stage_02/binding.json',__import__('pathlib').Path(__file__).resolve()]}))
+print(dict(large_passed=True,sources=len(a['sources_sha256']),active_quality_unchanged=True))

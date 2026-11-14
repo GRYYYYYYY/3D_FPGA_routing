@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+"""Reconcile two independently registered policies without redoing native work."""
+from pathlib import Path
+from retained_prefix_workflow import D,read,write,sha
+root=D/'strong_A0_timing_trajectories_01';files=[Path(__file__).resolve(),root/'queue/registration.json',root/'queue/completion.json'];rows={};steps={};regs={}
+for name in ['strict','fixed_vertical']:
+ p=root/name;c=read(p/'completion.json');r=read(p/'registration.json');assert c['passed'] and all(sha(f)==h for f,h in c['source_sha256'].items());s=read(p/'steps.json');assert len(s)==c['accepted_steps']==3 and all(x['accepted'] and x['after_CPD_s']<x['before_CPD_s'] for x in s);steps[name]=s;regs[name]=r;rows[name]=dict(policy=c['policy'],budget_mode=c['budget_mode'],initial_state=c['initial_state'],final_state=c['final_state'],CPD_ns=c['final_CPD_s']*1e9,resources=c['final_resources'],native_coordinators_started=c['native_transaction_coordinators_started'],imported_state_workflow_seconds=c['complete_imported_state_workflow_seconds'],acceptance_anchor=r['anchor']);files += [p/'completion.json',p/'registration.json',p/'steps.json',p/'attempts.json',p/'process_costs.json']
+assert rows['strict']['initial_state']==rows['fixed_vertical']['initial_state'] and rows['strict']['final_state']==rows['fixed_vertical']['final_state'];assert rows['fixed_vertical']['native_coordinators_started']==0
+assert [(x['before_state'],x['evaluation'])for x in steps['strict']]==[(x['before_state'],x['evaluation'])for x in steps['fixed_vertical']]
+anchor=regs['fixed_vertical']['anchor'];limits={k:anchor[k] for k in ['wirelength','SB_pairs','CB_sources']};limits['wirelength']=(anchor['wirelength']*1001+999)//1000
+assert all(x['reused_native'] for x in steps['fixed_vertical']);assert all(x['after_resources'][k]<=limits[k]for x in steps['fixed_vertical']for k in limits)
+rows['fixed_vertical']['effective_resource_limits']=limits
+write(D/'strong_A0_policy_equivalence_01.json',dict(passed=True,rows=rows,same_independently_selected_successors=True,same_final_physical_state=True,all_fixed_vertical_transitions_reused_exact_native=True,new_native_calls=0,complete_single_configuration_algorithm_seconds=None,source_sha256={str(f):sha(f)for f in files},qualification='Policies start from the same sealed native8 root and each accept/reselect using its own current state and fixed original budget. Their state sequences happen to agree; exact native results reused, not borrowed accept decisions. 77.873s versus2155.627s excludes reused creation and cannot be a speedup or complete algorithm comparison. Local operator exhaustion is not a global routing bound or research stop.'))
+print({k:dict(CPD_ns=v['CPD_ns'],resources=v['resources'],native_coordinators=v['native_coordinators_started'])for k,v in rows.items()},flush=True)

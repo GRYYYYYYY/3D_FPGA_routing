@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+"""Large same-binary repair worker equivalence and real candidate FULLSTA integration."""
+import fcntl,os,resource,shutil,signal,subprocess,sys,time
+from pathlib import Path
+from retained_prefix_workflow import D,read,write,sha
+from native_repair_analysis_pool import NativeAnalysisPool
+from pool_state_evaluator_v2 import PoolStateEvaluator
+from run_native_scope_policy_v4 import run_dir
+b=D/'native_repair_queue_equivalence_bnn_01';b.mkdir(exist_ok=False);started=time.monotonic();lock=(D/'critical_scope_runner.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);resource.setrlimit(resource.RLIMIT_AS,(64*1024**3,64*1024**3));tiny=D/'native_repair_queue_tiny_regression_01/completion.json';assert read(tiny)['passed'];assert read(D/'pooled_resource_repair_dev_01/queue/completion.json')['passed'];old=D/'pooled_resource_repair_dev_01/R1_fast/round_000/candidate_00';initial=Path(read(D/'R1_strict_portfolio_summary_02.json')['final_state']);source=run_dir(initial);binary=D/'native_repair_queue_stage_01/bin/vpr';command=list(read(source/'manifest.json')['command']);command[0]=str(binary)
+if '--route' in command:command.remove('--route')
+for opt,n in [('--net_file','packed.net'),('--place_file','placed.place'),('--route_file','routed.route')]:command[command.index(opt)+1]=str(source/n)
+if '--verify_route_file_switch_id' not in command:command+=['--verify_route_file_switch_id','on']
+static=[Path(command[1]),Path(command[2]),Path(command[command.index('--read_rr_graph')+1]),source/'packed.net',source/'placed.place'];guard=D.parents[1]/'results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/seccomp_thread_guard';request=D/'current_resource_bundle_validation_01/K1/request.txt';domain=request.with_name('domain.txt');files=[Path(__file__).resolve(),D/'native_repair_analysis_pool.py',D/'pool_state_evaluator_v2.py',D/'native_repair_queue_stage_01/binding.json',tiny,D/'pooled_resource_repair_dev_01/queue/completion.json',initial/'completion.json',source/'routed.route',request,domain,D/'audit_native_objective_cached.py',D/'audit_retained_crossing_domain.py'];bound={str(p):sha(p) for p in files};write(b/'registration.json',dict(pid=os.getpid(),start_ticks=Path('/proc/self/stat').read_text().split(') ',1)[1].split()[19],source_sha256=bound,question='Do native weighted OFF/ON transactions from the actual fast R1 state match fresh same-binary standalone controls and existing sealed resource-stage results, and can private candidate sidecars be replaced/audited and validated by a separate full native STA?',initial_state=str(initial),native_route_flows=0,qualification='New engineering backend equivalence on existing mechanism candidates, not a new algorithm quality experiment or formal performance comparison. Old quality cohort is terminal before startup. Query worker FULLSTA describes its original input; actual replacement gets its own complete FULLSTA.'))
+costs=[];refs={};env={k:v for k,v in os.environ.items() if not k.startswith('VPR_')};env.update(VPR_H3D_MODE='off',OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',MKL_NUM_THREADS='1')
+def normalized(path):
+ rows=[]
+ for l in Path(path).read_text().splitlines():
+  v=l.split()
+  if v[0]=='QUERY':v=v[:-1]
+  if v[0]=='COMPLETE':v=v[:4]+v[5:]
+  rows.append(v)
+ return rows
+for name,on in [('reuse_off',False),('reuse_on',True)]:
+ assert shutil.disk_usage(D).free>=80*1024**3;rd=b/('standalone_'+name);rd.mkdir();e=dict(env,VPR_JOINT_NATIVE_REQUEST=str(request),VPR_JOINT_NATIVE_OUTPUT=str(rd/'joint_native.log'),VPR_JOINT_NATIVE_OBJECTIVE='weighted_soft',VPR_CURRENT_STA_NATIVE_PRESSURE_START='1',VPR_H3D_FINAL_STA_TRACE=str(rd/'native_sta_frontier.jsonl'),VPR_H3D_FINAL_TIMING_ECHO=str(rd/'timing_graph.full_precision.echo'))
+ if on:e.update(VPR_JOINT_NATIVE_REUSE_CROSSINGS=str(domain),VPR_JOINT_NATIVE_VERTICAL_DOMAIN_TRACE=str(rd/'vertical_domain.log'))
+ t=time.monotonic()
+ with (rd/'stdout.log').open('w') as out:
+  proc=subprocess.Popen(['prlimit','--core=0:0','--as='+str(64*1024**3),'--',str(guard),*command],cwd=rd,env=e,stdout=out,stderr=subprocess.STDOUT,start_new_session=True);write(b/'active_child.json',dict(pid=proc.pid,tag='standalone_'+name))
+  try:code=proc.wait(timeout=1800)
+  except subprocess.TimeoutExpired:os.killpg(proc.pid,signal.SIGKILL);proc.wait();raise
+ costs.append(dict(tag='standalone_'+name,returncode=code,complete_native_process_seconds=time.monotonic()-t));write(b/'process_costs.json',costs);assert code==0;assert normalized(rd/'joint_native.log')==normalized(run_dir(old/name)/'joint_native.log');refs[name]=rd
+pool=NativeAnalysisPool(b/'pool',command,static,guard);evaluator=PoolStateEvaluator(pool,initial,D/'full_route_graph_cache_bnn_01',b/'evaluation_context');first=evaluator.evaluate(source/'routed.route',b/'initial',physical_reference=initial);assert first['passed'];expected=read(initial/'endpoint_vector.json');assert all(read(b/'initial/endpoint_vector.json')[k]==expected[k] for k in ['cpd_s','setup','hold','endpoint_ids','constraints_sha256']);roles={};results={}
+for name,on in [('reuse_off',False),('reuse_on',True)]:
+ roles[name]=dict(state=str(b/'initial'),source=str(run_dir(b/'initial')),request=str(request),queries=read(D/'current_resource_bundle_validation_01/K1/plan.json')['queries'],objective='weighted_soft',fixed_target_paths=False,removed_pins=read(D/'current_resource_bundle_validation_01/K1/plan.json')['removed_pins'],crossing_reuse_enabled=on,crossing_domain=str(domain),source_sha256={str(p):sha(p) for p in [b/'initial/completion.json',run_dir(b/'initial')/'routed.route',request,domain]})
+write(b/'transaction_registration.json',dict(roles=roles,source_sha256=bound));transaction=b/'transaction';transaction.mkdir();write(transaction/'registration.json',dict(roles=roles))
+for name,on in [('reuse_off',False),('reuse_on',True)]:
+ t=time.monotonic();worker=pool.analyze(source/'routed.route',native_request=request,crossing_domain=domain if on else None);assert worker['passed'] and worker['native_transaction_succeeded'];native=Path(worker['native_directory'])
+ for n in ['native_sta_frontier.jsonl','native_sta_frontier.jsonl.constraints.echo','timing_graph.full_precision.echo']:assert sha(native/n)==sha(refs[name]/n)
+ assert normalized(native/'joint_native.log')==normalized(refs[name]/'joint_native.log')
+ if on:assert (native/'vertical_domain.log').read_text()==(refs[name]/'vertical_domain.log').read_text()
+ material=evaluator.evaluate(source/'routed.route',transaction/name,physical_reference=initial,native_observation=worker);assert material['passed'] and material['native_analysis_calls']==0 and material['timing']['native_child_seconds'] is None
+ for script,args,tag in [('audit_native_objective_cached.py',['--batch',transaction,'--role',name,'--cache',D/'rr_audit_cache_bnn_01','--output',transaction/(name+'_audit')],'transaction_audit'),('audit_retained_crossing_domain.py',['--batch',transaction,'--role',name],'domain_audit')]:
+  log=transaction/(name+'_'+tag+'.log');begin=time.monotonic()
+  with log.open('w') as out:r=subprocess.run([sys.executable,str(D/script),*map(str,args)],stdout=out,stderr=subprocess.STDOUT,timeout=1800)
+  costs.append(dict(tag=name+'_'+tag,returncode=r.returncode,complete_process_seconds=time.monotonic()-begin));write(b/'process_costs.json',costs);assert r.returncode==0
+ audit=read(transaction/(name+'_audit/analysis.json'));assert audit['passed'];previous=old/(name+'_evaluation');assert sha(audit['candidate_route'])==sha(run_dir(previous)/'routed.route');candidate=evaluator.evaluate(audit['candidate_route'],transaction/(name+'_candidate_FULL_STA'),physical_reference=previous);assert candidate['passed'];v=read(transaction/(name+'_candidate_FULL_STA/endpoint_vector.json'));prior=read(previous/'endpoint_vector.json');assert all(v[k]==prior[k] for k in ['cpd_s','setup','hold','endpoint_ids','constraints_sha256']);results[name]=dict(native_worker=worker['job'],native_candidate_FULL_STA=str(transaction/(name+'_candidate_FULL_STA')),CPD_s=v['cpd_s'],physical_metrics=read(run_dir(transaction/(name+'_candidate_FULL_STA'))/'independent_audit.json')['physical_metrics'],complete_role_workflow_seconds=time.monotonic()-t);write(b/'progress.json',results)
+last=evaluator.evaluate(source/'routed.route',b/'source_after_repairs',physical_reference=initial,reuse=False);assert last['passed'];assert all(read(b/'source_after_repairs/endpoint_vector.json')[k]==expected[k] for k in ['cpd_s','setup','hold','endpoint_ids','constraints_sha256']);evaluator.close();assert all(sha(p)==h for p,h in bound.items());write(b/'completion.json',dict(passed=True,rows=results,full_precision_source_and_candidate_equivalence=True,independent_transaction_scope_and_capacity_audits=True,same_binary_standalone_native_logs_exact=True,old_resource_stage_native_logs_exact=True,actual_replacements_FULL_STA_exact=True,parent_current_source_unchanged=True,final_context_seal_passed=True,native_pool_jobs=len(pool.jobs),complete_integration_workflow_seconds=time.monotonic()-started,complete_single_configuration_algorithm_seconds=None,source_sha256={str(p):sha(p) for p in [b/'registration.json',b/'process_costs.json',b/'pool/completion.json',b/'evaluation_context/input_seal.json',b/'evaluation_context/completion.json',Path(__file__).resolve()]},qualification='Large actual native worker and replacement integration, not a new QoR result or paired complete-algorithm speedup. Source observation and private candidate generation are distinct; exact prior physical audits reused only after actual route SHA equality. Old quality experiments never changed.'))
+print(dict(passed=True,pool_jobs=len(pool.jobs)),flush=True)

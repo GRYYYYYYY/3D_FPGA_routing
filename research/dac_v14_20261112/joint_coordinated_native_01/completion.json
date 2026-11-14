@@ -1,0 +1,127 @@
+{
+  "status": "native_analysis_terminal",
+  "passed": true,
+  "accepted": true,
+  "accepted_run": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_coordinated_native_01/runs/eltwise_layer_R",
+  "input_run": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_R1",
+  "candidate_run": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_coordinated_native_01/runs/eltwise_layer_R",
+  "targets": [
+    {
+      "net": 6587,
+      "pin": 4
+    },
+    {
+      "net": 6590,
+      "pin": 4
+    }
+  ],
+  "before_cpd_ns": 6.0181,
+  "after_cpd_ns": 5.85466,
+  "process_status": "completed",
+  "native_analysis_calls": 1,
+  "route_search_calls": 0,
+  "process_seconds": 8.945292267948389,
+  "gate": {
+    "process_completed": true,
+    "native_FULL": true,
+    "route_load_observed": true,
+    "inputs_unchanged": true,
+    "cpd_present": true
+  },
+  "physical_change": {
+    "passed": true,
+    "sink_connections": 23905,
+    "changed": [
+      {
+        "net": 1429,
+        "sink": 91433,
+        "pin": 1,
+        "before_ns": 0.8493392933406341,
+        "after_ns": 0.9381640186933993
+      },
+      {
+        "net": 2926,
+        "sink": 21390,
+        "pin": 2,
+        "before_ns": 1.79374629039053,
+        "after_ns": 2.1806758898623713
+      },
+      {
+        "net": 6563,
+        "sink": 131810,
+        "pin": 1,
+        "before_ns": 1.2209908917260037,
+        "after_ns": 1.4068166909186886
+      },
+      {
+        "net": 6587,
+        "sink": 82095,
+        "pin": 4,
+        "before_ns": 1.0428040930765548,
+        "after_ns": 0.8493392933406341
+      },
+      {
+        "net": 6590,
+        "sink": 82095,
+        "pin": 4,
+        "before_ns": 1.0428040930765548,
+        "after_ns": 0.8493392933406341
+      },
+      {
+        "net": 7963,
+        "sink": 81843,
+        "pin": 2,
+        "before_ns": 1.5926424901113734,
+        "after_ns": 1.035165092533319
+      }
+    ],
+    "other_net_traces_exact": true,
+    "scope": "All sink delays are independently accumulated from actual route switch IDs on the previously verified zero-RC graph. Final timing is separately recomputed by native STA."
+  },
+  "STA": {
+    "before": {
+      "sWNS": -6.0181,
+      "sTNS": -33483.7,
+      "hWNS": 0.0,
+      "hTNS": 0.0
+    },
+    "after": {
+      "sWNS": -5.85466,
+      "sTNS": -33438.8,
+      "hWNS": 0.0,
+      "hTNS": 0.0
+    }
+  },
+  "physical_resources": {
+    "before": {
+      "planar_wirelength_excluding_sb_half_nodes": 218164,
+      "sb_pairs_used": 39,
+      "sb_pair_net_occupancy": 39,
+      "cb_crossing_output_sources_used": 969,
+      "cb_crossing_output_source_net_occupancy": 969,
+      "actual_crossing_edge_traversals": {
+        "OPIN->CHANX": 560,
+        "CHANX->CHANX": 39,
+        "OPIN->CHANY": 458
+      },
+      "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+    },
+    "after": {
+      "planar_wirelength_excluding_sb_half_nodes": 218176,
+      "sb_pairs_used": 40,
+      "sb_pair_net_occupancy": 40,
+      "cb_crossing_output_sources_used": 970,
+      "cb_crossing_output_source_net_occupancy": 970,
+      "actual_crossing_edge_traversals": {
+        "OPIN->CHANX": 560,
+        "CHANX->CHANX": 40,
+        "OPIN->CHANY": 459
+      },
+      "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+    }
+  },
+  "prototype_preparation_seconds": 37.57653420418501,
+  "iterations": null,
+  "iteration_scope": "Analysis-only route load; no native router iterations.",
+  "interpretation": "Strict CPD acceptance for this proposal only; no robust cross-circuit method promotion or formal runtime comparison."
+}

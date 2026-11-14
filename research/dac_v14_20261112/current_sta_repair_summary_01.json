@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "status": "current_STA_single_connection_plateau_and_blocker_coupling_verified",
+  "previous_goal_turn": "progress",
+  "native_analysis_calls": 0,
+  "route_search_calls": 0,
+  "new_queries": 18,
+  "current_cpd_ns": 6.20393,
+  "accepted_route_unchanged": true,
+  "quality_promoted": false,
+  "dynamic_targets": 5,
+  "fixed_targets": 2,
+  "positive_relaxed_targets": [
+    {
+      "net": 6587,
+      "pin": 4,
+      "gap_ns": 0.3792905989286055
+    }
+  ],
+  "minimum_release_cardinality_in_observed_three_net_set": 3,
+  "unchanged_current_targets": [
+    {
+      "net": 6587,
+      "pin": 4,
+      "physical_ns": 1.2286298922692396,
+      "expansions": 48408,
+      "core_seconds": 0.142757474
+    },
+    {
+      "net": 5470,
+      "pin": 5,
+      "physical_ns": 0.6635134941479492,
+      "expansions": 280,
+      "core_seconds": 0.001088009
+    },
+    {
+      "net": 5481,
+      "pin": 1,
+      "physical_ns": 0.4776876949552644,
+      "expansions": 196,
+      "core_seconds": 0.000354015
+    },
+    {
+      "net": 5485,
+      "pin": 9,
+      "physical_ns": 0.8493392933406341,
+      "expansions": 2731,
+      "core_seconds": 0.007369432
+    },
+    {
+      "net": 6639,
+      "pin": 1,
+      "physical_ns": 0.6635134941479492,
+      "expansions": 450,
+      "core_seconds": 0.001505365
+    }
+  ],
+  "blocker_subtrees": [
+    {
+      "net": 7541,
+      "name": "PRDATA[7]",
+      "resource": 327367,
+      "downstream_pins": [
+        1
+      ],
+      "total_pins": 1
+    },
+    {
+      "net": 6563,
+      "name": "$abc$87764$new_n22316",
+      "resource": 415972,
+      "downstream_pins": [
+        1
+      ],
+      "total_pins": 1
+    },
+    {
+      "net": 2570,
+      "name": "matrix_B_2.genblk1[2].dp1.wren_b",
+      "resource": 416228,
+      "downstream_pins": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "total_pins": 9
+    }
+  ],
+  "interpretation": "Refreshed targets do not improve this state under single-target fixed-tree/free-capacity repair. The one remaining relaxed opportunity requires coordinated resource changes within the observed blocker set. This rejects a simple sequential-free-capacity continuation here, not all current-STA or coordinated repair mechanisms.",
+  "fairness": "Frozen target control has2 selected connections, refreshed has5; both exhaust selected sets, but this is not equal wall/work budget speed evidence. No new native quality result. Four of five refreshed targets have no relaxed fixed-tree gain.",
+  "source_sha256": {
+    "current_sta_queries_01/analysis.json": "e2895c695b49ad5a05e803a5a5cc0142e9d9f734f1ca0cf12d28ca45623ee8ca",
+    "fixed_sta_queries_01/analysis.json": "6cc382776eaaa14215d8ffe606dd35194ba812f8cfc473cf669536b8ba4863a5",
+    "current_sta_relaxed_01/analysis.json": "794e347e11e09b16f6c736c997d78b5c9989abc7fe7d348bfbc7c97f869d5a1f",
+    "blocker_subset_reference_01/analysis.json": "24adc824cb406180dceb4e595d56e6a781ca7b5d5b2df3a3b411fb5b161193f3"
+  },
+  "next_registered": "coordinated_critical_repair_experiment_01.json",
+  "public_snapshot": "f7167bd1fbeb267d7ffc02766eeb2e5966aec387",
+  "this_followup_pushed": false
+}

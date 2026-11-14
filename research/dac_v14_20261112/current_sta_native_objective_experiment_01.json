@@ -1,0 +1,59 @@
+{
+  "status": "registered_next",
+  "question": "Why does native weighted repair miss the small5487p24 physical/endpoint gain while three other near-window steps exactly match the capacity query?",
+  "input": {
+    "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/evaluation_008",
+    "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/evaluation_008/runs/state",
+    "request": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_near_native_dev_01/endpoint_step_002.txt",
+    "fixed_target_paths": false,
+    "removed_pins": {
+      "5487": [
+        24
+      ]
+    },
+    "targets": [
+      [
+        5487,
+        24
+      ]
+    ],
+    "order": "one_current_STA_selected_sink",
+    "queries": [
+      {
+        "net": 5487,
+        "pin": 24,
+        "slack_s": -5.679678061198956e-09,
+        "raw_criticality": 0.9738339781761169
+      }
+    ],
+    "capacity_reference": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/evaluation_011",
+    "source_sha256": {
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/prepare_near_native_controls.py": "5b0325df37ef2468101bba46e6e8fa7804f493b5f5388af074e01ba9f8950fd1",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/registration.json": "c688a84047eb800c52c7e9da4d70e472bc4b07c2998f2695927238a4046d9062",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/completion.json": "a04d8770dea67a98fc79d8d50c2ded10c76609d89375cb702158a877b3b2f9a2",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/decisions.json": "cc8edf4499f3f9ec9d31921d8683d810987b7cd98b06b8830e161f25c1ea1b5f",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/evaluation_008/completion.json": "ca73f73c5a3e55851e5365efcbbb7c817a5fcf93ebb099353c7f9c13e92509d6",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/evaluation_008/endpoint_vector.json": "5965246584a8515737f5751c457172cc7db2a3fc4d6a9748c1e0e9c0454b6888",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/evaluation_008/runs/state/manifest.json": "a39f9e722e12a78b8083d6f6056abedc13695a63fa7201e89d7d74cd104e19e1",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/evaluation_008/runs/state/routed.route": "d075f5aa3853faf995c7575ed705d5eac7fd3959b2cf2a3baa8f8cf1099436ee",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/evaluation_008/runs/state/native_sta_frontier.jsonl": "bf767bd6cf0add82cc78e8e0fe87e19f814888d86a584dc54c6348602d03ee5c",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_near_native_dev_01/endpoint_step_002.txt": "aabed9c357199e6b6ffa5bb6e7220602ef38601c2f7d9872c6da71bd89f3d3e2"
+    }
+  },
+  "intervention": [
+    "Isolate the objective from the engine: native physical-delay objective with an explicit current-occupancy feasibility filter, same retained anchors/tree/domain as the capacity query. Keep default nativeweighted control frozen.",
+    "Read/search changes in an independent default-off development stage. Preserve actual Tdel, nativeFULL/STA, complete occupancy rollback, same removed sink and full-device opportunity.",
+    "Compare retained seed delays and float/double physical accumulation; use native exact finalSTA for acceptance. Do not equate model exactness with global STA optimum.",
+    "If native physical/hard-capacity reproduces the candidate, attribute this step to cost/objective choice rather than a novel searchengine. If not, examine filtering, seed eligibility and integration before interpreting algorithmic differences."
+  ],
+  "already_observed": "native weighted5487p24 legal but no changed connectiondelay/setupvector; capacity improves2components by about7.638ps withCPDplateau. No whole-mechanism no-benefit conclusion.",
+  "limits": "Same per-process guards; no total cap or date.",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_near_native_dev_01/registration.json": "2ab9d6d73e2a11523bc42a9b838e5f806e2f67b48b67c2a4df981368235fd8b5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_near_native_dev_01/completion.json": "599a1c7ba561f58130cbfc7d753e478704a0c42a9f3f803c7e8a6467e378438c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_near_native_dev_01/endpoint_step_002_decision.json": "3b3f87468aae3e20e9d3862d70cda2b502fb51c97ca19da2d1415c881f6347d6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_near_native_dev_01/endpoint_step_002_audit/analysis.json": "885f379f702804f4b3524ac54efc9dffe13eb4e0eeaaedef9ec19cae95da1aa6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_near_native_dev_01/endpoint_step_002_reference_equivalence.json": "42f865425573da3c9c0f6fac416491b9cecf67492fe4d722ff1dc763c6c5f743"
+  },
+  "created_at": 1794598293.7698221
+}

@@ -1,0 +1,38 @@
+
+\section{BNN current-state resource and capacity evidence}
+\label{sec:bnn-current-resource}
+\subsection{Problem and direct native control}
+The pristine BNN Tf state has full-precision CPD 13.421610489672275 ns, wirelength 2074317, 105 used SB pairs and 5062 used CB sources. The exact worst-endpoint maximum-arrival cone contains 13 routed connections. Full-device, retained-tree capacity queries find one strictly shorter physical connection: net 73897, pin 1, by 7.639000543 ps. The selector chooses this connection automatically, with deterministic identifiers used only to break ranking ties. This is a connection-level opportunity, not a predicted endpoint CPD gain.
+
+Two native transactions start from this identical state with identical target, modifiable tree scope and free-path request. The ordinary criticality-weighted native objective and the physical-delay objective with hard capacity constraints both shorten the selected connection and pass physical legality and native FULL/STA. Neither changes CPD or any setup/hold endpoint-vector component. Both remove 73897/pin 1 from the recomputed maximum-arrival cone, reducing its routed-connection set from 13 to 12. Remaining bottlenecks therefore matter even though this selected branch is no longer a maximum-arrival contributor. These observations motivate a joint intervention; they do not prove that the proposed combination will reduce CPD.
+
+\begin{table}[t]
+\centering\small
+\caption{Completed BNN direct repair from identical pristine Tf. CPD is unchanged at full precision; counts are actual used resources.}
+\label{tab:bnn-direct-resource}
+\begin{tabular}{lrrr}
+\hline
+State & Wirelength & SB pairs & CB sources\\
+\hline
+Initial Tf & 2074317 & 105 & 5062\\
+Native weighted & 2074301 & 105 & 5062\\
+Physical capacity & 2074313 & 105 & 5062\\
+\hline
+\end{tabular}
+\end{table}
+
+Strict-CPD and endpoint-vector policies reject both candidates for exactly unchanged timing. The independent fixed-timing resource policy accepts both: CPD is below the original CPD times 1.01 cap, wirelength strictly decreases within its original bound, and SB/CB counts stay within the pre-registered bounds. No tolerance or rolling cap is used. These are new legal accepted resource transitions, unlike the earlier arithmetic eligibility replay. The ordinary native control saves 16 wire units, whereas the physical-capacity candidate saves four. The former dominates the latter in the four quality dimensions. Thus this example provides no quality advantage attributable to hard capacity or the physical-only objective. A 16-unit reduction from over two million wire units is a small mechanism observation, not a substantial engineering improvement.
+
+\subsection{Joint frontier and scarce-channel mechanism}
+The archive extension contains 90 actual run or observation records: 44 have no observed dominator, 12 remain unresolved because of printed CPD precision, and 34 are quality-dominated. The five appended records are the exact initial A0/R1/Tf observations and both new direct-repair candidates. Repeated or unequal-opportunity states remain labeled. Strong R1 uses wirelength 2068908, 86 SB pairs and 5072 CB sources at the same exact CPD as Tf. The weighted Tf repair remains a tradeoff because it uses ten fewer CB sources, despite more wire and SB occupancy. This descriptive frontier does not establish equal-opportunity algorithm superiority or complete-time dominance.
+
+The same direct-opportunity screening on pristine strong A0 and R1 examines respectively 10 and 13 current-cone connections. A0 has no strictly positive direct delay opportunity within this scope; R1 has two, at 73896/pin 1 and 73897/pin 1. A0's stage result does not exclude near-critical or resource-reduction opportunities. Registered R1 transactions receive both selected opportunities, using the same paired native objectives and checks as Tf.
+
+Relaxing background occupancy exposes three Tf capacity gaps. Net 26319/pin 1 offers 185.825799 ps in the relaxed model, but its witness includes critical owner net 26320 with zero margin to current worst slack. Protecting whole critical-network trees eliminates that improvement in this restricted query. This is not a global impossibility certificate and is not evidence for a free non-critical release. The smaller 7.639001 ps gaps at 68613/pin 1 and 73896/pin 1 survive critical-tree protection. Their actual occupying branches belong to nets 26497, 66577, 12754 and 57571; the 13 affected sink branches have positive pin-slack margins, with owner minima approximately 4.784--7.166 ns. These margins screen proposals only: legal detours and final endpoint timing still require complete native verification.
+
+The next independently registered batch automatically combines the three positive direct/protected opportunities, releases precisely the implicated owner branches, and routes targets followed by their displaced owners with sequential occupancy updates. All paths remain native choices. Paired native objectives use identical requests; target-only and owner-only scopes provide corresponding ablations from the same pristine state. A combined transaction may have useful effects even when each isolated component leaves CPD unchanged. At this evidence seal the new batch is pending; its results are not included in the table or archive counts.
+
+\subsection{Complete costs and engineering implications}
+The completed two-arm direct diagnostic takes 885.791 s, including request preparation, both native observations, candidate serialization and audit, fresh FULL/STA and successor selection. This is a shared research-workflow time, not a standalone algorithm configuration measurement. The native transaction cores take 0.164 and 0.202 s. Their complete candidate-evaluation wrappers take 206.478 and 204.019 s, including native processes of approximately 102 s and independent physical audits of approximately 64 s. Core and wrapper times are nested; neither substitutes for end-to-end algorithm cost. Separate successor selections each take approximately 44 s. State reuse and in-process integration are therefore concrete engineering directions, subject to preserving complete correctness checks and accounting for failed candidates and rollback.
+
+A separate exact preprocessing change computes saturated resources once per immutable occupancy state, then applies each target's own-net credit. All 13 actual Tf cases match the previous query inputs field for field, and 96 additional capacity conditions cover zero capacity, sharing, spare capacity, overuse and own-net credit. Saturation indexing takes 0.213 s and the case-construction component takes 1.215 s. These component timings are not compared against a different complete query workflow as a claimed speedup. New A0/R1 screens use this implementation; their timings remain distinct from the earlier Tf preprocessing version. New complete single-configuration repair time remains unknown, and no historical U timing is assigned to a current repair point.

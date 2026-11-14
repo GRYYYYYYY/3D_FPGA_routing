@@ -1,0 +1,198 @@
+{
+  "passed": true,
+  "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_02/full_observation",
+  "proposal": {
+    "status": "exact_proxy_selection",
+    "selected": [
+      0
+    ],
+    "targets": [
+      [
+        47878,
+        2
+      ]
+    ],
+    "profile": {
+      "repair_connections": 4,
+      "repair_pins": [
+        [
+          47878,
+          2
+        ],
+        [
+          57399,
+          1
+        ],
+        [
+          57596,
+          1
+        ],
+        [
+          66543,
+          1
+        ]
+      ],
+      "min_current_winning_path_gain_ns": 0.18582579919268483,
+      "all_current_paths_covered": true,
+      "gain_distribution": [
+        {
+          "gain_ns": 0.18582579919268483,
+          "edge_paths": 2
+        }
+      ]
+    },
+    "maximum_proxy_gain_ns": 0.20110380027915653,
+    "fraction": 0.9,
+    "threshold_proxy_gain_ns": 0.18099342025124088,
+    "exact_within_proxy": true,
+    "visited_nodes": 9,
+    "complete_planning_seconds": 0.0005058161914348602,
+    "qualification": "Selected scope is timing-only/proxy-feasible; native capacity replacement, complete legality/STA and fixed design budgets still decide commit. Patterns can scale exponentially in action count even when physical path enumeration is compressed."
+  },
+  "actual_selected_targets": [
+    [
+      47878,
+      2
+    ]
+  ],
+  "actual_repair_pins": [
+    [
+      47878,
+      2
+    ],
+    [
+      57399,
+      1
+    ],
+    [
+      57596,
+      1
+    ],
+    [
+      66543,
+      1
+    ]
+  ],
+  "actual_native_query_order": [
+    {
+      "net": 47878,
+      "pin": 2,
+      "raw_criticality": 1
+    },
+    {
+      "net": 57399,
+      "pin": 1,
+      "raw_criticality": 0.7612920999526978
+    },
+    {
+      "net": 57596,
+      "pin": 1,
+      "raw_criticality": 0.8191012144088745
+    },
+    {
+      "net": 66543,
+      "pin": 1,
+      "raw_criticality": 0.7978668808937073
+    }
+  ],
+  "blocked_resources": {
+    "3590447": {
+      "capacity": 1,
+      "other_nets": [
+        57596
+      ]
+    },
+    "3590555": {
+      "capacity": 1,
+      "other_nets": [
+        57399
+      ]
+    },
+    "943357": {
+      "capacity": 1,
+      "other_nets": [
+        66543
+      ]
+    }
+  },
+  "donor_margins": [
+    {
+      "net": 57399,
+      "pins": [
+        {
+          "pin": 1,
+          "slack_margin_ns": 3.2482025957847327
+        }
+      ]
+    },
+    {
+      "net": 57596,
+      "pins": [
+        {
+          "pin": 1,
+          "slack_margin_ns": 2.461568726630503
+        }
+      ]
+    },
+    {
+      "net": 66543,
+      "pins": [
+        {
+          "pin": 1,
+          "slack_margin_ns": 2.750513594662607
+        }
+      ]
+    }
+  ],
+  "capacity_feasible_positive_gaps": [
+    {
+      "net": 73896,
+      "pin": 1,
+      "improvement_ns": 0.007639000543235852
+    }
+  ],
+  "relaxed_positive_but_capacity_blocked": [
+    {
+      "net": 26319,
+      "pin": 1,
+      "improvement_ns": 0.18582579919268483
+    },
+    {
+      "net": 47878,
+      "pin": 2,
+      "improvement_ns": 0.18582579919268483
+    },
+    {
+      "net": 68613,
+      "pin": 1,
+      "improvement_ns": 0.007639000543235852
+    },
+    {
+      "net": 73896,
+      "pin": 1,
+      "improvement_ns": 0.007639000543235852
+    },
+    {
+      "net": 73897,
+      "pin": 1,
+      "improvement_ns": 0.007639000543235852
+    }
+  ],
+  "competing_critical_owner": {
+    "target": [
+      26319,
+      1
+    ],
+    "critical_owner": 26320,
+    "reason": "Primary slack-funded action list excludes this target because an affected owner connection has zero margin; a later critical-owner exchange scope may still address it."
+  },
+  "new_native_or_query_calls": 0,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bind_low_resource_first_proposal.py": "8c96fd2b06664a9472683fbbec801999f7983f4e7fae2c0e5014add0f5163689",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/strict/round_000/feedback/proposal/plan.json": "8004fea4f3aebb4ec41ac72bd18ab6b57fbd82c69f749ea87cdda5c46422f9cd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/strict/round_000/feedback/owners/completion.json": "b2e56a58d0fd94bf3fed895dbcca0b4dc4e42cec70ca3c58f63d02e80e3adcef",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/strict/round_000/feedback/capacity/analysis.json": "346d82f06100ade1bcf05de0c658b9f92d34c249ba611fc8605422087f3511dc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/strict/round_000/feedback/relaxed/analysis.json": "26376d00686e7c7b4741629930fa79e34cdaafe09c5760a4bd23575969cb4385"
+  },
+  "qualification": "Actual automatic planning/ownership evidence only. No native repair outcome, acceptance, final legality or CPD gain inferred from changed plan. The original and low-resource composition experiments continue."
+}

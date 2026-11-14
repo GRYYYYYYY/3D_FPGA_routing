@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "request_checks": [
+    {
+      "proposal": "critical_owner_exchange_000_target_first",
+      "reference": "000_expanded_free_weighted",
+      "request_equal": true
+    },
+    {
+      "proposal": "critical_owner_exchange_000_owner_first",
+      "reference": "000_expanded_owner_first_weighted",
+      "request_equal": true
+    }
+  ],
+  "zero_headroom_policy_checks": [
+    {
+      "role": "000_expanded_free_weighted",
+      "zero_headroom_timing_accepted": true,
+      "zero_headroom_resource_accepted": false
+    },
+    {
+      "role": "000_expanded_owner_first_weighted",
+      "zero_headroom_timing_accepted": false,
+      "zero_headroom_resource_accepted": true
+    }
+  ],
+  "native_calls": 0,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/validate_current_exchange_portfolio_v2.py": "89c03b54b259ec795ec90f581f4cab676b58bd4af0f50f86a4a48d75dcf2400c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/make_current_exchange_portfolio_v2.py": "7cf4977bd7080e561cb4006510376b04ce4a85eeb6c52f8a2c32dd982e1e5799",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_proposal_portfolio.py": "4ddca7a4e6169a4555142404b4a936baea0fff6e0e0de5f3db632d243092b9be",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/multiobjective_acceptance_v2.py": "42c8bc67352d5a9b174a02b8975a31c40a5031c61fd2e64a5512011f9233a043",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_exchange_portfolio_Tf_02/portfolio.json": "9cc3dfd3b6ede66fb03f7f18ade38e2c0b1e5c556e6722599c83e24e91ff791e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/critical_owner_exchange_dev_01/registration.json": "af4858633453e8ea2b5d70e062d2e9956f1670e5859a365ab52a910668ba8970",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/critical_owner_exchange_dev_01/completion.json": "4a8743abd4c4b2bdf76cd1b0c7b5d5af1224aac958cc0dbdb7f85966bc346231"
+  },
+  "qualification": "Both generic schedules exactly reproduce recorded native requests. Actual legal states verify fixed-root zero-resource/zero-timing-headroom arithmetic without rewriting registered decisions or treating intermediate wire growth as resource reduction. No new route/STA or complete algorithm timing claim."
+}

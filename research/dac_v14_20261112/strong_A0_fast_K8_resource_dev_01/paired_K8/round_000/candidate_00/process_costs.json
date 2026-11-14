@@ -1,0 +1,73 @@
+[
+  {
+    "tag": "reuse_on_native",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_independent_resource_state_analysis.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_timing_trajectories_01/strict/round_002/proposal_01/transaction/current_group_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_fast_K8_resource_dev_01/paired_K8/round_000/candidate_00/reuse_on",
+      "--native-cases",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_fast_K8_resource_dev_01/paired_K8/round_000/candidate_00/request.txt",
+      "--objective",
+      "weighted_soft",
+      "--crossing-domain",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_fast_K8_resource_dev_01/paired_K8/round_000/candidate_00/domain.txt"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 142.88257625699043
+  },
+  {
+    "tag": "reuse_on_audit",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_native_objective_cached.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_fast_K8_resource_dev_01/paired_K8/round_000/candidate_00",
+      "--role",
+      "reuse_on",
+      "--cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rr_audit_cache_bnn_01",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_fast_K8_resource_dev_01/paired_K8/round_000/candidate_00/reuse_on_audit"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 39.9798677675426
+  },
+  {
+    "tag": "reuse_on_domain_audit",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_retained_crossing_domain.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_fast_K8_resource_dev_01/paired_K8/round_000/candidate_00",
+      "--role",
+      "reuse_on"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 10.832647010684013
+  },
+  {
+    "tag": "reuse_on_FULL_STA",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_independent_timing_cone_analysis.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_timing_trajectories_01/strict/round_002/proposal_01/transaction/current_group_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_fast_K8_resource_dev_01/paired_K8/round_000/candidate_00/reuse_on_evaluation",
+      "--candidate-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/strong_A0_fast_K8_resource_dev_01/paired_K8/round_000/candidate_00/reuse_on_audit/candidate.route",
+      "--full-graph-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_route_graph_cache_bnn_01",
+      "--timing-echo"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 206.69585682451725
+  }
+]

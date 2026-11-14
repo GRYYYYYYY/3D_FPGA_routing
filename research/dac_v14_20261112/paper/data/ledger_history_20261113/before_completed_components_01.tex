@@ -1,0 +1,32 @@
+
+\section{Joint repair components and the updated search boundary}
+\subsection{Completed paired scopes}
+Both objectives now have complete native FULL/STA and independent physical audits for combined and target-only scopes from the identical pristine Tf state. The combined scope releases actual conflicting owner branches and routes three critical targets followed by their displaced owners. Target-only uses the same three critical targets while retaining the owner trees. Every native path is chosen freely; per-connection occupancy is updated throughout each transaction. Original policy decisions and fixed budgets are preserved.
+
+\begin{table}[t]
+\centering\small
+\caption{BNN completed component outcomes. Changes are relative to pristine Tf; CPD is abbreviated here, with full precision used in all decisions.}
+\begin{tabular}{lrrrr}
+\hline
+Scope and objective & CPD(ns) & $\Delta$wire & $\Delta$SB & $\Delta$CB\\
+\hline
+Combined weighted & 13.413972 & $-8$ & 0 & 0\\
+Combined physical-cap. & 13.413972 & 92 & 2 & 2\\
+Targets weighted & 13.421610 & $-16$ & 0 & 0\\
+Targets physical-cap. & 13.421610 & $-4$ & 0 & 0\\
+\hline
+\end{tabular}
+\end{table}
+
+The weighted combination reduces exact CPD from 13.421610489672275 to 13.413972155262854 ns. Fifteen setup endpoint/domain components improve, none regress, and hold violations do not increase. All four registered policies accept. The physical-delay plus hard-capacity combination achieves exactly the same CPD and setup-vector changes, but uses more wire, SB and CB resources. Strict CPD and endpoint-vector policies accept it; both fixed-resource policies reject its resource excess. The two target-only candidates leave the complete setup/hold endpoint vectors and CPD unchanged, so only their resource policies accept. This supports owner release as a contributor to the combined timing gain. Owner-only results remain pending and can still distinguish release effects from owner rerouting itself. The comparison changes both objective and capacity handling between paired implementations, so it does not isolate hard capacity alone.
+
+These are useful tradeoffs even within the native weighted implementation: target-only saves 16 wire units with unchanged CPD, whereas the combination saves eight and improves CPD. Neither dominates the other in the selected quality axes. An additional arithmetic replay fixes wirelength, SB and CB upper bounds exactly to the initial counts, with no resource headroom and no CPD tolerance. The existing weighted combination satisfies both timing-under-resources and resources-under-timing conditions; the physical combination satisfies neither. This replay runs no native search and makes no new commits. Core, observation-wrapper and full algorithm time remain distinct; the existing 430.808 s weighted combined-arm workflow excludes earlier shared query/cache preparation and is not a standalone algorithm timing.
+
+\subsection{Verified mechanism and remaining coupling}
+Actual native timing graphs explain the earlier single-target plateau. Connections 73896/pin 1 and 73897/pin 1 tie at two LUT merge nodes, 449947 and 450152. Shortening 73897 alone leaves the competing 73896 arrival dominant. Native float32 maximum-arrival recurrences are verified at both merges; this is stronger evidence than equal final CPD alone.
+
+After accepting the weighted combination, fresh STA selects ten current-cone routed connections. Exact same-state capacity queries and independent path audits find no strictly shorter connection within the retained-tree scope. Background relaxation leaves one optimistic 185.825799 ps gap at 26319/pin 1, but preserving current critical-network trees removes that opportunity. These are restricted-model observations, not a global routing impossibility result. The six-stage current-state diagnosis takes 364.114 s, makes no native routing calls, and cannot be attached to the earlier candidate as its standalone runtime. Its ten query inputs differ from historical complete fingerprints, so all ten are newly measured.
+
+The current maximum-arrival subgraph contains two winning edge paths. Connection 26320/pin 1 precedes 26319/pin 1 on both. The relaxed resource opportunity therefore involves a critical owner in series with its prospective beneficiary. A local delay reduction cannot be translated directly into CPD gain without accounting for the owner's replacement and all newly competing paths. This result motivates coupled critical transactions as a separate future mechanism; it does not justify treating the owner as a free noncritical release.
+
+Meanwhile, a separately registered strong A0/R1 batch receives the same direct, relaxed and protected-owner screening stages and paired native search opportunities. A0 automatically selects four targets and 25 affected owner branches; R1 selects three and three. Combined, target-only and owner-only requests share identical scope within each objective pair. Its real dependency queue preserves the ongoing batch and starts native execution only after the previous owner is terminal with a verified receipt. These baseline outcomes are pending and cannot yet support algorithm superiority. The current descriptive archive contains 94 actual observations; quality dominance, matched complete-time dominance and unresolved runtime retention are separate. Repeat-level observed timing dominance is not statistical configuration superiority or a rule for selecting each circuit's historical best.

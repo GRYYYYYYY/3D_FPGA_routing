@@ -1,0 +1,101 @@
+{
+  "status": "registered_before_queries",
+  "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_R1_01/attempt_003/evaluation",
+  "input_run": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_R1_01/attempt_003/evaluation/runs/state",
+  "sink": 82095,
+  "selection": {
+    "targets": [
+      {
+        "net": 5490,
+        "pin": 5,
+        "sink": 82095,
+        "slack_s": -5.832274663220005e-09,
+        "raw_criticality": 1,
+        "native_net_delay_s": 8.569782661282943e-10
+      },
+      {
+        "net": 6591,
+        "pin": 4,
+        "sink": 82095,
+        "slack_s": -5.832274663220005e-09,
+        "raw_criticality": 1,
+        "native_net_delay_s": 8.569782661282943e-10
+      },
+      {
+        "net": 6587,
+        "pin": 4,
+        "sink": 82095,
+        "slack_s": -5.824635884721374e-09,
+        "raw_criticality": 0.9986901879310608,
+        "native_net_delay_s": 8.493392655850585e-10
+      },
+      {
+        "net": 6589,
+        "pin": 4,
+        "sink": 82095,
+        "slack_s": -5.824635884721374e-09,
+        "raw_criticality": 0.9986901879310608,
+        "native_net_delay_s": 8.493392655850585e-10
+      },
+      {
+        "net": 6590,
+        "pin": 4,
+        "sink": 82095,
+        "slack_s": -5.824635884721374e-09,
+        "raw_criticality": 0.9986901879310608,
+        "native_net_delay_s": 8.493392655850585e-10
+      },
+      {
+        "net": 6592,
+        "pin": 4,
+        "sink": 82095,
+        "slack_s": -5.824635884721374e-09,
+        "raw_criticality": 0.9986901879310608,
+        "native_net_delay_s": 8.493392655850585e-10
+      }
+    ],
+    "worst_slack_s": -5.832274663220005e-09,
+    "grouping_ulp_s": 4.440892098500626e-16,
+    "window_s": 7.639000543235852e-12,
+    "near_ns": 0.007639000543235852,
+    "eligible_connections": 17319,
+    "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+  },
+  "near_ns": 0.007639000543235852,
+  "focus": [
+    [
+      5490,
+      5
+    ],
+    [
+      6591,
+      4
+    ]
+  ],
+  "question": "Can current near-critical connections sharing the selected SINK choose distinct physical IPINs with a better slack-offset bottleneck when victim prefixes may move?",
+  "objective": "min max_i (new_physical_delay_i - current_physical_delay_i + worst_current_slack - current_slack_i); proxy only, not endpoint STA.",
+  "relaxation": "Each net retains its other branches. All other net occupancy is relaxed; matching enforces only actual IPIN and common SINK capacity, not shared preceding RR resources. No native calls.",
+  "query_aliases": "Each (net, entrance_index) is a diagnostic output label; original net_pin and IPIN stored in query_map.json. Driver uses labels only for output.",
+  "limits": {
+    "query_process_seconds": 900,
+    "memory_bytes": 25769803776,
+    "disk_reserve_bytes": 85899345920
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_timing_budget_ipin_reference.py": "28e4c8568b640c45cb2bd2069bfc2f6e8758f29dac18adbdc8bd9d70c1c4e337",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/timing_budget_matching.py": "27ff4efd1ab90c852a91381fb17e5eda17fbe392a8a73e25e216883b83a4b86f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/test_timing_budget_matching.py": "d29f8580a70238766faf7a76e874f54af94b831869e821598238cfe2b30e9008",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_native_frontier_queries.py": "5838f82ffb06714b50f3ddc1f8447c7c18a764ae636f5dd42e43532d80b66870",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_selector.py": "8226b4fc84fe2bec185d2fde92ac90b9ea47e838e99880ae1f93996f3a4557fd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_timing_budget_scope_experiment_01.json": "fcd94902614c0de465cc7b6f6e52cf393b8ad281e9925f0ebd25ca7f8d82c170",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_R1_01/attempt_003/evaluation/completion.json": "a25b992bf9cb77c03e3ce9e0dcefe72b46768708ec10e1bfeb136eecd40ed7ba",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_R1_01/attempt_003/evaluation/endpoint_vector.json": "ba7ec05904894e377e69b14bca2730ac000f78733ba5c639122dd05afb446144",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_R1_01/attempt_003/evaluation/runs/state/routed.route": "cb4089e1722a4d71abf29b0d6be85b7b7f50ccadcc8d7fd801940bf9865dd9bb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_R1_01/attempt_003/evaluation/runs/state/native_sta_frontier.jsonl": "6dde2b4c0adcc05843762136201d8c9b8e39d2350c8ca2ee436815d8fe662477",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/rr_graph.xml": "e695cd129be100079b479a58aefa84d69e5221df4e06f189b1f632b898e30895",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/residual_query_offline_01/graph.bin": "b66419679e09fb8557034ca9f7762e9e5a38808ad56ff8ba6e771b034de333f3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_queries_01/critical_capacity_driver": "5cac2598d7a6b796fdd0448810190fb340351b1e7b0fe97c441d2f2da62ec4dd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_R1_01/joint_002/relaxed/analysis.json": "c670d0d63d2edff60838f1f2e87b61560a6f738a1ba978406cf16101dd3ce195",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_R1_01/joint_002/relaxed/cases.json": "bbe342aff08fabad7d9c7f94a00205d074be12f91b492ded91cb43d54dfc0cef"
+  }
+}

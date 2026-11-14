@@ -1,0 +1,24 @@
+{
+  "status": "registered_before_implementation",
+  "question": "Does full-precision endpoint/domain timing improve on CPD plateaus, and can strict and secondary policies run automatically from identical states without tolerance drift?",
+  "user_steering": "Continue currentSTA repair, no another long strategy report. Automatic select/query/replace/FULL-STA/accept-or-rollback; refresh targets after every accepted state; same-selector native repair control with matched scope/tree/opportunity; no overall date/call cap.",
+  "observed_constraints": "Original runs request eltwise_layer.sdc but it is absent. Native default constraints: virtual_io_clock for primary I/O; clk and clk_mem; optimize as fast as possible; cut cross-netlist-clock paths. Export full applied native constraint object to bind exact domain pairs, IO delays, uncertainties and latencies; do not silently introduce an SDC.",
+  "vector": "Fixed timing-graph SINK endpoints, identified by atom pin and timing-node identity, with setup slack for every constrained launch/capture domain pair. Preserve unconstrained/nonfinite statuses explicitly. Store all raw hold slack tags; guard nonworsening negative hold-slack violations, not monotonic positive hold margins.",
+  "full_precision": "Native float values emitted with17digits; CPD from least_slack_critical_path().delay() matching native report definition, plus longest critical path and per-domain critical path information. Exact <=/>= comparisons of exported native numbers; no positive epsilon acceptance or cumulative tolerance.",
+  "policies": {
+    "strict": "Legal/nativeFULL, fixed input endpoint/constraint identity, no increased hold violation, full-precision CPD strictly lower.",
+    "secondary": "Same validity checks; full-precision CPD nonincreasing and every setup endpoint/domain slack nondecreasing with at least one strictly larger. Separate branch from same original; after divergence target selection uses each branch currentSTA. Raw connection-delay monotonicity is not this criterion."
+  },
+  "implementation": "Extend existing defaultoff readonly finalanalysis exporter with all timing endpoints and native exact metrics/constraints. Preserve frozen stage03. Analysis-only validation on original R1 and its already completed strict-rejected plateau candidate, plus original A0 and current coordinated A0 tie. Reuse route search results; no new route search to inspect endpoints.",
+  "followup": "Implement generic automatic state machine with canonical route/input/analyzer/constraint hashes, duplicate candidate cache, perbranch accepted-state journals, postacceptance STA target refresh and all-attempt costs. Native same-selector same-scope repair remains a distinct required comparison; do not call graphDijkstra native VPR repair.",
+  "limits": {
+    "timeout_seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_sta_frontier_stage_03/binding.json": "5faaa5b04b454e5f8f0a81efb4882effe4dba1aed94fe028322d73b0581ffeb7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_R1_native_01/completion.json": "19fb996a60c1aeeaab2d2a1a5c9e9f398ebd39817edf88e0cb24da995db366c6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_frontier_native_A0_01/completion.json": "7c407e4b53753cf321384bc7b60e8ad731886b192c03a383453795c62ce22bdb"
+  }
+}

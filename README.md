@@ -1,3 +1,5 @@
+> **2026-11-14 research progress:** [snapshot guide](docs/GitHub_progress_20261114.md), [current manuscript](research/dac_v14_20261112/paper_snapshots/current_strict_terminal_vector_feedback_20261114/build/current_repair_main.pdf), [335-observation joint archive](research/dac_v14_20261112/multiobjective_complete_resource_timing_01/points.csv). Research is ongoing; imported/recovery timings are separate from complete cold algorithm time.
+
 # H3D-inspired native 3D FPGA routing
 
 ## Current snapshot — 2026-11-09 (experiments in progress)

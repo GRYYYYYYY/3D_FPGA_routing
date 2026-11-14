@@ -1,0 +1,94 @@
+{
+  "status": "current_worst_path_targets_selected",
+  "targets": [
+    {
+      "net": 6587,
+      "pin": 4,
+      "sink": 82095,
+      "observations": [
+        {
+          "source_atom_pin": "bram_select[6].inpad[0]",
+          "sink_atom_pin": "$abc$87764$new_n16756.in[2]",
+          "sink_location_matches": 1,
+          "route_pins_at_sink": 1,
+          "report_increment_ns_rounded": 1.403
+        }
+      ]
+    },
+    {
+      "net": 5470,
+      "pin": 5,
+      "sink": 92000,
+      "observations": [
+        {
+          "source_atom_pin": "$abc$87764$new_n16756.out[0]",
+          "sink_atom_pin": "$abc$87764$new_n16923.in[0]",
+          "sink_location_matches": 1,
+          "route_pins_at_sink": 1,
+          "report_increment_ns_rounded": 0.784
+        }
+      ]
+    },
+    {
+      "net": 5481,
+      "pin": 1,
+      "sink": 94332,
+      "observations": [
+        {
+          "source_atom_pin": "$abc$87764$new_n16923.out[0]",
+          "sink_atom_pin": "$abc$87764$new_n16922.in[0]",
+          "sink_location_matches": 1,
+          "route_pins_at_sink": 1,
+          "report_increment_ns_rounded": 0.598
+        }
+      ]
+    },
+    {
+      "net": 5485,
+      "pin": 9,
+      "sink": 127398,
+      "observations": [
+        {
+          "source_atom_pin": "$abc$87764$new_n16922.out[0]",
+          "sink_atom_pin": "$abc$87764$new_n17267.in[0]",
+          "sink_location_matches": 1,
+          "route_pins_at_sink": 1,
+          "report_increment_ns_rounded": 0.969
+        }
+      ]
+    },
+    {
+      "net": 6639,
+      "pin": 1,
+      "sink": 94206,
+      "observations": [
+        {
+          "source_atom_pin": "$abc$87764$new_n17266.out[0]",
+          "sink_atom_pin": "$0\\bram_rdata_ext[63:0][60].in[1]",
+          "sink_location_matches": 1,
+          "route_pins_at_sink": 1,
+          "report_increment_ns_rounded": 0.784
+        }
+      ]
+    }
+  ],
+  "unresolved": [],
+  "current_cpd_ns": 6.20393,
+  "startpoint": "bram_select[6].inpad[0] (.input clocked by virtual_io_clock)",
+  "endpoint": "bram_rdata_ext[60].D[0] (.latch clocked by clk)",
+  "input_run": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/critical_repair_validation_01/runs/eltwise_layer_R",
+  "source_sha256": {
+    "report_timing.setup.rpt": "abd22d1b25e6e6b959ebc62cf323eeaec9b46a088604fac6b34224980662b8a0",
+    "packed.net": "80407d8982581f80e837796ee76d7bd513f54f391390bad9946d4c64051deded",
+    "placed.place": "f43377f776bdb2fb67d1b287e1d22263514d2ba5e9831936087d853e18b1dd8b",
+    "routed.route": "7c42d1c335a15d3d72bdec2f41512c4504e97aad653cc7e75153850b72bac119",
+    "manifest.json": "87b7081e3d874760446e974eb0c6aa1893c995a1f581e182de9bfa4289e43128",
+    "independent_audit.json": "637d2292639dce6327225acfa4261867c4068259de8a7c695a88e52a6c6856ca",
+    "selector": "2930d6fb6df1ddc52423e239f1386a2bc58bdd04817b63fdc6105f9a2461231b",
+    "inspector": "514ec486051e56348cfc6818936a4684b77d62a83bbd184115be26443811865b"
+  },
+  "mapping_scope": "Current reported atom-driver net and placed sink cluster location; include every matching routed sink/pin. Ambiguous locations are explicitly retained as a conservative target set, not exact pin identity.",
+  "selection_scope": "Worst reported setup path only. Re-run selection on each newly accepted state; near-critical multi-path extension remains a separate factor.",
+  "route_search_calls": 0,
+  "native_analysis_calls": 0
+}

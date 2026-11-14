@@ -1,0 +1,11 @@
+--- a/h3d_routing.cpp
++++ b/h3d_routing.cpp
+@@ -1115,7 +1115,7 @@
+ double h3d_outside_eta() {return settings().outside_eta;}
+ bool h3d_trace_guide_influence() {return settings().trace_guide_influence;}
+ bool h3d_current_guide_eligible(float criticality, const t_h3d_connection_guide* guide, bool rcv) {
+-    if (!settings().current_guide_eligibility) return true;
++    if (!settings().current_guide_eligibility || !guide) return true;
+     VTR_ASSERT(influence);
+     auto& s = *influence;
+     // Both operands are native floats, identical to planning's threshold type.

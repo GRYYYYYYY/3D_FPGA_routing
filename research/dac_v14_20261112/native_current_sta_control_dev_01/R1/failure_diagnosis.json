@@ -1,0 +1,14 @@
+{
+  "status": "terminal_integration_failure",
+  "native_returncode": 134,
+  "native_process_seconds": 9.885554924607277,
+  "reason": "Diagnostic incorrectly used find_by_isink after native prune. Native prune clears reached bitset/RR lookup but leaves the per-isink pointer stale; assertion tested pointer presence, not tree membership.",
+  "fix": "Use find_by_rr_id(sink) and export all retained nodes for independent scope comparison. Do not change native prune behavior.",
+  "wrapper_issue": "Empty query output caused an IndexError after the VPR failure; hardened in a new version.",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_current_sta_control_dev_01/R1/runs/state/manifest.json": "449db2408eeddf519c0992d49d31adf48503a5ee6f9a5502f68ec8f655f1e424",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_current_sta_control_dev_01/R1/runs/state/stdout.log": "f8ca8f0cde9124ee396a81b0c3c5981b43fa8fdc10a50b6f99ad283f4ef6ef5e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_current_sta_control_dev_01/R1/registration.json": "204f1c527b1d7eb03790edaa9641834340fc59eabbfdca3a8c9d51927a96b565",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_current_sta_control_stage_01/binding.json": "a18a9544276a04b00a257d865e8b160c58a0348c35ac0c1699d922cddeb13477"
+  }
+}

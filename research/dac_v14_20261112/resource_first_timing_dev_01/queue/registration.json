@@ -1,0 +1,37 @@
+{
+  "pid": 401879,
+  "start_ticks": "1942997562",
+  "pristine_start": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/A0_observation",
+  "exact_reused_automatic_resource_phase": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/uniform_feedback_resource_dev_01/bnn_A0_feedback_K8",
+  "timing_initial_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/uniform_feedback_resource_dev_01/bnn_A0_feedback_K8/round_001/candidate_00/reuse_on_evaluation",
+  "fixed_absolute_resource_limits": {
+    "wirelength": 2061627,
+    "SB_pairs": 79,
+    "CB_sources": 5061
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_resource_first_timing_probe.py": "a352da3425586a55dae974d27a058b2ef8ecff6b9c152221b7a5a53f029f14b9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_independent_critical_portfolio_v2.py": "1c833be82c5d2d20ef4f12185c2febf93b5db4cc636f3588113aac10a256fc95",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_registered_independent_transactions.py": "b94f5a4cf2ea43ea807736dc240b0415b71ebcc6bdc36c3e18a752b26b5ff276",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_group_feedback_cached.py": "aaf203586be0ce13a9e577e2a77b2aac2738131695e39eef2ef353a2904f8758",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_native_reuse_resource.py": "b0ffe727dd00eb6efb9b1df7097acde47098b3f9e859cc1baf4a05e247d63099",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/multiobjective_acceptance_v2.py": "42c8bc67352d5a9b174a02b8975a31c40a5031c61fd2e64a5512011f9233a043",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/uniform_feedback_resource_dev_01/bnn_A0_feedback_K8/completion.json": "f655deafb2bf8622e3c2687f38554543baea79a34a1b1c8367e0d6944b316e71",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/uniform_feedback_resource_dev_01/bnn_A0_feedback_K8/registration.json": "9bbbc531baac8b7356e9796ba5bd32dcf3a124836b20ca98a73b9cc410eb7527",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/uniform_feedback_resource_dev_01/bnn_A0_feedback_K8/round_001/candidate_00/reuse_on_evaluation/completion.json": "6173b49a4d465c2acd7e9f19644e1d3fae98b7367488b73707309b8968ade0bd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/uniform_feedback_resource_dev_01/bnn_A0_feedback_K8/round_001/candidate_00/reuse_on_evaluation/endpoint_vector.json": "f135026b81cec66f7eab488b9dba9b7aabfe3bf6abf2627b30466d8e185b9f68",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/A0_observation/completion.json": "fac9578aa0ddbd1cfa341b71a662d90422358458e45118a100696a545e467afe",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/A0_observation/endpoint_vector.json": "84ba71e9668e6535cf14aedc379a6a87c60da8c387bcf70436dd06bd1dd075ee",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/resource_first_timing_dev_01/absolute_limits.json": "d882f79e449f600685700cfab4e23db1f25eb5f91cc67d4e76fa74abae1c2960"
+  },
+  "question": "After automatic slack-based K8 release from pristine strong A0 saves15SB and1CB with flat CPD, can the current-STA timing selector reduce CPD while preserving that tighter79SB/5061CB envelope? Does ordering these mechanisms change the observed attainable quality?",
+  "controls": "Existing timing-first then K8 trajectories are separately sealed. Do not claim exact phase commutation from equal resource deltas; this new timing phase selects its own current targets. This is a composition diagnostic, not a new frozen confirmation score.",
+  "qualification": "Reuse the already fully sealed automatic first phase, never a manually supplied target or accepted timing prefix. Wire envelope is anchored at the ORIGINAL pristine root, not inflated by restarting0.1% at the resource successor. Every timing move has strict full-precision CPD gain and native/physical checks. Existing loaded large validation at most2VPR plus this serial chain at most1VPR; cold whole-algorithm time remains unknown.",
+  "limits": {
+    "native_VPR_this_chain": 1,
+    "combined_native_VPR_maximum": 3,
+    "child_seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  }
+}

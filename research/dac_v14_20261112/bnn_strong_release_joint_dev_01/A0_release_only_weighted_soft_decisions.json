@@ -1,0 +1,164 @@
+{
+  "strict": {
+    "accepted": false,
+    "policy": "strict",
+    "reason": "No full-precision strict CPD improvement",
+    "comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.3607436066820355e-08,
+      "cpd_after_s": 1.3607436066820355e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 2,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 52495,
+      "hold_components": 52495,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[804717,766524,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_2_fu_193.sub_ln703_426_reg_6061[9].D[0]\",0,0]",
+          "before_s": -1.0551085338761368e-08,
+          "after_s": -1.0372898984201129e-08,
+          "delta_s": 1.7818635456023912e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[807546,766527,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_2_fu_193.sub_ln703_426_reg_6061[10].D[0]\",0,0]",
+          "before_s": -1.0912085457448484e-08,
+          "after_s": -1.0749176659885507e-08,
+          "delta_s": 1.6290879756297727e-10
+        }
+      ]
+    }
+  },
+  "endpoint_vector": {
+    "accepted": true,
+    "policy": "endpoint_vector",
+    "reason": "Exact policy conditions satisfied",
+    "comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.3607436066820355e-08,
+      "cpd_after_s": 1.3607436066820355e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 2,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 52495,
+      "hold_components": 52495,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[804717,766524,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_2_fu_193.sub_ln703_426_reg_6061[9].D[0]\",0,0]",
+          "before_s": -1.0551085338761368e-08,
+          "after_s": -1.0372898984201129e-08,
+          "delta_s": 1.7818635456023912e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[807546,766527,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_2_fu_193.sub_ln703_426_reg_6061[10].D[0]\",0,0]",
+          "before_s": -1.0912085457448484e-08,
+          "after_s": -1.0749176659885507e-08,
+          "delta_s": 1.6290879756297727e-10
+        }
+      ]
+    }
+  },
+  "timing_under_resources": {
+    "accepted": false,
+    "reason": "No exact CPD reduction within resource limits",
+    "mode": "timing_under_resources",
+    "resource_objectives": [
+      "wirelength"
+    ],
+    "cpd_limit_s": 1.3607436066820355e-08,
+    "resource_limits": {
+      "wirelength": 2174375,
+      "SB_pairs": 99,
+      "CB_sources": 5071
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.3607436066820355e-08,
+      "cpd_after_s": 1.3607436066820355e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 2,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 52495,
+      "hold_components": 52495,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[804717,766524,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_2_fu_193.sub_ln703_426_reg_6061[9].D[0]\",0,0]",
+          "before_s": -1.0551085338761368e-08,
+          "after_s": -1.0372898984201129e-08,
+          "delta_s": 1.7818635456023912e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[807546,766527,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_2_fu_193.sub_ln703_426_reg_6061[10].D[0]\",0,0]",
+          "before_s": -1.0912085457448484e-08,
+          "after_s": -1.0749176659885507e-08,
+          "delta_s": 1.6290879756297727e-10
+        }
+      ]
+    },
+    "resource_delta": {
+      "wirelength": -8,
+      "SB_pairs": 0,
+      "CB_sources": 0
+    },
+    "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+  },
+  "resources_under_timing": {
+    "accepted": true,
+    "reason": "Exact fixed-budget conditions satisfied",
+    "mode": "resources_under_timing",
+    "resource_objectives": [
+      "wirelength"
+    ],
+    "cpd_limit_s": 1.3743510427488558e-08,
+    "resource_limits": {
+      "wirelength": 2070833,
+      "SB_pairs": 99,
+      "CB_sources": 5071
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.3607436066820355e-08,
+      "cpd_after_s": 1.3607436066820355e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 2,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 52495,
+      "hold_components": 52495,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[804717,766524,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_2_fu_193.sub_ln703_426_reg_6061[9].D[0]\",0,0]",
+          "before_s": -1.0551085338761368e-08,
+          "after_s": -1.0372898984201129e-08,
+          "delta_s": 1.7818635456023912e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[807546,766527,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_2_fu_193.sub_ln703_426_reg_6061[10].D[0]\",0,0]",
+          "before_s": -1.0912085457448484e-08,
+          "after_s": -1.0749176659885507e-08,
+          "delta_s": 1.6290879756297727e-10
+        }
+      ]
+    },
+    "resource_delta": {
+      "wirelength": -8,
+      "SB_pairs": 0,
+      "CB_sources": 0
+    },
+    "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+  }
+}

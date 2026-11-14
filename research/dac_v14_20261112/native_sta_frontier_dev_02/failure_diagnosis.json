@@ -1,0 +1,13 @@
+{
+  "status": "terminal_observer_integration_failure",
+  "native_analysis_calls": 2,
+  "route_search_calls": 0,
+  "legal_observer_off": 1,
+  "failed_observer_on": 1,
+  "remaining_not_submitted": 6,
+  "returncode": 139,
+  "mapping_constructed": true,
+  "evidence": "Post-sync native atom lookup completed and exported ignored net pins. RouteTree::find_by_isink explicitly requires ParentNetId construction; analysis-loaded trees lack its optional lookup. Native load_net_delay_from_routing instead traverses root nodes by net_pin_index.",
+  "correction": "Independent stage03 traverses actual RouteTree nodes once per net into observer-local pin/RR mapping, exactly as native load_net_delay does; no native route tree mutation.",
+  "original_route_unchanged": true
+}

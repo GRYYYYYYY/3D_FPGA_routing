@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering\small
+\caption{Sealed same-environment timing on five previously seen, mutually legal circuits, with three rotated repetitions per arm. Full-process and planning times are per-circuit medians in seconds. U is frozen full-net feedback with exact closure views.}
+\label{tab:formal-v14}
+\begin{tabular}{lrrrrrrrr}
+\hline
+Circuit & A0 process & R1 process & U process & U/A0 & U/R1 & R1 plan & U plan & U peak RSS (GiB)\\
+\hline
+spmv & 17.753 & 21.210 & 19.107 & 1.076 & 0.901 & 3.301 & 1.048 & 0.993\\
+softmax & 37.082 & 41.737 & 39.633 & 1.069 & 0.950 & 4.312 & 1.830 & 2.240\\
+eltwise\_layer & 26.464 & 32.280 & 27.869 & 1.053 & 0.863 & 4.990 & 1.374 & 1.019\\
+bnn & 263.018 & 549.419 & 283.605 & 1.078 & 0.516 & 268.754 & 11.020 & 10.234\\
+gemm\_layer & 1278.617 & 1642.931 & 1325.215 & 1.036 & 0.807 & 363.257 & 28.515 & 26.256\\
+\hline
+\end{tabular}
+\end{table*}

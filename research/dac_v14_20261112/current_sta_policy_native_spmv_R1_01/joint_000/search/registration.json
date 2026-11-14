@@ -1,0 +1,32 @@
+{
+  "status": "registered_before_search",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_current_joint_search.py": "116f71e508a23ff548f590d9fe40974253340fc1991c7892510f35784a9f5084",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_capacity_search.py": "055d417a6a046726b6cf437245e3fad5ed50685d91bc7d47fc971455e12844ac",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/test_joint_capacity_search.py": "73efc8e9eeeddd73c97122b7ca8d5e2ceab97a9091b388437e32826232a05a43",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_queries_01/critical_capacity_driver": "5cac2598d7a6b796fdd0448810190fb340351b1e7b0fe97c441d2f2da62ec4dd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/residual_query_offline_01/graph.bin": "b66419679e09fb8557034ca9f7762e9e5a38808ad56ff8ba6e771b034de333f3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_frontier_joint_policy_experiment_01.json": "0992b46e58b1fa0a07e305e008960b8d951943c7c8de55e1b4c534b203cf7a98",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/joint_000/relaxed/analysis.json": "9f2fc9f2ab0bbad4fcf1b7273a65c609f349e3718f3905a7b1884ecc26a8711e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/joint_000/relaxed/execution.json": "7a1ba4a06e440de78f7341724cb79d747ca24585f591584c784e986cba5538d0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/joint_000/relaxed/cases.json": "6eb52df0b258fc9b17f9222eb7567ac4fc9b80084c65ea4080ea06c20ee71b6d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/joint_000/relaxed/selection.json": "d38425e67fc7bc6951f93706853b626332c8b9bda0782248919d99d0e0351176",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/joint_000/relaxed/capacities.bin": "f4de27083f0192ec0387fc5c0042750e9827e3c4db824cf168a24771382d4eaa",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/joint_000/relaxed/occupancy_owners.json": "4b17009cc009b43f7c357532cd23de6e26924b957457b9ff314ef1d738b8001c"
+  },
+  "pid": 3779163,
+  "start_ticks": "1937755899",
+  "native_calls": 0,
+  "question": "Can generic conflict splitting recover mutually capacity-compatible improving paths for native-STA ties without hand-selected resource IDs?",
+  "selection": "All numerical worst-slack targets with positive audited relaxed fixed-tree gain >1e-6 ns; currently distinct nets. Same rule for A0/R1/Tf.",
+  "objective": "Lexicographic maximum individual source-to-sink delay then sum; local zeroRC proxy only, not circuit CPD.",
+  "branching": "First sorted over-capacity RR node across full selected trees; forbid it on each owner where not fixed-retained, exact requery under accumulated constraints.",
+  "limits": {
+    "per_group_states": 128,
+    "per_group_seconds": 900,
+    "per_query_seconds": 120,
+    "memory_bytes": 25769803776,
+    "disk_reserve_bytes": 85899345920
+  },
+  "qualification": "Background nets are relaxed; complete blocker restoration and native FULL/STA required. A bounded-search limit is unknown, not infeasibility. No global research limit."
+}

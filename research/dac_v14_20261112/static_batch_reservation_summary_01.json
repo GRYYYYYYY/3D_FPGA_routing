@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "static_batch": [
+    {
+      "case": "BNN_A0",
+      "requests": 6,
+      "native_processes": 1,
+      "native_process_seconds": 114.66744207963347,
+      "complete_observed_component_workflow_seconds": 144.39700159057975,
+      "all_outputs_equal": true,
+      "post_batch_STA_fresh_and_identical": true
+    },
+    {
+      "case": "SPMV_failure_success",
+      "requests": 4,
+      "native_processes": 1,
+      "native_process_seconds": 8.884183943271637,
+      "complete_observed_component_workflow_seconds": 12.861655037850142,
+      "all_outputs_equal": true,
+      "post_batch_STA_fresh_and_identical": true
+    }
+  ],
+  "component_speedup": "unknown: no fresh same-version paired timing cohort",
+  "original_stage03_statuses": {
+    "A0_target_only_weighted_soft_reserve_off": "legal_evaluated",
+    "A0_target_only_weighted_soft_reserve_on": "native_or_candidate_audit_failed",
+    "A0_target_only_physical_capacity_reserve_off": "legal_evaluated",
+    "A0_target_only_physical_capacity_reserve_on": "native_or_candidate_audit_failed",
+    "A0_combined_weighted_soft_reserve_off": "legal_evaluated",
+    "A0_combined_weighted_soft_reserve_on": "native_or_candidate_audit_failed",
+    "A0_combined_physical_capacity_reserve_off": "legal_evaluated",
+    "A0_combined_physical_capacity_reserve_on": "native_or_candidate_audit_failed"
+  },
+  "stage03_failures": [
+    {
+      "role": "A0_target_only_weighted_soft_reserve_on",
+      "class_": "implementation_assertion_before_candidate",
+      "native_returncode": 134,
+      "original_files_unchanged": true,
+      "native_graceful_rollback_completed": false
+    },
+    {
+      "role": "A0_target_only_physical_capacity_reserve_on",
+      "class_": "implementation_assertion_before_candidate",
+      "native_returncode": 134,
+      "original_files_unchanged": true,
+      "native_graceful_rollback_completed": false
+    },
+    {
+      "role": "A0_combined_weighted_soft_reserve_on",
+      "class_": "implementation_assertion_before_candidate",
+      "native_returncode": 134,
+      "original_files_unchanged": true,
+      "native_graceful_rollback_completed": false
+    },
+    {
+      "role": "A0_combined_physical_capacity_reserve_on",
+      "class_": "implementation_assertion_before_candidate",
+      "native_returncode": 134,
+      "original_files_unchanged": true,
+      "native_graceful_rollback_completed": false
+    }
+  ],
+  "stage04_recovery": [
+    {
+      "role": "physical_capacity_reserve_off",
+      "CPD_ns": 13.785623309559014,
+      "resources": {
+        "wirelength": 2070813,
+        "SB_pairs": 98,
+        "CB_sources": 5067
+      },
+      "accepted": {
+        "strict": false,
+        "endpoint_vector": false,
+        "timing_under_resources": false,
+        "resources_under_timing": false
+      },
+      "reused_FULLSTA": true
+    },
+    {
+      "role": "physical_capacity_reserve_on",
+      "CPD_ns": 13.607436066820355,
+      "resources": {
+        "wirelength": 2070813,
+        "SB_pairs": 98,
+        "CB_sources": 5067
+      },
+      "accepted": {
+        "strict": false,
+        "endpoint_vector": false,
+        "timing_under_resources": false,
+        "resources_under_timing": true
+      },
+      "reused_FULLSTA": false
+    }
+  ],
+  "interpretation": "Stage04 fixes the implementation failure and prevents the physical-cost starvation regression; on has the same CPD/wire/SB/CB as the earlier matched native-weighted target-only result. This supports robustness of that physical-cost branch, not superiority over the strongest weighted control. Static batching preserves results and failures but whole-algorithm speedup remains unknown.",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/summarize_static_batch_and_recovery.py": "3a5d9f86718703b27a5f29c7000b81e5d663aa8810aa7d0acb3c0eba966dd103",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_batch_equivalence_dev_01/completion.json": "5531868bc1adef0cfc0adb227caabed46dda01d38bfcf5d35f465db65e712302",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_batch_equivalence_dev_01/BNN_A0/completion.json": "b26d24c18fdeb9d4241d1e109b4db8e65dd5092d25663798fb4d021b2ff0a331",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_batch_equivalence_dev_01/SPMV_failure_success/completion.json": "2b526539b770b44386cbf883069385d5da72b0340fdca1291a1e1c424e6e0162",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_weighted_soft_reserve_on/completion.json": "8a08864600db0bc0c42074734ddc644deb859f9f01266cfc7fd7d1167b08e48c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_weighted_soft_reserve_on/runs/state/manifest.json": "c471945da421203bbd23e04bc72b49ecd28b183162fd0830b24e2384a4556b2c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_weighted_soft_reserve_on/runs/state/stdout.log": "13f719c271b324815c55c39c18556c25be503291d9e35e7eea0a7c85fb91d5c5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_physical_capacity_reserve_on/completion.json": "f4d709a37d07b38bfc56d63eb7fb71ebcfcb1ac535dca92f28f8a0026e57833c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_physical_capacity_reserve_on/runs/state/manifest.json": "12c03066123eb993edd306f2bfec9aecb625190a5879f5205e75f421d5187e53",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_target_only_physical_capacity_reserve_on/runs/state/stdout.log": "e3613be82bb129c5a16513fc23e108ce6f6aa94bf135269061d74c9347a89938",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_weighted_soft_reserve_on/completion.json": "f3ab21f02cf181c934fa1926ad707a66e5f5bf34c71cc8ea521cbf02cfbf6894",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_weighted_soft_reserve_on/runs/state/manifest.json": "1a2f44e68e856d7b440fa3b69e9b7b9c133c32e08e250001dfe4a10f71eed8c5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_weighted_soft_reserve_on/runs/state/stdout.log": "c43b06aef0dfe1c4a1a72c60c8ee15f56caef55a7b23358e7aa0142082126786",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_physical_capacity_reserve_on/completion.json": "ace1d4e289b915c618e863bc3e58fc2cc3e738933f50c29ac1349dacfccb311a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_physical_capacity_reserve_on/runs/state/manifest.json": "eb8f33f91722e8f1903cc68a60c7fd74a9fbd612c70573ecaf52d4838f0250e2",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_dev_02/A0_combined_physical_capacity_reserve_on/runs/state/stdout.log": "f28563bdee5f6ec4c67c6176075683e46e29aa6c04d536688adf582bffa0df2f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reservation_prune_recovery_dev_01/physical_capacity_reserve_off_decisions.json": "e705a84f0ca60af5578d825cc490495f82a7989140962255d9cb77aff740779f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reservation_prune_recovery_dev_01/physical_capacity_reserve_on_decisions.json": "2c9e91eb8f38b9ce8cb91ed0253d5117a66cbf7c2ca4add6236c7fa9feb75d3d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reservation_stage_04/binding.json": "86910c232a4f64d0d6fe35a62c94a8f365700a124fa7bfcc7c8f10b31e19b4ce",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reservation_multisink_regression_01/completion.json": "0fb54fe2eeac5f1a9bbdf3ef250c5cff34cc50292487b22162932ff36865a654",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reservation_prune_recovery_dev_01/completion.json": "f4dae172c6c60d52d631ec9b76dfae01c5c6e1d710ef97fa96b029c1ac8b7bf8"
+  },
+  "new_native_calls": 0
+}

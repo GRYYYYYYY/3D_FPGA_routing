@@ -1,0 +1,132 @@
+{
+  "status": "legal_evaluated",
+  "accepted": true,
+  "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_recovery_01/bnn_Tf_native/round_006/candidate_00/reuse_off_evaluation",
+  "CPD_s": 1.3421610489672275e-08,
+  "resources": {
+    "wirelength": 2074463,
+    "SB_pairs": 82,
+    "CB_sources": 5062
+  },
+  "decision": {
+    "accepted": true,
+    "reason": "Exact fixed-budget conditions satisfied",
+    "mode": "resources_under_timing",
+    "resource_objectives": [
+      "SB_pairs",
+      "CB_sources"
+    ],
+    "cpd_limit_s": 1.3421610489672275e-08,
+    "resource_limits": {
+      "wirelength": 2076392,
+      "SB_pairs": 105,
+      "CB_sources": 5062
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.3421610489672275e-08,
+      "cpd_after_s": 1.3421610489672275e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 2,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 52495,
+      "hold_components": 52495,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[797310,791574,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.add_ln703_655_reg_4558[7].D[0]\",0,0]",
+          "before_s": -5.301957983760985e-09,
+          "after_s": -4.548633913969979e-09,
+          "delta_s": 7.53324069791006e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[799870,791577,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.add_ln703_655_reg_4558[8].D[0]\",0,0]",
+          "before_s": -5.301957983760985e-09,
+          "after_s": -4.909634032657095e-09,
+          "delta_s": 3.9232395110389007e-10
+        }
+      ]
+    },
+    "resource_delta": {
+      "wirelength": 40,
+      "SB_pairs": -3,
+      "CB_sources": 0
+    },
+    "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+  },
+  "strict_or_endpoint_control": {
+    "strict": {
+      "accepted": false,
+      "policy": "strict",
+      "reason": "No full-precision strict CPD improvement",
+      "comparison": {
+        "compatible": true,
+        "cpd_before_s": 1.3421610489672275e-08,
+        "cpd_after_s": 1.3421610489672275e-08,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 2,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 52495,
+        "hold_components": 52495,
+        "changes": [
+          {
+            "kind": "setup",
+            "endpoint_domain": "[797310,791574,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.add_ln703_655_reg_4558[7].D[0]\",0,0]",
+            "before_s": -5.301957983760985e-09,
+            "after_s": -4.548633913969979e-09,
+            "delta_s": 7.53324069791006e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[799870,791577,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.add_ln703_655_reg_4558[8].D[0]\",0,0]",
+            "before_s": -5.301957983760985e-09,
+            "after_s": -4.909634032657095e-09,
+            "delta_s": 3.9232395110389007e-10
+          }
+        ]
+      }
+    },
+    "endpoint_vector": {
+      "accepted": true,
+      "policy": "endpoint_vector",
+      "reason": "Exact policy conditions satisfied",
+      "comparison": {
+        "compatible": true,
+        "cpd_before_s": 1.3421610489672275e-08,
+        "cpd_after_s": 1.3421610489672275e-08,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 2,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 52495,
+        "hold_components": 52495,
+        "changes": [
+          {
+            "kind": "setup",
+            "endpoint_domain": "[797310,791574,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.add_ln703_655_reg_4558[7].D[0]\",0,0]",
+            "before_s": -5.301957983760985e-09,
+            "after_s": -4.548633913969979e-09,
+            "delta_s": 7.53324069791006e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[799870,791577,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.add_ln703_655_reg_4558[8].D[0]\",0,0]",
+            "before_s": -5.301957983760985e-09,
+            "after_s": -4.909634032657095e-09,
+            "delta_s": 3.9232395110389007e-10
+          }
+        ]
+      }
+    }
+  },
+  "native_core_seconds": 4.233927167000001,
+  "native_kernel_including_candidate_observation_seconds": 18.022755015,
+  "native_core_cost_semantics": "QUERY sums exclude candidate observer; COMPLETE includes actual candidate FULL/STA, restoration observation outside that interval remains in worker request",
+  "native_observer_request_seconds": 68.31231586635113
+}

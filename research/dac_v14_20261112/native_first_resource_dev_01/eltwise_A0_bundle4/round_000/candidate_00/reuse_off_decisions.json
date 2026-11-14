@@ -1,0 +1,424 @@
+{
+  "status": "legal_evaluated",
+  "accepted": true,
+  "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_first_resource_dev_01/eltwise_A0_bundle4/round_000/candidate_00/reuse_off_evaluation",
+  "CPD_s": 6.018101128546505e-09,
+  "resources": {
+    "wirelength": 217050,
+    "SB_pairs": 27,
+    "CB_sources": 968
+  },
+  "decision": {
+    "accepted": true,
+    "reason": "Exact fixed-budget conditions satisfied",
+    "mode": "resources_under_timing",
+    "resource_objectives": [
+      "SB_pairs",
+      "CB_sources"
+    ],
+    "cpd_limit_s": 6.018101128546505e-09,
+    "resource_limits": {
+      "wirelength": 217283,
+      "SB_pairs": 30,
+      "CB_sources": 968
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 6.018101128546505e-09,
+      "cpd_after_s": 6.018101128546505e-09,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 5,
+      "setup_regressed": 2,
+      "hold_violation_regressions": 0,
+      "setup_components": 14032,
+      "hold_components": 14032,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[79639,65680,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[1].D[0]\",0,1]",
+          "before_s": -3.913165347313452e-09,
+          "after_s": -3.6537926018098688e-09,
+          "delta_s": 2.5937274550358325e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[79640,65683,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[2].D[0]\",0,1]",
+          "before_s": -3.913165347313452e-09,
+          "after_s": -3.6537926018098688e-09,
+          "delta_s": 2.5937274550358325e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[79641,65686,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[3].D[0]\",0,1]",
+          "before_s": -3.913165347313452e-09,
+          "after_s": -3.6537926018098688e-09,
+          "delta_s": 2.5937274550358325e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[79648,66121,\"u_eltwise_cu_5.u_pe_array.pe0.out_mul[5].D[0]\",0,1]",
+          "before_s": -3.913165347313452e-09,
+          "after_s": -3.824340399916082e-09,
+          "delta_s": 8.882494739737012e-11
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[80875,50731,\"bram_wdata_c_0[16].D[0]\",1,1]",
+          "before_s": -4.03537647741814e-09,
+          "after_s": -4.89771423417551e-09,
+          "delta_s": -8.623377567573698e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[80880,50746,\"bram_wdata_c_0[21].D[0]\",1,1]",
+          "before_s": -3.551445582061774e-09,
+          "after_s": -4.71188821293822e-09,
+          "delta_s": -1.160442630876446e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81840,65692,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[5].D[0]\",0,1]",
+          "before_s": -3.913165347313452e-09,
+          "after_s": -3.824340399916082e-09,
+          "delta_s": 8.882494739737012e-11
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[79639,65680,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[1].D[0]\",0,1]",
+          "before_s": 3.3518552378097866e-09,
+          "after_s": 3.0924827143508082e-09,
+          "delta_s": -2.593725234589783e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[79640,65683,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[2].D[0]\",0,1]",
+          "before_s": 3.3518552378097866e-09,
+          "after_s": 3.0924827143508082e-09,
+          "delta_s": -2.593725234589783e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[79641,65686,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[3].D[0]\",0,1]",
+          "before_s": 3.3518552378097866e-09,
+          "after_s": 3.0924827143508082e-09,
+          "delta_s": -2.593725234589783e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[79648,66121,\"u_eltwise_cu_5.u_pe_array.pe0.out_mul[5].D[0]\",0,1]",
+          "before_s": 3.3518552378097866e-09,
+          "after_s": 3.2630302904124164e-09,
+          "delta_s": -8.882494739737012e-11
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[80976,50395,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[2].D[0]\",0,1]",
+          "before_s": 1.3532481801803442e-09,
+          "after_s": 9.815965817949746e-10,
+          "delta_s": -3.7165159838536965e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81840,65692,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[5].D[0]\",0,1]",
+          "before_s": 3.3518552378097866e-09,
+          "after_s": 3.2630302904124164e-09,
+          "delta_s": -8.882494739737012e-11
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[82163,66634,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[2].D[0]\",0,1]",
+          "before_s": 1.3532481801803442e-09,
+          "after_s": 9.815965817949746e-10,
+          "delta_s": -3.7165159838536965e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[82306,71683,\"bram_wdata_c_1_ext[39].D[0]\",0,1]",
+          "before_s": 2.2491546403102802e-09,
+          "after_s": 1.9592261146783585e-09,
+          "delta_s": -2.8992852563192173e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[82384,71449,\"bram_wdata_c_0_ext[39].D[0]\",0,1]",
+          "before_s": 2.43498066154757e-09,
+          "after_s": 1.5875745162929888e-09,
+          "delta_s": -8.474061452545811e-10
+        }
+      ]
+    },
+    "resource_delta": {
+      "wirelength": -15,
+      "SB_pairs": -3,
+      "CB_sources": 0
+    },
+    "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+  },
+  "strict_or_endpoint_control": {
+    "strict": {
+      "accepted": false,
+      "policy": "strict",
+      "reason": "No full-precision strict CPD improvement",
+      "comparison": {
+        "compatible": true,
+        "cpd_before_s": 6.018101128546505e-09,
+        "cpd_after_s": 6.018101128546505e-09,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 5,
+        "setup_regressed": 2,
+        "hold_violation_regressions": 0,
+        "setup_components": 14032,
+        "hold_components": 14032,
+        "changes": [
+          {
+            "kind": "setup",
+            "endpoint_domain": "[79639,65680,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[1].D[0]\",0,1]",
+            "before_s": -3.913165347313452e-09,
+            "after_s": -3.6537926018098688e-09,
+            "delta_s": 2.5937274550358325e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[79640,65683,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[2].D[0]\",0,1]",
+            "before_s": -3.913165347313452e-09,
+            "after_s": -3.6537926018098688e-09,
+            "delta_s": 2.5937274550358325e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[79641,65686,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[3].D[0]\",0,1]",
+            "before_s": -3.913165347313452e-09,
+            "after_s": -3.6537926018098688e-09,
+            "delta_s": 2.5937274550358325e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[79648,66121,\"u_eltwise_cu_5.u_pe_array.pe0.out_mul[5].D[0]\",0,1]",
+            "before_s": -3.913165347313452e-09,
+            "after_s": -3.824340399916082e-09,
+            "delta_s": 8.882494739737012e-11
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[80875,50731,\"bram_wdata_c_0[16].D[0]\",1,1]",
+            "before_s": -4.03537647741814e-09,
+            "after_s": -4.89771423417551e-09,
+            "delta_s": -8.623377567573698e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[80880,50746,\"bram_wdata_c_0[21].D[0]\",1,1]",
+            "before_s": -3.551445582061774e-09,
+            "after_s": -4.71188821293822e-09,
+            "delta_s": -1.160442630876446e-09
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[81840,65692,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[5].D[0]\",0,1]",
+            "before_s": -3.913165347313452e-09,
+            "after_s": -3.824340399916082e-09,
+            "delta_s": 8.882494739737012e-11
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[79639,65680,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[1].D[0]\",0,1]",
+            "before_s": 3.3518552378097866e-09,
+            "after_s": 3.0924827143508082e-09,
+            "delta_s": -2.593725234589783e-10
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[79640,65683,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[2].D[0]\",0,1]",
+            "before_s": 3.3518552378097866e-09,
+            "after_s": 3.0924827143508082e-09,
+            "delta_s": -2.593725234589783e-10
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[79641,65686,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[3].D[0]\",0,1]",
+            "before_s": 3.3518552378097866e-09,
+            "after_s": 3.0924827143508082e-09,
+            "delta_s": -2.593725234589783e-10
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[79648,66121,\"u_eltwise_cu_5.u_pe_array.pe0.out_mul[5].D[0]\",0,1]",
+            "before_s": 3.3518552378097866e-09,
+            "after_s": 3.2630302904124164e-09,
+            "delta_s": -8.882494739737012e-11
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[80976,50395,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[2].D[0]\",0,1]",
+            "before_s": 1.3532481801803442e-09,
+            "after_s": 9.815965817949746e-10,
+            "delta_s": -3.7165159838536965e-10
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[81840,65692,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[5].D[0]\",0,1]",
+            "before_s": 3.3518552378097866e-09,
+            "after_s": 3.2630302904124164e-09,
+            "delta_s": -8.882494739737012e-11
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[82163,66634,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[2].D[0]\",0,1]",
+            "before_s": 1.3532481801803442e-09,
+            "after_s": 9.815965817949746e-10,
+            "delta_s": -3.7165159838536965e-10
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[82306,71683,\"bram_wdata_c_1_ext[39].D[0]\",0,1]",
+            "before_s": 2.2491546403102802e-09,
+            "after_s": 1.9592261146783585e-09,
+            "delta_s": -2.8992852563192173e-10
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[82384,71449,\"bram_wdata_c_0_ext[39].D[0]\",0,1]",
+            "before_s": 2.43498066154757e-09,
+            "after_s": 1.5875745162929888e-09,
+            "delta_s": -8.474061452545811e-10
+          }
+        ]
+      }
+    },
+    "endpoint_vector": {
+      "accepted": false,
+      "policy": "endpoint_vector",
+      "reason": "Setup endpoint/domain vector has regressions",
+      "comparison": {
+        "compatible": true,
+        "cpd_before_s": 6.018101128546505e-09,
+        "cpd_after_s": 6.018101128546505e-09,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 5,
+        "setup_regressed": 2,
+        "hold_violation_regressions": 0,
+        "setup_components": 14032,
+        "hold_components": 14032,
+        "changes": [
+          {
+            "kind": "setup",
+            "endpoint_domain": "[79639,65680,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[1].D[0]\",0,1]",
+            "before_s": -3.913165347313452e-09,
+            "after_s": -3.6537926018098688e-09,
+            "delta_s": 2.5937274550358325e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[79640,65683,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[2].D[0]\",0,1]",
+            "before_s": -3.913165347313452e-09,
+            "after_s": -3.6537926018098688e-09,
+            "delta_s": 2.5937274550358325e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[79641,65686,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[3].D[0]\",0,1]",
+            "before_s": -3.913165347313452e-09,
+            "after_s": -3.6537926018098688e-09,
+            "delta_s": 2.5937274550358325e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[79648,66121,\"u_eltwise_cu_5.u_pe_array.pe0.out_mul[5].D[0]\",0,1]",
+            "before_s": -3.913165347313452e-09,
+            "after_s": -3.824340399916082e-09,
+            "delta_s": 8.882494739737012e-11
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[80875,50731,\"bram_wdata_c_0[16].D[0]\",1,1]",
+            "before_s": -4.03537647741814e-09,
+            "after_s": -4.89771423417551e-09,
+            "delta_s": -8.623377567573698e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[80880,50746,\"bram_wdata_c_0[21].D[0]\",1,1]",
+            "before_s": -3.551445582061774e-09,
+            "after_s": -4.71188821293822e-09,
+            "delta_s": -1.160442630876446e-09
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[81840,65692,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[5].D[0]\",0,1]",
+            "before_s": -3.913165347313452e-09,
+            "after_s": -3.824340399916082e-09,
+            "delta_s": 8.882494739737012e-11
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[79639,65680,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[1].D[0]\",0,1]",
+            "before_s": 3.3518552378097866e-09,
+            "after_s": 3.0924827143508082e-09,
+            "delta_s": -2.593725234589783e-10
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[79640,65683,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[2].D[0]\",0,1]",
+            "before_s": 3.3518552378097866e-09,
+            "after_s": 3.0924827143508082e-09,
+            "delta_s": -2.593725234589783e-10
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[79641,65686,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[3].D[0]\",0,1]",
+            "before_s": 3.3518552378097866e-09,
+            "after_s": 3.0924827143508082e-09,
+            "delta_s": -2.593725234589783e-10
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[79648,66121,\"u_eltwise_cu_5.u_pe_array.pe0.out_mul[5].D[0]\",0,1]",
+            "before_s": 3.3518552378097866e-09,
+            "after_s": 3.2630302904124164e-09,
+            "delta_s": -8.882494739737012e-11
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[80976,50395,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[2].D[0]\",0,1]",
+            "before_s": 1.3532481801803442e-09,
+            "after_s": 9.815965817949746e-10,
+            "delta_s": -3.7165159838536965e-10
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[81840,65692,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[5].D[0]\",0,1]",
+            "before_s": 3.3518552378097866e-09,
+            "after_s": 3.2630302904124164e-09,
+            "delta_s": -8.882494739737012e-11
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[82163,66634,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[2].D[0]\",0,1]",
+            "before_s": 1.3532481801803442e-09,
+            "after_s": 9.815965817949746e-10,
+            "delta_s": -3.7165159838536965e-10
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[82306,71683,\"bram_wdata_c_1_ext[39].D[0]\",0,1]",
+            "before_s": 2.2491546403102802e-09,
+            "after_s": 1.9592261146783585e-09,
+            "delta_s": -2.8992852563192173e-10
+          },
+          {
+            "kind": "hold",
+            "endpoint_domain": "[82384,71449,\"bram_wdata_c_0_ext[39].D[0]\",0,1]",
+            "before_s": 2.43498066154757e-09,
+            "after_s": 1.5875745162929888e-09,
+            "delta_s": -8.474061452545811e-10
+          }
+        ]
+      }
+    }
+  },
+  "native_core_seconds": 0.441376964,
+  "native_observer_request_seconds": 11.442050691694021
+}

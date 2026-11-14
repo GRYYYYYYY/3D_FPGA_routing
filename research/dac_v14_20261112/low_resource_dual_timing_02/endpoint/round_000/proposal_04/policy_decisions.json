@@ -1,0 +1,141 @@
+{
+  "strict": {
+    "accepted": false,
+    "policy": "strict",
+    "reason": "No full-precision strict CPD improvement",
+    "comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.3607436066820355e-08,
+      "cpd_after_s": 1.3607436066820355e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 0,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 52495,
+      "hold_components": 52495,
+      "changes": []
+    }
+  },
+  "endpoint_vector": {
+    "accepted": false,
+    "policy": "endpoint_vector",
+    "reason": "Setup endpoint/domain vector unchanged",
+    "comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.3607436066820355e-08,
+      "cpd_after_s": 1.3607436066820355e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 0,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 52495,
+      "hold_components": 52495,
+      "changes": []
+    }
+  },
+  "timing_under_resources": {
+    "accepted": false,
+    "reason": "No exact CPD reduction within resource limits",
+    "mode": "timing_under_resources",
+    "resource_objectives": [
+      "wirelength"
+    ],
+    "cpd_limit_s": 1.3607436066820355e-08,
+    "resource_limits": {
+      "wirelength": 2061627,
+      "SB_pairs": 45,
+      "CB_sources": 5060
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.3607436066820355e-08,
+      "cpd_after_s": 1.3607436066820355e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 0,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 52495,
+      "hold_components": 52495,
+      "changes": []
+    },
+    "resource_delta": {
+      "wirelength": 0,
+      "SB_pairs": 0,
+      "CB_sources": 0
+    },
+    "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+  },
+  "resources_under_timing": {
+    "accepted": false,
+    "reason": "No resource Pareto improvement within fixed CPD budget",
+    "mode": "resources_under_timing",
+    "resource_objectives": [
+      "wirelength"
+    ],
+    "cpd_limit_s": 1.3607436066820355e-08,
+    "resource_limits": {
+      "wirelength": 2061627,
+      "SB_pairs": 45,
+      "CB_sources": 5060
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.3607436066820355e-08,
+      "cpd_after_s": 1.3607436066820355e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 0,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 52495,
+      "hold_components": 52495,
+      "changes": []
+    },
+    "resource_delta": {
+      "wirelength": 0,
+      "SB_pairs": 0,
+      "CB_sources": 0
+    },
+    "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+  },
+  "endpoint_under_resources": {
+    "accepted": false,
+    "policy": "endpoint_vector_under_explicit_resources",
+    "reason": "Setup endpoint/domain vector unchanged",
+    "checks": {
+      "current_CPD_inside_original_envelope": true,
+      "candidate_CPD_inside_original_envelope": true,
+      "fixed_resource_limits": true,
+      "timing_transition": false
+    },
+    "timing_decision": {
+      "accepted": false,
+      "policy": "endpoint_vector",
+      "reason": "Setup endpoint/domain vector unchanged",
+      "comparison": {
+        "compatible": true,
+        "cpd_before_s": 1.3607436066820355e-08,
+        "cpd_after_s": 1.3607436066820355e-08,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 0,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 52495,
+        "hold_components": 52495,
+        "changes": []
+      }
+    },
+    "cpd_limit_s": 1.3607436066820355e-08,
+    "fixed_resource_limits": {
+      "wirelength": 2061627,
+      "SB_pairs": 45,
+      "CB_sources": 5060
+    },
+    "vector_definition": "All fixed endpoint (timing node, atom pin, name, launch clock, capture clock) setup tags; exact native numbers. Hold violation components must not worsen. Positive hold margin may decrease without violating hold.",
+    "numerical_comparison": "Exact <, <= and component comparisons; no epsilon, rounded report values, rolling budget or accumulated tolerance."
+  }
+}

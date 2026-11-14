@@ -1,0 +1,153 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "mode": "weighted_soft",
+      "status": "legal_candidate",
+      "native_attempts": 3,
+      "native_transaction_seconds": 0.10006603,
+      "conflicting_nodes": [],
+      "whole_wrapper": {
+        "preparation_seconds": 3.3127863630652428,
+        "native_process_seconds": 9.232858702540398,
+        "independent_audit_seconds": 0.510712992399931,
+        "complete_evaluation_seconds": 15.10518105328083
+      },
+      "cpd_ns": 5.854659868020917,
+      "decisions": {
+        "strict": {
+          "accepted": false,
+          "reason": "No full-precision strict CPD improvement",
+          "setup_improved": 0,
+          "setup_regressed": 0
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "reason": "Setup endpoint/domain vector unchanged",
+          "setup_improved": 0,
+          "setup_regressed": 0
+        }
+      },
+      "exact_candidate_reference": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_near_native_dev_01/endpoint_step_002_evaluation"
+    },
+    {
+      "mode": "weighted_capacity",
+      "status": "legal_candidate",
+      "native_attempts": 1,
+      "native_transaction_seconds": 0.062592985,
+      "conflicting_nodes": [],
+      "whole_wrapper": {
+        "preparation_seconds": 1.790732480585575,
+        "native_process_seconds": 8.932789340615273,
+        "independent_audit_seconds": 0.5119616165757179,
+        "complete_evaluation_seconds": 13.27818114683032
+      },
+      "cpd_ns": 5.854659868020917,
+      "decisions": {
+        "strict": {
+          "accepted": false,
+          "reason": "No full-precision strict CPD improvement",
+          "setup_improved": 0,
+          "setup_regressed": 0
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "reason": "Setup endpoint/domain vector unchanged",
+          "setup_improved": 0,
+          "setup_regressed": 0
+        }
+      },
+      "exact_candidate_reference": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_near_native_dev_01/endpoint_step_002_evaluation"
+    },
+    {
+      "mode": "physical_soft",
+      "status": "transaction_failed_rolled_back",
+      "native_attempts": 1,
+      "native_transaction_seconds": 0.052537233,
+      "conflicting_nodes": [
+        {
+          "node": 344743,
+          "occupancy": 1,
+          "capacity": 1
+        },
+        {
+          "node": 344829,
+          "occupancy": 1,
+          "capacity": 1
+        },
+        {
+          "node": 344931,
+          "occupancy": 1,
+          "capacity": 1
+        }
+      ],
+      "whole_wrapper": {
+        "preparation_seconds": 1.7897284366190434,
+        "native_process_seconds": 9.232407383620739,
+        "independent_audit_seconds": 0.5138005912303925,
+        "complete_evaluation_seconds": 13.702416107058525
+      }
+    },
+    {
+      "mode": "physical_capacity",
+      "status": "legal_candidate",
+      "native_attempts": 1,
+      "native_transaction_seconds": 0.105115754,
+      "conflicting_nodes": [],
+      "whole_wrapper": {
+        "preparation_seconds": 2.028983324766159,
+        "native_process_seconds": 8.983417604118586,
+        "independent_audit_seconds": 0.5169777981936932,
+        "complete_evaluation_seconds": 13.680015228688717
+      },
+      "cpd_ns": 5.854659868020917,
+      "decisions": {
+        "strict": {
+          "accepted": false,
+          "reason": "No full-precision strict CPD improvement",
+          "setup_improved": 2,
+          "setup_regressed": 0
+        },
+        "endpoint_vector": {
+          "accepted": true,
+          "reason": "Exact policy conditions satisfied",
+          "setup_improved": 2,
+          "setup_regressed": 0
+        }
+      },
+      "exact_candidate_reference": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/evaluation_011"
+    }
+  ],
+  "default_control_non_time_trace_exact": true,
+  "new_native_processes": 4,
+  "new_native_search_calls": 6,
+  "complete_orchestrator_seconds": 68.54154499620199,
+  "build_seconds": 52.1042367182672,
+  "conclusion": "Native physical objective plus hard occupancy/retained-extension filtering reproduces the exact capacity candidate. Filtering alone retains the mixed-cost plateau; physical objective alone returns an overused path. This case supports objective/constraint composition, not a unique external search-engine quality advantage.",
+  "qualification": "Default control neutrality verified for this matched state. Zero-RC architecture and fixed retained scope; native float arithmetic remains native and finalSTA exact. Three candidate FULL/STA reuses are explicit, not new full evaluations or cold-start timing.",
+  "research_complete": false,
+  "new_work_pushed": false,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/completion.json": "356812cec549ca5bc0545e0b07423791fc192cb0edb635395206883e68b8da0d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/registration.json": "341567837ec1b8eb71835cfc8907613ca684068ebda5918d9bd0cdf7cdf9245a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/process_costs.json": "8b41271e35440b21a12fe96511ae9831b4f812b9ac0ad2f6c94cf00b22504fc6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_near_native_dev_01/endpoint_step_002/runs/state/joint_native.log": "7960598e6edc3ca80cd9e39297c194d6385218d4e3bad1d01d15b1f170c23d40",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/weighted_soft/runs/state/joint_native.log": "a74ad1fec6031314c1a7bce3e5ef16527fe2f6e0da65ff6392a516b631729289",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_stage_01/binding.json": "693c6be0cf83e14bc90b29136f26e9e8b48aa6c44c9ece34190d791ffac141da",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_stage_01/build_result.json": "e0fdedda44faaa8720b3d93fe2facd78fcc519d3b162d965f793c653dded2ed3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/weighted_soft/completion.json": "872517e3ba1134ce80b7c51027649d97687e9813ece613c657ae56349309e422",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/weighted_soft_reference_equivalence.json": "e961933e5c793c50bb08e3992f9e6084484b421911bca11ba21230978efd6918",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/weighted_soft_decision.json": "3b3f87468aae3e20e9d3862d70cda2b502fb51c97ca19da2d1415c881f6347d6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/weighted_capacity/completion.json": "2c0e64cbf57e8d11ff79f9ddca1152f2bf63cd752f63cc537ce6fee519c83971",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/weighted_capacity/runs/state/joint_native.log": "2172a5c6e44ddf9d88073f607f48ad40d4206773059e0b2b2a8c91531aed3aef",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/weighted_capacity_reference_equivalence.json": "c3b8f89b69b1abf68a0408250d01ab86bd8724934755746b019b4ee48962f19a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/weighted_capacity_decision.json": "3b3f87468aae3e20e9d3862d70cda2b502fb51c97ca19da2d1415c881f6347d6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/physical_soft/completion.json": "8a0810e8eb1cd11e6442a7e48ad22b3efcf44cf6d5902b2dc896a1eb9fc16574",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/physical_soft/runs/state/joint_native.log": "83a20a52605e90eb54ed589b75d852903c3cb717aa114620a70ff17f554c8969",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/physical_soft_reference_equivalence.json": "84513307c4489a158db02e6196efd6201a6bcdce55c0ba22e96dbf19ddf7c7ab",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/physical_capacity/completion.json": "c8b1e8c6d1289cac80bd7d5308106462cd614c0feae71fb967a4d7635d7bd664",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/physical_capacity/runs/state/joint_native.log": "aab22691c2ac26c2502c9a2a7704e5dab0212f92c2986ba86ee9731decdeacdc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/physical_capacity_reference_equivalence.json": "99835760c620bbfe57a71194801cedc9083775bc43587597d94559b43a1a8a46",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_dev_01/physical_capacity_decision.json": "776dd842bb547e4fffcb341fd111eb3ea87ace5e1abe56978fc54b2f5978fc98"
+  }
+}

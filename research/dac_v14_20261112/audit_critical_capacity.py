@@ -1,0 +1,141 @@
+#!/usr/bin/env python3
+"""Verify local capacity-reference witnesses and materialize an isolated repair."""
+import array
+import collections
+import math
+from pathlib import Path
+import re
+import resource
+import signal
+import sys
+from retained_prefix_workflow import D,read,write,sha
+sys.path.insert(0,str(D.parents[1]/'scripts'))
+from check_route import read_trace
+from verify_path_witnesses_v2 import graph_records,f32
+
+resource.setrlimit(resource.RLIMIT_AS,(24*1024**3,24*1024**3));signal.alarm(1800)
+b=D/'critical_capacity_potential_01';ex=read(b/'execution.json')
+assert all(sha(p)==h for p,h in ex['source_sha256'].items())
+assert all(sha(b/p)==h for p,h in ex['output_sha256'].items())
+assert read(b/'unit_validation.json')['passed']
+cases={(c['net'],c['pin']):c for c in read(b/'cases.json')};rows={};paths=collections.defaultdict(list)
+for line in (b/'query_stdout.log').open():
+    v=line.split();key=tuple(map(int,v[1:4]))
+    if v[0]=='RESULT':
+        assert key not in rows
+        rows[key]=dict(net=key[0],pin=key[1],mode=key[2],stop=int(v[4]),expansions=int(v[5]),labels=int(v[6]),peak_heap=int(v[7]),
+            physical_seconds=float(v[8]),lower_seconds=float(v[9]),query_seconds=float(v[10]),edge_count=int(v[11]))
+    else:
+        assert v[0]=='EDGE' and int(v[4])==len(paths[key]);paths[key].append((int(v[5]),int(v[6]),float(v[7])))
+assert rows.keys()=={(net,pin,m) for net,pin in cases for m in range(2)}
+current=D/'actual_search_tree_eltwise_dev_01/runs/eltwise_layer_T2';manifest=read(current/'manifest.json')
+graph=Path(manifest['command'][manifest['command'].index('--read_rr_graph')+1])
+nreal=read(D/'residual_query_offline_01/graph_binding.json')['nodes']
+owners={int(k):v for k,v in read(b/'occupancy_owners.json').items()}
+original=read_trace(current/'routed.route');recount=collections.defaultdict(list)
+for net,info in original.items():
+    for node in {n.inode for n in info['trace']}:recount[node].append(net)
+assert owners==recount
+caps=array.array('I');caps.frombytes((b/'capacities.bin').read_bytes());assert len(caps)==nreal
+wanted={(v,u,w) for path in paths.values() for u,v,w in path if v!=nreal}
+needed={node for c in cases.values() for node in c['original_nodes']}|{u for path in paths.values() for u,v,w in path}
+metadata={};switches={};edge_switches=collections.defaultdict(list);checked_caps=0
+for section,e in graph_records(graph):
+    a=e.attrib
+    if section=='switches':
+        t=e.find('timing');v={} if t is None else t.attrib
+        assert all(f32(v.get(k,0))==0 for k in ['R','Cin','Cout','Cinternal'])
+        switches[int(a['id'])]=f32(v.get('Tdel',0))
+    elif section=='rr_nodes':
+        node=int(a['id']);assert int(a['capacity'])==caps[node];checked_caps+=1
+        if node in needed:
+            v=e.find('loc').attrib;layer=int(v.get('layer_low',v.get('layer',0)))
+            metadata[node]=dict(kind=a['type'],low=(int(v['xlow']),int(v['ylow']),layer),
+                high=(int(v['xhigh']),int(v['yhigh']),int(v.get('layer_high',layer))),ptc=int(v['ptc']))
+    elif section=='rr_edges':
+        switch=int(a['switch_id']);item=(int(a['src_node']),int(a['sink_node']),switches[switch])
+        if item in wanted:edge_switches[item].append(switch)
+assert checked_caps==nreal and wanted==edge_switches.keys()
+near=lambda x,y:math.isclose(x,y,rel_tol=1e-12,abs_tol=1e-24)
+repairs=[]
+for key,r in rows.items():
+    c=cases[key[:2]];net,pin=key[:2];path=paths[key];tree=set(c['retained']);owned=set(c['original_nodes']);anchors={int(k):v for k,v in c['anchors'].items()}
+    assert len(path)==r['edge_count'] and r['stop']==0 and near(r['physical_seconds'],r['lower_seconds'])
+    assert path[0][0]==c['sink'] and path[-1][1]==nreal
+    assert all(a[1]==z[0] for a,z in zip(path,path[1:])) and len({e[0] for e in path})==len(path)
+    anchor=path[-1][0];assert anchor in anchors and near(path[-1][2],anchors[anchor])
+    assert all(u not in tree for u,v,w in path[:-1])
+    assert near(sum(e[2] for e in path),r['physical_seconds'])
+    parents={v:(u,sw) for u,v,sw,w in c['tree_edges']}
+    prefix=0.;node=anchor
+    while node in parents:
+        node,sw=parents[node];prefix+=switches[sw]
+    assert node==c['root'] and near(prefix,anchors[anchor])
+    forward=[anchor]+[u for u,v,w in reversed(path[:-1])]
+    suffix_switches=[min(edge_switches[v,u,w]) for u,v,w in reversed(path[:-1])]
+    new_nodes=tree|set(forward)
+    conflicts={str(node):dict(capacity=caps[node],other_nets=[n for n in owners.get(node,[]) if n!=net])
+        for node in new_nodes if len(owners.get(node,[]))-int(node in owned)+1>caps[node]}
+    assert r['physical_seconds']<=c['current_physical_seconds']+1e-23
+    if key[2]==1:assert not conflicts
+    for sink in c['other_sinks']:
+        node=sink
+        while node in parents:assert node in tree;node=parents[node][0]
+        assert node==c['root']
+    r.update(current_physical_seconds=c['current_physical_seconds'],improvement_ns=(c['current_physical_seconds']-r['physical_seconds'])*1e9,
+        anchor=anchor,suffix_nodes=forward,suffix_switches=suffix_switches,
+        capacity_conflicts=conflicts,rr_capacity_feasible=not conflicts,
+        retained_nodes=len(tree),removed_nodes=len(c['removed']),added_nodes=len(new_nodes-owned),
+        native_full_checked=False,final_STA_evaluated=False)
+    if key[2]==1 and r['improvement_ns']>1e-6:
+        repairs.append((r,c,forward,suffix_switches))
+assert len(repairs)<=len(cases)
+
+# Serialize only genuinely improving capacity-feasible candidates into copies.
+# Every other net section is preserved byte-for-byte; the original stays frozen.
+route_text=(current/'routed.route').read_text()
+for r,c,forward,suffix_switches in repairs:
+    net,pin=r['net'],r['pin'];retained=set(c['retained']);children=collections.defaultdict(list)
+    for u,v,sw,w in c['tree_edges']:
+        if u in retained and v in retained:children[u].append((v,sw))
+    for u,v,sw in zip(forward,forward[1:],suffix_switches):children[u].append((v,sw))
+    sink_pins={}
+    for n in original[net]['trace']:
+        if n.kind=='SINK':
+            assert n.inode not in sink_pins or sink_pins[n.inode]==n.pin
+            sink_pins[n.inode]=n.pin
+    lines=[];seen=set()
+    def emit(node,sw):
+        m=metadata[node];xyz=lambda p:'('+','.join(map(str,p))+')'
+        label='Class:' if m['kind'] in ['SOURCE','SINK'] else 'Pin:' if m['kind'] in ['OPIN','IPIN'] else 'Track:'
+        line=f"Node:\t{node}\t{m['kind']} {xyz(m['low'])}"
+        if m['low']!=m['high']:line+=' to '+xyz(m['high'])
+        line+=f"  {label} {m['ptc']}  Switch: {sw}"
+        if m['kind']=='SINK':line+=f' Net_pin_index: {sink_pins[node]}'
+        lines.append(line+'\n')
+    def visit(node):
+        assert node not in seen;seen.add(node)
+        if not children[node]:emit(node,-1)
+        for child,sw in children[node]:emit(node,sw);visit(child)
+    visit(c['root']);assert seen==retained|set(forward)
+    match=re.search(r'^Net '+str(net)+r' \(.*?\)\n.*?(?=^Net |\Z)',route_text,re.M|re.S);assert match
+    header=match.group(0).splitlines()[0]+'\n\n'
+    replacement=header+''.join(lines)+'\n'
+    result=route_text[:match.start()]+replacement+route_text[match.end():]
+    target=b/f'repair_net{net}_pin{pin}.route';target.write_text(result)
+    parsed=read_trace(target)
+    assert parsed.keys()==original.keys()
+    assert all(parsed[n]==original[n] for n in original if n!=net)
+    old_paths={}
+    def edge_set(info):
+        return {(u.inode,v.inode,u.switch) for u,v in zip(info['trace'],info['trace'][1:]) if u.switch!=-1}
+    expected={(u,v,sw) for u,v,sw,w in c['tree_edges'] if u in retained and v in retained}|set(zip(forward,forward[1:],suffix_switches))
+    assert edge_set(parsed[net])==expected
+    assert {(n.inode,n.pin) for n in parsed[net]['trace'] if n.kind=='SINK'}==set(sink_pins.items())
+    r['candidate_route']=str(target);r['candidate_route_sha256']=sha(target)
+assert all(sha(p)==h for p,h in ex['source_sha256'].items())
+write(b/'analysis.json',dict(passed=True,native_route_calls=0,results=list(rows.values()),
+    directed_edges_checked=len(wanted),all_rr_capacities_checked=checked_caps,
+    source_sha256={str(p):sha(p) for p in [Path(__file__),b/'execution.json',b/'cases.json',b/'query_stdout.log',graph]},
+    qualification='Exact shortest path only for zero-RC, full-device fixed-tree graph and stated graph-derived anchors. Other-net RR occupancy is fixed; native reserved-OPIN/nonconfig/bus-mux checks and finalSTA still pending. Retrospective current worst-path selection is diagnostic, not an online routing algorithm. Candidate files are separate copies; all other net traces and all other terminal identities preserved.'))
+print([{k:v for k,v in r.items() if k in ['net','pin','mode','physical_seconds','improvement_ns','rr_capacity_feasible','candidate_route']} for r in rows.values()],flush=True)

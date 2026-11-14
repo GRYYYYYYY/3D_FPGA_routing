@@ -1,0 +1,81 @@
+{
+  "status": "registered_before_native",
+  "roles": {
+    "candidate": {
+      "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_Tf_01/attempt_002/evaluation",
+      "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_Tf_01/attempt_002/evaluation/runs/state",
+      "request": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_Tf_01/attempt_003/candidate.txt",
+      "objective": "weighted_soft",
+      "fixed_target_paths": false,
+      "targets": [
+        [
+          6583,
+          24
+        ]
+      ],
+      "removed_pins": {
+        "6583": [
+          24
+        ]
+      },
+      "order": "currentSTA_targets_then_ID_blockers",
+      "queries": [
+        {
+          "net": 6583,
+          "pin": 24,
+          "slack_s": -6.019282849933916e-09,
+          "raw_criticality": 0.9999999403953552
+        }
+      ],
+      "source_sha256": {
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/prepare_native_scope_request.py": "cc29a0b35df03d6b8cecd5be38f85f1cb81ce4400b33985de3cc05092d0682ba",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_Tf_01/attempt_002/evaluation/completion.json": "3d7b72e50e2d51847e6dd1647e0c07376f4e9f24623d00b7c7300c4627521fe3",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_Tf_01/attempt_002/evaluation/endpoint_vector.json": "73d306ceacd4e3a3c69833b9d730c7067fb54ae771fca28fd8a4b74adc4b31c1",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_Tf_01/attempt_002/evaluation/runs/state/routed.route": "74dd4ff10a6e0e4ebdc399dce4fd7999f10e7affbed978a5cb02b5af8a80afc3",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_Tf_01/attempt_002/evaluation/runs/state/packed.net": "80407d8982581f80e837796ee76d7bd513f54f391390bad9946d4c64051deded",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_Tf_01/attempt_002/evaluation/runs/state/placed.place": "f43377f776bdb2fb67d1b287e1d22263514d2ba5e9831936087d853e18b1dd8b",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_Tf_01/attempt_002/evaluation/runs/state/native_sta_frontier.jsonl": "f6a27626837d2a700a3541b07e03affc87c2a44d85ac3e656376238858187b95",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_objective_stage_01/binding.json": "693c6be0cf83e14bc90b29136f26e9e8b48aa6c44c9ece34190d791ffac141da",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_Tf_01/attempt_003/candidate.txt": "46df75bb904b0dbf66268b97b7c5d9da8c0cf4be8a7b8e42670f05dd3c929b3f"
+      }
+    }
+  },
+  "scope": "conflict",
+  "selection": {
+    "targets": [
+      {
+        "net": 6583,
+        "pin": 24,
+        "sink": 25742,
+        "slack_s": -6.019282849933916e-09,
+        "raw_criticality": 0.9999999403953552,
+        "native_net_delay_s": 2.157758860477088e-09
+      },
+      {
+        "net": 6590,
+        "pin": 2,
+        "sink": 91937,
+        "slack_s": -6.019282849933916e-09,
+        "raw_criticality": 0.9999999403953552,
+        "native_net_delay_s": 1.6002814628990336e-09
+      },
+      {
+        "net": 6592,
+        "pin": 2,
+        "sink": 91937,
+        "slack_s": -6.019282849933916e-09,
+        "raw_criticality": 0.9999999403953552,
+        "native_net_delay_s": 1.6002814628990336e-09
+      }
+    ],
+    "worst_slack_s": -6.019282849933916e-09,
+    "grouping_ulp_s": 4.440892098500626e-16,
+    "window_s": 3.552713678800501e-15,
+    "near_ns": 0.0,
+    "eligible_connections": 17319,
+    "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+  },
+  "conflicting_resources": {},
+  "preparation_seconds": 1.222866702824831,
+  "qualification": "Targets and released blocker branches derived automatically from the current state and audited witness conflicts. Native chooses every path; no preset target paths or pre-restored external blocker trees."
+}

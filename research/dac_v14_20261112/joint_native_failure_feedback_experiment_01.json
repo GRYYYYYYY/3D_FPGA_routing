@@ -1,0 +1,18 @@
+{
+  "status": "registered_next",
+  "question": "Why does native net1960pin1 remain capacity-conflicting after feedback scope expansion?",
+  "input": "Exact failed transaction joint_native_feedback_dev_01; preserve original input and stage01 results.",
+  "intervention": [
+    "Export partial trees, actual final rejected path, per-node occupancy/capacity/indexed base cost and congestion price at failure in a new diagnostic stage.",
+    "Confirm unchanged query outcomes on the failed transaction with diagnostics; run exact zeroRC capacity query on the identical partial state.",
+    "If exact query finds a path, inspect why native pricing fails, including zero/tiny base-cost overused resources; compare a bounded hard-capacity fallback without changing Tdel.",
+    "If exact query proves no path under current retained trees/occupancy, revise release scope or compatible target/victim alternatives; do not merely increase native pressure."
+  ],
+  "paired_scope": "Same graph, partial retained tree, target, occupancy and current constraints. FULL/STA only for fully restored candidate transactions.",
+  "limits": {
+    "process_seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "no_global_stopping_matrix": true
+}

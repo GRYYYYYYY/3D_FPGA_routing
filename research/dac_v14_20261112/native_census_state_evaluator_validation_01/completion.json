@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "case": "canonical",
+      "passed": true,
+      "resources": {
+        "wirelength": 217183,
+        "SB_pairs": 24,
+        "CB_sources": 965
+      },
+      "native_assurance_materialization_seconds": 1.3375233449041843,
+      "independent_materialization_seconds": 7.059459064155817,
+      "qualification": "Same sealed actual receipt; sequential component replay costs, not a formal full-algorithm speedup."
+    },
+    {
+      "case": "native",
+      "passed": true,
+      "resources": {
+        "wirelength": 217183,
+        "SB_pairs": 24,
+        "CB_sources": 965
+      },
+      "native_assurance_materialization_seconds": 1.1925341188907623,
+      "independent_materialization_seconds": 6.970509704202414,
+      "qualification": "Same sealed actual receipt; sequential component replay costs, not a formal full-algorithm speedup."
+    }
+  ],
+  "negative_controls": [
+    "canonical_premature_publication",
+    "private_assurance_tamper",
+    "forged_actual_resource_control",
+    "candidate_relabeled_input",
+    "native_premature_publication",
+    "other_state_cannot_borrow_final_proof",
+    "missing_selected_final_state"
+  ],
+  "native_calls": 0,
+  "route_calls": 0,
+  "exact_vectors_and_all_native_count_fields_match_independent": true,
+  "no_independent_audit_fabricated": true,
+  "final_selected_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_census_state_evaluator_validation_01/native_native",
+  "final_independent_proof": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_census_state_evaluator_validation_01/native_native/final_independent_validation.json",
+  "other_private_states_not_published": true,
+  "complete_component_replay_seconds": 40.57049643993378,
+  "complete_single_configuration_algorithm_seconds": null,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_census_state_evaluator_validation_01/registration.json": "80e636b86b6fdca1b1d7bc41d3c5add8c6ea68e1ae1c61ec1c828bf8e25abc73",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_census_state_evaluator_validation_01/results.json": "a271992017e18b953e2996b883653d6eb96b1442a26d86fae498a792c764e9f7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_census_state_evaluator_validation_01/native_context/input_seal.json": "209b4c3f0a9f8df340da949de3244c2a91bfb5cb75f4200f423ba6bd96a6d10c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_census_state_evaluator_validation_01/native_context/completion.json": "e2cb908d8c9405cba1684012134bd24831ae93219f8242a7e63e5c458be51740",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_census_state_evaluator_validation_01/independent_context/completion.json": "2036e247f803d2b0d50d273708536c46f68b99e013cc3c449cfbe4b41b7d951a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_census_state_evaluator_validation_01/native_native/final_independent_validation.json": "994c5b6c13059a21d5396f4cd61dad0da60fa3a9f7d46567af3fdd2ad438fbdd"
+  },
+  "qualification": "Actual completed native worker/census consumer replay. Production stateful actor and broader BNN shadow comparison still require their own integration proof. Final audit belongs only to its exact state; original native creation cost never reused as current runtime."
+}

@@ -1,0 +1,47 @@
+{
+  "status": "before_native",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_batch_stage_02/bin/vpr": "bfd74784cd1a0532aac5807a3af44bdb75db4dd59706e3c8551a231877950bc7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/lazagna-vtr9-buildfix-src/vtr_flow/arch/timing/k6_N10_mem32K_40nm_fc_abs.xml": "2223b0dc3b0a534e2425aafaa6c4182a2e0e3e38159a9120783bce1a4cc34fa3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reservation_workspace_01/vtr_flow/tasks/regression_tests/vtr_reg_strong/strong_pending_target_reservations/fixture.blif": "3c061fc73307f89eb7e690031157c9719001041f4b109f64c058291ce8bcc78e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_batch_workspace_02/vtr_flow/tasks/regression_tests/vtr_reg_strong/strong_joint_static_batch/run_case.py": "595fe6b50eb9ff623d26e5d72c5a3fe855c492b5c39274e477d18ec0d3d65079",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_tiny_regression_02/completion.json": "7c508de799caac914b847bf60f6aecc4c248825985fc4f12d66310a4e01e13a8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_tiny_regression_02/request.txt": "ce3ce75951cbb8df0d88853a79e68cd52d5620b7966290872cf5e54c953ea0df",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_tiny_regression_02/initial/packed.net": "1b63ade6d3f27a1451811fba37766edda2018d667ec16bba3a8b6bbd2dd3c664",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_tiny_regression_02/initial/placed.place": "3c8f1c735d0b47db18b70fd934c93ee2e2a852addebf7aa27af81ea799212ba4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_tiny_regression_02/initial/routed.route": "1f482a8611b6ab0e6f94e6ee5cfa630c933efb6f4c9f23aba1d546ea6f770083"
+  },
+  "command": [
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_batch_stage_02/bin/vpr",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/vendor/lazagna-vtr9-buildfix-src/vtr_flow/arch/timing/k6_N10_mem32K_40nm_fc_abs.xml",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reservation_workspace_01/vtr_flow/tasks/regression_tests/vtr_reg_strong/strong_pending_target_reservations/fixture.blif",
+    "--analysis",
+    "--route_chan_width",
+    "100",
+    "--seed",
+    "11",
+    "--num_workers",
+    "1",
+    "--clock_modeling",
+    "ideal",
+    "--check_route",
+    "full",
+    "--verify_file_digests",
+    "off",
+    "--verify_route_file_switch_id",
+    "on",
+    "--net_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_tiny_regression_02/initial/packed.net",
+    "--place_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_tiny_regression_02/initial/placed.place",
+    "--route_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pending_reservation_tiny_regression_02/initial/routed.route"
+  ],
+  "limits": {
+    "child_seconds": 60,
+    "memory_bytes": 8589934592,
+    "disk_reserve_bytes": 85899345920
+  },
+  "question": "Does native static-state batching exactly reproduce isolated requests after objective changes and repeated requests, and restore newly computed physical delays/native STA?",
+  "qualification": "Real tiny native regression, not BNN quality or complete algorithm performance."
+}

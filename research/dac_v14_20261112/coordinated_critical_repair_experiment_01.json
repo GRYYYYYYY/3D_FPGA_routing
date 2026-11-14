@@ -1,0 +1,76 @@
+{
+  "status": "registered_not_implemented_not_submitted",
+  "question": "Can a bounded coordinated repair realize the shorter current-critical path while rerouting its three blocking nets and preserving final timing?",
+  "evidence": "CurrentSTA five target fixed-tree/fixed-other-capacity queries and frozen-target two controls all exact with zero gain. Onlynet6587pin4 has a relaxed gap0.379290599ns. Releasing any one or two of the three observed blocker nets still gives zero gain; releasing all admits the relaxed optimum. One conflicting resource carries an eight-sink shared subtree.",
+  "input_run": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/critical_repair_validation_01/runs/eltwise_layer_R",
+  "selection": "Derive target and blockers from sealed relaxed/subset witnesses, not a new hardcoded circuit-specific net list. This pilot inherits one observed critical target; broader online candidate selection remains unvalidated.",
+  "implementation_plan": [
+    "Use an independent copy of the current route. Reserve the selected target suffix; preserve its remaining branches.",
+    "For each blocking resource, identify all descendant sinks. Remove only the affected subtree plus newly dangling exclusive ancestors; preserve all other branches and unrelated nets.",
+    "Reattach affected blocker sinks under current occupancy, with reserved target resources unavailable to blocker nets. Reuse static graph and capacities; recompute each changing tree prefix and occupancy after every attachment.",
+    "First deterministic net/sink order, then separately registered order controls if order causes failure. A failed attachment discards the entire transaction.",
+    "Only complete candidate routes may be loaded by unchanged VPR. Require FULL legality and fullSTA, keep the original route and all rejected candidates. Do not reuse the prior one-target-only physical guard for multi-net acceptance."
+  ],
+  "affected_scope": [
+    {
+      "net": 7541,
+      "name": "PRDATA[7]",
+      "resource": 327367,
+      "downstream_pins": [
+        1
+      ],
+      "total_pins": 1
+    },
+    {
+      "net": 6563,
+      "name": "$abc$87764$new_n22316",
+      "resource": 415972,
+      "downstream_pins": [
+        1
+      ],
+      "total_pins": 1
+    },
+    {
+      "net": 2570,
+      "name": "matrix_B_2.genblk1[2].dp1.wren_b",
+      "resource": 416228,
+      "downstream_pins": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "total_pins": 9
+    }
+  ],
+  "acceptance": "Strictly lower final native CPD after all blocker nets are legally restored; separately record WNS/TNS and every changed sink delay. Legal or timing rejection rolls back the whole transaction. Real Tdel and final STA remain untouched.",
+  "comparisons": [
+    "Original accepted state reused at exact hashes as no-repair quality control.",
+    "Single-target/free-capacity repair already exhausted; no rerun needed for unchanged input.",
+    "Report target benefit and blocker degradation separately, plus final CPD/tails/resources/complete prototype cost.",
+    "If promising, match A0/R1/Tf with identical coordination, scope and per-invocation work opportunities before promotion."
+  ],
+  "discriminants": [
+    "All blockers restored and CPD improves: develop bounded coordination as a general repair stage; evaluate matched baselines.",
+    "Reroute fails: distinguish retained-subtree restriction/order from resource infeasibility; consider alternative target witnesses or bounded neighborhood expansion, not a global impossibility claim.",
+    "Target improves but blocker or other near-critical paths dominate: change joint timing objective/acceptance or candidate selection.",
+    "Runtime dominated by repeated graph loads orSTA: preserve full cost evidence and move successful policy to persistent/in-process execution."
+  ],
+  "qualification": "Three blockers are necessary only within the tested release set. Other one/two-net alternatives outside that set have not been ruled out. Capacity release is not a realizable route, and0.379290599ns is not an achieved CPD reduction.",
+  "per_process_limits": {
+    "timeout_seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "scope_policy": "No global date/count/matrix stopping condition. Per-invocation bounded neighborhoods/order trials do not terminate overall research.",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_queries_01/analysis.json": "e2895c695b49ad5a05e803a5a5cc0142e9d9f734f1ca0cf12d28ca45623ee8ca",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/fixed_sta_queries_01/analysis.json": "6cc382776eaaa14215d8ffe606dd35194ba812f8cfc473cf669536b8ba4863a5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_relaxed_01/analysis.json": "794e347e11e09b16f6c736c997d78b5c9989abc7fe7d348bfbc7c97f869d5a1f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/blocker_subset_reference_01/analysis.json": "24adc824cb406180dceb4e595d56e6a781ca7b5d5b2df3a3b411fb5b161193f3"
+  }
+}

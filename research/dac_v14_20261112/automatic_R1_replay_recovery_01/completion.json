@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "operator_stop": "no_positive_group_in_current_operator",
+  "policy": "strict",
+  "native_mode": "reuse_only",
+  "initial_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/timing_cone_bnn_dev_02/R1",
+  "final_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bnn_release_joint_dev_01/R1_target_only_weighted_soft_evaluation",
+  "accepted_steps": 1,
+  "steps": [
+    {
+      "step": 0,
+      "before_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/timing_cone_bnn_dev_02/R1",
+      "evaluation": "research/dac_v14_20261112/bnn_release_joint_dev_01/R1_target_only_weighted_soft_evaluation",
+      "plan": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/automatic_group_plan_R1_01/plan.json",
+      "accepted": true,
+      "policy": "strict",
+      "reason": "Exact policy conditions satisfied",
+      "before_CPD_s": 1.3421610489672275e-08,
+      "after_CPD_s": 1.3413972155262854e-08,
+      "before_resources": {
+        "wirelength": 2068908,
+        "SB_pairs": 86,
+        "CB_sources": 5072
+      },
+      "after_resources": {
+        "wirelength": 2068888,
+        "SB_pairs": 86,
+        "CB_sources": 5072
+      },
+      "reused_native": true
+    },
+    {
+      "step": 1,
+      "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bnn_release_joint_dev_01/R1_target_only_weighted_soft_evaluation",
+      "plan": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/automatic_R1_replay_diagnostic_01/step_001/feedback/proposal/plan.json",
+      "accepted": false,
+      "reason": "no_positive_group_in_current_operator"
+    }
+  ],
+  "initial_CPD_s": 1.3421610489672275e-08,
+  "final_CPD_s": 1.3413972155262854e-08,
+  "final_resources": {
+    "wirelength": 2068888,
+    "SB_pairs": 86,
+    "CB_sources": 5072
+  },
+  "complete_imported_state_workflow_seconds": null,
+  "complete_current_segment_seconds": 8.628201398998499,
+  "prior_executed_child_seconds": 415.27143658325076,
+  "resumed_from": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/automatic_R1_replay_diagnostic_01",
+  "complete_single_configuration_algorithm_seconds": null,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/automatic_R1_replay_recovery_01/registration.json": "cff22399ac985c9edfd34fddf3260f4a339fc1d74431b1360ac826899d3c1343",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/automatic_R1_replay_recovery_01/steps.json": "435a03878049d6ccbb57feb485e133e447b24faac19edef8dc5fd1a01e470990",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/automatic_R1_replay_recovery_01/reuse_receipts.json": "4e51637435b518af61032f842484b0bc37f49fd21c89698ce369e15a411dd035"
+  },
+  "qualification": "Operator termination only; the research goal remains active. Rejected/failed candidates preserved. Measured time includes executed process work, excludes referenced historical native/plan creation, initial routing and static-cache construction. No complete cold-run timing claim."
+}

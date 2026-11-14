@@ -1,0 +1,21 @@
+{
+  "status": "registered_not_implemented_not_submitted",
+  "research_complete": false,
+  "question": "Can gating only the active soft preference by the actual setup-search criticality prevent stale low-criticality guidance from disturbing routing, while preserving the stored plan and original native congestion?",
+  "evidence": {
+    "source": "outside_quality_summary_01.json",
+    "sha256": "ab157b5cfa11cb4d2cdbedeb90058fd9eacaa6f8b4a9b794eab7bafcac13cb65",
+    "guide_searches": 3809,
+    "actual_below_planning_threshold": 453,
+    "planning_threshold_native_float": 0.699999988079071,
+    "scope": "Repeated trajectory events on one seen circuit; existing consumer has no equivalent actual-criticality eligibility gate. Outside DP changed plans and removed96guided-cross evaluations but native heap counts/finalroute/CPD remained unchanged."
+  },
+  "method": "Separate flag, defaultoff. At the actual setup connection search, use local cost-parameter copy and suppress only method preference when actual criticality is strictly below existing configured planning mincriticality. Do not clear stored guide or replan, prune native edges, alter base congestion/Tdel/STA or RCV. If criticality rises later, same stored plan is available. Explicit native-float boundary handling; eligibility gating is not new delay confidence.",
+  "controls": "New binary defaultoff exact frozen currentC2/Qs; same parameters, no outside eta/scoring, threshold0 compatibility where applicable. Gate-on count2 and count1 same-setting prefix check. Existing DP/query/delay/source-reverse flags unchanged; no increased budgets. Use actual gated-search/edge contribution counts, all statuses/CPD/tails/SB-CB/iters/planning/probe/fullprocess costs.",
+  "limits": {
+    "seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "qualification": "Logical guide eligibility consistency is a hypothesis, not an inferred cause of current CPD degradation. Low-criticality miss events are a small part of total guided crossing work, so measure actual effects before expanding or combining. Outside branch not promoted; do not keep increasing its benefit or query budgets without new evidence."
+}

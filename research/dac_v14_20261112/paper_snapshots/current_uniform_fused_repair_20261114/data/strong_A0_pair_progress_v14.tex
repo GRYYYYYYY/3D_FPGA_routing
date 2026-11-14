@@ -1,0 +1,31 @@
+
+\section{First strong-A0 pair and automatic current-state grouping}
+\subsection{Strong baseline outcome and endpoint tail}
+The first paired combined transactions from pristine strong A0 have completed native FULL/STA and independent physical checks. Native weighted search reduces CPD from 13.607436066820355 to 13.413972155262854 ns, with 88 additional wire units and unchanged SB/CB counts. Twelve setup components improve and ten regress; no hold violation worsens. Strict CPD and the registered timing-under-resources policy accept, whereas endpoint-vector and wire-reduction policies reject. The largest setup regression is approximately 557.48 ps. All ten regressed endpoints remain at least 1.896 ns above the current worst slack and none enters the current 0.2 ns near-critical set. These regressions remain reported rather than being erased by the CPD gain.
+
+The physical-delay plus hard-capacity pair reaches exactly the same CPD, but adds 172 wire units, five SB pairs and three CB sources relative to A0. Only strict CPD accepts. This outcome again supplies no quality advantage for that objective/capacity bundle over matched native weighted search; it does not isolate hard capacity as a single factor. Remaining strong-baseline scope controls continue under the original registration.
+
+\begin{table}[t]
+\centering\small
+\caption{Actual current development states at identical exact 13.413972155262854 ns CPD. Full standalone algorithm time remains unknown.}
+\begin{tabular}{lrrr}
+\hline
+State & Wirelength & SB pairs & CB sources\\
+\hline
+A0 combined weighted & 2070921 & 98 & 5067\\
+R1 targets weighted & 2068888 & 86 & 5072\\
+Tf combined weighted & 2074309 & 105 & 5062\\
+\hline
+\end{tabular}
+\end{table}
+
+The states express resource tradeoffs: A0 lies between R1 and Tf in CB occupancy while also lying between them in wirelength and SB use. R1 reaches this CPD through two direct repairs without releasing owners. Thus owner release is useful for the demonstrated Tf state but is not necessary for every starting state. This is a descriptive joint frontier with different repair scopes, not a whole-algorithm superiority or area/power claim.
+
+\subsection{From exhaustive reference to automatic proposal}
+The initial small reference tests every existing candidate subset: eight each for Tf/R1 and sixteen for A0. A new DAG dynamic program aggregates winning timing paths by their candidate-action bit masks, preserving exact path multiplicities and counting a physical action only once when it maps to multiple atom nodes. It agrees with all 32 exhaustive profiles. A 121-node synthetic diamond DAG with $2^{40}$ paths compresses to two action patterns; coverage and duplicate-action checks pass. Candidate-action pattern counts can still grow exponentially, so this is not a polynomial guarantee in the number of actions.
+
+A bounded branch-and-bound selector retains a fixed fraction of the best current-path gain proxy and minimizes the union of target and owner repair connections. Twelve actual-state/fraction comparisons agree with exhaustive selection; donor-overlap ties and a time-guard case are also checked. If the per-call guard triggers, it preserves a feasible incumbent and explicitly withholds proxy optimality. These are process protections, not research termination conditions. Proxy gains omit post-repair competition and new critical paths, and do not guarantee final CPD.
+
+The current-state planner now reads certified current STA, direct and protected-owner query feedback, derives donor branches from actual trees, and constructs a native request. At a uniform 0.9 fraction it reproduces Tf's 13-connection group and A0's 14-connection group. The accepted Tf successor explicitly has no positive cover in this proposal class. Request construction is byte-identical to the already queued Tf experiment, so that validation creates no duplicate native job. The smaller-scope native outcomes remain pending.
+
+Original design caps and current transition progress are distinct in the new multi-round interface. Six existing first-step decisions are unchanged. On actual legal states, moving from target-only to combined repair improves CPD but increases wire by eight; it therefore passes the timing policy and fails resource progress. The reverse transition can reduce resources within its timing cap while failing strict CPD. Ten checks preserve legality/transaction gates and constant initial budgets. These arithmetic checks make no new route commits, and complete automatic multi-round native integration remains a separate step.

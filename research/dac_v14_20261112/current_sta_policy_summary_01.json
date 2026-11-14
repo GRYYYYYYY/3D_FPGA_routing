@@ -1,0 +1,365 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "role": "R1",
+      "policy": "strict",
+      "status": "current_operator_exhausted",
+      "legal": true,
+      "initial_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_vector_dev_01/R1",
+      "final_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_endpoint_diagnostics_01/R1_joint",
+      "before_cpd_ns": 6.018101128546505,
+      "after_cpd_ns": 5.854659868020917,
+      "accepted": 1,
+      "rejected": 2,
+      "endpoint_comparison": {
+        "compatible": true,
+        "cpd_before_s": 6.018101128546505e-09,
+        "cpd_after_s": 5.854659868020917e-09,
+        "cpd_strictly_better": true,
+        "cpd_nonworse": true,
+        "setup_improved": 246,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 14032,
+        "hold_components": 14032
+      },
+      "endpoints_before": {
+        "total_endpoint_rows": 13744,
+        "setup_domain_components": 14032,
+        "finite_constrained_endpoints": 10104,
+        "worst_setup_slack_s": -6.018101128546505e-09,
+        "near_0p2ns_of_current_worst": 3,
+        "qualification": "Near-critical count uses each current state\u2019s own worst endpoint slack; moving-window count alone is not an improvement criterion."
+      },
+      "endpoints_after": {
+        "total_endpoint_rows": 13744,
+        "setup_domain_components": 14032,
+        "finite_constrained_endpoints": 10104,
+        "worst_setup_slack_s": -5.854659868020917e-09,
+        "near_0p2ns_of_current_worst": 14,
+        "qualification": "Near-critical count uses each current state\u2019s own worst endpoint slack; moving-window count alone is not an improvement criterion."
+      },
+      "resources_before": {
+        "planar_wirelength_excluding_sb_half_nodes": 218164,
+        "sb_pairs_used": 39,
+        "sb_pair_net_occupancy": 39,
+        "cb_crossing_output_sources_used": 969,
+        "cb_crossing_output_source_net_occupancy": 969,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 560,
+          "CHANX->CHANX": 39,
+          "OPIN->CHANY": 458
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "resources_after": {
+        "planar_wirelength_excluding_sb_half_nodes": 218171,
+        "sb_pairs_used": 41,
+        "sb_pair_net_occupancy": 41,
+        "cb_crossing_output_sources_used": 971,
+        "cb_crossing_output_source_net_occupancy": 971,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 560,
+          "CHANX->CHANX": 41,
+          "OPIN->CHANY": 460
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "complete_shared_orchestrator_seconds": 125.74145686626434,
+      "cost_scope": "Shared two-policy orchestration with explicitly reused observations/queries/transactions. Not an independent per-arm or cold-start full-method timing.",
+      "accepted_targets": [
+        [
+          {
+            "net": 6587,
+            "pin": 4
+          },
+          {
+            "net": 6590,
+            "pin": 4
+          }
+        ]
+      ]
+    },
+    {
+      "role": "R1",
+      "policy": "endpoint_vector",
+      "status": "current_operator_exhausted",
+      "legal": true,
+      "initial_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_vector_dev_01/R1",
+      "final_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_endpoint_diagnostics_01/R1_joint",
+      "before_cpd_ns": 6.018101128546505,
+      "after_cpd_ns": 5.854659868020917,
+      "accepted": 1,
+      "rejected": 2,
+      "endpoint_comparison": {
+        "compatible": true,
+        "cpd_before_s": 6.018101128546505e-09,
+        "cpd_after_s": 5.854659868020917e-09,
+        "cpd_strictly_better": true,
+        "cpd_nonworse": true,
+        "setup_improved": 246,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 14032,
+        "hold_components": 14032
+      },
+      "endpoints_before": {
+        "total_endpoint_rows": 13744,
+        "setup_domain_components": 14032,
+        "finite_constrained_endpoints": 10104,
+        "worst_setup_slack_s": -6.018101128546505e-09,
+        "near_0p2ns_of_current_worst": 3,
+        "qualification": "Near-critical count uses each current state\u2019s own worst endpoint slack; moving-window count alone is not an improvement criterion."
+      },
+      "endpoints_after": {
+        "total_endpoint_rows": 13744,
+        "setup_domain_components": 14032,
+        "finite_constrained_endpoints": 10104,
+        "worst_setup_slack_s": -5.854659868020917e-09,
+        "near_0p2ns_of_current_worst": 14,
+        "qualification": "Near-critical count uses each current state\u2019s own worst endpoint slack; moving-window count alone is not an improvement criterion."
+      },
+      "resources_before": {
+        "planar_wirelength_excluding_sb_half_nodes": 218164,
+        "sb_pairs_used": 39,
+        "sb_pair_net_occupancy": 39,
+        "cb_crossing_output_sources_used": 969,
+        "cb_crossing_output_source_net_occupancy": 969,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 560,
+          "CHANX->CHANX": 39,
+          "OPIN->CHANY": 458
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "resources_after": {
+        "planar_wirelength_excluding_sb_half_nodes": 218171,
+        "sb_pairs_used": 41,
+        "sb_pair_net_occupancy": 41,
+        "cb_crossing_output_sources_used": 971,
+        "cb_crossing_output_source_net_occupancy": 971,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 560,
+          "CHANX->CHANX": 41,
+          "OPIN->CHANY": 460
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "complete_shared_orchestrator_seconds": 125.74145686626434,
+      "cost_scope": "Shared two-policy orchestration with explicitly reused observations/queries/transactions. Not an independent per-arm or cold-start full-method timing.",
+      "accepted_targets": [
+        [
+          {
+            "net": 6587,
+            "pin": 4
+          },
+          {
+            "net": 6590,
+            "pin": 4
+          }
+        ]
+      ]
+    },
+    {
+      "role": "Tf",
+      "policy": "strict",
+      "status": "current_operator_exhausted",
+      "legal": true,
+      "initial_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_endpoint_diagnostics_01/Tf",
+      "final_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_02/evaluation_005",
+      "before_cpd_ns": 6.208121572370828,
+      "after_cpd_ns": 6.018101128546505,
+      "accepted": 4,
+      "rejected": 2,
+      "endpoint_comparison": {
+        "compatible": true,
+        "cpd_before_s": 6.208121572370828e-09,
+        "cpd_after_s": 6.018101128546505e-09,
+        "cpd_strictly_better": true,
+        "cpd_nonworse": true,
+        "setup_improved": 256,
+        "setup_regressed": 1,
+        "hold_violation_regressions": 0,
+        "setup_components": 14032,
+        "hold_components": 14032
+      },
+      "endpoints_before": {
+        "total_endpoint_rows": 13744,
+        "setup_domain_components": 14032,
+        "finite_constrained_endpoints": 10104,
+        "worst_setup_slack_s": -6.208121572370828e-09,
+        "near_0p2ns_of_current_worst": 5,
+        "qualification": "Near-critical count uses each current state\u2019s own worst endpoint slack; moving-window count alone is not an improvement criterion."
+      },
+      "endpoints_after": {
+        "total_endpoint_rows": 13744,
+        "setup_domain_components": 14032,
+        "finite_constrained_endpoints": 10104,
+        "worst_setup_slack_s": -6.018101128546505e-09,
+        "near_0p2ns_of_current_worst": 6,
+        "qualification": "Near-critical count uses each current state\u2019s own worst endpoint slack; moving-window count alone is not an improvement criterion."
+      },
+      "resources_before": {
+        "planar_wirelength_excluding_sb_half_nodes": 228420,
+        "sb_pairs_used": 118,
+        "sb_pair_net_occupancy": 118,
+        "cb_crossing_output_sources_used": 955,
+        "cb_crossing_output_source_net_occupancy": 955,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 554,
+          "CHANX->CHANX": 118,
+          "OPIN->CHANY": 453
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "resources_after": {
+        "planar_wirelength_excluding_sb_half_nodes": 228511,
+        "sb_pairs_used": 130,
+        "sb_pair_net_occupancy": 130,
+        "cb_crossing_output_sources_used": 961,
+        "cb_crossing_output_source_net_occupancy": 961,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 558,
+          "CHANX->CHANX": 130,
+          "OPIN->CHANY": 457
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "complete_shared_orchestrator_seconds": 361.2078437395394,
+      "cost_scope": "Shared two-policy orchestration with explicitly reused observations/queries/transactions. Not an independent per-arm or cold-start full-method timing.",
+      "accepted_targets": [
+        [
+          {
+            "net": 5479,
+            "pin": 36
+          }
+        ],
+        [
+          {
+            "net": 6587,
+            "pin": 4
+          }
+        ],
+        [
+          {
+            "net": 7647,
+            "pin": 56
+          }
+        ],
+        [
+          {
+            "net": 6583,
+            "pin": 24
+          }
+        ]
+      ]
+    },
+    {
+      "role": "Tf",
+      "policy": "endpoint_vector",
+      "status": "current_operator_exhausted",
+      "legal": true,
+      "initial_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_endpoint_diagnostics_01/Tf",
+      "final_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_01/evaluation_002",
+      "before_cpd_ns": 6.208121572370828,
+      "after_cpd_ns": 6.203926705694585,
+      "accepted": 1,
+      "rejected": 1,
+      "endpoint_comparison": {
+        "compatible": true,
+        "cpd_before_s": 6.208121572370828e-09,
+        "cpd_after_s": 6.203926705694585e-09,
+        "cpd_strictly_better": true,
+        "cpd_nonworse": true,
+        "setup_improved": 1,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 14032,
+        "hold_components": 14032
+      },
+      "endpoints_before": {
+        "total_endpoint_rows": 13744,
+        "setup_domain_components": 14032,
+        "finite_constrained_endpoints": 10104,
+        "worst_setup_slack_s": -6.208121572370828e-09,
+        "near_0p2ns_of_current_worst": 5,
+        "qualification": "Near-critical count uses each current state\u2019s own worst endpoint slack; moving-window count alone is not an improvement criterion."
+      },
+      "endpoints_after": {
+        "total_endpoint_rows": 13744,
+        "setup_domain_components": 14032,
+        "finite_constrained_endpoints": 10104,
+        "worst_setup_slack_s": -6.203926705694585e-09,
+        "near_0p2ns_of_current_worst": 4,
+        "qualification": "Near-critical count uses each current state\u2019s own worst endpoint slack; moving-window count alone is not an improvement criterion."
+      },
+      "resources_before": {
+        "planar_wirelength_excluding_sb_half_nodes": 228420,
+        "sb_pairs_used": 118,
+        "sb_pair_net_occupancy": 118,
+        "cb_crossing_output_sources_used": 955,
+        "cb_crossing_output_source_net_occupancy": 955,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 554,
+          "CHANX->CHANX": 118,
+          "OPIN->CHANY": 453
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "resources_after": {
+        "planar_wirelength_excluding_sb_half_nodes": 228420,
+        "sb_pairs_used": 119,
+        "sb_pair_net_occupancy": 119,
+        "cb_crossing_output_sources_used": 956,
+        "cb_crossing_output_source_net_occupancy": 956,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 554,
+          "CHANX->CHANX": 119,
+          "OPIN->CHANY": 454
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "complete_shared_orchestrator_seconds": 361.2078437395394,
+      "cost_scope": "Shared two-policy orchestration with explicitly reused observations/queries/transactions. Not an independent per-arm or cold-start full-method timing.",
+      "accepted_targets": [
+        [
+          {
+            "net": 5479,
+            "pin": 36
+          }
+        ]
+      ]
+    }
+  ],
+  "fixed_constraints": "Requested eltwise_layer.sdc absent. Export actual native default virtual_io_clock, clk, clk_mem; cross netlist-clock domains ignored, virtual-I/O domains retained. Exact applied constraint echo is sealed per state.",
+  "policy": "Strict: CPD strictly lower. Endpoint: CPD nonincrease AND every fixed endpoint/domain setup slack nondecreasing and at least one increasing. Both require FULL/physical legality and no increase in negative hold violations. Full native precision, no acceptance epsilon.",
+  "initial_joint_failure": "Native legal four-target Tf transaction regressed CPD6.208121572\u21926.734843794ns and was rejected; 78 blocker sinks/67 physical changes. Not a reason to stop research.",
+  "native_control": "Actual VPR connection router and update_from_heap exercised, same retained nodes/anchors/full-device scope verified. After pressure1 rejection, pressure10 produces exactly the same complete route trees as the hard-capacity operator for two R1 targets; FULL/STA plateaus rejected by both policies. Joint-native scope still pending.",
+  "formal_current_prototype_timing": "Unknown; do not substitute historical U timing. Original 78-sink transaction lacked prebinding timer; recorded549.936s excludes that work. New outer wrappers and loop costs include preparation/evaluation/failures with reuse disclosed.",
+  "quality_promoted": false,
+  "research_complete": false,
+  "public_snapshot": "f7167bd",
+  "this_work_pushed": false,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_endpoint_diagnostics_01/R1_joint/completion.json": "c7468272a141f06c638863bd41aaac571d98d9bb13bcb7a9af795be1b56657ba",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_endpoint_diagnostics_01/R1_joint/endpoint_vector.json": "6fb1d2cc7346bb8021dab4c3e845b31911c3c94b887e15b5ccfefc2ee9dd7e13",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_endpoint_diagnostics_01/R1_joint/runs/state/independent_audit.json": "faf07214a0b6571efe545aceb90e771ffed59aebb91c52694ca825a9c31558ec",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_01/completion.json": "dd83cc9137e504a680505a026bba614c088d547f0ad227d17ddb6a29f62d9c40",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_01/decisions.json": "a13eb8aac5a04524ff9f29090d25a7b3c0aac9c4efd4d039f894b3635990cc2c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_01/registration.json": "2b6f20b468323c699a519641a1e5c06133a1d8353cd265cee30d779fc431b2c5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_01/process_costs.json": "e3a468e4e5856ad177b24f57e97a608d5c573183698a9ba3d6e8b1b96ca3c639",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_vector_dev_01/R1/endpoint_vector.json": "fedc7cd3fd54e2bf2f76dc52c70fa2577dc981e66c9b596e6036a750fd8d5712",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_02/evaluation_005/completion.json": "3beb608af1ca120bfd161daba38346f371edc73dafea380a374596fddf9e4f65",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_02/evaluation_005/endpoint_vector.json": "a623eb41c9a507315d4ecc52ce9494d653d43361aa3c8d930f83bb9a5d02fab0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_02/evaluation_005/runs/state/independent_audit.json": "a17cb19b668d1c6e5ce10c810acee57b96b9701b542156cffe15fdf4517e1336",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_01/evaluation_002/completion.json": "098cb6d5f27ce7ae17e11d740418267176ac8a951192819845106b0805ab95e1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_01/evaluation_002/endpoint_vector.json": "84bcd79b89fcdf5b10ccbd1a172fea19f067f079a01df11d3a3a31404135cd40",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_01/evaluation_002/runs/state/independent_audit.json": "675c3ea555caa0e609020f706085ca6791b4134f73ff23cc4c0b4a2d0814c043",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_02/completion.json": "e9e8d167ddf9aaa9880534f54178d882494425ac57c016470f7d2899a5f00e31",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_02/decisions.json": "e8b3d86ef2d71124d61a376a0cee2ce2d61a6510b7b9460fc1f9f630378ec906",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_02/registration.json": "586e05686eb5ba2cf9063cc5fad2e84aba97cab5020e51d5b12f9b5a97a31bf3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_Tf_02/process_costs.json": "f82a98665805cf54789787bf3bfeb3cbac2d5078997fe76fd207580025c24fbb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_endpoint_diagnostics_01/Tf/endpoint_vector.json": "7b264e4c75fb2416f09043ec4b1561949be4b174d221907856fa1b736060d4b8"
+  }
+}

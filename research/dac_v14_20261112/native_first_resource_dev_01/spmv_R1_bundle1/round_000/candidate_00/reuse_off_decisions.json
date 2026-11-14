@@ -1,0 +1,298 @@
+{
+  "status": "legal_evaluated",
+  "accepted": true,
+  "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_first_resource_dev_01/spmv_R1_bundle1/round_000/candidate_00/reuse_off_evaluation",
+  "CPD_s": 7.045986460951781e-09,
+  "resources": {
+    "wirelength": 148605,
+    "SB_pairs": 0,
+    "CB_sources": 967
+  },
+  "decision": {
+    "accepted": true,
+    "reason": "Exact fixed-budget conditions satisfied",
+    "mode": "resources_under_timing",
+    "resource_objectives": [
+      "SB_pairs",
+      "CB_sources"
+    ],
+    "cpd_limit_s": 7.045986460951781e-09,
+    "resource_limits": {
+      "wirelength": 148766,
+      "SB_pairs": 1,
+      "CB_sources": 967
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 7.045986460951781e-09,
+      "cpd_after_s": 7.045986460951781e-09,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 5,
+      "setup_regressed": 5,
+      "hold_violation_regressions": 0,
+      "setup_components": 9797,
+      "hold_components": 9797,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[61605,42334,\"Big_Channel_.CH_20.CH0.fifo_mult.u0.address_b[1].D[0]\",0,0]",
+          "before_s": -3.1106168751904306e-09,
+          "after_s": -3.4669904724893286e-09,
+          "delta_s": -3.5637359729889795e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[61952,47479,\"Big_Channel_.CH_2.A0.first_read.D[0]\",0,0]",
+          "before_s": -3.66809405072388e-09,
+          "after_s": -3.095338874103959e-09,
+          "delta_s": 5.727551766199213e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[61956,47392,\"Big_Channel_.CH_2.A0.fifo_data_out.u0.address_b[0].D[0]\",0,0]",
+          "before_s": -3.1106168751904306e-09,
+          "after_s": -2.909512852866669e-09,
+          "delta_s": 2.0110402232376146e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[61957,47395,\"Big_Channel_.CH_2.A0.fifo_data_out.u0.address_b[1].D[0]\",0,0]",
+          "before_s": -3.1106168751904306e-09,
+          "after_s": -2.909512852866669e-09,
+          "delta_s": 2.0110402232376146e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[61958,47398,\"Big_Channel_.CH_2.A0.fifo_data_out.u0.address_b[2].D[0]\",0,0]",
+          "before_s": -3.1106168751904306e-09,
+          "after_s": -2.909512852866669e-09,
+          "delta_s": 2.0110402232376146e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[64481,47380,\"Big_Channel_.CH_2.A0.fifo_data_out.gb.D[0]\",0,0]",
+          "before_s": -3.1106168751904306e-09,
+          "after_s": -2.909512852866669e-09,
+          "delta_s": 2.0110402232376146e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[64574,47515,\"Big_Channel_.CH_2.A0.wr_data[0].D[0]\",0,0]",
+          "before_s": -2.9670605972142994e-09,
+          "after_s": -3.6528160496374085e-09,
+          "delta_s": -6.857554524231091e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[64575,47518,\"Big_Channel_.CH_2.A0.wr_data[1].D[0]\",0,0]",
+          "before_s": -3.5892944172388752e-09,
+          "after_s": -3.6528160496374085e-09,
+          "delta_s": -6.352163239853326e-11
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[64576,47521,\"Big_Channel_.CH_2.A0.wr_data[2].D[0]\",0,0]",
+          "before_s": -3.5892944172388752e-09,
+          "after_s": -3.6528160496374085e-09,
+          "delta_s": -6.352163239853326e-11
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[64577,47524,\"Big_Channel_.CH_2.A0.wr_data[3].D[0]\",0,0]",
+          "before_s": -3.5892944172388752e-09,
+          "after_s": -3.6528160496374085e-09,
+          "delta_s": -6.352163239853326e-11
+        }
+      ]
+    },
+    "resource_delta": {
+      "wirelength": -12,
+      "SB_pairs": -1,
+      "CB_sources": 0
+    },
+    "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+  },
+  "strict_or_endpoint_control": {
+    "strict": {
+      "accepted": false,
+      "policy": "strict",
+      "reason": "No full-precision strict CPD improvement",
+      "comparison": {
+        "compatible": true,
+        "cpd_before_s": 7.045986460951781e-09,
+        "cpd_after_s": 7.045986460951781e-09,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 5,
+        "setup_regressed": 5,
+        "hold_violation_regressions": 0,
+        "setup_components": 9797,
+        "hold_components": 9797,
+        "changes": [
+          {
+            "kind": "setup",
+            "endpoint_domain": "[61605,42334,\"Big_Channel_.CH_20.CH0.fifo_mult.u0.address_b[1].D[0]\",0,0]",
+            "before_s": -3.1106168751904306e-09,
+            "after_s": -3.4669904724893286e-09,
+            "delta_s": -3.5637359729889795e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[61952,47479,\"Big_Channel_.CH_2.A0.first_read.D[0]\",0,0]",
+            "before_s": -3.66809405072388e-09,
+            "after_s": -3.095338874103959e-09,
+            "delta_s": 5.727551766199213e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[61956,47392,\"Big_Channel_.CH_2.A0.fifo_data_out.u0.address_b[0].D[0]\",0,0]",
+            "before_s": -3.1106168751904306e-09,
+            "after_s": -2.909512852866669e-09,
+            "delta_s": 2.0110402232376146e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[61957,47395,\"Big_Channel_.CH_2.A0.fifo_data_out.u0.address_b[1].D[0]\",0,0]",
+            "before_s": -3.1106168751904306e-09,
+            "after_s": -2.909512852866669e-09,
+            "delta_s": 2.0110402232376146e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[61958,47398,\"Big_Channel_.CH_2.A0.fifo_data_out.u0.address_b[2].D[0]\",0,0]",
+            "before_s": -3.1106168751904306e-09,
+            "after_s": -2.909512852866669e-09,
+            "delta_s": 2.0110402232376146e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[64481,47380,\"Big_Channel_.CH_2.A0.fifo_data_out.gb.D[0]\",0,0]",
+            "before_s": -3.1106168751904306e-09,
+            "after_s": -2.909512852866669e-09,
+            "delta_s": 2.0110402232376146e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[64574,47515,\"Big_Channel_.CH_2.A0.wr_data[0].D[0]\",0,0]",
+            "before_s": -2.9670605972142994e-09,
+            "after_s": -3.6528160496374085e-09,
+            "delta_s": -6.857554524231091e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[64575,47518,\"Big_Channel_.CH_2.A0.wr_data[1].D[0]\",0,0]",
+            "before_s": -3.5892944172388752e-09,
+            "after_s": -3.6528160496374085e-09,
+            "delta_s": -6.352163239853326e-11
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[64576,47521,\"Big_Channel_.CH_2.A0.wr_data[2].D[0]\",0,0]",
+            "before_s": -3.5892944172388752e-09,
+            "after_s": -3.6528160496374085e-09,
+            "delta_s": -6.352163239853326e-11
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[64577,47524,\"Big_Channel_.CH_2.A0.wr_data[3].D[0]\",0,0]",
+            "before_s": -3.5892944172388752e-09,
+            "after_s": -3.6528160496374085e-09,
+            "delta_s": -6.352163239853326e-11
+          }
+        ]
+      }
+    },
+    "endpoint_vector": {
+      "accepted": false,
+      "policy": "endpoint_vector",
+      "reason": "Setup endpoint/domain vector has regressions",
+      "comparison": {
+        "compatible": true,
+        "cpd_before_s": 7.045986460951781e-09,
+        "cpd_after_s": 7.045986460951781e-09,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 5,
+        "setup_regressed": 5,
+        "hold_violation_regressions": 0,
+        "setup_components": 9797,
+        "hold_components": 9797,
+        "changes": [
+          {
+            "kind": "setup",
+            "endpoint_domain": "[61605,42334,\"Big_Channel_.CH_20.CH0.fifo_mult.u0.address_b[1].D[0]\",0,0]",
+            "before_s": -3.1106168751904306e-09,
+            "after_s": -3.4669904724893286e-09,
+            "delta_s": -3.5637359729889795e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[61952,47479,\"Big_Channel_.CH_2.A0.first_read.D[0]\",0,0]",
+            "before_s": -3.66809405072388e-09,
+            "after_s": -3.095338874103959e-09,
+            "delta_s": 5.727551766199213e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[61956,47392,\"Big_Channel_.CH_2.A0.fifo_data_out.u0.address_b[0].D[0]\",0,0]",
+            "before_s": -3.1106168751904306e-09,
+            "after_s": -2.909512852866669e-09,
+            "delta_s": 2.0110402232376146e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[61957,47395,\"Big_Channel_.CH_2.A0.fifo_data_out.u0.address_b[1].D[0]\",0,0]",
+            "before_s": -3.1106168751904306e-09,
+            "after_s": -2.909512852866669e-09,
+            "delta_s": 2.0110402232376146e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[61958,47398,\"Big_Channel_.CH_2.A0.fifo_data_out.u0.address_b[2].D[0]\",0,0]",
+            "before_s": -3.1106168751904306e-09,
+            "after_s": -2.909512852866669e-09,
+            "delta_s": 2.0110402232376146e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[64481,47380,\"Big_Channel_.CH_2.A0.fifo_data_out.gb.D[0]\",0,0]",
+            "before_s": -3.1106168751904306e-09,
+            "after_s": -2.909512852866669e-09,
+            "delta_s": 2.0110402232376146e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[64574,47515,\"Big_Channel_.CH_2.A0.wr_data[0].D[0]\",0,0]",
+            "before_s": -2.9670605972142994e-09,
+            "after_s": -3.6528160496374085e-09,
+            "delta_s": -6.857554524231091e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[64575,47518,\"Big_Channel_.CH_2.A0.wr_data[1].D[0]\",0,0]",
+            "before_s": -3.5892944172388752e-09,
+            "after_s": -3.6528160496374085e-09,
+            "delta_s": -6.352163239853326e-11
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[64576,47521,\"Big_Channel_.CH_2.A0.wr_data[2].D[0]\",0,0]",
+            "before_s": -3.5892944172388752e-09,
+            "after_s": -3.6528160496374085e-09,
+            "delta_s": -6.352163239853326e-11
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[64577,47524,\"Big_Channel_.CH_2.A0.wr_data[3].D[0]\",0,0]",
+            "before_s": -3.5892944172388752e-09,
+            "after_s": -3.6528160496374085e-09,
+            "delta_s": -6.352163239853326e-11
+          }
+        ]
+      }
+    }
+  },
+  "native_core_seconds": 0.099254278,
+  "native_observer_request_seconds": 8.822937071323395
+}

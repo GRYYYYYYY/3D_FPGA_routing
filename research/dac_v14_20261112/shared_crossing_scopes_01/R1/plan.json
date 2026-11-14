@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/timing_cone_bnn_dev_02/R1",
+  "actions": [],
+  "repair_pins": [
+    [
+      31972,
+      8
+    ]
+  ],
+  "ordered_queries": [
+    {
+      "net": 31972,
+      "pin": 8,
+      "raw_criticality": 0.10596245527267456
+    }
+  ],
+  "selection": {
+    "status": "resource_crossing_share_scope",
+    "targets": [
+      [
+        31972,
+        8
+      ]
+    ],
+    "resource_objective": [
+      "SB_pairs",
+      "CB_sources"
+    ],
+    "crossing_reuse_net": 31972,
+    "ranking": "resource_per_sink_then_fewer_sinks_then_margin_then_ID"
+  },
+  "scope_reference": {
+    "net": 31972,
+    "name": "grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_125.data_21_V_read22_reg_9784_pp0_iter6_reg[7]",
+    "pins": [
+      8
+    ],
+    "released_SB": [],
+    "released_CB": [
+      401405
+    ],
+    "released_wire": 4,
+    "released_nodes": [
+      2063575,
+      2063620,
+      3818760
+    ],
+    "retained_crossing_sources": [
+      5887661
+    ],
+    "removed_crossing_resources": 1,
+    "minimum_margin_s": 1.199942334384474e-08,
+    "resource_per_sink": "1",
+    "ordered_queries": [
+      {
+        "net": 31972,
+        "pin": 8,
+        "raw_criticality": 0.10596245527267456
+      }
+    ],
+    "actual_original_SB": 1,
+    "actual_original_CB": 1
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/shared_crossing_scopes_01/R1/candidates.json": "151393518c140889308f8732a2451633455851941f2ce5a0bb1a7a9d6b871657",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/resource_opportunity_census_01/completion.json": "3a1b6698311977c7b0047430fa2fbf074118d9739f499032e5923489bac72079",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/resource_opportunity_census_01/R1/nets.jsonl": "f8400a367cce824ab831afe2c0f0da2be7cef1b78b6c18d9a603ff02f0cff48c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/timing_cone_bnn_dev_02/R1/completion.json": "ebd6eed5aa53964bfcb97c31693c1e74a00a3e15116e8bc841c33a29a7c639e0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/timing_cone_bnn_dev_02/R1/endpoint_vector.json": "930a0d5fb88e71ebaa6370f49fb183f6e34377a3e712aa516449661643853e7f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/timing_cone_bnn_dev_02/R1/runs/state/routed.route": "6596983a1c549c1f57b8d5c27a8e83346650f1b89ee31bab532888366a226a28",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/timing_cone_bnn_dev_02/R1/runs/state/native_sta_frontier.jsonl": "3465a944af937a0eb4e4a97b651c4f9cef8ea0f1633bb6676f615af65280fae1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/derive_shared_crossing_scopes.py": "9684e766f55bbc06910c015fb2832768ec300eae19841c71405025bfc712e0e2",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/resource_opportunity_census.py": "c6fcbdf5cc0a6329149af10f22be2514f86d71815b5cb229ce5e4d6829422368"
+  },
+  "native_calls": 0,
+  "qualification": "Automatic first ranked current-state scope. Retained crossing sources are available for sharing but capacity-constrained alternatives and final native FULLSTA are unproven. No forced suffix or new search primitive."
+}

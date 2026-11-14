@@ -131,3 +131,97 @@ C55-C57：当前树可用性诊断发现3663旧suffix仅118仍是局部合法续
 
 
 C58-C60：outside已接入真实native且过独立extended-DP/currentprior/metadata/两种差异回滚验证，但count1/2均与原C完整route相同6.20812ns。受控选项减少96guided crossing评估，并未改变本例逐迭代native heap计数；不推广、不再单靠调收益/预算。下一独立实际criticality资格gate用于453低于计划门槛的实际guide-search事件，默认off及两停止规则对照，保持存储计划及原生物理/拥塞机制。详细成本API与整个进程分开，planning/probe是router子项；没有统一人工/审计walltimer，不编造整体科研耗时占比。
+
+
+2026-11-13 当前实际关键度资格消融完成（[C61证据](claims_evidence.md)）。仅搜索局部指针、原计划保留，native float门槛0.7；outside模式关闭，预算不变。首批日志覆盖问题经独立stage02纠正并完成三角色严格等价复现。E2/E1实际534/79次停用与121/15次同偏好重新启用有完整guide-search记录；仍同完整物理route6.20812ns和118/955资源，count2多7轮(69 vs62)，首次合法42不变，不推广。成本与失效历史完整保留，不以诊断复现作为独立样本、也不作正式速度结论。此批晚于GitHub已推f7167bd，仅在本地论文更新；研究目标保持active。
+
+
+2026-11-13 离线推荐候选查询与索引证据见[C62/C63](claims_evidence.md)。同256工作限额，10focus contexts中路径3→4、总展开2242→2094，所有路径/非时间输出在索引前后精确，查询候选记录8582160→31；一次性索引扫描858216条及构建费用未进入query timer，不作native速度结论。依然无exact/dominance证书，prefix floor均0，physical单cross步行非全树合法或STA保证。native Qs在同10上下文cachehit0，offline sparse history为3，历史不可混用。下一actual_search_tree_experiment_01仅登记，尚无新路由调用，公开快照仍f7167bd。
+
+
+2026-11-13 actual_search_tree只读原生两角色已封存，C64/C65完整证据及成本同步。3809guided搜索/141798实际入堆/476698当前树节点无省略；1595 no-cross真实图路径有76额外交树，在最近真实入堆交点截断后68同价、8变贵(max1.300781ns)。1159上下文真实树prefix已经满足preferred-cross，516 native no-cross路径利用这类seed。下一独立I/L 2×2查询图消融已登记未执行；原生路由合法分支/物理Tdel/STA不改。两trace角色仍精确原6.20812/62/SB118CB955，诊断neutral不当作质量收益。
+
+
+C86–C87：同状态精确容量查询把失败定位为占用割，而非本次soft-price failure。自动derive1960p1→7541p1 precedence的同范围对照恢复全部连接，却产生PRDATA[7]/[28]两端点损失。scope条件界支持改变释放范围/兼容路径并同时保护受影响端点，不支持继续相邻pressure或单一victim优先顺序扫描。完整开发开销85.302s含生成；native0.681s是子项，绝不借用U正式时间。[证据](../joint_native_cut_feedback_summary_01.json)。
+
+
+C88–C89：选择器仅盯最差并列组遗漏真实endpoint-only机会。0.2ns窗口的独立策略分支四步改善5分量，但CPD不变且资源增加；不能把近关键减少等同CPD收益。三步原生树精确等价支持选择/机会贡献；5487p24小改善需同物理目标/容量过滤控制，不能把混合成本差异当引擎优势。下一从strict未走plateau与endpoint四步后的各自状态给予相同joint后继机会，检验是否真正促成CPD下降；当前single-only/window只是隔离条件，不是永久探索限制。[证据](../current_sta_near_selector_summary_01.json)。
+
+
+C90–C92：原生physical+hard容量/保留树扩展过滤精确复现5487p24小收益，单改目标或单改过滤均不产生该合法收益。新的76p1/48p1联合后继在plateau前后都到5.832274663ns；不能把下降归因四步plateau。原生无预设目标路径在相同releasedscope也复现完整时序向量，mixed成本更少4SB/4CB但多35线长。研究重点转向currentSTA范围生成、原生恢复与额外机会；下一[原生范围控制器](../native_current_sta_scope_policy_experiment_01.json)从独立接受native候选继续，并在未人工修复的R1/Tf封存起点验证。旧单次隔离条件不约束后续探索。
+
+C93–C96：原生current-STA从未修复R1自动取得两步CPD收益；同选择器/full-device机会的target-only对照无首步收益，释放范围贡献得到隔离。保护旧受害者真实生效仍迁移瓶颈；全当前STA保护给出IPIN容量条件证据，下一比较有时序预算的替代victim路径/retained范围，不能把7.639ps查询潜力当最终QoR。完整流程成本与原生核心分开，复用和身份断言失败保留。[汇总](../native_scope_policy_summary_02.json)、[条件容量](../protected_native_scope_summary_01.json)。
+
+C97–C100：封存Tf自动严格4步改善；当前端点Pareto因PRDATA退化停止本算子而非整个目标。6连接40IPIN时序预算参考与SOURCE-only割把乐观代理、有限路径池和真实容量限制分开。无新合法budget修复就不报告QoR提升；转向跨电路和占主导的准备/检查开销。[汇总](../budget_scope_progress_summary_01.json)。
+
+C101–C102：SPMV两步收益只追回强A0时序，仍多用SB和线长。原生当前STA目标由6008p12迁移到6395p2并自动释放6394p2；A0 worst-only无机会。对相同R1/Tf输入复用而不扩大样本数。图缓存只改变物理审查数据访问，保留FULL/STA并在原候选上做逐字节等价与负例；近关键策略仍待独立验证。[汇总](../spmv_cache_progress_summary_01.json)。
+
+C103–C105区分搜索未采用短路与实际缩短被端点遮蔽。相同初态2x2表明此6008p12案例需要physical目标与hard容量共同作用，endpoint台阶得到2setup改善但CPD仍持平，后续无收益。6997p1局部slack改善但全端点不变，不能仅凭命名断言具体重汇合支路；登记高精度原生时序锥。原始XML完整证据缓存已验证，完整STA包装的运行收益仍待测。[汇总](../adoption_full_cache_summary_01.json)。
+
+C106–C107将C103–C105时未解决的遮蔽问题定位：6997p1实际缩短但6927p1严格占优，无需把此案例误判为并列路径组合修复。新通用选择器从当前端点回溯全部精确max前驱；SPMV最差路径六连接均达SOURCE-only最短距离，固定端点重布线继续降CPD空间受限。移至未修复BNN起点，保留次级端点目标；不增加整体停止条件。FULL审查缓存现已用于新native观察，但没有整体速度对照。[证据](../timing_cone_progress_summary_01.json)。
+
+多目标更新：严格CPD模式保留，但不再作为所有最终候选唯一保留规则。四维质量档案不包含端点向量所有信息；SPMV四维支配不等于所有时序指标支配。BNN R1/U具有相同报告CPD但线长、SB/CB、匹配完整过程时间取舍。后续以有余量的资源持有者释放与关键修复组合为机制，原生等搜索域/选择/树范围/机会对照，联合贡献消融。图与档案不按每电路历史最佳汇成新算法点。
+
+C110–C111：BNN真实资源接受改动均未改变完整端点向量，但73897p1退出最大到达锥。weighted原生对照四维质量优于physical_capacity，不能归因新容量机制。后续3关键目标+13持有者分支组合及分量消融均从封存Tf出发；R1有相同选择机会。固定预算检查最终事务，失败整体回滚；新批次未用于当前结论。状态加载/全检查/选择开销远超核心，必须分别计时。
+
+C112–C113：相同三目标仅修复均持平；释放+联合weighted降CPD而不增加资源，支持释放贡献但仅持有者未完成。physical+hardcapacity捆绑未胜过nativeweighted，不解释为hardcapacity单因素失败。接受态10目标直接/保护关键网络筛查无进一步收益，串联关键owner机会独立研究；整体Goal继续，强A0/R1公平机会队列已实际提交。
+
+六臂补齐：两个目标函数下仅组合降低CPD，owner-only仅改善1/2端点且增加资源；weighted组合有14个独有改善分量。选择器工程候选在3状态10进程保持全部字段精确一致，节省组件开销；未替代全量正确性检查、未修改现有原生cohort。
+
+C116–C117新增强A0首次合法配对及端点退化尾部、三起点同CPD资源取舍；当前路径模式DP和自动请求构造替代手工历史目标列表，代理/实际原生结果分开，未来多轮预算锚点与当前进步比较已分离验证。
+
+C118–C120更新强A0/R1十二臂、完整共享流程/核心不同口径、已实现自动流程与R1只读回放、临时容量顺序竞争及保留资源独立候选。后续批次仍按原版本运行；已构建/微型回归不代替BNN质量结果。新成果均在f7167bd之后，仅本地、未推送。
+
+C121–C122加入统一组选的Tf资源收益与A0时序/线长取舍，保留端点向量退化；新增静态原生事务批量复用分支及小图真实失败恢复验证。大图等价与完整性能未知，既有当前STA/保留实验不改。本地新增未推送。
+
+C123–C125更新四自动轨迹完整结果、A0调度未推进前沿及端点提案类反例；新增关键持有者/非关键释放范围扩展与条件距离复用。原生五臂仍待验证，无全局CPD或完整算法加速主张。本地更新未推送。
+
+C126区分资源保留ON的实现断言和最终质量失败，补充多sink回归、隔离stage04 reached位图修复及代表性大图恢复配对。原stage03批次仍按原规则继续，新大图收益未知。
+
+C127–C130新增可验证正结果及限制：扩展自由原生与preset候选相同，原生kernel不变；两顺序形成CPD/线长取舍，根零余量自动流程成立。更新开发摘要和方法贡献，保留初始guide历史负结果；跨方法共同绝对预算、跨电路和冷完整成本继续验证。本地新增未推送。
+
+C131–C132：强A0的端点平台接受为随后同请求CPD改善提供真实反例；原native核不变。载入复用用预route私有fork而非沿用已同步pin映射；小图通过，实际大图仍在验证。原始失败与完整时间未知均保留。
+
+C133–C135：已完成A0端点actor的合法拒绝点改进联合质量前沿；0层返回绕行反证改变资源干预位置，转向已保留跨层源共享。统一资源/sink排序与共同绝对开发预算六臂排队，完整物理/STA仍须验证。No-new域只隔离当前机制，不限制未来事务组合；成本分外层/子流程/核，冷完整时间未知。
+
+C136：原A0严格分支三步均精确改善CPD，当前关键持有者闭包转移到强原生起点成立；一次新增native达到13.228145690ns，资源与Tf不同。端点分支保留低wire档案点，不能以策略单一胜负替代联合前沿。仍需跨电路和冷完整算法确认。
+
+C137–C140：当前关键持有者闭包在R1产生严格时序收益；资源域使有余量连接付出局部延迟/线长以少用CB，只有资源策略接受。额外原生收敛本身也推进资源前沿，故必须继续同选择/范围/机会的原生对照。动态STA只计工程集成，不计QoR；模块组合通过针对主张的消融验证，无需每模块独立CPD获益。
+
+C141–C142：R1快速态10条当前获胜连接的SOURCE-only放松仍无正gap，公共前缀不是已观测持平的充分解释。优先资源/开销及其他端点/电路；不可宣布全局最优。原生R1/Tf的无重布退出说明只调max_convergence_count不等于提供同目标选择/修复机会；新自动资源OFF/ON显式给两侧同一机会。
+
+C143–C145：两步资源轨迹真实节省1SB/1CB而CPD平，第二步free native已等同域ON，需原态native-only selector消融检验选择/调度；不作全域新搜索原语结论。主开销在wrapper/完整审计/STA，native-worker复用与distinct-net组合事务是下一项干预，仍需大图证据。强spmv A0零当前共享scope与eltwise非零scope提供不同机制边界，不能只展示本方法内部前沿。
+
+C146–C148：强A0 native8低线长状态与当前STA修复组合推进了相对旧A0/Tf的质量前沿，但与低SB的R1形成互不支配取舍。每模块不需先独立CPD改善；首步联合vs target-only隔离owners，native-only自身轨迹隔离selector/schedule，paired/native-first后续隔离请求调度。未知冷完整时间不能用warm/native核心/历史U替代。
+
+C149：固定根SB/CB与wire0.1%策略在此轨迹不改变三次选择/接受；它在此点没有额外约束作用，不能当作已探索完整资源预算敏感性。零增量wire拒绝首步仍是不同设计取舍。复用与创建代价分开。
+
+C150–C152：K4两轮同源OFF/ON表明资源scope/当前调度已有收益，域限制额外给出首轮CB与后轮SB节省。ON总收益不能全归新原语。4条候选FULLSTA覆盖8个提交cut，开销仍由完整审计/状态占主导；必须等native-first各自轨迹验证是否值得为额外资源质量执行ON。强A0 timing→resource独立同根对照已启动，不要求各模块独立改善CPD，最终budget/FULLSTA仍统一验证。
+
+C153–C154：native-only资源首步在已改善timing状态上有效，支持模块组合而非每模块独立CPD改善门槛；四个真实连接delay改变但固定setup向量平，不能从endpoint平推物理delay无变化或省略STA。root budgets的已存经验slice区分低CB/低wire与低SB设计问题，不作逐电路历史最佳算法成绩。
+
+C155：完成timing→resource组合后low-wire A0的SB优势边界从94降88，保留与R1 SB79/CB5071的设计取舍。首步endpoint flat/resource接受，次步endpoint改善/strict拒绝，不能用单步CPD作最终保留标准；未证明enabling/carry到后续CPD。逐态重新选择、完整FULLSTA、单native串行成本与池后端不可借用作速度比。
+
+C156–C158：K8首次到达K4二步完全相同实际状态，gate2vs4是摊薄机制证据。后步domain失败不是调参即可解决：最小占用已无domain容量路径；应按网释放guide/范围更新，不能只调顺序/预算。OFF完整回退保留合法终态。核心统计成功/失败分开，全部18.699s；cache复用只用已封存exact OFF证据、新budget重判，domain ON不能借用。A0 resource-only86SB/慢CPD与timing→resource88SB/快CPD互不支配。
+
+C159–C162：同scope unrestricted与domain可推进不同资源坐标，非只比旧R1；组合不要求每分步CPD/端点改善。必要性容量证书之后已有7域真实合法72SB点，自动fallback是独立后续实现。资源阶段关键锥不变以A0_K8_final_critical_structure_02为准；01的int/string比较误报已被纠正，无重跑native。loaded context未保存旧PathFinder累积价格历史，不能称完整当前router状态复用。跨电路SPMV仍被强A0支配，完整冷时间未知。
+
+C163：自动仅释放失败net，不重做前五个成功恢复；同实际route/完整向量复现72SB点，说明手工release list不是取得该点的必要接口。与free74SB形成+64wire/−2SB取舍。九端点改善都不在固定源近关键23分量内，不能据此称后续CPD必改进。完整输入态流程287.624s，主要为源构建/观察、audit和候选FULLSTA；core6.693s为嵌套分量。真实初始routing+repair冷时间未知。
+
+C164–C167：统一K8从原生pristine根出现“不降CPD但更省资源”的实际点；native-only本身有收益，paired多省SB/CB但可多wire。Eltwise未触发fallback，不能混淆分组/域与失败释放贡献。fast最坏连接解除全部prefix后proxy距离仍等于现状，不再单靠加查询预算。新fused真实STA/独立LOAD通过；CPD变更/强制路径事务仍需后续覆盖。COMPLETE含candidate observer，恢复段复用历史worker不伪造完整冷时间。资源先行→时序以原始wire绝对预算及更紧79/5061垂直预算验证组合，不要求各模块单独改善CPD。
+
+C168–C169：端点解码仍校验每行JSON、完整向量精确同值，省的是丢弃无关pin字典的驻留，不是省STA/数字精度。真实候选复用物理证据需route/graph/pack/place全相同；组件11s→5s和RSS减少不是全路由速度比。资源先行首步在79/5061紧包络内降低CPD且出现更多同endpoint并列winning连接，必须按新STA选组；17非关键setup退化只在声明的CPD/hold资源策略下接受，不能伪称endpoint-vector策略通过。
+
+C170–C171：资源先行三步与时序先行达同质量/完整endpoint vector，route body不同；不是新的Pareto改进或一般可交换性证明。第三步联合9net/12连接，允许非关键延迟增加并改善CPD，endpoint-vector因一项setup退化拒绝。原生核未发明新搜索器，机制贡献是currentSTA选择/容量依赖scope/调度与接受。当前winning cone10条物理静态距离已达宽松source-root参考，须把研究转向资源/开销/其他scope，而非只放大此cone预算。compact实际保留FULL、新STA和全部JSON精度，只有graph echo可选，时序cone调用须full；native FULL/STA integration与Python decoder/导出贡献分开验证。
+
+C172：只有第二步ON的net6719出现差异，OFF及首步ON/OFF实际树和向量相同；当前物理拓扑/完整STA相同不代表未来原生查询语义相同。KEEP seed值的多重集相同、顺序改变，old/new/局部swap三臂准确复现两端点，所以23wire归因于保留树遍历/搜索选择敏感性，尚未证明具体同代价tie。后续可比较全局固定canonical/native/确定性seed策略，在相同selector/scope/机会的native与domain分支均使用同一策略，不能逐电路挑序。原source/candidate精确路由SHA继续作为查询cache身份；order-insensitive tree helper只用于物理等价审查，不能作为搜索重用许可。
+
+C173–C175：强化native-only后5步82SB，旧2步86SB不能作永久充分对照。全局种子顺序策略显式化后同物理源表示给出相同树/向量/cost；delay/RR在单固定源217183wire，须从pristine A0/R1/Tf自动迁移并共享policy给原生与domain控制，不能逐电路挑历史最优。原生Dijkstra(no lookahead)cost3行随后状态变，排除“所有差异都已证纯等代价tie”的过强说法。验证开销约一半来自Python重建/物理/树检查；native census只作read-only native assurance先同独立审查shadow，快消费者仍未实现。
+
+C176：将重建候选+实际树二次比较替换成直接实际候选scope/edge/capacity检查，保持有序native输出原字节、selector/search/acceptance不变；物理拓扑等价仅用于scope，不能替代search/cache身份。六真实封存事务+六损坏对照通过；新完整自动trajectory工程对照从同global-seed A0 native/paired起点出发，逐步目标/接受/有序树/完整向量及最终独立指标均须匹配。仍保留完整独立物理/domain/native-counter shadow审查；不是快速计数accept消费者或正式完整加速。
+
+C177–C178：45SB合法注册prefix的current winning cone仍有5条正源-only静态距离gap；与快13.228ns终点10项全零gap不同，支持同资源下原生current-STA修复，而非只扩大同一查询预算。7严格命中+3缺失查询，反向证据去虚拟anchor后核真实正向边；不可当可行路由或CPD总收益。双策略从同一全精度STA/端点/SDC和2061627wire/45SB/5060CB启动；strict参考原规则，次级增加完整setup向量Pareto且CPD非退化。分叉后各自选当前目标，严格同源同请求时才复用native结果，研究工作流/分支导入开销均不代替完整单配置时间。
+
+C179–C181：完整资源cohort43SB已终封并进入外部强基线联合档案。冻结此前7步45SB输入的strict组合已两接受，CPD13.413972且SB45/CB5060保持；只代表该注册prefix，不挪用43SB起点。第一步full setup向量17退化但固定near12零退化，提示全setup-Pareto可能阻止有价值的donor余量使用；保留当前两策略不改规则，之后可独立研究固定near集合+受控donor预算，不能把新规则混入当前批。v8快计数consumer实际回放/非空selector通过，final独立proof只证本state；真实live4case等价性尚待结果。
+
+C182–C183：strict三接受结束至13.228146ns/45SB/5060CB，不把该CPD套给43SB最终资源点。相对旧79SB同CPD点near35完全相同、无新near进入，582/312其他setup变化完整保留。endpoint6提案0接受不直接否定次级机制：单target物理变好而vector持平说明同端点并列max路径；大组合donor退化拒绝。新失败反馈从同source actual aggregate剔除已观察donor增延的actions，组合两小target覆盖两路径；不是把fraction.9换邻值或放宽向量。必须新native合法/STA及原caps验证，occupancy/order改变仍可导致失败。

@@ -1,0 +1,702 @@
+{
+  "observation_utc": "2026-11-09T20:12:17.192544+00:00",
+  "observation_beijing": "2026-11-10T04:12:17.192544+08:00",
+  "processes": [
+    {
+      "pid": 3764138,
+      "state": "S",
+      "ppid": 1,
+      "start_ticks": 1876532964,
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/continue_parallel_heldout_v1.py "
+    },
+    {
+      "pid": 2567402,
+      "state": "S",
+      "ppid": 3764138,
+      "start_ticks": 1899451207,
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/execution_scripts/run_paired_width_diagnostic.py "
+    },
+    {
+      "pid": 2145222,
+      "state": "R",
+      "ppid": 2145218,
+      "start_ticks": 1902756437,
+      "command": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/single_thread_candidate_20261103/a0_serial_build/vpr/vpr /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w300/hybrid_o/import_only.xml /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/bnn.blif --route --analysis --device fixture --route_chan_width 300 --num_workers 1 --seed 11 --clock_modeling ideal --check_route full --verify_file_digests off --read_rr_graph /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w300/hybrid_o/rr_graph.xml --max_router_iterations 200 --routing_failure_predictor off --timing_report_npaths 0 --net_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_a0/packed.net --place_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_a0/placed.place --route_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/paired_width_bnn_s11_hybrid_o_n125_w300_p1_a0/routed.route --merge_constant_generators off "
+    }
+  ],
+  "coordinator_identity_matches_recorded": true,
+  "terminal_cases": [
+    "spmv_s11_sb_p0",
+    "spmv_s11_sb_p1",
+    "spmv_s11_cb_o_p0",
+    "spmv_s11_cb_o_p1",
+    "spmv_s11_hybrid_o_p0",
+    "spmv_s11_hybrid_o_p1",
+    "bnn_s11_sb_p0",
+    "bnn_s11_sb_p1",
+    "bnn_s11_cb_o_p0",
+    "bnn_s11_cb_o_p1",
+    "bnn_s11_hybrid_o_p0"
+  ],
+  "remaining_cases": [
+    "bnn_s11_hybrid_o_p1",
+    "robot_rl_s21_sb_p0",
+    "robot_rl_s21_sb_p1",
+    "robot_rl_s21_cb_o_p0",
+    "robot_rl_s21_cb_o_p1",
+    "robot_rl_s21_hybrid_o_p0",
+    "robot_rl_s21_hybrid_o_p1",
+    "conv_layer_hls_s21_sb_p0",
+    "conv_layer_hls_s21_sb_p1",
+    "conv_layer_hls_s21_cb_o_p0",
+    "conv_layer_hls_s21_cb_o_p1",
+    "conv_layer_hls_s21_hybrid_o_p0",
+    "conv_layer_hls_s21_hybrid_o_p1"
+  ],
+  "active_role": "paired_width_bnn_s11_hybrid_o_n125_w300_p1_a0",
+  "free_space_GiB": 5147.73,
+  "normal_remaining_hours": [
+    4,
+    10
+  ],
+  "normal_completion_beijing": [
+    "2026-11-10T08:12:17.192544+08:00",
+    "2026-11-10T14:12:17.192544+08:00"
+  ],
+  "slow_tail_remaining_hours": [
+    12,
+    18
+  ],
+  "solver_budget_only_bound_hours": 49.5,
+  "reference_runs": [
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p0",
+      "width": 100,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 56.027789648622274,
+      "run": "heldout_conv_layer_hls_s21_sb_n80_w100_p0_a0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p0",
+      "width": 100,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 60.36367418989539,
+      "run": "heldout_conv_layer_hls_s21_sb_n80_w100_p0_critical_c7"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p1",
+      "width": 100,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 58.556545961648226,
+      "run": "heldout_conv_layer_hls_s21_sb_n80_w100_p1_a0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p1",
+      "width": 100,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 58.94776961579919,
+      "run": "heldout_conv_layer_hls_s21_sb_n80_w100_p1_critical_c7"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p1",
+      "width": 100,
+      "role": "fixed_geometry",
+      "status": "legal",
+      "process_wall_seconds": 143.00257916003466,
+      "run": "heldout_conv_layer_hls_s21_sb_n80_w100_p1_geometry_c0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p0",
+      "width": 100,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 24.16399036347866,
+      "run": "heldout_conv_layer_hls_s21_cb_o_n80_w100_p0_a0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p0",
+      "width": 100,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 25.60318550094962,
+      "run": "heldout_conv_layer_hls_s21_cb_o_n80_w100_p0_critical_c4"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p1",
+      "width": 100,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 23.287588112056255,
+      "run": "heldout_conv_layer_hls_s21_cb_o_n80_w100_p1_a0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p1",
+      "width": 100,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 24.804427284747362,
+      "run": "heldout_conv_layer_hls_s21_cb_o_n80_w100_p1_critical_c4"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p1",
+      "width": 100,
+      "role": "fixed_geometry",
+      "status": "legal",
+      "process_wall_seconds": 25.433705918490887,
+      "run": "heldout_conv_layer_hls_s21_cb_o_n80_w100_p1_geometry_c0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p0",
+      "width": 100,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 60.25278244540095,
+      "run": "heldout_conv_layer_hls_s21_hybrid_o_n80_w100_p0_a0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p0",
+      "width": 100,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 59.924059458076954,
+      "run": "heldout_conv_layer_hls_s21_hybrid_o_n80_w100_p0_delay_critical_c6"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p1",
+      "width": 100,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 57.41222881898284,
+      "run": "heldout_conv_layer_hls_s21_hybrid_o_n80_w100_p1_a0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p1",
+      "width": 100,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 60.77419453859329,
+      "run": "heldout_conv_layer_hls_s21_hybrid_o_n80_w100_p1_delay_critical_c6"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p1",
+      "width": 100,
+      "role": "fixed_geometry",
+      "status": "legal",
+      "process_wall_seconds": 203.76417531445622,
+      "run": "heldout_conv_layer_hls_s21_hybrid_o_n80_w100_p1_geometry_c0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "matched_2d",
+      "flow": "p0",
+      "width": 100,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 24.188575230538845,
+      "run": "heldout_conv_layer_hls_s21_matched_2d_n80_w100_p0_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p0",
+      "width": 100,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 36.45272395759821,
+      "run": "heldout_robot_rl_s21_sb_n60_w100_p0_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p0",
+      "width": 100,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 47.631800409406424,
+      "run": "heldout_robot_rl_s21_sb_n60_w100_p0_critical_c7"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p1",
+      "width": 100,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 42.62577426433563,
+      "run": "heldout_robot_rl_s21_sb_n60_w100_p1_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p1",
+      "width": 100,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 43.61053151637316,
+      "run": "heldout_robot_rl_s21_sb_n60_w100_p1_critical_c7"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p1",
+      "width": 100,
+      "role": "fixed_geometry",
+      "status": "legal",
+      "process_wall_seconds": 268.16032288968563,
+      "run": "heldout_robot_rl_s21_sb_n60_w100_p1_geometry_c0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p0",
+      "width": 100,
+      "role": "A0",
+      "status": "failed",
+      "process_wall_seconds": 29.97165510058403,
+      "run": "heldout_robot_rl_s21_cb_o_n60_w100_p0_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p0",
+      "width": 100,
+      "role": "R1",
+      "status": "failed",
+      "process_wall_seconds": 31.581131860613823,
+      "run": "heldout_robot_rl_s21_cb_o_n60_w100_p0_critical_c4"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p1",
+      "width": 100,
+      "role": "A0",
+      "status": "failed",
+      "process_wall_seconds": 31.855295788496733,
+      "run": "heldout_robot_rl_s21_cb_o_n60_w100_p1_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p1",
+      "width": 100,
+      "role": "R1",
+      "status": "failed",
+      "process_wall_seconds": 33.364822153002024,
+      "run": "heldout_robot_rl_s21_cb_o_n60_w100_p1_critical_c4"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p1",
+      "width": 100,
+      "role": "fixed_geometry",
+      "status": "failed",
+      "process_wall_seconds": 34.15661063045263,
+      "run": "heldout_robot_rl_s21_cb_o_n60_w100_p1_geometry_c0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p0",
+      "width": 100,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 37.211675859987736,
+      "run": "heldout_robot_rl_s21_hybrid_o_n60_w100_p0_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p0",
+      "width": 100,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 49.66713605821133,
+      "run": "heldout_robot_rl_s21_hybrid_o_n60_w100_p0_delay_critical_c6"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p1",
+      "width": 100,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 37.40399955585599,
+      "run": "heldout_robot_rl_s21_hybrid_o_n60_w100_p1_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p1",
+      "width": 100,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 43.114398423582315,
+      "run": "heldout_robot_rl_s21_hybrid_o_n60_w100_p1_delay_critical_c6"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p1",
+      "width": 100,
+      "role": "fixed_geometry",
+      "status": "legal",
+      "process_wall_seconds": 292.63115963339806,
+      "run": "heldout_robot_rl_s21_hybrid_o_n60_w100_p1_geometry_c0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "matched_2d",
+      "flow": "p0",
+      "width": 100,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 19.071214493364096,
+      "run": "heldout_robot_rl_s21_matched_2d_n60_w100_p0_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p0",
+      "width": 300,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 86.95698415115476,
+      "run": "width300_robot_rl_s21_sb_n60_w300_p0_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p0",
+      "width": 300,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 121.71513777971268,
+      "run": "width300_robot_rl_s21_sb_n60_w300_p0_critical_c7"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p1",
+      "width": 300,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 98.6466140858829,
+      "run": "width300_robot_rl_s21_sb_n60_w300_p1_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p1",
+      "width": 300,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 99.36002199724317,
+      "run": "width300_robot_rl_s21_sb_n60_w300_p1_critical_c7"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p0",
+      "width": 300,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 34.95955918356776,
+      "run": "width300_robot_rl_s21_cb_o_n60_w300_p0_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p0",
+      "width": 300,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 37.61669661849737,
+      "run": "width300_robot_rl_s21_cb_o_n60_w300_p0_critical_c4"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p1",
+      "width": 300,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 33.91789050027728,
+      "run": "width300_robot_rl_s21_cb_o_n60_w300_p1_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p1",
+      "width": 300,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 36.13368697836995,
+      "run": "width300_robot_rl_s21_cb_o_n60_w300_p1_critical_c4"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p0",
+      "width": 300,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 98.1136788353324,
+      "run": "width300_robot_rl_s21_hybrid_o_n60_w300_p0_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p0",
+      "width": 300,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 126.25547594949603,
+      "run": "width300_robot_rl_s21_hybrid_o_n60_w300_p0_delay_critical_c6"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p1",
+      "width": 300,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 92.86281091347337,
+      "run": "width300_robot_rl_s21_hybrid_o_n60_w300_p1_a0"
+    },
+    {
+      "circuit": "robot_rl",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p1",
+      "width": 300,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 108.17505120486021,
+      "run": "width300_robot_rl_s21_hybrid_o_n60_w300_p1_delay_critical_c6"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p0",
+      "width": 300,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 158.26633678749204,
+      "run": "width300_conv_layer_hls_s21_sb_n80_w300_p0_a0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p0",
+      "width": 300,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 164.82748629525304,
+      "run": "width300_conv_layer_hls_s21_sb_n80_w300_p0_critical_c7"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p1",
+      "width": 300,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 153.07003463059664,
+      "run": "width300_conv_layer_hls_s21_sb_n80_w300_p1_a0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "sb",
+      "flow": "p1",
+      "width": 300,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 155.0194186605513,
+      "run": "width300_conv_layer_hls_s21_sb_n80_w300_p1_critical_c7"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p0",
+      "width": 300,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 54.4166043587029,
+      "run": "width300_conv_layer_hls_s21_cb_o_n80_w300_p0_a0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p0",
+      "width": 300,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 62.94515613466501,
+      "run": "width300_conv_layer_hls_s21_cb_o_n80_w300_p0_critical_c4"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p1",
+      "width": 300,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 57.00773639604449,
+      "run": "width300_conv_layer_hls_s21_cb_o_n80_w300_p1_a0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "cb_o",
+      "flow": "p1",
+      "width": 300,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 58.11973809450865,
+      "run": "width300_conv_layer_hls_s21_cb_o_n80_w300_p1_critical_c4"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p0",
+      "width": 300,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 153.4361323416233,
+      "run": "width300_conv_layer_hls_s21_hybrid_o_n80_w300_p0_a0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p0",
+      "width": 300,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 160.81438948586583,
+      "run": "width300_conv_layer_hls_s21_hybrid_o_n80_w300_p0_delay_critical_c6"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p1",
+      "width": 300,
+      "role": "A0",
+      "status": "legal",
+      "process_wall_seconds": 153.46326868236065,
+      "run": "width300_conv_layer_hls_s21_hybrid_o_n80_w300_p1_a0"
+    },
+    {
+      "circuit": "conv_layer_hls",
+      "seed": 21,
+      "family": "hybrid_o",
+      "flow": "p1",
+      "width": 300,
+      "role": "R1",
+      "status": "legal",
+      "process_wall_seconds": 172.23672822862864,
+      "run": "width300_conv_layer_hls_s21_hybrid_o_n80_w300_p1_delay_critical_c6"
+    }
+  ],
+  "assumptions": [
+    "12 later cases are robot_rl and conv_layer_hls, whose old A0/R1 routes took roughly 23\u2013172 seconds per process; old P1 geometry routes roughly 25\u2013293 seconds. These are indicative, not identical-layout W300 geometry evidence.",
+    "Current BNN W300 A0 plus G and R1 can each consume a 1800-second limit; the former BNN G W300 timeout is preserved.",
+    "4\u201310h scenario allows width amplification of geometry cost, placements, independent audits, graph loading and analysis; 12\u201318h is a slow-tail scenario, not a guaranteed bound.",
+    "12 unstarted cases each permit one 3600s placement plus six 1800s routes; current three remaining routes add at most 1.5h. Thus 49.5h is an intentionally conservative solver-budget envelope, excluding uncapped audit, filesystem, guard/cleanup and analysis time.",
+    "No coordinator restart, no duplicate submission; stage/role changes handled by existing owner."
+  ],
+  "queue_actions_taken": "none; read-only status and historical comparison",
+  "final_evidence_closure_allowance_hours": [
+    4,
+    8
+  ],
+  "closure_note": "After terminal analysis and if no integrity inconsistency; manual audit/archive estimate, not a running task or guaranteed ETA."
+}

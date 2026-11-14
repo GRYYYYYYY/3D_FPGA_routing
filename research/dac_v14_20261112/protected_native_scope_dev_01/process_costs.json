@@ -1,0 +1,68 @@
+[
+  {
+    "tag": "scope",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/prepare_native_scope_request.py",
+      "--state",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/successor_native_controls_01/weighted_soft_evaluation",
+      "--opportunity",
+      "research/dac_v14_20261112/protected_joint_scope_search_01/current/opportunity.json",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/protected_native_scope_dev_01/transaction",
+      "--scope",
+      "conflict"
+    ],
+    "status": "completed",
+    "returncode": 0,
+    "complete_process_seconds": 3.673117481172085
+  },
+  {
+    "tag": "native",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_native_objective_state_analysis.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/successor_native_controls_01/weighted_soft_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/protected_native_scope_dev_01/transaction/candidate",
+      "--native-cases",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/protected_native_scope_dev_01/transaction/candidate.txt",
+      "--objective",
+      "weighted_soft"
+    ],
+    "status": "completed",
+    "returncode": 0,
+    "complete_process_seconds": 15.892201464623213
+  },
+  {
+    "tag": "audit",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_native_objective.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/protected_native_scope_dev_01/transaction",
+      "--role",
+      "candidate"
+    ],
+    "status": "completed",
+    "returncode": 0,
+    "complete_process_seconds": 28.462931536138058
+  },
+  {
+    "tag": "evaluation",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_endpoint_state_analysis.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/successor_native_controls_01/weighted_soft_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/protected_native_scope_dev_01/evaluation",
+      "--candidate-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/protected_native_scope_dev_01/transaction/candidate_audit/candidate.route"
+    ],
+    "status": "completed",
+    "returncode": 0,
+    "complete_process_seconds": 38.78157540783286
+  }
+]

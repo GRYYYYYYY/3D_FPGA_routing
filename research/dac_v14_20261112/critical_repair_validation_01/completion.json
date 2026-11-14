@@ -1,0 +1,77 @@
+{
+  "status": "native_analysis_terminal",
+  "passed": true,
+  "gates": {
+    "C": {
+      "process_completed": true,
+      "native_FULL": true,
+      "route_load_observed": true,
+      "inputs_unchanged": true,
+      "cpd_present": true,
+      "control_CPD_exact": true
+    },
+    "R": {
+      "process_completed": true,
+      "native_FULL": true,
+      "route_load_observed": true,
+      "inputs_unchanged": true,
+      "cpd_present": true
+    }
+  },
+  "missing_arms": [],
+  "native_analysis_calls": 2,
+  "route_search_calls": 0,
+  "recovery_native_calls": 0,
+  "observations": [
+    {
+      "arm": "C",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 6.20812,
+        "wirelength": 228420,
+        "router_seconds": 0.69,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_seconds": 8.586962066590786,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 228420,
+        "sb_pairs_used": 118,
+        "sb_pair_net_occupancy": 118,
+        "cb_crossing_output_sources_used": 955,
+        "cb_crossing_output_source_net_occupancy": 955,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 554,
+          "CHANX->CHANX": 118,
+          "OPIN->CHANY": 453
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      }
+    },
+    {
+      "arm": "R",
+      "status": "legal",
+      "metrics": {
+        "critical_path_ns": 6.20393,
+        "wirelength": 228420,
+        "router_seconds": 2.1,
+        "native_full_check_passed": true,
+        "routing_success_reported": true
+      },
+      "process_seconds": 9.784480728209019,
+      "physical_metrics": {
+        "planar_wirelength_excluding_sb_half_nodes": 228420,
+        "sb_pairs_used": 119,
+        "sb_pair_net_occupancy": 119,
+        "cb_crossing_output_sources_used": 956,
+        "cb_crossing_output_source_net_occupancy": 956,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 554,
+          "CHANX->CHANX": 119,
+          "OPIN->CHANY": 454
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "status": "registered_not_implemented_not_submitted",
+  "native_route_calls": 0,
+  "question": "Can current final critical connections be shortened while preserving other nets and retained branches, or do useful alternatives require coordinated congestion repair?",
+  "evidence": "Two current Tf worst-path inter-cluster connections have no final guide and no guided-search context. For net5479 pin36, same-input A0/R1/A1 route suffixes spliced into current tree reduce physical RR cost from3.265075ns to0.663513ns but each conflicts with three occupied unit-capacity resources. All six baseline transplant proposals conflict somewhere.",
+  "input": "Reuse actual_search_tree_eltwise_dev_01/T2 final legal route, exact RRG, packed/place inputs, plus critical_path_opportunity_01 endpoint/retained-tree alternatives. No new native trace needed for this diagnostic.",
+  "arms": [
+    "Relaxed: exact zero-RC shortest extension from retained prefixes after pruning only the target-exclusive chain; ignore other-net occupancy.",
+    "Fixed-other-nets: same graph and retained tree, disallow a new RR node when other-net occupancy exhausts its capacity; stop at retained-tree nodes and charge actual prefix once."
+  ],
+  "domain": "Full-device reference graph, explicitly a diagnostic domain and not a claim that the last native search used that BB. Permit physical cross-layer edges without a single-cross model restriction. Derive source/seed eligibility from graph/tree and state the difference from historical actual-heap eligibility.",
+  "checks": [
+    "Frozen input identity, physical edges/switches and zero RC.",
+    "Small graph independent Floyd reference for the new capacity/tree adapter; existing generic query core may be reused by exact source hash.",
+    "Reference result must not exceed the known current legal path when that path is admitted; missing paths and exclusions explained.",
+    "All returned suffixes intersect retained tree only at anchor; check other sink reachability, RR occupancy and recomputed current prefix.",
+    "Native FULL (including reserved OPIN/nonconfig/bus mux) and final STA remain necessary before calling any alternative realizable method performance."
+  ],
+  "followup": "If fixed-other-net shorter witnesses exist, test transactional native timing repair/selection on appropriate current-criticality targets; otherwise identify blocking net/resource sets for bounded coordinated reroute. Do not simply increase preferred-query budget. Include matched A0/R1/Tf with the same scope and convergence opportunity for actual quality comparisons.",
+  "limitations": "Retrospective final-path selection is a potential diagnostic, not deployable algorithm selection. No global optimum, source-cut impossibility or CPD gain inferred from absence/presence in this local model.",
+  "limits": {
+    "timeout_seconds": 1800,
+    "memory_bytes": 25769803776,
+    "disk_reserve_bytes": 85899345920
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/tree_aware_candidate_offline_01/analysis.json": "7aa17455fc697e6fb74c55f91b99f9f428d2dcdb2e0cf8badf7a132bc29d6214",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/tree_aware_candidate_offline_01/decision_relevance.json": "e95c84f2fcc5b58eea1f01cd721ef86bc0d9f6042c612ad0ec83bfaa7fdddfb7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/critical_path_opportunity_01/analysis.json": "649c7328d2bef752d4948343acb34361f028d6fbbf5252de5373bdeb210ebb67"
+  }
+}

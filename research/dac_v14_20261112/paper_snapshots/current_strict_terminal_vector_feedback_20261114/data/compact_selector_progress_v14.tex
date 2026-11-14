@@ -1,0 +1,23 @@
+
+\section{Reducing current-STA scheduling overhead}
+\subsection{Implementation and exact scheduling checks}
+The prototype's full timing-echo reader reconstructs every graph object and every timing tag before selecting a small current cone. An independent reader stores incoming-edge incidence, source/destination indices, disabled flags and maximum delays compactly, retaining arrival tags only for the selected launch domains and slack tags for the selected endpoints. It checks complete incoming incidence and uses the same native float32 maximum recurrence. Every equal winning fanin is preserved; missing domains or inconsistent recurrences remain explicit unknowns. This reader serves selection only and does not replace native FULL/STA or independent physical legality checks.
+
+Differential fixtures cover equal fanins, disabled arcs, distinct float32 results, two launch domains, absent domain-specific arrivals, inconsistent recurrences and rejection of invalid disabled flags. The accepted BNN state also agrees field for field with the existing full parser. An interleaved development benchmark then compares complete selector processes on the same immutable initial BNN, accepted BNN and SPMV states. All ten outputs match in selected endpoint identities, every traced proposal/gap/winning edge, routed connection mappings and unknown statuses. No native routing or STA is repeated for these checks.
+
+\begin{table}[t]
+\centering\small
+\caption{Selector-component development benchmark. Whole-process medians in seconds; existing native experiments continued in parallel.}
+\begin{tabular}{lrrr}
+\hline
+State & Full & Compact & Samples/method\\
+\hline
+BNN initial & 44.964 & 18.570 & 2\\
+BNN accepted & 43.837 & 18.396 & 2\\
+SPMV & 4.422 & 2.069 & 1\\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Cost scope and adoption boundary}
+The measured component ratios are approximately 0.413, 0.420 and 0.468. These are small interleaved component samples, not a formal whole-router or complete repair-algorithm speedup. Initial graph/state construction, candidate failures, native replacement, complete checks, STA and rollback remain part of future complete algorithm timing. The frozen selector candidate binds its source, differential checks and benchmark receipts. A separate future coordinator validates these receipts before enabling compact successor selection. Existing native and queued strong-baseline cohorts keep their registered full parser, so their runtimes are not retroactively replaced by the compact measurements. The current manuscript and archive continue to mark complete standalone algorithm time unknown.

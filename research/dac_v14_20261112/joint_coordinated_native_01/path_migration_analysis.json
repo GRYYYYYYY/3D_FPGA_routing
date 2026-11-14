@@ -1,0 +1,687 @@
+{
+  "passed": true,
+  "before": {
+    "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_R1",
+    "status": "existing_legal_route_diagnostic",
+    "source_sha256": {
+      "report_timing.setup.rpt": "cb9c7cb0df5ca46b1c3721abac13866f18c1d3a67fe343d83161471d8dd38f26",
+      "packed.net": "80407d8982581f80e837796ee76d7bd513f54f391390bad9946d4c64051deded",
+      "placed.place": "f43377f776bdb2fb67d1b287e1d22263514d2ba5e9831936087d853e18b1dd8b",
+      "routed.route": "bab64a5cd963b450cbe2bf6c583753edc51476aea5b768dcc4fac9d36f5d82a8",
+      "manifest.json": "1f19f4f4c1277ed820e3dd8847ef624a9b64c4dbdaf0061a7e0b09d112dbb6fd",
+      "independent_audit.json": "f888ae3d6f20e2f97bb42c9128d41743e65a92bd77e1b38bd9b757abe28f8cbd"
+    },
+    "startpoint": "bram_select[7].inpad[0] (.input clocked by virtual_io_clock)",
+    "endpoint": "bram_rdata_ext[60].D[0] (.latch clocked by clk)",
+    "cpd_ns": 6.0181,
+    "points": [
+      {
+        "pin": "bram_select[7].inpad[0]",
+        "model": ".input",
+        "increment_ns": 0.0,
+        "arrival_ns": 0.0,
+        "cluster": "bram_select[7]",
+        "location": [
+          19,
+          0,
+          6,
+          0
+        ],
+        "kind": "outputs",
+        "token": "bram_select[7]"
+      },
+      {
+        "pin": "$abc$87764$new_n16756.in[1]",
+        "model": ".names",
+        "increment_ns": 1.218,
+        "arrival_ns": 1.218,
+        "cluster": "$abc$87764$new_n16756",
+        "location": [
+          19,
+          12,
+          0,
+          0
+        ],
+        "kind": "inputs",
+        "token": "lut6.in[1]->direct:lut6"
+      },
+      {
+        "pin": "$abc$87764$new_n16756.out[0]",
+        "model": ".names",
+        "increment_ns": 0.261,
+        "arrival_ns": 1.479,
+        "cluster": "$abc$87764$new_n16756",
+        "location": [
+          19,
+          12,
+          0,
+          0
+        ],
+        "kind": "outputs",
+        "token": "$abc$87764$new_n16756"
+      },
+      {
+        "pin": "$abc$87764$new_n16923.in[0]",
+        "model": ".names",
+        "increment_ns": 0.784,
+        "arrival_ns": 2.262,
+        "cluster": "$0\\bram_rdata_ext[63:0][6]",
+        "location": [
+          21,
+          17,
+          0,
+          0
+        ],
+        "kind": "inputs",
+        "token": "lut6.in[0]->direct:lut6"
+      },
+      {
+        "pin": "$abc$87764$new_n16923.out[0]",
+        "model": ".names",
+        "increment_ns": 0.261,
+        "arrival_ns": 2.523,
+        "cluster": "$0\\bram_rdata_ext[63:0][6]",
+        "location": [
+          21,
+          17,
+          0,
+          0
+        ],
+        "kind": "outputs",
+        "token": "$abc$87764$new_n16923"
+      },
+      {
+        "pin": "$abc$87764$new_n16922.in[0]",
+        "model": ".names",
+        "increment_ns": 0.598,
+        "arrival_ns": 3.121,
+        "cluster": "$0\\bram_rdata_ext[63:0][27]",
+        "location": [
+          22,
+          15,
+          0,
+          0
+        ],
+        "kind": "inputs",
+        "token": "open"
+      },
+      {
+        "pin": "$abc$87764$new_n16922.out[0]",
+        "model": ".names",
+        "increment_ns": 0.261,
+        "arrival_ns": 3.382,
+        "cluster": "$0\\bram_rdata_ext[63:0][27]",
+        "location": [
+          22,
+          15,
+          0,
+          0
+        ],
+        "kind": "outputs",
+        "token": "$abc$87764$new_n16922"
+      },
+      {
+        "pin": "$abc$87764$new_n17267.in[0]",
+        "model": ".names",
+        "increment_ns": 0.969,
+        "arrival_ns": 4.351,
+        "cluster": "$abc$87764$new_n17266",
+        "location": [
+          30,
+          13,
+          0,
+          0
+        ],
+        "kind": "inputs",
+        "token": "lut6.in[0]->direct:lut6"
+      },
+      {
+        "pin": "$abc$87764$new_n17267.out[0]",
+        "model": ".names",
+        "increment_ns": 0.261,
+        "arrival_ns": 4.612,
+        "cluster": "$abc$87764$new_n17266",
+        "location": [
+          30,
+          13,
+          0,
+          0
+        ],
+        "kind": "outputs",
+        "token": "$abc$87764$new_n17267"
+      },
+      {
+        "pin": "$abc$87764$new_n17266.in[0]",
+        "model": ".names",
+        "increment_ns": 0.1,
+        "arrival_ns": 4.712,
+        "cluster": "$abc$87764$new_n17266",
+        "location": [
+          30,
+          13,
+          0,
+          0
+        ],
+        "kind": "inputs",
+        "token": "lut6.in[0]->direct:lut6"
+      },
+      {
+        "pin": "$abc$87764$new_n17266.out[0]",
+        "model": ".names",
+        "increment_ns": 0.261,
+        "arrival_ns": 4.973,
+        "cluster": "$abc$87764$new_n17266",
+        "location": [
+          30,
+          13,
+          0,
+          0
+        ],
+        "kind": "outputs",
+        "token": "$abc$87764$new_n17266"
+      },
+      {
+        "pin": "$0\\bram_rdata_ext[63:0][60].in[1]",
+        "model": ".names",
+        "increment_ns": 0.784,
+        "arrival_ns": 5.757,
+        "cluster": "$0\\bram_rdata_ext[63:0][63]",
+        "location": [
+          22,
+          13,
+          0,
+          0
+        ],
+        "kind": "inputs",
+        "token": "lut6.in[1]->direct:lut6"
+      },
+      {
+        "pin": "$0\\bram_rdata_ext[63:0][60].out[0]",
+        "model": ".names",
+        "increment_ns": 0.261,
+        "arrival_ns": 6.018,
+        "cluster": "$0\\bram_rdata_ext[63:0][63]",
+        "location": [
+          22,
+          13,
+          0,
+          0
+        ],
+        "kind": "outputs",
+        "token": "$0\\bram_rdata_ext[63:0][60]"
+      },
+      {
+        "pin": "bram_rdata_ext[60].D[0]",
+        "model": ".latch",
+        "increment_ns": 0.0,
+        "arrival_ns": 6.018,
+        "cluster": "$0\\bram_rdata_ext[63:0][63]",
+        "location": [
+          22,
+          13,
+          0,
+          0
+        ],
+        "kind": "inputs",
+        "token": "lut6[0].out[0]->direct2"
+      }
+    ],
+    "connections": [
+      {
+        "source_pin": "bram_select[7].inpad[0]",
+        "sink_pin": "$abc$87764$new_n16756.in[1]",
+        "net": "bram_select[7]",
+        "delay_ns_rounded": 1.218,
+        "inter_cluster": true,
+        "source_location": [
+          19,
+          0,
+          6,
+          0
+        ],
+        "sink_location": [
+          19,
+          12,
+          0,
+          0
+        ],
+        "cross_layer_endpoints": false,
+        "cluster_net": 6590,
+        "sink_location_matches": 1,
+        "sink_paths": [
+          {
+            "sink": 82095,
+            "route_pins": [
+              4
+            ],
+            "crossing_entries": [],
+            "path_nodes": 8,
+            "rr_path": [
+              81383,
+              81399,
+              327436,
+              419754,
+              419922,
+              338571,
+              82117,
+              82095
+            ]
+          }
+        ],
+        "match_scope": "Atom driver net name + placed sink cluster location, not an exact atom-pin-to-cluster-pin mapping"
+      },
+      {
+        "source_pin": "$abc$87764$new_n16756.out[0]",
+        "sink_pin": "$abc$87764$new_n16923.in[0]",
+        "net": "$abc$87764$new_n16756",
+        "delay_ns_rounded": 0.784,
+        "inter_cluster": true,
+        "source_location": [
+          19,
+          12,
+          0,
+          0
+        ],
+        "sink_location": [
+          21,
+          17,
+          0,
+          0
+        ],
+        "cross_layer_endpoints": false,
+        "cluster_net": 5470,
+        "sink_location_matches": 1,
+        "sink_paths": [
+          {
+            "sink": 92000,
+            "route_pins": [
+              5
+            ],
+            "crossing_entries": [],
+            "path_nodes": 7,
+            "rr_path": [
+              82105,
+              82156,
+              337638,
+              418156,
+              418236,
+              92015,
+              92000
+            ]
+          }
+        ],
+        "match_scope": "Atom driver net name + placed sink cluster location, not an exact atom-pin-to-cluster-pin mapping"
+      },
+      {
+        "source_pin": "$abc$87764$new_n16923.out[0]",
+        "sink_pin": "$abc$87764$new_n16922.in[0]",
+        "net": "$abc$87764$new_n16923",
+        "delay_ns_rounded": 0.598,
+        "inter_cluster": true,
+        "source_location": [
+          21,
+          17,
+          0,
+          0
+        ],
+        "sink_location": [
+          22,
+          15,
+          0,
+          0
+        ],
+        "cross_layer_endpoints": false,
+        "cluster_net": 5481,
+        "sink_location_matches": 1,
+        "sink_paths": [
+          {
+            "sink": 94332,
+            "route_pins": [
+              1
+            ],
+            "crossing_entries": [],
+            "path_nodes": 6,
+            "rr_path": [
+              92003,
+              92054,
+              418191,
+              340490,
+              94379,
+              94332
+            ]
+          }
+        ],
+        "match_scope": "Atom driver net name + placed sink cluster location, not an exact atom-pin-to-cluster-pin mapping"
+      },
+      {
+        "source_pin": "$abc$87764$new_n16922.out[0]",
+        "sink_pin": "$abc$87764$new_n17267.in[0]",
+        "net": "$abc$87764$new_n16922",
+        "delay_ns_rounded": 0.969,
+        "inter_cluster": true,
+        "source_location": [
+          22,
+          15,
+          0,
+          0
+        ],
+        "sink_location": [
+          30,
+          13,
+          0,
+          0
+        ],
+        "cross_layer_endpoints": false,
+        "cluster_net": 5485,
+        "sink_location_matches": 1,
+        "sink_paths": [
+          {
+            "sink": 127398,
+            "route_pins": [
+              9
+            ],
+            "crossing_entries": [],
+            "path_nodes": 8,
+            "rr_path": [
+              94335,
+              94386,
+              419081,
+              338630,
+              338728,
+              426532,
+              127412,
+              127398
+            ]
+          }
+        ],
+        "match_scope": "Atom driver net name + placed sink cluster location, not an exact atom-pin-to-cluster-pin mapping"
+      },
+      {
+        "source_pin": "$abc$87764$new_n17267.out[0]",
+        "sink_pin": "$abc$87764$new_n17266.in[0]",
+        "net": "$abc$87764$new_n17267",
+        "delay_ns_rounded": 0.1,
+        "inter_cluster": false,
+        "source_location": [
+          30,
+          13,
+          0,
+          0
+        ],
+        "sink_location": [
+          30,
+          13,
+          0,
+          0
+        ],
+        "cross_layer_endpoints": false
+      },
+      {
+        "source_pin": "$abc$87764$new_n17266.out[0]",
+        "sink_pin": "$0\\bram_rdata_ext[63:0][60].in[1]",
+        "net": "$abc$87764$new_n17266",
+        "delay_ns_rounded": 0.784,
+        "inter_cluster": true,
+        "source_location": [
+          30,
+          13,
+          0,
+          0
+        ],
+        "sink_location": [
+          22,
+          13,
+          0,
+          0
+        ],
+        "cross_layer_endpoints": false,
+        "cluster_net": 6639,
+        "sink_location_matches": 1,
+        "sink_paths": [
+          {
+            "sink": 94206,
+            "route_pins": [
+              1
+            ],
+            "crossing_entries": [],
+            "path_nodes": 7,
+            "rr_path": [
+              127408,
+              127459,
+              338755,
+              338667,
+              338561,
+              94248,
+              94206
+            ]
+          }
+        ],
+        "match_scope": "Atom driver net name + placed sink cluster location, not an exact atom-pin-to-cluster-pin mapping"
+      },
+      {
+        "source_pin": "$0\\bram_rdata_ext[63:0][60].out[0]",
+        "sink_pin": "bram_rdata_ext[60].D[0]",
+        "net": "$0\\bram_rdata_ext[63:0][60]",
+        "delay_ns_rounded": 0.0,
+        "inter_cluster": false,
+        "source_location": [
+          22,
+          13,
+          0,
+          0
+        ],
+        "sink_location": [
+          22,
+          13,
+          0,
+          0
+        ],
+        "cross_layer_endpoints": false
+      }
+    ],
+    "scope": "Worst reported path only; increments rounded to 0.001 ns, include connection timing model overhead; endpoint changes prevent same-path causal attribution. Placement layers fixed; exact pin mapping not inferred from location alone."
+  },
+  "after": {
+    "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_coordinated_native_01/runs/eltwise_layer_R",
+    "status": "existing_legal_route_diagnostic",
+    "source_sha256": {
+      "report_timing.setup.rpt": "7ae76ac845c79ec0ee5649ff16d286d9d134c0c4df340c21526cd4352adf693d",
+      "packed.net": "80407d8982581f80e837796ee76d7bd513f54f391390bad9946d4c64051deded",
+      "placed.place": "f43377f776bdb2fb67d1b287e1d22263514d2ba5e9831936087d853e18b1dd8b",
+      "routed.route": "f1c1ebdbb386a80ea49e99354ee09a93d3baec0d50be76457d2a8d4d4d4dbad1",
+      "manifest.json": "f2a0bfe535c39d849061554b136fa87238e6ee176f23546959de8e9614e351ae",
+      "independent_audit.json": "88171d52310bc7bbe87fe532e9b400e3a53c5b71fbadce15a3441d79d3daae46"
+    },
+    "startpoint": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.A[6].Q[0] (.latch clocked by clk)",
+    "endpoint": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.ExecuteModule.Mp[15].D[0] (.latch clocked by clk)",
+    "cpd_ns": 5.85466,
+    "points": [
+      {
+        "pin": "clk.inpad[0]",
+        "model": ".input",
+        "increment_ns": 0.0,
+        "arrival_ns": 0.0,
+        "cluster": "clk",
+        "location": [
+          1,
+          0,
+          2,
+          0
+        ],
+        "kind": "outputs",
+        "token": "clk"
+      },
+      {
+        "pin": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.A[6].clk[0]",
+        "model": ".latch",
+        "increment_ns": 0.08,
+        "arrival_ns": 0.08,
+        "cluster": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.Mmax[6]",
+        "location": [
+          5,
+          6,
+          0,
+          0
+        ],
+        "kind": "clocks",
+        "token": "ble6.clk[0]->direct3"
+      },
+      {
+        "pin": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.A[6].Q[0]",
+        "model": ".latch",
+        "increment_ns": 0.151,
+        "arrival_ns": 0.231,
+        "cluster": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.Mmax[6]",
+        "location": [
+          5,
+          6,
+          0,
+          0
+        ],
+        "kind": "outputs",
+        "token": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.A[6]"
+      },
+      {
+        "pin": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.Mp[0].A[11]",
+        "model": "two_mult_18x19",
+        "increment_ns": 1.459,
+        "arrival_ns": 1.69,
+        "cluster": "u_eltwise_cu_0.u_pe_array.pe1.u_mul.u_FPMult.Mp[0]",
+        "location": [
+          10,
+          22,
+          0,
+          0
+        ],
+        "kind": "inputs",
+        "token": "two_mult_18x19.A[11]->a2a"
+      },
+      {
+        "pin": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.Mp[0].Y[21]",
+        "model": "two_mult_18x19",
+        "increment_ns": 2.765,
+        "arrival_ns": 4.455,
+        "cluster": "u_eltwise_cu_0.u_pe_array.pe1.u_mul.u_FPMult.Mp[0]",
+        "location": [
+          10,
+          22,
+          0,
+          0
+        ],
+        "kind": "outputs",
+        "token": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.Mp[15]"
+      },
+      {
+        "pin": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.ExecuteModule.Mp[15].D[0]",
+        "model": ".latch",
+        "increment_ns": 1.399,
+        "arrival_ns": 5.854,
+        "cluster": "$abc$87764$flatten\\u_eltwise_cu_5.\\u_pe_array.\\pe0.\\u_add.$0\\sum_out_temp_reg[15:0][9]",
+        "location": [
+          8,
+          8,
+          0,
+          0
+        ],
+        "kind": "inputs",
+        "token": "lut6[0].out[0]->direct2"
+      }
+    ],
+    "connections": [
+      {
+        "source_pin": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.A[6].Q[0]",
+        "sink_pin": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.Mp[0].A[11]",
+        "net": "u_eltwise_cu_5.u_pe_array.pe0.u_add.u_FPAddSub.AlignModule.A[6]",
+        "delay_ns_rounded": 1.459,
+        "inter_cluster": true,
+        "source_location": [
+          5,
+          6,
+          0,
+          0
+        ],
+        "sink_location": [
+          10,
+          22,
+          0,
+          0
+        ],
+        "cross_layer_endpoints": false,
+        "cluster_net": 48,
+        "sink_location_matches": 1,
+        "sink_paths": [
+          {
+            "sink": 43125,
+            "route_pins": [
+              1
+            ],
+            "crossing_entries": [],
+            "path_nodes": 10,
+            "rr_path": [
+              24932,
+              24983,
+              331744,
+              406880,
+              407130,
+              407218,
+              350396,
+              408163,
+              43273,
+              43125
+            ]
+          }
+        ],
+        "match_scope": "Atom driver net name + placed sink cluster location, not an exact atom-pin-to-cluster-pin mapping"
+      },
+      {
+        "source_pin": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.Mp[0].Y[21]",
+        "sink_pin": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.ExecuteModule.Mp[15].D[0]",
+        "net": "u_eltwise_cu_5.u_pe_array.pe0.u_mul.u_FPMult.Mp[15]",
+        "delay_ns_rounded": 1.399,
+        "inter_cluster": true,
+        "source_location": [
+          10,
+          22,
+          0,
+          0
+        ],
+        "sink_location": [
+          8,
+          8,
+          0,
+          0
+        ],
+        "cross_layer_endpoints": false,
+        "cluster_net": 76,
+        "sink_location_matches": 1,
+        "sink_paths": [
+          {
+            "sink": 32423,
+            "route_pins": [
+              1
+            ],
+            "crossing_entries": [],
+            "path_nodes": 8,
+            "rr_path": [
+              43209,
+              43357,
+              409023,
+              408745,
+              408741,
+              333647,
+              32467,
+              32423
+            ]
+          }
+        ],
+        "match_scope": "Atom driver net name + placed sink cluster location, not an exact atom-pin-to-cluster-pin mapping"
+      }
+    ],
+    "scope": "Worst reported path only; increments rounded to 0.001 ns, include connection timing model overhead; endpoint changes prevent same-path causal attribution. Placement layers fixed; exact pin mapping not inferred from location alone."
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_coordinated_native_01/completion.json": "132081832df4ce328dcf2f243db0f70495700d2fa2f2ca1ef2e9eec0314700c5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_coordinated_native_01/input_seal.json": "9e578908afab84a8fef3a6b66acb3dbe633990c3f02128deb9cddc1a6ad151c5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/critical_path_diagnostics/inspect_paths.py": "514ec486051e56348cfc6818936a4684b77d62a83bbd184115be26443811865b"
+  }
+}

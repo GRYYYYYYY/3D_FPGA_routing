@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+"""Amortization transfer to strong A0 after its unchanged K4 control cohort."""
+import fcntl,os,subprocess,sys,time
+from pathlib import Path
+from retained_prefix_workflow import D,read,write,sha
+b=D/'strong_A0_fast_K8_resource_dev_01';b.mkdir(exist_ok=False);q=b/'queue';q.mkdir();lock=(q/'owner.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);prior=D/'strong_A0_fast_resource_dev_01';owner=read(prior/'queue/registration.json');validation=D/'cross_actor_resource_reuse_validation_02/completion.json';assert read(validation)['passed'];initial=Path(owner['initial_state']);files=[Path(__file__).resolve(),D/'run_serial_current_resource_repair_v2.py',D/'run_serial_resource_transactions_v3.py',D/'resource_native_reuse.py',D/'current_native_reuse_resource.py',validation,prior/'queue/registration.json',D/'strong_A0_native_only_K4_resource_summary_01.json',D/'K8_first_equals_K4_final_pending_seal_01.json',initial/'completion.json',initial/'endpoint_vector.json'];bound={str(p):sha(p)for p in files};write(q/'registration.json',dict(pid=os.getpid(),start_ticks=Path('/proc/self/stat').read_text().split(') ',1)[1].split()[19],prior_owner=dict(pid=owner['pid'],start_ticks=owner['start_ticks']),after=str(prior),initial_state=str(initial),cases=dict(native_only_K8=dict(domain_mode='unrestricted',bundle_size=8),paired_K8=dict(domain_mode='paired',bundle_size=8)),source_sha256=bound,question='Does whole K8 amortize candidate validation on the same strong-A0 fast root versus K4 and preserve or improve the observed timing/resource frontier? R1 first K8 reaches the identical K4-final physical state with fewer candidate gates, pending its actor seal.',reuse='Only fully sealed exact standalone free-native matches; domain ON and forced paths are never aliased to OFF. Source/request/binary/pressure guards and fresh acceptance validated with zero new native calls. Costs of reused creation remain excluded and separate.',concurrency=dict(this_chain_native_max=1,main_chain_native_max=2,total_native_max=3),qualification='Subsequent independent development; waits for the preserved K4 owner and receipt, never cancels or changes it. Same initial root, budget rule, ranks and restoration order across policies; own-current state after divergence. Local probe is not a global stopping matrix. Concurrent imported-state costs are not formal cold timing or per-circuit historical-best configuration selection.'))
+def live():
+ try:s=Path('/proc',str(owner['pid']),'stat').read_text().split(') ',1)[1].split();return s[0]!='Z'and s[19]==owner['start_ticks']
+ except FileNotFoundError:return False
+write(q/'status.json',dict(status='waiting_for_preserved_A0_fast_K4_owner',prior_pid=owner['pid'],observed_at=time.time()))
+while live():time.sleep(15)
+assert (prior/'queue/completion.json').exists()and read(prior/'queue/completion.json')['passed'],'Inspect prior terminal receipt before this local chain starts; no blind duplicate'
+results={};history=[p.parent for p in prior.glob('*/round_*/candidate_*/completion.json')if read(p)['passed']]
+for name,mode in [('native_only_K8','unrestricted'),('paired_K8','paired')]:
+ assert all(sha(p)==h for p,h in bound.items());cmd=[sys.executable,str(D/'run_serial_current_resource_repair_v2.py'),'--initial-state',str(initial),'--batch',str(b/name),'--bundle-size','8','--domain-mode',mode]
+ for p in history:cmd+=['--reuse-native-batch',str(p)]
+ with (b/(name+'.log')).open('w')as log:
+  proc=subprocess.Popen(cmd,stdout=log,stderr=subprocess.STDOUT);write(q/'status.json',dict(status='running_independent_single_native_K8_actor',actor=name,pid=proc.pid,start_ticks=Path('/proc',str(proc.pid),'stat').read_text().split(') ',1)[1].split()[19],observed_at=time.time()));code=proc.wait()
+ results[name]=dict(passed=code==0,returncode=code,completion=str(b/name/'completion.json'));write(b/'progress.json',results)
+ if code==0:history +=[p.parent for p in(b/name).glob('round_*/candidate_*/completion.json')if read(p)['passed']]
+write(q/'completion.json',dict(passed=all(x['passed']for x in results.values()),actors=results,qualification='Local K8 integration and amortization outcomes; original main/native-first chain preserved, continuous research remains active.'))

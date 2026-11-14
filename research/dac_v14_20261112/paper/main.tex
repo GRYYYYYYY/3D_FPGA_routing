@@ -10,7 +10,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Vertical connectivity complicates timing-driven FPGA routing because feasible crossings differ across sinks and architectures. We develop a reachability-constrained planner that compares shared and split crossing assignments on a finite terminal hierarchy, then softly guides VTR routing. Controlled experiments separate routing, placement, and toolchain effects across three architectures. On complete dual-baseline cohorts of two to four circuits, timing changes range from a 0.64\% regression to a 1.32\% improvement; larger individual gains coexist with regressions and failures. All ten valid serial timing groups incur overhead. Mechanism analysis exposes sparse delay coverage and motivates a controlled test of the planner's independent contribution.
+Vertical connectivity and shared capacity couple FPGA timing with routing resources. We study reachability-constrained shared-crossing guides and current-STA transactional repair under fixed packed netlists, placement and physical timing models. Initial-guide experiments expose limited coverage, failures and overhead. Repair groups current winning paths with scarce-resource owners, expands dependency scopes and invokes native search under exact timing or resource requirements. From a sealed strong native A0 BNN route, three automatically accepted transactions reduce CPD from13.607436 to13.228146 ns with forty additional wire units and unchanged SB/CB occupancy. At equal CPD this state uses11310 fewer wire units, four fewer SB and five fewer CB than an earlier A0 repair state. Subsequent K8 resource refinement preserves CPD: unrestricted native search reaches86 SB at2059603 wire, while retained-crossing domains reach79 SB and5061 CB at2059882 wire. A selective failure-domain release from an R1-fast state reaches72 SB at2069104 wire, exposing an explicit resource tradeoff. A matched native-only resource selector instead saves two SB at eight extra wire units from an R1 fast root; an eight-net bundle trajectory trades twelve SB and one CB for160 wire units. These controls attribute gains to scope, selection and scheduling, without claiming a new search primitive. The legal joint archive retains timing--resource alternatives, endpoint regressions, failures and versioned evidence. Cross-circuit confirmation, initial routability and cold complete-algorithm runtime gains remain unestablished.
 \end{abstract}
 \begin{IEEEkeywords}
 3D FPGA, detailed routing, vertical interconnect, dynamic programming, architecture exploration
@@ -23,9 +23,9 @@ Recent tools enable detailed exploration of three-dimensional fabrics. VTR suppo
 
 We investigate a planner that represents legal crossing choices explicitly and compares sharing against splitting within a deterministic hierarchy of remote terminals. The planner combines directed reachability, spatial candidate reduction, criticality filtering, and optional bounded delay queries. Its output is a soft preference used by the existing detailed router. Feasible resources remain available, and the final route is judged by the ordinary routing and timing checks. The implementation is based on a fixed VTR 9 development revision; it is not a new fabric generator or placer.
 
-Our contributions are a finite shared-crossing objective with explicit fallback behavior; fixed-input evaluation across switch-block (SB), output connection-box (CB-O), and hybrid (Hybrid-O) connectivity, separating two placement flows and three baseline identities; and mechanism analysis connecting improvements and regressions to coverage, final resources, changing worst paths, and runtime costs.
+Our study combines a finite shared-crossing objective and explicit fallback behavior with a current-STA coordination layer for native post-legal repair. The latter builds current-path groups, identifies resource-owner dependencies, and preserves exact final legality and timing while exploring timing--resource tradeoffs. Fixed-input controls separate initial-guide behavior, candidate scope, search schedule and existing native search; cross-circuit confirmation and complete runtime measurements remain ongoing.
 
-The results support conditional timing effects, not a general performance victory. On the complete cohorts used for the paired 3D/2D display, mean routing improvements range from $-0.64\%$ to $1.32\%$, with only two to four circuits contributing to each mean. A single Hybrid-O case improves by $12.96\%$, while another worsens by $11.45\%$. All ten serial groups with three legal paired repetitions are slower than the native baseline. These outcomes make coverage and attribution central to the contribution: a resource-efficient route or a better isolated example does not establish lower critical-path delay across the suite.
+The initial-guide results support conditional timing effects, not a general performance victory. Later current-STA repair results and their narrower development populations are reported separately. On the complete cohorts used for the paired 3D/2D display, mean routing improvements range from $-0.64\%$ to $1.32\%$, with only two to four circuits contributing to each mean. A single Hybrid-O case improves by $12.96\%$, while another worsens by $11.45\%$. All ten serial groups with three legal paired repetitions are slower than the native baseline. These outcomes make coverage and attribution central to the contribution: a resource-efficient route or a better isolated example does not establish lower critical-path delay across the suite.
 
 \section{Related Work}
 VTR provides FPGA architecture and CAD infrastructure~\cite{vtr8}; version 9 added 3D support~\cite{vtr9}. The 3D extensions studied by Boutros et al. connect device models with CAD-level exploration~\cite{third}. We use that infrastructure and retain its detailed router, timing analysis, and legality checks. The new element is a crossing-selection layer above detailed connection search, with a deliberately limited optimization objective.
@@ -58,6 +58,9 @@ For hierarchy node $v$, let $L(v)$ contain its terminals. The finite objective i
 \end{equation}
 An unavailable shared choice has infinite cost. At a leaf, only the shared term applies. Opening cost is charged per selected hierarchical group; unrelated groups choosing the same resource do not receive an additional global deduplication credit. Physical same-net sharing is instead represented by the actual route tree. This surrogate omits detailed downstream wire sharing and loading, so lowering it need not lower final circuit delay.
 
+\paragraph{Current multiobjective repair problem.}
+Among legal final routes, retain nondominated CPD, planar wire, actual SB/CB and comparable complete algorithm time. A branch can separately use strict CPD improvement, fixed-resource timing improvement or resource improvement under an explicit timing envelope. The latter two define design tradeoffs rather than a universal requirement to beat every strong A0 CPD. Intermediate private states may spend slack or resources when a mechanism-backed whole combination is checked and accepted atomically. Native FULL and fresh physical STA govern final acceptance; exact fixed endpoint vectors are evaluated only within the same constraints and endpoint identities. Frozen initial-guide experiments below remain separate from post-legal development.
+
 \section{Method}
 \subsection{Directed feasibility and candidate reduction}
 We query the strongly connected component condensation of same-layer edges, preserving directed reachability. Spatial sampling considers endpoints, interpolated locations, and the net centroid. Feasible candidates are ranked by their proxy costs and diversified across sites; feasible crossings already owned by the net remain eligible. If the spatial sample provides no feasible candidate, the planner scans the crossing table for a usable fallback set. Current occupancy does not by itself exclude a resource, because later congestion negotiation may release it.
@@ -80,6 +83,9 @@ The new finite table contains only eligible remote terminals in $T_n$. Static SC
 Accepted guides participate in the existing routing transaction and best-route snapshots, so recovery restores the associated guidance state. The method does not force a retained branch to reroute, alter physical switch delays, or replace native congestion negotiation or final STA. Reducing the active terminal set can also bring a high-fanout net below the existing 128-terminal shared-DP limit; this is part of the change, not evidence that every gain comes from avoiding updates to retained branches. Tf remains a development candidate pending broader quality, failure, and controlled runtime validation.
 
 \clearpage
+\input{data/selective_frontier_v14.tex}
+\input{data/automatic_release_v14.tex}
+
 \section{Experimental Setup}
 \subsection{Tools, architectures, and comparison identities}
 The native baseline A0 and our router R1 derive from official VTR development commit \texttt{0b912334}; R1 adds the planner and graph-encoding integration. Strict serial builds have separate recorded binary identities. B2 is the modern LaZagna port at VTR commit \texttt{5abd3aca}~\cite{modern}, with archived build and compatibility changes. It has been built and exercised under controlled inputs. Its historical version string is not used to infer equivalence with official VTR 9. The original LaZagna VTR 8.1 paper is B1, an external published reference rather than a matched local routing experiment.
@@ -117,7 +123,7 @@ Positive $I$ denotes improvement. The paired 3D/2D display uses the same complet
 Formal runtime uses three serial repetitions of spmv and robot\_rl, both flows, all architectures, and rotated router order. R1-off controls separate algorithm overhead from build differences. A seccomp guard prevents worker-thread creation without ptrace instrumentation. Registered study processes do not overlap, but the shared host is not exclusive. We report router time, route-process time, and setup costs separately. Parallel-sweep durations are mechanism observations, not speedup evidence.
 
 \clearpage
-\section{Results}
+\section{Frozen Initial-Guide Results}
 \subsection{Timing, failures, and the three baselines}
 Table~\ref{tab:main} reports the complete dual-baseline cohorts. Hybrid-O has small positive means in both flows; SB changes sign across flows, and CB-O is unchanged against A0 at reported precision. The 2D comparison can differ substantially because it includes a different physical layout and placement. For example, CB-O/P0 improves by 3.05\% against matched 2D while showing zero routing improvement against its own 3D A0. This is not a routing speed or timing gain attributable to R1.
 
@@ -495,6 +501,15 @@ Stopping-rule controls reveal substantial instability (Table~\ref{tab:guide-poli
 \input{data/residual_query_discussion_v14.tex}
 \input{data/outside_candidate_discussion_v14.tex}
 \input{data/outside_quality_discussion_v14.tex}
+\input{data/current_eligibility_discussion_v14.tex}
+\input{data/preferred_query_discussion_v14.tex}
+\input{data/actual_search_tree_discussion_v14.tex}
+\input{data/tree_aware_query_discussion_v14.tex}
+\input{data/critical_capacity_discussion_v14.tex}
+\input{data/current_sta_repair_discussion_v14.tex}
+\input{data/coordinated_repair_discussion_v14.tex}
+\input{data/plateau_joint_repair_discussion_v14.tex}
+\input{data/native_sta_frontier_discussion_v14.tex}
  The path-search primitive separately passes 60,000 randomized oracle checks with non-admissible ordering heuristics; only the independent minimum-pending-cost bound can certify optimality.
 
 
@@ -511,8 +526,58 @@ A decision-neutral gate diagnostic exactly reproduces Tf and reconciles 39,678 r
 
 
 
+\input{data/current_sta_policy_discussion_v14.tex}
+\input{data/joint_native_repair_discussion_v14.tex}
+\input{data/cut_feedback_discussion_v14.tex}
+\input{data/near_selector_discussion_v14.tex}
+\input{data/objective_successor_discussion_v14.tex}
+
+\input{data/native_scope_policy_discussion_v14.tex}
+
+\input{data/native_Tf_budget_discussion_v14.tex}
+
+\input{data/spmv_cache_discussion_v14.tex}
+
+\input{data/adoption_full_cache_discussion_v14.tex}
+
+\subsection{Current timing-cone diagnostics}
+\input{data/timing_cone_progress_v14.tex}
+
+\input{data/multiobjective_progress_v14.tex}
+
+\input{data/bnn_multiobjective_progress_v14.tex}
+
+\input{data/bnn_joint_component_progress_v14.tex}
+
+\input{data/compact_selector_progress_v14.tex}
+
+\input{data/strong_A0_pair_progress_v14.tex}
+
+\input{data/automatic_reservation_progress_v14.tex}
+
+\input{data/selected_batch_progress_v14.tex}
+
+\input{data/automatic_exchange_progress_v14.tex}
+
+\input{data/reservation_prune_recovery_v14.tex}
+
+\input{data/portfolio_frontier_progress_v14.tex}
+
+\input{data/endpoint_bridge_and_fork_v14.tex}
+
+\input{data/resource_sharing_and_archive_v14.tex}
+\input{data/resource_tradeoffs_native_controls_v14.tex}
+\input{data/sealed_resource_trajectory_v14.tex}
+\input{data/strong_start_tradeoffs_terminal_v14.tex}
+\input{data/bundle4_resource_v14.tex}
+\input{data/timing_resource_first_v14.tex}
+\input{data/timing_resource_complete_v14.tex}
+\input{data/bundle8_failure_reuse_v14.tex}
+
+\input{data/uniform_fused_v14.tex}
+
 \section{Conclusion}
-Reachability-constrained shared-crossing planning provides a concrete way to coordinate vertical choices before detailed 3D FPGA routing. The evaluated static implementation produces conditional timing improvements and regressions, with substantial planning overhead and limited successful coverage. It does not establish general acceleration, universal timing superiority, or architecture-ranking reversal. The completed evidence identifies sparse delay coverage and changing critical paths as central issues, and is complemented by same-table component ablations, transactional guide feedback, query controls and exact reuse in the separate development study. Search-scope controls recover one selected failure even without guides and expose scope-dependent guide regressions, requiring a stronger matched native baseline. Post-registration development tests do not yet establish a stable improvement; the frozen evaluation remains intact.
+Frozen shared-crossing guide experiments show conditional timing effects and overhead. Current-STA whole transactions provide a complementary route to verified timing--resource alternatives. Three automatic strong-native-A0 BNN timing commits reach13.228145689936355ns from13.607436066820355ns with forty additional wire units and unchanged vertical occupancy. Subsequent K8 refinement exposes lower-wire86SB/5062CB and lower-vertical79SB/5061CB alternatives; an automatic selective-domain R1 transaction reaches72SB at a different wire/CB envelope. Uniform K8 from pristine strong-native roots also reduces resources without changing CPD, including eltwise24SB/965CB. Native controls attribute these gains to selection, grouping, domains and scheduling, rather than a new search primitive. Native FULL, physical delay, actual resource counts and complete endpoint comparisons govern each accepted state. Missing cold full-algorithm time and remaining implementation/confirmation work stay explicit. The focused current-repair manuscript is maintained separately from this chronological evidence draft; original snapshots and negative outcomes remain preserved.
 
 \clearpage
 

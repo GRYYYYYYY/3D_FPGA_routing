@@ -1,0 +1,939 @@
+{
+  "passed": true,
+  "research_complete": false,
+  "quality_promoted": false,
+  "batches": [
+    {
+      "batch": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01",
+      "scope": "conflict",
+      "objective": "weighted_soft",
+      "near_ns": 0.0,
+      "initial": {
+        "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_spmv_dev_01/Tf",
+        "cpd_ns": 7.045986460951781,
+        "resources": {
+          "planar_wirelength_excluding_sb_half_nodes": 148617,
+          "sb_pairs_used": 1,
+          "sb_pair_net_occupancy": 1,
+          "cb_crossing_output_sources_used": 967,
+          "cb_crossing_output_source_net_occupancy": 967,
+          "actual_crossing_edge_traversals": {
+            "OPIN->CHANY": 449,
+            "OPIN->CHANX": 584,
+            "CHANX->CHANX": 1
+          },
+          "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+        },
+        "near_fixed_initial_components": 6,
+        "near_current_components": 6,
+        "current_selection": {
+          "targets": [
+            {
+              "net": 5940,
+              "pin": 1,
+              "sink": 96853,
+              "slack_s": -7.045986460951781e-09,
+              "raw_criticality": 1,
+              "native_net_delay_s": 2.918618957625796e-10
+            },
+            {
+              "net": 5929,
+              "pin": 1,
+              "sink": 99311,
+              "slack_s": -7.045986016862571e-09,
+              "raw_criticality": 0.9999999403953552,
+              "native_net_delay_s": 1.2209908639704281e-09
+            },
+            {
+              "net": 6008,
+              "pin": 12,
+              "sink": 191676,
+              "slack_s": -7.045986016862571e-09,
+              "raw_criticality": 0.9999999403953552,
+              "native_net_delay_s": 1.365955126786389e-09
+            },
+            {
+              "net": 6389,
+              "pin": 1,
+              "sink": 258060,
+              "slack_s": -7.045986016862571e-09,
+              "raw_criticality": 0.9999999403953552,
+              "native_net_delay_s": 4.776876671996888e-10
+            },
+            {
+              "net": 6395,
+              "pin": 2,
+              "sink": 28200,
+              "slack_s": -7.045986016862571e-09,
+              "raw_criticality": 0.9999999403953552,
+              "native_net_delay_s": 1.1724903270504683e-09
+            }
+          ],
+          "worst_slack_s": -7.045986460951781e-09,
+          "grouping_ulp_s": 4.440892098500626e-16,
+          "window_s": 3.552713678800501e-15,
+          "near_ns": 0.0,
+          "eligible_connections": 14494,
+          "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+        },
+        "constraints_sha256": "4c1bf51868134dd0cb08fe117c8ab7564194d0eee218041e31dc65ca496d5d4a"
+      },
+      "policies": {
+        "strict": {
+          "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation",
+          "status": "current_operator_exhausted",
+          "accepted_steps": 2,
+          "cpd_s": 7.034697713237392e-09,
+          "scope": "This selector/objective/scope operator only; not an overall research stop.",
+          "final": {
+            "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation",
+            "cpd_ns": 7.034697713237392,
+            "resources": {
+              "planar_wirelength_excluding_sb_half_nodes": 148591,
+              "sb_pairs_used": 2,
+              "sb_pair_net_occupancy": 2,
+              "cb_crossing_output_sources_used": 967,
+              "cb_crossing_output_source_net_occupancy": 967,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANY": 448,
+                "OPIN->CHANX": 584,
+                "CHANX->CHANX": 2
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            },
+            "near_fixed_initial_components": 4,
+            "near_current_components": 4,
+            "current_selection": {
+              "targets": [
+                {
+                  "net": 6157,
+                  "pin": 12,
+                  "sink": 96349,
+                  "slack_s": -7.034697269148182e-09,
+                  "raw_criticality": 0.9999999403953552,
+                  "native_net_delay_s": 4.776876671996888e-10
+                },
+                {
+                  "net": 6373,
+                  "pin": 1,
+                  "sink": 58241,
+                  "slack_s": -7.034697269148182e-09,
+                  "raw_criticality": 0.9999999403953552,
+                  "native_net_delay_s": 8.493392655850585e-10
+                },
+                {
+                  "net": 6998,
+                  "pin": 1,
+                  "sink": 96286,
+                  "slack_s": -7.034697269148182e-09,
+                  "raw_criticality": 0.9999999403953552,
+                  "native_net_delay_s": 2.918618957625796e-10
+                },
+                {
+                  "net": 6923,
+                  "pin": 1,
+                  "sink": 63157,
+                  "slack_s": -7.0346968250589725e-09,
+                  "raw_criticality": 0.9999998807907104,
+                  "native_net_delay_s": 1.5517809259790738e-09
+                },
+                {
+                  "net": 6927,
+                  "pin": 1,
+                  "sink": 98807,
+                  "slack_s": -7.0346968250589725e-09,
+                  "raw_criticality": 0.9999998807907104,
+                  "native_net_delay_s": 8.493392655850585e-10
+                },
+                {
+                  "net": 7773,
+                  "pin": 1,
+                  "sink": 279645,
+                  "slack_s": -7.0346968250589725e-09,
+                  "raw_criticality": 0.9999998807907104,
+                  "native_net_delay_s": 4.776876671996888e-10
+                }
+              ],
+              "worst_slack_s": -7.034697269148182e-09,
+              "grouping_ulp_s": 4.440892098500626e-16,
+              "window_s": 3.552713678800501e-15,
+              "near_ns": 0.0,
+              "eligible_connections": 14494,
+              "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+            },
+            "constraints_sha256": "4c1bf51868134dd0cb08fe117c8ab7564194d0eee218041e31dc65ca496d5d4a"
+          },
+          "comparison_to_initial": {
+            "compatible": true,
+            "cpd_before_s": 7.045986460951781e-09,
+            "cpd_after_s": 7.034697713237392e-09,
+            "cpd_strictly_better": true,
+            "cpd_nonworse": true,
+            "setup_improved": 49,
+            "setup_regressed": 0,
+            "hold_violation_regressions": 0,
+            "setup_components": 9797,
+            "hold_components": 9797
+          },
+          "selection_history": [
+            {
+              "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_spmv_dev_01/Tf",
+              "selection": {
+                "targets": [
+                  {
+                    "net": 5940,
+                    "pin": 1,
+                    "sink": 96853,
+                    "slack_s": -7.045986460951781e-09,
+                    "raw_criticality": 1,
+                    "native_net_delay_s": 2.918618957625796e-10
+                  },
+                  {
+                    "net": 5929,
+                    "pin": 1,
+                    "sink": 99311,
+                    "slack_s": -7.045986016862571e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 1.2209908639704281e-09
+                  },
+                  {
+                    "net": 6008,
+                    "pin": 12,
+                    "sink": 191676,
+                    "slack_s": -7.045986016862571e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 1.365955126786389e-09
+                  },
+                  {
+                    "net": 6389,
+                    "pin": 1,
+                    "sink": 258060,
+                    "slack_s": -7.045986016862571e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 4.776876671996888e-10
+                  },
+                  {
+                    "net": 6395,
+                    "pin": 2,
+                    "sink": 28200,
+                    "slack_s": -7.045986016862571e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 1.1724903270504683e-09
+                  }
+                ],
+                "worst_slack_s": -7.045986460951781e-09,
+                "grouping_ulp_s": 4.440892098500626e-16,
+                "window_s": 3.552713678800501e-15,
+                "near_ns": 0.0,
+                "eligible_connections": 14494,
+                "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+              }
+            },
+            {
+              "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_000/evaluation",
+              "selection": {
+                "targets": [
+                  {
+                    "net": 5940,
+                    "pin": 1,
+                    "sink": 96853,
+                    "slack_s": -7.03834723836394e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 2.918618957625796e-10
+                  },
+                  {
+                    "net": 6008,
+                    "pin": 12,
+                    "sink": 191676,
+                    "slack_s": -7.03834723836394e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 1.3583161262431531e-09
+                  },
+                  {
+                    "net": 5929,
+                    "pin": 1,
+                    "sink": 99311,
+                    "slack_s": -7.03834679427473e-09,
+                    "raw_criticality": 0.9999998807907104,
+                    "native_net_delay_s": 1.2209908639704281e-09
+                  },
+                  {
+                    "net": 6389,
+                    "pin": 1,
+                    "sink": 258060,
+                    "slack_s": -7.03834679427473e-09,
+                    "raw_criticality": 0.9999998807907104,
+                    "native_net_delay_s": 4.776876671996888e-10
+                  },
+                  {
+                    "net": 6395,
+                    "pin": 2,
+                    "sink": 28200,
+                    "slack_s": -7.03834679427473e-09,
+                    "raw_criticality": 0.9999998807907104,
+                    "native_net_delay_s": 1.1724903270504683e-09
+                  }
+                ],
+                "worst_slack_s": -7.03834723836394e-09,
+                "grouping_ulp_s": 4.440892098500626e-16,
+                "window_s": 3.552713678800501e-15,
+                "near_ns": 0.0,
+                "eligible_connections": 14494,
+                "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+              }
+            },
+            {
+              "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation",
+              "selection": {
+                "targets": [
+                  {
+                    "net": 6157,
+                    "pin": 12,
+                    "sink": 96349,
+                    "slack_s": -7.034697269148182e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 4.776876671996888e-10
+                  },
+                  {
+                    "net": 6373,
+                    "pin": 1,
+                    "sink": 58241,
+                    "slack_s": -7.034697269148182e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 8.493392655850585e-10
+                  },
+                  {
+                    "net": 6998,
+                    "pin": 1,
+                    "sink": 96286,
+                    "slack_s": -7.034697269148182e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 2.918618957625796e-10
+                  },
+                  {
+                    "net": 6923,
+                    "pin": 1,
+                    "sink": 63157,
+                    "slack_s": -7.0346968250589725e-09,
+                    "raw_criticality": 0.9999998807907104,
+                    "native_net_delay_s": 1.5517809259790738e-09
+                  },
+                  {
+                    "net": 6927,
+                    "pin": 1,
+                    "sink": 98807,
+                    "slack_s": -7.0346968250589725e-09,
+                    "raw_criticality": 0.9999998807907104,
+                    "native_net_delay_s": 8.493392655850585e-10
+                  },
+                  {
+                    "net": 7773,
+                    "pin": 1,
+                    "sink": 279645,
+                    "slack_s": -7.0346968250589725e-09,
+                    "raw_criticality": 0.9999998807907104,
+                    "native_net_delay_s": 4.776876671996888e-10
+                  }
+                ],
+                "worst_slack_s": -7.034697269148182e-09,
+                "grouping_ulp_s": 4.440892098500626e-16,
+                "window_s": 3.552713678800501e-15,
+                "near_ns": 0.0,
+                "eligible_connections": 14494,
+                "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+              }
+            }
+          ]
+        },
+        "endpoint_vector": {
+          "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation",
+          "status": "current_operator_exhausted",
+          "accepted_steps": 2,
+          "cpd_s": 7.034697713237392e-09,
+          "scope": "This selector/objective/scope operator only; not an overall research stop.",
+          "final": {
+            "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation",
+            "cpd_ns": 7.034697713237392,
+            "resources": {
+              "planar_wirelength_excluding_sb_half_nodes": 148591,
+              "sb_pairs_used": 2,
+              "sb_pair_net_occupancy": 2,
+              "cb_crossing_output_sources_used": 967,
+              "cb_crossing_output_source_net_occupancy": 967,
+              "actual_crossing_edge_traversals": {
+                "OPIN->CHANY": 448,
+                "OPIN->CHANX": 584,
+                "CHANX->CHANX": 2
+              },
+              "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+            },
+            "near_fixed_initial_components": 4,
+            "near_current_components": 4,
+            "current_selection": {
+              "targets": [
+                {
+                  "net": 6157,
+                  "pin": 12,
+                  "sink": 96349,
+                  "slack_s": -7.034697269148182e-09,
+                  "raw_criticality": 0.9999999403953552,
+                  "native_net_delay_s": 4.776876671996888e-10
+                },
+                {
+                  "net": 6373,
+                  "pin": 1,
+                  "sink": 58241,
+                  "slack_s": -7.034697269148182e-09,
+                  "raw_criticality": 0.9999999403953552,
+                  "native_net_delay_s": 8.493392655850585e-10
+                },
+                {
+                  "net": 6998,
+                  "pin": 1,
+                  "sink": 96286,
+                  "slack_s": -7.034697269148182e-09,
+                  "raw_criticality": 0.9999999403953552,
+                  "native_net_delay_s": 2.918618957625796e-10
+                },
+                {
+                  "net": 6923,
+                  "pin": 1,
+                  "sink": 63157,
+                  "slack_s": -7.0346968250589725e-09,
+                  "raw_criticality": 0.9999998807907104,
+                  "native_net_delay_s": 1.5517809259790738e-09
+                },
+                {
+                  "net": 6927,
+                  "pin": 1,
+                  "sink": 98807,
+                  "slack_s": -7.0346968250589725e-09,
+                  "raw_criticality": 0.9999998807907104,
+                  "native_net_delay_s": 8.493392655850585e-10
+                },
+                {
+                  "net": 7773,
+                  "pin": 1,
+                  "sink": 279645,
+                  "slack_s": -7.0346968250589725e-09,
+                  "raw_criticality": 0.9999998807907104,
+                  "native_net_delay_s": 4.776876671996888e-10
+                }
+              ],
+              "worst_slack_s": -7.034697269148182e-09,
+              "grouping_ulp_s": 4.440892098500626e-16,
+              "window_s": 3.552713678800501e-15,
+              "near_ns": 0.0,
+              "eligible_connections": 14494,
+              "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+            },
+            "constraints_sha256": "4c1bf51868134dd0cb08fe117c8ab7564194d0eee218041e31dc65ca496d5d4a"
+          },
+          "comparison_to_initial": {
+            "compatible": true,
+            "cpd_before_s": 7.045986460951781e-09,
+            "cpd_after_s": 7.034697713237392e-09,
+            "cpd_strictly_better": true,
+            "cpd_nonworse": true,
+            "setup_improved": 49,
+            "setup_regressed": 0,
+            "hold_violation_regressions": 0,
+            "setup_components": 9797,
+            "hold_components": 9797
+          },
+          "selection_history": [
+            {
+              "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_spmv_dev_01/Tf",
+              "selection": {
+                "targets": [
+                  {
+                    "net": 5940,
+                    "pin": 1,
+                    "sink": 96853,
+                    "slack_s": -7.045986460951781e-09,
+                    "raw_criticality": 1,
+                    "native_net_delay_s": 2.918618957625796e-10
+                  },
+                  {
+                    "net": 5929,
+                    "pin": 1,
+                    "sink": 99311,
+                    "slack_s": -7.045986016862571e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 1.2209908639704281e-09
+                  },
+                  {
+                    "net": 6008,
+                    "pin": 12,
+                    "sink": 191676,
+                    "slack_s": -7.045986016862571e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 1.365955126786389e-09
+                  },
+                  {
+                    "net": 6389,
+                    "pin": 1,
+                    "sink": 258060,
+                    "slack_s": -7.045986016862571e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 4.776876671996888e-10
+                  },
+                  {
+                    "net": 6395,
+                    "pin": 2,
+                    "sink": 28200,
+                    "slack_s": -7.045986016862571e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 1.1724903270504683e-09
+                  }
+                ],
+                "worst_slack_s": -7.045986460951781e-09,
+                "grouping_ulp_s": 4.440892098500626e-16,
+                "window_s": 3.552713678800501e-15,
+                "near_ns": 0.0,
+                "eligible_connections": 14494,
+                "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+              }
+            },
+            {
+              "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_000/evaluation",
+              "selection": {
+                "targets": [
+                  {
+                    "net": 5940,
+                    "pin": 1,
+                    "sink": 96853,
+                    "slack_s": -7.03834723836394e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 2.918618957625796e-10
+                  },
+                  {
+                    "net": 6008,
+                    "pin": 12,
+                    "sink": 191676,
+                    "slack_s": -7.03834723836394e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 1.3583161262431531e-09
+                  },
+                  {
+                    "net": 5929,
+                    "pin": 1,
+                    "sink": 99311,
+                    "slack_s": -7.03834679427473e-09,
+                    "raw_criticality": 0.9999998807907104,
+                    "native_net_delay_s": 1.2209908639704281e-09
+                  },
+                  {
+                    "net": 6389,
+                    "pin": 1,
+                    "sink": 258060,
+                    "slack_s": -7.03834679427473e-09,
+                    "raw_criticality": 0.9999998807907104,
+                    "native_net_delay_s": 4.776876671996888e-10
+                  },
+                  {
+                    "net": 6395,
+                    "pin": 2,
+                    "sink": 28200,
+                    "slack_s": -7.03834679427473e-09,
+                    "raw_criticality": 0.9999998807907104,
+                    "native_net_delay_s": 1.1724903270504683e-09
+                  }
+                ],
+                "worst_slack_s": -7.03834723836394e-09,
+                "grouping_ulp_s": 4.440892098500626e-16,
+                "window_s": 3.552713678800501e-15,
+                "near_ns": 0.0,
+                "eligible_connections": 14494,
+                "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+              }
+            },
+            {
+              "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation",
+              "selection": {
+                "targets": [
+                  {
+                    "net": 6157,
+                    "pin": 12,
+                    "sink": 96349,
+                    "slack_s": -7.034697269148182e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 4.776876671996888e-10
+                  },
+                  {
+                    "net": 6373,
+                    "pin": 1,
+                    "sink": 58241,
+                    "slack_s": -7.034697269148182e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 8.493392655850585e-10
+                  },
+                  {
+                    "net": 6998,
+                    "pin": 1,
+                    "sink": 96286,
+                    "slack_s": -7.034697269148182e-09,
+                    "raw_criticality": 0.9999999403953552,
+                    "native_net_delay_s": 2.918618957625796e-10
+                  },
+                  {
+                    "net": 6923,
+                    "pin": 1,
+                    "sink": 63157,
+                    "slack_s": -7.0346968250589725e-09,
+                    "raw_criticality": 0.9999998807907104,
+                    "native_net_delay_s": 1.5517809259790738e-09
+                  },
+                  {
+                    "net": 6927,
+                    "pin": 1,
+                    "sink": 98807,
+                    "slack_s": -7.0346968250589725e-09,
+                    "raw_criticality": 0.9999998807907104,
+                    "native_net_delay_s": 8.493392655850585e-10
+                  },
+                  {
+                    "net": 7773,
+                    "pin": 1,
+                    "sink": 279645,
+                    "slack_s": -7.0346968250589725e-09,
+                    "raw_criticality": 0.9999998807907104,
+                    "native_net_delay_s": 4.776876671996888e-10
+                  }
+                ],
+                "worst_slack_s": -7.034697269148182e-09,
+                "grouping_ulp_s": 4.440892098500626e-16,
+                "window_s": 3.552713678800501e-15,
+                "near_ns": 0.0,
+                "eligible_connections": 14494,
+                "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+              }
+            }
+          ]
+        }
+      },
+      "attempts": [
+        {
+          "work": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempt_000",
+          "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_spmv_dev_01/Tf",
+          "single": [
+            6008,
+            12
+          ],
+          "opportunity": null,
+          "status": "reused_identical_native_attempt",
+          "reuse_source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_000",
+          "targets": [
+            [
+              6008,
+              12
+            ]
+          ],
+          "removed_pins": {
+            "6008": [
+              12
+            ]
+          },
+          "ordered_queries": [
+            {
+              "net": 6008,
+              "pin": 12,
+              "slack_s": -7.045986016862571e-09,
+              "raw_criticality": 0.9999999403953552
+            }
+          ]
+        },
+        {
+          "work": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempt_001",
+          "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_000/evaluation",
+          "single": null,
+          "opportunity": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/joint_000/search/current/opportunity.json",
+          "status": "reused_identical_native_attempt",
+          "reuse_source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001",
+          "targets": [
+            [
+              6395,
+              2
+            ]
+          ],
+          "removed_pins": {
+            "6395": [
+              2
+            ],
+            "6394": [
+              2
+            ]
+          },
+          "ordered_queries": [
+            {
+              "net": 6395,
+              "pin": 2,
+              "slack_s": -7.03834679427473e-09,
+              "raw_criticality": 0.9999998807907104
+            },
+            {
+              "net": 6394,
+              "pin": 2,
+              "slack_s": -5.640472089396553e-09,
+              "raw_criticality": 0.805418848991394
+            }
+          ]
+        },
+        {
+          "work": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempt_002",
+          "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_spmv_dev_01/Tf",
+          "single": [
+            6008,
+            12
+          ],
+          "opportunity": null,
+          "status": "reused_identical_native_attempt",
+          "reuse_source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_000",
+          "targets": [
+            [
+              6008,
+              12
+            ]
+          ],
+          "removed_pins": {
+            "6008": [
+              12
+            ]
+          },
+          "ordered_queries": [
+            {
+              "net": 6008,
+              "pin": 12,
+              "slack_s": -7.045986016862571e-09,
+              "raw_criticality": 0.9999999403953552
+            }
+          ]
+        },
+        {
+          "work": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempt_003",
+          "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_000/evaluation",
+          "single": null,
+          "opportunity": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/joint_000/search/current/opportunity.json",
+          "status": "reused_identical_native_attempt",
+          "reuse_source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001",
+          "targets": [
+            [
+              6395,
+              2
+            ]
+          ],
+          "removed_pins": {
+            "6395": [
+              2
+            ],
+            "6394": [
+              2
+            ]
+          },
+          "ordered_queries": [
+            {
+              "net": 6395,
+              "pin": 2,
+              "slack_s": -7.03834679427473e-09,
+              "raw_criticality": 0.9999998807907104
+            },
+            {
+              "net": 6394,
+              "pin": 2,
+              "slack_s": -5.640472089396553e-09,
+              "raw_criticality": 0.805418848991394
+            }
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "policy": "strict",
+          "step": 0,
+          "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_spmv_dev_01/Tf",
+          "evaluated_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_000/evaluation",
+          "attempt": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempt_000",
+          "rollback_seconds": 0.0,
+          "decision": {
+            "accepted": true,
+            "policy": "strict",
+            "reason": "Exact policy conditions satisfied"
+          },
+          "comparison": {
+            "compatible": true,
+            "cpd_before_s": 7.045986460951781e-09,
+            "cpd_after_s": 7.03834768245315e-09,
+            "cpd_strictly_better": true,
+            "cpd_nonworse": true,
+            "setup_improved": 2,
+            "setup_regressed": 0,
+            "hold_violation_regressions": 0,
+            "setup_components": 9797,
+            "hold_components": 9797
+          },
+          "largest_setup_losses": []
+        },
+        {
+          "policy": "strict",
+          "step": 1,
+          "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_000/evaluation",
+          "evaluated_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation",
+          "attempt": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempt_001",
+          "rollback_seconds": 0.0,
+          "decision": {
+            "accepted": true,
+            "policy": "strict",
+            "reason": "Exact policy conditions satisfied"
+          },
+          "comparison": {
+            "compatible": true,
+            "cpd_before_s": 7.03834768245315e-09,
+            "cpd_after_s": 7.034697713237392e-09,
+            "cpd_strictly_better": true,
+            "cpd_nonworse": true,
+            "setup_improved": 49,
+            "setup_regressed": 0,
+            "hold_violation_regressions": 0,
+            "setup_components": 9797,
+            "hold_components": 9797
+          },
+          "largest_setup_losses": []
+        },
+        {
+          "policy": "endpoint_vector",
+          "step": 0,
+          "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_spmv_dev_01/Tf",
+          "evaluated_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_000/evaluation",
+          "attempt": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempt_002",
+          "rollback_seconds": 0.0,
+          "decision": {
+            "accepted": true,
+            "policy": "endpoint_vector",
+            "reason": "Exact policy conditions satisfied"
+          },
+          "comparison": {
+            "compatible": true,
+            "cpd_before_s": 7.045986460951781e-09,
+            "cpd_after_s": 7.03834768245315e-09,
+            "cpd_strictly_better": true,
+            "cpd_nonworse": true,
+            "setup_improved": 2,
+            "setup_regressed": 0,
+            "hold_violation_regressions": 0,
+            "setup_components": 9797,
+            "hold_components": 9797
+          },
+          "largest_setup_losses": []
+        },
+        {
+          "policy": "endpoint_vector",
+          "step": 1,
+          "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_000/evaluation",
+          "evaluated_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation",
+          "attempt": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempt_003",
+          "rollback_seconds": 0.0,
+          "decision": {
+            "accepted": true,
+            "policy": "endpoint_vector",
+            "reason": "Exact policy conditions satisfied"
+          },
+          "comparison": {
+            "compatible": true,
+            "cpd_before_s": 7.03834768245315e-09,
+            "cpd_after_s": 7.034697713237392e-09,
+            "cpd_strictly_better": true,
+            "cpd_nonworse": true,
+            "setup_improved": 49,
+            "setup_regressed": 0,
+            "hold_violation_regressions": 0,
+            "setup_components": 9797,
+            "hold_components": 9797
+          },
+          "largest_setup_losses": []
+        }
+      ],
+      "child_status_counts": {
+        "completed": 7
+      },
+      "costs": {
+        "complete_orchestrator_seconds": 51.353545576334,
+        "complete_child_process_seconds": 33.010879181325436,
+        "nonoverlapping_child_categories_seconds": {
+          "candidate_scope": 7.924830187112093,
+          "relaxed_query_preparation": 3.420657590031624,
+          "relaxed_audit": 20.748609773814678,
+          "joint_search": 0.9167816303670406
+        },
+        "controller_outside_children_seconds": 18.342666395008564,
+        "native_core_seconds": 0,
+        "qualification": "Native core is nested in native child time; do not add it. Shared exact historical work is excluded from measured incremental time. Not cold-start policy timing."
+      },
+      "reuse_receipts": [
+        {
+          "kind": "capacity_queries",
+          "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/queries_000",
+          "source_sha256": "4dffea57f1615e851fefb6e2fc13aaf7045f1be642538853c3017fffa2ba8d29"
+        },
+        {
+          "kind": "native_transaction_and_FULL_STA",
+          "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_000",
+          "candidate_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_000/evaluation",
+          "request_sha256": "2a44b19c6f7d511fd69616003a2caae010537bfbd6507fda30d4bc0797556417",
+          "native_config": "[\"FROZEN_NATIVE_OBJECTIVE_BINARY\", \"/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/import_only.xml\", \"/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/spmv.blif\", \"--analysis\", \"--device\", \"fixture\", \"--route_chan_width\", \"100\", \"--num_workers\", \"1\", \"--seed\", \"11\", \"--clock_modeling\", \"ideal\", \"--check_route\", \"full\", \"--verify_file_digests\", \"off\", \"--read_rr_graph\", \"/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/rr_graph.xml\", \"--max_router_iterations\", \"200\", \"--routing_failure_predictor\", \"off\", \"--timing_report_npaths\", \"10\", \"--net_file\", \"PACKED\", \"--place_file\", \"PLACED\", \"--route_file\", \"ROUTE\", \"--merge_constant_generators\", \"off\", \"--router_max_convergence_count\", \"2\", \"--verify_route_file_switch_id\", \"on\"]",
+          "source_completion_sha256": "d60fc2ef51c47c2360b5c8fe401702aa733bc5c0e46b438c5b73ccbb8c18a066"
+        },
+        {
+          "kind": "capacity_queries",
+          "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/queries_001",
+          "source_sha256": "654661dd28f8911d60e7a78e44dabceb6a7c04f827d650f440f5a0b20c0cb639"
+        },
+        {
+          "kind": "relaxed_queries_and_joint_scope",
+          "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/joint_000/search/current/opportunity.json",
+          "candidate_binding_sha256": "3aa3f2a0be43f48d4d04a0ba65f048f982b25391e1a88c8e785e80117093cf18"
+        },
+        {
+          "kind": "native_transaction_and_FULL_STA",
+          "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001",
+          "candidate_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation",
+          "request_sha256": "98e06f39ef4166820be9585cc1f8126345a0e5682b28673e9c8c383612433de8",
+          "native_config": "[\"FROZEN_NATIVE_OBJECTIVE_BINARY\", \"/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/import_only.xml\", \"/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/spmv.blif\", \"--analysis\", \"--device\", \"fixture\", \"--route_chan_width\", \"100\", \"--num_workers\", \"1\", \"--seed\", \"11\", \"--clock_modeling\", \"ideal\", \"--check_route\", \"full\", \"--verify_file_digests\", \"off\", \"--read_rr_graph\", \"/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/hybrid_o/rr_graph.xml\", \"--max_router_iterations\", \"200\", \"--routing_failure_predictor\", \"off\", \"--timing_report_npaths\", \"10\", \"--net_file\", \"PACKED\", \"--place_file\", \"PLACED\", \"--route_file\", \"ROUTE\", \"--merge_constant_generators\", \"off\", \"--router_max_convergence_count\", \"2\", \"--verify_route_file_switch_id\", \"on\"]",
+          "source_completion_sha256": "acf130c72679fb485450a0e40a313322954b08dca8b55d51633828739c376067"
+        },
+        {
+          "kind": "capacity_queries",
+          "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/queries_002",
+          "source_sha256": "cdefb7eb352b49a8923a89b0237be1d7b3c297d3ab9231e9ac6062f789951b16"
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/report_native_scope_policy.py": "4f7dff6a2fa45786b9c67e0b923873228d18f27deaedbde4ed0992d57d33c56d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/completion.json": "6690c1b8f7ddfa90480e57730aa767e47bb2b5a91a1b3f80ee51c54fb0a1c84a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/registration.json": "296b4d766296ea10db3ee5e97e5a96f3a72ccfb450333ef9e2063ddb7002ad3a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/process_costs.json": "774e5c37b013fd8dcff34a3783e342e2e0974c236bdf8abd2cb99bb9c83a7dc7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempts.json": "bb9afe54cef2012e0bf5a803c4e9c9c0339c69d16563c570e4fdb6fb84354f83",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempt_000/registration.json": "f9e4ae6792fa687f82cef86b3c4dc8f00530362410bf958c5a0b51768b5df9c9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempt_001/registration.json": "01f216c4ab819f9aa51d17ef5f3889ae82d625fa24386b3eb68e300bf9223e73",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempt_002/registration.json": "60b80cfe1a52578cbc7e3b0b3e188405689b772220688b1208b9133d5751363a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/attempt_003/registration.json": "f1f21e4d5f7ad3aac879fa8ee8887cfb219a6bada055be23e29613719c71f6c8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/decisions.json": "3d988134aa1051c7ac8ec61a1809e815c375e4513d3b9d2333b294e95dd998f1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/strict_state_000.json": "eb387b4c4b6ea43efe095ea7b0dda89444651364aee96445b3d21352d148450d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/strict_state_001.json": "e4dc0efccb5ebee61b3748660d1c4c877a29a39b71b111f727a5b4f4ad84831d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/strict_state_002.json": "d51e7435f8af08c8b02e2d50564da37dc8e3220e65d859364e4e4f7b71b61e77",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation/completion.json": "82d83a08f05818a03c4189284c39285378fb2cca36daa0b4d3ef110fb1b7a0f3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation/endpoint_vector.json": "79797667296615121144d76ada5a89fc50cd779fb8b5326beba871a99c4f006d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation/runs/state/independent_audit.json": "0f9bae0e128a2e1de3a175e4adee5cfe652ae90312f98717e2bdc00f10fbbc08",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/attempt_001/evaluation/runs/state/analysis_gate.json": "028ec34e7bc66a54ff6b5fc952092782ce08a88f7eb06a3766839a1781f12b70",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/endpoint_vector_state_000.json": "eb387b4c4b6ea43efe095ea7b0dda89444651364aee96445b3d21352d148450d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/endpoint_vector_state_001.json": "e4dc0efccb5ebee61b3748660d1c4c877a29a39b71b111f727a5b4f4ad84831d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/endpoint_vector_state_002.json": "d51e7435f8af08c8b02e2d50564da37dc8e3220e65d859364e4e4f7b71b61e77",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_spmv_dev_01/Tf/completion.json": "e82843130a980332be065efbd5ccfe885551d9b22e18ec62eadebc4e79978e5e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_spmv_dev_01/Tf/endpoint_vector.json": "c1fda461e62958caed954aeb1db0b24acdaac337974a87f7f66d333db31626df",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_spmv_dev_01/Tf/runs/state/independent_audit.json": "8ce74f48114b8a94789ca65f1664ee220a6ec0d4783a41769e53cdb0a881405d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_spmv_dev_01/Tf/runs/state/analysis_gate.json": "c196f3d11e9cb128b21d0fcf626c6588ecf110002b99df1e9b10c893079c7c61",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_Tf_reuse_01/reuse_receipts.json": "d0dbce927182b49a614ca8ae01b0da6ce6ae1b05544a2e34fc79d56c609858d4"
+  },
+  "qualification": "Development automatic current-STA trajectories, not an all-circuit or formal runtime claim. Local operator exhaustion does not terminate research. Full-precision exact acceptance and immutable rollback. Public snapshot f7167bd; new work local."
+}

@@ -1,0 +1,35 @@
+{
+  "status": "registered_before_work",
+  "created_at": 1794605201.6507351,
+  "question": "From the unmodified strong SPMV A0 state, can current near-endpoint repairs yield Pareto plateau progress or unlock later CPD improvement when worst-only selection has no distance opportunity?",
+  "evidence": "Worst-only A0 selects6 connections and both strategies accept0;0.05ns still selects6,0.2ns selects17. R1 repairs recover A0 CPD but do not beat it.",
+  "initial_state": "native_endpoint_spmv_dev_01/A0",
+  "near_ns": 0.2,
+  "policies": [
+    "strict",
+    "endpoint_vector"
+  ],
+  "controller": "run_native_scope_policy_v4.py",
+  "scope": "conflict",
+  "objective": "weighted_soft",
+  "cache": "rr_audit_cache_e695_dev_01",
+  "mechanism": "Same fixed endpoint/domain exact rules, fresh current STA after acceptance, immutable rollback and dedup. Compare strict rejection with endpoint acceptance and later CPD. Graph cache changes only candidate physical-audit data access; all query audits and native FULL/STA remain.",
+  "measure": [
+    "accepted_rejected_targets",
+    "critical_path_migration",
+    "fixed_endpoint_vector",
+    "full_precision_CPD",
+    "resources",
+    "all_child_and_total_time",
+    "cache_load_cost"
+  ],
+  "qualification": "Development window selected because narrower window does not alter the frontier; no significance claim. Successful cache audit does not establish QoR. Not a global call/date/matrix stop.",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_A0_01/completion.json": "321922b939fc1cc073d78922f2936f90949ec62b0ebfc1948bf22fd1145d655d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_spmv_R1_01/completion.json": "2282e936383c3650c1138684820f85df07a0e048966a6c0a98e2e9b80114f395",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_spmv_dev_01/A0/endpoint_vector.json": "0d4c2cf2f3f41d54b61e209b17381dd76fba3a02b710f8d599a0722f03fa5c27",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_native_scope_policy_v4.py": "5ea07035129daf0af3612ff70ecebd328ddeeaac7bcda2743678fc471e56d4c2",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rr_audit_cache_validation_01/completion.json": "f9dde6ee7e6dc1458e60773a2f0af051c5881ed29e1bd9844ede20cce49d4ff4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_state_reuse_experiment_01.json": "84f1027e935b0d0b8935a67a770ddb497e7f8893dddc411760cc10e2103b60fe"
+  }
+}

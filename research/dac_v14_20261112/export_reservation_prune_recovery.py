@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+"""Record an implementation failure separately from algorithm quality evidence."""
+import shutil,time
+from retained_prefix_workflow import D,read,write,sha
+p=D/'paper';proof=D/'reservation_multisink_regression_01/completion.json';assert read(proof)['passed'];assert all(sha(path)==h for path,h in read(proof)['source_sha256'].items())
+tex=p/'data/reservation_prune_recovery_v14.tex';assert not tex.exists();tex.write_text(r'''
+\subsection{Reservation membership failure and isolated correction}
+The initial large-circuit reservation-on attempts fail an implementation assertion before producing candidate evidence. VPR's multi-sink pruning updates the reached-sink bitset but does not clear its sink-pointer lookup. A check using that lookup therefore falsely reports a pruned sink as still present when another branch remains. The original files remain unchanged and no candidate is submitted; this process abort is not a completed in-process occupancy rollback or a negative quality observation. The old batch continues with its registered binary and rules.
+
+An isolated version changes only the two reservation membership checks to use VPR's prune-maintained reached bitset. A new small twelve-LUT fanout fixture supplies a multi-sink routed net absent from the earlier tiny test. It reproduces the old assertion, then verifies corrected off/on execution while another sink remains routed, original inputs and observed STA equality, reservation cleanup and native occupancy restoration. Default-off native outputs match the old binary after elapsed fields are removed. No physical delay, search objective or native congestion rule changes. A separately queued representative A0 target-only physical off/on pair will test the informative starvation case; successful tiny recovery is not BNN QoR or all-architecture validation.
+''')
+main=p/'main.tex';s=main.read_text();needle=r'\input{data/reservation_prune_recovery_v14.tex}';assert needle not in s;s=s.replace(r'\section{Conclusion}',needle+'\n\n'+r'\section{Conclusion}');main.write_text(s)
+with (p/'claims_evidence.md').open('a') as f:f.write('\n| C126 | 多sink保留实现断言与独立修复 | [失效语义](../reservation_prune_index_recovery_01.json)、[stage04](../native_reservation_stage_04/binding.json)、[真实多sink回归](../reservation_multisink_regression_01/completion.json)、[独立大图配对](../reservation_prune_recovery_dev_01/registration.json) | 旧stage03 ON在候选前断言，不作为负QoR；stage04用prune维护的reached位图。新小图复现旧错且新off/on恢复通过，关闭输出匹配。旧批次不改，BNN修复/收益待验证 |\n')
+for name in ['README.md','mechanisms_and_ablation.md']:
+ with (p/name).open('a') as f:f.write('\nC126区分资源保留ON的实现断言和最终质量失败，补充多sink回归、隔离stage04 reached位图修复及代表性大图恢复配对。原stage03批次仍按原规则继续，新大图收益未知。\n')
+ledger=p/'data/evidence_v14_ledger.json';history=p/'data/ledger_history_20261113/before_reservation_prune_recovery_01.json';assert not history.exists();shutil.copy2(ledger,history);l=read(ledger)
+names=['export_reservation_prune_recovery.py','reservation_prune_index_recovery_01.json','build_native_reservations_v4.py','native_reservation_stage_04/binding.json','native_reservation_stage_04/build_result.json','reservation_multisink_regression_01/completion.json','prepare_reservation_prune_recovery.py','reservation_prune_recovery_dev_01/registration.json','run_native_reservation_analysis_v3.py','run_reserved_native_transactions_v3.py','queue_reservation_prune_recovery.py','paper/data/reservation_prune_recovery_v14.tex']
+l['sources_sha256'].update({n:sha(D/n) for n in names});l['updated_at']=time.time();l['reservation_prune_recovery']=dict(claim='C126',large_native_recovery_pending=True,new_work_pushed=False);write(ledger,l);print('Exported C126')

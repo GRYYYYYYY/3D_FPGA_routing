@@ -1,0 +1,36 @@
+--- a/h3d_native_sta_frontier.h
++++ b/h3d_native_sta_frontier.h
+@@ -153,6 +153,19 @@
+     }
+     size_t rows = 0;
+     for (ParentNetId net : netlist.nets()) {
++        bool has_tree = size_t(net) < route.route_trees.size() && route.route_trees[net].has_value();
++        std::vector<RRNodeId> tree_pins(netlist.net_pins(net).size(), RRNodeId::INVALID());
++        if (has_tree) {
++            tree_pins[0] = route.route_trees[net]->root().inode;
++            // Analysis-loaded trees need not have find_by_isink's optional
++            // lookup. Read explicit pin indices, as load_net_delay does.
++            for (const auto& node : route.route_trees[net]->all_nodes()) {
++                if (node.net_pin_index <= 0) continue;
++                VTR_ASSERT(size_t(node.net_pin_index) < tree_pins.size());
++                VTR_ASSERT(!tree_pins[node.net_pin_index]);
++                tree_pins[node.net_pin_index] = node.inode;
++            }
++        }
+         for (ParentPinId pin : netlist.net_pins(net)) {
+             int index = netlist.pin_net_index(pin);
+             VTR_ASSERT(index >= 0);
+@@ -170,12 +183,8 @@
+             if (size_t(net) < route.net_rr_terminals.size()
+                 && size_t(index) < route.net_rr_terminals[net].size()) id(out, route.net_rr_terminals[net][index]);
+             else out << "null";
+-            bool has_tree = size_t(net) < route.route_trees.size() && route.route_trees[net].has_value();
+             out << ",\"route_tree_present\":" << int(has_tree) << ",\"tree_rr\":";
+-            if (has_tree && index == 0) id(out, route.route_trees[net]->root().inode);
+-            else if (has_tree && route.route_trees[net]->find_by_isink(index))
+-                id(out, route.route_trees[net]->find_by_isink(index)->inode);
+-            else out << "null";
++            id(out, tree_pins[index]);
+             out << ",\"setup_criticality_raw\":";
+             if (is_flat) number(out, timing.setup_pin_criticality(convert_to_atom_pin_id(pin)));
+             else {

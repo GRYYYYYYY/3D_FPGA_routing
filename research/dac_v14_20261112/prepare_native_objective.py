@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+"""Build and bind an isolated diagnostic candidate after formal timing ends."""
+import argparse
+import fcntl
+import os
+import shutil
+import signal
+import subprocess
+import time
+from retained_prefix_workflow import D, read, write, sha, require_formal_terminal, source_files
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--out', default='native_objective_stage_01')
+    args = ap.parse_args()
+    require_formal_terminal()
+    lock = (D / 'retained_prefix_build.lock').open('w')
+    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    assert shutil.disk_usage(D).free >= 80 * 1024**3
+    out = D / args.out
+    out.mkdir(exist_ok=False)
+    def sources():
+        found=source_files()
+        for p in ['vpr/src/route/router_stats.h','vpr/src/route/h3d_joint_native_repair.h','vpr/src/route/route_tree.cpp','vpr/src/route/h3d_current_sta_native_control.h','vpr/src/route/serial_connection_router.cpp','vpr/src/base/vpr_api.cpp','vpr/src/timing/h3d_native_sta_frontier.h']:
+            found[p]=sha(D/'src'/p)
+        return found
+    before = sources()
+    for name,h in read(D/'native_objective_implementation_01/binding.json')['source_sha256'].items():
+        assert before[name]==h
+    for relative in before:
+        target = out / 'src' / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(D / 'src' / relative, target)
+    for name in ['retained_prefix_workflow.py','prepare_native_objective.py','native_endpoint_vector_experiment_01.json']:
+        shutil.copy2(D/name,out/name)
+    shutil.copytree(D/'native_objective_implementation_01',out/'implementation')
+    write(out / 'build_registration.json', dict(status='registered_before_build',
+        source_sha256=before, builder_sha256=sha(__file__), pid=os.getpid(),
+        start_ticks=open('/proc/self/stat').read().split(') ', 1)[1].split()[19],
+        timeout_seconds=1800, per_process_memory_bytes=64 * 1024**3,
+        disk_reserve_bytes=80 * 1024**3, native_route_calls=0,
+        question='Build native repair control; test retained scope, real native path/replacement, restored occupancy and default-off neutrality.'))
+    started = time.monotonic()
+    # The upstream wrapper reads SOURCE_DIR from PWD; subprocess cwd alone
+    # does not update that inherited environment variable.
+    build_environment = dict(os.environ, PWD=str(D / 'src'))
+    with (out / 'build.log').open('w') as stream:
+        process = subprocess.Popen(['prlimit', '--as=' + str(64 * 1024**3), '--', 'make', '-j8', 'vpr'],
+                                   cwd=D / 'src', env=build_environment, stdout=stream,
+                                   stderr=subprocess.STDOUT, start_new_session=True)
+        timed_out = False
+        try:
+            rc = process.wait(timeout=1800)
+        except subprocess.TimeoutExpired:
+            timed_out = True
+            os.killpg(process.pid, signal.SIGTERM)
+            try:
+                process.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                os.killpg(process.pid, signal.SIGKILL)
+                process.wait()
+            rc = process.returncode
+    write(out / 'build_result.json', dict(returncode=rc, timed_out=timed_out,
+        wall_seconds=time.monotonic() - started, source_unchanged=before == sources()))
+    assert rc == 0 and not timed_out and before == sources(), 'Preserve failed build; use a new stage after diagnosis'
+    (out / 'bin').mkdir()
+    shutil.copy2(D / 'src/vpr/vpr', out / 'bin/vpr')
+    shutil.copy2(D / 'src/build/CMakeCache.txt', out / 'CMakeCache.txt')
+    assert b'VPR_H3D_FINAL_STA_TRACE' in (out / 'bin/vpr').read_bytes()
+    assert 'VTR_ASSERT_LEVEL:STRING=2' in (out / 'CMakeCache.txt').read_text()
+    write(out / 'binding.json', dict(status='built_not_native_validated',
+        source_sha256=before, binary_sha256=sha(out / 'bin/vpr'),
+        cmake_cache_sha256=sha(out / 'CMakeCache.txt'), build_log_sha256=sha(out / 'build.log'),
+        qualification='Frozen final STA exporter; defaultoff/on same-route native validation pending.'))
+    print('Built candidate', out)
+
+
+if __name__ == '__main__':
+    main()

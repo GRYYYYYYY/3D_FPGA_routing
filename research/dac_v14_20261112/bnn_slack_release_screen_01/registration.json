@@ -1,0 +1,34 @@
+{
+  "status": "registered_before_preparation",
+  "question": "Can noncritical-connection slack release scarce channels for current critical repairs while respecting fixed CPD/resource budgets, and does it advance the A0/R1-inclusive frontier?",
+  "inputs": "Unmodified BNN A0/R1/Tf endpoints observed by unchanged timing_cone_bnn_dev_01/02. Prior experiment rules stay unchanged.",
+  "reason": "SPMV current worst path individually at fixed-terminal minimum; BNN already shows R1 versus U/Tf timing-resource-cost tradeoffs. Current A0/Tf cones are automatically identified and differ.",
+  "stages": [
+    "Bind BNN actual physical graph to its own zeroRC capacity cache and query graph.",
+    "Query current targets both with current capacity and with background relaxed; prioritize measured blockage, not names.",
+    "For a witnessed scarce resource, identify current noncritical owners and full-precision endpoint slack budget.",
+    "In a copy, release and reconnect owner branches sequentially with updated occupancy, then critical/near-critical targets; native FULL/STA and final budgets check commit or rollback."
+  ],
+  "controls": [
+    "same selector/search domain/allowed tree scope/opportunities, native weighted repair",
+    "release-only",
+    "repair-only",
+    "combined release+repair"
+  ],
+  "budget_definition": "Fixed batch-anchor CPD cap and individual wire/SB/CB caps; choose exploratory common grid from actual opportunities before new native transactions, no rolling tolerance. Final non-dominated archive separate from intermediate state.",
+  "qualification": "Preparation and diagnostic registration only; no assumed gain or fixed termination matrix. Strong baselines remain. Partial transaction need not independently improve CPD.",
+  "physical_graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w100/hybrid_o/rr_graph.xml",
+  "graph_sha256": "f745f8bd2fedd310f3f47f068bd9a0a82d727633026bc83319332708f2eb17a2",
+  "native_calls_planned_this_preparation": 0,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_bnn_dev_01/runs/bnn_Tf/manifest.json": "549965bc1d97d1aa14b020e80b94e5e12ed8194f0a0b1ed7b9fe77ebbf6f8e92",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/multiobjective_acceptance_v2.py": "42c8bc67352d5a9b174a02b8975a31c40a5031c61fd2e64a5512011f9233a043",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/multiobjective_archive_01/completion.json": "299538be6ef72df4205b74edf787b2f202693b0c8bffb42849f7d923d4757535",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/immutable_rr_audit_cache.py": "5b3095401e71ebd76dc13ea40f78e6b90cfa5288f99406389bdd60a4c9641bd8"
+  },
+  "limits": {
+    "child_seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  }
+}

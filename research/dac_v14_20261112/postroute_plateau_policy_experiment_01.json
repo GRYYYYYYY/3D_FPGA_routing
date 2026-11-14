@@ -1,0 +1,39 @@
+{
+  "status": "registered_not_implemented_not_submitted",
+  "question": "Does a strictly improving connection-delay vector allow safe progress across a tied critical-path plateau that strictCPD acceptance rejects?",
+  "evidence": "StrongR1 net6590pin4 is shortened by0.185825799ns with all other23904 sink physical delays unchanged, nativeFULL passed, reported CPD remains6.01810ns and sTNS remains-33483.7ns. Worst-path start changes frombram_select[7] tobram_select[6]. Therefore even strictTNS improvement would reject this observed first plateau step.",
+  "arms": [
+    "Strict:existing R1 candidate remains rejected; immutable completed control reused.",
+    "Plateau branch:allow this existing complete legal route as a branch state only when fullSTA CPD/setup/hold WNS/TNS do not worsen, every audited sink physical delay is nonincreasing and at least one strictly decreases. Then reselect targets from that state and attempt further free-capacity repairs."
+  ],
+  "start_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_R1",
+  "reusable_first_candidate": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_R1_native_01/runs/eltwise_layer_R",
+  "existing_rejection_preserved": true,
+  "scope": "First acceptance-factor experiment on verified zero-RC graph with single-connection repairs. This componentwise guard does not admit the coordinated transaction, whose blocker delays include regressions. Nonzero-RC/load changes require a different fully validated delay comparison.",
+  "implementation": [
+    "Keep strict and plateau accepted-state pointers separate; never rewrite old completion or frozen routes.",
+    "Use generic currentSTA selection and the same exact fixed-tree free-capacity query, deterministic proposal ordering and nativeFULL/STA.",
+    "Guard all sink connections, not only selected ones; log equal-reported-CPD steps, route resources and complete cost. Track route hashes and strict delay-vector descent to detect cycles.",
+    "A locally accepted plateau step is not a demonstrated CPD benefit. Evaluate whether later steps actually reduce finalCPD or stall; preserve the original best state and alternate branch states."
+  ],
+  "discriminants": [
+    "Later CPD drops after previously rejected zero-CPD-gain steps: supports multi-path plateau handling.",
+    "No further free-capacity gain: diagnose resource/tree coupling on current tied paths, rather than pretending the first step already improved quality.",
+    "Unacceptable runtime/resources or no robust final gain: change selection/coordinate tied connections and retain costs."
+  ],
+  "matched_policy_followup": "After selecting a stable policy, apply the same selection/acceptance/scope/coordinated-fallback/work budget from frozen matched count-two A0/R1/Tf initial states. CurrentTf has already received three interventions; its6.01928ns is not superior to6.01810ns baselines or an equal-opportunity method comparison.",
+  "overhead_followup": "Prototype loads static graph for each attachment and repeats externalSTA. Measure complete cost; consider a persistent graph/query worker or in-process integration only with equivalent decisions and native validation.",
+  "budgets": "Bound each invocation/process and retain all statuses. No global research date, call-count or fixed-matrix stopping rule.",
+  "per_process_limits": {
+    "timeout_seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_path_analysis_01.json": "b2a61dbe519f71a313f936f81af6075fef29d7408d0ee61e5f012f4c36094c9d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_R1_native_01/completion.json": "19fb996a60c1aeeaab2d2a1a5c9e9f398ebd39817edf88e0cb24da995db366c6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_R1_native_01/physical_change_audit.json": "2c930c85efb97a0c2555b0f4a313fdfd629f466135f9881902947116bd499a7c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/coordinated_native_01/completion.json": "0b918dbcb1526695daef735407bc13466c3268ed6b5da02fcbad11355b4d9184",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_reference_experiment_01.json": "1340a98610a80a00d37b01e323f1ff7819d284d51bf0067da5927717d0b3f0ea"
+  }
+}

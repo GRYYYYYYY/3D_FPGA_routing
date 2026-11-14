@@ -1,0 +1,128 @@
+{
+  "status": "registered_before_implementation",
+  "question": "Can jointly compatible alternatives shorten both tied critical connections while restoring four blocking sinks, avoiding the resource transfer of a one-target plateau step?",
+  "input_run": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_R1",
+  "targets": [
+    {
+      "net": 6587,
+      "pin": 4,
+      "anchor": 81387,
+      "retained_intersections": [
+        81371,
+        81387
+      ],
+      "suffix_nodes": [
+        81387,
+        327367,
+        415972,
+        416144,
+        416236,
+        82109,
+        82095
+      ],
+      "suffix_weights": [
+        1.8582579919268483e-10,
+        1.8582579919268483e-10,
+        1.8582579919268483e-10,
+        1.8582579919268483e-10,
+        1.0603609656989477e-10,
+        0.0
+      ],
+      "physical_seconds": 8.493392933406341e-10,
+      "reference_source": "endpoint_resource_82112_01",
+      "reference_row": 1
+    },
+    {
+      "net": 6590,
+      "pin": 4,
+      "anchor": 81399,
+      "retained_intersections": [
+        81383,
+        81399
+      ],
+      "suffix_nodes": [
+        81399,
+        327369,
+        415988,
+        416132,
+        416222,
+        82112,
+        82095
+      ],
+      "suffix_weights": [
+        1.8582579919268483e-10,
+        1.8582579919268483e-10,
+        1.8582579919268483e-10,
+        1.8582579919268483e-10,
+        1.0603609656989477e-10,
+        0.0
+      ],
+      "physical_seconds": 8.493392933406341e-10,
+      "reference_source": "endpoint_resource_327367_01",
+      "reference_row": 0
+    }
+  ],
+  "affected_scope": [
+    {
+      "net": 1429,
+      "name": "bram_rdata_a_3[37]",
+      "resources": [
+        416144
+      ],
+      "affected_pins": [
+        1
+      ],
+      "total_pins": 1
+    },
+    {
+      "net": 2926,
+      "name": "bram_addr_b_4_ext[1]",
+      "resources": [
+        416222
+      ],
+      "affected_pins": [
+        2
+      ],
+      "total_pins": 6
+    },
+    {
+      "net": 6563,
+      "name": "$abc$87764$new_n22316",
+      "resources": [
+        415972
+      ],
+      "affected_pins": [
+        1
+      ],
+      "total_pins": 1
+    },
+    {
+      "net": 7963,
+      "name": "u_eltwise_cu_5.u_pe_array.pe1.u_add.u_FPAddSub.RoundModule.NormM[6]",
+      "resources": [
+        327369,
+        415988,
+        416132
+      ],
+      "affected_pins": [
+        2
+      ],
+      "total_pins": 2
+    }
+  ],
+  "evidence": "With other nets fixed, both connections need the same capacity1 IPIN82120 for physicalcost below1.042804ns. Independent plateau repair consumes this resource. In an endpoint-only relaxation,9 candidate pairs include2 jointly RRcapacity-feasible pairs, matching independentlowerbound0.849339ns each. Selected paths also attach to real retained trees at same cost;4 blocker nets,4 totalaffected sinks remain.",
+  "implementation": "Reserve both target paths atomically after pruning affected blocker subtrees; restore blockers in ascending net/pin order with current occupancy/prefixes and exact free-capacity path queries. Preserve all unaffected branches and nets. Validate full6-net transaction with unchanged nativeFULL/STA, rollback unless strict finalCPD improvement.",
+  "acceptance": "Two target physical delays must decrease; only declared targets/blocker sinks may change. Blocker regressions are allowed only with overall strictCPD improvement and are explicitly reported. This is distinct from componentwise plateau policy.",
+  "controls": "Reuse original strongR1 state and prior single-target strict/plateau outcomes. This joint pilot changes selection/coordination, not merely acceptance. Apply equal completepolicy opportunities across A0/R1/Tf before promotion.",
+  "scope": "Four blocker nets are justified by this actual compatible pair, expanding prior three-blocker development example; no permanent three-net limit or global research cap.",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/plateau_joint_opportunity_01.json": "b433c6abdd034e843829c54ffa1b87409f6a164d62fe92076acc51b466bd6107",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postroute_plateau_policy_experiment_01.json": "019420f4e6e197b16f31d825c2e23f53169190ccdb09c9861eab0b35c139ae5b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/coordinated_repair_tree.py": "f43ffe10c5187eeeab01033d2d0f6960f15183deb3f5e5bf5d1bf8bf106580bb"
+  },
+  "per_process_limits": {
+    "timeout_seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  }
+}

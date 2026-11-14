@@ -1,0 +1,18 @@
+--- a/vpr/src/base/vpr_api.cpp
++++ b/vpr/src/base/vpr_api.cpp
+@@ -85,6 +85,7 @@
+ 
+ #include "timing_graph_builder.h"
+ #include "timing_reports.h"
++#include "h3d_native_sta_frontier.h"
+ #include "tatum/echo_writer.hpp"
+ 
+ #include "read_route.h"
+@@ -1593,6 +1594,7 @@
+         auto analysis_delay_calc = std::make_shared<AnalysisDelayCalculator>(atom_ctx.netlist(), atom_ctx.lookup(), net_delay, vpr_setup.RouterOpts.flat_routing);
+         auto timing_info = make_setup_hold_timing_info(analysis_delay_calc, vpr_setup.AnalysisOpts.timing_update_type);
+         timing_info->update();
++        h3d_native_sta_frontier::write_if_requested(net_list, net_delay, *timing_info, is_flat);
+ 
+         if (isEchoFileEnabled(E_ECHO_ANALYSIS_TIMING_GRAPH)) {
+             auto& timing_ctx = g_vpr_ctx.timing();

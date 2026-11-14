@@ -1,0 +1,63 @@
+--- a/h3d_native_sta_frontier.h
++++ b/h3d_native_sta_frontier.h
+@@ -12,6 +12,8 @@
+ #include "timing_info.h"
+ #include "vpr_utils.h"
+ #include "vpr_net_pins_matrix.h"
++#include "tatum/TimingGraph.hpp"
++#include "tatum/echo_writer.hpp"
+ 
+ /** @brief Read-only final STA exporter; it never selects or changes routes. */
+ namespace h3d_native_sta_frontier {
+@@ -213,7 +215,50 @@
+             ++rows;
+         }
+     }
+-    out << "{\"type\":\"complete\",\"pin_rows\":" << rows << "}\n";
++    size_t endpoints = 0;
++    const auto& graph = *timing.timing_graph();
++    for (tatum::NodeId node : graph.nodes()) {
++        if (graph.node_type(node) != tatum::NodeType::SINK) continue;
++        AtomPinId pin = g_vpr_ctx.atom().lookup().tnode_atom_pin(node);
++        out << "{\"type\":\"endpoint\",\"node\":";
++        id(out, node);
++        out << ",\"atom_pin\":";
++        id(out, pin);
++        out << ",\"name\":";
++        if (pin) string(out, g_vpr_ctx.atom().netlist().pin_name(pin));
++        else out << "null";
++        out << ",\"setup_tags\":";
++        tags(out, timing.setup_analyzer()->setup_slacks(node));
++        out << ",\"hold_tags\":";
++        tags(out, timing.hold_analyzer()->hold_slacks(node));
++        out << "}\n";
++        ++endpoints;
++    }
++    auto least = timing.least_slack_critical_path();
++    auto longest = timing.longest_critical_path();
++    out << "{\"type\":\"timing_metrics\",\"least_slack_CPD_s\":";
++    number(out, least.delay().value());
++    out << ",\"least_slack_s\":";
++    number(out, least.slack().value());
++    out << ",\"longest_CPD_s\":";
++    number(out, longest.delay().value());
++    out << ",\"setup_TNS_s\":";
++    number(out, timing.setup_total_negative_slack());
++    out << ",\"hold_TNS_s\":";
++    number(out, timing.hold_total_negative_slack());
++    out << ",\"least_slack_launch_domain\":";
++    id(out, least.launch_domain());
++    out << ",\"least_slack_capture_domain\":";
++    id(out, least.capture_domain());
++    out << ",\"least_slack_endpoint\":";
++    id(out, least.endpoint());
++    out << "}\n";
++    std::ofstream constraints(std::string(path) + ".constraints.echo");
++    constraints << std::setprecision(std::numeric_limits<double>::max_digits10);
++    tatum::write_timing_constraints(constraints, *timing.timing_constraints());
++    constraints.close();
++    if (!constraints) VPR_FATAL_ERROR(VPR_ERROR_ANALYSIS, "Cannot finish native STA constraint export: %s", path);
++    out << "{\"type\":\"complete\",\"pin_rows\":" << rows << ",\"endpoint_rows\":" << endpoints << "}\n";
+     out.close();
+     if (!out) VPR_FATAL_ERROR(VPR_ERROR_ANALYSIS, "Cannot finish native STA frontier: %s", path);
+     VTR_LOG("H3D_FINAL_STA_TRACE pins=%zu path=%s\n", rows, path);

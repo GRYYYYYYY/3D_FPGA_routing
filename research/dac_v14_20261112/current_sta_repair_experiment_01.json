@@ -1,0 +1,51 @@
+{
+  "status": "registered_selector_implemented_queries_not_submitted",
+  "hypothesis": "Re-selecting repair targets from the current STA state can address critical-path migration that limits a successful one-connection repair.",
+  "evidence": "One capacity-feasible repair shortened net5479/pin36 by1.955259ns, but FULL/STA CPD improved only0.00419ns and the worst path moved to bram_select[6] -> bram_rdata_ext[60]. All23905 sink physical delays were compared; only the repaired connection changed.",
+  "input_run": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/critical_repair_validation_01/runs/eltwise_layer_R",
+  "input_policy": "This first development state is a diagnostic repaired Tf route. Use only its current STA/route/occupancy to select next targets; no hardcoded net/pin list or A0/R1 oracle suffix. A successful continuation is not a fair final algorithm comparison until the same procedure is applied from matched A0/R1/Tf initial states.",
+  "implementation": {
+    "selector": "select_current_critical_targets.py::select",
+    "query": "critical_capacity_adapter.h::query_critical_capacity",
+    "route_transaction": "Refactor audited target-exclusive-chain removal and isolated route serialization into reusable helpers. Retain input route, proposed route and accepted-state pointer separately.",
+    "native_consumer": "Unchanged VPR route-file load, FULL legality and full STA before acceptance; later in-process integration targets route.cpp post-legal/best-state handling. This prototype is an external repair stage, not yet an in-process router."
+  },
+  "factors": [
+    "Frozen initial worst-path target set versus re-selection from each accepted state.",
+    "One-target repair versus sequential current-path repairs; use native STA after each proposal.",
+    "Worst-path only versus near-critical path union is a later separate selection factor.",
+    "Full-device search is explicit; compare with native-domain restricted search before attributing benefit to selection alone."
+  ],
+  "query_policy": "For each current-path target, prune only its exclusive chain; reuse immutable graph and capacities, rebuild ownership/tree-prefix state from current accepted route. First query fixed-other-net free capacity; use a relaxed reference only to diagnose absence of feasible improvement. Rank admissible proposals by physical path reduction, deterministic net/pin tie-break. A fixed-tree prefix is charged once.",
+  "acceptance": "First pilot accepts only nativeFULL-legal proposals with strictly smaller reported CPD and unchanged other sink physical delays on the verified zero-RC graph. Keep full STA reports and all rejected proposals. If equal-CPD near-critical ties block useful progress, design a separate no-worse-WNS/TNS or path-vector acceptance factor; do not silently change this rule.",
+  "discriminants": [
+    "Further CPD gain after re-selection supports path-migration-aware intervention; compare against frozen targets with the same work opportunity.",
+    "No feasible shorter extension with a large relaxed gap motivates bounded coordinated reroute or retained-subtree replacement.",
+    "Shorter extensions but unchanged CPD motivate a near-critical-set objective/acceptance test, not neighboring guide-weight tuning.",
+    "Same-scope A0/R1 gain equally or more: retain improvement as a general post-route stage, make no Tf-specific advantage claim.",
+    "Runtime dominated by repeated graph load/STA: prototype cost must be reported, then evaluate persistent/in-process integration."
+  ],
+  "metrics": [
+    "all statuses including failed/timeout/missing",
+    "per-circuit matched CPD and tails",
+    "native FULL and STA",
+    "actual SB/CB resources",
+    "accepted/rejected target and path migration",
+    "native original iteration count",
+    "query/preparation/planning time",
+    "entire initial-route-plus-repair wall time"
+  ],
+  "per_process_limits": {
+    "timeout_seconds": 1800,
+    "query_memory_bytes": 25769803776,
+    "native_memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "scope_limits": "No total research call/date/matrix cap. A per-invocation repair/work budget and no-gain exit bound a method invocation only, never the overall research goal.",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/critical_repair_validation_01/completion.json": "e94baa2ecdbda736588c314c5221cc829706fad8041a734c576ab77325aa9670",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/critical_repair_validation_01/path_migration_analysis.json": "2db665286181fd28fc3f604341722fc9de79b1f917e5519e15169a6f4b187398",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/critical_capacity_potential_01/analysis.json": "3013237f925e775d2088b3622986ef75c5e277977ffedc0b2667732c876944a3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/select_current_critical_targets.py": "2930d6fb6df1ddc52423e239f1386a2bc58bdd04817b63fdc6105f9a2461231b"
+  }
+}

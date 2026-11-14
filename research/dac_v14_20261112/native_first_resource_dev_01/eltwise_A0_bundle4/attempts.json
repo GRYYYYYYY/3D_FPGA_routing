@@ -1,0 +1,2294 @@
+[
+  {
+    "round": 0,
+    "candidate_rank": 0,
+    "current_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_first_resource_dev_01/eltwise_A0_bundle4/initial",
+    "net": 4788,
+    "pins": [
+      14,
+      15
+    ],
+    "bundle_removed_pins": {
+      "4788": [
+        14,
+        15
+      ],
+      "7480": [
+        2,
+        3
+      ],
+      "6719": [
+        37,
+        40
+      ],
+      "4672": [
+        278,
+        325
+      ]
+    },
+    "bundle_actual_nets": 4,
+    "pair": {
+      "reuse_off": {
+        "status": "legal_evaluated",
+        "accepted": true,
+        "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_first_resource_dev_01/eltwise_A0_bundle4/round_000/candidate_00/reuse_off_evaluation",
+        "CPD_s": 6.018101128546505e-09,
+        "resources": {
+          "wirelength": 217050,
+          "SB_pairs": 27,
+          "CB_sources": 968
+        },
+        "decision": {
+          "accepted": true,
+          "reason": "Exact fixed-budget conditions satisfied",
+          "mode": "resources_under_timing",
+          "resource_objectives": [
+            "SB_pairs",
+            "CB_sources"
+          ],
+          "cpd_limit_s": 6.018101128546505e-09,
+          "resource_limits": {
+            "wirelength": 217283,
+            "SB_pairs": 30,
+            "CB_sources": 968
+          },
+          "endpoint_comparison": {
+            "compatible": true,
+            "cpd_before_s": 6.018101128546505e-09,
+            "cpd_after_s": 6.018101128546505e-09,
+            "cpd_strictly_better": false,
+            "cpd_nonworse": true,
+            "setup_improved": 5,
+            "setup_regressed": 2,
+            "hold_violation_regressions": 0,
+            "setup_components": 14032,
+            "hold_components": 14032,
+            "changes": [
+              {
+                "kind": "setup",
+                "endpoint_domain": "[79639,65680,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[1].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.6537926018098688e-09,
+                "delta_s": 2.5937274550358325e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[79640,65683,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[2].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.6537926018098688e-09,
+                "delta_s": 2.5937274550358325e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[79641,65686,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[3].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.6537926018098688e-09,
+                "delta_s": 2.5937274550358325e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[79648,66121,\"u_eltwise_cu_5.u_pe_array.pe0.out_mul[5].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.824340399916082e-09,
+                "delta_s": 8.882494739737012e-11
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80875,50731,\"bram_wdata_c_0[16].D[0]\",1,1]",
+                "before_s": -4.03537647741814e-09,
+                "after_s": -4.89771423417551e-09,
+                "delta_s": -8.623377567573698e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80880,50746,\"bram_wdata_c_0[21].D[0]\",1,1]",
+                "before_s": -3.551445582061774e-09,
+                "after_s": -4.71188821293822e-09,
+                "delta_s": -1.160442630876446e-09
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81840,65692,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[5].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.824340399916082e-09,
+                "delta_s": 8.882494739737012e-11
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[79639,65680,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[1].D[0]\",0,1]",
+                "before_s": 3.3518552378097866e-09,
+                "after_s": 3.0924827143508082e-09,
+                "delta_s": -2.593725234589783e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[79640,65683,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[2].D[0]\",0,1]",
+                "before_s": 3.3518552378097866e-09,
+                "after_s": 3.0924827143508082e-09,
+                "delta_s": -2.593725234589783e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[79641,65686,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[3].D[0]\",0,1]",
+                "before_s": 3.3518552378097866e-09,
+                "after_s": 3.0924827143508082e-09,
+                "delta_s": -2.593725234589783e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[79648,66121,\"u_eltwise_cu_5.u_pe_array.pe0.out_mul[5].D[0]\",0,1]",
+                "before_s": 3.3518552378097866e-09,
+                "after_s": 3.2630302904124164e-09,
+                "delta_s": -8.882494739737012e-11
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[80976,50395,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[2].D[0]\",0,1]",
+                "before_s": 1.3532481801803442e-09,
+                "after_s": 9.815965817949746e-10,
+                "delta_s": -3.7165159838536965e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[81840,65692,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[5].D[0]\",0,1]",
+                "before_s": 3.3518552378097866e-09,
+                "after_s": 3.2630302904124164e-09,
+                "delta_s": -8.882494739737012e-11
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[82163,66634,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[2].D[0]\",0,1]",
+                "before_s": 1.3532481801803442e-09,
+                "after_s": 9.815965817949746e-10,
+                "delta_s": -3.7165159838536965e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[82306,71683,\"bram_wdata_c_1_ext[39].D[0]\",0,1]",
+                "before_s": 2.2491546403102802e-09,
+                "after_s": 1.9592261146783585e-09,
+                "delta_s": -2.8992852563192173e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[82384,71449,\"bram_wdata_c_0_ext[39].D[0]\",0,1]",
+                "before_s": 2.43498066154757e-09,
+                "after_s": 1.5875745162929888e-09,
+                "delta_s": -8.474061452545811e-10
+              }
+            ]
+          },
+          "resource_delta": {
+            "wirelength": -15,
+            "SB_pairs": -3,
+            "CB_sources": 0
+          },
+          "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+        },
+        "strict_or_endpoint_control": {
+          "strict": {
+            "accepted": false,
+            "policy": "strict",
+            "reason": "No full-precision strict CPD improvement",
+            "comparison": {
+              "compatible": true,
+              "cpd_before_s": 6.018101128546505e-09,
+              "cpd_after_s": 6.018101128546505e-09,
+              "cpd_strictly_better": false,
+              "cpd_nonworse": true,
+              "setup_improved": 5,
+              "setup_regressed": 2,
+              "hold_violation_regressions": 0,
+              "setup_components": 14032,
+              "hold_components": 14032,
+              "changes": [
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[79639,65680,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[1].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.6537926018098688e-09,
+                  "delta_s": 2.5937274550358325e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[79640,65683,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[2].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.6537926018098688e-09,
+                  "delta_s": 2.5937274550358325e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[79641,65686,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[3].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.6537926018098688e-09,
+                  "delta_s": 2.5937274550358325e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[79648,66121,\"u_eltwise_cu_5.u_pe_array.pe0.out_mul[5].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.824340399916082e-09,
+                  "delta_s": 8.882494739737012e-11
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80875,50731,\"bram_wdata_c_0[16].D[0]\",1,1]",
+                  "before_s": -4.03537647741814e-09,
+                  "after_s": -4.89771423417551e-09,
+                  "delta_s": -8.623377567573698e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80880,50746,\"bram_wdata_c_0[21].D[0]\",1,1]",
+                  "before_s": -3.551445582061774e-09,
+                  "after_s": -4.71188821293822e-09,
+                  "delta_s": -1.160442630876446e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81840,65692,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[5].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.824340399916082e-09,
+                  "delta_s": 8.882494739737012e-11
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[79639,65680,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[1].D[0]\",0,1]",
+                  "before_s": 3.3518552378097866e-09,
+                  "after_s": 3.0924827143508082e-09,
+                  "delta_s": -2.593725234589783e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[79640,65683,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[2].D[0]\",0,1]",
+                  "before_s": 3.3518552378097866e-09,
+                  "after_s": 3.0924827143508082e-09,
+                  "delta_s": -2.593725234589783e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[79641,65686,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[3].D[0]\",0,1]",
+                  "before_s": 3.3518552378097866e-09,
+                  "after_s": 3.0924827143508082e-09,
+                  "delta_s": -2.593725234589783e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[79648,66121,\"u_eltwise_cu_5.u_pe_array.pe0.out_mul[5].D[0]\",0,1]",
+                  "before_s": 3.3518552378097866e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -8.882494739737012e-11
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[80976,50395,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[2].D[0]\",0,1]",
+                  "before_s": 1.3532481801803442e-09,
+                  "after_s": 9.815965817949746e-10,
+                  "delta_s": -3.7165159838536965e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81840,65692,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[5].D[0]\",0,1]",
+                  "before_s": 3.3518552378097866e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -8.882494739737012e-11
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82163,66634,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[2].D[0]\",0,1]",
+                  "before_s": 1.3532481801803442e-09,
+                  "after_s": 9.815965817949746e-10,
+                  "delta_s": -3.7165159838536965e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82306,71683,\"bram_wdata_c_1_ext[39].D[0]\",0,1]",
+                  "before_s": 2.2491546403102802e-09,
+                  "after_s": 1.9592261146783585e-09,
+                  "delta_s": -2.8992852563192173e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82384,71449,\"bram_wdata_c_0_ext[39].D[0]\",0,1]",
+                  "before_s": 2.43498066154757e-09,
+                  "after_s": 1.5875745162929888e-09,
+                  "delta_s": -8.474061452545811e-10
+                }
+              ]
+            }
+          },
+          "endpoint_vector": {
+            "accepted": false,
+            "policy": "endpoint_vector",
+            "reason": "Setup endpoint/domain vector has regressions",
+            "comparison": {
+              "compatible": true,
+              "cpd_before_s": 6.018101128546505e-09,
+              "cpd_after_s": 6.018101128546505e-09,
+              "cpd_strictly_better": false,
+              "cpd_nonworse": true,
+              "setup_improved": 5,
+              "setup_regressed": 2,
+              "hold_violation_regressions": 0,
+              "setup_components": 14032,
+              "hold_components": 14032,
+              "changes": [
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[79639,65680,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[1].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.6537926018098688e-09,
+                  "delta_s": 2.5937274550358325e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[79640,65683,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[2].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.6537926018098688e-09,
+                  "delta_s": 2.5937274550358325e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[79641,65686,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[3].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.6537926018098688e-09,
+                  "delta_s": 2.5937274550358325e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[79648,66121,\"u_eltwise_cu_5.u_pe_array.pe0.out_mul[5].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.824340399916082e-09,
+                  "delta_s": 8.882494739737012e-11
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80875,50731,\"bram_wdata_c_0[16].D[0]\",1,1]",
+                  "before_s": -4.03537647741814e-09,
+                  "after_s": -4.89771423417551e-09,
+                  "delta_s": -8.623377567573698e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80880,50746,\"bram_wdata_c_0[21].D[0]\",1,1]",
+                  "before_s": -3.551445582061774e-09,
+                  "after_s": -4.71188821293822e-09,
+                  "delta_s": -1.160442630876446e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81840,65692,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[5].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.824340399916082e-09,
+                  "delta_s": 8.882494739737012e-11
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[79639,65680,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[1].D[0]\",0,1]",
+                  "before_s": 3.3518552378097866e-09,
+                  "after_s": 3.0924827143508082e-09,
+                  "delta_s": -2.593725234589783e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[79640,65683,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[2].D[0]\",0,1]",
+                  "before_s": 3.3518552378097866e-09,
+                  "after_s": 3.0924827143508082e-09,
+                  "delta_s": -2.593725234589783e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[79641,65686,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[3].D[0]\",0,1]",
+                  "before_s": 3.3518552378097866e-09,
+                  "after_s": 3.0924827143508082e-09,
+                  "delta_s": -2.593725234589783e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[79648,66121,\"u_eltwise_cu_5.u_pe_array.pe0.out_mul[5].D[0]\",0,1]",
+                  "before_s": 3.3518552378097866e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -8.882494739737012e-11
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[80976,50395,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[2].D[0]\",0,1]",
+                  "before_s": 1.3532481801803442e-09,
+                  "after_s": 9.815965817949746e-10,
+                  "delta_s": -3.7165159838536965e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81840,65692,\"u_eltwise_cu_5.u_pe_array.pe0.out_sub[5].D[0]\",0,1]",
+                  "before_s": 3.3518552378097866e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -8.882494739737012e-11
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82163,66634,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[2].D[0]\",0,1]",
+                  "before_s": 1.3532481801803442e-09,
+                  "after_s": 9.815965817949746e-10,
+                  "delta_s": -3.7165159838536965e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82306,71683,\"bram_wdata_c_1_ext[39].D[0]\",0,1]",
+                  "before_s": 2.2491546403102802e-09,
+                  "after_s": 1.9592261146783585e-09,
+                  "delta_s": -2.8992852563192173e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82384,71449,\"bram_wdata_c_0_ext[39].D[0]\",0,1]",
+                  "before_s": 2.43498066154757e-09,
+                  "after_s": 1.5875745162929888e-09,
+                  "delta_s": -8.474061452545811e-10
+                }
+              ]
+            }
+          }
+        },
+        "native_core_seconds": 0.441376964,
+        "native_observer_request_seconds": 11.442050691694021
+      },
+      "reuse_on": {
+        "status": "not_executed_after_admissible_native_free_candidate",
+        "accepted": false,
+        "qualification": "Native-first scheduling rule fixed before execution; only a fully validated accepted OFF candidate skips the extra domain request. Paired controls remain separate."
+      }
+    },
+    "committed_evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_first_resource_dev_01/eltwise_A0_bundle4/round_000/candidate_00/reuse_off_evaluation"
+  },
+  {
+    "round": 1,
+    "candidate_rank": 0,
+    "current_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_first_resource_dev_01/eltwise_A0_bundle4/round_000/candidate_00/reuse_off_evaluation",
+    "net": 4788,
+    "pins": [
+      14,
+      15
+    ],
+    "bundle_removed_pins": {
+      "4788": [
+        14,
+        15
+      ],
+      "5536": [
+        78,
+        286
+      ],
+      "4674": [
+        9,
+        20,
+        21
+      ],
+      "6719": [
+        4,
+        35,
+        36,
+        37,
+        40,
+        41,
+        60
+      ]
+    },
+    "bundle_actual_nets": 4,
+    "pair": {
+      "reuse_off": {
+        "status": "legal_evaluated",
+        "accepted": false,
+        "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_first_resource_dev_01/eltwise_A0_bundle4/round_001/candidate_00/reuse_off_evaluation",
+        "CPD_s": 6.018101128546505e-09,
+        "resources": {
+          "wirelength": 217058,
+          "SB_pairs": 31,
+          "CB_sources": 968
+        },
+        "decision": {
+          "accepted": false,
+          "reason": "Fixed registered resource budget exceeded",
+          "mode": "resources_under_timing",
+          "resource_objectives": [
+            "SB_pairs",
+            "CB_sources"
+          ],
+          "cpd_limit_s": 6.018101128546505e-09,
+          "resource_limits": {
+            "wirelength": 217283,
+            "SB_pairs": 30,
+            "CB_sources": 968
+          },
+          "endpoint_comparison": {
+            "compatible": true,
+            "cpd_before_s": 6.018101128546505e-09,
+            "cpd_after_s": 6.018101128546505e-09,
+            "cpd_strictly_better": false,
+            "cpd_nonworse": true,
+            "setup_improved": 23,
+            "setup_regressed": 0,
+            "hold_violation_regressions": 0,
+            "setup_components": 14032,
+            "hold_components": 14032,
+            "changes": [
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80872,50722,\"bram_wdata_c_0[13].D[0]\",1,1]",
+                "before_s": -3.968585016167481e-09,
+                "after_s": -3.0909690362790343e-09,
+                "delta_s": 8.776159798884464e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80873,50725,\"bram_wdata_c_0[14].D[0]\",1,1]",
+                "before_s": -4.34023705864206e-09,
+                "after_s": -3.462620634664404e-09,
+                "delta_s": 8.776164239776563e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80875,50731,\"bram_wdata_c_0[16].D[0]\",1,1]",
+                "before_s": -4.89771423417551e-09,
+                "after_s": -4.03537647741814e-09,
+                "delta_s": 8.623377567573698e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80880,50746,\"bram_wdata_c_0[21].D[0]\",1,1]",
+                "before_s": -4.71188821293822e-09,
+                "after_s": -3.551445582061774e-09,
+                "delta_s": 1.160442630876446e-09
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80881,50749,\"bram_wdata_c_0[22].D[0]\",1,1]",
+                "before_s": -4.52606263579014e-09,
+                "after_s": -3.551445582061774e-09,
+                "delta_s": 9.74617053728366e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.4526885794861073e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.462620634664404e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.4526885794861073e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.462620634664404e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.4526885794861073e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.462620634664404e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.4526885794861073e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.462620634664404e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.638514600723397e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.6484466559016937e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.638514600723397e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.6484466559016937e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.638514600723397e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.6484466559016937e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.638514600723397e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.6484466559016937e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.638514600723397e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.6484466559016937e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.0772047132643365e-09,
+                "delta_s": -4.6047610169352993e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.0772047132643365e-09,
+                "delta_s": -4.6047610169352993e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.0772047132643365e-09,
+                "delta_s": -4.6047610169352993e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.0772047132643365e-09,
+                "delta_s": -4.6047610169352993e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.2630302904124164e-09,
+                "delta_s": -2.7465052454545e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.2630302904124164e-09,
+                "delta_s": -2.7465052454545e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.2630302904124164e-09,
+                "delta_s": -2.7465052454545e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.2630302904124164e-09,
+                "delta_s": -2.7465052454545e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.2630302904124164e-09,
+                "delta_s": -2.7465052454545e-10
+              }
+            ]
+          },
+          "resource_delta": {
+            "wirelength": 8,
+            "SB_pairs": 4,
+            "CB_sources": 0
+          },
+          "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+        },
+        "strict_or_endpoint_control": {
+          "strict": {
+            "accepted": false,
+            "policy": "strict",
+            "reason": "No full-precision strict CPD improvement",
+            "comparison": {
+              "compatible": true,
+              "cpd_before_s": 6.018101128546505e-09,
+              "cpd_after_s": 6.018101128546505e-09,
+              "cpd_strictly_better": false,
+              "cpd_nonworse": true,
+              "setup_improved": 23,
+              "setup_regressed": 0,
+              "hold_violation_regressions": 0,
+              "setup_components": 14032,
+              "hold_components": 14032,
+              "changes": [
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80872,50722,\"bram_wdata_c_0[13].D[0]\",1,1]",
+                  "before_s": -3.968585016167481e-09,
+                  "after_s": -3.0909690362790343e-09,
+                  "delta_s": 8.776159798884464e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80873,50725,\"bram_wdata_c_0[14].D[0]\",1,1]",
+                  "before_s": -4.34023705864206e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 8.776164239776563e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80875,50731,\"bram_wdata_c_0[16].D[0]\",1,1]",
+                  "before_s": -4.89771423417551e-09,
+                  "after_s": -4.03537647741814e-09,
+                  "delta_s": 8.623377567573698e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80880,50746,\"bram_wdata_c_0[21].D[0]\",1,1]",
+                  "before_s": -4.71188821293822e-09,
+                  "after_s": -3.551445582061774e-09,
+                  "delta_s": 1.160442630876446e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80881,50749,\"bram_wdata_c_0[22].D[0]\",1,1]",
+                  "before_s": -4.52606263579014e-09,
+                  "after_s": -3.551445582061774e-09,
+                  "delta_s": 9.74617053728366e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.6484466559016937e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.6484466559016937e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.6484466559016937e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.6484466559016937e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.6484466559016937e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                }
+              ]
+            }
+          },
+          "endpoint_vector": {
+            "accepted": true,
+            "policy": "endpoint_vector",
+            "reason": "Exact policy conditions satisfied",
+            "comparison": {
+              "compatible": true,
+              "cpd_before_s": 6.018101128546505e-09,
+              "cpd_after_s": 6.018101128546505e-09,
+              "cpd_strictly_better": false,
+              "cpd_nonworse": true,
+              "setup_improved": 23,
+              "setup_regressed": 0,
+              "hold_violation_regressions": 0,
+              "setup_components": 14032,
+              "hold_components": 14032,
+              "changes": [
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80872,50722,\"bram_wdata_c_0[13].D[0]\",1,1]",
+                  "before_s": -3.968585016167481e-09,
+                  "after_s": -3.0909690362790343e-09,
+                  "delta_s": 8.776159798884464e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80873,50725,\"bram_wdata_c_0[14].D[0]\",1,1]",
+                  "before_s": -4.34023705864206e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 8.776164239776563e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80875,50731,\"bram_wdata_c_0[16].D[0]\",1,1]",
+                  "before_s": -4.89771423417551e-09,
+                  "after_s": -4.03537647741814e-09,
+                  "delta_s": 8.623377567573698e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80880,50746,\"bram_wdata_c_0[21].D[0]\",1,1]",
+                  "before_s": -4.71188821293822e-09,
+                  "after_s": -3.551445582061774e-09,
+                  "delta_s": 1.160442630876446e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80881,50749,\"bram_wdata_c_0[22].D[0]\",1,1]",
+                  "before_s": -4.52606263579014e-09,
+                  "after_s": -3.551445582061774e-09,
+                  "delta_s": 9.74617053728366e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.6484466559016937e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.6484466559016937e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.6484466559016937e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.6484466559016937e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.6484466559016937e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                }
+              ]
+            }
+          }
+        },
+        "native_core_seconds": 1.223376336,
+        "native_observer_request_seconds": 11.984007101505995
+      },
+      "reuse_on": {
+        "status": "legal_evaluated",
+        "accepted": true,
+        "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_first_resource_dev_01/eltwise_A0_bundle4/round_001/candidate_00/reuse_on_evaluation",
+        "CPD_s": 6.018101128546505e-09,
+        "resources": {
+          "wirelength": 217181,
+          "SB_pairs": 26,
+          "CB_sources": 965
+        },
+        "decision": {
+          "accepted": true,
+          "reason": "Exact fixed-budget conditions satisfied",
+          "mode": "resources_under_timing",
+          "resource_objectives": [
+            "SB_pairs",
+            "CB_sources"
+          ],
+          "cpd_limit_s": 6.018101128546505e-09,
+          "resource_limits": {
+            "wirelength": 217283,
+            "SB_pairs": 30,
+            "CB_sources": 968
+          },
+          "endpoint_comparison": {
+            "compatible": true,
+            "cpd_before_s": 6.018101128546505e-09,
+            "cpd_after_s": 6.018101128546505e-09,
+            "cpd_strictly_better": false,
+            "cpd_nonworse": true,
+            "setup_improved": 13,
+            "setup_regressed": 20,
+            "hold_violation_regressions": 0,
+            "setup_components": 14032,
+            "hold_components": 14032,
+            "changes": [
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80857,50905,\"c_data_0_available.D[0]\",1,1]",
+                "before_s": -3.462620634664404e-09,
+                "after_s": -5.0911790339114305e-09,
+                "delta_s": -1.6285583992470265e-09
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80858,50875,\"bram_addr_c_0[0].D[0]\",1,1]",
+                "before_s": -3.462620634664404e-09,
+                "after_s": -5.0911790339114305e-09,
+                "delta_s": -1.6285583992470265e-09
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80872,50722,\"bram_wdata_c_0[13].D[0]\",1,1]",
+                "before_s": -3.968585016167481e-09,
+                "after_s": -4.162049815903401e-09,
+                "delta_s": -1.9346479973592068e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80873,50725,\"bram_wdata_c_0[14].D[0]\",1,1]",
+                "before_s": -4.34023705864206e-09,
+                "after_s": -5.098817812410061e-09,
+                "delta_s": -7.585807537680012e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80875,50731,\"bram_wdata_c_0[16].D[0]\",1,1]",
+                "before_s": -4.89771423417551e-09,
+                "after_s": -5.2693658325608794e-09,
+                "delta_s": -3.7165159838536965e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80880,50746,\"bram_wdata_c_0[21].D[0]\",1,1]",
+                "before_s": -4.71188821293822e-09,
+                "after_s": -5.455191853798169e-09,
+                "delta_s": -7.433036408599492e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80881,50749,\"bram_wdata_c_0[22].D[0]\",1,1]",
+                "before_s": -4.52606263579014e-09,
+                "after_s": -5.098817812410061e-09,
+                "delta_s": -5.727551766199213e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[80976,50395,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[2].D[0]\",0,1]",
+                "before_s": -4.2296535163188764e-09,
+                "after_s": -5.162339000719385e-09,
+                "delta_s": -9.326854844005084e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.4526885794861073e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.462620634664404e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.4526885794861073e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.462620634664404e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.4526885794861073e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.462620634664404e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[82151,65791,\"u_eltwise_cu_5.u_pe_array.pe0.u_add.b_flopped[6].D[0]\",0,1]",
+                "before_s": -4.601305558793456e-09,
+                "after_s": -4.984152646159146e-09,
+                "delta_s": -3.8284708736568973e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[82163,66634,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[2].D[0]\",0,1]",
+                "before_s": -4.601305558793456e-09,
+                "after_s": -5.162339000719385e-09,
+                "delta_s": -5.610334419259289e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[82167,66646,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[6].D[0]\",0,1]",
+                "before_s": -4.601305558793456e-09,
+                "after_s": -4.798327069011066e-09,
+                "delta_s": -1.9702151021760983e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[82846,50878,\"bram_addr_c_0[1].D[0]\",1,1]",
+                "before_s": -3.276795057516324e-09,
+                "after_s": -5.392389645919593e-09,
+                "delta_s": -2.115594588403269e-09
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[82847,50881,\"bram_addr_c_0[2].D[0]\",1,1]",
+                "before_s": -3.276795057516324e-09,
+                "after_s": -5.392389645919593e-09,
+                "delta_s": -2.115594588403269e-09
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[82848,50884,\"bram_addr_c_0[3].D[0]\",1,1]",
+                "before_s": -3.276795057516324e-09,
+                "after_s": -5.392389645919593e-09,
+                "delta_s": -2.115594588403269e-09
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.4526885794861073e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -3.462620634664404e-09,
+                "delta_s": 4.604767678273447e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83252,50887,\"bram_addr_c_0[4].D[0]\",1,1]",
+                "before_s": -3.314736707338284e-09,
+                "after_s": -5.753389764606709e-09,
+                "delta_s": -2.438653057268425e-09
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.638514600723397e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -5.441527672900293e-09,
+                "delta_s": -1.518430270408544e-09
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.638514600723397e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -5.441527672900293e-09,
+                "delta_s": -1.518430270408544e-09
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.638514600723397e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -5.441527672900293e-09,
+                "delta_s": -1.518430270408544e-09
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.638514600723397e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -5.8025277915874085e-09,
+                "delta_s": -1.87943038909566e-09
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",0,1]",
+                "before_s": -3.913165347313452e-09,
+                "after_s": -3.638514600723397e-09,
+                "delta_s": 2.7465074659005495e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",1,1]",
+                "before_s": -3.923097402491749e-09,
+                "after_s": -5.8025277915874085e-09,
+                "delta_s": -1.87943038909566e-09
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[80976,50395,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[2].D[0]\",0,1]",
+                "before_s": 9.815965817949746e-10,
+                "after_s": 1.3532481801803442e-09,
+                "delta_s": 3.7165159838536965e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.0772047132643365e-09,
+                "delta_s": -4.6047610169352993e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.0772047132643365e-09,
+                "delta_s": -4.6047610169352993e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.0772047132643365e-09,
+                "delta_s": -4.6047610169352993e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[82163,66634,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[2].D[0]\",0,1]",
+                "before_s": 9.815965817949746e-10,
+                "after_s": 1.3532481801803442e-09,
+                "delta_s": 3.7165159838536965e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[82167,66646,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[6].D[0]\",0,1]",
+                "before_s": 7.95770838113441e-10,
+                "after_s": 1.1674223809876594e-09,
+                "delta_s": 3.716515428742184e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.0772047132643365e-09,
+                "delta_s": -4.6047610169352993e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.2630302904124164e-09,
+                "delta_s": -2.7465052454545e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.2630302904124164e-09,
+                "delta_s": -2.7465052454545e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.2630302904124164e-09,
+                "delta_s": -2.7465052454545e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.2630302904124164e-09,
+                "delta_s": -2.7465052454545e-10
+              },
+              {
+                "kind": "hold",
+                "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",0,1]",
+                "before_s": 3.5376808149578665e-09,
+                "after_s": 3.2630302904124164e-09,
+                "delta_s": -2.7465052454545e-10
+              }
+            ]
+          },
+          "resource_delta": {
+            "wirelength": 131,
+            "SB_pairs": -1,
+            "CB_sources": -3
+          },
+          "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+        },
+        "strict_or_endpoint_control": {
+          "strict": {
+            "accepted": false,
+            "policy": "strict",
+            "reason": "No full-precision strict CPD improvement",
+            "comparison": {
+              "compatible": true,
+              "cpd_before_s": 6.018101128546505e-09,
+              "cpd_after_s": 6.018101128546505e-09,
+              "cpd_strictly_better": false,
+              "cpd_nonworse": true,
+              "setup_improved": 13,
+              "setup_regressed": 20,
+              "hold_violation_regressions": 0,
+              "setup_components": 14032,
+              "hold_components": 14032,
+              "changes": [
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80857,50905,\"c_data_0_available.D[0]\",1,1]",
+                  "before_s": -3.462620634664404e-09,
+                  "after_s": -5.0911790339114305e-09,
+                  "delta_s": -1.6285583992470265e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80858,50875,\"bram_addr_c_0[0].D[0]\",1,1]",
+                  "before_s": -3.462620634664404e-09,
+                  "after_s": -5.0911790339114305e-09,
+                  "delta_s": -1.6285583992470265e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80872,50722,\"bram_wdata_c_0[13].D[0]\",1,1]",
+                  "before_s": -3.968585016167481e-09,
+                  "after_s": -4.162049815903401e-09,
+                  "delta_s": -1.9346479973592068e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80873,50725,\"bram_wdata_c_0[14].D[0]\",1,1]",
+                  "before_s": -4.34023705864206e-09,
+                  "after_s": -5.098817812410061e-09,
+                  "delta_s": -7.585807537680012e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80875,50731,\"bram_wdata_c_0[16].D[0]\",1,1]",
+                  "before_s": -4.89771423417551e-09,
+                  "after_s": -5.2693658325608794e-09,
+                  "delta_s": -3.7165159838536965e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80880,50746,\"bram_wdata_c_0[21].D[0]\",1,1]",
+                  "before_s": -4.71188821293822e-09,
+                  "after_s": -5.455191853798169e-09,
+                  "delta_s": -7.433036408599492e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80881,50749,\"bram_wdata_c_0[22].D[0]\",1,1]",
+                  "before_s": -4.52606263579014e-09,
+                  "after_s": -5.098817812410061e-09,
+                  "delta_s": -5.727551766199213e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80976,50395,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[2].D[0]\",0,1]",
+                  "before_s": -4.2296535163188764e-09,
+                  "after_s": -5.162339000719385e-09,
+                  "delta_s": -9.326854844005084e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82151,65791,\"u_eltwise_cu_5.u_pe_array.pe0.u_add.b_flopped[6].D[0]\",0,1]",
+                  "before_s": -4.601305558793456e-09,
+                  "after_s": -4.984152646159146e-09,
+                  "delta_s": -3.8284708736568973e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82163,66634,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[2].D[0]\",0,1]",
+                  "before_s": -4.601305558793456e-09,
+                  "after_s": -5.162339000719385e-09,
+                  "delta_s": -5.610334419259289e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82167,66646,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[6].D[0]\",0,1]",
+                  "before_s": -4.601305558793456e-09,
+                  "after_s": -4.798327069011066e-09,
+                  "delta_s": -1.9702151021760983e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82846,50878,\"bram_addr_c_0[1].D[0]\",1,1]",
+                  "before_s": -3.276795057516324e-09,
+                  "after_s": -5.392389645919593e-09,
+                  "delta_s": -2.115594588403269e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82847,50881,\"bram_addr_c_0[2].D[0]\",1,1]",
+                  "before_s": -3.276795057516324e-09,
+                  "after_s": -5.392389645919593e-09,
+                  "delta_s": -2.115594588403269e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82848,50884,\"bram_addr_c_0[3].D[0]\",1,1]",
+                  "before_s": -3.276795057516324e-09,
+                  "after_s": -5.392389645919593e-09,
+                  "delta_s": -2.115594588403269e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83252,50887,\"bram_addr_c_0[4].D[0]\",1,1]",
+                  "before_s": -3.314736707338284e-09,
+                  "after_s": -5.753389764606709e-09,
+                  "delta_s": -2.438653057268425e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -5.441527672900293e-09,
+                  "delta_s": -1.518430270408544e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -5.441527672900293e-09,
+                  "delta_s": -1.518430270408544e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -5.441527672900293e-09,
+                  "delta_s": -1.518430270408544e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -5.8025277915874085e-09,
+                  "delta_s": -1.87943038909566e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -5.8025277915874085e-09,
+                  "delta_s": -1.87943038909566e-09
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[80976,50395,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[2].D[0]\",0,1]",
+                  "before_s": 9.815965817949746e-10,
+                  "after_s": 1.3532481801803442e-09,
+                  "delta_s": 3.7165159838536965e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82163,66634,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[2].D[0]\",0,1]",
+                  "before_s": 9.815965817949746e-10,
+                  "after_s": 1.3532481801803442e-09,
+                  "delta_s": 3.7165159838536965e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82167,66646,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[6].D[0]\",0,1]",
+                  "before_s": 7.95770838113441e-10,
+                  "after_s": 1.1674223809876594e-09,
+                  "delta_s": 3.716515428742184e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                }
+              ]
+            }
+          },
+          "endpoint_vector": {
+            "accepted": false,
+            "policy": "endpoint_vector",
+            "reason": "Setup endpoint/domain vector has regressions",
+            "comparison": {
+              "compatible": true,
+              "cpd_before_s": 6.018101128546505e-09,
+              "cpd_after_s": 6.018101128546505e-09,
+              "cpd_strictly_better": false,
+              "cpd_nonworse": true,
+              "setup_improved": 13,
+              "setup_regressed": 20,
+              "hold_violation_regressions": 0,
+              "setup_components": 14032,
+              "hold_components": 14032,
+              "changes": [
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80857,50905,\"c_data_0_available.D[0]\",1,1]",
+                  "before_s": -3.462620634664404e-09,
+                  "after_s": -5.0911790339114305e-09,
+                  "delta_s": -1.6285583992470265e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80858,50875,\"bram_addr_c_0[0].D[0]\",1,1]",
+                  "before_s": -3.462620634664404e-09,
+                  "after_s": -5.0911790339114305e-09,
+                  "delta_s": -1.6285583992470265e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80872,50722,\"bram_wdata_c_0[13].D[0]\",1,1]",
+                  "before_s": -3.968585016167481e-09,
+                  "after_s": -4.162049815903401e-09,
+                  "delta_s": -1.9346479973592068e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80873,50725,\"bram_wdata_c_0[14].D[0]\",1,1]",
+                  "before_s": -4.34023705864206e-09,
+                  "after_s": -5.098817812410061e-09,
+                  "delta_s": -7.585807537680012e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80875,50731,\"bram_wdata_c_0[16].D[0]\",1,1]",
+                  "before_s": -4.89771423417551e-09,
+                  "after_s": -5.2693658325608794e-09,
+                  "delta_s": -3.7165159838536965e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80880,50746,\"bram_wdata_c_0[21].D[0]\",1,1]",
+                  "before_s": -4.71188821293822e-09,
+                  "after_s": -5.455191853798169e-09,
+                  "delta_s": -7.433036408599492e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80881,50749,\"bram_wdata_c_0[22].D[0]\",1,1]",
+                  "before_s": -4.52606263579014e-09,
+                  "after_s": -5.098817812410061e-09,
+                  "delta_s": -5.727551766199213e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[80976,50395,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[2].D[0]\",0,1]",
+                  "before_s": -4.2296535163188764e-09,
+                  "after_s": -5.162339000719385e-09,
+                  "delta_s": -9.326854844005084e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82151,65791,\"u_eltwise_cu_5.u_pe_array.pe0.u_add.b_flopped[6].D[0]\",0,1]",
+                  "before_s": -4.601305558793456e-09,
+                  "after_s": -4.984152646159146e-09,
+                  "delta_s": -3.8284708736568973e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82163,66634,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[2].D[0]\",0,1]",
+                  "before_s": -4.601305558793456e-09,
+                  "after_s": -5.162339000719385e-09,
+                  "delta_s": -5.610334419259289e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82167,66646,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[6].D[0]\",0,1]",
+                  "before_s": -4.601305558793456e-09,
+                  "after_s": -4.798327069011066e-09,
+                  "delta_s": -1.9702151021760983e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82846,50878,\"bram_addr_c_0[1].D[0]\",1,1]",
+                  "before_s": -3.276795057516324e-09,
+                  "after_s": -5.392389645919593e-09,
+                  "delta_s": -2.115594588403269e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82847,50881,\"bram_addr_c_0[2].D[0]\",1,1]",
+                  "before_s": -3.276795057516324e-09,
+                  "after_s": -5.392389645919593e-09,
+                  "delta_s": -2.115594588403269e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82848,50884,\"bram_addr_c_0[3].D[0]\",1,1]",
+                  "before_s": -3.276795057516324e-09,
+                  "after_s": -5.392389645919593e-09,
+                  "delta_s": -2.115594588403269e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.4526885794861073e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -3.462620634664404e-09,
+                  "delta_s": 4.604767678273447e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83252,50887,\"bram_addr_c_0[4].D[0]\",1,1]",
+                  "before_s": -3.314736707338284e-09,
+                  "after_s": -5.753389764606709e-09,
+                  "delta_s": -2.438653057268425e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -5.441527672900293e-09,
+                  "delta_s": -1.518430270408544e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -5.441527672900293e-09,
+                  "delta_s": -1.518430270408544e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -5.441527672900293e-09,
+                  "delta_s": -1.518430270408544e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -5.8025277915874085e-09,
+                  "delta_s": -1.87943038909566e-09
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",0,1]",
+                  "before_s": -3.913165347313452e-09,
+                  "after_s": -3.638514600723397e-09,
+                  "delta_s": 2.7465074659005495e-10
+                },
+                {
+                  "kind": "setup",
+                  "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",1,1]",
+                  "before_s": -3.923097402491749e-09,
+                  "after_s": -5.8025277915874085e-09,
+                  "delta_s": -1.87943038909566e-09
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[80976,50395,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[2].D[0]\",0,1]",
+                  "before_s": 9.815965817949746e-10,
+                  "after_s": 1.3532481801803442e-09,
+                  "delta_s": 3.7165159838536965e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81105,54289,\"bram_addr_c_1[0].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81106,54292,\"bram_addr_c_1[1].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[81107,54295,\"bram_addr_c_1[2].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82163,66634,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[2].D[0]\",0,1]",
+                  "before_s": 9.815965817949746e-10,
+                  "after_s": 1.3532481801803442e-09,
+                  "delta_s": 3.7165159838536965e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82167,66646,\"u_eltwise_cu_5.u_pe_array.pe1.u_add.b_flopped[6].D[0]\",0,1]",
+                  "before_s": 7.95770838113441e-10,
+                  "after_s": 1.1674223809876594e-09,
+                  "delta_s": 3.716515428742184e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[82889,54298,\"bram_addr_c_1[3].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.0772047132643365e-09,
+                  "delta_s": -4.6047610169352993e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83253,50890,\"bram_addr_c_0[5].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83254,50893,\"bram_addr_c_0[6].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83255,50896,\"bram_addr_c_0[7].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83665,50899,\"bram_addr_c_0[8].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                },
+                {
+                  "kind": "hold",
+                  "endpoint_domain": "[83666,50902,\"bram_addr_c_0[9].D[0]\",0,1]",
+                  "before_s": 3.5376808149578665e-09,
+                  "after_s": 3.2630302904124164e-09,
+                  "delta_s": -2.7465052454545e-10
+                }
+              ]
+            }
+          }
+        },
+        "native_core_seconds": 2.180628911,
+        "native_observer_request_seconds": 11.515987947583199
+      }
+    },
+    "committed_evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_first_resource_dev_01/eltwise_A0_bundle4/round_001/candidate_00/reuse_on_evaluation"
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "case_results": [
+    {
+      "case": "current_sta_policy_native_Tf_01/attempt_001",
+      "equivalent_fields": [
+        "passed",
+        "status",
+        "scope",
+        "queries",
+        "attempts",
+        "changed_delays",
+        "native_transaction_seconds"
+      ],
+      "complete_candidate_bytes_equal": true,
+      "candidate_sha256": "478f63304d6c5e89e5dc3e1dc1fad4e7693345487eb5f699427c530f8e04ec75",
+      "cached_audit_segment_seconds": 4.016700603067875,
+      "cache_load_and_digest_seconds": 0.6440716870129108,
+      "cached_complete_process_seconds": 4.873035665601492,
+      "historical_XML_audit_segment_seconds": 28.286314975470304,
+      "timing_qualification": "Historical XML segment is context, not a same-time formal paired speedup; cached child includes process startup and output writes."
+    },
+    {
+      "case": "current_sta_policy_native_R1_01/attempt_004",
+      "equivalent_fields": [
+        "passed",
+        "status",
+        "scope",
+        "queries",
+        "attempts",
+        "changed_delays",
+        "native_transaction_seconds"
+      ],
+      "complete_candidate_bytes_equal": true,
+      "candidate_sha256": "c88b704458e61f1506534fd7eaaf2389ef02ad68eb8b4c5fe170926c0dae9859",
+      "cached_audit_segment_seconds": 4.009301856160164,
+      "cache_load_and_digest_seconds": 0.6397843696177006,
+      "cached_complete_process_seconds": 4.872471105307341,
+      "historical_XML_audit_segment_seconds": 27.728666830807924,
+      "timing_qualification": "Historical XML segment is context, not a same-time formal paired speedup; cached child includes process startup and output writes."
+    }
+  ],
+  "negative_controls_rejected": [
+    "nonexistent_in_range_edge",
+    "invalid_switch",
+    "invalid_node",
+    "over_capacity_by_one",
+    "different_actual_XML_digest",
+    "payload_digest_mismatch"
+  ],
+  "positive_edge_and_exact_capacity_controls": true,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/validate_immutable_rr_audit_cache.py": "d9d75afd373d6b192055f2dc1dfc6bf9dc42075c76917809d91109a6611bb330",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/immutable_rr_audit_cache.py": "5b3095401e71ebd76dc13ea40f78e6b90cfa5288f99406389bdd60a4c9641bd8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_native_objective_cached.py": "ddef2df2e4f2d0098c034e55ab971b83b7bbbe69692da6fa4379f5e901db695d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_native_objective.py": "cf24b08c383fecb68a1f95a70cac098319132207ca1cbbe6ef60379c60d2f79d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_state_reuse_experiment_01.json": "84f1027e935b0d0b8935a67a770ddb497e7f8893dddc411760cc10e2103b60fe",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rr_audit_cache_e695_dev_01/completion.json": "2dac094df4ccb9ab4c1fe7fb16828fa8a622bdb50a761bb2e4c88a3ab83c5cfa",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_Tf_01/attempt_001/candidate_audit/analysis.json": "bc28bc4cd893a8adf85825b25f7685bb2894fef492c52661ea28908b4438a186",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_native_R1_01/attempt_004/candidate_audit/analysis.json": "51e8ab444cee074083e44a46973ab7cf519474b0c28a6832d05c270f1530098a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rr_audit_cache_validation_01/audit_00/analysis.json": "68c01841f01dfea30468cfc89891a195f0a85a87ea2c71470c9ed1cb89d3df33",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rr_audit_cache_validation_01/audit_01/analysis.json": "6329fc25adba1db209b947527bbcbc76e2629f39c0fe19596aebf390d2cb36ab"
+  },
+  "complete_validation_seconds": 11.213589869439602,
+  "cache_build_seconds": 33.121807400137186,
+  "native_calls": 0,
+  "qualification": "Physical graph-cache engineering validation on existing candidates, not new QoR or STA evidence. No original XML audit weakened or overwritten. Cache reuse still hashes actual XML and every payload."
+}

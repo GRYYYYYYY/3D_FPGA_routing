@@ -1,0 +1,27 @@
+{
+  "status": "measured_next_independent_backend_direction_not_implemented",
+  "question": "Can resource-only native transactions omit the unused full timing-graph echo, while retaining actual native FULL/freshSTA, all endpoint/clock-domain full-precision vectors and all current per-pin slack/criticality/delay data?",
+  "evidence_file_bytes": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/candidate_full_sta_bnn_01/pool/job_0000/native/native_sta_frontier.jsonl": 374549279,
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/candidate_full_sta_bnn_01/pool/job_0000/native/timing_graph.full_precision.echo": 790537658,
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/candidate_full_sta_bnn_01/pool/job_0000/native/candidate/native_sta_frontier.jsonl": 374549279,
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/candidate_full_sta_bnn_01/pool/job_0000/native/candidate/timing_graph.full_precision.echo": 790537650,
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/candidate_full_sta_bnn_01/pool/job_0000/native/candidate_restored/native_sta_frontier.jsonl": 374549279,
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/candidate_full_sta_bnn_01/pool/job_0000/native/candidate_restored/timing_graph.full_precision.echo": 790537658
+  },
+  "total_six_export_bytes": 3495260803,
+  "observation": "Each full timing echo is about754MiB; the native frontier is about357MiB. Fused source/candidate/restored exports repeat them three times. Resource selector consumes frontier, not full timing-graph echo; current materializer requires echo only because of the historical schema.",
+  "next_intervention": [
+    "Independent opt-in backend; preserve original/full-echo variants and current runs. The read-only full graph echo exporter is optional for resource selection, not synonymous with performing STA.",
+    "Have candidate/restored exports respect the requested echo level; keep full native actual-state gates, physical route, constraints, raw pin data and complete endpoint vectors mandatory. Adapt receipt/materializer schema explicitly; never fabricate a missing full echo or label a source vector as candidate.",
+    "Same-binary same-input full/compact export paired tiny and large checks: native searches/actual routes/current per-pin records/endpoints/acceptance identical, candidate native FULLSTA independently validated. Record bytes and complete matched algorithm workflow including failures; do not compare older U time or isolated core.",
+    "Request a real full echo on entering timing-cone repair or a path-migration diagnosis. Broad graph dumps may remain diagnostic artifacts rather than unconditional per-resource-candidate output."
+  ],
+  "qualification": "Input size and inspected consumer are evidence for a testable overhead hypothesis, not a measured speedup or permission to skip STA/physical checks. Resource-first timing composition and current fused recovery controls continue unchanged. All process guards retained; no global date/count/matrix stop.",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/candidate_full_sta_stage_01/binding.json": "aadde46a90c2f465ecd621c7770368b9bf3f62cbfc8bce53bf0794998c8a2c5a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_crossing_share_selector_v2.py": "25793cf46ba28f6ce6d07d7276c3119c9bbaff514cf016f67cdafab9cc617671",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pool_state_evaluator_v5.py": "d39e3b068dca68578fd13d84068fff91450912da7a36518a4eae0635903d3dc7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/candidate_full_sta_bnn_01/transaction/fused_worker_receipt.json": "931135ac66e1a4a8a683699281b5afefd9ad222959888d5343d8fa80251f362c"
+  }
+}

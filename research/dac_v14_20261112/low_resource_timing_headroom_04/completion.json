@@ -1,0 +1,667 @@
+{
+  "passed": true,
+  "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/fused_resource_development_01/bnn_A0_feedback_K8/round_006/candidate_00/reuse_on_evaluation",
+  "observation_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_02/full_observation",
+  "source_CPD_ns": 13.607436066820355,
+  "source_physical_metrics": {
+    "planar_wirelength_excluding_sb_half_nodes": 2061265,
+    "sb_pairs_used": 45,
+    "sb_pair_net_occupancy": 45,
+    "cb_crossing_output_sources_used": 5060,
+    "cb_crossing_output_source_net_occupancy": 5060,
+    "actual_crossing_edge_traversals": {
+      "OPIN->CHANY": 2490,
+      "OPIN->CHANX": 3037,
+      "CHANX->CHANX": 45
+    },
+    "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+  },
+  "source_FULL_STA_vector_checks": {
+    "cpd_s": true,
+    "setup": true,
+    "hold": true,
+    "endpoint_ids": true,
+    "constraints_sha256": true
+  },
+  "selected_endpoints": [
+    {
+      "identity": [
+        809929,
+        766629,
+        "grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_2_fu_193.add_ln703_444_reg_6051[12].D[0]",
+        0,
+        0
+      ],
+      "slack_s": -1.3607436066820355e-08
+    }
+  ],
+  "critical_connections": 10,
+  "rows": [
+    {
+      "net": 26313,
+      "pin": 1,
+      "root": 738565,
+      "sink": 435247,
+      "current_switch_distance_s": 1.2286298922692396e-09,
+      "current_native_net_delay_s": 1.228629864513664e-09,
+      "optimistic_source_distance_s": 1.2286298922692396e-09,
+      "potential_ns": 0.0,
+      "status": "exact_optimistic_static_distance",
+      "actual_directed_witness": [
+        [
+          738565,
+          738616,
+          0,
+          0.0
+        ],
+        [
+          738616,
+          3590053,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3590053,
+          3589967,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3589967,
+          4148539,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4148539,
+          3578345,
+          4,
+          3.792905989286055e-10
+        ],
+        [
+          3578345,
+          4103250,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4103250,
+          435261,
+          1,
+          1.0603609656989477e-10
+        ],
+        [
+          435261,
+          435247,
+          0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "net": 26315,
+      "pin": 1,
+      "root": 730504,
+      "sink": 435247,
+      "current_switch_distance_s": 1.0428040930765548e-09,
+      "current_native_net_delay_s": 1.0428040653209791e-09,
+      "optimistic_source_distance_s": 1.0428040930765548e-09,
+      "potential_ns": 0.0,
+      "status": "exact_optimistic_static_distance",
+      "actual_directed_witness": [
+        [
+          730504,
+          730555,
+          0,
+          0.0
+        ],
+        [
+          730555,
+          3575903,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3575903,
+          3575565,
+          4,
+          3.792905989286055e-10
+        ],
+        [
+          3575565,
+          3575451,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3575451,
+          4106052,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4106052,
+          435284,
+          1,
+          1.0603609656989477e-10
+        ],
+        [
+          435284,
+          435247,
+          0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "net": 26319,
+      "pin": 1,
+      "root": 435248,
+      "sink": 753430,
+      "current_switch_distance_s": 1.6002814906546092e-09,
+      "current_native_net_delay_s": 1.6002814628990336e-09,
+      "optimistic_source_distance_s": 1.4144556914619244e-09,
+      "potential_ns": 0.18582579919268483,
+      "status": "exact_optimistic_static_distance",
+      "actual_directed_witness": [
+        [
+          435248,
+          435299,
+          0,
+          0.0
+        ],
+        [
+          435299,
+          4103223,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4103223,
+          3575518,
+          4,
+          3.792905989286055e-10
+        ],
+        [
+          3575518,
+          3575874,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3575874,
+          3575964,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3575964,
+          4171061,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4171061,
+          4170951,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4170951,
+          753442,
+          1,
+          1.0603609656989477e-10
+        ],
+        [
+          753442,
+          753430,
+          0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "net": 26320,
+      "pin": 1,
+      "root": 435249,
+      "sink": 730495,
+      "current_switch_distance_s": 1.0428040930765548e-09,
+      "current_native_net_delay_s": 1.0428040653209791e-09,
+      "optimistic_source_distance_s": 1.0428040930765548e-09,
+      "potential_ns": 0.0,
+      "status": "exact_optimistic_static_distance",
+      "actual_directed_witness": [
+        [
+          435249,
+          435300,
+          0,
+          0.0
+        ],
+        [
+          435300,
+          4103227,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4103227,
+          3575518,
+          4,
+          3.792905989286055e-10
+        ],
+        [
+          3575518,
+          3575874,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3575874,
+          3575948,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3575948,
+          730538,
+          1,
+          1.0603609656989477e-10
+        ],
+        [
+          730538,
+          730495,
+          0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "net": 37311,
+      "pin": 2,
+      "root": 905023,
+      "sink": 738560,
+      "current_switch_distance_s": 1.035165092533319e-09,
+      "current_native_net_delay_s": 1.0351650647777433e-09,
+      "optimistic_source_distance_s": 1.035165092533319e-09,
+      "potential_ns": 0.0,
+      "status": "exact_optimistic_static_distance",
+      "actual_directed_witness": [
+        [
+          905023,
+          905074,
+          0,
+          0.0
+        ],
+        [
+          905074,
+          4202367,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4202367,
+          3593151,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3593151,
+          3593063,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3593063,
+          3592965,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3592965,
+          4168349,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4168349,
+          738597,
+          1,
+          1.0603609656989477e-10
+        ],
+        [
+          738597,
+          738560,
+          0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "net": 47878,
+      "pin": 2,
+      "root": 1223392,
+      "sink": 943331,
+      "current_switch_distance_s": 1.2286298922692396e-09,
+      "current_native_net_delay_s": 1.228629864513664e-09,
+      "optimistic_source_distance_s": 1.0428040930765548e-09,
+      "potential_ns": 0.18582579919268483,
+      "status": "exact_optimistic_static_distance",
+      "actual_directed_witness": [
+        [
+          1223392,
+          1223443,
+          0,
+          0.0
+        ],
+        [
+          1223443,
+          3579565,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3579565,
+          4264544,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4264544,
+          3590555,
+          4,
+          3.792905989286055e-10
+        ],
+        [
+          3590555,
+          3590447,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3590447,
+          943357,
+          1,
+          1.0603609656989477e-10
+        ],
+        [
+          943357,
+          943331,
+          0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "net": 57625,
+      "pin": 2,
+      "root": 1057442,
+      "sink": 905015,
+      "current_switch_distance_s": 8.493392933406341e-10,
+      "current_native_net_delay_s": 8.493392655850585e-10,
+      "optimistic_source_distance_s": 8.493392933406341e-10,
+      "potential_ns": 0.0,
+      "status": "exact_optimistic_static_distance",
+      "actual_directed_witness": [
+        [
+          1057442,
+          1057493,
+          0,
+          0.0
+        ],
+        [
+          1057493,
+          3590581,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3590581,
+          3590503,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3590503,
+          3590405,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3590405,
+          4202370,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4202370,
+          905052,
+          1,
+          1.0603609656989477e-10
+        ],
+        [
+          905052,
+          905015,
+          0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "net": 68613,
+      "pin": 1,
+      "root": 943339,
+      "sink": 1057436,
+      "current_switch_distance_s": 8.569782938838699e-10,
+      "current_native_net_delay_s": 8.569782661282943e-10,
+      "optimistic_source_distance_s": 8.493392933406341e-10,
+      "potential_ns": 0.007639000543235852,
+      "status": "exact_optimistic_static_distance",
+      "actual_directed_witness": [
+        [
+          943339,
+          943390,
+          0,
+          0.0
+        ],
+        [
+          943390,
+          4210767,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4210767,
+          3579188,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3579188,
+          3579262,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3579262,
+          4233424,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4233424,
+          1057451,
+          1,
+          1.0603609656989477e-10
+        ],
+        [
+          1057451,
+          1057436,
+          0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "net": 73896,
+      "pin": 1,
+      "root": 1164234,
+      "sink": 1223387,
+      "current_switch_distance_s": 1.0428040930765548e-09,
+      "current_native_net_delay_s": 1.0428040653209791e-09,
+      "optimistic_source_distance_s": 1.035165092533319e-09,
+      "potential_ns": 0.007639000543235852,
+      "status": "exact_optimistic_static_distance",
+      "actual_directed_witness": [
+        [
+          1164234,
+          1164285,
+          0,
+          0.0
+        ],
+        [
+          1164285,
+          4256215,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4256215,
+          4256123,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4256123,
+          3590836,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3590836,
+          4267385,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4267385,
+          4267299,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4267299,
+          1223400,
+          1,
+          1.0603609656989477e-10
+        ],
+        [
+          1223400,
+          1223387,
+          0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "net": 73897,
+      "pin": 1,
+      "root": 1164235,
+      "sink": 1223387,
+      "current_switch_distance_s": 1.0428040930765548e-09,
+      "current_native_net_delay_s": 1.0428040653209791e-09,
+      "optimistic_source_distance_s": 1.035165092533319e-09,
+      "potential_ns": 0.007639000543235852,
+      "status": "exact_optimistic_static_distance",
+      "actual_directed_witness": [
+        [
+          1164235,
+          1164286,
+          0,
+          0.0
+        ],
+        [
+          1164286,
+          4256211,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4256211,
+          3602148,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3602148,
+          4258957,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4258957,
+          4258883,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          4258883,
+          3579556,
+          2,
+          1.8582579919268483e-10
+        ],
+        [
+          3579556,
+          1223410,
+          1,
+          1.0603609656989477e-10
+        ],
+        [
+          1223410,
+          1223387,
+          0,
+          0.0
+        ]
+      ]
+    }
+  ],
+  "reused_queries": 7,
+  "new_queries": 3,
+  "new_offline_query_process_seconds": 8.830260626971722,
+  "native_analysis_calls_this_segment": 0,
+  "native_route_search_calls": 0,
+  "prior_successful_native_analysis_segments": [
+    {
+      "directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_01",
+      "complete_observation_seconds": 138.4439529031515
+    },
+    {
+      "directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_02",
+      "complete_observation_seconds": 138.08380921557546
+    }
+  ],
+  "complete_this_segment_seconds": 20.0026426166296,
+  "complete_single_configuration_algorithm_seconds": null,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_low_resource_timing_headroom_v4.py": "1c052f6af1bce60c7ec2df52b8e0dfeb9e1284314bbcc9a020323e059d96b803",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_02/registration.json": "52474aece27d545bdcc0324edd1b460f34d76c4b045c6b50b2317a70531c9abe",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_02/failure.json": "c9df191c8114cf5823c57d386b3776c99b9577d838ec3743e2dcd1676431d32e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_02/cone.json": "e47bf12451cb371b36c4823e4c7f596ca057012e27ff0ad6532d29e08552c5b0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_02/cases.json": "9f69f45be18b611a6e9beeebb3edd67ec7aac29f13cf3eeba375dcb1593df560",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_03/failure.json": "e353d9273bc107f17b5d851a5223575ffb8bd958e969b8f5232fe4bef5d87d61",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_relaxed_01/critical_capacity_driver": "1215f1d28a9b52e6c6083d8afe66076465f73f1e4f6c8f319e094b94339dc3e0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bnn_physical_query_graph_01/graph.bin": "5084eff841eedfc455deb33417453bcb1983c80b52ff5716a4fe5050673fa33a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_02/full_observation/completion.json": "a1b573edab5ae854897d46037673705cfd77b7a877d7cbbb50368e6453060d44",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_02/full_observation/endpoint_vector.json": "e0c489c6a7decf8219e02cb163762b23cf594b7b615a433a87420ed9f622fcea",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/fused_resource_development_01/bnn_A0_feedback_K8/round_006/candidate_00/reuse_on_evaluation/completion.json": "22040774056c5dfa040062ff94746cdc1f033f3ce7dc6a11f41b40eb6aa13518",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/fused_resource_development_01/bnn_A0_feedback_K8/round_006/candidate_00/reuse_on_evaluation/endpoint_vector.json": "e0c489c6a7decf8219e02cb163762b23cf594b7b615a433a87420ed9f622fcea",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_root_timing_potential_02/registration.json": "1a21a61ed75d59a7f14f636124ddff6058f2287b82b35ed3546a493f95eb4ab9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_root_timing_potential_02/completion.json": "492834f3ce56ce7f22a7641a638d240c0989a89142c13c924b0edd7875bfa205",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_root_timing_potential_02/cases.json": "3db4edd7d1f3b736e72cfcc6c89b1dc1a6ceddc755455a5e58923eba5c602d85",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_root_timing_potential_02/query_stdout.log": "bb18ed2ce18cbf3234ec5684a455862394aa328492e46207983149b8d0df1777",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_full_root_timing_potential_v2.py": "2fbc043b9706ce4123c1e6260fd5b16154a102bd6fada5736ac7820be3d4c1cc"
+  },
+  "artifact_sha256": {
+    "reuse_receipts.json": "e0fecb5fcbd5ff21b61b8a95fee8bed261ff80322632c8f59150a13894af766b"
+  },
+  "qualification": "Current winning-cone references reused only after graph/driver/source/sink/anchor equality and forward physical witness validation. Distances relax occupancy/whole-net sharing/preserved branches; no feasible repair or strict native-STA CPD bound claimed. Original actor remains live and private. No acceptance tolerance, repeated successful queries or assembled cold time."
+}

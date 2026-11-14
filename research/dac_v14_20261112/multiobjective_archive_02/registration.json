@@ -1,0 +1,39 @@
+{
+  "status": "registered_before_extraction",
+  "parent": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/multiobjective_archive_01",
+  "new_states": [
+    {
+      "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/timing_cone_bnn_dev_01/Tf",
+      "arm": "Tf",
+      "batch": "current_initial_observation"
+    },
+    {
+      "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/timing_cone_bnn_dev_02/A0",
+      "arm": "A0",
+      "batch": "current_initial_observation"
+    },
+    {
+      "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/timing_cone_bnn_dev_02/R1",
+      "arm": "R1",
+      "batch": "current_initial_observation"
+    },
+    {
+      "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bnn_direct_repair_dev_01/weighted_soft_evaluation",
+      "arm": "Tf_repair_weighted_soft",
+      "batch": "bnn_direct_repair_dev_01"
+    },
+    {
+      "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bnn_direct_repair_dev_01/physical_capacity_evaluation",
+      "arm": "Tf_repair_physical_capacity",
+      "batch": "bnn_direct_repair_dev_01"
+    }
+  ],
+  "rule": "Append every completed BNN initial and matched direct-repair state, including quality-dominated outcomes. Keep old points intact except recomputed dominance annotations. No native calls, no historical reruns or hybrid quality/runtime points.",
+  "quality_dimensions": [
+    "CPD_ns",
+    "wirelength",
+    "SB_pairs",
+    "CB_sources"
+  ],
+  "timing": "New observation/controller/core times are explicitly not standalone algorithm runtime."
+}

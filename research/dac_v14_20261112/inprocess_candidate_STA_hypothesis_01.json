@@ -1,0 +1,35 @@
+{
+  "status": "evidence_grounded_next_independent_implementation_not_yet_built",
+  "question": "Can one private native worker produce the actual candidate, run candidate FULL and fresh STA, and separately certify its restored source, avoiding another source construction/route LOAD and duplicated worker materialization?",
+  "evidence": {
+    "A0_resource_workflow_seconds": 835.6663957089186,
+    "A0_native_core_seconds": 3.094831265,
+    "R1_K4_workflow_seconds": 1198.820452414453,
+    "R1_K4_native_core_seconds": 9.017425835,
+    "R1_K4_candidate_pooled_FULL_STA_seconds": 510.1418233253062
+  },
+  "current_functions": {
+    "native_kernel": "h3d_joint_native_repair::run_if_requested: local trees already represent a complete candidate with real occupancy before final local-tree removal/original-tree restoration.",
+    "native_analysis": "vpr_analysis_flow: load_net_delay_from_routing, make_setup_hold_timing_info and timing_info->update at vpr_api.cpp around1614\u20131623.",
+    "python_materialization": "PoolStateEvaluator.evaluate currently correctly treats native repair output as observing the original input; a separate candidate analysis is mandatory."
+  },
+  "implementation_direction": [
+    "Copy the latest native repair queue source into an independent development workspace; leave all running/queued binaries and scripts unchanged. Default callback/new operation remains disabled.",
+    "Expose a private successful-candidate callback before native occupancy restoration. Temporarily install copied candidate RouteTrees into child-owned global context; preserve original trees, occupancy, pin references, delay matrix and options. Run actual native FULL and a fresh independent candidate STA object, not reused original timing.",
+    "Write a separate actual candidate route and candidate timing exports; never overwrite the original source file or label its STA as candidate STA. Restore original child trees/delays/occupancy and verify source observation; fork parent must stay unchanged.",
+    "Use a distinct worker operation/receipt with explicit original-route and actual-candidate identities and separate original/candidate gates. Only candidate receipt may materialize a candidate state. Independent scope/capacity/physical audits and fixed-budget acceptance still apply.",
+    "First test supported zero-RC two-layer tiny fixture with same-binary old standalone reference, real infeasible/partial-prune/failure\u2192next-success source restoration, complete candidate delays/constraints/STA precision equality; then one representative large candidate. Extend timing/scope only after those pass.",
+    "Measure total job/materialization/audit/STA cost on equivalent work. If physical audit remains dominant, study checked per-net delta audit in a separate version using an already fully audited source, actual candidate identity, all affected net edges/terminals/delays and exact global occupancy/resource updates. Do not silently skip native FULL/STA or infer unchanged physical delay from flat endpoints."
+  ],
+  "qualification": "Planning artifact grounded in measured costs and inspected functions, not implemented integration, timing improvement or a claimed new search primitive. Existing jobs remain registered and protected. Cold complete routing-plus-repair timing still required; original U time and summed unrelated historical workflows cannot substitute.",
+  "source_sha256": {
+    "research/dac_v14_20261112/native_repair_queue_workspace_01/vpr/src/route/h3d_joint_native_repair.h": "4f91fccef49a0b147639799d968df855056db5a30052caf2a2ca6738f1ab3ce4",
+    "research/dac_v14_20261112/native_repair_queue_workspace_01/vpr/src/base/vpr_api.cpp": "53bcea7270e85c4e79d10769a4afe91615d3f5e249a7578a9f7934054f2e4a5c",
+    "research/dac_v14_20261112/native_repair_analysis_pool.py": "9705b47f5ca12d75bc0ec2022a72b24e660a3fa9d2a9ca07ace13dff2267b885",
+    "research/dac_v14_20261112/pool_state_evaluator_v2.py": "8f1814f984a708ba6930ed21d9bc5dc9402a19f6972261cfbccf09af76fea226",
+    "research/dac_v14_20261112/strong_A0_native_only_K4_resource_summary_01.json": "22ac7b3b0bd0cd57a4c6de9bc088e719a2b4cea43577370cf80cd8733b459da7",
+    "research/dac_v14_20261112/R1_fast_bundle4_resource_summary_01.json": "d831c3003d7b3e5d6881db498a614078b1d5691a2ffecf3061a4855e676c542a"
+  },
+  "native_calls": 0,
+  "route_calls": 0
+}

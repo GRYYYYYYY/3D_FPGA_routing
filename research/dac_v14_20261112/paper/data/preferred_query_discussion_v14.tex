@@ -1,0 +1,23 @@
+A separate offline query study asks whether search ordering can improve actual candidate-delay information without enlarging the per-query work cap. It reuses all ten guided contexts among the 31 completely captured focus seed groups, with the same zero-RC directed RRG, native bounding box and actual queued-prefix delays. The graph-walk model permits a same-layer prefix, exactly one recommended crossing and a same-layer suffix. It is not the native congestion objective or an arbitrary multi-cross route optimum. A common minimum seed-prefix delay can be removed from virtual terminal edges and restored to both upper and pending-frontier bounds. Independent forward phase-graph Floyd checks validate the adapter on 240 random graphs under work/storage limits and arbitrary, potentially inadmissible, ordering values (5,760 final comparisons). In these actual contexts the minimum prefix is always zero, so that transformation has no observed effect. Memory-limited searches expose no lower certificate.
+
+With the same 256-expansion and storage caps, ordinary seed-directed ordering finds three preferred-candidate walks. Ordering sink-side expansion toward actual recommended crossing heads finds four, using 2,094 rather than 2,242 expansions across the ten contexts. Every returned real edge, switch delay, direction, single crossing, bounding box and actual seed prefix passes independent physical checking; bounds agree with the previously sealed unlimited oracle. The extra returned path equals its offline optimum, but the bounded engine cannot certify that fact. None of these queries yields an online exactness or no-extra-cross dominance certificate. The other three returned preferred walks remain 15.099\% above the offline optimum. Thus path availability does not make a cached upper bound an exact distance or calibrated confidence.
+
+\begin{table}[t]
+\centering
+\caption{Offline preferred-query ordering at a fixed cap. All arms use the same ten observed contexts; no new native route is run.}
+\label{tab:preferred-query-v14}
+\begin{tabular}{lrrrr}
+\hline
+Arm & Paths & Exact & Expansions & Query (ms)\\
+\hline
+P0 & 0 & 0 & 2560 & 6.816 \\
+Ph & 3 & 0 & 2242 & 6.546 \\
+Pf & 3 & 0 & 2242 & 5.958 \\
+Pt & 4 & 0 & 2094 & 70.803 \\
+Pi & 4 & 0 & 2094 & 3.595 \\
+\hline
+\end{tabular}
+\end{table}
+P0 uses zero ordering, Ph seed-directed ordering, Pf additionally factors the common prefix, Pt targets mandatory crossing heads, and Pi performs the same targeted query through a static preferred-source index. Pi reproduces every Pt non-time result, bound, search counter and path. Across ten calls, preferred-crossing lookup examines 31 records instead of 8,582,160. Index construction itself traverses 858,216 crossing records once; construction, graph loading and selected-list assembly are outside the core query timer. The query-only times therefore do not establish an online or whole-process speedup. The original variants are reproduced exactly, and the unchanged final adapter tests are strictly reused for indexing.
+
+Cache provenance is a material limitation. These same ten native search domains and complete sink-layer seed sets match the frozen native reuse run, but that run has zero cache hits in the focus set. The sparse offline replay had three prior hits because it queried all 31 focus contexts, including unguided ones, whereas the native run queried actual guided searches across the full trajectory. Consequently, those three offline hits cannot fund an asserted native budget reallocation. The next registered diagnostic will capture complete actual seeds and current route-tree membership across guide-bearing searches before evaluating broader fixed-budget schedules or legal extensions. The following actual-search diagnostic now supplies these records. The offline query study itself neither changes final CPD nor promotes a routing policy.

@@ -1,0 +1,113 @@
+{
+  "passed": true,
+  "status": "native_all_pin_observer_and_frontier_mechanism_sealed",
+  "research_complete": false,
+  "quality_promoted": false,
+  "roles": {
+    "A0": {
+      "pin_rows": 36391,
+      "routed_connections": 23905,
+      "atom_pins": 31108,
+      "ignored_pin_rows": 2583,
+      "global_pin_rows": 1560,
+      "unmapped_pin_rows": 0,
+      "native_float_mismatches": 0,
+      "max_float_vs_double_error_seconds": 2.248201624865942e-15,
+      "exact_float_ties": 3,
+      "numerical_ties": 5,
+      "near_within_0p2ns": 12,
+      "raw_criticality_one_misses_ties": 5,
+      "exact_top10_report_connections": 42
+    },
+    "R1": {
+      "pin_rows": 36391,
+      "routed_connections": 23905,
+      "atom_pins": 31108,
+      "ignored_pin_rows": 2583,
+      "global_pin_rows": 1560,
+      "unmapped_pin_rows": 0,
+      "native_float_mismatches": 0,
+      "max_float_vs_double_error_seconds": 2.248201624865942e-15,
+      "exact_float_ties": 4,
+      "numerical_ties": 6,
+      "near_within_0p2ns": 14,
+      "raw_criticality_one_misses_ties": 6,
+      "exact_top10_report_connections": 39
+    },
+    "Tf": {
+      "pin_rows": 36391,
+      "routed_connections": 23905,
+      "atom_pins": 31108,
+      "ignored_pin_rows": 2583,
+      "global_pin_rows": 1560,
+      "unmapped_pin_rows": 0,
+      "native_float_mismatches": 0,
+      "max_float_vs_double_error_seconds": 3.3584246494910985e-15,
+      "exact_float_ties": 4,
+      "numerical_ties": 4,
+      "near_within_0p2ns": 23,
+      "raw_criticality_one_misses_ties": 4,
+      "exact_top10_report_connections": 33
+    },
+    "jointR1": {
+      "pin_rows": 36391,
+      "routed_connections": 23905,
+      "atom_pins": 31108,
+      "ignored_pin_rows": 2583,
+      "global_pin_rows": 1560,
+      "unmapped_pin_rows": 0,
+      "native_float_mismatches": 0,
+      "max_float_vs_double_error_seconds": 2.248201624865942e-15,
+      "exact_float_ties": 1,
+      "numerical_ties": 2,
+      "near_within_0p2ns": 51,
+      "raw_criticality_one_misses_ties": 1,
+      "exact_top10_report_connections": 39
+    }
+  },
+  "final_stage": "native_sta_frontier_stage_03",
+  "binary_sha256": "5312e9f52181d3be110ed2d8efb2a176d3cb6e5c7ad188ad7e1f7b8b62b9629b",
+  "paired_native_analysis_calls": 8,
+  "all_development_native_analysis_calls": 12,
+  "all_development_status_counts": {
+    "completed": 10,
+    "observer_integration_failed": 2,
+    "timeout": 0,
+    "missing": 0
+  },
+  "failed_stage_01": "Pre-routing pin lookup invalid after native post-routing pin-equivalence sync; replaced with native final-STA remapping-aware atom-sink traversal.",
+  "failed_stage_02": "Analysis-loaded RouteTree lacks routing-only find_by_isink index; replaced with read-only actual-node pin-index traversal.",
+  "route_search_calls": 0,
+  "original_route_files_unchanged": true,
+  "route_algorithm_source_files_unchanged": 39,
+  "final_stage_route_and_STA_neutral": true,
+  "physical_connection_checks": 95620,
+  "Tf_tied_connections_guided_history": [
+    {
+      "net": 5479,
+      "pin": 36,
+      "contexts": 0
+    },
+    {
+      "net": 6587,
+      "pin": 3,
+      "contexts": 0
+    },
+    {
+      "net": 6590,
+      "pin": 3,
+      "contexts": 0
+    },
+    {
+      "net": 6592,
+      "pin": 3,
+      "contexts": 0
+    }
+  ],
+  "strongest_local_CPD_ns": 5.85466,
+  "strongest_local_result": "joint_coordinated_native_01/runs/eltwise_layer_R",
+  "next_registered": "native_frontier_joint_policy_experiment_01.json",
+  "limitations": "Observer validation does not improve CPD. Four frozen states of one circuit/seed, zeroRC only. All-pin mapping uses native post-sync functions, not independently reimplemented packed traversal. Pin slack is not a CPD derivative; raw criticality is per-domain normalized. Whole-policy A0/R1/Tf comparisons and formal runtime remain pending.",
+  "public_snapshot": "f7167bd1fbeb267d7ffc02766eeb2e5966aec387",
+  "this_followup_pushed": false
+}

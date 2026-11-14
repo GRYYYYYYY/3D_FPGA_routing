@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+"""Freeze the new manuscript delta without rerunning old experiments or audits."""
+import re,shutil,unicodedata
+from pathlib import Path
+from pypdf import PdfReader
+from retained_prefix_workflow import D,read,write,sha
+p=D/'paper';delta=read(p/'data/strong_terminal_delta_binding_01.json');assert delta['passed'];assert all(sha(D/n)==h for n,h in delta['sources_sha256'].items());reader=PdfReader(p/'build/main.pdf');text=unicodedata.normalize('NFKC',' '.join(' '.join(x.extract_text()or''for x in reader.pages).split()));checks={s:s in text for s in ['2059607','11310','2068888','1141.583','797.464','217','2155.627','77.873']};assert all(checks.values()),checks;log=p/'build_strong_terminal_01.log';assert not re.search(r'Overfull|Undefined|undefined|Fatal|Error',log.read_text());claims=(p/'claims_evidence.md').read_text();assert all('| '+c+' |'in claims for c in delta['claims']);links=[]
+for dest in re.findall(r'\]\(([^)]+)\)',claims[claims.index('| C149 |'):]):
+ if '://'not in dest:assert (p/dest).exists();links.append(dest)
+validation=p/'strong_terminal_delta_validation_01.json';write(validation,dict(passed=True,pages=len(reader.pages),checks=checks,new_claims=delta['claims'],new_links_checked=links,sources_sha256=delta['sources_sha256'],pdf_sha256=sha(p/'build/main.pdf'),scope='New numerical/source/link and build/text checks only. No repeated historical full ledger or native experiment, no visual/submission-readiness claim.'))
+snapshot=D/'paper_snapshots/current_strong_terminal_tradeoffs_20261114';snapshot.mkdir(exist_ok=False);files=[f for f in p.rglob('*')if f.is_file()and((f.parent==p and f.suffix in['.tex','.md','.cls','.sh'])or(f.is_relative_to(p/'data')and'ledger_history_20261113'not in f.parts))];files += [p/'build/main.pdf',p/'build/main.log',log,validation,p/'verify_v14_ledger.py']
+for f in files:
+ target=snapshot/f.relative_to(p);target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(f,target)
+write(snapshot/'snapshot_binding.json',dict(status='immutable_paper_snapshot',files={str(f.relative_to(p)):sha(f)for f in files},public_snapshot='f7167bd',pushed=False));write(D/'strong_terminal_paper_binding_01.json',dict(passed=True,snapshot=str(snapshot),pdf=str(snapshot/'build/main.pdf'),pages=len(reader.pages),claims=delta['claims'],new_work_pushed=False,complete_research=False,source_sha256={str(f):sha(f)for f in[Path(__file__).resolve(),snapshot/'snapshot_binding.json',p/'data/strong_terminal_delta_binding_01.json',validation,D/'multiobjective_archive_36/completion.json',D/'strong_A0_accepted_prefix_01/completion.json',D/'R1_fast_native_only_resource_summary_01.json']},qualification='Local manuscript update with new-delta validation; old drafts/results preserved. Strong-A0 two-policy local trajectories completed; main resource cohort continues. Cold complete algorithm time unknown.'))
+print(dict(snapshot=str(snapshot),pages=len(reader.pages),claims=delta['claims']),flush=True)

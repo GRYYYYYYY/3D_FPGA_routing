@@ -1,0 +1,82 @@
+{
+  "status": "plateau_policy_evaluated",
+  "passed": true,
+  "decision": {
+    "accepted": true,
+    "checks": {
+      "native_valid": true,
+      "zero_rc_verified": true,
+      "fresh_route": true,
+      "physical_audit": true,
+      "other_nets_exact": true,
+      "all_sinks_checked": true,
+      "CPD_nonworse": true,
+      "sWNS_nonworse": true,
+      "sTNS_nonworse": true,
+      "hWNS_nonworse": true,
+      "hTNS_nonworse": true,
+      "one_connection_changed": true,
+      "physical_componentwise_improvement": true
+    },
+    "kind": "reported_CPD_plateau",
+    "qualification": "Single-connection policy on verified zero-RC inputs only. Other sink delays are unchanged within the physical audit tolerance (1e-12 relative and1e-24seconds absolute). Native printed metrics are compared at their reported precision. A plateau step is not itself a CPD improvement."
+  },
+  "origin_run": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_R1",
+  "accepted_run": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_R1_native_01/runs/eltwise_layer_R",
+  "accepted_route_sha256": "c63d3435d76ef6423defad8c6202672f972986e67efd3da2a70e789e5039c632",
+  "seen_route_sha256": [
+    "bab64a5cd963b450cbe2bf6c583753edc51476aea5b768dcc4fac9d36f5d82a8",
+    "c63d3435d76ef6423defad8c6202672f972986e67efd3da2a70e789e5039c632"
+  ],
+  "strict_policy_accepted": false,
+  "native_evidence_reused": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_R1_native_01",
+  "new_native_calls": 0,
+  "before_CPD_ns": 6.0181,
+  "after_CPD_ns": 6.0181,
+  "STA": {
+    "before": {
+      "sWNS": -6.0181,
+      "sTNS": -33483.7,
+      "hWNS": 0.0,
+      "hTNS": 0.0
+    },
+    "after": {
+      "sWNS": -6.0181,
+      "sTNS": -33483.7,
+      "hWNS": 0.0,
+      "hTNS": 0.0
+    }
+  },
+  "physical": {
+    "passed": true,
+    "sink_connections": 23905,
+    "changed": [
+      {
+        "net": 6590,
+        "sink": 82095,
+        "pin": 4,
+        "before_ns": 1.0428040930765548,
+        "after_ns": 0.8569782938838699
+      }
+    ],
+    "other_net_traces_exact": true,
+    "scope": "All sink delays are independently accumulated from actual route switch IDs on the previously verified zero-RC graph. Final timing is separately recomputed by native STA."
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/apply_plateau_branch.py": "4212c37784535a2d473d754f556d80889b597c04863ba8ba71581fd4c8e13526",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postroute_plateau_policy.py": "91d057c885269628c2d33f8b4a2b864af11146e5b6ba1ca936ed12ebc36a4903",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postroute_plateau_policy_experiment_01.json": "019420f4e6e197b16f31d825c2e23f53169190ccdb09c9861eab0b35c139ae5b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_R1_native_01/completion.json": "19fb996a60c1aeeaab2d2a1a5c9e9f398ebd39817edf88e0cb24da995db366c6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_R1_native_01/physical_change_audit.json": "2c930c85efb97a0c2555b0f4a313fdfd629f466135f9881902947116bd499a7c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_R1_native_01/input_seal.json": "4b04d3269984919bcd599c6b9e8d80c8d413792ef92dcfd431b338c1ce78239b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_R1_native_01/independent_native_analysis_audit.json": "aa08458b019f4a28157a8edb320dec0d27ac585cfff7b56cc193e54c15523861",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_R1/manifest.json": "1f19f4f4c1277ed820e3dd8847ef624a9b64c4dbdaf0061a7e0b09d112dbb6fd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_R1/routed.route": "bab64a5cd963b450cbe2bf6c583753edc51476aea5b768dcc4fac9d36f5d82a8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_R1_native_01/runs/eltwise_layer_R/manifest.json": "5e8f3b54175e589f1abf3f8b5f41272e7e5c8eb18c6e3684b34a1c305bbe2e52",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/postcoordination_R1_native_01/runs/eltwise_layer_R/routed.route": "c63d3435d76ef6423defad8c6202672f972986e67efd3da2a70e789e5039c632",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/critical_capacity_potential_01/analysis.json": "3013237f925e775d2088b3622986ef75c5e277977ffedc0b2667732c876944a3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/critical_capacity_potential_01/execution.json": "06fd8be67e64dba4b861b570e3705f95d7374c51ecab564ca569a0e5829df706"
+  },
+  "original_rejection_preserved": true,
+  "quality_promoted": false
+}

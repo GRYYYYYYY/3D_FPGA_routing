@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+"""Archive original native controls with complete route time, separate posthoc STA."""
+import argparse,collections,copy,csv,time,re
+from pathlib import Path
+from retained_prefix_workflow import D,read,write,sha as raw_sha,route_body
+from pareto_archive_dimensions import annotate
+from routing_log_metrics import ROW
+p=argparse.ArgumentParser();p.add_argument('--parent',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();out=a.output.resolve();out.mkdir(exist_ok=False);parent=a.parent.resolve();started=time.monotonic();b=D/'native_extra_opportunity_bnn_01';complete=read(b/'completion.json');assert complete['passed'];cache={};bound={}
+def sha(path):
+ path=Path(path).resolve();s=path.stat();key=(s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
+ if key not in cache:cache[key]=raw_sha(path)
+ bound[str(path)]=cache[key];return cache[key]
+pc=read(parent/'completion.json');assert pc['passed'] and all(sha(parent/n)==h for n,h in pc['artifact_sha256'].items());assert all(sha(p)==h for p,h in complete['source_sha256'].items());points=read(parent/'points.json');updates=[];rows=[];failed=[]
+for name,row in read(b/'progress.json').items():
+ if row.get('status')!='legal_evaluated':failed.append(dict(arm=name,record=row));continue
+ rd=b/'runs'/name;m=read(rd/'manifest.json');assert m['status']=='completed' and m['metrics']['native_full_check_passed'];assert row['first_legal_prefix_passed'] and row['packed_placement_exact']
+ for path,r in m['shared_inputs'].items():assert sha(path)==r['sha256']
+ for path,h in m.get('private_input_sha256',{}).items():assert sha(path)==h
+ for n,r in m['outputs'].items():assert sha(rd/n)==r['sha256']
+ stdout=(rd/'stdout.log').read_text();iterations=[ROW.match(l) for l in stdout.splitlines() if ROW.match(l)];legal_iterations=[int(r[1]) for r in iterations if int(r[4])==0];planning_matches=re.findall(r'H3D_PLAN .*?planning_seconds=([0-9.eE+-]+)',stdout);planning=float(planning_matches[-1]) if planning_matches else 0.
+ physical=read(rd/'independent_audit.json');assert physical['audit']['passed'];obs=Path(row['full_precision_observer']);oc=read(obs/'completion.json');assert oc['passed'];observed=Path(oc['run']);assert sha(observed/'routed.route')==sha(rd/'routed.route');v=read(obs/'endpoint_vector.json');template=next(x for x in points if x['circuit']=='bnn' and x['arm']==name and x.get('state'));assert v['constraints_sha256']==read(Path(template['state'])/'endpoint_vector.json')['constraints_sha256'];actual=physical['physical_metrics'];cpd=v['cpd_s']*1e9;ident=str(rd.relative_to(D));x=copy.deepcopy(template)
+ x.update(id=ident,arm=name,batch=str(b.relative_to(D)),batch_full_path=str(b),state=str(obs),source_state=None,status='legal',record_kind='original_native_extra_convergence_control',run_manifest=str(rd/'manifest.json'),binary_sha256=sha(m['command'][0]),final_STA_binary_sha256=sha(read(observed/'manifest.json')['command'][0]),route_sha256=sha(rd/'routed.route'),route_body_sha256=route_body(rd/'routed.route'),command=m['command'],environment=m.get('environment'),convergence='max_8_threshold_1.01',opportunity='initial_route_with_extra_native_convergence',CPD_ns=cpd,CPD_interval_ns=[cpd,cpd],CPD_precision='Exact full-precision native STA of this same complete-route output',wirelength=actual['planar_wirelength_excluding_sb_half_nodes'],SB_pairs=actual['sb_pairs_used'],CB_sources=actual['cb_crossing_output_sources_used'],SB_net_occupancy=actual['sb_pair_net_occupancy'],CB_net_occupancy=actual['cb_crossing_output_source_net_occupancy'],iterations=m['metrics']['iterations'],native_legal_iterations=legal_iterations,planning_seconds_last_counter=planning,complete_single_configuration_seconds=m['wall_seconds'],timing_cohort=None,analysis_only_native_seconds=oc['timing']['native_process_seconds'],posthoc_observer=str(obs),posthoc_observer_workflow_seconds=row['posthoc_observer_seconds'],observation_workflow=oc['timing'],shared_research_workflow=None,audit_provenance=str(rd/'independent_audit.json'),unknowns=['Rotated matched-environment timing repeats; current prototypes complete cold algorithm cost.'],initial_routing_convergence='max_8_threshold_1.01',first_legal_prefix_passed=True,retention_qualification='Keep actual native opportunity/control row; no initial route, observer or repair costs fused.')
+ for i,old in enumerate(points):
+  if old['id']==ident:points[i]=x;updates.append(ident);break
+ else:points.append(x);updates.append(ident)
+ rows.append(dict(arm=name,record_id=ident,CPD_ns=cpd,wirelength=x['wirelength'],SB_pairs=x['SB_pairs'],CB_sources=x['CB_sources'],whole_native_route_process_seconds=m['wall_seconds'],posthoc_observer_workflow_seconds=row['posthoc_observer_seconds'],iterations=x['iterations'],native_legal_iterations=legal_iterations,planning_seconds_last_counter=planning,native_router_seconds=m['metrics']['router_seconds'],state=str(obs)))
+ for f in [rd/'manifest.json',rd/'independent_audit.json',obs/'completion.json',obs/'endpoint_vector.json']:sha(f)
+annotate(points);write(out/'points.json',points);write(out/'native_control_summary.json',dict(passed=True,rows=rows,failed_or_missing=failed,qualification='Original native best-state restoration and actual output, same first-legal prefix. Count/threshold alter search opportunity, not final acceptance tolerance. Every row is a complete route process with separate posthoc observer; no historical times fused or standalone paired speedup inferred.'))
+fields=['id','arm','circuit','CPD_ns','wirelength','SB_pairs','CB_sources','quality_status','candidate_retention','complete_single_configuration_seconds']
+with (out/'points.csv').open('w') as f:w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows({k:x[k] for k in fields} for x in points)
+for f in [Path(__file__).resolve(),D/'pareto_archive_dimensions.py',b/'completion.json',parent/'completion.json']:sha(f)
+write(out/'completion.json',dict(passed=True,parent=str(parent),records=len(points),native_control_records_updated_or_added=updates,failed_or_missing=failed,quality_counts=dict(collections.Counter(x['quality_status'] for x in points)),retention_counts=dict(collections.Counter(x['candidate_retention'] for x in points)),source_sha256=bound,artifact_sha256={n:raw_sha(out/n) for n in ['points.json','points.csv','native_control_summary.json']},native_calls=0,route_calls=0,complete_process_seconds=time.monotonic()-started,qualification='Original native controls compared jointly with all prior matched legal observations. Binaries, convergence/opportunity, route output and own whole time remain separate; posthoc full precision only annotates the exact output. No missing complete algorithm time fabricated.'))
+print(rows,flush=True)

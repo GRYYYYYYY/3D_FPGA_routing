@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+"""Independent uniform bundle/native-selector experiments after large backend validation."""
+import fcntl,os,subprocess,sys,time
+from pathlib import Path
+from retained_prefix_workflow import D,read,write,sha
+b=D/'native_resource_bundle_dev_01';b.mkdir(exist_ok=False);q=b/'queue';q.mkdir();lock=(q/'owner.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);dependency=D/'native_repair_queue_validation_queue_01';owner=read(dependency/'registration.json');fast=Path(read(D/'R1_strict_portfolio_summary_02.json')['final_state']);cases={}
+for name,source,size,mode,cache in [('R1_fast_native_only',fast,1,'unrestricted','full_route_graph_cache_bnn_01'),('R1_fast_bundle4',fast,4,'paired','full_route_graph_cache_bnn_01'),('R1_fast_bundle8',fast,8,'paired','full_route_graph_cache_bnn_01'),('A0_native8_bundle4',D/'native_extra_opportunity_bnn_01/A0_observation',4,'paired','full_route_graph_cache_bnn_01'),('eltwise_A0_bundle4',D/'native_endpoint_vector_dev_01/A0',4,'paired','full_route_graph_cache_e695_01'),('spmv_R1_bundle1',D/'native_endpoint_spmv_dev_01/R1',1,'paired','full_route_graph_cache_e695_01')]:
+ assert read(source/'completion.json')['passed'];cases[name]=dict(initial_state=str(source),bundle_size=size,domain_mode=mode,full_graph_cache=str(D/cache),source_sha256={str(p):sha(p) for p in [source/'completion.json',source/'endpoint_vector.json']})
+files=[Path(__file__).resolve(),D/'run_pooled_native_bundle_repair.py',D/'native_repair_analysis_pool.py',D/'pool_state_evaluator_v2.py',D/'current_resource_bundle_v2.py',D/'current_resource_bundle_validation_02.json',D/'native_repair_queue_stage_01/binding.json',D/'native_repair_queue_tiny_regression_01/completion.json',D/'resource_transfer_census_02/completion.json',dependency/'registration.json'];bound={str(p):sha(p) for p in files};write(q/'registration.json',dict(pid=os.getpid(),start_ticks=Path('/proc/self/stat').read_text().split(') ',1)[1].split()[19],after=str(dependency),prior_owner=owner,cases=cases,source_sha256=bound,question='Does the same current selector plus unrestricted native repair explain later resource steps, and can uniform distinct-net K4/K8 transactions improve resources per full validation? Do opportunities transfer beyond BNN and survive stronger A0?',selection_policy='Fixed current resource rank and query criticality order for every case. Current selection reruns after each accepted whole transaction. Original source, K and domain mode fixed at queue registration; no per-circuit historical-best choice.',qualification='New independent development cohort, not a confirmation matrix or whole-research stopping condition. R1 fast is an algorithmically obtained diagnostic starting state, other roots are sealed native starts. Paired OFF/ON scopes/query opportunities equal at each own-current state. Native-only ablation has its own resulting current state and target list. Existing original quality chain and new large backend equivalence finish first. Different policies and imported-state workflows never fused as complete algorithm times.'))
+def live():
+ try:s=Path('/proc',str(owner['pid']),'stat').read_text().split(') ',1)[1].split();return s[0]!='Z' and s[19]==owner['start_ticks']
+ except FileNotFoundError:return False
+write(q/'status.json',dict(status='waiting_for_large_native_backend_equivalence',prior_pid=owner['pid'],observed_at=time.time()))
+while live():time.sleep(15)
+receipt=read(dependency/'completion.json')
+if not receipt['passed']:
+ write(q/'dependency_failure.json',dict(reason='Backend equivalence not passed; preserve old quality and diagnose before new algorithm execution.',dependency=str(dependency)));raise SystemExit(2)
+assert read(D/'native_repair_queue_equivalence_bnn_01/completion.json')['passed'];results={}
+for name,case in cases.items():
+ assert all(sha(p)==h for p,h in bound.items());assert all(sha(p)==h for p,h in case['source_sha256'].items());command=[sys.executable,str(D/'run_pooled_native_bundle_repair.py'),'--initial-state',case['initial_state'],'--batch',str(b/name),'--bundle-size',str(case['bundle_size']),'--domain-mode',case['domain_mode'],'--full-graph-cache',case['full_graph_cache']]
+ with (b/(name+'.log')).open('w') as out:
+  proc=subprocess.Popen(command,stdout=out,stderr=subprocess.STDOUT);write(q/'status.json',dict(status='running_native_resource_actor',actor=name,pid=proc.pid,start_ticks=Path('/proc',str(proc.pid),'stat').read_text().split(') ',1)[1].split()[19],observed_at=time.time()));code=proc.wait()
+ results[name]=dict(passed=code==0,returncode=code,completion=str(b/name/'completion.json'));write(b/'progress.json',results)
+write(q/'completion.json',dict(passed=all(r['passed'] for r in results.values()),roles=results,qualification='Local diagnostic cohort terminal only. Preserve every failed/rejected candidate and continue research according to joint quality/cost evidence; no overall date/call/matrix stop.'))

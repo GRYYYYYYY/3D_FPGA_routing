@@ -1,0 +1,380 @@
+{
+  "passed": true,
+  "source_run": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_R1",
+  "same_five_target_trees_prefixes_endpoints": true,
+  "ownership_changes": [
+    {
+      "node": 82117,
+      "before": [
+        6590
+      ],
+      "after": []
+    },
+    {
+      "node": 82120,
+      "before": [],
+      "after": [
+        6590
+      ]
+    },
+    {
+      "node": 327367,
+      "before": [],
+      "after": [
+        6590
+      ]
+    },
+    {
+      "node": 338492,
+      "before": [],
+      "after": [
+        6590
+      ]
+    },
+    {
+      "node": 338571,
+      "before": [
+        6590
+      ],
+      "after": []
+    },
+    {
+      "node": 413276,
+      "before": [],
+      "after": [
+        6590
+      ]
+    }
+  ],
+  "conditional_joint_delay_threshold_seconds": 1.0428040930765548e-09,
+  "conditional_shared_resource": 82120,
+  "path_pool_unique_counts": {
+    "6590": 3,
+    "6587": 3
+  },
+  "path_pairs_tested": 9,
+  "path_pairs_RR_capacity_feasible": 2,
+  "optimistic_joint_minimax_seconds": 8.493392933406341e-10,
+  "optimistic_independent_lower_seconds": 8.493392933406341e-10,
+  "optimistic_bounds_match": true,
+  "best_pair": {
+    "paths": [
+      {
+        "source": "endpoint_resource_82112_01",
+        "row": 1,
+        "result": {
+          "net": 6587,
+          "pin": 4,
+          "forbidden": true,
+          "stop": 0,
+          "expansions": 71038,
+          "labels": 168288,
+          "peak_heap": 201140,
+          "physical_seconds": 8.493392933406341e-10,
+          "lower_seconds": 8.493392933406341e-10,
+          "core_seconds": 0.153886,
+          "edge_count": 8,
+          "process_seconds": 0.9663881361484528,
+          "current_physical_seconds": 1.0428040930765548e-09,
+          "edges": [
+            [
+              82095,
+              82109,
+              0.0
+            ],
+            [
+              82109,
+              416236,
+              1.0603609656989477e-10
+            ],
+            [
+              416236,
+              416144,
+              1.8582579919268483e-10
+            ],
+            [
+              416144,
+              415972,
+              1.8582579919268483e-10
+            ],
+            [
+              415972,
+              327367,
+              1.8582579919268483e-10
+            ],
+            [
+              327367,
+              81387,
+              1.8582579919268483e-10
+            ],
+            [
+              81387,
+              81371,
+              0.0
+            ],
+            [
+              81371,
+              1028568,
+              0.0
+            ]
+          ],
+          "uses_shared_resource": false
+        }
+      },
+      {
+        "source": "endpoint_resource_327367_01",
+        "row": 0,
+        "result": {
+          "net": 6590,
+          "pin": 4,
+          "forbidden": true,
+          "stop": 0,
+          "expansions": 71734,
+          "labels": 170057,
+          "peak_heap": 203322,
+          "physical_seconds": 8.493392933406341e-10,
+          "lower_seconds": 8.493392933406341e-10,
+          "core_seconds": 0.163779199,
+          "edge_count": 8,
+          "process_seconds": 1.0681437104940414,
+          "current_physical_seconds": 1.0428040930765548e-09,
+          "edges": [
+            [
+              82095,
+              82112,
+              0.0
+            ],
+            [
+              82112,
+              416222,
+              1.0603609656989477e-10
+            ],
+            [
+              416222,
+              416132,
+              1.8582579919268483e-10
+            ],
+            [
+              416132,
+              415988,
+              1.8582579919268483e-10
+            ],
+            [
+              415988,
+              327369,
+              1.8582579919268483e-10
+            ],
+            [
+              327369,
+              81399,
+              1.8582579919268483e-10
+            ],
+            [
+              81399,
+              81383,
+              0.0
+            ],
+            [
+              81383,
+              1028568,
+              0.0
+            ]
+          ],
+          "uses_shared_resource": false
+        }
+      }
+    ],
+    "capacity_conflicts": [],
+    "max_seconds": 8.493392933406341e-10
+  },
+  "actual_retained_tree_splices": [
+    {
+      "net": 6587,
+      "pin": 4,
+      "anchor": 81387,
+      "retained_intersections": [
+        81371,
+        81387
+      ],
+      "suffix_nodes": [
+        81387,
+        327367,
+        415972,
+        416144,
+        416236,
+        82109,
+        82095
+      ],
+      "suffix_weights": [
+        1.8582579919268483e-10,
+        1.8582579919268483e-10,
+        1.8582579919268483e-10,
+        1.8582579919268483e-10,
+        1.0603609656989477e-10,
+        0.0
+      ],
+      "physical_seconds": 8.493392933406341e-10,
+      "reference_source": "endpoint_resource_82112_01",
+      "reference_row": 1
+    },
+    {
+      "net": 6590,
+      "pin": 4,
+      "anchor": 81399,
+      "retained_intersections": [
+        81383,
+        81399
+      ],
+      "suffix_nodes": [
+        81399,
+        327369,
+        415988,
+        416132,
+        416222,
+        82112,
+        82095
+      ],
+      "suffix_weights": [
+        1.8582579919268483e-10,
+        1.8582579919268483e-10,
+        1.8582579919268483e-10,
+        1.8582579919268483e-10,
+        1.0603609656989477e-10,
+        0.0
+      ],
+      "physical_seconds": 8.493392933406341e-10,
+      "reference_source": "endpoint_resource_327367_01",
+      "reference_row": 0
+    }
+  ],
+  "critical_pair_self_conflicts": [],
+  "current_other_net_conflicts": {
+    "416132": {
+      "capacity": 1,
+      "critical_nets": [
+        6590
+      ],
+      "other_nets": [
+        7963
+      ]
+    },
+    "416144": {
+      "capacity": 1,
+      "critical_nets": [
+        6587
+      ],
+      "other_nets": [
+        1429
+      ]
+    },
+    "327369": {
+      "capacity": 1,
+      "critical_nets": [
+        6590
+      ],
+      "other_nets": [
+        7963
+      ]
+    },
+    "416222": {
+      "capacity": 1,
+      "critical_nets": [
+        6590
+      ],
+      "other_nets": [
+        2926
+      ]
+    },
+    "415972": {
+      "capacity": 1,
+      "critical_nets": [
+        6587
+      ],
+      "other_nets": [
+        6563
+      ]
+    },
+    "415988": {
+      "capacity": 1,
+      "critical_nets": [
+        6590
+      ],
+      "other_nets": [
+        7963
+      ]
+    }
+  },
+  "blockers": [
+    1429,
+    2926,
+    6563,
+    7963
+  ],
+  "affected_blocker_subtrees": [
+    {
+      "net": 1429,
+      "name": "bram_rdata_a_3[37]",
+      "resources": [
+        416144
+      ],
+      "affected_pins": [
+        1
+      ],
+      "total_pins": 1
+    },
+    {
+      "net": 2926,
+      "name": "bram_addr_b_4_ext[1]",
+      "resources": [
+        416222
+      ],
+      "affected_pins": [
+        2
+      ],
+      "total_pins": 6
+    },
+    {
+      "net": 6563,
+      "name": "$abc$87764$new_n22316",
+      "resources": [
+        415972
+      ],
+      "affected_pins": [
+        1
+      ],
+      "total_pins": 1
+    },
+    {
+      "net": 7963,
+      "name": "u_eltwise_cu_5.u_pe_array.pe1.u_add.u_FPAddSub.RoundModule.NormM[6]",
+      "resources": [
+        327369,
+        415988,
+        416132
+      ],
+      "affected_pins": [
+        2
+      ],
+      "total_pins": 2
+    }
+  ],
+  "total_blocker_sinks": 4,
+  "native_calls": 0,
+  "qualification": "The matching bounds establish the optimal minimax physical path cost only in the two-endpoint zero-RC RR-node-capacity relaxation with other routes/terminals omitted. Both reference paths also attach to actual retained trees at unchanged cost, but their current other-net conflicts remain. No completed coordinated reroute, native FULL or final CPD gain follows from this reference.",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/endpoint_capacity_reference_01/analysis.json": "28b386535372e9eb9795559a61263e122609aa807de6d5857b47c5a724e8e218",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/endpoint_resource_327367_01/analysis.json": "c8b0b123dbcf9bda8af3f182ea11b377f766bf55ba864bdf6f04c571f83d4bb1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/endpoint_resource_338492_01/analysis.json": "cd0c5f161a35e3f5cf3c3f2045e76887514fa882894d411e065be8cb739845f5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/endpoint_resource_413276_01/analysis.json": "f6565532d695c06722717df92833729c7759a32b14863247470c2ceb1f4ac1b0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/endpoint_resource_82112_01/analysis.json": "ccdf20d32f5c6822bed3a34f5828cb0c0a81afb8520d7f4846ba6b4b61999000",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_critical_reference_01/analysis.json": "db1571429b0c398c89d23e79de740313c0867ee362eafe7e3b1e7074a7c138b3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/plateau_R1_counterfactual_01/analysis.json": "fc191f0e4cc2120ce48f602bfed314a905252acb13b58d120cd1f42256cab97f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/plateau_R1_queries_02/analysis.json": "5ae28363b1853c2d271778194c2be6debaef4e87626529fa993dc1d79a075dba",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/plateau_R1_step_01/decision.json": "9f08cc83f48dc93c6315ff130bd75c5da4e73ec13b5c0ec62e5b49515c811429",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/plateau_R1_counterfactual_01/cases.json": "fb0b381fd6b09467280fed0466b31569b81855f886b199de02c2ca2b1c6a7df1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/plateau_R1_queries_02/cases.json": "e8c27dfdd4e412548eea37d1eeab755d659697cfc3fd054e6414509d00e45be5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_R1/routed.route": "bab64a5cd963b450cbe2bf6c583753edc51476aea5b768dcc4fac9d36f5d82a8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_reconvergence_eltwise_dev_01/runs/eltwise_layer_R1/independent_audit.json": "f888ae3d6f20e2f97bb42c9128d41743e65a92bd77e1b38bd9b757abe28f8cbd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/analyze_plateau_joint_opportunity.py": "030c841b0316f8640a4151d7e7a70d41c71a08c494d40e90d89b2c419073bcb4"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "native_parent_processes": 3,
+  "full_analysis_workers": 3,
+  "existing_accepted_states": 2,
+  "precision_STA_constraints_and_graph_exact": true,
+  "default_off_old_native_exact": true,
+  "parent_never_loaded_or_synchronized_route": true,
+  "original_inputs_unchanged": true,
+  "route_search_calls": 0,
+  "observed_native_processes": [
+    {
+      "name": "standalone_A0",
+      "returncode": 0,
+      "timed_out": false,
+      "complete_native_process_seconds": 105.84169896692038
+    },
+    {
+      "name": "standalone_A0_endpoint_bridge",
+      "returncode": 0,
+      "timed_out": false,
+      "complete_native_process_seconds": 101.50468121469021
+    },
+    {
+      "name": "fork_parent",
+      "returncode": 0,
+      "timed_out": false,
+      "complete_native_process_seconds": 192.68814689666033
+    }
+  ],
+  "child_observations": [
+    {
+      "index": "0",
+      "pid": "3350335",
+      "exit_code": "0",
+      "signal": "0",
+      "timed_out": "0",
+      "wall_seconds": "41.087287371999999",
+      "max_rss_kib": "5261568"
+    },
+    {
+      "index": "1",
+      "pid": "3372310",
+      "exit_code": "0",
+      "signal": "0",
+      "timed_out": "0",
+      "wall_seconds": "37.810343785999997",
+      "max_rss_kib": "5261572"
+    },
+    {
+      "index": "2",
+      "pid": "3389369",
+      "exit_code": "0",
+      "signal": "0",
+      "timed_out": "0",
+      "wall_seconds": "40.163795743999998",
+      "max_rss_kib": "5261568"
+    }
+  ],
+  "complete_engineering_workflow_seconds": 452.8186641186476,
+  "complete_single_configuration_algorithm_seconds": null,
+  "matched_formal_speedup": null,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/analysis_fork_equivalence_bnn_01/registration.json": "024cb4c592a2b4ff1540841f77532a18591ced5b87bdfd43cd34cf637a40aab5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/analysis_fork_equivalence_bnn_01/process_costs.json": "d3c6f670966b37c1d63affd1e4fea0c522259b9321b4a4964db137dd25289f37",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/analysis_fork_equivalence_bnn_01/workers.tsv": "47b15a5366e6d6865eb6e6c3fe8c6ee329a04a529fd615c468039256f909fa3d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/analysis_fork_equivalence_bnn_01/manifest.txt": "11c3cdf7be74fe93b861c04b094c0e0daa8e78b781cfa5936892624c25cf366d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/validate_analysis_fork_large.py": "10e41914b49155ad978a60f02fe93edc35a494030eec73331e9a488da4c90ea9"
+  },
+  "qualification": "Large BNN native FULLSTA/state isolation validated against two fresh same-binary standalone references and existing sealed accepted observations. Read-only analyses do not add routing-quality candidates or initial routability evidence. Includes echo/validation costs; no whole-algorithm speedup claim."
+}

@@ -1,0 +1,96 @@
+{
+  "role": "strict",
+  "active_policy": "strict",
+  "status": "legal_candidate",
+  "before_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_endpoint_diagnostics_01/R1_joint",
+  "evaluated_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/plateau_successor_evaluation_01/strict",
+  "current_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/plateau_successor_evaluation_01/strict",
+  "cpd_before_ns": 5.854659868020917,
+  "cpd_candidate_ns": 5.832274663220005,
+  "accepted": true,
+  "decisions": {
+    "strict": {
+      "accepted": true,
+      "policy": "strict",
+      "reason": "Exact policy conditions satisfied"
+    },
+    "endpoint_vector": {
+      "accepted": false,
+      "policy": "endpoint_vector",
+      "reason": "Setup endpoint/domain vector has regressions"
+    }
+  },
+  "setup_improved": 8,
+  "setup_regressed": 1,
+  "current_selection": {
+    "targets": [
+      {
+        "net": 5490,
+        "pin": 5,
+        "sink": 82095,
+        "slack_s": -5.832274663220005e-09,
+        "raw_criticality": 1,
+        "native_net_delay_s": 8.569782661282943e-10
+      },
+      {
+        "net": 6591,
+        "pin": 4,
+        "sink": 82095,
+        "slack_s": -5.832274663220005e-09,
+        "raw_criticality": 1,
+        "native_net_delay_s": 8.569782661282943e-10
+      },
+      {
+        "net": 5470,
+        "pin": 5,
+        "sink": 92000,
+        "slack_s": -5.832274219130795e-09,
+        "raw_criticality": 0.9999999403953552,
+        "native_net_delay_s": 6.635134663923736e-10
+      },
+      {
+        "net": 5481,
+        "pin": 1,
+        "sink": 94332,
+        "slack_s": -5.832274219130795e-09,
+        "raw_criticality": 0.9999999403953552,
+        "native_net_delay_s": 4.776876671996888e-10
+      },
+      {
+        "net": 5485,
+        "pin": 9,
+        "sink": 127398,
+        "slack_s": -5.832274219130795e-09,
+        "raw_criticality": 0.9999999403953552,
+        "native_net_delay_s": 8.493392655850585e-10
+      },
+      {
+        "net": 6639,
+        "pin": 1,
+        "sink": 94206,
+        "slack_s": -5.832274219130795e-09,
+        "raw_criticality": 0.9999999403953552,
+        "native_net_delay_s": 6.635134663923736e-10
+      }
+    ],
+    "worst_slack_s": -5.832274663220005e-09,
+    "grouping_ulp_s": 4.440892098500626e-16,
+    "window_s": 3.552713678800501e-15,
+    "near_ns": 0.0,
+    "eligible_connections": 17319,
+    "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+  },
+  "current_resources": {
+    "planar_wirelength_excluding_sb_half_nodes": 218190,
+    "sb_pairs_used": 45,
+    "sb_pair_net_occupancy": 45,
+    "cb_crossing_output_sources_used": 975,
+    "cb_crossing_output_source_net_occupancy": 975,
+    "actual_crossing_edge_traversals": {
+      "OPIN->CHANX": 563,
+      "CHANX->CHANX": 45,
+      "OPIN->CHANY": 461
+    },
+    "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+  }
+}

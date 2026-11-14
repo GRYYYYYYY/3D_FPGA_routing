@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pooled_resource_repair_dev_01/R1_fast/initial",
+  "requested_bundle_size": 1,
+  "actual_bundle_size": 1,
+  "ranked_selection": "First rank-ordered distinct-net cuts from the current source only; no per-circuit historical best.",
+  "queries": [
+    {
+      "net": 31972,
+      "pin": 8,
+      "raw_criticality": 0.10751217603683472
+    }
+  ],
+  "removed_pins": {
+    "31972": [
+      8
+    ]
+  },
+  "fixed_target_paths": false,
+  "objective": "weighted_soft",
+  "request": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_resource_bundle_validation_01/K1/request.txt",
+  "request_sha256": "565370b4498b03cea1e509b691123f30b12843ac023dcb86c32a551a37c83407",
+  "crossing_domain": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_resource_bundle_validation_01/K1/domain.txt",
+  "domain_sha256": "9681feb2ad6485f7204544ceccfe41d9c798bda5c5b9f6eadabeca82162de39e",
+  "selected_scopes": [
+    {
+      "net": 31972,
+      "name": "grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_125.data_21_V_read22_reg_9784_pp0_iter6_reg[7]",
+      "removed_crossing_resources": 1,
+      "minimum_margin_s": 1.1805958544108819e-08,
+      "resource_per_sink": "1",
+      "retained_crossing_sources": [
+        5887661
+      ],
+      "pins": [
+        8
+      ],
+      "released_nodes": [
+        2063575,
+        2063620,
+        3818760
+      ],
+      "released_SB": [],
+      "released_CB": [
+        401405
+      ],
+      "released_wire": 4,
+      "ordered_queries": [
+        {
+          "net": 31972,
+          "pin": 8,
+          "raw_criticality": 0.10751217603683472
+        }
+      ]
+    }
+  ],
+  "independent_removed_crossings": 1,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_resource_bundle.py": "6923adf4b1c002743b3390c64a9fd3f1f10f8527e482196f1b322fb24084d520",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pooled_resource_repair_dev_01/R1_fast/round_000/selection/completion.json": "0c9536e76c2c0d10ecce57f2f8ea41fcfed57884fd7fc068fae46fdf98fe004b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/pooled_resource_repair_dev_01/R1_fast/round_000/selection/candidates.json": "efd107b1c19c1b008e61449c2bd6d0e0c8ee4aa13dc6b6078895b948263e5e9a"
+  },
+  "qualification": "Private multi-net transaction request; native occupancy updated at every restoration. Counts describe removal before reconnection, not final savings. Whole native/physical/FULLSTA and fixed root budgets decide one final commit; after an accepted bundle, rerank using its new STA. A failing bundle is rolled back as a whole."
+}

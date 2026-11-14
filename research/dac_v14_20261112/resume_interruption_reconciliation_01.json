@@ -1,0 +1,126 @@
+{
+  "passed": true,
+  "hostname": "fpgaacc--cc6e3aed63e1-kloi3p6yyx",
+  "observed_at": "2026-11-14T19:02:00.894122+00:00",
+  "owners": [
+    {
+      "batch": "stable_seed_transfer_dev_01",
+      "registration_sha256": "00932fcfb96ec4e4c0953d2884888547057d76e61cfda1a18d0e3797928faba7",
+      "prior_pid": 1065572,
+      "prior_start_ticks": "1943980845",
+      "recorded_process_absent": true,
+      "prior_phase": {
+        "status": "running",
+        "case": "bnn_R1_native",
+        "pid": 3877910,
+        "start_ticks": "1945378767",
+        "command": [
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_seed_census_shadow_resource_repair.py",
+          "--initial-state",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/R1_observation",
+          "--batch",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_dev_01/bnn_R1_native",
+          "--full-graph-cache",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_route_graph_cache_bnn_01",
+          "--bundle-size",
+          "8",
+          "--domain-mode",
+          "unrestricted",
+          "--graph-echo",
+          "compact",
+          "--seed-order",
+          "delay_rr_id",
+          "--accepted-steps",
+          "0",
+          "--rank-windows",
+          "3"
+        ]
+      },
+      "lock_available": true,
+      "terminal_receipt_present": false
+    },
+    {
+      "batch": "direct_scope_resource_equivalence_02",
+      "registration_sha256": "8fe565fc07f64d9f39123f03e9a0d4be3dfcd91c7a7506b85fe47c8a0a38fc65",
+      "prior_pid": 2266296,
+      "prior_start_ticks": "1944222258",
+      "recorded_process_absent": true,
+      "prior_phase": {
+        "status": "waiting_for_registered_stable_seed_transfer_terminal"
+      },
+      "lock_available": true,
+      "terminal_receipt_present": false
+    },
+    {
+      "batch": "native_census_resource_equivalence_02",
+      "registration_sha256": "66d2379d47cfc6143154ef2938257714ad6d0f18aa77cbd552dbcc8feaae5fef",
+      "prior_pid": 365020,
+      "prior_start_ticks": "1944679392",
+      "recorded_process_absent": true,
+      "prior_phase": {
+        "status": "waiting_for_registered_direct_scope_equivalence_terminal"
+      },
+      "lock_available": true,
+      "terminal_receipt_present": false
+    },
+    {
+      "batch": "completed_resource_timing_dev_01",
+      "registration_sha256": "3a56a9abeee7efaa49d8d9549db94b60ec9faa3ad906c5701bd79803c58f1af8",
+      "prior_pid": 575241,
+      "prior_start_ticks": "1944721449",
+      "recorded_process_absent": true,
+      "prior_phase": {
+        "status": "running",
+        "case": "paired",
+        "phase": "timing",
+        "pid": 3274969,
+        "start_ticks": "1945259000",
+        "command": [
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_independent_critical_portfolio_v4.py",
+          "--initial-state",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/completed_resource_timing_dev_01/paired_full_observation",
+          "--batch",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/completed_resource_timing_dev_01/paired",
+          "--query-graph",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bnn_physical_query_graph_01",
+          "--audit-cache",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rr_audit_cache_bnn_01",
+          "--policy",
+          "timing_under_resources",
+          "--budget-mode",
+          "explicit_absolute",
+          "--fixed-limits",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/completed_resource_timing_dev_01/paired_absolute_limits.json",
+          "--reuse-query-batch",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/strict/round_002/feedback/capacity",
+          "--reuse-query-batch",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/strict/round_001/feedback/capacity",
+          "--reuse-query-batch",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/strict/round_000/feedback/capacity",
+          "--reuse-query-batch",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/strict/round_003/feedback/capacity",
+          "--reuse-query-batch",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/endpoint/round_000/feedback/capacity"
+        ]
+      },
+      "lock_available": null,
+      "terminal_receipt_present": false
+    },
+    {
+      "batch": "vector_feedback_subset_native_01",
+      "registration_sha256": "2b07ab6984446e99ee0944c53fbe4d1bc04d8f746afabed37fba84d483d4338a",
+      "prior_pid": 2664654,
+      "prior_start_ticks": "1945137516",
+      "recorded_process_absent": true,
+      "prior_phase": {
+        "status": "waiting_for_completed_resource_timing_owner_terminal"
+      },
+      "lock_available": true,
+      "terminal_receipt_present": false
+    }
+  ],
+  "interruption_cause": "unknown",
+  "qualification": "Two checks found all recorded PIDs absent, old tool sessions unavailable, and exclusive owner locks available before recovery. Do not infer a numerical failure or a completed algorithm. Original files preserved."
+}

@@ -1,0 +1,64 @@
+{
+  "role": "endpoint",
+  "active_policy": "endpoint_vector",
+  "status": "legal_candidate",
+  "before_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/evaluation_014",
+  "evaluated_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/plateau_successor_evaluation_01/endpoint",
+  "current_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_policy_R1_near_01/evaluation_014",
+  "cpd_before_ns": 5.854659868020917,
+  "cpd_candidate_ns": 5.832274663220005,
+  "accepted": false,
+  "decisions": {
+    "strict": {
+      "accepted": true,
+      "policy": "strict",
+      "reason": "Exact policy conditions satisfied"
+    },
+    "endpoint_vector": {
+      "accepted": false,
+      "policy": "endpoint_vector",
+      "reason": "Setup endpoint/domain vector has regressions"
+    }
+  },
+  "setup_improved": 8,
+  "setup_regressed": 1,
+  "current_selection": {
+    "targets": [
+      {
+        "net": 76,
+        "pin": 1,
+        "sink": 32423,
+        "slack_s": -5.854659868020917e-09,
+        "raw_criticality": 1,
+        "native_net_delay_s": 1.0428040653209791e-09
+      },
+      {
+        "net": 48,
+        "pin": 1,
+        "sink": 43125,
+        "slack_s": -5.854659423931707e-09,
+        "raw_criticality": 0.9999999403953552,
+        "native_net_delay_s": 1.4144556637063488e-09
+      }
+    ],
+    "worst_slack_s": -5.854659868020917e-09,
+    "grouping_ulp_s": 4.440892098500626e-16,
+    "window_s": 3.552713678800501e-15,
+    "near_ns": 0.0,
+    "eligible_connections": 17319,
+    "qualification": "Eight float ULPs group selection ties only. Acceptance uses exact native numbers, with no tolerance."
+  },
+  "current_resources": {
+    "planar_wirelength_excluding_sb_half_nodes": 218247,
+    "sb_pairs_used": 44,
+    "sb_pair_net_occupancy": 44,
+    "cb_crossing_output_sources_used": 972,
+    "cb_crossing_output_source_net_occupancy": 972,
+    "actual_crossing_edge_traversals": {
+      "OPIN->CHANX": 560,
+      "CHANX->CHANX": 44,
+      "OPIN->CHANY": 461
+    },
+    "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+  }
+}

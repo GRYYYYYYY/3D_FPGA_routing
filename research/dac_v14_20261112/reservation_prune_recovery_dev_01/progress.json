@@ -1,0 +1,76 @@
+{
+  "physical_capacity_reserve_off": {
+    "status": "legal_evaluated",
+    "scope": "target_only",
+    "baseline": "A0",
+    "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/bnn_strong_release_joint_dev_01/A0_target_only_physical_capacity_evaluation",
+    "reused_FULL_STA": true,
+    "cpd_s": 1.3785623309559014e-08,
+    "resources": {
+      "wirelength": 2070813,
+      "SB_pairs": 98,
+      "CB_sources": 5067
+    },
+    "native_core_seconds": 0.493970909,
+    "changed_connections": [
+      {
+        "net": 73897,
+        "pin": 1,
+        "before_s": 1.0428040930765548e-09,
+        "after_s": 1.2209908917260037e-09
+      }
+    ],
+    "policies": {
+      "strict": {
+        "accepted": false,
+        "reason": "No full-precision strict CPD improvement"
+      },
+      "endpoint_vector": {
+        "accepted": false,
+        "reason": "Full-precision CPD regression"
+      },
+      "timing_under_resources": {
+        "accepted": false,
+        "reason": "Fixed registered CPD budget exceeded; no tolerance or rolling anchor"
+      },
+      "resources_under_timing": {
+        "accepted": false,
+        "reason": "Fixed registered CPD budget exceeded; no tolerance or rolling anchor"
+      }
+    }
+  },
+  "physical_capacity_reserve_on": {
+    "status": "legal_evaluated",
+    "scope": "target_only",
+    "baseline": "A0",
+    "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/reservation_prune_recovery_dev_01/physical_capacity_reserve_on_evaluation",
+    "reused_FULL_STA": false,
+    "cpd_s": 1.3607436066820355e-08,
+    "resources": {
+      "wirelength": 2070813,
+      "SB_pairs": 98,
+      "CB_sources": 5067
+    },
+    "native_core_seconds": 0.61956283,
+    "changed_connections": [],
+    "policies": {
+      "strict": {
+        "accepted": false,
+        "reason": "No full-precision strict CPD improvement"
+      },
+      "endpoint_vector": {
+        "accepted": false,
+        "reason": "Setup endpoint/domain vector unchanged"
+      },
+      "timing_under_resources": {
+        "accepted": false,
+        "reason": "No exact CPD reduction within resource limits"
+      },
+      "resources_under_timing": {
+        "accepted": true,
+        "reason": "Exact fixed-budget conditions satisfied"
+      }
+    },
+    "successor_selection_passed": true
+  }
+}

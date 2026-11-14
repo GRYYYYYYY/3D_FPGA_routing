@@ -1,0 +1,87 @@
+--- a/h3d_native_sta_frontier.h
++++ b/h3d_native_sta_frontier.h
+@@ -7,11 +7,10 @@
+ #include <limits>
+ #include <memory>
+ 
+-#include "clustered_netlist_utils.h"
+ #include "globals.h"
+ #include "route_tree.h"
+ #include "timing_info.h"
+-#include "timing_util.h"
++#include "vpr_utils.h"
+ #include "vpr_net_pins_matrix.h"
+ 
+ /** @brief Read-only final STA exporter; it never selects or changes routes. */
+@@ -111,11 +110,39 @@
+     out << "{\"type\":\"metadata\",\"schema\":1,\"time_unit\":\"seconds\",\"is_flat\":" << int(is_flat)
+         << ",\"criticality\":\"native_raw_not_router_transformed\",\"nonfinite\":\"string_tokens\"}\n";
+     const auto& route = g_vpr_ctx.routing();
+-    std::unique_ptr<ClusteredPinAtomPinsLookup> lookup;
++    vtr::vector<ClusterPinId, std::vector<AtomPinId>> lookup;
+     if (!is_flat) {
+-        IntraLbPbPinLookup pb_lookup(g_vpr_ctx.device().logical_block_types);
+-        lookup = std::make_unique<ClusteredPinAtomPinsLookup>(g_vpr_ctx.clustering().clb_nlist,
+-                                                            g_vpr_ctx.atom().netlist(), pb_lookup);
++        const auto& atoms = g_vpr_ctx.atom();
++        const auto& clustered = g_vpr_ctx.clustering().clb_nlist;
++        lookup.resize(clustered.pins().size());
++        for (ClusterNetId net : clustered.nets()) {
++            AtomNetId atom_net = atoms.lookup().atom_net(net);
++            if (!atom_net) continue;
++            AtomPinId driver = atoms.netlist().net_driver(atom_net);
++            ClusterPinId cluster_driver = clustered.net_driver(net);
++            if (driver && cluster_driver) lookup[cluster_driver].push_back(driver);
++        }
++        // Final analysis follows pin-equivalence synchronization. Construct the
++        // reverse mapping from atom sinks with the same remapping-aware helper
++        // used by PostClusterDelayCalculator::atom_net_delay. The routing-time
++        // ClusteredPinAtomPinsLookup assumes pre-synchronization pb_route pins.
++        for (AtomPinId atom_pin : atoms.netlist().pins()) {
++            if (atoms.netlist().pin_type(atom_pin) != PinType::SINK) continue;
++            ClusterBlockId block = atoms.lookup().atom_clb(atoms.netlist().pin_block(atom_pin));
++            const t_pb_graph_pin* graph_pin = atoms.lookup().atom_pin_pb_graph_pin(atom_pin);
++            if (!block || !graph_pin) continue;
++            const auto& pb_routes = clustered.block_pb(block)->pb_route;
++            int pb_pin = graph_pin->pin_count_in_cluster;
++            if (!pb_routes.count(pb_pin) || !pb_routes.at(pb_pin).atom_net_id) continue;
++            ClusterNetId net;
++            int logical_pin, net_pin;
++            std::tie(net, logical_pin, net_pin) = find_pb_route_clb_input_net_pin(block, pb_pin);
++            if (!net || net_pin < 0) continue;
++            ClusterPinId pin = *(clustered.net_pins(net).begin() + net_pin);
++            VTR_ASSERT(clustered.pin_block(pin) == block);
++            VTR_ASSERT(atoms.lookup().atom_net(net) == atoms.netlist().pin_net(atom_pin));
++            lookup[pin].push_back(atom_pin);
++        }
+     }
+     for (tatum::DomainId domain : timing.timing_constraints()->clock_domains()) {
+         out << "{\"type\":\"domain\",\"id\":";
+@@ -151,14 +178,24 @@
+             else out << "null";
+             out << ",\"setup_criticality_raw\":";
+             if (is_flat) number(out, timing.setup_pin_criticality(convert_to_atom_pin_id(pin)));
+-            else number(out, calculate_clb_net_pin_criticality(timing, *lookup, pin, false));
++            else {
++                float criticality = 0.;
++                for (AtomPinId atom_pin : lookup[convert_to_cluster_pin_id(pin)])
++                    criticality = std::max(criticality, timing.setup_pin_criticality(atom_pin));
++                number(out, criticality);
++            }
+             out << ",\"setup_slack_s\":";
+             if (is_flat) number(out, timing.setup_pin_slack(convert_to_atom_pin_id(pin)));
+-            else number(out, calculate_clb_net_pin_setup_slack(timing, *lookup, convert_to_cluster_pin_id(pin)));
++            else {
++                float slack = std::numeric_limits<float>::infinity();
++                for (AtomPinId atom_pin : lookup[convert_to_cluster_pin_id(pin)])
++                    slack = std::min(slack, timing.setup_pin_slack(atom_pin));
++                number(out, slack);
++            }
+             out << ",\"atoms\":[";
+             bool first = true;
+             if (is_flat) atom(out, convert_to_atom_pin_id(pin), timing);
+-            else for (AtomPinId atom_pin : lookup->connected_atom_pins(convert_to_cluster_pin_id(pin))) {
++            else for (AtomPinId atom_pin : lookup[convert_to_cluster_pin_id(pin)]) {
+                 if (!first) out << ',';
+                 first = false;
+                 atom(out, atom_pin, timing);

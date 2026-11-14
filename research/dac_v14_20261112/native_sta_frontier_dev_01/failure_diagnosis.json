@@ -1,0 +1,12 @@
+{
+  "status": "terminal_observer_integration_failure",
+  "native_analysis_calls": 2,
+  "route_search_calls": 0,
+  "legal_observer_off": 1,
+  "failed_observer_on": 1,
+  "remaining_not_submitted": 6,
+  "exception": "std::logic_error Key not found",
+  "evidence": "All-pin ClusteredPinAtomPinsLookup construction uses pre-sync logical pin indices; post-routing synchronization replaces/removes pb_route entries. PostClusterDelayCalculator uses find_pb_route_clb_input_net_pin with post_routing_clb_pin_nets/pre_routing_net_pin_mapping instead.",
+  "correction": "Independent stage02 builds sink mapping from atom pins using the same post-sync traversal as final native STA; no changes to actual STA or synchronization. Do not reuse pre-sync constructor after sync.",
+  "original_route_unchanged": true
+}
