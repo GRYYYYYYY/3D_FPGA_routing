@@ -63,3 +63,5 @@ Build, paired-run and audit commands are in [reproduction.md](docs/reproduction.
 
 AMD Ross Skills and Vivado MCP are considered according to the user's FPGA tool policy. The current implementation phase uses C++/Python and VPR; it does not require a Vivado project or HLS synthesis. If fabric RTL/bitstream validation becomes necessary, inspect the applicable Ross skill and use existing Vivado MCP sessions preferentially. Local Vivado is 2022.2; newer commands require compatibility checks.
 
+
+最新接续：[失败释放迁移与实际事务执行检查](docs/GitHub_release_execution_progress_20261115.md)。

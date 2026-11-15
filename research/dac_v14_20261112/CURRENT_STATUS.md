@@ -1,6 +1,8 @@
-# 当前研究状态（2026-11-15T22:37:59.036431+00:00）
+# 当前研究状态（2026-11-15T22:54:16.280758+00:00）
 
-Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN stream 工程对照，以及独立观测与选组迁移、三个已完成分组对照以及完整质量/测量覆盖区分已增量推送至 `b5d7297` 并经 GitHub 读回核对，后续本地分析以真实回执接续。无固定日期、总调用或矩阵完成停止条件。[增量发布说明](../../docs/GitHub_unified_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
+Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN stream 工程对照，以及独立观测与选组迁移、三个已完成分组对照以及完整质量/测量覆盖区分及独立事务入口验证已增量推送至 `0c67eca` 并经 GitHub 读回核对，后续本地分析以真实回执接续。无固定日期、总调用或矩阵完成停止条件。[增量发布说明](../../docs/GitHub_transaction_entry_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
+
+[失败释放迁移验证](standalone_release_replay_01/completion.json)重放真实 robot 协议：3454/3438 释放，3140/8785 继续受域限制，全部科学字段与原记录一致；成功后释放、重复释放、错误保留域均被拒绝。该重放不替代 no-release 消融。另有[持久化事务执行检查](standalone_transaction_native_check_01/plan.json)排在原观测检查之后，计划两次 native 调用（源序列化控制＋实际 owner 修复），当前尚未执行，不新增独立输入。
 
 统一方法以当前 STA 重选事务组，按跨层冗余构造共享域；网络搜索失败时释放其域，容量阻塞时另行协调 owner。完整合法候选按固定时序/资源规则接受，终结选点与中间接受分离。[开发入口](run_complete_unified_method_v1.py)已接通资源、owner 协调、重选组、终结选点和时序阶段；[通用 owner 接口](current_owner_transaction_validation_01/completion.json)重建原两臂 native 参数，无切口 SPMV 实际执行不启动求解。完整分支仍待实际集成结果与独立打包冻结，不能称为已完成跨输入确认。
 
@@ -27,6 +29,7 @@ Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN strea
 | unexecuted_recovery_20261115_01 | waiting_for_registered_predecessor | 404657 |
 | unified_input_integration_01 | waiting_for_registered_recovery_chain | 894335 |
 | standalone_native_observation_equivalence_01 | waiting_for_registered_unified_input_chain | 2087555 |
+| standalone_transaction_native_check_01 | waiting_for_registered_portable_observation | 3385842 |
 
 [新登记集成配对](unified_input_integration_01/plan.json)：attention native/domain，以及 robot s23/p0 native/domain（同 packing、真实不同布局，明确 clk 20 ns、I/O max1 ns/min0 ns SDC）。两臂只改 domain_mode/domain_feedback，owner 均 unrestricted，所有工程改进一致；这是开发验证，尚无结果，SDC 是声明的基准目标而非外部应用要求。排在现有恢复链之后，独立只读比较 owner 已登记。
 
