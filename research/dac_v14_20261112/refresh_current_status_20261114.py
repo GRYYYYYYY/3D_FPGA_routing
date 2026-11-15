@@ -46,7 +46,7 @@ for n in ['stable_seed_transfer_dev_01/bnn_R1_native','stable_seed_transfer_reco
     v=read(D/n/'current_state.json');checkpoint.append(dict(batch=n,accepted_steps=v['accepted_steps'],state=v['state'],
         original_final_pool_seal_present=(D/n/'pool/completion.json').exists(),recovery='native_checkpoint_recovery_03',recovery_successfully_closed=True,actual_completion=str(D/('native_checkpoint_recovery_03/bnn_R1_native/completion.json' if 'R1' in n else 'native_checkpoint_recovery_02/bnn_Tf_native/completion.json'))))
 summary=read(D/'multiobjective_completed_feedback_01/composition_summary.json')
-paper=read(D/'unified_structure_paper_binding_01.json')
+paper=read(D/'unified_engineering_paper_binding_02.json')
 seed=read(D/'completed_seed_transfer_summary_02.json')
 live_checkpoints=[]
 for name in ['stable_seed_transfer_recovery_02/bnn_Tf_paired',
@@ -131,6 +131,17 @@ status['outstanding']=[
 status['standalone_runtime_component']=read(D/'standalone_native_runtime_artifact_01/completion.json')
 status['standalone_runtime_component']['physical_validation']='standalone_physical_audit_validation_01/completion.json'
 status['standalone_runtime_component']['execution_validation']='standalone_native_runtime_validation_01/completion.json'
+status['latest_incremental_publication']=read(D.parents[1]/'docs/github_unified_progress_publication_receipt_20261115.json')
+analysis=D/'orphaned_BNN_quality_analysis_01'
+areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
+status['orphaned_BNN_quality_analysis']=dict(registration=areg,actual_process=ap,
+    verified_live=bool(ap and ap['state']!='Z' and ap['start_ticks']==areg['start_ticks']),
+    phase=read(analysis/'status.json'),completion=read(analysis/'completion.json') if (analysis/'completion.json').exists() else None,
+    native_calls=0,original_experiment_receipts_untouched=True)
+status['completed_closed_stream_engineering']=read(D/'orphaned_BNN_engineering_comparison_01/completion.json')
+status['queue_timing_qualification']=read(D/'query_reduction_timing_qualification_01/completion.json')
+status['evidence'].update(unified_paper='unified_engineering_paper_binding_02.json',paper='unified_engineering_paper_binding_02.json',main_table_endpoints='unified_main_table_evidence_02/completion.json',archive='multiobjective_engineering_inventory_01/verification.json')
+status['outstanding'][0]='Original full BNN completed and quality/work equivalence verified; keep original observer loss/overlap and qualified GNU time. Query-reduction queue resumed and continues BNN roles; follow existing recovery/integration chain without repeating completed roles.'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

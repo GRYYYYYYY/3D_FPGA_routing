@@ -81,13 +81,13 @@ The controller distinguishes candidate construction, transaction acceptance and 
 \label{fig:method}
 \end{figure}
 
-The general selection hypothesis uses crossing redundancy to enable sharing, capacity obstruction to justify owner coordination, and current slack to screen complete cuts. Failed search is a local trigger for release, not a proof that the FPGA cannot route. The existing owner selector scans all current nets without benchmark-specific IDs, reproduces the registered R 1 request, and finds no supported blocked-escape group at strong A 0 or the 43-SB terminal. These are three states of one circuit, not independent confirmation inputs. The automatic ordering and interaction of the mechanisms must be fixed before a confirmation cohort.
+The general selection hypothesis uses crossing redundancy to enable sharing, capacity obstruction to justify owner coordination, and current slack to screen complete cuts. Failed search is a local trigger for release, not a proof that the FPGA cannot route. The existing owner selector scans all current nets without benchmark-specific IDs, reproduces the registered R 1 request, and finds no supported blocked-escape group at strong A 0 or the 43-SB terminal. These are three states of one circuit, not independent confirmation inputs. The development entry implements this ordering; attention and a distinct robot placement with explicit SDC are registered. Complete frozen-controller confirmation remains pending.
 \section{Complete Results and Transfer}
 The implementation derives from VTR revision \texttt{0b912334fdd83bb754b302146ac0d1ec9edc9a0e}. Fixed-input serial clustered routing uses two-layer edge-encoded Hybrid-O/SB-only/CB-only graphs, ideal clocks and native FULL/STA. Each record binds physical inputs, constraints, binary, request and acceptance. Flat routing, CHANZ and general multilayer remain unvalidated. A0 is native; R1 is the older guided method. Strong BNN roots permit eight native convergence attempts with a 1.01 threshold. BNN has no supplied SDC: defaults use one ideal ap\_clk domain and zero input/output/setup/hold constraints; bound echoes fix these. U/Tf remain separate versions/opportunities.
 
 \begin{table*}[t]
 \centering\footnotesize\setlength{\tabcolsep}{3 pt}
-\caption{Unified complete-result table. Failed roles remain in the denominator. N/D: native-only/domain-first. Repair seeds: delay/RR-ID. Lazy+snapshot rows are domain-first engineering variants. Alternate-topology rows use eltwise; others Hybrid-O. Router seed 11; SB 102\% fixes CPD at 1.02 times the root. PSS: sampled tree sum in GiB. Last column: improved/regressed setup components and increased hold violations against that same configuration's initial legal root, not between final arms.}
+\caption{Unified complete-result table. Failed roles remain in the denominator. N/D: native-only/domain-first. Repair seeds: delay/RR-ID. Lazy+snapshot rows are domain-first engineering variants. Alternate-topology rows use eltwise; others Hybrid-O. Router seed 11; SB 102\% fixes CPD at 1.02 times the root. PSS: sampled tree sum in GiB. Last column: improved/regressed setup components and increased hold violations against that same configuration's initial legal root, not between final arms. $^{*}$Original GNU-time, 1-s precision; observer lost, brief overlap, no complete PSS.}
 \label{tab:completecost}
 \begin{tabular}{lrrrrr}\hline
 Circuit/role & CPD(ns) & Wire/SB/CB & Time(s) & PSS & Setup $+/-$/Hold$^-$\\\hline
@@ -106,6 +106,7 @@ SB 102\% D&6.114032&227583/995/0&581.65&1.257&90/482/0\\
 BNN cold N&13.228146&2059631/82/5062&7933.25&11.055&14/17/0\\
 BNN cold D&13.228146&2061417/43/5060&9754.31&11.063&547/820/0\\
 BNN index N&13.228146&2059631/82/5062&7463.17&11.062&14/17/0\\
+BNN stream N&13.228146&2059631/82/5062&7247$^{*}$&--&14/17/0\\
 Robot N&13.354624&251116/9/653&377.71&2.517&209/0/0\\
 Robot D&13.354624&251136/9/652&424.45&2.509&209/32/0\\
 Conv-layer N (initial fail)&--&--&260.10&--&--\\
@@ -166,7 +167,7 @@ A 64-connection budget improves one large local scope by reducing 462 queries to
 Tied-path feedback supplies a complementary positive combination example. Jointly covering two tied-path targets with three donors improves ten setup components with no regression, gaining 7.638334 ps at 45 SB/5060 CB. A larger successor improves CPD further but regresses a noncritical setup component. The policy distinction is deliberate, and neither result establishes that every intermediate or module should improve CPD. Historical local trajectories and recovery costs are retained in the supplement.
 \section{Overhead and Applicability}
 \subsection{Engineering cost and symmetric controls}
-The BNN single-pass-index configuration preserves all graph payloads, downstream actual states, requests, native work and final quality. Its whole time is 7463.17 s versus 7933.25 s, a 470.07 s (5.93\%) descriptive reduction. This is a single native-arm observation; it does not revise the original matched-pair 22.95\% domain overhead. The same engineering optimization must be applied to both arms before a new comparison.
+Single-pass indexing preserves all BNN graph payloads, downstream states, requests, native work and quality at 7463.17 versus 7933.25 s. Explicit same-flow metadata plus streaming parsing also preserves that actual execution. Its original GNU-time records 7247 s (integer-second precision), versus 7463/7933 s in the same clock scope: about 216/686 s less. The observer was lost and another case briefly overlapped; complete PSS is unavailable. This qualified engineering observation neither establishes statistical acceleration nor revises the matched-pair 22.95\% domain overhead. Both arms need the same stable implementation and interleaved measurement.
 
 Acceptance-ordered execution skips an optional native diagnostic only after the domain candidate passes full resource acceptance. On eltwise it preserves every executed candidate and selected state, reducing 64 to 32 queries and 101 to 51 attempts; whole time is 203.48 versus 289.21 s. Softmax also preserves execution with 271.70 versus 336.68 s. With no eligible cut, SPMV skips no work and takes 93.15 versus 91.55 s. Unexecuted diagnostics have no imputed metrics.
 
@@ -175,7 +176,7 @@ Combining lazy scheduling with in-call source snapshots preserves the actual sta
 Every elapsed time belongs to one declared command and output. Cold graph construction and explicitly supplied reusable indexes are different cost modes. Shared-machine concurrency and OS caches are uncontrolled. After version stability, the matched arms require same-environment interleaved repetitions, including failures, rather than selecting the fastest observation. Recovery segments, component cores and one-time research validation are reported separately and never summed into a fabricated complete time.
 
 \subsection{Evidence coverage and confirmation boundary}
-The current 658-record archive includes 33 successful modern complete configurations on five known successful circuits and three vertical families. These are configurations, not independent samples. The inherited scalar omitted four early complete configurations; corrected counts are 30 for the 640-record historical archive and 33 for 658. Per-state quality and time are unchanged. Failed initial routes are retained outside legal-quality counts and inside their registered cohort denominators.
+The frozen 658-record archive includes 33 successful modern complete configurations on five known successful circuits and three vertical families; these are not independent samples. The newly verified streaming control is listed separately in the main table, pending archive incorporation. Historical count corrections remain in the supplement. Initial failures remain outside legal-quality counts and inside their cohort denominators.
 
 Applicable graphs here are two-layer edge-encoded Hybrid-O, SB-only and CB-only. Flat routing, CHANZ, general multilayer devices, altered placements and broad timing-constrained application suites remain unconfirmed. CB-only's 982 crossing nets saturate the 982-source terminal lower bound; this says nothing about wire or CPD optimality. No-cut, equal-quality, worse-quality and initial-failure inputs remain part of the scope statement.
 
