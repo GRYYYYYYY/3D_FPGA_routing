@@ -65,3 +65,5 @@ AMD Ross Skills and Vivado MCP are considered according to the user's FPGA tool 
 
 
 最新接续：[失败释放迁移与实际事务执行检查](docs/GitHub_release_execution_progress_20261115.md)。
+
+最新组件：[独立资源控制器与完整方法整合](docs/GitHub_resource_controller_progress_20261115.md)。

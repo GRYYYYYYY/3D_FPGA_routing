@@ -11,9 +11,11 @@ def render(status,D):
     recovery=status['original_flow_recovery'];paper=Path(status['paper_pdf']).relative_to(D)
     return f'''# 当前研究状态（{status['observed_at']}）
 
-Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN stream 工程对照，以及独立观测与选组迁移、三个已完成分组对照以及完整质量/测量覆盖区分及独立事务入口验证已增量推送至 `0c67eca` 并经 GitHub 读回核对，后续本地分析以真实回执接续。无固定日期、总调用或矩阵完成停止条件。[增量发布说明](../../docs/GitHub_transaction_entry_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
+Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN stream 工程对照，以及独立观测与选组迁移、三个已完成分组对照以及完整质量/测量覆盖区分及独立事务入口验证已增量推送至 `3fc1a4a` 并经 GitHub 读回核对，后续本地分析以真实回执接续。无固定日期、总调用或矩阵完成停止条件。[增量发布说明](../../docs/GitHub_release_execution_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
 
 [失败释放迁移验证](standalone_release_replay_01/completion.json)重放真实 robot 协议：3454/3438 释放，3140/8785 继续受域限制，全部科学字段与原记录一致；成功后释放、重复释放、错误保留域均被拒绝。该重放不替代 no-release 消融。另有[持久化事务执行检查](standalone_transaction_native_check_01/plan.json)排在原观测检查之后，计划两次 native 调用（源序列化控制＋实际 owner 修复），当前尚未执行，不新增独立输入。
+
+[独立串行资源控制器组件](standalone_resource_controller_component_03.json)已接通新路由输入、原资源/owner 状态机及终结选点。真实无切口控制器执行和 R1 请求生成通过；三个 worker 与新路由入口仅完成启动前检查。73 个文件逐字节重建通过，实际 native 后端和 owner 提交后重选仍待验证；完整时序组合及外层全方法尚未移植，未冻结确认版本。
 
 统一方法以当前 STA 重选事务组，按跨层冗余构造共享域；网络搜索失败时释放其域，容量阻塞时另行协调 owner。完整合法候选按固定时序/资源规则接受，终结选点与中间接受分离。[开发入口](run_complete_unified_method_v1.py)已接通资源、owner 协调、重选组、终结选点和时序阶段；[通用 owner 接口](current_owner_transaction_validation_01/completion.json)重建原两臂 native 参数，无切口 SPMV 实际执行不启动求解。完整分支仍待实际集成结果与独立打包冻结，不能称为已完成跨输入确认。
 
