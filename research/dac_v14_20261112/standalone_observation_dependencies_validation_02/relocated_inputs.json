@@ -1,0 +1,70 @@
+{
+  "format": "standalone_native_observation_input_v1",
+  "files": {
+    "binary": {
+      "path": "vpr",
+      "sha256": "cad1d5671ae5dbbe6c7fbdbf21243ed46f43a5d08dcd6b541d3f08b26b8c189a"
+    },
+    "architecture": {
+      "path": "architecture.xml",
+      "sha256": "0c593cfd3a5fc92691006f8bac65c898548b48ea945d6baa3b2c75dcebd88004"
+    },
+    "circuit": {
+      "path": "fixture.blif",
+      "sha256": "7d049e5d2868eb58323f0a4fe0c17544b650c3ceeb4a1a2fe588b6840ad5c04f"
+    },
+    "graph": {
+      "path": "rr_graph.xml",
+      "sha256": "3570e04028bb2abb4b53a53063e49d7d9a7cfdafed6fb57c7b29e879a802be58"
+    },
+    "packed": {
+      "path": "packed.net",
+      "sha256": "5bb3465e900ad836dc000fe868d959d4a0ec52fde08566ecab1ceef02747404e"
+    },
+    "placement": {
+      "path": "placed.place",
+      "sha256": "1df5606e670917a10662129e320a0b0b212d955949464c93930bcaf305cd78b4"
+    },
+    "route": {
+      "path": "routed.route",
+      "sha256": "0ea72ee8de3376aa3f84af1a0fd11c917be7571c1160a5ccd3911173d6cd57b3"
+    }
+  },
+  "analysis_arguments": [
+    "--analysis",
+    "--device",
+    "fixture",
+    "--route_chan_width",
+    "100",
+    "--seed",
+    "11",
+    "--num_workers",
+    "1",
+    "--clock_modeling",
+    "ideal",
+    "--check_route",
+    "full",
+    "--verify_file_digests",
+    "off",
+    "--verify_route_file_switch_id",
+    "on",
+    "--read_rr_graph",
+    "{graph}",
+    "--net_file",
+    "{packed}",
+    "--place_file",
+    "{placement}",
+    "--route_file",
+    "{route}",
+    "--timing_report_npaths",
+    "10",
+    "--max_router_iterations",
+    "200",
+    "--router_max_convergence_count",
+    "2"
+  ],
+  "full_graph_cache": {
+    "path": "indexes/full_cache",
+    "completion_sha256": "5714c317d21d20c160e1914615fd87e49a29e2c188ae9f4e8d72349f3d3781aa"
+  }
+}

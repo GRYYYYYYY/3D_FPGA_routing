@@ -1,15 +1,15 @@
 {
   "status": "running",
-  "case": "bnn_A0_native",
-  "pid": 1463417,
-  "start_ticks": "1955051204",
+  "case": "bnn_A0_paired",
+  "pid": 2219632,
+  "start_ticks": "1955260217",
   "command": [
     "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
     "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_query_reduction_resource_repair_v1.py",
     "--initial-state",
     "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/A0_observation",
     "--batch",
-    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/query_reduction_resource_dev_01/bnn_A0_native",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/query_reduction_resource_dev_01/bnn_A0_paired",
     "--full-graph-cache",
     "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_route_graph_cache_bnn_01",
     "--bundle-size",
@@ -17,7 +17,7 @@
     "--connection-budget",
     "64",
     "--domain-mode",
-    "unrestricted",
+    "paired",
     "--graph-echo",
     "compact",
     "--seed-order",
@@ -25,6 +25,7 @@
     "--accepted-steps",
     "0",
     "--rank-windows",
-    "3"
+    "3",
+    "--domain-feedback"
   ]
 }

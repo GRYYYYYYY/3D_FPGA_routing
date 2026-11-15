@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/tmp/standalone-observation-dfjjzafo/runtime/guarded_entry.py",
+    "--forbid-prefix",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing",
+    "--script",
+    "/tmp/standalone-observation-dfjjzafo/runtime/test_observation_dependencies.py",
+    "--fixture",
+    "/tmp/standalone-observation-dfjjzafo/fixture"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/tmp/standalone-observation-dfjjzafo/runtime/guarded_entry.py\", line 10, in <module>\n    sys.addaudithook(guard);sys.argv=[str(a.script),*args];runpy.run_path(str(a.script),run_name='__main__')\n  File \"/usr/lib/python3.10/runpy.py\", line 289, in run_path\n    return _run_module_code(code, init_globals, run_name,\n  File \"/usr/lib/python3.10/runpy.py\", line 96, in _run_module_code\n    _run_code(code, mod_globals, init_globals,\n  File \"/usr/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/tmp/standalone-observation-dfjjzafo/runtime/test_observation_dependencies.py\", line 25, in <module>\n    vector=load(f/'native_sta_frontier.jsonl');assert vector==read(f/'endpoint_vector.json')\nAssertionError\n"
+}

@@ -1,0 +1,111 @@
+{
+  "status": "legal_evaluated",
+  "accepted": true,
+  "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/query_reduction_resource_dev_01/bnn_A0_paired/round_000/candidate_00/reuse_off_evaluation",
+  "CPD_s": 1.3607436066820355e-08,
+  "resources": {
+    "wirelength": 2059583,
+    "SB_pairs": 88,
+    "CB_sources": 5062
+  },
+  "decision": {
+    "accepted": true,
+    "reason": "Exact fixed-budget conditions satisfied",
+    "mode": "resources_under_timing",
+    "resource_objectives": [
+      "SB_pairs",
+      "CB_sources"
+    ],
+    "cpd_limit_s": 1.3607436066820355e-08,
+    "resource_limits": {
+      "wirelength": 2061627,
+      "SB_pairs": 94,
+      "CB_sources": 5062
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.3607436066820355e-08,
+      "cpd_after_s": 1.3607436066820355e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 1,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 52495,
+      "hold_components": 52495,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[781605,801309,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.mult_386_V_reg_3539_pp0_iter5_reg[4].D[0]\",0,0]",
+          "before_s": -3.815351590219507e-09,
+          "after_s": -3.52542284254298e-09,
+          "delta_s": 2.8992874767652665e-10
+        }
+      ]
+    },
+    "resource_delta": {
+      "wirelength": 16,
+      "SB_pairs": -6,
+      "CB_sources": 0
+    },
+    "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+  },
+  "strict_or_endpoint_control": {
+    "strict": {
+      "accepted": false,
+      "policy": "strict",
+      "reason": "No full-precision strict CPD improvement",
+      "comparison": {
+        "compatible": true,
+        "cpd_before_s": 1.3607436066820355e-08,
+        "cpd_after_s": 1.3607436066820355e-08,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 1,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 52495,
+        "hold_components": 52495,
+        "changes": [
+          {
+            "kind": "setup",
+            "endpoint_domain": "[781605,801309,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.mult_386_V_reg_3539_pp0_iter5_reg[4].D[0]\",0,0]",
+            "before_s": -3.815351590219507e-09,
+            "after_s": -3.52542284254298e-09,
+            "delta_s": 2.8992874767652665e-10
+          }
+        ]
+      }
+    },
+    "endpoint_vector": {
+      "accepted": true,
+      "policy": "endpoint_vector",
+      "reason": "Exact policy conditions satisfied",
+      "comparison": {
+        "compatible": true,
+        "cpd_before_s": 1.3607436066820355e-08,
+        "cpd_after_s": 1.3607436066820355e-08,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 1,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 52495,
+        "hold_components": 52495,
+        "changes": [
+          {
+            "kind": "setup",
+            "endpoint_domain": "[781605,801309,\"grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_229.mult_386_V_reg_3539_pp0_iter5_reg[4].D[0]\",0,0]",
+            "before_s": -3.815351590219507e-09,
+            "after_s": -3.52542284254298e-09,
+            "delta_s": 2.8992874767652665e-10
+          }
+        ]
+      }
+    }
+  },
+  "native_core_seconds": 3.2086412689999997,
+  "native_kernel_including_candidate_observation_seconds": 18.030002369,
+  "native_core_cost_semantics": "QUERY sums exclude candidate observer; COMPLETE includes actual candidate FULL/STA, restoration observation outside that interval remains in worker request",
+  "native_observer_request_seconds": 65.95925070345402
+}
