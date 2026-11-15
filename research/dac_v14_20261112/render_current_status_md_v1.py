@@ -11,11 +11,11 @@ def render(status,D):
     recovery=status['original_flow_recovery'];paper=Path(status['paper_pdf']).relative_to(D)
     return f'''# 当前研究状态（{status['observed_at']}）
 
-Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/运行组件及完成 BNN stream 工程对照已推送为 `ce25848` 并经 GitHub 读回核对，后续本地分析以真实回执接续。无固定日期、总调用或矩阵完成停止条件。[增量发布说明](../../docs/GitHub_unified_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
+Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN stream 工程对照，以及独立观测与选组迁移、三个已完成分组对照已增量推送至 `02874a5` 并经 GitHub 读回核对，后续本地分析以真实回执接续。无固定日期、总调用或矩阵完成停止条件。[增量发布说明](../../docs/GitHub_unified_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
 
 统一方法以当前 STA 重选事务组，按跨层冗余构造共享域；网络搜索失败时释放其域，容量阻塞时另行协调 owner。完整合法候选按固定时序/资源规则接受，终结选点与中间接受分离。[开发入口](run_complete_unified_method_v1.py)已接通资源、owner 协调、重选组、终结选点和时序阶段；[通用 owner 接口](current_owner_transaction_validation_01/completion.json)重建原两臂 native 参数，无切口 SPMV 实际执行不启动求解。完整分支仍待实际集成结果与独立打包冻结，不能称为已完成跨输入确认。
 
-[最新校正档案](multiobjective_engineering_inventory_01/verification.json)：**658 条合法观测、33 个成功完整配置、5 个成功电路身份、3 个垂直家族**。33 是配置数量，不是独立样本数。继承计数漏掉四个早期完整配置；旧 640 条档案实际有 30 个，历史回执未覆盖。[当前六页稿]({paper}) 已按六段主线重构，22 行统一主表含 2 个初始失败角色及各自端点变化；新增 streaming 工程行尚未并入冻结的 658 条档案；旧档案计数已校正，历史轨迹和恢复审计保存在补充材料。
+[当前统一档案](multiobjective_closed_stream_quality_01/verification.json)：**671 条合法观测、34 个完整质量配置，其中 33 个有完整观察者测量，1 个仅有带限定的原 GNU-time**；仍为 5 个成功电路身份、3 个垂直家族，不是独立样本数量。新纳入 stream 流程的 13 个真实状态，包括合法拒绝候选；完整时间仅归属于实际终点，缺失的 PSS/观察者墙钟/CPU 不补写，也不参与匹配计时支配。[当前六页稿]({paper}) 已同步上述口径，22 行统一主表含 2 个初始失败角色；前五页与上一版逐像素一致，第六页更新测量覆盖范围。历史轨迹、640 条图投影及恢复审计仍保留原范围。
 
 | 已验证完整 BNN 配置 | CPD/ns | wire / SB / CB | 完整秒 |
 |---|---:|---:|---:|
