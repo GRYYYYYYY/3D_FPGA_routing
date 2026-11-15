@@ -1,57 +1,22 @@
 # DAC 2027 当前正式稿与复现入口
 
-当前为 **C221 六页正文**，研究active，本地新增未推送。冻结基准与历史快照保留。最新实验状态见[CURRENT_STATUS](../CURRENT_STATUS.md)，R1/Tf八个原定对照菜单均已闭合；迁移批次仍按冻结规则运行。
+当前为 **C223 六页正文**，研究继续进行。[最新实验状态](../CURRENT_STATUS.md) · [当前PDF](../paper_snapshots/current_budget_owner_20261115/build/current_repair_main.pdf) · [正文源码](current_repair_main.tex) · [源码/数据/PDF绑定](../budget_owner_paper_binding_01.json) · [版面检查](current_visual_review_C223.json)。
 
-[当前6页PDF](../paper_snapshots/current_R1_native_closure_20261115/build/current_repair_main.pdf) · [源码](current_repair_main.tex) · [578条合法观测独立核验](../multiobjective_closed_R1_native_01/verification.json) · [源码/图/PDF绑定01](../R1_native_closure_paper_binding_01.json) · [版面检查](current_visual_review_C221.json)。BNN348观测/208质量坐标；24完整配置、4已知电路/3垂直家族，各共享主机单观察，观测数不是独立样本。
+C223新增robot_rl实际完整配对：native/domain分别251116/251136 wire、9/9 SB、653/652 CB，同13.354624073ns；377.71/424.45s，domain用20 wire和46.74s换1CB。仍受域限制的net3140节省CB，另两网失败后释放域，不能孤立归因于release。conv_layer两角色均在初始200迭代内失败，保留260.10/254.57s失败费用及四角色分母，不生成合法质量。
+
+实际完整BNN单遍索引为7463.17s，对照7933.25s；图载荷、所有下游实际状态/请求/native工作核验一致，最终13.228146ns、2059631 wire/82 SB/5062 CB。少470.07s（5.93%）为一次共享主机观测；不是组件拼接或统计速度结论。原静态元数据别名依赖仍明确保留，新显式路径/流式对照正在运行。
+
+正文投影34绑定640条档案（391个BNN观测、232质量坐标），保持相同物理输入分组。已加入budget64负结果：BNNpaired比原K8多46wire，两者2722查询的连接多重集合相同，但事务18→32；首个分歧为77→64连接。两连接owner三角色均合法且被五连接点少4wire支配，没有查询减少即core更快的证据。最新640条具名档案（新增budget64四角色48合法候选，含14拒绝）和其余已完成strict及组合工程证据见当前状态，后两类尚待继续整合。观察数不等于独立样本。
 
 ```sh
-.venv-lazagna/bin/python research/dac_v14_20261112/verify_R1_native_closure_paper_artifacts_v1.py
+.venv-lazagna/bin/python research/dac_v14_20261112/verify_budget_owner_paper_v1.py
 ```
 
-| BNN实际冷完整配置 | CPD(ns) | wire/SB/CB | 完整秒 | 采样PSS(GiB) |
-|---|---:|---:|---:|---:|
-| native |13.228145690|2059631/82/5062|7933.245509|11.055|
-| guided |13.228145690|2061417/43/5060|9754.312096|11.063|
+编译使用论文目录的 `tools/tectonic --keep-logs --outdir <新目录> current_repair_main.tex`。C221源码/PDF/证据保留在原不可变快照；旧版本验证器针对当时的current文件，复查旧版请使用其snapshot绑定，不能把旧current断言用于新正文。
 
-[配对回执](../complete_resource_timing_full_flow_01/comparison.json)核对fresh有序初始route/完整向量精确相同：native5资源接受/8scope，guided9接受/9scope且省9个OFF；各3次当前STA时序接受。guided以1786wire和1821.066588s换39SB/2CB，setup534改善/803退化、无新增hold违例。组合策略工作量不同，不作单因素或统计速度结论。GNU高水位均约10.235GiB，PSS缺失30/26次。明确输入之后的索引、路由、实际搜索/候选/失败/拒绝、STA/物理检查、恢复和封存计时内；上游RRG/pack/place生成、一次性研究复核另列，OS缓存与共享主机不受控。
+完整复现按相应批次plan/config及源码哈希使用新输出目录；外层`measure_process_tree_v1.py`测完整时间及树内存。已登记的实验继续由原owner及共享串行锁运行。新“资源终结wire选点→当前STA”完整流程已排在robot release消融后，尚无实际结果，不把结构预测当作已验证质量。
 
-旧导入native/guided为2059627/2061389wire，各自同CPD/SB/CB下少4/28wire，质量支配本次对应冷最终态；旧完整成本未知，不能套本次费用。新两实际点在质量—费用联合前沿保留。新domain14个实际初态/候选/交接状态加入档案，**仅实际最终态携带9754.312096s完整费用**。
-
-[native费用分解](../complete_BNN_native_cost_analysis_01/summary.json)与[guided费用分解](../complete_BNN_domain_cost_analysis_01/summary.json)互斥项总和精确等于完整时间。worker包装1644.44/2976.18s、候选LOAD/FULLSTA2349.50/2580.96s、选择/查询/计划1800.02/1908.54s、索引941.91/941.32s，审计/交接等另列。嵌套native core39.98/1209.00s与observer CPU934.74/1268.81s不重复计入/扣除。[交易排行](../BNN_complete_transaction_cost_rank_01/completion.json)定位guided大组搜索，462/294连接两组分别467.41/393.31s；不能由关联推算预算分组加速。
-
-[guided物理差异分解](../cold_domain_wire_delta_analysis_01/completion.json)：新旧时序输入已17网物理不同、+24wire，三交易后19网不同、+28wire；新增4wire来自net37013，另net26319改变物理路径但wire不变。相同请求/查询/二进制不保证相同路径与工作；不能仅归因序列化。[native协议差异](../native_timing_protocol_identity_analysis_01/completion.json)单独保留。
-
-[C216缓存边界](../BNN_complete_cache_boundary_01/completion.json)限定旧全局元数据别名：实际消费者载荷与计时内新建索引字节精确，两配置自身质量/费用不调整；额外目录是静态依赖，不是导入route/candidate/query历史。[单遍索引405.86s](../joint_graph_indexes_BNN_payload_validation_01/completion.json)仅组件结果，6载荷精确，不推算全流程速度；[实际完整工程对照](../complete_BNN_joint_index_flow_01/README.md)与后续[显式缓存路径＋现有流式v2对照](../complete_BNN_closed_stream_flow_01/README.md)已冻结排队。重复parser原型缺少既有guards而未采用；VPR冻结二进制无Cap’n Proto，仍读原XML。
-
-[既有末态wire替代](../BNN_terminal_wire_alternative_01/completion.json)2059567wire/82SB/5062CB在13.607436067ns下setup两改善/零退化，原垂直接受规则拒绝；通用选择在另外4菜单无合格替代。与时序分支的[结构组合2059607wire](../BNN_wire_timing_composition_01/completion.json)通过全容量但尚待native FULL/STA，[一候选LOAD](../BNN_wire_timing_native_validation_01/README.md)实际排队；不进本版合法结果或完整成本。
-
-[BNN垂直下界](../BNN_vertical_cut_bound_01/completion.json)5103由43SB/5060CB达到，不证明wire/CPD最优。[R1单网局部最小值](../R1_single_net_vertical_local_minimum_01/completion.json)当前5104，8个同层出口被其他owner占满。新[五连接联合修复](../R1_owner_release_joint_probe_01/verification.json)自由native与目标CB域两个对照均到**2070653wire/32SB/5071CB、13.421610490ns、完整端点向量不变**，以24wire换1SB；实际route相同，故本scope无额外域收益。[独立档案核验](../multiobjective_R1_joint_owner_escape_01/verification.json)确认RR3507189实际从owner62707转给目标31767，跨过单网局部最小值、总5103达到终端下界，新点非支配。913.074112s是共享导入双臂scope时间，不是每臂或完整算法成本，原actor不提交。
-
-不同的[BFS结构候选](../R1_escape_owner_BFS_candidate_01/completion.json)2070657wire/32SB/5071CB仍需自身native LOAD；[两连接三角色](../partial_escape_owner_intervention_01/README.md)继续冻结执行。实际五连接2070653结果不验证另一BFS路径或其预测。
-
-[Tf native恢复02](../native_checkpoint_recovery_02/bnn_Tf_native/completion.json)已整合本版：11接受/14scope，13.421610490ns、2074388wire/74SB/5062CB，恢复段1707.765911s/6新worker，历史整条时间未知。六个新增合法候选含3拒绝已独立归档。2074308wire候选有19setup改善/4退化，在相同CPD/SB/CB下省80wire；原垂直与完整端点非退化规则均拒绝。同Tf根guided2076038/43/5060以1650wire换31SB/2CB，各自当前选择，成本范围不同不比整条速度。
-
-[R1 native恢复03](../native_checkpoint_recovery_03/bnn_R1_native/completion.json)已整合C221并正常终结：保留4接受/7scope，13.421610490ns、2068956wire/71SB/5072CB，恢复段548.222112s/1新worker。原8root/control菜单现均闭合。历史整条费用未知；新两候选已独立归档，最终checkpoint沿用既有记录引用、不增加重复观察。TableI/图33/正文已列R1/Tf own-current native与guided控制；R1paired以1673wire换38SB/1CB，同CPD，548.22s恢复段不可套历史整条费用。新适配器不重复原rank0/1搜索/LOAD，不制造旧pool终封；已完成Tf直接复用。原冻结队列不改，新费用03→strict04恢复原配置；budget64四角色02仅需前置终结仍可执行，不重复提交。
-
-既有47SB局部链、独立45SB反馈、固定根SB102%取舍、lazy正结果/fused负结果和零修复边界均保留。seed19四次配置精确重现seed11根/轨迹，不增加独立样本。源快照四调用280.37s与lazy两调用203.48s工作量不同；组合费用须实测。当前无面积/功率或统计速度结论。
-
-完整复现使用各批次冻结config和全新输出目录：
-
-| 配置 | driver |
-|---|---|
-| 原seed完整配置 | `run_complete_serial_seed_flow_v1.py` |
-| fused候选导出 | `run_complete_serial_fused_flow_v2.py` |
-| ON优先实际接受后停止；新增conv_layer/robot_rl | `run_complete_serial_lazy_flow_v1.py` |
-| 同调用源快照 | `run_complete_serial_source_snapshot_flow_v1.py` |
-| SB-only固定102%根CPD | `run_complete_serial_timing_budget_flow_v1.py` |
-| BNN新路由→完整资源→完整时序 | `run_complete_resource_timing_flow_v1.py` |
-| 源快照与ON优先组合 | `run_complete_serial_lazy_source_snapshot_flow_v1.py` |
-| 单次扫描索引完整工程对照 | `run_complete_resource_timing_joint_indexes_v1.py` |
-| 显式本次缓存路径＋现有流式v2 | `run_complete_resource_timing_joint_stream_v1.py` |
-
-各批次`plan.json`、`configs/*.json`及`queue/registration.json`绑定输入/实现。外层`measure_process_tree_v1.py --output <new-measurement> -- <python> <driver> --config <frozen-config> --output <new-flow>`测完整时间/树内存；重现实验仍需取得`critical_scope_runner.lock`、使用新目录，不启动第二个原队列owner。所有当前native实验与后继保持原登记版本/规则，新策略用独立版本。
-
-新增conv_layer/robot_rl四配置与源快照/lazy组合两配置已注册但无结果；前者是已知历史电路、只导入明确物理输入后新路由，不称unseen/held-out。正文重建用`tools/tectonic --keep-logs --outdir <new-build-directory> current_repair_main.tex`，当前投影v29、源码与六页PDF绑定。公开追溯参考`7b2834743007b36ce5890320e15a0ffa7dea1eb3`，新增未推送；研究无总体日期、调用数或矩阵停止条件。C214入口备份在`../continuation_history/C215_paper_entry_backup/`。
+GitHub提交`9734eee83b62fc012f0bb137f75aba919df514e4`包含发布时C221及实验进展；C223和随后新增的完整实验登记是本地后续工作，尚未推送。没有面积/功率、普遍域收益或统计加速结论。
 
 ## 历史详细文稿与实验入口
 

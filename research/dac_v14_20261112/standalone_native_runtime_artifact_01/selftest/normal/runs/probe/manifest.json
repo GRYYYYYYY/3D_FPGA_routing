@@ -1,0 +1,232 @@
+{
+  "name": "probe",
+  "command": [
+    "/usr/bin/python3",
+    "-c",
+    "import time,os; assert os.environ[\"OMP_NUM_THREADS\"]==\"1\"; assert \"LD_PRELOAD\" not in os.environ; time.sleep(.1); print(\"runtime_probe_ok\")"
+  ],
+  "cwd": "/tmp/standalone-runtime-archive-7crxhmu9/selftest/normal/runs/probe",
+  "shared_inputs": {
+    "/tmp/standalone-runtime-archive-7crxhmu9/selftest/normal/input.txt": {
+      "sha256": "0c3071418e6356e614898c84ed064ca95e88551bc0811b534bdf1952ecdae534",
+      "stat_identity": [
+        1048597,
+        13631517181,
+        6,
+        1794777146216764730,
+        1794777146216764730
+      ]
+    },
+    "/usr/bin/python3.10": {
+      "sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+      "stat_identity": [
+        1048597,
+        16880235745,
+        5941864,
+        1788171497000000000,
+        1792669674948050654
+      ]
+    },
+    "/tmp/standalone-runtime-archive-7crxhmu9/selftest/normal/runtime_dependency_binding.json": {
+      "sha256": "5a10ad01d510927603a309b8586420e25033edfa06875733429338e9354ddfb6",
+      "stat_identity": [
+        1048597,
+        13631517180,
+        1550,
+        1794777146216764730,
+        1794777146216764730
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libm.so.6": {
+      "sha256": "df621c68dbfed7e843434ef2faedb9f4d4b0543ad161e9a55eaf4d4ce2443176",
+      "stat_identity": [
+        1048597,
+        13083214408,
+        940560,
+        1784895077000000000,
+        1792237081578955864
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libexpat.so.1.8.7": {
+      "sha256": "61635c7c58fe0cdae1abfdd67e6ef1f54d5d162c3a5e45465bede64ef3858e1f",
+      "stat_identity": [
+        1048597,
+        4845157954,
+        194872,
+        1710336534000000000,
+        1774940172431774949
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libz.so.1.2.11": {
+      "sha256": "64c206f0146cc58bbddc4f22054436f4ff278f5a554aa3ce6921ddf7e9133370",
+      "stat_identity": [
+        1048597,
+        15058497874,
+        108936,
+        1665783180000000000,
+        1774940171183771598
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libc.so.6": {
+      "sha256": "e01b1ce7be2987f3b8560e26d0df2623f9dd5cec17be923ae28a785bc0d32d50",
+      "stat_identity": [
+        1048597,
+        13083214328,
+        2220400,
+        1784895077000000000,
+        1792237081446955411
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": {
+      "sha256": "8d06f393f4a93bcf9b81145a259524d66a95522a646bf8d7e05b6ffdf2e63dcc",
+      "stat_identity": [
+        1048597,
+        13083214278,
+        240936,
+        1784895077000000000,
+        1792237080450951993
+      ]
+    },
+    "/tmp/standalone-runtime-archive-7crxhmu9/runtime/seccomp_thread_guard": {
+      "sha256": "e1a990f2884c3b332d8561bfb3decc1bdb8a9affc5db6f9d672506c591fbf877",
+      "stat_identity": [
+        1048597,
+        12630907033,
+        16200,
+        1793690286802292823,
+        1794777145596762454
+      ]
+    },
+    "/tmp/standalone-runtime-archive-7crxhmu9/runtime/guard_manifest.json": {
+      "sha256": "913d7dc9e7c24e538a6f92e68b8634aa2f31550f9f2b228a86dcc34e94d7954b",
+      "stat_identity": [
+        1048597,
+        12630892501,
+        580,
+        1794776672654779672,
+        1794777145592762439
+      ]
+    },
+    "/usr/bin/time": {
+      "sha256": "7310b9b4c51a8f4d26c1af0da250f03a49ec8a8141033123e79196ad18f6c81b",
+      "stat_identity": [
+        1048597,
+        16880235753,
+        27160,
+        1648201942000000000,
+        1792669675852053665
+      ]
+    },
+    "/usr/bin/prlimit": {
+      "sha256": "a63d6a3b741b085776716c55a23f763280b509095faf43e5d435af7191b5e3e7",
+      "stat_identity": [
+        1048597,
+        5921941645,
+        27536,
+        1712676776000000000,
+        1774940170763770470
+      ]
+    }
+  },
+  "private_input_sha256": {},
+  "environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "timeout_seconds": 3,
+  "tags": {},
+  "start_utc": "2026-11-15T21:12:26.247630+00:00",
+  "status": "completed",
+  "supervisor_pid": 1240072,
+  "runner_sha256": "af9e9e440b6c176dd724632efc024b0bca4185c214076ba553536a0591f55878",
+  "execution_limit": {
+    "address_space_bytes": 68719476736,
+    "core_dump_bytes": 0,
+    "enforcement": "/usr/bin/prlimit --as=soft:hard --core=0:0, inherited by children"
+  },
+  "thread_enforcement": {
+    "method": "seccomp_guard_no_ptrace",
+    "guard": {
+      "sha256": "e1a990f2884c3b332d8561bfb3decc1bdb8a9affc5db6f9d672506c591fbf877",
+      "stat_identity": [
+        1048597,
+        12630907033,
+        16200,
+        1793690286802292823,
+        1794777145596762454
+      ]
+    },
+    "validation": {
+      "sha256": "913d7dc9e7c24e538a6f92e68b8634aa2f31550f9f2b228a86dcc34e94d7954b",
+      "stat_identity": [
+        1048597,
+        12630892501,
+        580,
+        1794776672654779672,
+        1794777145592762439
+      ]
+    },
+    "qualification": "Linux x86-64 seccomp filter denies clone3 and kills a caller of clone with CLONE_THREAD; inherited by exec and descendants. BPF overhead and behavior change require workload validation.",
+    "top_level_sigsys_observed": false
+  },
+  "launch_command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "/tmp/standalone-runtime-archive-7crxhmu9/selftest/normal/runs/probe/time.txt",
+    "/usr/bin/prlimit",
+    "--as=68719476736:68719476736",
+    "--core=0:0",
+    "--",
+    "/tmp/standalone-runtime-archive-7crxhmu9/runtime/seccomp_thread_guard",
+    "/usr/bin/python3",
+    "-c",
+    "import time,os; assert os.environ[\"OMP_NUM_THREADS\"]==\"1\"; assert \"LD_PRELOAD\" not in os.environ; time.sleep(.1); print(\"runtime_probe_ok\")"
+  ],
+  "environment_sanitization": "Remove inherited VPR_H3D_*, LD_PRELOAD, LD_AUDIT and LD_LIBRARY_PATH; explicit overrides and bridge-local settings remain.",
+  "process_group_id": 1240166,
+  "process_tree_observation": {
+    "method": "proc_process_tree_polling",
+    "interval_seconds": 0.01,
+    "samples": 16,
+    "read_errors": 0,
+    "peak_threads": 1,
+    "violation_observed": false,
+    "processes": [
+      {
+        "pid": 1240166,
+        "start_ticks": "1954991395",
+        "name": "time",
+        "peak_threads": 1,
+        "samples": 16
+      },
+      {
+        "pid": 1240168,
+        "start_ticks": "1954991396",
+        "name": "prlimit",
+        "peak_threads": 1,
+        "samples": 13
+      }
+    ],
+    "limitation": "Polling can miss transient threads/processes and introduces supervisor overhead; absence is not proof."
+  },
+  "execution_status": "completed",
+  "returncode": 0,
+  "finish_utc": "2026-11-15T21:12:26.415492+00:00",
+  "wall_seconds": 0.16632284969091415,
+  "metrics": {
+    "native_full_check_passed": false,
+    "routing_success_reported": false
+  },
+  "outputs": {
+    "stdout.log": {
+      "sha256": "a6a7e95140b604f30462c6d28da5ec9cca5df9cf45d779b16abd0a16c770be1e",
+      "bytes": 17
+    },
+    "time.txt": {
+      "sha256": "fa14fbd912dcc8cc86e2909461b3d598cfca449ed4438fcf06b27f134740c9cf",
+      "bytes": 1002
+    }
+  }
+}

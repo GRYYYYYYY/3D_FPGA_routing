@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "actual_positive_controls_exact": true,
+  "matched_roles": 2,
+  "comparison_keys": [
+    "state",
+    "source",
+    "queries",
+    "removed_pins",
+    "objective",
+    "fixed_target_paths",
+    "crossing_reuse_enabled",
+    "domain_failure_release",
+    "seed_order",
+    "original_budget",
+    "fixed_resource_limits",
+    "allowed_resource_kind"
+  ],
+  "no_group_states": 2,
+  "negative_checks": [
+    {
+      "case": "foreign_selection",
+      "rejected": true,
+      "reason": "Stale/foreign selection"
+    },
+    {
+      "case": "foreign_physical_root",
+      "rejected": true,
+      "reason": "Different physical input/root"
+    },
+    {
+      "case": "changed_artifact",
+      "rejected": true,
+      "reason": "Selection artifacts changed"
+    }
+  ],
+  "native_calls_new": 0,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/validate_current_owner_transaction_v1.py": "07f1ca555169a2a25cd3b06a7ade0afd83f4f54352c4e5f5a9fec8ecd9477df7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_owner_transaction_v1.py": "24fd8321dd1c9e60109d99d523604c7fcfada6ef125e7d603282bd7904f65697",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_escape_owner_selector_validation_01/R1/completion.json": "5b09273877110ab643f8e474eb295c461ea5e8e75627b77ef34cef9e6221ebec",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/R1_owner_release_joint_probe_01/prepared_transaction_registration.json": "62c52e5799d4ef575c549bda5a0c2560306cdad179cfb3b59a68f1f9af300891",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_owner_transaction_validation_01/positive/registration.json": "abf9798aa6d263ade047f0c0096e64fad0a12ccb04e88e0011138241a48eaeeb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_owner_transaction_validation_01/positive/preparation.json": "91da338507d5333d5bf7eaa51e278d6dd576b16accbb5668a4635ccc95713be8"
+  },
+  "qualification": "Actual already sealed R1 group reproduces all native-affecting fields, requests, budgets and explicit crossings without using old registration as constructor input. A0/complete43 have no group. Foreign selection, different input root and changed artifacts rejected before output registration. No repeated native batch and no new quality/whole cost claim."
+}

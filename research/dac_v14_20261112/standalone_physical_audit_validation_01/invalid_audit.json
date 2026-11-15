@@ -1,0 +1,237 @@
+{
+  "schema": 1,
+  "scope": "directed_edges_tree_routed_resource_capacity",
+  "passed": false,
+  "full_legality_requires": [
+    "VPR --check_route full",
+    "independent endpoint mapping for standalone certification"
+  ],
+  "not_checked": [
+    "netlist/placement endpoint identity",
+    "local OPIN reservations",
+    "nonconfigurable edge closure",
+    "bus-mux shared selection"
+  ],
+  "errors": [
+    "missing directed edge/switch: (30931, 30947, 999999999)"
+  ],
+  "inputs": {
+    "rr_graph": "/tmp/standalone-routing-audit-3wjci776/fixture/rr_graph.xml",
+    "rr_graph_sha256": "3570e04028bb2abb4b53a53063e49d7d9a7cfdafed6fb57c7b29e879a802be58",
+    "route": "/tmp/standalone-routing-audit-3wjci776/fixture/invalid_switch.route",
+    "route_sha256": "8ddee99ee2856d0dfeb4f085b4c3181f66ac311ca5815b3c00614aaa97e32762",
+    "resource_map_sha256": null
+  },
+  "graph": {
+    "nodes_by_type": {
+      "SINK": 20562,
+      "SOURCE": 25024,
+      "IPIN": 51060,
+      "OPIN": 25024,
+      "CHANX": 241796,
+      "CHANY": 28372
+    },
+    "edges": 1886772,
+    "switches_by_type": {
+      "mux": 8
+    },
+    "physical_vertical_channels": 0,
+    "native_chanz_with_fanin_and_fanout": 0,
+    "native_chanz_without_fanin": 0,
+    "native_chanz_without_fanout": 0
+  },
+  "route": {
+    "routed_nets": 25,
+    "sink_terminals": 26,
+    "cross_layer_sink_connections": 14,
+    "directed_edges": 121,
+    "overused_rr_nodes": 0,
+    "vertical_channel_net_occupancy": 0,
+    "unique_used_vertical_channels": 0,
+    "horizontal_track_length": 146
+  },
+  "nets": {
+    "0": {
+      "name": "b0",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 1
+    },
+    "1": {
+      "name": "b2",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 1
+    },
+    "2": {
+      "name": "b4",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 1
+    },
+    "3": {
+      "name": "b5",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 1
+    },
+    "4": {
+      "name": "a",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 5,
+      "cross_layer_sink_connections": 2
+    },
+    "5": {
+      "name": "b1",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 1
+    },
+    "6": {
+      "name": "b3",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 1
+    },
+    "7": {
+      "name": "y5",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 9,
+      "cross_layer_sink_connections": 1
+    },
+    "8": {
+      "name": "y4",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 9,
+      "cross_layer_sink_connections": 1
+    },
+    "9": {
+      "name": "y3",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 13,
+      "cross_layer_sink_connections": 1
+    },
+    "10": {
+      "name": "y2",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 5,
+      "cross_layer_sink_connections": 1
+    },
+    "11": {
+      "name": "y1",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 1
+    },
+    "12": {
+      "name": "y0",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 1
+    },
+    "13": {
+      "name": "b6",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "14": {
+      "name": "b8",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "15": {
+      "name": "b10",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "16": {
+      "name": "b11",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "17": {
+      "name": "b7",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "18": {
+      "name": "b9",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "19": {
+      "name": "y11",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 9,
+      "cross_layer_sink_connections": 0
+    },
+    "20": {
+      "name": "y10",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 9,
+      "cross_layer_sink_connections": 0
+    },
+    "21": {
+      "name": "y9",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 5,
+      "cross_layer_sink_connections": 0
+    },
+    "22": {
+      "name": "y8",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 5,
+      "cross_layer_sink_connections": 0
+    },
+    "23": {
+      "name": "y7",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 4,
+      "cross_layer_sink_connections": 0
+    },
+    "24": {
+      "name": "y6",
+      "vertical_channels": 0,
+      "native_layer_hops": 0,
+      "horizontal_track_length": 17,
+      "cross_layer_sink_connections": 0
+    }
+  },
+  "routed_connection_delays": {
+    "available": false,
+    "model": "Sum of actual switch Tdel on zero-RC directed route trees; excludes intra-cluster logic/local delay; CPD remains native VPR STA",
+    "all": null,
+    "remote": null
+  },
+  "audit_wall_seconds": 0.0015874840319156647
+}

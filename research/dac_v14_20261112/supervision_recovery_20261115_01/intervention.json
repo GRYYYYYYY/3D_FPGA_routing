@@ -1,0 +1,50 @@
+{
+  "observed_at": "2026-11-15T20:29:54.840405+00:00",
+  "reason": "Original measurement and serial-slot owner disappeared, but measured GNU-time/full-flow subtree remains live; successor acquired freed slot prematurely.",
+  "paused_queue_owner": {
+    "pid": 8305,
+    "state": "S",
+    "start_ticks": "1954656731"
+  },
+  "paused_queue_registration": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/query_reduction_resource_dev_01/queue/registration.json",
+  "inflight_successor": {
+    "status": "running",
+    "case": "eltwise_A0_native",
+    "pid": 266957,
+    "start_ticks": "1954725811",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_query_reduction_resource_repair_v1.py",
+      "--initial-state",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_endpoint_vector_dev_01/A0",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/query_reduction_resource_dev_01/eltwise_A0_native",
+      "--full-graph-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_route_graph_cache_e695_01",
+      "--bundle-size",
+      "8",
+      "--connection-budget",
+      "64",
+      "--domain-mode",
+      "unrestricted",
+      "--graph-echo",
+      "compact",
+      "--seed-order",
+      "delay_rr_id",
+      "--accepted-steps",
+      "0",
+      "--rank-windows",
+      "3"
+    ]
+  },
+  "original_measured_process": {
+    "pid": 2933399,
+    "state": "S",
+    "start_ticks": "1954313331"
+  },
+  "original_measurement_registration": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_closed_stream_flow_01/bnn_native_closed_stream/measurement/registration.json",
+  "original_observer_missing": true,
+  "action": "SIGSTOP on successor queue OWNER only; its already launched current actor continues normally to completion. Resume this exact owner when original measured flow ends. No solver/native process signaled.",
+  "quality_data_preserved": true,
+  "original_whole_measurement_incomplete": true
+}

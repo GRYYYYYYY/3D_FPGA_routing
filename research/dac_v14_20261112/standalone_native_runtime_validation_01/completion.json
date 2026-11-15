@@ -1,0 +1,108 @@
+{
+  "passed": true,
+  "relocated_directory": "/tmp/standalone-routing-runtime-am68r1gu",
+  "historical_project_reads_forbidden_in_runtime_tests": true,
+  "guard_selftests_passed": true,
+  "process_tests": [
+    {
+      "passed": true,
+      "case": "normal",
+      "status": "completed",
+      "returncode": 0,
+      "native_calls": 0,
+      "executable_sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+      "qualification": "Generic process-wrapper test, not native FPGA analysis or quality evidence."
+    },
+    {
+      "passed": true,
+      "case": "timeout",
+      "status": "timeout",
+      "returncode": -15,
+      "native_calls": 0,
+      "executable_sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+      "qualification": "Generic process-wrapper test, not native FPGA analysis or quality evidence."
+    },
+    {
+      "passed": true,
+      "case": "thread",
+      "status": "thread_constraint_violated",
+      "returncode": 159,
+      "native_calls": 0,
+      "executable_sha256": "a2f33a6e006989270f4340528eb61f8f97366e00a5d1b602ac8672ea44fc56ae",
+      "qualification": "Generic process-wrapper test, not native FPGA analysis or quality evidence."
+    },
+    {
+      "passed": true,
+      "case": "mutated",
+      "mutation_rejected": true,
+      "native_calls": 0
+    },
+    {
+      "passed": true,
+      "case": "wrong_binary",
+      "rejected": "Executable differs from runtime binding",
+      "native_calls": 0
+    }
+  ],
+  "extracted_function_identity": [
+    {
+      "file": "runtime_common.py",
+      "function": "sha256",
+      "AST_exact": true
+    },
+    {
+      "file": "runtime_common.py",
+      "function": "utc",
+      "AST_exact": true
+    },
+    {
+      "file": "runtime_common.py",
+      "function": "write_json",
+      "AST_exact": true
+    },
+    {
+      "file": "runtime_metrics.py",
+      "function": "parse_metrics",
+      "AST_exact": true
+    },
+    {
+      "file": "runtime_audit.py",
+      "function": "audit_batch",
+      "AST_exact": true
+    },
+    {
+      "file": "runtime_audit.py",
+      "function": "physical_route_metrics",
+      "AST_exact": true
+    },
+    {
+      "file": "xml_records.py",
+      "function": "records",
+      "AST_exact": true
+    }
+  ],
+  "real_native_log_parser_exact": true,
+  "original_log": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/spmv_native/flow/initial/runs/state/stdout.log",
+  "VPR_calls_new": 0,
+  "full_method_packaged": false,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/validate_standalone_native_runtime_01.py": "584972c8e7f4120e63f574b4a6dba1fcb5481966359814d5f6aa9c7d97fc55ab",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/spmv_native/flow/initial/runs/state/stdout.log": "ae52e5eb0016ac0a3ab8dff10ee99b9a037753eb29f212f89023d575c320de9b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/spmv_native/flow/initial/runs/state/manifest.json": "69077b577e7703bf00703ee0fd9041052da8a8c077272071287e00eff2757c17",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/runtime_dependencies.py": "ec4174089d6c66785008780524a1c6fe41adebe06501b8c04d430fe1802620de",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/test_seccomp_thread_guard.py": "f2f1d9971596ad588008bb2151f06670fc5ff436090fb9deaa9c09d9ca58fbc5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/runtime_audit.py": "5db64e009c226970437fe6771757d89b237b8bd11b4d4c87ae75fd8469955aaf",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/seccomp_thread_guard": "e1a990f2884c3b332d8561bfb3decc1bdb8a9affc5db6f9d672506c591fbf877",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/runtime_metrics.py": "174febc45c7757ba876e59f1cb64acd19e2d55df766a19f608d9a3b7def090de",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/runtime_io.py": "af9e9e440b6c176dd724632efc024b0bca4185c214076ba553536a0591f55878",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/seccomp_thread_guard.c": "52642b31d0b70bdb98f800c3bb3f41fe7d27087a966b361722cdcb718c0f9479",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/runtime_common.py": "9345e52b888eab90ef1bde12694106be9ce985ee5d49ca798d270f33c381bbf9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/check_route.py": "bac0d05ab363cee28afad1b38afaf8d03772cab474cb672c0cc25fd8428c94f5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/process_tree_observer.py": "eea49788c003d73ed41c7f4edecec4158b8882c9a35c3a0ba609d35659a16cfe",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/test_runtime_io.py": "531893cffeb0217ff58597ee4075ead00cdcdfea39ed907fa9d6cc2cc6d9dbcc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/provenance.json": "f19c9fd0b95d8ec71e49900f5249cd8960109caabc434bbd3eb55077f10aaf0c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/xml_records.py": "4da078336384861246d5b9f4f564f24f8d7383009a4c8fa4d2dc6d780c8173ec",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/standalone_native_runtime_dev_01/guard_manifest.json": "913d7dc9e7c24e538a6f92e68b8634aa2f31550f9f2b228a86dcc34e94d7954b"
+  },
+  "qualification": "Native I/O component runs after copying outside the repository with historical project reads forbidden. Byte-identical seccomp guard and AST-identical scientific parser/physical-audit functions retained. Actual current executable libraries, serial guard, timeout, frozen-input mutation and wrong-executable rejection tested. No VPR solver run and no new independent scientific sample; remaining full method prerequisites are not yet removed."
+}

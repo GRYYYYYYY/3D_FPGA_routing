@@ -4,6 +4,8 @@
 
 Read the [latest completed results, conclusions and running experiments](docs/GitHub_progress_20261115.md), the [publication-time verified process state](docs/github_progress_status_20261115.json), and the [C221 six-page manuscript](research/dac_v14_20261112/paper_snapshots/current_R1_native_closure_20261115/build/current_repair_main.pdf). All eight original native/domain control menus are closed. New evidence includes 32-SB owner coordination, mixed circuit transfer outcomes, complete BNN costs and the verified single-pass-index full-flow comparison. Later results are explicitly separated from the manuscript's frozen archive and from trials still in progress. This remains a research snapshot, not a complete offsite raw-data backup.
 
+Continuation from public evidence base `9734eee`: [unified-method progress and publication scope](docs/GitHub_unified_progress_20261115.md), [captured process state](research/dac_v14_20261112/CURRENT_STATUS.md), [reorganized six-page manuscript](research/dac_v14_20261112/paper_snapshots/current_unified_structure_20261115/build/current_repair_main.pdf), and [source/evidence binding](research/dac_v14_20261112/unified_structure_paper_binding_01.json). The 21-row main table binds complete costs and full endpoint changes, including two initial-route failures. The integrated development entry and four new paired roles are registered; full outcomes and frozen-controller confirmation remain pending. The separately packaged native runtime component has passed relocation tests and is not the whole algorithm. Recovery scheduling preserves surviving processes and never-executed tasks.
+
 The 2026-11-09 section below is historical.
 
 ## Current snapshot — 2026-11-09 (experiments in progress)

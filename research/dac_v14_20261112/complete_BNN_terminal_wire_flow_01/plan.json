@@ -1,0 +1,23 @@
+{
+  "fixed_order": [
+    "bnn_native_terminal_wire"
+  ],
+  "config": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_terminal_wire_flow_01/configs/bnn_native_terminal_wire.json",
+  "predecessor": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/queue",
+  "baseline_completion": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_closed_stream_flow_01/bnn_native_closed_stream/completion.json",
+  "prepared_files": [
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/prepare_complete_BNN_terminal_wire_flow_01.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_closed_stream_flow_01/configs/bnn_native_closed_stream.json",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/terminal_resource_handoff_validation_01/completion.json",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/queue_complete_BNN_terminal_wire_flow_01.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_complete_resource_terminal_wire_timing_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_complete_resource_terminal_wire_timing_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/compare_BNN_terminal_wire_full_flow_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_prefix_equivalence_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/terminal_resource_handoff_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/select_terminal_resource_alternative_v2.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/state_resource_assurance.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/endpoint_timing_policy_streaming_v2.py"
+  ],
+  "qualification": "One development full-flow configuration on the same BNN inputs, seed11, count8, phase binaries, original resource policy and current-STA timing portfolio as closed-stream control. After its own resource search closes, select the lowest-wire already evaluated same-source legal candidate with equal SB/CB, unchanged endpoint identity, nonregressing CPD/setup/hold violations and original caps; tie by original attempt index then role; retain original terminal if none. Reevaluate the actual selected state with FULL/STA and physical audit, then reselect timing targets from that state to convergence. All selection, checks, loading, rejection and rollback costs are inside one new measured command. No external candidate, predicted timing or old quality/time is injected. Compare common actual resource prefix independently against completed closed-stream control; retain differing trajectories and failures, denominator1. Existing 24-wire local candidate motivates this development test but does not predict final gain or independent confirmation. Report actual whole wall/PSS/RSS and sampling gaps; one shared-host observation does not establish statistical speedup. Run after robot release ablation using existing serial lock."
+}

@@ -1,0 +1,1 @@
+Historical local trajectories, recovery durations, old complete-cost variants and full claim ledger remain available through the immutable C223 corrected snapshot and the underlying receipts. This source is a historical audit attachment, not a second current main paper. Counts corrected without changing any per-state quality/time.

@@ -1,35 +1,34 @@
-# 当前状态（2026-11-15T19:37:13.021711+00:00）
+# 当前研究状态（2026-11-15T21:13:49.131288+00:00）
 
-研究active。公开父参考`7b2834743007b36ce5890320e15a0ffa7dea1eb3`；当前请求更新GitHub研究快照分支。[详细完成结果/结论/正在进行说明](../../docs/GitHub_progress_20261115.md) · [发布时身份快照](../../docs/github_progress_status_20261115.json) · [当前机器状态](CURRENT_STATUS.json)。原运行任务和冻结规则保留，旧running字样不代表存活；无研究总体日期/调用/矩阵停止条件。
+Goal active；公开证据基点为 `9734eee`，后续增量的已发布范围以独立发布回执为准。无固定日期、总调用或矩阵完成停止条件。[公开进度基点](../../docs/GitHub_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
 
-[C221六页正文](paper_snapshots/current_R1_native_closure_20261115/build/current_repair_main.pdf) · [源码/图/PDF绑定](R1_native_closure_paper_binding_01.json) · [版面检查](paper/current_visual_review_C221.json)。该冻结正文绑定578观测、348个BNN观察/208坐标，含8个原定native/domain菜单闭合。只读复核：`verify_R1_native_closure_paper_artifacts_v1.py`。
+统一方法以当前 STA 重选事务组，按跨层冗余构造共享域；网络搜索失败时释放其域，容量阻塞时另行协调 owner。完整合法候选按固定时序/资源规则接受，终结选点与中间接受分离。[开发入口](run_complete_unified_method_v1.py)已接通资源、owner 协调、重选组、终结选点和时序阶段；[通用 owner 接口](current_owner_transaction_validation_01/completion.json)重建原两臂 native 参数，无切口 SPMV 实际执行不启动求解。完整分支仍待实际集成结果与独立打包冻结，不能称为已完成跨输入确认。
 
-[最新具名验证档案](multiobjective_partial_owner_01/verification.json)现为**592条合法观测/26个成功完整配置/5个成功电路身份/3垂直家族**；包含新迁移robot11状态及两连接owner3观察。计数只属于此档案，后续完成的独立费用/组合/预算/严格报告待并入，不能猜测相加。观测不是独立样本，合法拒绝、支配点与失败均保留；后完成证据尚未全部进入C221。
+[最新校正档案](multiobjective_engineering_inventory_01/verification.json)：**658 条合法观测、33 个成功完整配置、5 个成功电路身份、3 个垂直家族**。33 是配置数量，不是独立样本数。继承计数漏掉四个早期完整配置；旧 640 条档案实际有 30 个，历史回执未覆盖。[当前六页稿](paper_snapshots/current_unified_structure_20261115/build/current_repair_main.pdf) 已按六段主线重构，21 行统一主表含 2 个初始失败角色及各自端点变化；旧档案计数已校正，历史轨迹和恢复审计保存在补充材料。
 
-| 已完成BNN完整命令 | CPD/ns | wire/SB/CB | 完整秒 |
+| 已验证完整 BNN 配置 | CPD/ns | wire / SB / CB | 完整秒 |
 |---|---:|---:|---:|
-| cold native |13.228145690|2059631/82/5062|7933.245509|
-| cold domain-first |13.228145690|2061417/43/5060|9754.312096|
-| 单遍索引native |13.228145690|2059631/82/5062|7463.174179|
+| native |13.228145690|2059631 / 82 / 5062|7933.245509|
+| domain-first |13.228145690|2061417 / 43 / 5060|9754.312096|
+| 单遍索引 native |13.228145690|2059631 / 82 / 5062|7463.174179|
 
-[原配对](complete_resource_timing_full_flow_01/comparison.json)初始route/完整向量精确相同，domain多1786wire/1821.07s、少39SB/2CB，setup534改善/803退化，无新增hold违例。[单遍索引整条](complete_BNN_joint_index_flow_01/comparison.json)图载荷和下游全部实际状态/请求/native协议与工作精确，质量不变，实测少470.07s（5.93%）；不是用405.86s组件推算或统计加速。旧导入native/guided质量少4/28wire但整条费用未知，不拼接。旧元数据别名为额外静态依赖，载荷与命令内生成相同；显式路径修复另测。
+原匹配两臂：SB 减少 47.56%，SB+CB 总计数减少约 0.797%，wire 增加 1786，完整时间增加约 22.95%；setup 534 改善/803 退化，无新增 hold 违例。占用节省不等于器件面积或功耗下降。单遍索引是同质量的单次工程观察；尚未取得优化后两臂的交错计时结论。
 
-[八个own-current菜单](closed_seed_transfer_eight_roles_01.json)均已闭合：R1native2068956/71/5072 vs guided2070629/33/5071，同13.421610490ns，guided用1673wire换38SB/1CB；Tf native2074388/74/5062 vs guided2076038/43/5060，用1650wire换31SB/2CB。R1/Tf恢复548.22/1707.77s为部分段，历史整条未知；未重跑已完成native或伪造旧pool终封。
+输入证据及无效输入：robot 两臂为 251116/9/653 与 251136/9/652，同 13.354624073 ns，377.71/424.45 s；domain 用 20 wire 与 46.74 s 换 1 CB。conv_layer 两臂初始路由失败（260.10/254.57 s）；SPMV/CB-only 无适用切口；softmax 两臂同质量；SB-only 严格时序下无额外资源收益。seed11/19 相同初始树不算新起点。
 
-[五连接owner协调](R1_owner_release_joint_probe_01/verification.json)自由native/目标CB域均达2070653wire/32SB/5071CB，较33SB源多24wire少1SB，完整向量原样不变。RR3507189由62707交给31767，跨过已证明的单网局部最小值，总5103达到终端下界。[两连接/BFS三角色](partial_escape_owner_intervention_01/verification.json)也均合法、同向量，wire2070657多4，被五连接点支配；仍保留。该scope中两域对照相同，收益归于owner协调，非额外域收益。两连接查询更少但core没有更快证据，共享导入事务时间不作每臂/整条费用。[模型事前5连接预测](R1_BFS_native_timing_prediction_01/analysis/completion.json)与BFS实际native精确，不替代FULL/STA。
+归因：五连接 owner 协调的 native/domain 均为 2070653/32/5071，同完整端点向量，收益归于扩大协调范围。两连接结果多 4 wire，保留支配点。budget64 实际查询多重集合不变而事务 18→32，BNN 导入工作流多 46 wire；新分组阈值只是开发假设。robot release 单标志消融仍待执行。
 
-[固定迁移四角色](complete_serial_additional_circuits_01/comparison.json)2成功/2失败：robot_rl native/domain分别251116/9/653与251136/9/652，同13.354624073ns，377.71/424.45s；domain用20wire/46.74s换1CB。[首scope分析](robot_domain_first_scope_analysis_02/completion.json)同request/cuts/weights/binary，CB节省在仍guided的3140，3454/3438失败后释放域。conv_layer两角色初始200迭代路由失败，260.10/254.57s，未测试后续修复；无合法质量、不证明数学不可路由。
+进程恢复：原完整 BNN 测量进程存活核验 **True**，外层观察者已丢失；[独立恢复监控](supervision_recovery_20261115_01/status.json)保留子流程并控制后续调度。观察缺口和短暂重叠不补写成完整无干扰计时。原失败回执均保留。[新恢复队列](unexecuted_recovery_20261115_01/plan.json)只接续此前未执行的组合 LOAD、robot 消融和 terminal-wire 完整流程；先等待原流程及现有 query-reduction 批次，原规则不改。
 
-[Budget64四角色](connection_budget_resource_dev_02/queue/completion.json)已闭合，BNNguided2061423/43/5060比原K8seed终态多46wire，同CPD；16接受/10568.53s导入工作流，不是cold或统计速度，保留负结果。[direct strict与vector→strict](vector_then_strict_comparison_04/queue/completion.json)均3次严格接受、13.228145690ns/45SB/5060CB，wire2061301/2061293；后者少8wire但含额外vector机会，整条组合费未知。
-
-[费用03](complete_route_resource_measurements_03/queue/completion.json)四eltwise配置通过并验证缓存模式实际质量/全向量/有序树相同；建索引N/D227.95/228.09s，明确复用图160.57/165.71s，tiny34.43s单列。[source-snapshot＋lazy组合](complete_serial_lazy_source_snapshot_01/comparison.json)eltwise198.88、softmax256.54s，相对lazy203.48/271.70s；所有实际状态/请求/跳过与工作量精确。均共享机器单观察，费用不跨配置相加。
-
-[两终结规则](terminal_timing_envelope_policy_01/verification.json)13菜单×2模式，5旧endpoint菜单完全复现，0新native/合法观察。Tf fixed-timing模式选择已有2074308wire/74SB/5062CB点，省80wire但setup19改善/4退化，endpoint规则拒绝；[robot两菜单](robot_terminal_wire_transfer_01/completion.json)两模式均无替代，不宣称普遍收益。
-
-| 当前验证存活批次 | 阶段 | PID |
+| 实际存活 owner 或子阶段 | 阶段 | 原登记 owner PID |
 |---|---|---:|
-| `complete_BNN_closed_stream_flow_01` | 运行/核验: bnn_native_closed_stream → fresh_route_and_complete_resource | 1692887 |
-| `BNN_wire_timing_native_validation_01` | 等待前置 | 2424897 |
-| `robot_domain_release_ablation_01` | 等待前置 | 2711282 |
+| complete_BNN_closed_stream_flow_01 | running → complete_current_STA_timing | 1692887 |
+| query_reduction_resource_dev_01 | scheduler_gate_original_orphaned_flow | 8305 |
+| unexecuted_recovery_20261115_01 | waiting_for_registered_predecessor | 404657 |
+| unified_input_integration_01 | waiting_for_registered_recovery_chain | 894335 |
 
-继续显式缓存路径＋流式完整对照，然后执行已登记BNN2059607wire组合LOAD与34连接模型核对；该组合仍待自身FULL/STA，不借7933s费用。robot关闭release的同源单标志消融已登记随后排队，尚无结果。新的“终结wire选择→时序”完整driver/verifier/前缀比较是开发中实现，**没有已登记完整批次或运行结果**。下一步整合上述完成证据进论文/档案，继续根据正在运行的真实结果推进。
+[新登记集成配对](unified_input_integration_01/plan.json)：attention native/domain，以及 robot s23/p0 native/domain（同 packing、真实不同布局，明确 clk 20 ns、I/O max1 ns/min0 ns SDC）。两臂只改 domain_mode/domain_feedback，owner 均 unrestricted，所有工程改进一致；这是开发验证，尚无结果，SDC 是声明的基准目标而非外部应用要求。排在现有恢复链之后，独立只读比较 owner 已登记。
+
+[独立运行组件](standalone_native_runtime_dev_01/README.md)已封装为[24 KB 源码与 guard 包](standalone_native_runtime_artifact_01/standalone_native_runtime_component_01.tar.gz)，解包自检通过；迁出工程后，正常/超时/线程拒绝/输入篡改/错误二进制检查通过，实际 tiny 物理审计与原回执相同，错误 switch 被拒绝、失败角色计数保留。新 VPR 调用为 0，不增加独立电路或完整配置计数。完整方法的选组、事务、STA 依赖仍待封装；不能把组件封存当作完整确认版冻结。
+
+接续重点：独立可执行确认版本、真实不同布局/路由起点、具有明确 SDC 的新实例，以及正文“问题—机制—完整结果—取舍—消融—开销与范围”。历史局部轨迹、恢复时间和审计移到补充材料；负结果用于调整方法。
