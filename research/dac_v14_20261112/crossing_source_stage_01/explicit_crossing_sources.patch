@@ -1,0 +1,49 @@
+--- frozen/h3d_joint_native_repair.h
++++ private/h3d_joint_native_repair.h
+@@ -106,6 +106,31 @@
+         && std::string(release_text) != "1") {
+         VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Invalid domain-failure-release flag");
+     }
++    // Optional whole-net crossing-source restriction, independent of retained-tree reuse.
++    std::map<ParentNetId, std::unordered_set<RRNodeId>> explicit_crossing_sources;
++    const char* explicit_file = std::getenv("VPR_JOINT_NATIVE_EXPLICIT_CROSSINGS");
++    if (explicit_file && *explicit_file) {
++        if (vertical_domain_nets.empty() || release_failed_domain)
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Explicit crossing sources require selected nets and no failure release");
++        std::ifstream selected(explicit_file);
++        size_t count;
++        if (!(selected >> count) || count != vertical_domain_nets.size())
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Explicit crossing net count mismatch");
++        for (size_t i = 0; i < count; ++i) {
++            size_t number, nodes;
++            if (!(selected >> number >> nodes) || number >= net_list.nets().size() || nodes == 0
++                || !vertical_domain_nets.count(ParentNetId(number)) || explicit_crossing_sources.count(ParentNetId(number)))
++                VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Invalid explicit crossing net");
++            auto& allowed = explicit_crossing_sources[ParentNetId(number)];
++            for (size_t j = 0; j < nodes; ++j) {
++                size_t source;
++                if (!(selected >> source) || source >= graph.num_nodes() || !allowed.insert(RRNodeId(source)).second)
++                    VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Invalid explicit crossing source");
++            }
++        }
++        std::string extra;
++        if (selected >> extra) VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Trailing explicit crossing fields");
++    }
+     std::vector<int> original_occ;
+     for (RRNodeId node : graph.nodes()) original_occ.push_back(routing.rr_node_route_inf[node].occ());
+     std::map<ParentNetId, std::unique_ptr<RouteTree>> trees;
+@@ -216,10 +241,14 @@
+         params.repair_seed_trace_ = seed_trace.is_open() ? &seed_trace : nullptr;
+         std::unordered_set<RRNodeId> allowed_crossing_sources;
+         if (vertical_domain_nets.count(net)) {
++            if (explicit_crossing_sources.count(net)) {
++                allowed_crossing_sources = explicit_crossing_sources.at(net);
++            } else {
+             for (const auto& node : tree.all_nodes()) {
+                 if (node.parent() && graph.node_layer_low(node.parent()->inode) != graph.node_layer_low(node.inode)) {
+                     allowed_crossing_sources.insert(node.parent()->inode);
+                 }
++            }
+             }
+             params.repair_allowed_crossing_sources_ = &allowed_crossing_sources;
+             vertical_trace << "ALLOW " << number << ' ' << pin << ' ' << allowed_crossing_sources.size();

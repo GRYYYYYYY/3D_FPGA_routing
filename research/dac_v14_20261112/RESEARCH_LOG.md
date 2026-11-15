@@ -816,3 +816,71 @@ R1_fast原两步集成探针按冻结版本完成且final pool/cache/input seal�
 导入态双臂全研究流程1363.975s，native wrapper556.965/事务审计148.520/domain21.850/candidate pooled_FULL_STA424.472/选择55.621s为外层顺序项；其余初始化/初态观察/封存另计在全流程。Native分析4child累计152.807s、native搜索核心3.527538s是嵌套层，不相加。1条精确native观察复用仍重复了物理审计，后续可用精确route/graph/pack/place身份复用，但不改当前actor。原routing与冷单配置总时间仍未知，U历史计时不替代。
 新的native_repair_queue_stage_01小图16.988s/8worker/3复用验证通过，0新pack/place/route，临时小图并发例外结束恢复常规大图单队列。原quality cohort的A0_native8/R1_native8继续；新large混合native-worker＋实际替换＋FULLSTA验证已由单owner登记排在其后。其通过后native_resource_bundle_dev_01才运行：同初态纯原生selector(K1，无域)、K4/K8 distinct-net组合、强A0及eltwise强A0/spmvR1迁移。组合占用逐步更新，整体最后FULL/STA/固定预算通过才提交，接受后重新选择；原切割筛选量非最终节省。新C++/Python/实验选点版本已冻结注册，后续普通实现及实验自主执行，不新增整体日期/次数/矩阵停止条件。
 新增只读resource_transfer_census_02在严格同图/pack/place/SDC匹配输入上得spmv A0/R1/Tf候选0/2/2、eltwise12/21/75。强spmv A0无额外跨层共享范围是本接口边界，不是全局routing/线长目标终止条件。初次census误假定Tf位于native_endpoint_vector_dev_01，失败无native；v2使用既有joint_endpoint_diagnostics_01/Tf，来源与0次重跑保留。
+
+
+2026-11-15T06:51:54.323674+00:00 C214：单网局部最小值、native前缀真实复核与工程组合队列。
+逐网78450个SOURCE/SINK RR节点与5103资源参考完全一致；R1当前5104，除唯一冗余网外各网已达终端层下界，唯一冗余网的8个同层出口被其他owner占满，冻结其他路由时也已达条件下界2。因此单网重布线不能严格降低总SB+CB；不保证原独立SB/CB预算内的联合可行性，不证明wire/CPD最优。通用无net/RR特例选择器在R1重现8个合格组及原5连接请求，另外两个实际BNN状态无支持切口；只读3状态/1电路不是native修复或独立确认。两网联合native/target-CB域配对保持原登记规则等待共享槽。
+恢复v2实际接口对原已封存checkpoint/pending LOAD只读回放通过，零新搜索/LOAD。四个实际FULL/STA/context-sealed观测均被支配，checkpoint物理审查精确复用与pending实际审查标记分开；Tf pending可接受未提交，原R1/Tf-native仍4/7接受，菜单/冷成本未知。档案541条、BNN311观测/194坐标；完整配置仍22。C214源码/图v28/六页PDF/快照哈希和数值复核通过，六页contact及第4页全文版面检查通过，旧失败构建保留。
+新增已知conv_layer/robot_rl四完整配置和源快照+ON优先两配置组合已实注册，前者等待联合探针、后者等待前者；无新测量结果、不称unseen、不拼接组件成本。完整执行等价辅助器在真实历史正/负对照通过。BNN冷完整native资源阶段当前5接受，原pair owner/恢复02/原费用02→strict02→budget64链身份核对正常；新只读BNN双配置汇总owner等待原q终结，先核对实际初态/终端身份，保留失败分母2与自身完整质量/费用。资源域+时序反馈是组合处理，不作单因素消融或统计速度结论。当前状态入口已压缩更新，冻结版本/原结果/原owner不改，本地未推送，Goal active。
+
+
+2026-11-15T07:18:01.567242+00:00：从局部切口证书推进到具体完整候选，原实验不变。
+BNN冷完整native资源阶段已5接受/8scope终封，13.607436066820355ns、2059591wire/82SB/5062CB；索引/新路由/资源段4486.36s、查询图328.92s、实际FULLSTA交接216.19s分别保留，时序阶段继续，尚无完整配置费用或最终方法分数。只读owner路径探针v1发现uint64边数组与int64查询键转换造成每次邻接查找复制大数组，首owner超时未知；仅主动结束该只读诊断，保留原源文件/超时/终止原因，无native重跑。新v2使用同uint64查询键，21个实际行与独立整数二分、>2^53合成边界核验通过；微观页故障/查询时间仅说明实现开销，不作完整算法加速。9次结构查询17.47s，原网冻结其他路由时同层不可达，8个owner分别移除指定分支后均有真实RR/剩余容量路径；owner未恢复的模型可达性不等于联合可行。
+按原最少连接/最大余量选定的62707/pin1，构造完整两网路由：目标31767仅pin1换同层路径、其他3sink路径保留；更新占用后重连owner。完整固定sinks、真实边/开关、全图节点容量及其他网字节不变已检查。结构计数2070657wire/32SB/5071CB（+28wire/−1SB/CB不变），目标pin1零RC开关延迟−88.824725ps、owner+185.825799ps，只是物理构造量；尚未native FULL/STA，不进合法档案/正文结果，也无whole配置成本。构造约23.96s。
+partial_escape_owner_intervention_01已实注册，固定先具体BFS候选LOAD，再同源/同两连接/同私有二进制的自由native与保留CB域native。只移除目标pin1/ownerpin1，目标其他三条路径保留，与原全五连接scope分别比较。原固定CPD/绝对wire/SB/CB帽不变，保留native源/候选/恢复、FULL/STA、独立容量/物理/scope和端点检查；BFS用显式Census LOAD二进制、不同构造目标，不能当单因素域消融。原联合5连接队列结束后等共享槽，原恢复/费用/strict/budget64/电路迁移/工程组合队列不改，任何失败和拒绝保留，原actor不提交。论文仍C214/541观测/22完整配置；等待新原生证据后再更新结果。Goal active，本地未推送。
+
+
+2026-11-15T08:05:43.429957+00:00 C215：首个BNN真实冷完整native成本已封存。
+实际新路由/资源/时序命令终结并最终验证通过：5资源接受/8scope、3时序接受/3提案，13.228145689936355ns、2059631wire/82SB/5062CB、7933.245508622378s，GNU高水位10.234600GiB、采样树PSS11.055099GiB/30缺失。旧导入2059627wire native点少4wire且同CPD/SB/CB，质量支配新实际最终态，但完整成本未知，不能拼接。13实际初态/资源候选含拒绝/交接LOAD/时序候选归档，唯本次最终态携带完整费用；554观测/BNN324观测197坐标，23完整配置/4已知电路/3垂直家族。cold domain由原owner继续，配对未闭合。归档v1仅在拒绝attempt省略commit键时报错，旧源/日志保留，新v2按可选commit指针且与accepted_role交叉检查，0native重跑。
+实际互斥费用为候选LOAD/FULLSTA包装2349.504955s、native worker包装1644.442588s、选择/查询/计划1800.016252s、索引941.910747s、scope审计445.377973s、fresh路由物化433.120847s、handoff216.193308s、域审计1.334067s、其他101.344774s，总和7933.245509s。39.979837s核心搜索嵌套，11worker内部native1156.328943s、11候选LOAD内部native1181.922582s/独立审计727.786885s/准备201.954812s亦嵌套；observer CPU934.740266s单列。峰值PSS样本timestamp3950.813s位于资源阶段，未错归查询图导出。优化方向是减少重复加载/STA/审计/查询准备，不按删组件推算加速，原实验版本不改。
+R1原78450网/230693sink连接的binary32模型精确匹配actual native，double和201403条不同、最大4.690692e-15s。已固定BFS候选的5连接预测在原LOAD开始前登记，owner增延185.825799ps乘2atom映射取371.651598ps上界，小于10.534758ns setup余量；target减延88.824725ps小于3.424019ns当前hold slack。复合路径、atom倍数、未知hold/非零RC合成guards通过；只读watcher等待既定LOAD核对实际5连接及完整STA，未修改接受规则或产生新合法点。C215正式六页源码/图v29/表/数值/PDF/快照与版面检查通过，旧快照保留，当前入口更新，研究active、本地未推送。
+
+2026-11-15T08:10:46.220097+00:00 补充只读身份验证：新冷native初态与旧Census-native初态route有序字节/实际边开关终端树/完整端点向量均精确。资源终态实际树与完整向量仍精确，但序列化顺序不同。新时序最终态与旧导入完整native点全端点向量精确，实际物理树在8940/9675/37013三网不同，总wire+4。前三时序交易的fraction0.9/policy/objective、目标请求/removed_pins与实际native修复二进制25f24f...一致，两个环境均未显式设置native seed-order；尚未隔离实际首次时序source树/序列化、隐含原生seed顺序和其他状态，故不宣称4wire差异仅由序列化或历史查询造成。证据cold_native_source_identity_analysis_01；原生结果不重跑、不重写。
+
+
+2026-11-15T09:07:20.066957+00:00：原生差异机制诊断与单次扫描三索引实现。
+实际旧导入时序输入与新冷native输入已在8940/9675两网物理树不同，非资源Census参考的纯序列化差异。三交易请求/选项/二进制相同；第二轮37013/pin15路径先不同，pin22旧pressure1可行，新pressure1容量失败后10成功。旧pin22路径未与仅变化的两个固定owner产生unit-capacity冲突，但失败尝试路径未记录，不能隔离其他owner/保留分支影响或归因序列化。全端点向量仍精确，最终三网树不同/+4wire事实保留；0native重跑。证据native_timing_protocol_identity_analysis_01、cold_native_extra_retry_diagnostic_01。
+冻结Census/ResourceDomain两编译CapnProto均OFF；未重编译或把H3DRQ001自定义查询图冒作VPR二进制RRG。build_joint_graph_indexes_v1.py在一次XML遍历生成audit/full/query全部原格式，10259388节点/50170546边、405.8641852661967s，全部6个数据文件与封存冷native基线逐字节相同，包含原查询边顺序；原FullRouteGraphCache读取核验通过。旧三构建941.9107465222478s仅为不同执行的组件描述，不能拼接推算完整加速。
+complete_BNN_joint_index_flow_01已实登记单owner，等待原lazy/source-snapshot队列后取同一串行锁；相同原输入、三个阶段二进制、count8/1.01/seed11及资源/当前STA规则，所有索引在测量命令内新建，不读取原型payload。独立新driver/verifier/comparer冻结，全部实际状态/请求/domain/原生重试及heap/path协议逐项等价才比较完整费用；比较器已用实际完整正例和同向量异路由负例验证。无新增native结果，正式仍C215六页/554合法观察/23完整配置；原cold domain和各恢复/干预/迁移队列不改，Goal active，本地未推送。
+
+
+2026-11-15T09:29:00.122865+00:00 C216：实际元数据缓存边界纠正与复用既有parser的完整工程版本。
+只读cProfile重放实际BNN首轮菜单精确重现全部计划/请求/顺序/去重：11.8416s中SHA调用6.9485s、JSONloads4.0503s，非完整算法费用。初版新stream_v1原型四实际状态全向量精确，但随后查明已有生产streaming_v2已完成历史真实集成且用于fresh初态；新原型重复该工作，并缺少既有pin行数/禁止完成后尾行两项guards，实测两负例揭示并明确不采用。复用原v2在当前BNN峰值候选/最终态、eltwise最终态、SB102域最终态四真实状态全向量精确；BNN隔离读取约5.55/5.28s、/proc VmHWM约158MB，不能与完整11.055GiB PSS相减或宣称新整条加速。ru_maxrss可能含pre-exec继承高水位，当前worker另记VmHWM。
+继续调用链审查发现首个冷完整BNN虽计时内新建全部图索引，三个时序scope审计及三个候选LOAD物理审计仍指向旧全局图元数据缓存。全部实际5类载荷与命令内独立生成版本逐字节相同，无route/candidate/query历史导入证据，2059631wire/82SB/5062CB/13.228145689936355ns和7933.245508622378s均不调整。额外静态元数据依赖不能写成实际输入路径完全闭合；BNN_complete_cache_boundary_01封存具体消费者与载荷，C216六页正式稿/源码/PDF/快照/数值hash/版面已纠正这一边界，554观测/23完整配置/图v29不变，旧C215保留。
+complete_BNN_closed_stream_flow_01已实登记唯一owner1692887，等待原joint-index工程对照终结再取同串行锁。11个独立fork脚本明确传本次audit/full缓存并在最终验证逐消费者路径/命令，四个剩余native观察脚本复用已验证生产streaming_v2，原生三二进制、请求/当前STA/接受与FULL/物理/容量/scope/恢复/封存不改。两个工程改变合并，不能称单因素parser收益。全部实际状态/请求/原生协议及工作与可用两参考逐项比较后才报告完整费用；无新完整或合法质量结果。原单遍索引对照版本及其他队列不改，README补边界说明。
+cold domain资源前半段实终封：9接受/9scope，13.607436066820355ns、2061377wire/43SB/5060CB，freshroute+索引+资源段6291.720858s，查询图331.116978s另列。总SB+CB达到5103固定终端下界，仍非wire/CPD最优；时序交接/菜单继续，尚无该配置最终完整质量与费用，不归为24完整配置。Goal active，本地未推送。
+
+
+2026-11-15T09:55:43.926292+00:00 C217：从已归档的政策拒绝点推进实际组合干预。
+首个cold native资源末菜单三个同源FULL/STA/独立审计候选2059587/2059583/2059567wire均82SB/5062CB、13.607436066820355ns；前两者完整向量不变，最小wire候选setup两分量改善、零退化、hold无新增违例。该2059567点已经在档案554中且nondominated，质量支配被选资源终态2059591，但原resources_under_timing仅优化SB/CB而拒绝，endpoint_vector策略接受。select_terminal_resource_alternative_v1.py无net/candidate硬编码，以同源已完成菜单、同SB/CB、wire更低及精确CPD/setup非退化/hold守卫选择最小wire。对另外四已知菜单（eltwise-native、SPMV/softmax-domain、SB102-domain）同规则均无合格替代；不称新独立样本/广泛收益，原actor不改。
+compose_terminal_wire_and_timing_v1.py实现固定源的RR-parent/switch三方合并，冲突/脱连/悬挂/循环guards及不同分支/相同编辑正例通过。实际所选替代仅3网36539/53617/75108，与已完成时序分支17变化网无交集；全图10259388节点容量、真实改动边/开关、固定终端、其他网字节和重解析一致均通过。结构2059607wire/82SB/5062CB，比当前完整native最终态少24wire；尚未native FULL/STA，不入合法档案、不套7933.245508622378s。构造63.876219s为离线组件。
+执行前34连接binary32预测与当前实际native34值精确，4连接预计改变。保守正扰动0.929128774ns<8.657225603ns setup余量，负扰动2.237547481ns<相关最小hold4.258170705ns；模型支持已核验zeroRC/single-zero-clock，不参与接受。BNN_wire_timing_native_validation_01已实注册唯一owner2424897，等待先前closed-stream工程队列后取同一全局槽。仅一个固定候选、无新搜索，使用源点同d7候选STA二进制，实际LOAD/FULL/freshSTA/独立全物理审计/封存/源CPD及wire/SB/CB/hold帽，34预测和资源计数偏差作为反例保留，不因证据/parser失败重跑native。上游原路由/资源/时序/选择/构造/预测成本单列，整条配置成本未知。
+C217主文新增既有合法替代点与政策/档案区别；554观测/324BNN/197坐标/23完整配置与图v29不变。初版/第二版7页PDF与日志保留，仅主动结束自有只读sealer、0native停止；压缩冗余旧图复用费用段（旧数值留在历史/补充）后第三构建6页，字号/页边距不改，源码/PDF/快照/数值hash和全6页/第3及6页版面核验通过。Pending组合不写作新质量结果。状态入口加入真实portfolio resume_state检查点，原资源/恢复/owner/迁移/工程队列版本不改。cold domain实际时序首步接受，第二轮native进程存活，整条配对仍未闭合；Goal active，本地未推送。
+
+
+## 2026-11-15 C218：实际冷BNN配对闭合与恢复状态纠正
+
+Actual domain完成9754.312096122652s/13.228145689936355ns/2061417wire/43SB/5060CB，9资源接受/9scope/9OFF省略，3时序接受。与实际native7933.245508622378s/2059631/82/5062的freshroute/完整初始向量精确相同，组合策略增加1786wire/1821.0665875002742s，setup534改善/803退化，无新增hold违例。旧导入对应质量少4/28wire而历史完整费用未知，保留不同版本，不拼接。实际domain14状态追加后archive multiobjective_complete_BNN_cold_pair_01共568/BNN338观测200坐标，24完整配置/4已知电路/3家族，独立事件集/物理/STA/hash核验通过；仅实际最终态带完整费用。
+
+通用v2费用解析在native原真实分解回放精确，并保留失败交易COMPLETE core实际耗时。Domain互斥成本为计划1908.54182414、workers2976.18276896、scopeaudit484.70671752、domainaudit98.85566498、candidate2580.96368627、overhead104.03048225、index941.32311602、fresh435.80716896、handoff223.90066702秒，总9754.31209612。嵌套core1209.00106266与observer1268.806689135CPU秒不重复计入；实际1382请求连接/1838尝试。Native相应39.979837秒/91连接159尝试。最大的guided搜索467.41496/393.31206秒对应462/294连接，支持既定预算分组干预优先级，非因果隔离或速度预测。
+
+新旧domain时序输入17网不同/+24wire，三步后19网/+28wire；实际NODE重构核验，新4wire为37013，26319树变wire不变。请求/查询/选项/二进制相同不能排除物理输入/占用/顺序差异，不作serialization-only归因。
+
+C218正文、摘要、主表/投影v30、开销与结论已整合实际配对，6页无Overfull；最终BNN_cold_pair_paper_binding_02、snapshot current_BNN_cold_pair_20261115_02、verify_BNN_cold_pair_artifacts_02及visual_C218通过。保留首版表标签2.28217pt溢出、过期token校验、claim标签替换C197误改的失败来源。V30误写绑定29曾被立即发现，已从C217不变快照逐字节恢复旧绑定，原执行代码与修复证据保留，未重跑native或改旧图。最终claim列表从C217精确父列表追加C218。
+
+恢复02随后部分终结：Tf成功穷尽登记菜单11接受/14scope，13.421610489672275ns/2074388wire/74SB/5062CB，本恢复段1707.7659113295376s/6个新worker，旧7步费用未知，不能作整条成本。R1在round004/rank1读取不存在的恢复01 LOAD completion后失败，0新native调用；原rank1搜索、candidate FULL/freshSTA和restored-source检查均已完成，不能称未执行原生搜索。v2接口回放仅覆盖rank0是覆盖不足。独立新版本消费原实际worker并补全物理审查，原v2/Tf运行源码不改，已完成Tf直接复用。后续依赖队列以终结回执重建，依赖失败不作科学负结果。
+
+
+## 2026-11-15 C219/C220：闭合Tf与实际跨越R1单网局部最小值
+
+Tf恢复02正常终结11接受/14scope，13.421610489672275ns/2074388wire/74SB/5062CB，6新worker、1707.7659113295376s恢复段，原历史整条费用未知。新增六个真实候选含三合法拒绝归档multiobjective_closed_Tf_native_01=574；独立从六个worker实际candidate FULL/freshSTA原始向量重构，与独立物理审查/原根决定精确一致，原568非派生字段全部保留、24完整配置不增。终结rank1候选2074308wire同CPD/74SB/5062CB，比selected少80wire，19setup改善/4退化，无新增hold违例，原垂直接受与endpoint-vector非退化均拒绝。实际同Tf根paired2076038/43/5060用1650wire换31SB/2CB，原根/帽/K8/seed/rank匹配，各自当前轨迹不同；不拿恢复段比较历史完整费用。
+
+R1原五连接owner-release实际两臂均成功。自由native与目标CB-source域共同达到2070653wire/32SB/5071CB/13.421610489672275ns，相比原paired终态2070629wire/33SB/5071CB多24wire少1SB，全部原始预算接受，source/candidate/restored FULL/STA、独立全容量/物理/scope/domain检查通过，完整setup/hold/endpoint身份及约束向量原样不变。两臂actual route字节精确相同，搜索5queries/9attempts，core13.401060071/14.192158824s；共享含源对照scope913.0741119608283s非每臂或整条费用，原actor未提交。独立读取actual原/新trace确认唯一释放出口RR3507189从owner62707交给目标31767且原fixedsinks不变，直接实现先前单网饱和cut诊断所需的owner-scope改变。总5103达到固定终端下界，新质量点在含强基线的档案非支配；两个相同点各保留独立角色观察，非两个独立样本，无域增量收益。追加multiobjective_R1_joint_owner_escape_01共576/346BNN/207质量坐标，独立验证父574所有非派生字段保留、同实际树/完整向量/原帽决定精确复现。
+
+R1恢复02rank1失败并非原搜索未执行。独立v3回放用精确完成worker复用原native identity，独立新物理审查实际通过，但缺binary_sha256接口字段导致封装异常；失败完整保留。新helper_v2/resource_adapter_v4/caller_v4完成真实rank0+rank1接口验证，两候选原规则拒绝，全程0新搜索/LOAD，完成worker只读facade的analyze始终抛错。新native_recovery03仅运行R1，Tf02成功回执直接复用。恢复03随后正常终结4接受/7scope，final仍sealed原checkpoint2068956/71/5072，548.2221115380526s恢复段，只有rank2实际一个新worker；rank1实际独立新审查但零重复原生工作。原8root/control菜单现已全部闭合，历史整条成本仍不可重构。此终结发生C220封存后；新两R1候选和现有checkpoint终结引用待归档+C221，不能复制现有checkpoint给观察计数加1。
+
+C219稿先整合Tf，跨float PDF抽取将Sevenofeight与root/control段分开导致token误报，未封存；原稿/7页尝试保留。随后真实R1joint进入同次主稿，摘要、TableI、主图32、机制结果与结论更新C220，精简重复引言/历史实现审查费用到既有证据，三次构建最终6页、无Overfull/undefined，字体/边距未改。绑定joint_owner_escape_paper_binding_01与current_joint_owner_escape_20261115快照、visual_C220及独立verify_joint_owner_escape_paper_artifacts_v1通过，576/346/207/24均精确。Sealer03stdout遗留literal574，权威JSON/图/PDF/快照均576；单独C220_stdout_count_reconciliation_01保留诊断，未修改已封存代码/结果。
+
+队列续接：旧measurement02在native02aggregate失败后断言，未执行任何case/native，也未写终结回执，strict02因此0native缺依赖终结。新measurement03复用全部原冻结config/driver/limits并等native03pass及旧owner消失，旧失败在新目录实证reconcile；strict03因启动早于measurement03registration创建而pre-registration失败、0native，保留trace，新strict04只在前置reg实存后注册。原budget64four-role02仅需strict02terminal存在，会按冻结规则继续，故不重复新建budget03。所有原队列代码/已完成states保持；critical_scope_runner.lock内核锁与注册身份核对，当前新增电路conv_layer_native实际持槽执行，partial/budget02/measurement03等待；后续lazy/source-snapshot、joint-index、closed-stream和BNN组合LOAD保持前置。
+
+最终独立eight-role核验closed_seed_transfer_eight_roles_01.json通过：8/8均为no_admissible_move_in_registered_current_rank_windows，四同根native/paired的initial/K8/seed/echo/rank/anchor/cache匹配，全部实际finalFULL/STA/独立物理与各自pool/cache终封哈希通过，0native重跑。R1paired相对own-current native增加1673wire、少38SB/1CB；Tf增加1650wire、少31SB/2CB，历史整体成本均不作恢复重构。当前机器状态计数由旧summary6更新到实际8，旧summary6明确保留为historical。

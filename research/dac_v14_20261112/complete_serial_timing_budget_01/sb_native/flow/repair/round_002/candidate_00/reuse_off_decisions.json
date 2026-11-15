@@ -1,0 +1,474 @@
+{
+  "strict": {
+    "accepted": false,
+    "policy": "strict",
+    "reason": "No full-precision strict CPD improvement",
+    "comparison": {
+      "compatible": true,
+      "cpd_before_s": 6.040485445168997e-09,
+      "cpd_after_s": 6.040485445168997e-09,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 1,
+      "setup_regressed": 7,
+      "hold_violation_regressions": 0,
+      "setup_components": 14032,
+      "hold_components": 14032,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[80393,69796,\"bram_wdata_a_5_ext[34].D[0]\",0,1]",
+          "before_s": -4.26287583010776e-09,
+          "after_s": -4.634527872582339e-09,
+          "delta_s": -3.716520424745795e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[80988,50431,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[14].D[0]\",0,1]",
+          "before_s": -4.593666336205615e-09,
+          "after_s": -4.7754094012475434e-09,
+          "delta_s": -1.8174306504192828e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81740,58342,\"u_eltwise_cu_3.u_pe_array.pe0.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": -3.2206555200531284e-09,
+          "after_s": -4.358527316838945e-09,
+          "delta_s": -1.1378717967858165e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81772,59932,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": -2.8490039216677587e-09,
+          "after_s": -4.172701739690865e-09,
+          "delta_s": -1.3236978180231063e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81774,59938,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[5].D[0]\",1,1]",
+          "before_s": -2.8490039216677587e-09,
+          "after_s": -4.172701739690865e-09,
+          "delta_s": -1.3236978180231063e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81781,59959,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[12].D[0]\",1,1]",
+          "before_s": -2.8490039216677587e-09,
+          "after_s": -4.172701739690865e-09,
+          "delta_s": -1.3236978180231063e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81848,65413,\"c_data_4_available.D[0]\",1,1]",
+          "before_s": -3.455619124181908e-09,
+          "after_s": -4.384748564234542e-09,
+          "delta_s": -9.29129440052634e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81904,65353,\"bram_wdata_c_4[54].D[0]\",1,1]",
+          "before_s": -3.6490839239178285e-09,
+          "after_s": -3.4702598572522447e-09,
+          "delta_s": 1.7882406666558381e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[80988,50431,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[14].D[0]\",0,1]",
+          "before_s": 2.661667775072374e-09,
+          "after_s": 2.8551325748082945e-09,
+          "delta_s": 1.9346479973592068e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81740,58342,\"u_eltwise_cu_3.u_pe_array.pe0.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": 1.7650061412410878e-09,
+          "after_s": 2.9028779380269043e-09,
+          "delta_s": 1.1378717967858165e-09
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81772,59932,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": 1.3933545428557181e-09,
+          "after_s": 2.7170523608788244e-09,
+          "delta_s": 1.3236978180231063e-09
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81774,59938,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[5].D[0]\",1,1]",
+          "before_s": 1.3933545428557181e-09,
+          "after_s": 2.7170523608788244e-09,
+          "delta_s": 1.3236978180231063e-09
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81781,59959,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[12].D[0]\",1,1]",
+          "before_s": 1.3933545428557181e-09,
+          "after_s": 2.7170523608788244e-09,
+          "delta_s": 1.3236978180231063e-09
+        }
+      ]
+    }
+  },
+  "endpoint_vector": {
+    "accepted": false,
+    "policy": "endpoint_vector",
+    "reason": "Setup endpoint/domain vector has regressions",
+    "comparison": {
+      "compatible": true,
+      "cpd_before_s": 6.040485445168997e-09,
+      "cpd_after_s": 6.040485445168997e-09,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 1,
+      "setup_regressed": 7,
+      "hold_violation_regressions": 0,
+      "setup_components": 14032,
+      "hold_components": 14032,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[80393,69796,\"bram_wdata_a_5_ext[34].D[0]\",0,1]",
+          "before_s": -4.26287583010776e-09,
+          "after_s": -4.634527872582339e-09,
+          "delta_s": -3.716520424745795e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[80988,50431,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[14].D[0]\",0,1]",
+          "before_s": -4.593666336205615e-09,
+          "after_s": -4.7754094012475434e-09,
+          "delta_s": -1.8174306504192828e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81740,58342,\"u_eltwise_cu_3.u_pe_array.pe0.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": -3.2206555200531284e-09,
+          "after_s": -4.358527316838945e-09,
+          "delta_s": -1.1378717967858165e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81772,59932,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": -2.8490039216677587e-09,
+          "after_s": -4.172701739690865e-09,
+          "delta_s": -1.3236978180231063e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81774,59938,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[5].D[0]\",1,1]",
+          "before_s": -2.8490039216677587e-09,
+          "after_s": -4.172701739690865e-09,
+          "delta_s": -1.3236978180231063e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81781,59959,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[12].D[0]\",1,1]",
+          "before_s": -2.8490039216677587e-09,
+          "after_s": -4.172701739690865e-09,
+          "delta_s": -1.3236978180231063e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81848,65413,\"c_data_4_available.D[0]\",1,1]",
+          "before_s": -3.455619124181908e-09,
+          "after_s": -4.384748564234542e-09,
+          "delta_s": -9.29129440052634e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81904,65353,\"bram_wdata_c_4[54].D[0]\",1,1]",
+          "before_s": -3.6490839239178285e-09,
+          "after_s": -3.4702598572522447e-09,
+          "delta_s": 1.7882406666558381e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[80988,50431,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[14].D[0]\",0,1]",
+          "before_s": 2.661667775072374e-09,
+          "after_s": 2.8551325748082945e-09,
+          "delta_s": 1.9346479973592068e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81740,58342,\"u_eltwise_cu_3.u_pe_array.pe0.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": 1.7650061412410878e-09,
+          "after_s": 2.9028779380269043e-09,
+          "delta_s": 1.1378717967858165e-09
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81772,59932,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": 1.3933545428557181e-09,
+          "after_s": 2.7170523608788244e-09,
+          "delta_s": 1.3236978180231063e-09
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81774,59938,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[5].D[0]\",1,1]",
+          "before_s": 1.3933545428557181e-09,
+          "after_s": 2.7170523608788244e-09,
+          "delta_s": 1.3236978180231063e-09
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81781,59959,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[12].D[0]\",1,1]",
+          "before_s": 1.3933545428557181e-09,
+          "after_s": 2.7170523608788244e-09,
+          "delta_s": 1.3236978180231063e-09
+        }
+      ]
+    }
+  },
+  "timing_under_resources": {
+    "accepted": false,
+    "reason": "No exact CPD reduction within resource limits",
+    "mode": "timing_under_resources",
+    "resource_objectives": [
+      "SB_pairs",
+      "CB_sources"
+    ],
+    "cpd_limit_s": 6.161295154072377e-09,
+    "resource_limits": {
+      "wirelength": 227615,
+      "SB_pairs": 1012,
+      "CB_sources": 0
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 6.040485445168997e-09,
+      "cpd_after_s": 6.040485445168997e-09,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 1,
+      "setup_regressed": 7,
+      "hold_violation_regressions": 0,
+      "setup_components": 14032,
+      "hold_components": 14032,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[80393,69796,\"bram_wdata_a_5_ext[34].D[0]\",0,1]",
+          "before_s": -4.26287583010776e-09,
+          "after_s": -4.634527872582339e-09,
+          "delta_s": -3.716520424745795e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[80988,50431,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[14].D[0]\",0,1]",
+          "before_s": -4.593666336205615e-09,
+          "after_s": -4.7754094012475434e-09,
+          "delta_s": -1.8174306504192828e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81740,58342,\"u_eltwise_cu_3.u_pe_array.pe0.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": -3.2206555200531284e-09,
+          "after_s": -4.358527316838945e-09,
+          "delta_s": -1.1378717967858165e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81772,59932,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": -2.8490039216677587e-09,
+          "after_s": -4.172701739690865e-09,
+          "delta_s": -1.3236978180231063e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81774,59938,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[5].D[0]\",1,1]",
+          "before_s": -2.8490039216677587e-09,
+          "after_s": -4.172701739690865e-09,
+          "delta_s": -1.3236978180231063e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81781,59959,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[12].D[0]\",1,1]",
+          "before_s": -2.8490039216677587e-09,
+          "after_s": -4.172701739690865e-09,
+          "delta_s": -1.3236978180231063e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81848,65413,\"c_data_4_available.D[0]\",1,1]",
+          "before_s": -3.455619124181908e-09,
+          "after_s": -4.384748564234542e-09,
+          "delta_s": -9.29129440052634e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81904,65353,\"bram_wdata_c_4[54].D[0]\",1,1]",
+          "before_s": -3.6490839239178285e-09,
+          "after_s": -3.4702598572522447e-09,
+          "delta_s": 1.7882406666558381e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[80988,50431,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[14].D[0]\",0,1]",
+          "before_s": 2.661667775072374e-09,
+          "after_s": 2.8551325748082945e-09,
+          "delta_s": 1.9346479973592068e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81740,58342,\"u_eltwise_cu_3.u_pe_array.pe0.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": 1.7650061412410878e-09,
+          "after_s": 2.9028779380269043e-09,
+          "delta_s": 1.1378717967858165e-09
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81772,59932,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": 1.3933545428557181e-09,
+          "after_s": 2.7170523608788244e-09,
+          "delta_s": 1.3236978180231063e-09
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81774,59938,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[5].D[0]\",1,1]",
+          "before_s": 1.3933545428557181e-09,
+          "after_s": 2.7170523608788244e-09,
+          "delta_s": 1.3236978180231063e-09
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81781,59959,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[12].D[0]\",1,1]",
+          "before_s": 1.3933545428557181e-09,
+          "after_s": 2.7170523608788244e-09,
+          "delta_s": 1.3236978180231063e-09
+        }
+      ]
+    },
+    "resource_delta": {
+      "wirelength": 5,
+      "SB_pairs": -2,
+      "CB_sources": 0
+    },
+    "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+  },
+  "resources_under_timing": {
+    "accepted": true,
+    "reason": "Exact fixed-budget conditions satisfied",
+    "mode": "resources_under_timing",
+    "resource_objectives": [
+      "SB_pairs",
+      "CB_sources"
+    ],
+    "cpd_limit_s": 6.161295154072377e-09,
+    "resource_limits": {
+      "wirelength": 227615,
+      "SB_pairs": 1012,
+      "CB_sources": 0
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 6.040485445168997e-09,
+      "cpd_after_s": 6.040485445168997e-09,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 1,
+      "setup_regressed": 7,
+      "hold_violation_regressions": 0,
+      "setup_components": 14032,
+      "hold_components": 14032,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[80393,69796,\"bram_wdata_a_5_ext[34].D[0]\",0,1]",
+          "before_s": -4.26287583010776e-09,
+          "after_s": -4.634527872582339e-09,
+          "delta_s": -3.716520424745795e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[80988,50431,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[14].D[0]\",0,1]",
+          "before_s": -4.593666336205615e-09,
+          "after_s": -4.7754094012475434e-09,
+          "delta_s": -1.8174306504192828e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81740,58342,\"u_eltwise_cu_3.u_pe_array.pe0.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": -3.2206555200531284e-09,
+          "after_s": -4.358527316838945e-09,
+          "delta_s": -1.1378717967858165e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81772,59932,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": -2.8490039216677587e-09,
+          "after_s": -4.172701739690865e-09,
+          "delta_s": -1.3236978180231063e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81774,59938,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[5].D[0]\",1,1]",
+          "before_s": -2.8490039216677587e-09,
+          "after_s": -4.172701739690865e-09,
+          "delta_s": -1.3236978180231063e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81781,59959,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[12].D[0]\",1,1]",
+          "before_s": -2.8490039216677587e-09,
+          "after_s": -4.172701739690865e-09,
+          "delta_s": -1.3236978180231063e-09
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81848,65413,\"c_data_4_available.D[0]\",1,1]",
+          "before_s": -3.455619124181908e-09,
+          "after_s": -4.384748564234542e-09,
+          "delta_s": -9.29129440052634e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[81904,65353,\"bram_wdata_c_4[54].D[0]\",1,1]",
+          "before_s": -3.6490839239178285e-09,
+          "after_s": -3.4702598572522447e-09,
+          "delta_s": 1.7882406666558381e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[80988,50431,\"u_eltwise_cu_0.u_pe_array.pe3.u_add.b_flopped[14].D[0]\",0,1]",
+          "before_s": 2.661667775072374e-09,
+          "after_s": 2.8551325748082945e-09,
+          "delta_s": 1.9346479973592068e-10
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81740,58342,\"u_eltwise_cu_3.u_pe_array.pe0.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": 1.7650061412410878e-09,
+          "after_s": 2.9028779380269043e-09,
+          "delta_s": 1.1378717967858165e-09
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81772,59932,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[3].D[0]\",1,1]",
+          "before_s": 1.3933545428557181e-09,
+          "after_s": 2.7170523608788244e-09,
+          "delta_s": 1.3236978180231063e-09
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81774,59938,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[5].D[0]\",1,1]",
+          "before_s": 1.3933545428557181e-09,
+          "after_s": 2.7170523608788244e-09,
+          "delta_s": 1.3236978180231063e-09
+        },
+        {
+          "kind": "hold",
+          "endpoint_domain": "[81781,59959,\"u_eltwise_cu_3.u_pe_array.pe2.u_add.a_flopped[12].D[0]\",1,1]",
+          "before_s": 1.3933545428557181e-09,
+          "after_s": 2.7170523608788244e-09,
+          "delta_s": 1.3236978180231063e-09
+        }
+      ]
+    },
+    "resource_delta": {
+      "wirelength": 5,
+      "SB_pairs": -2,
+      "CB_sources": 0
+    },
+    "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+  }
+}

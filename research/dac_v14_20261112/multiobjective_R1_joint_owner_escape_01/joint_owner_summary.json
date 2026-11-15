@@ -1,0 +1,106 @@
+{
+  "passed": true,
+  "roles": {
+    "joint_native": {
+      "status": "legal_evaluated",
+      "actual_queries": 5,
+      "actual_search_attempts": 9,
+      "target_CB_domain": false,
+      "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/R1_owner_release_joint_probe_01/transaction/joint_native_evaluation",
+      "CPD_ns": 13.421610489672275,
+      "resources": {
+        "wirelength": 2070653,
+        "SB_pairs": 32,
+        "CB_sources": 5071
+      },
+      "accepted": true,
+      "policies": {
+        "strict": {
+          "accepted": false,
+          "reason": "No full-precision strict CPD improvement"
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "reason": "Setup endpoint/domain vector unchanged"
+        },
+        "timing_under_resources": {
+          "accepted": false,
+          "reason": "No exact CPD reduction within resource limits"
+        },
+        "resources_under_timing": {
+          "accepted": true,
+          "reason": "Exact fixed-budget conditions satisfied"
+        }
+      },
+      "endpoint_comparison": {
+        "compatible": true,
+        "cpd_before_s": 1.3421610489672275e-08,
+        "cpd_after_s": 1.3421610489672275e-08,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 0,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 52495,
+        "hold_components": 52495,
+        "changes": []
+      },
+      "native_core_seconds": 13.401060071
+    },
+    "joint_target_CB_domain": {
+      "status": "legal_evaluated",
+      "actual_queries": 5,
+      "actual_search_attempts": 9,
+      "target_CB_domain": true,
+      "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/R1_owner_release_joint_probe_01/transaction/joint_target_CB_domain_evaluation",
+      "CPD_ns": 13.421610489672275,
+      "resources": {
+        "wirelength": 2070653,
+        "SB_pairs": 32,
+        "CB_sources": 5071
+      },
+      "accepted": true,
+      "policies": {
+        "strict": {
+          "accepted": false,
+          "reason": "No full-precision strict CPD improvement"
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "reason": "Setup endpoint/domain vector unchanged"
+        },
+        "timing_under_resources": {
+          "accepted": false,
+          "reason": "No exact CPD reduction within resource limits"
+        },
+        "resources_under_timing": {
+          "accepted": true,
+          "reason": "Exact fixed-budget conditions satisfied"
+        }
+      },
+      "endpoint_comparison": {
+        "compatible": true,
+        "cpd_before_s": 1.3421610489672275e-08,
+        "cpd_after_s": 1.3421610489672275e-08,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 0,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 52495,
+        "hold_components": 52495,
+        "changes": []
+      },
+      "native_core_seconds": 14.192158824
+    }
+  },
+  "shared_imported_scope_seconds": 913.0741119608283,
+  "bound_resource_sum": 5103,
+  "actual_resource_sum": 5103,
+  "source_resource_sum": 5104,
+  "source_wire": 2070629,
+  "final_wire": 2070653,
+  "wire_delta": 24,
+  "committed_to_original_actor": false,
+  "qualification": "Two actual matched candidates demonstrate escaping the certified single-net local minimum by changing another owner. Both native and target-CB-domain arms have the same actual route and unchanged endpoint vector; no extra domain benefit. Their aggregate vertical sum attains the same physical-input terminal lower bound. Wire/CPD optimality and full-flow cost are unproved."
+}

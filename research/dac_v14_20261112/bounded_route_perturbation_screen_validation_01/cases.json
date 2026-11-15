@@ -1,0 +1,217 @@
+{
+  "positive_changes_share_path_budget": {
+    "supported": true,
+    "abstention_reasons": [],
+    "changed_connections": [
+      {
+        "net": 1,
+        "pin": 1,
+        "delta_s": 6e-11,
+        "atom_edge_multiplicity_upper_bound": 1,
+        "current_setup_gap_to_worst_s": 7.999999999999972e-11,
+        "current_minimum_hold_slack_s": 8e-11
+      },
+      {
+        "net": 1,
+        "pin": 2,
+        "delta_s": 6e-11,
+        "atom_edge_multiplicity_upper_bound": 1,
+        "current_setup_gap_to_worst_s": 7.999999999999972e-11,
+        "current_minimum_hold_slack_s": 8e-11
+      }
+    ],
+    "total_positive_timing_edge_perturbation_bound_s": 1.2e-10,
+    "total_negative_timing_edge_perturbation_bound_s": 0.0,
+    "setup_checks": [
+      {
+        "net": 1,
+        "pin": 1,
+        "available_gap_s": 7.999999999999972e-11,
+        "total_positive_edge_bound_s": 1.2e-10,
+        "passes": false
+      },
+      {
+        "net": 1,
+        "pin": 2,
+        "available_gap_s": 7.999999999999972e-11,
+        "total_positive_edge_bound_s": 1.2e-10,
+        "passes": false
+      }
+    ],
+    "hold_checks": [],
+    "model_no_worst_setup_degradation": false,
+    "model_no_new_or_increased_hold_violation": true,
+    "model_screen_passed": false,
+    "original_worst_setup_paths_unmodified_under_model": true,
+    "native_FULL_STA_required": true,
+    "used_for_acceptance": false,
+    "qualification": "Fixed timing-DAG perturbation screen only. Every path accumulates at most the sum of positive/negative changed timing edges; any path containing a positive change has the recorded current setup gap, and any path containing a negative change has the recorded current hold slack. Distinct atom-driver/receiver combinations conservatively bound repeated cluster-connection contributions. Unknown mappings/constraints abstain. Zero RC, unchanged packed/placed/clock/logic mapping and exact declared connection changes are prerequisites. Endpoint vectors may trade setup slack. Native route legality, actual native arithmetic/STA and original envelopes remain independent mandatory gates; no tolerance or predicted quality substitutes for them."
+  },
+  "negative_changes_share_hold_budget": {
+    "supported": true,
+    "abstention_reasons": [],
+    "changed_connections": [
+      {
+        "net": 1,
+        "pin": 1,
+        "delta_s": -6e-11,
+        "atom_edge_multiplicity_upper_bound": 1,
+        "current_setup_gap_to_worst_s": 7.999999999999972e-11,
+        "current_minimum_hold_slack_s": 8e-11
+      },
+      {
+        "net": 1,
+        "pin": 2,
+        "delta_s": -6e-11,
+        "atom_edge_multiplicity_upper_bound": 1,
+        "current_setup_gap_to_worst_s": 7.999999999999972e-11,
+        "current_minimum_hold_slack_s": 8e-11
+      }
+    ],
+    "total_positive_timing_edge_perturbation_bound_s": 0.0,
+    "total_negative_timing_edge_perturbation_bound_s": 1.2e-10,
+    "setup_checks": [],
+    "hold_checks": [
+      {
+        "net": 1,
+        "pin": 1,
+        "available_hold_s": 8e-11,
+        "total_negative_edge_bound_s": 1.2e-10,
+        "passes": false
+      },
+      {
+        "net": 1,
+        "pin": 2,
+        "available_hold_s": 8e-11,
+        "total_negative_edge_bound_s": 1.2e-10,
+        "passes": false
+      }
+    ],
+    "model_no_worst_setup_degradation": true,
+    "model_no_new_or_increased_hold_violation": false,
+    "model_screen_passed": false,
+    "original_worst_setup_paths_unmodified_under_model": true,
+    "native_FULL_STA_required": true,
+    "used_for_acceptance": false,
+    "qualification": "Fixed timing-DAG perturbation screen only. Every path accumulates at most the sum of positive/negative changed timing edges; any path containing a positive change has the recorded current setup gap, and any path containing a negative change has the recorded current hold slack. Distinct atom-driver/receiver combinations conservatively bound repeated cluster-connection contributions. Unknown mappings/constraints abstain. Zero RC, unchanged packed/placed/clock/logic mapping and exact declared connection changes are prerequisites. Endpoint vectors may trade setup slack. Native route legality, actual native arithmetic/STA and original envelopes remain independent mandatory gates; no tolerance or predicted quality substitutes for them."
+  },
+  "multiple_atom_receiver_bound": {
+    "supported": true,
+    "abstention_reasons": [],
+    "changed_connections": [
+      {
+        "net": 1,
+        "pin": 1,
+        "delta_s": 6e-11,
+        "atom_edge_multiplicity_upper_bound": 2,
+        "current_setup_gap_to_worst_s": 7.999999999999972e-11,
+        "current_minimum_hold_slack_s": 8e-11
+      }
+    ],
+    "total_positive_timing_edge_perturbation_bound_s": 1.2e-10,
+    "total_negative_timing_edge_perturbation_bound_s": 0.0,
+    "setup_checks": [
+      {
+        "net": 1,
+        "pin": 1,
+        "available_gap_s": 7.999999999999972e-11,
+        "total_positive_edge_bound_s": 1.2e-10,
+        "passes": false
+      }
+    ],
+    "hold_checks": [],
+    "model_no_worst_setup_degradation": false,
+    "model_no_new_or_increased_hold_violation": true,
+    "model_screen_passed": false,
+    "original_worst_setup_paths_unmodified_under_model": true,
+    "native_FULL_STA_required": true,
+    "used_for_acceptance": false,
+    "qualification": "Fixed timing-DAG perturbation screen only. Every path accumulates at most the sum of positive/negative changed timing edges; any path containing a positive change has the recorded current setup gap, and any path containing a negative change has the recorded current hold slack. Distinct atom-driver/receiver combinations conservatively bound repeated cluster-connection contributions. Unknown mappings/constraints abstain. Zero RC, unchanged packed/placed/clock/logic mapping and exact declared connection changes are prerequisites. Endpoint vectors may trade setup slack. Native route legality, actual native arithmetic/STA and original envelopes remain independent mandatory gates; no tolerance or predicted quality substitutes for them."
+  },
+  "available_combined_margin": {
+    "supported": true,
+    "abstention_reasons": [],
+    "changed_connections": [
+      {
+        "net": 1,
+        "pin": 1,
+        "delta_s": 6e-11,
+        "atom_edge_multiplicity_upper_bound": 1,
+        "current_setup_gap_to_worst_s": 1.0000000000000007e-09,
+        "current_minimum_hold_slack_s": 1e-09
+      }
+    ],
+    "total_positive_timing_edge_perturbation_bound_s": 6e-11,
+    "total_negative_timing_edge_perturbation_bound_s": 0.0,
+    "setup_checks": [
+      {
+        "net": 1,
+        "pin": 1,
+        "available_gap_s": 1.0000000000000007e-09,
+        "total_positive_edge_bound_s": 6e-11,
+        "passes": true
+      }
+    ],
+    "hold_checks": [],
+    "model_no_worst_setup_degradation": true,
+    "model_no_new_or_increased_hold_violation": true,
+    "model_screen_passed": true,
+    "original_worst_setup_paths_unmodified_under_model": true,
+    "native_FULL_STA_required": true,
+    "used_for_acceptance": false,
+    "qualification": "Fixed timing-DAG perturbation screen only. Every path accumulates at most the sum of positive/negative changed timing edges; any path containing a positive change has the recorded current setup gap, and any path containing a negative change has the recorded current hold slack. Distinct atom-driver/receiver combinations conservatively bound repeated cluster-connection contributions. Unknown mappings/constraints abstain. Zero RC, unchanged packed/placed/clock/logic mapping and exact declared connection changes are prerequisites. Endpoint vectors may trade setup slack. Native route legality, actual native arithmetic/STA and original envelopes remain independent mandatory gates; no tolerance or predicted quality substitutes for them."
+  },
+  "unsupported_RC_abstains": {
+    "supported": false,
+    "abstention_reasons": [
+      "Unsupported graph/clock-constraint class"
+    ],
+    "changed_connections": [
+      {
+        "net": 1,
+        "pin": 1,
+        "delta_s": 6e-11,
+        "atom_edge_multiplicity_upper_bound": 1,
+        "current_setup_gap_to_worst_s": 7.999999999999972e-11,
+        "current_minimum_hold_slack_s": 8e-11
+      }
+    ],
+    "total_positive_timing_edge_perturbation_bound_s": 6e-11,
+    "total_negative_timing_edge_perturbation_bound_s": 0.0,
+    "setup_checks": [
+      {
+        "net": 1,
+        "pin": 1,
+        "available_gap_s": 7.999999999999972e-11,
+        "total_positive_edge_bound_s": 6e-11,
+        "passes": true
+      }
+    ],
+    "hold_checks": [],
+    "model_no_worst_setup_degradation": false,
+    "model_no_new_or_increased_hold_violation": false,
+    "model_screen_passed": false,
+    "original_worst_setup_paths_unmodified_under_model": false,
+    "native_FULL_STA_required": true,
+    "used_for_acceptance": false,
+    "qualification": "Fixed timing-DAG perturbation screen only. Every path accumulates at most the sum of positive/negative changed timing edges; any path containing a positive change has the recorded current setup gap, and any path containing a negative change has the recorded current hold slack. Distinct atom-driver/receiver combinations conservatively bound repeated cluster-connection contributions. Unknown mappings/constraints abstain. Zero RC, unchanged packed/placed/clock/logic mapping and exact declared connection changes are prerequisites. Endpoint vectors may trade setup slack. Native route legality, actual native arithmetic/STA and original envelopes remain independent mandatory gates; no tolerance or predicted quality substitutes for them."
+  },
+  "unknown_hold_tags_abstain": {
+    "supported": false,
+    "abstention_reasons": [
+      "Incomplete atom timing coverage 1/1"
+    ],
+    "changed_connections": [],
+    "total_positive_timing_edge_perturbation_bound_s": 0.0,
+    "total_negative_timing_edge_perturbation_bound_s": 0.0,
+    "setup_checks": [],
+    "hold_checks": [],
+    "model_no_worst_setup_degradation": false,
+    "model_no_new_or_increased_hold_violation": false,
+    "model_screen_passed": false,
+    "original_worst_setup_paths_unmodified_under_model": false,
+    "native_FULL_STA_required": true,
+    "used_for_acceptance": false,
+    "qualification": "Fixed timing-DAG perturbation screen only. Every path accumulates at most the sum of positive/negative changed timing edges; any path containing a positive change has the recorded current setup gap, and any path containing a negative change has the recorded current hold slack. Distinct atom-driver/receiver combinations conservatively bound repeated cluster-connection contributions. Unknown mappings/constraints abstain. Zero RC, unchanged packed/placed/clock/logic mapping and exact declared connection changes are prerequisites. Endpoint vectors may trade setup slack. Native route legality, actual native arithmetic/STA and original envelopes remain independent mandatory gates; no tolerance or predicted quality substitutes for them."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "upstream": "https://github.com/verilog-to-routing/vtr-verilog-to-routing.git",
+  "base_commit": "0b912334fdd83bb754b302146ac0d1ec9edc9a0e",
+  "baseline_manifest": "patches/snapshot_20261114_verified/manifest.json",
+  "baseline_manifest_sha256": "6ed0ed2d0cb8d168f47f9c501647b042357272eaf43b82b91d085324bc752e36",
+  "overlays": {
+    "source_snapshot_stage_01": {
+      "passed": true,
+      "parent_patch": "patches/snapshot_20261114_verified/native_resource_census_stage_01.patch",
+      "parent_patch_sha256": "27cca4964e4033c34fac8fd3593b071d288ffda6b73c296f96114addeb580f40",
+      "overlay_patch": "patches/snapshot_20261115_verified/source_snapshot_stage_01.patch",
+      "overlay_patch_sha256": "2dfd628c259dc29d2833d583baa9e9f5827c0ee4fcd8059d7945ca7759028ed3",
+      "portable_target_files_sha256": {
+        "vpr/src/base/vpr_api.cpp": "ecb74a130edcecd090183012f6c2ce03a3f4fe46a372ff6940ce00f2a29283b2"
+      },
+      "exact_built_source_files": {
+        "patches/snapshot_20261115_verified/exact_built_sources/source_snapshot_stage_01/vpr_api.cpp": "ecb74a130edcecd090183012f6c2ce03a3f4fe46a372ff6940ce00f2a29283b2"
+      },
+      "normalizations": [],
+      "stage_binding_sha256": "812f90ad5b69e195c9e59c2fe04385a66ed1d0707b5bba346604a393ca8b8c50",
+      "original_binary_sha256": "fba59067f4038ab1b02b142d7917a93f4989b03e07e5d9aa20a641ed48d4e0e9",
+      "roundtrip_applied_to_exact_baseline_files": true,
+      "binary_rebuild_performed": false
+    },
+    "crossing_source_stage_01": {
+      "passed": true,
+      "parent_patch": "patches/snapshot_20261114_verified/native_resource_census_stage_01.patch",
+      "parent_patch_sha256": "27cca4964e4033c34fac8fd3593b071d288ffda6b73c296f96114addeb580f40",
+      "overlay_patch": "patches/snapshot_20261115_verified/crossing_source_stage_01.patch",
+      "overlay_patch_sha256": "a1d8c6b0978198f36489273600bfee6439571098d7c2ce1a55e83fe85f71d86b",
+      "portable_target_files_sha256": {
+        "vpr/src/route/h3d_joint_native_repair.h": "82266108b3aaaad07197feb33247915c1475049927e343a8f11d17e976005997",
+        "vpr/src/base/vpr_api.cpp": "02098a7980835eaf9db1a6a69536b1828d4a6d5a073884f09be6574ab595bcdf"
+      },
+      "exact_built_source_files": {
+        "patches/snapshot_20261115_verified/exact_built_sources/crossing_source_stage_01/h3d_joint_native_repair.h": "82266108b3aaaad07197feb33247915c1475049927e343a8f11d17e976005997",
+        "patches/snapshot_20261115_verified/exact_built_sources/crossing_source_stage_01/vpr_api.cpp": "2056fa116b3618918674abe3312ebc33a84e2ba423829ff82876d7fc7da1c8f2"
+      },
+      "normalizations": [
+        {
+          "kind": "include_path_only",
+          "original_include": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/crossing_source_stage_01/h3d_joint_native_repair.h",
+          "portable_include": "h3d_joint_native_repair.h",
+          "header_exact_sha256": "82266108b3aaaad07197feb33247915c1475049927e343a8f11d17e976005997",
+          "qualification": "Private build used an absolute include pointing at this exact header. Portable overlay places those identical bytes at the normal route header path; no algorithm code is changed."
+        }
+      ],
+      "stage_binding_sha256": "2e42cbd22ab1a491b602d0b2dc361ad472591cfb90df365c5b6e53a45886284f",
+      "original_binary_sha256": "14d842f9cc3b28e1d332c43cb201955e880ed6f17fa53d33f2cc2ba9b40a9655",
+      "roundtrip_applied_to_exact_baseline_files": true,
+      "binary_rebuild_performed": false
+    }
+  },
+  "qualification": "Apply the verified20261114Census base patch first, then exactly one private overlay. Exact original built TU/header bytes and binary identities are retained separately. Crossing-source overlay normalizes one machine-specific include path only. Delta application and target bytes are verified; no rebuild or bitwise binary reproduction is claimed. Live source/build directories and processes are untouched."
+}

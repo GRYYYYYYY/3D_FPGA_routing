@@ -1,6 +1,10 @@
-> **2026-11-14 research progress:** [snapshot guide](docs/GitHub_progress_20261114.md), [current manuscript](research/dac_v14_20261112/paper_snapshots/current_strict_terminal_vector_feedback_20261114/build/current_repair_main.pdf), [335-observation joint archive](research/dac_v14_20261112/multiobjective_complete_resource_timing_01/points.csv). Research is ongoing; imported/recovery timings are separate from complete cold algorithm time.
-
 # H3D-inspired native 3D FPGA routing
+
+## Current snapshot — 2026-11-15 (research active)
+
+Read the [latest completed results, conclusions and running experiments](docs/GitHub_progress_20261115.md), the [publication-time verified process state](docs/github_progress_status_20261115.json), and the [C221 six-page manuscript](research/dac_v14_20261112/paper_snapshots/current_R1_native_closure_20261115/build/current_repair_main.pdf). All eight original native/domain control menus are closed. New evidence includes 32-SB owner coordination, mixed circuit transfer outcomes, complete BNN costs and the verified single-pass-index full-flow comparison. Later results are explicitly separated from the manuscript's frozen archive and from trials still in progress. This remains a research snapshot, not a complete offsite raw-data backup.
+
+The 2026-11-09 section below is historical.
 
 ## Current snapshot — 2026-11-09 (experiments in progress)
 

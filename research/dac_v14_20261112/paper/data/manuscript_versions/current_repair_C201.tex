@@ -1,0 +1,186 @@
+\RequirePackage[T1]{fontenc}
+\documentclass[conference,10pt]{IEEEtran}
+\usepackage{amsmath,amssymb,graphicx,url}
+\title{Current-STA Transactional Repair for Timing--Resource Tradeoffs in 3D FPGA Routing}
+\author{\IEEEauthorblockN{Anonymous development manuscript}}
+\begin{document}
+\maketitle
+\begin{abstract}
+Legal FPGA routes can occupy different points in a timing--resource design space. In a fixed 3D routing resource graph, sharing a vertical resource may save occupancy but restrict a critical connection or create capacity competition. We study a current-STA repair layer that selects complete connection groups, performs native searches on private route-tree copies, and commits only after physical, capacity and native timing checks. Retained-crossing domains encourage sharing; a failed guided search can release only its network's domain while preserving successful restorations elsewhere. Development results include three automatic timing repairs of a strong native BNN route, reducing critical-path delay from 13.607436 to 13.228146 ns with forty additional planar wire units. Subsequent resource refinement exposes distinct low-wire and low-vertical-occupancy alternatives at the same delay. Complete resource-first timing repair reaches 13.228146 ns with 43 SB and 5060 CB, versus 82 SB and 5062 CB for its native control, at a cost of 1762 more wire units. An independent five-connection feedback intervention improves ten setup components without regressions. On eltwise, a uniform K8 grouping cap reduces actual SB occupancy to 24 and CB occupancy to 965 at unchanged delay; an R1-based SPMV repair remains dominated by strong A0. A fixed-seed R1 resource trajectory reaches 33 SB at unchanged 13.421610 ns, spending 1721 more wire units. A budgeted same-source BNN candidate keeps 47 SB with 177 fewer wire units than its larger native control. Matched controls distinguish selection, grouping and domain contributions. Fresh-route transfer also reduces softmax SB from six to three under both controls, while SPMV has no eligible cut. On eltwise, acceptance-ordered execution preserves committed states while reducing observed complete cost from 289.21 to 203.48 s; complete pooled-strategy timing and broader fixed-policy confirmation remain open.
+\end{abstract}
+\begin{IEEEkeywords}
+3D FPGA, detailed routing, static timing analysis, transactional repair, multiobjective optimization
+\end{IEEEkeywords}
+
+\section{Problem and Motivation}
+Three-dimensional FPGA fabrics couple directed reachability, scarce vertical channels and detailed timing. A different route can improve timing, save resources or exchange one benefit for another even when packing, placement and architecture remain fixed. A repair that does not reduce the final critical-path delay (CPD) may still be useful under an explicit resource or timing requirement. Conversely, a locally shorter connection is not evidence of a better complete route: another endpoint can become critical, or the replacement may prevent a different network from using a scarce channel.
+
+VTR provides the detailed routing and timing infrastructure used here~\cite{vtr9paper}. The placement and architectural context follows the separation of design tradeoffs emphasized by Escaping Flatland~\cite{flatland}; our comparisons hold each physical input fixed. This work concerns post-legal routing decisions. It neither changes the physical timing model nor infers silicon area or power from reduced occupancy on a fixed device.
+
+Shared-crossing proxy scores can diverge from final timing through candidate coverage, retained branches and native convergence. We therefore select groups using current STA, search native route-tree replacements and validate actual outcomes. The intervention comprises group selection, dependency scope, retained domains, acceptance and scheduling.
+
+Our evaluation separates legal quality tradeoffs, matched local mechanism controls and complete configuration cost. Version-specific serial full-flow measurements now complement the development quality evidence; broader frozen-policy and pooled-implementation measurements remain required.
+
+\section{Objective and State Identity}
+An input identity fixes the directed resource graph, packed netlist, placement, endpoint mapping, SDC and clock domains. A legal route $R$ uses actual graph edges and respects node capacities and native routing constraints. We record
+\begin{equation}
+ q(R)=(D(R),W(R),S(R),C(R),T(R)),
+\end{equation}
+where $D$ is native final CPD, $W$ is planar wire in the auditor's native resource units, $S$ is occupied SB pairs, $C$ is occupied CB output sources, and $T$ is comparable complete algorithm time. Paired SB half-nodes are one vertical resource; multiple CB edges from one output are not independent outputs. Guide recommendations are not occupancy measurements.
+
+A final legal candidate is retained when it is not dominated on the measured, comparable coordinates. Quality projections use the first four coordinates and preserve uncertainty from printed CPD. They do not establish five-dimensional dominance when complete time is unknown. Different convergence rules, repair opportunities and implementation versions remain explicit, even for a descriptive comparison on the same physical inputs.
+
+Final retention is separate from a branch's transition rule. We retain a strict CPD mode, $D(R')<D(R)$, and a fixed-resource mode that reduces CPD within registered absolute resource limits. A resource-under-timing mode permits wire tradeoffs within a fixed envelope while requiring nonincreasing selected resource objectives and at least one strict reduction. The current resource probes select $(S,C)$ as those objectives, cap CPD at the root value, cap wire at the root value plus 0.1\%, and prohibit increases beyond root vertical counts. These are design parameters, not general termination conditions.
+
+An endpoint-vector control fixes all endpoint/launch/capture identities and compares complete native setup slack values. It accepts only nonworse CPD, no setup-component regression and at least one strict setup improvement, with no increased hold violation. Native numeric values are compared without an epsilon. Resource policies impose their stated CPD and hold conditions; they do not silently inherit the stricter endpoint-vector requirement. The new bounded vector variant additionally enforces the strict timing control's immutable wire/SB/CB limits. Anchors do not roll forward, and no tolerance can accumulate timing degradation.
+
+\section{Mechanism: Current-State Whole Transactions}
+\subsection{Select targets and dependency scopes}
+Timing selection follows the current native winning-path structure, including tied fan-ins, rather than a permanently retained list of endpoints. Capacity queries distinguish a promising extension from one blocked by other networks. Owner scopes and grouped targets can release dependencies that a single-connection repair leaves frozen.
+
+Resource selection scans the actual current route trees. A candidate removes all sinks below a selected crossing subtree, preserves paths to the other sinks, and requires both structural release potential and a retained crossing alternative. The screen uses current slack margin; it is not a proof of final resource savings. Ranking is deterministic: released crossings per removed sink, fewer sinks, larger current margin, then network and pin IDs. A K8 group contains at most eight distinct networks; fewer are used when fewer qualify. Removed connections are restored in descending current raw criticality with deterministic ties. Accepted states receive a fresh current selector.
+
+\subsection{Native searches and retained-crossing domains}
+For each group we copy the selected trees and prune exactly the registered sink sets. Occupancy is updated as every local replacement is installed, so later searches see earlier resource use. Native weighted search uses the full device search box and the existing timing/congestion objective. Capacity-infeasible results are not committed. Real switch delays and final STA remain unchanged.
+
+The domain control initially allows cross-layer edges only through crossing sources retained after pruning. It preserves useful sharing but can become infeasible under current capacities. The unrestricted native control receives the same current source, sink set, tree scope, objective and search range. Paired development probes evaluate both variants and use the registered domain-first acceptance order; native-only trajectories instead reselect from their own accepted unrestricted states. Those trajectories must not borrow a guided successor after divergence. Resource-policy execution can instead try the preferred domain candidate first and omit the optional native diagnostic only after complete resource acceptance. A rejected or infeasible domain candidate retains the same-source native fallback; omitted candidates have no inferred metrics.
+
+Automatic failure release makes the domain a revisable decision. If guided native search fails to return a capacity-feasible branch, search costs are reset and only that network's domain is removed. Previously successful restorations and their occupancy stay in the private transaction. Other networks remain guided. Search failure is an operational trigger, not itself a mathematical infeasibility certificate. A separate capacity diagnosis can justify a stronger statement for a particular fixed scope.
+
+\subsection{Complete checks, acceptance and restoration}
+All selected connections must be restored before acceptance. Independent checks validate real edges, unchanged retained branches and terminals, actual global capacities and resource counts. Native FULL and fresh STA evaluate the actual replacement. Acceptance commits the entire group; failure or rejection retains the source state. Intermediate private states may spend resources or slack when a complete mechanism-backed combination is subsequently checked. Requiring every component to improve CPD would exclude some useful groups.
+
+The prototype serializes candidates for separate native LOAD/FULL/STA. A subsequent implementation installs complete copies in the private worker, runs native FULL with a new STA object, and exports dedicated candidate trees and vectors. It restores source trees, sink lookups, occupancy, route digest and output hooks before reobserving the source. Tiny tests, a BNN resource transaction and a free-path CPD-changing transaction match independent same-binary candidate LOAD/FULL/STA, pass physical/scope checks and recover the exact source. Large CPD-changing forced-path transactions remain unvalidated.
+
+Loaded post-legal contexts reconstruct occupancy and native STA but reset the original route run's accumulated PathFinder price history. Matched native/domain controls share this context. An eventual in-router integration must explicitly preserve or reset that history and evaluate the choice.
+
+\section{Overall Development Results}
+The implementation derives from VTR revision \texttt{0b912334fdd83bb754b302146ac0d1ec9edc9a0e}. Results below use fixed-input serial clustered routing on the evaluated two-layer, edge-encoded Hybrid-O graphs, ideal clock modeling and native FULL/STA. Flat routing, CHANZ resources and arbitrary multilayer instances are outside this implementation evidence. Each record binds the exact graph, packing, placement, constraints, binary, requests and acceptance rule. A0 is native routing; R1 is the older guided method. Strong BNN A0/R1 roots additionally allow eight native convergence attempts with a 1.01 reconvergence threshold. BNN has no supplied SDC: native default constraints use one ideal ap\_clk domain, zero input/output delay and zero setup/hold constraints; exact constraint echoes are bound. Archived U and Tf predecessors remain separate input/version/convergence records, not interchangeable points in a new algorithm's aggregate score.
+
+\begin{table}[t]
+\centering\caption{BNN legal quality points. Fast A0 follows three automatically selected timing commits from pristine strong A0. Resource phases have their own explicitly recorded opportunities. This is a quality comparison, not a matched-compute algorithm ranking.}
+\label{tab:bnn}
+\small
+\begin{tabular}{lrrrr}\hline
+State & CPD(ns) & Wire & SB & CB\\\hline
+Strong A0 &13.607436&2059567&94&5062\\
+Strong R1 &13.421610&2068908&86&5072\\
+A0 native K8 (end) &13.607436&2059591&82&5062\\
+A0 guided K8 (end) &13.607436&2061353&43&5060\\
+Fast A0/native K8 &13.228146&2059603&86&5062\\
+Fast A0/guided K8 &13.228146&2059882&79&5061\\
+Fast R1/guided K8 &13.228146&2069040&74&5071\\
+Full native + timing &13.228146&2059627&82&5062\\
+Full guided + timing &13.228146&2061389&43&5060\\
+45 SB vector feedback &13.599798&2061253&45&5060\\
+45 SB vector-rejected &13.413972&2061257&45&5060\\
+R1 selective release &13.228146&2069104&72&5071\\
+R1 fixed-seed K8 &13.421610&2070629&33&5071\\
+Budget64 (local) &13.607436&2061036&47&5060\\\hline
+\end{tabular}
+\end{table}
+The strong-A0 timing trajectory accepts three current-state transactions and reduces CPD by 2.787376\%, adding forty wire units with SB/CB unchanged. Its third step improves CPD but regresses a noncritical setup component, making the distinction between strict CPD and endpoint-vector policies observable. The same-source fixed-vertical policy independently selects the identical three states using exact completed-query/transaction reuse; its replay time is not evidence of speedup.
+
+From fast A0, native K8 ends at 86 SB/2059603 wire; guided K8 spends 279 more wire for 79 SB/5061 CB. Conversely, timing after a historical two-accept resource-first 79-SB prefix reaches 13.228146 ns under those vertical caps and the original wire envelope. Its final nine-network/twelve-connection exchange spends 1.114955 ns of noncritical margin for a 0.185826 ns critical gain. Strict CPD accepts while the vector control rejects; the phase has eleven setup improvements, seventeen regressions and no hold-violation increase. Final quality/vectors match timing-first/guided-K8 despite different ordered bytes: convergence to a known point, not an order-commutation theorem. Complete chains below supersede these historical prefixes as native bounds. All ten winning switch distances equal optimistic source-only references; occupancy/shared-tree/native-arithmetic relaxations prevent a global native-STA bound.
+
+\begin{table}[t]
+\centering\caption{Eltwise fixed-seed K8 controls from the same pristine A0 root, using uniform grouping and acceptance. Both branches use their own successors.}
+\label{tab:eltwise}
+\small
+\begin{tabular}{lrrrr}\hline
+State & CPD(ns) & Wire & SB & CB\\\hline
+Strong A0 root &6.018101&217065&30&968\\
+Native K8 &6.018101&217050&26&968\\
+Paired fixed-seed K8 &6.018101&217183&24&965\\\hline
+\end{tabular}
+\end{table}
+Eltwise guided K8 uses actual group sizes six then three. It saves one additional SB relative to the prior guided K4 endpoint, with identical CPD, wire and CB. No failure release triggers in this circuit, so the gain is attributed to grouping/domain decisions rather than fallback. The native-only branch accepts one move, then rejects three legal but resource-worse alternatives; these rejected candidates remain recorded. On SPMV, paired and native-first R1 repair produce the same legal route at 7.045986461 ns,148605 wire,zero SB and 967 CB, but remain quality-dominated by strong A0. Initial routability and a circuit-balanced timing improvement across the suite have not been established by these repair probes.
+
+\section{Pareto Tradeoffs and Attribution}
+\begin{figure*}[t]
+\centering\includegraphics[width=.98\textwidth]{data/joint_quality_projection_19.pdf}
+\caption{Archive 473 contains 299 BNN observations on one physical-input identity, including strong A0/R1/U/Tf, complete resource-first timing, independent 45 SB feedback and all legal candidates of the six completed fixed-seed resource roles. Duplicate quality tuples are collapsed to 183 plotted coordinates. Distinct roots, convergence rules and opportunities remain in the accompanying data. These are not two-dimensional Pareto boundaries: other resource coordinates and complete time are hidden.}
+\label{fig:joint}
+\end{figure*}
+Table~\ref{tab:bnn} and Fig.~\ref{fig:joint} retain external strong baselines. The fast A0 native-K8 point quality-dominates the earlier slower A0 guided-K4 point, which had the same 86 SB and 5062 CB but wire 2059667. Slower native-first low-wire states and the CB 5059 reassignment state retain distinct resource tradeoffs; the new timing prefix quality-dominates several CB 5060 predecessors. Quality domination is not sufficient for a complete-runtime claim when comparable time is missing.
+
+\subsection{Extending the native control changes the comparison}
+The completed native-order resource cohort ends at 13.607436067 ns for both own-current branches. The unrestricted control makes five accepts, using 2059591 wire,82 SB and 5062 CB. The paired domain/failure-release branch makes nine accepts, using 2061353 wire,43 SB and 5060 CB. Its additional 1762 wire units buy 39 fewer SB and two fewer CB. Both exhaust their registered current menus; historical two-accept points are prefixes, not native resource bounds. Native and paired workflows cost 2061.28 and 7293.64 s and create nine and nineteen native children respectively. The paired branch pays its additional searches; these imported-state measurements are not equal-compute or cold whole-configuration timing.
+
+Continuing from each completed resource endpoint, three strict current-STA commits reach the identical 13.228145690 ns CPD. The native branch uses 2059627 wire/82 SB/5062 CB; the paired branch uses 2061389/43/5060. The extra 1762 wire units still buy 39 SB and two CB, now at the faster timing point. Both are nondominated in the collected four-axis population and both timing menus terminate. Full-vector comparison has 550 setup improvements and 799 regressions, so equal CPD does not imply endpointwise dominance. The native imported timing phase costs 3093.90 s; the paired recovery segment costs 450.11 s, with original interrupted elapsed time unknown. Those durations are not comparable complete costs.
+
+A separate historical composition starts from the earlier seven-accept 45-SB/5060-CB prefix. Three strict repairs reach 13.228145690 ns at 2061301 wire/45 SB/5060 CB in 3028.24 s of imported repair. This prefix is not the final 43-SB resource input. Its full-vector branch accepts none of six proposals in 2747.93 s: one target improves physically but leaves the endpoint vector unchanged because another tied path remains; larger combinations worsen donors.
+
+Same-source rejection feedback removes actions whose donors increased delay, then jointly covers two tied-path targets with three donors. The actual five-connection transaction reaches 13.599797732 ns, a 7.638334 ps gain, at 2061253 wire/45 SB/5060 CB. All ten changed setup components improve, none regress, and no hold violation increases; both unchanged strict and full-vector policies accept. The 434.52 s intervention includes preparation, native coordination and candidate evaluation. Its lower wire use retains a distinct four-axis nondominated point despite slower CPD than the 43-SB branch. This validates one feedback-selected combination. From its actual successor, a twelve-connection current-owner exchange reaches 13.413972155 ns at 2061257 wire/45 SB/5060 CB: 40 fewer wire than the earlier equal-timing/vertical point and 36 fewer than a new combined candidate. One setup component improves and one regresses, remaining 2.487 ns above the new worst; no hold violation increases. Strict CPD accepts but the registered vector branch rejects. Both exchange orders yield identical ordered route bodies and full vectors. The 409.82 s transaction excludes preparation. The controller terminates after thirteen proposals with only the known feedback commit; all six successor candidates fail its policy. Its 3755.45 s imported execution includes seven native coordinators and the repeated primary, alongside six historical transaction reuses. Initial routing and historical creation remain excluded.
+
+\subsection{Automatic transfer exposes retained-tree order sensitivity}
+With delay/RR-ID seeds fixed globally, eltwise native/domain roles end at 217050/217183 wire,26/24 SB,968/965 CB and 6.018101129 ns in 123.75/126.10 s of imported work. BNN A0 ends at 2059591/2061377 wire,82/43 SB,5062/5060 CB and 13.607436067 ns in 2076.31/7099.32 s. Paired wire decreases by 8 on eltwise but increases by 24 on BNN versus native-order predecessors. Six of eight root/control roles are sealed on two circuits; roots are not independent circuit samples.
+
+The earlier 217214-to-217191-wire change follows source traversal order. First candidates/vectors and second requests/domains agree. Canonical, native-serialized and native-with-only-6719-canonical interventions reproduce old/new/old trees and vectors under FULL/STA and recovery checks. Seed contents agree; traversal differs. This does not establish equal weighted costs or heap ties, so ordered bytes remain in identity.
+
+\subsection{An explicit seed policy removes the observed ambiguity}
+Explicit RR-ID or physical-delay/RR-ID seed order preserves membership, native costs and physical checks. Six eltwise source-by-policy transactions match complete trees, vectors and sink-cost traces across canonical/native-serialized inputs. RR-ID yields 217214 wire; delay/RR-ID yields 217183 with 24 SB/965 CB and unchanged CPD, saving 8/31 wire versus native-serialized/canonical results. Three later cost rows differ, including retries; equal-cost ties alone are insufficient. Twelve native and six tiny regressions check defaults and restoration; A0/R1/Tf fix delay/RR-ID globally.
+
+
+\subsection{A connection budget exposes another resource tradeoff}
+A variant caps current-ranked connections at 64 without splitting cuts; if none fits, the first indivisible cut runs alone. At one BNN 48-SB state it selects network 4111's 54 connections versus the original three-network/462-connection group. OFF adds one SB and improves 85 setup components without regressions. ON spends 40 wire, reaching 2061036 wire/47 SB/5060 CB at unchanged 13.607436067 ns; setup 57 improve/24 regress, with no hold violation increase. Resource acceptance passes, vector acceptance rejects. This nondominated point saves 177 wire versus the larger native 47-SB result at 2061213 wire; larger guided 45 SB/2061285 wire remains a tradeoff. Query cores 51.31/60.11 s versus historical 509.71/476.90 s are component observations. Shared imported-scope execution 948.00 s includes actual loads/checks but excludes preparation/initial routing; it is not a complete budgeted trajectory or full-flow speedup.
+
+The same globally fixed delay/RR-ID seed policy also completes an R1-rooted paired K8 resource trajectory. Eight commits reduce 86 SB/5072 CB to 33 SB/5071 CB while preserving 13.421610490 ns; wire increases by 1721 to 2070629, within the fixed root envelope. Its 37-SB intermediate and 33-SB final point are distinct nondominated quality coordinates. At rounds 4--7, matched unrestricted candidates from the paired branch's current states fail the resource rule while guided candidates pass; this establishes local domain contributions. The own-current R1-native trajectory remains checkpointed, so full-trajectory superiority is unproven. All eighteen legal candidates, including degraded and rejected alternatives, remain in the archive. The sealed imported workflow takes 5046.61 s and nineteen native children; complete cold time is unknown. The same fixed policy completes twelve Tf commits, reducing 105 SB/5062 CB to 43 SB/5060 CB at unchanged 13.421610490 ns, adding 1721 wire to 2076038. All twenty-four legal candidates remain archived. Its 6752.95 s imported trajectory is dominated by the existing 43-SB strong-A0 timing result; Tf-native checkpoint closure remains pending.
+
+\subsection{Capacity feedback changes the domain decision}
+An all-eight-domain R1 transaction fails at network 31767/pin 1 after five successful restorations. A directed path exists when occupancy is ignored. Under the recorded transient occupancy, the retained domain has no capacity path while an unrestricted witness exists. Reconstructing the minimum occupancy immediately after pruning also leaves no domain-capacity path. Because subsequent restorations only add occupancy, changing order or search pressure cannot fix this particular frozen scope/domain. The diagnostic searches a relaxed superset of native re-expansion/closure choices; its negative result is a necessary infeasibility certificate for that scope, not for the entire FPGA.
+
+Releasing only that network's domain yields a fully legal state at 72 SB, compared with 74 SB for the same-source unrestricted control, at the cost of 64 wire units and unchanged CPD/CB. The automatic native release implementation obtains exactly the prior selective-domain route and full endpoint vectors without a manually supplied release network or restarting earlier restorations. Nine setup components improve and none regress, so endpoint-vector acceptance succeeds while strict CPD rejects. All 23 components in a fixed source near-critical band stay unchanged. This step demonstrates resource and secondary-timing benefit, not later CPD improvement.
+
+\subsection{Grouping contribution}
+The first fast-A0 native K8 group exactly matches two K4 steps in routes and vectors. The first K4 component is endpoint-flat and rejected; the full K8 group improves one setup component without regressions. This supports whole combinations, not a pristine-root endpoint-policy trajectory.
+
+\section{Overhead, Limitations and Next Confirmation}
+Table~\ref{tab:completecost} reports full current-binary configurations from architecture, BLIF, packed netlist and placement through graph construction, fresh routing and complete K8/rank 3 repair. Each circuit's initial route bodies and full vectors match across controls; one Census binary performs routing, repair and candidate STA. On eltwise, native accepts once in four scopes and domain-first twice in two. Pairing spends 133 wire for two fewer SB and three fewer CB; fixed seeds save 31 wire relative to native traversal.
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\caption{Complete serial configurations. N/D: native-only/domain-first. Seeds are delay/RR-ID except $^\dagger$native traversal. Fused/lazy denote domain-first execution variants. PSS is sampled process-tree sum in GiB.}
+\label{tab:completecost}
+\begin{tabular}{lrrrr}\hline
+Circuit/role & CPD(ns) & Wire/SB/CB & Time(s) & PSS\\\hline
+Eltwise N&6.018101&217050/26/968&290.19&1.274\\
+Eltwise D&6.018101&217183/24/965&289.21&1.302\\
+Eltwise D$^\dagger$&6.018101&217214/24/965&289.66&1.297\\
+SPMV N&7.034698&148463/0/967&91.69&1.010\\
+SPMV D&7.034698&148463/0/967&91.55&1.034\\
+Softmax N&8.975747&169486/3/713&274.22&2.502\\
+Softmax D&8.975747&169486/3/713&336.68&2.534\\
+Eltwise fused&6.018101&217183/24/965&313.74&1.296\\
+Eltwise lazy&6.018101&217183/24/965&203.48&1.310\\\hline
+\end{tabular}
+\end{table}
+
+The fixed policy also completes both roles on SPMV and softmax. SPMV has no eligible reusable-crossing cut: both flows retain 148463 wire/0 SB/967 CB with zero repair, so there is no domain intervention or inferred global optimality. On softmax, both controls commit once, reducing 6 SB to 3 and wire 169490 to 169486 at unchanged 8.975747257 ns and 713 CB. Domain-first pays two native transactions versus one, adding 62.46 s in this observation without additional quality benefit. No failure release triggers in these three circuits. These known-circuit transfer checks support resource-refinement scope, not universal domain gains or unseen-test confirmation.
+
+Fused same-process candidate FULL/STA preserves all four candidate vectors, ordered routes, decisions and final quality, but costs 313.74 s versus 289.21 s for separate LOAD/STA. Its two source-serialization controls cost 41.90 s inside the full command; fewer native processes do not establish speedup. Acceptance-ordered execution instead computes ON first and skips two OFF diagnostics only after legal resource acceptance. Every executed candidate and selected state matches exactly; queries fall from 64 to 32 and attempts from 101 to 51. Complete elapsed time is 203.48 s, 85.74 s (29.65\%) less in this observation. Historical matched controls remain preserved; skipped outputs are not imputed. The fixed schedule transfers to softmax with exact executed states: 271.70 versus 336.68 s, skipping one OFF. SPMV has no eligible cut or skipped work and takes 93.15 versus 91.55 s. These are single development observations, not statistical speedups.
+
+All commands count accepted/rejected candidates, FULL/STA, physical checks, restoration and final gates, without external route/query/candidate reuse. GNU RSS high-water spans 0.993--2.241 GiB. Half-second tree sampling may miss peaks; missing reads total nine across eleven configurations and remain explicit per run. Packing/placement generation is upstream. Eleven configurations cover three circuits, with one shared-host observation each and uncontrolled OS cache; timings are descriptive, not statistical speedups.
+
+Separate legacy serial native-order, no-failure-release configurations use two explicitly bound binaries. Their native/paired build-mode times are 288.49/292.47 s for 217050/217214 wire and the same corresponding vertical counts. Graph-only reuse gives 221.11/226.35 s, preserving every initial/intermediate/final vector, ordered route, request and decision, including rejects. Observed decreases of 67.38/66.12 s exclude supplied graph construction, measured separately at 62.09/61.48 s. Each configuration has one observation. Legacy cache times do not belong to the new 217183-wire output; complete pooled-strategy costs remain pending.
+
+Timing improvements concentrate in BNN; resource transfer does not establish initial routability. K1/K4/K8 and scheduling pilots are distinct configurations. Pooled complete time remains unknown. Confirmation must freeze circuit-independent rules, extend circuits/seeds/architectures, and match A0/R1/native tree scope, targets, domains and acceptance opportunities. Local causal controls complement that whole-algorithm evaluation.
+
+\subsection{An exact streaming decoder improvement}
+A streaming pin reader reduces two 357.20 MiB traces from 11.48/10.80 to 5.10/5.31 s and memory from 1.73 to 0.18--0.21 GiB. Full vectors and 52,495 setup components agree; corruption guards remain. These are component measurements.
+
+\subsection{Native counting targets measured validation overhead}
+In the 2061.28 s imported BNN workflow, worker requests cost 572.64 s; repeated materialization/audit, reconstruction and tree checks dominate the remainder. Native census matches independent resource counts without changing routes/frontiers/cost traces. Deferred private audit retains final independent audit and rejects seven invalid publication cases; whole-trajectory equivalence and pooled cost remain pending.
+
+\subsection{Direct audit avoids another candidate serialization}
+Direct auditing validates actual candidate identity, restoration, terminals, retained edges, untouched networks and capacity without another serialization. Six transactions and six corruption guards pass; domain/FULLSTA checks remain. Three completed roles on two circuits now preserve all sixteen legal candidates, including rejects: full endpoint vectors, ordered route bodies, requests, domains and decisions match exactly. Imported old/direct durations are 123.75/101.02 s and 126.10/100.33 s for eltwise native/paired, and 2076.31/1804.56 s for BNN native. These single observations exclude fresh routing and are not statistical speedups. BNN paired closure and forced reservations remain outside this evidence.
+
+Reproduction starts from the source and input bindings in \path{multiobjective_budget_and_lazy_transfer_01/completion.json}; its archive preserves all 473 observations, including dominated and failed-policy legal candidates. The accompanying projection and feedback receipt distinguish final states, interrupted costs and historical prefixes.
+
+\section{Conclusion}
+Current-STA whole transactions expose timing--resource alternatives that strict CPD retention misses. Complete resource-first repair preserves 39 fewer SB and two fewer CB at equal CPD for 1762 extra wire units; tied-path rejection feedback also enables an exact full-vector improvement on a distinct input. R1-rooted refinement extends the observed low-vertical frontier to 33 SB. Matched native controls separate selection and grouping from retained-domain contributions. Acceptance-ordered execution removes unused control work while retaining exact selected states; broader frozen-policy confirmation and complete pooled-runtime measurements remain required.
+
+\begin{thebibliography}{2}
+\bibitem{vtr9paper} M. A. Elgammal et al., ``VTR 9: Open-source CAD for fabric and beyond FPGA architecture exploration,'' \emph{ACM Trans. Reconfigurable Technol. Syst.}, 2025, doi:10.1145/3734798.
+\bibitem{flatland} C. Hao, A. B. Kahng, B. Pramanik, and I. Youssef, ``Escaping Flatland: A placement flow for enabling 3D FPGAs,'' in \emph{Proc. ACM/IEEE DAC}, 2026, doi:10.1145/3770743.3804424.
+\end{thebibliography}
+\end{document}

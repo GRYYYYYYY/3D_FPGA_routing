@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "native_calls": 0,
+  "commands": [
+    {
+      "script": "current_sta_arrival_cone_compact.py",
+      "phase": "current_STA_selection",
+      "parser_returncode": 0
+    },
+    {
+      "script": "run_current_cone_capacity_queries_cold_v1.py",
+      "phase": "capacity_query",
+      "parser_returncode": 0
+    },
+    {
+      "script": "audit_current_cone_queries.py",
+      "phase": "capacity_audit",
+      "parser_returncode": 0
+    },
+    {
+      "script": "run_current_graph_relaxed_queries_cold_v1.py",
+      "phase": "relaxed_query",
+      "parser_returncode": 0
+    },
+    {
+      "script": "audit_current_cone_queries.py",
+      "phase": "relaxed_audit",
+      "parser_returncode": 0
+    },
+    {
+      "script": "derive_current_release_opportunities.py",
+      "phase": "current_owner_feedback",
+      "parser_returncode": 0
+    },
+    {
+      "script": "query_current_protected_critical.py",
+      "phase": "protected_query",
+      "parser_returncode": 0
+    },
+    {
+      "script": "plan_current_critical_group.py",
+      "phase": "current_group_plan",
+      "parser_returncode": 0
+    }
+  ],
+  "syntax_checked": [
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_group_feedback_cold_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_current_cone_capacity_queries_cold_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_current_graph_relaxed_queries_cold_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_complete_flow_critical_portfolio_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_complete_resource_timing_flow_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_complete_resource_timing_flow_v1.py"
+  ],
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_cold_timing_cli_integration_01.py": "8073902d23bc73cfbc3fa67196a82283cd6ee8a1a7441ab14fa8ef8c1192b34c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_group_feedback_cold_v1.py": "6561cad6c2a66df19fa8f2439774147fd7031719f22f5337fd3d84d8f6dd55ef",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_current_cone_capacity_queries_cold_v1.py": "a9dcf4c8a31351bbe4a255736f41798709da12eb86a6ab89e3071137006495fc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_current_graph_relaxed_queries_cold_v1.py": "6ab61c0cb123e8de8345be405979afd5df0a2ff91c5eb2a8e1de6a00ebd341bc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_complete_flow_critical_portfolio_v1.py": "bd09fa9353c2f329cc14588820121ca68d03d4a3f95da2b4f98f4f731a012c3a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_complete_resource_timing_flow_v1.py": "64edc411e2628a235016b30f674ca70528e834bf03deb34e4add46e711214583",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_complete_resource_timing_flow_v1.py": "cc31c6027e83a31fef0a41ddf274f966531dd0a42738b52444f203de2dd7247a"
+  },
+  "qualification": "Only parser integration, source scoping and syntax for the new complete-flow wiring. All eight generated command parsers accept their exact arguments; implicit historical query lists removed and explicit reuse confined to the actor. No native route, graph build, query execution, default/candidate equivalence, final QoR or full performance is inferred. Actual complete configuration remains required."
+}

@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "first_accepted_transition": {
+    "attempt_key": "575a1d6cf3c58efcd5ce60a639f1b5dc4abf67e9483d0bb6855774898d96229f",
+    "round": 0,
+    "proposal": "same_source_rejection_feedback",
+    "before_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_02/full_observation",
+    "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vector_feedback_subset_native_recovery_01/transaction/current_group_evaluation",
+    "accepted": true,
+    "policy_accepted": true,
+    "already_visited": false,
+    "reason": "Exact policy conditions satisfied",
+    "before_CPD_s": 1.3607436066820355e-08,
+    "after_CPD_s": 1.3599797732410934e-08,
+    "before_resources": {
+      "wirelength": 2061265,
+      "SB_pairs": 45,
+      "CB_sources": 5060
+    },
+    "after_resources": {
+      "wirelength": 2061253,
+      "SB_pairs": 45,
+      "CB_sources": 5060
+    },
+    "reused_native": true
+  },
+  "source_constraints_and_root_budget_unchanged": true,
+  "known_transaction_reused": true,
+  "new_independent_sample": false,
+  "removed_current_targets": [
+    [
+      73896,
+      1
+    ]
+  ],
+  "added_current_targets": [
+    [
+      68612,
+      1
+    ]
+  ],
+  "next_state_selection_verified": true,
+  "next_round_quality_pending": true,
+  "repeated_primary": {
+    "full_vector_exact": true,
+    "ordered_route_body_exact": true,
+    "actual_complete_child_costs": [
+      {
+        "tag": "000_01_prepare",
+        "status": "completed",
+        "returncode": 0,
+        "command": [
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/prepare_native_group_step_v2.py",
+          "--plan",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/endpoint/round_000/feedback/proposal/plan.json",
+          "--anchor-state",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_timing_headroom_02/full_observation",
+          "--output",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rejection_feedback_controller_dev_01/endpoint/round_000/proposal_01/transaction",
+          "--objective",
+          "weighted_soft"
+        ],
+        "complete_process_seconds": 25.95895718410611
+      },
+      {
+        "tag": "000_01_native",
+        "status": "completed",
+        "returncode": 0,
+        "command": [
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_registered_independent_transactions.py",
+          "--batch",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rejection_feedback_controller_dev_01/endpoint/round_000/proposal_01/transaction",
+          "--selector",
+          "compact"
+        ],
+        "complete_process_seconds": 413.4844908863306
+      }
+    ]
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rejection_feedback_controller_dev_01/endpoint/registration.json": "24a0ca56f6262d63f4fc84e3993125ed755dd440cfdac841c8c05acea796281b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rejection_feedback_controller_dev_01/endpoint/round_000/proposal_07/policy_decisions.json": "7ce4b4700fa270fb814d11ab85293ff5aa03622de9612e3e13cd64af11c7e14d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rejection_feedback_controller_dev_01/endpoint/round_000/proposal_07/native_reuse.json": "f41b02dabb3a78fc43057cdb20179ec457a47b960c01ea5acd68359588d4adb8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/endpoint/round_000/feedback/capacity/selection.json": "643143ab9c3c545c3cd92c44e080c74a590fefbcc696b2f5882db8b81ff33ed3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rejection_feedback_controller_dev_01/endpoint/round_001/feedback/capacity/selection.json": "9656262a46de0e7cc1c4315d83a4f30a4ad0d9395ef16af9f0809af9693c939c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rejection_feedback_controller_dev_01/endpoint/round_001/feedback/cone.json": "0abe279650ce91d584e3cda0eca34830109574af3aa1c4a36895e78c072afaef",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rejection_feedback_controller_dev_01/endpoint/round_000/proposal_01/transaction/current_group_evaluation/completion.json": "98a1c592d8c8c3548b405b6d59f66e460c170fdb6b848b566faed25452c494b9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/strict/round_000/proposal_01/transaction/current_group_evaluation/completion.json": "def7418bd210a043f0b96e7e03621a619333d9b0721efd180e28833136ea668b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rejection_feedback_controller_dev_01/endpoint/round_000/proposal_01/transaction/current_group_evaluation/endpoint_vector.json": "ff8251ae73a0d924b6459461538296c8d8ca2471a8f2ad131950482474293858",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/low_resource_dual_timing_02/strict/round_000/proposal_01/transaction/current_group_evaluation/endpoint_vector.json": "ff8251ae73a0d924b6459461538296c8d8ca2471a8f2ad131950482474293858"
+  },
+  "qualification": "Actual v5 policy accepts the exact known same-source feedback result, then reselects from its actual fresh STA. This verifies controller integration and target drift, not a new independent gain. One omitted transitive reuse caused an exact repeat of the old primary; its actual costs are preserved and not hidden."
+}

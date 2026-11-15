@@ -1,6 +1,6 @@
 # DAC 持续开发（本地 v13 派生）
 
-最新状态见 `CONTINUATION.json`、`live_handoff.json` 和 `paper/DEVELOPMENT_STATUS.md`；查询与层范围聚合分别见 `query_circuit_summary.json`、`scope_circuit_summary.json`。以下初期实验条目保留为历史入口，不能用其旧pending描述判断当前状态。
+最新状态优先见 [CURRENT_STATUS.md](CURRENT_STATUS.md) 及 [CURRENT_STATUS.json](CURRENT_STATUS.json)，当前六页正文与只读复核入口见 [paper/README.md](paper/README.md)；`CONTINUATION.json`、`live_handoff.json` 和 `paper/DEVELOPMENT_STATUS.md` 保留详细或历史记录；查询与层范围聚合分别见 `query_circuit_summary.json`、`scope_circuit_summary.json`。以下初期实验条目保留为历史入口，不能用其旧pending描述判断当前状态。
 
 授权与持续研究规则见 RESEARCH_PROTOCOL.md；最新研究记录见 RESEARCH_LOG.md。旧补充包中的日期/route次数/固定矩阵终止条件不再适用。所有新研究为后注册；原代码和结果不覆盖。该目录不是冻结确认版本。
 

@@ -1,0 +1,61 @@
+{
+  "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_recovery_01/bnn_R1_paired/round_007/candidate_00/reuse_on_evaluation",
+  "candidate_construction": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/R1_escape_owner_BFS_candidate_01",
+  "candidate_route": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/R1_escape_owner_BFS_candidate_01/candidate.route",
+  "candidate_route_sha256": "0c012043adbea4e49184fc9f39027223beb6a45386825cfa9f90ad9d5fe76d03",
+  "fixed_order": [
+    "BFS_candidate_LOAD",
+    "native_2pins",
+    "retained_CB_2pins"
+  ],
+  "target_net": 31767,
+  "owner_net": 62707,
+  "removed_pins": {
+    "31767": [
+      1
+    ],
+    "62707": [
+      1
+    ]
+  },
+  "queries": [
+    {
+      "net": 31767,
+      "pin": 1,
+      "raw_criticality": 0.4654093384742737
+    },
+    {
+      "net": 62707,
+      "pin": 1,
+      "raw_criticality": 0.2150898575782776
+    }
+  ],
+  "original_budget": {
+    "CPD_s": 1.3421610489672275e-08,
+    "wirelength": 2068908,
+    "SB_pairs": 86,
+    "CB_sources": 5072
+  },
+  "fixed_resource_limits": {
+    "wirelength": 2070977,
+    "SB_pairs": 86,
+    "CB_sources": 5072
+  },
+  "predecessor": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/R1_owner_release_joint_probe_01/queue",
+  "prepared_files": [
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/prepare_partial_escape_owner_intervention_01.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_partial_escape_owner_transactions_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_partial_escape_owner_domain_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/queue_partial_escape_owner_intervention_01.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_partial_escape_owner_intervention_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_serial_census_state_analysis_v1.py",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_resource_census_stage_01/binding.json",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_resource_census_stage_01/bin/vpr",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/R1_escape_owner_BFS_candidate_01/completion.json",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/R1_escape_owner_BFS_candidate_01/candidate.route",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/request.txt",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/domain_nets.txt",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/target_CB_sources.txt"
+  ],
+  "qualification": "Separate two-connection development intervention on prospectively selected owner; only target local pin plus owner pin, other target branches retained. One concrete deterministic same-layer BFS proposal is FULL/STA-evaluated first; then matched private-binary unrestricted/retained-CB-domain native searches on identical two-connection scope/current weights/ordering/envelopes. BFS construction changes search/objective, not only domain, and imported LOAD uses the explicitly different Census STA binary; equivalence is checked from actual physical/native evidence, never assumed. Compare against same-source whole-five-connection pair separately as scope intervention. No original actor commit, no selection over final quality, all failures/rejections retained. Global slot/predecessor ownership unchanged. Full configuration/cold speedup remains unknown; offline selection/construction and actual imported native/validation costs remain separate."
+}

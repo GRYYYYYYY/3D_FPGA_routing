@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/completed_resource_timing_dev_01/paired/round_002/proposal_01/transaction/current_group_evaluation",
+  "native_calls_new": 0,
+  "routed_nets": 78450,
+  "positive_excess_same_layer_target_nets": 0,
+  "certified_escape_cuts": 0,
+  "eligible_joint_groups": 0,
+  "selected_group": null,
+  "ranking": "decreasing crossing excess, increasing total connections, decreasing owner margin, decreasing target margin, target net, owner net, escape node",
+  "minimum_current_margin_ns": 0.2,
+  "resource_assurance": {
+    "passed": true,
+    "assurance_kind": "independent_physical_audit",
+    "independent_physical_audit": true,
+    "physical_metrics": {
+      "planar_wirelength_excluding_sb_half_nodes": 2061389,
+      "sb_pairs_used": 43,
+      "sb_pair_net_occupancy": 43,
+      "cb_crossing_output_sources_used": 5060,
+      "cb_crossing_output_source_net_occupancy": 5060,
+      "actual_crossing_edge_traversals": {
+        "OPIN->CHANY": 2490,
+        "OPIN->CHANX": 3037,
+        "CHANX->CHANX": 43
+      },
+      "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+    },
+    "resource_axes": {
+      "wirelength": 2061389,
+      "SB_pairs": 43,
+      "CB_sources": 5060
+    },
+    "evidence": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/completed_resource_timing_dev_01/paired/round_002/proposal_01/transaction/current_group_evaluation/runs/state/independent_audit.json",
+    "evidence_sha256": "6174e24eadcdf84352880d73c3a7e1d2b11c45e6f7d9880ec8533a22ec5caacb"
+  },
+  "complete_read_only_seconds": 19.556565813720226,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_escape_owner_selector_v1.py": "5a94142fa529bea1ce38498b9c3ea19e8981b924ce8a1830b47c0f70789400d0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/completed_resource_timing_dev_01/paired/round_002/proposal_01/transaction/current_group_evaluation/completion.json": "b8e47ecef0101ca676b860b6cfbb7a57ab69f4e1a4669f2f11ad4be415cf9f93",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/completed_resource_timing_dev_01/paired/round_002/proposal_01/transaction/current_group_evaluation/endpoint_vector.json": "e8bcd5b4324004d50750e70ddb8bfbf6258ab2aa5e50d3ba985c7984b8ce2276",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/completed_resource_timing_dev_01/paired/round_002/proposal_01/transaction/current_group_evaluation/runs/state/manifest.json": "5222cdb00d01e142e9b0be0153b5298b18411ddab50002dac73311e810ad9ccc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/completed_resource_timing_dev_01/paired/round_002/proposal_01/transaction/current_group_evaluation/runs/state/routed.route": "5fcf1878c297c5717bf2a7875b959e86a934905e22622453ae1b14a213f12e44",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/completed_resource_timing_dev_01/paired/round_002/proposal_01/transaction/current_group_evaluation/runs/state/native_sta_frontier.jsonl": "bd785e5be55da11b16de39d81a448f6ff9f63d580d1afcdddbf17b2cb10274c8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/completed_resource_timing_dev_01/paired/round_002/proposal_01/transaction/current_group_evaluation/runs/state/independent_audit.json": "6174e24eadcdf84352880d73c3a7e1d2b11c45e6f7d9880ec8533a22ec5caacb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_route_graph_cache_bnn_01/completion.json": "60cdcba600a58633f07f43f472706ab6ab6ae29dce74075e51e0eb2cd518dba8"
+  },
+  "artifact_sha256": {
+    "certificates.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "screens.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "groups.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "classifications.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "cache_identity.json": "6b957d7ed99c3daefdff03d34464651407a92029dc540ad0b62b4e967189dfbb"
+  },
+  "qualification": "Circuit-independent diagnostic selector over actual current route/graph/STA. Supported cut requires a SOURCE with one OPIN and unit-capacity same-layer channel exits all held by other nets; remaining exits cross away. A source-layer target then needs a distinct return crossing while others are frozen. Shared terminal classes are never treated as unit-capacity conflicts. Unsupported topology and unblocked/screen-rejected cases remain explicit. This does not certify global optimality, replacement feasibility or native QoR; all accepted transactions still require real complete native/capacity/FULL/STA checks. Ownership census/cache verification and screening are one-time research costs here, not measured complete algorithm times. No net/RR IDs or benchmark-specific thresholds hardcoded; no existing actor/rule changed."
+}

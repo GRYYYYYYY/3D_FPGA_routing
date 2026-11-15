@@ -1,0 +1,49 @@
+{
+  "supported": true,
+  "abstention_reasons": [],
+  "changed_connections": [
+    {
+      "net": 31767,
+      "pin": 1,
+      "delta_s": -8.88247253527652e-11,
+      "atom_edge_multiplicity_upper_bound": 1,
+      "current_setup_gap_to_worst_s": 7.175067651132849e-09,
+      "current_minimum_hold_slack_s": 3.424019068276607e-09
+    },
+    {
+      "net": 62707,
+      "pin": 1,
+      "delta_s": 1.8582579919268483e-10,
+      "atom_edge_multiplicity_upper_bound": 2,
+      "current_setup_gap_to_worst_s": 1.053475795487202e-08,
+      "current_minimum_hold_slack_s": 1.6276808789683628e-09
+    }
+  ],
+  "total_positive_timing_edge_perturbation_bound_s": 3.7165159838536965e-10,
+  "total_negative_timing_edge_perturbation_bound_s": 8.88247253527652e-11,
+  "setup_checks": [
+    {
+      "net": 62707,
+      "pin": 1,
+      "available_gap_s": 1.053475795487202e-08,
+      "total_positive_edge_bound_s": 3.7165159838536965e-10,
+      "passes": true
+    }
+  ],
+  "hold_checks": [
+    {
+      "net": 31767,
+      "pin": 1,
+      "available_hold_s": 3.424019068276607e-09,
+      "total_negative_edge_bound_s": 8.88247253527652e-11,
+      "passes": true
+    }
+  ],
+  "model_no_worst_setup_degradation": true,
+  "model_no_new_or_increased_hold_violation": true,
+  "model_screen_passed": true,
+  "original_worst_setup_paths_unmodified_under_model": true,
+  "native_FULL_STA_required": true,
+  "used_for_acceptance": false,
+  "qualification": "Fixed timing-DAG perturbation screen only. Every path accumulates at most the sum of positive/negative changed timing edges; any path containing a positive change has the recorded current setup gap, and any path containing a negative change has the recorded current hold slack. Distinct atom-driver/receiver combinations conservatively bound repeated cluster-connection contributions. Unknown mappings/constraints abstain. Zero RC, unchanged packed/placed/clock/logic mapping and exact declared connection changes are prerequisites. Endpoint vectors may trade setup slack. Native route legality, actual native arithmetic/STA and original envelopes remain independent mandatory gates; no tolerance or predicted quality substitutes for them."
+}

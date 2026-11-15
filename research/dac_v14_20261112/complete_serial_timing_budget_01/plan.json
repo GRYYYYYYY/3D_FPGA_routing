@@ -1,0 +1,23 @@
+{
+  "fixed_order": [
+    "sb_native",
+    "sb_domain"
+  ],
+  "cases": {
+    "sb_native": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_timing_budget_01/configs/sb_native.json",
+    "sb_domain": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_timing_budget_01/configs/sb_domain.json"
+  },
+  "predecessor": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_source_snapshot_01/queue",
+  "cpd_budget_percent": 102,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_complete_serial_timing_budget_01.py": "9bab2af42e984a392589c5f526b7c6e69cd7d2cb28559c65cd9b3f9d70b47f22",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_serial_timing_budget_resource_repair_v1.py": "48b71d426775006eab7d79fd9a3557791887e9607fb82865843cf3ae4bb7192b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_complete_serial_timing_budget_flow_v1.py": "64f4cb1c38c76097b777a59895da1a0b2300701bb95263cf48a4374d4a7314fc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_complete_serial_timing_budget_flow_v1.py": "89d38903b5482782af834b2bc3c85d72eb0699242d28f6d3baa11165ca609d75",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_complete_serial_timing_budget_policy_v1.py": "19ee51797a1915427889ceb29dcf4e658338e98e5426faeb3aaa04276ae5a396",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_timing_budget_01/configs/sb_native.json": "f4493e9c513f1cf34d070a381c410cc36cce519acc9218add6033fad1d76a303",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_timing_budget_01/configs/sb_domain.json": "eeb66ef797801aeb80c689956ee9f8814a95587da092e3f473c7dbfaf75c2cf9"
+  },
+  "hypothesis": "SB-only domain candidate996SB/6.114032391ns was rejected at root6.040485445ns. Test a fixed2 percent timing requirement on both own-current complete branches rather than treating that rejection as absence of all useful domain resource tradeoffs. Both may improve or regress; retain every actual legal point and full cost. This budget is development exploration, not independent confirmation.",
+  "qualification": "Independent SB-only development comparison with fixed102 percent actual fresh-root CPD budget, common root +0.1 percent wire cap and nonincreasing selected SB/CB objectives. Initial routing uses the same supplied physical inputs, original count2/seed11 and frozen Census binary as the completed hard-root-CPD controls. Only immutable CPD requirement changes; K8/rank3/.2ns/delay-RR-ID/lazy schedule unchanged. Both native/domain branches start at new routing and follow own-current accepted states, never borrow a rejected guided candidate. All actual graph-index build, route, repair, FULL/STA, physical/scope/domain checks, rejected/failed candidates, rollbacks and seals count inside each complete command. Budget chosen in development after observing a0.07355ns-over-cap3SB-saving legal candidate; no tuned-budget independence or held-out/statistical claim."
+}

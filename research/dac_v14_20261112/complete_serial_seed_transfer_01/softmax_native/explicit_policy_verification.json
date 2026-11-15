@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "complete_configuration_verified": true,
+  "cache_mode": "build_inside_flow",
+  "initial_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/softmax_native/flow/initial",
+  "final_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/softmax_native/flow/repair/round_000/candidate_00/reuse_off_evaluation",
+  "CPD_ns": 8.975747256556588,
+  "resources": {
+    "wirelength": 169486,
+    "SB_pairs": 3,
+    "CB_sources": 713
+  },
+  "accepted_steps": 1,
+  "attempted_scopes": 1,
+  "complete_wall_seconds": 271.7871804609895,
+  "waited_process_RSS_high_water_kib": 2349464,
+  "sampled_tree_RSS_peak_kib": 2645940,
+  "sampled_tree_PSS_peak_kib": 2590003,
+  "missing_memory_observations": 0,
+  "observer_CPU_seconds": 10.203955576999999,
+  "sample_interval_seconds": 0.5,
+  "stages": [
+    {
+      "phase": "build_audit_cache",
+      "status": "completed",
+      "returncode": 0,
+      "complete_process_seconds": 72.98918721452355
+    },
+    {
+      "phase": "build_full_cache",
+      "status": "completed",
+      "returncode": 0,
+      "complete_process_seconds": 67.12257947027683
+    },
+    {
+      "phase": "fresh_route_and_materialization",
+      "status": "completed",
+      "complete_process_seconds": 49.37270734086633
+    },
+    {
+      "phase": "resource_repair",
+      "status": "completed",
+      "returncode": 0,
+      "complete_process_seconds": 78.91743144392967
+    }
+  ],
+  "route_body_sha256": "dc9ca5110dc9c7a7013b4c91543a8bbcbb48275c277df5eeaaaaded619aed3e7",
+  "backend": "serial_domain_first_stop_on_resource_accept",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_complete_serial_lazy_policy_v1.py": "19ee51797a1915427889ceb29dcf4e658338e98e5426faeb3aaa04276ae5a396",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/softmax_native/completion.json": "fec24b3b40ca631551a635817a76f9b23818ac5811dd458d7c509defba83cdae",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/softmax_native/config.json": "4c212a9b53d3f2ae1691a58e007fbdeaa156c4d28985e7cb98c2e71fa010f301",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/softmax_native/flow/completion.json": "f9a3188098c16c11f03314186f54b0887e56bf164ecb0234d33374a4c533ad03",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/softmax_native/flow/repair/registration.json": "dee86e13143a58fad9ebb5c41b64f9b957d63f1a296cd5fe82399fcbca7e039e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/softmax_native/flow/repair/round_000/candidate_00/registration.json": "7194f4ed1a6b164aa455ca472d40b5d12b5fd97339d7e3c9b46ec4dd84ec3264",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/softmax_native/flow/repair/round_000/candidate_00/progress.json": "e09df0f5c4cd92a2a116ff6e2af20b310b759eeb408216d83ee6d999510f3f2e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/softmax_native/flow/repair/round_000/candidate_00/reuse_off/runs/state/manifest.json": "69397d18a00fff39457044f13d522335042774ce211a92a925c384a1d332d5c5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/softmax_native/flow/repair/round_000/candidate_00/reuse_off_audit/analysis.json": "a85c64057ae3bb4c388c96dbf2a83c686ed1d059703ac04a678156bd8beb19a6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/softmax_native/flow/repair/round_000/candidate_00/reuse_off_evaluation/runs/state/manifest.json": "3aac57d636c9ca0b3efeb998d0aabab0b1d86310e3cb1e27bfcc45574694af8c"
+  },
+  "qualification": "Actual complete current-binary serial configuration. Explicit seed and per-role domain-failure-release controls verified from registered roles and executed native environments; initial routing, native repairs and all candidate STA use the same frozen binary. Domain-first lazy execution stops after fully checked ON resource acceptance; skipped OFF diagnostics are counted without inferred metrics. Full native/domain branch opportunity and accepted successors stay as registered. No external route/candidate/query result reuse. Single shared-host development observation with sampled tree memory and uncontrolled OS cache; not a pooled-runtime or statistical speedup claim.",
+  "seed_order": "delay_rr_id",
+  "domain_mode": "unrestricted",
+  "domain_failure_release": false,
+  "one_binary_sha256": "cad1d5671ae5dbbe6c7fbdbf21243ed46f43a5d08dcd6b541d3f08b26b8c189a",
+  "actual_native_work": {
+    "optional_native_skipped": 0,
+    "native_transactions": 1,
+    "queries": 5,
+    "search_attempts": 7,
+    "domain_releases": 0
+  },
+  "structural_verification": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/softmax_native/completion.json"
+}

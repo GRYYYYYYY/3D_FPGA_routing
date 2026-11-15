@@ -1,0 +1,146 @@
+{
+  "passed": true,
+  "registered_roles": 4,
+  "completed_roles": 4,
+  "results": {
+    "spmv_native": {
+      "CPD_ns": 7.034697713237392,
+      "resources": {
+        "wirelength": 148463,
+        "SB_pairs": 0,
+        "CB_sources": 967
+      },
+      "complete_wall_seconds": 91.6937343776226,
+      "accepted_steps": 0,
+      "attempted_scopes": 0,
+      "actual_native_work": {
+        "native_transactions": 0,
+        "queries": 0,
+        "search_attempts": 0,
+        "domain_releases": 0
+      },
+      "sampled_tree_PSS_peak_kib": 1058703,
+      "missing_memory_observations": 0
+    },
+    "spmv_paired": {
+      "CPD_ns": 7.034697713237392,
+      "resources": {
+        "wirelength": 148463,
+        "SB_pairs": 0,
+        "CB_sources": 967
+      },
+      "complete_wall_seconds": 91.55052922666073,
+      "accepted_steps": 0,
+      "attempted_scopes": 0,
+      "actual_native_work": {
+        "native_transactions": 0,
+        "queries": 0,
+        "search_attempts": 0,
+        "domain_releases": 0
+      },
+      "sampled_tree_PSS_peak_kib": 1083981,
+      "missing_memory_observations": 0
+    },
+    "softmax_native": {
+      "CPD_ns": 8.975747256556588,
+      "resources": {
+        "wirelength": 169486,
+        "SB_pairs": 3,
+        "CB_sources": 713
+      },
+      "complete_wall_seconds": 274.218268904835,
+      "accepted_steps": 1,
+      "attempted_scopes": 1,
+      "actual_native_work": {
+        "native_transactions": 1,
+        "queries": 5,
+        "search_attempts": 7,
+        "domain_releases": 0
+      },
+      "sampled_tree_PSS_peak_kib": 2624007,
+      "missing_memory_observations": 0
+    },
+    "softmax_paired": {
+      "CPD_ns": 8.975747256556588,
+      "resources": {
+        "wirelength": 169486,
+        "SB_pairs": 3,
+        "CB_sources": 713
+      },
+      "complete_wall_seconds": 336.6788691096008,
+      "accepted_steps": 1,
+      "attempted_scopes": 1,
+      "actual_native_work": {
+        "native_transactions": 2,
+        "queries": 10,
+        "search_attempts": 14,
+        "domain_releases": 0
+      },
+      "sampled_tree_PSS_peak_kib": 2657141,
+      "missing_memory_observations": 2
+    }
+  },
+  "pairs": {
+    "spmv": {
+      "initial_ordered_route_and_complete_vector_exact": true,
+      "root_CPD_ns": 7.034697713237392,
+      "root_resources": {
+        "planar_wirelength_excluding_sb_half_nodes": 148463,
+        "sb_pairs_used": 0,
+        "sb_pair_net_occupancy": 0,
+        "cb_crossing_output_sources_used": 967,
+        "cb_crossing_output_source_net_occupancy": 967,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANY": 449,
+          "OPIN->CHANX": 582
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "paired_minus_native_resources": {
+        "wirelength": 0,
+        "SB_pairs": 0,
+        "CB_sources": 0
+      },
+      "paired_minus_native_CPD_ns": 0.0,
+      "observed_seconds_difference": -0.14320515096187592
+    },
+    "softmax": {
+      "initial_ordered_route_and_complete_vector_exact": true,
+      "root_CPD_ns": 8.975747256556588,
+      "root_resources": {
+        "planar_wirelength_excluding_sb_half_nodes": 169490,
+        "sb_pairs_used": 6,
+        "sb_pair_net_occupancy": 6,
+        "cb_crossing_output_sources_used": 713,
+        "cb_crossing_output_source_net_occupancy": 713,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 424,
+          "OPIN->CHANY": 352,
+          "CHANX->CHANX": 6
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "paired_minus_native_resources": {
+        "wirelength": 0,
+        "SB_pairs": 0,
+        "CB_sources": 0
+      },
+      "paired_minus_native_CPD_ns": 0.0,
+      "observed_seconds_difference": 62.4606002047658
+    }
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/compare_complete_serial_transfer_v1.py": "8784ff389143aa613644008ab1db397bab24bf2b770fdd3c95d5cc6e5ff67c81",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/plan.json": "c362a8543ac711d7fdddb08d05114254a6be4dca1e0a4128010029b82f15d08d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/queue/completion.json": "dfd4c2634464c172b970044d1723df7ab5155b3880831bf98dd51e701061692a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/spmv_native/explicit_policy_verification.json": "0d888d028b78285497decaf1ccbfdf93d6d73b7611545a9289497c1a7d8f4b51",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/spmv_native/config.json": "c2978a83e341a00579162a53dd9422cd38911134711ad27024af44f586aa62f7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/spmv_paired/explicit_policy_verification.json": "2f304f4500cc84265ef343cc5d6166107b1550f92c25b5789e0028744fae3119",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/spmv_paired/config.json": "895c5a516b08b40d491624f1054bf77780500561e566e54d7c4be7d54e89a857",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/softmax_native/explicit_policy_verification.json": "f832999e97ac7a238ddf148c56be2466f25e7e201ae371de61cde1e4eafff239",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/softmax_native/config.json": "15e5aed04a4836fdb31a49baf798deb5cb773cae5489c7a1b7d058b8f9fac292",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/softmax_paired/explicit_policy_verification.json": "8358fb8a92d2a744b2de26bdf8dda1bb028b79928f6e2564ed9c5ca5f9554f3b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_transfer_dev_01/softmax_paired/config.json": "8c1b9963dc2cbfc252ba4e4110f459f312e938b77745ccc3765bf93eaff26a14"
+  },
+  "qualification": "Two additional circuits with the prospectively fixed current-binary K8/rank3/delay-RR-ID policy, count2 fresh routing and actual own-current native/domain branches. Complete graph build, route, selection, every actual repair and final gate counted. Prior circuit diagnostics were known; this is transfer development rather than unseen held-out confirmation. Zero-scope/no-commit and rejected results retained. Per-configuration one shared-host observation with uncontrolled OS cache; no statistical speedup or generalization from circuit/role counts."
+}

@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "native_calls": 0,
+  "actual_native_case_all_disjoint_and_nested_costs_exact": true,
+  "metadata_reference_rows": 9,
+  "metadata_consumer_receipts": 6,
+  "actual_failed_protocols": [
+    {
+      "role": "sb_only",
+      "actual_transaction_failed": true,
+      "actual_complete_seconds": 1.349029475
+    },
+    {
+      "role": "cb_only",
+      "actual_transaction_failed": true,
+      "actual_complete_seconds": 5.230775523
+    }
+  ],
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/analyze_complete_BNN_case_cost_v2.py": "101a01fc758ee8aff922d55512bd769c86c7e2ed2a4107390e84d369f00c8821",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_native_cost_analysis_01/summary.json": "c23394e6c32be06c60e2dd91a5a3cf36604643462b845740b074ef53abe2d2ef",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_native_cost_replay_v2_01/summary.json": "63f9b52879780b099789436bcc7af0894d11243e5731db48c7d4a9c73d3b32cd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_native_cost_replay_v2_01/completion.json": "8102e99d3545736819dcc929742dfe7658041f3575abbfab05fd59c762aa3441",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/R1_crossing_source_probe_01/transaction/sb_only/runs/state/joint_native.log": "43b1328c5e6620263e9f75a2edde48516562131ecea51ada88053ba3282cab7c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/R1_crossing_source_probe_01/transaction/cb_only/runs/state/joint_native.log": "81beac73f1eb31636dbd40660215cb729700a6df70ee4c5889773bf8f3e7c4d5"
+  },
+  "qualification": "Read-only replay on one actual completed cold native measurement; no native run. All old disjoint/nested costs reproduce exactly. Actual failed transaction COMPLETE rows confirm the fallback elapsed field without inventing zero or omitting failure work. Metadata reference rows include full-cache parent references; unique consumer receipts distinguish actual consumers."
+}

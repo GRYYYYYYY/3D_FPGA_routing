@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "native_calls_new": 0,
+  "graph": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w100/hybrid_o/rr_graph.xml",
+  "graph_sha256": "f745f8bd2fedd310f3f47f068bd9a0a82d727633026bc83319332708f2eb17a2",
+  "exact_payload_files": 6,
+  "audit_sorted_keys_and_query_original_edge_order_both_exact": true,
+  "nodes": 10259388,
+  "edges": 50170546,
+  "new_shared_component_seconds": 405.8641852661967,
+  "old_component_phase_seconds": 941.9107465222478,
+  "complete_readonly_validation_seconds": 15.193618841469288,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/validate_joint_graph_indexes_BNN_v1.py": "ce110f0409cd43a1ef972c9ab1697783584c0b789913aa51d478edf4e147c927",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/build_joint_graph_indexes_v1.py": "526da6a89090b969e6dc84aa51dde691e1ed88af1e14763b0d08dff8d51508fb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_route_graph_cache.py": "acc4fe1a000c8551e1fd7451ff499cee0645dac045fafc054da2d2b92ccfb0ac",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/immutable_rr_audit_cache.py": "5b3095401e71ebd76dc13ea40f78e6b90cfa5288f99406389bdd60a4c9641bd8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/joint_graph_indexes_BNN_validation_01/completion.json": "4477fbf09ab91bb563044506b3e1c60b79894944bc996f56a7d0572ec833f114",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/completion.json": "81f1ca4f45376f144b1b11ba69793ae9bdaf74d9e071295034b357284a71fd26",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/resource_flow/graph_audit_cache/completion.json": "642b2fdd65848d451bfa8b63f322e6c903a520a9c4bee67ba195608fb3ad56de",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/resource_flow/full_graph_cache/completion.json": "cf3a74857689934ad3a039ac9dac36274b04ea85364bc0574d24929f1abdc411",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/physical_query_graph/completion.json": "62bc8d187dec7015cc767c13bb71b5b41996106e7ecf18789fca56f7799601ad"
+  },
+  "artifact_sha256": {
+    "payload_comparison.json": "51b1638305bf599a15928cf23c00cb31cf3eaaf4c6239392e2abca3783e48c8d",
+    "reader_receipt.json": "e17cca041de03fdaa196fe803bf43620616f82e322b70f789a84a14029d0f08b"
+  },
+  "qualification": "All six actual payload files are byte-for-byte equal to their independently built formats in the sealed full native BNN reference, including the complete physical query graph and its edge order; unmodified production FullRouteGraphCache independently loads/verifies the new caches. One known graph, not multiple circuit/architecture confirmation. New shared standalone build and old within-full-command three-build costs are descriptive component observations with uncontrolled host/cache; no subtracting component deltas into whole runtime, no actual new route quality or complete algorithm speedup. The planned full engineering control must generate fresh indexes inside its own measured command and compare actual downstream states/requests/native work."
+}

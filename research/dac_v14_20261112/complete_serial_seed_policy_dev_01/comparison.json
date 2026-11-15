@@ -1,0 +1,108 @@
+{
+  "passed": true,
+  "initial_ordered_route_and_complete_vector_exact": true,
+  "one_binary_for_route_repair_candidate_STA": true,
+  "results": {
+    "native_seed_paired": {
+      "seed_order": "native",
+      "domain_mode": "paired",
+      "domain_failure_release": true,
+      "CPD_ns": 6.018101128546505,
+      "resources": {
+        "wirelength": 217214,
+        "SB_pairs": 24,
+        "CB_sources": 965
+      },
+      "complete_wall_seconds": 289.6584450788796,
+      "waited_process_RSS_high_water_kib": 1069692,
+      "sampled_tree_PSS_peak_kib": 1359919,
+      "missing_memory_observations": 0,
+      "actual_native_work": {
+        "native_transactions": 4,
+        "queries": 64,
+        "search_attempts": 101,
+        "domain_releases": 0
+      }
+    },
+    "delay_seed_native": {
+      "seed_order": "delay_rr_id",
+      "domain_mode": "unrestricted",
+      "domain_failure_release": false,
+      "CPD_ns": 6.018101128546505,
+      "resources": {
+        "wirelength": 217050,
+        "SB_pairs": 26,
+        "CB_sources": 968
+      },
+      "complete_wall_seconds": 290.1924538835883,
+      "waited_process_RSS_high_water_kib": 1069840,
+      "sampled_tree_PSS_peak_kib": 1335391,
+      "missing_memory_observations": 1,
+      "actual_native_work": {
+        "native_transactions": 4,
+        "queries": 94,
+        "search_attempts": 154,
+        "domain_releases": 0
+      }
+    },
+    "delay_seed_paired": {
+      "seed_order": "delay_rr_id",
+      "domain_mode": "paired",
+      "domain_failure_release": true,
+      "CPD_ns": 6.018101128546505,
+      "resources": {
+        "wirelength": 217183,
+        "SB_pairs": 24,
+        "CB_sources": 965
+      },
+      "complete_wall_seconds": 289.2127254419029,
+      "waited_process_RSS_high_water_kib": 1069752,
+      "sampled_tree_PSS_peak_kib": 1365266,
+      "missing_memory_observations": 1,
+      "actual_native_work": {
+        "native_transactions": 4,
+        "queries": 64,
+        "search_attempts": 101,
+        "domain_releases": 0
+      }
+    }
+  },
+  "comparisons": {
+    "seed_effect": {
+      "before": "native_seed_paired",
+      "after": "delay_seed_paired",
+      "CPD_delta_ns": 0.0,
+      "resource_delta": {
+        "wirelength": -31,
+        "SB_pairs": 0,
+        "CB_sources": 0
+      },
+      "complete_wall_delta_seconds": -0.4457196369767189,
+      "scope": "One recorded development pair; same initial physical input/current binary/options. Final quality changes and time deltas preserved without assuming a winner."
+    },
+    "domain_effect": {
+      "before": "delay_seed_native",
+      "after": "delay_seed_paired",
+      "CPD_delta_ns": 0.0,
+      "resource_delta": {
+        "wirelength": 133,
+        "SB_pairs": -2,
+        "CB_sources": -3
+      },
+      "complete_wall_delta_seconds": -0.9797284416854382,
+      "scope": "One recorded development pair; same initial physical input/current binary/options. Final quality changes and time deltas preserved without assuming a winner."
+    }
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/compare_complete_serial_seed_policy_v1.py": "25b963b65441c09fbe4d56eb1d97caa6c9f115cdb6b15ec2096a9fed07841fa6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_policy_dev_01/queue/completion.json": "a912d300793fa005effa82aba9ec55f8d469703ce048d79af854178392d4d951",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_policy_dev_01/plan.json": "dc54dd2f583dbf4e9d00b990c085da0405d416a60a4cb76bfce0bfc390fd8c77",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_policy_dev_01/native_seed_paired/explicit_policy_verification.json": "e08a55b12994cb14236056d258422dff8480ef0b6f1c45f67f4fb458807b6c8c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_policy_dev_01/native_seed_paired/config.json": "851e03ba202d17718fe6f55bc0f4b0388db1cb60d6958258df4c542943ceda01",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_policy_dev_01/delay_seed_native/explicit_policy_verification.json": "bcaa8ed7eedb3dc491b11c8dce82b86227a506142f6da3a1bff52ac4fe6b9004",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_policy_dev_01/delay_seed_native/config.json": "ced46f91311eefa8e080e2e23bdc0dc0502e16991b391d76e103263c64abc400",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_policy_dev_01/delay_seed_paired/explicit_policy_verification.json": "56b4eb60f2d87936e9e4b8f78243564dfdbdf11c7c1fddecb4eb43d2f782457e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_policy_dev_01/delay_seed_paired/config.json": "744b1c1e6f5500b77c17d5b1c75e056fb6a21301e8a534b252b2d2088d0743ce"
+  },
+  "qualification": "Three development roles on one circuit, not three independent samples. Explicit seed effect isolated between paired roles; domain/failure-release effect isolated at fixed delay/RR-ID against own-current unrestricted control. All graph building, fresh routing, accepted/rejected candidates and final gates belong to each exact measured output. Shared host, uncontrolled OS cache and one observation per configuration; no statistical timing claim or transfer to pooled implementation costs."
+}

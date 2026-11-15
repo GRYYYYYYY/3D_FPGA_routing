@@ -1,0 +1,44 @@
+{
+  "pid": 2284792,
+  "start_ticks": "1949245653",
+  "prerequisite": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vector_then_strict_comparison_02/queue",
+  "prerequisite_owner": {
+    "pid": 2280016,
+    "start_ticks": "1949244849"
+  },
+  "fixed_order": [
+    "eltwise_A0_native",
+    "eltwise_A0_paired",
+    "bnn_A0_native",
+    "bnn_A0_paired"
+  ],
+  "connection_budget": 64,
+  "net_cap": 8,
+  "rank_windows": 3,
+  "seed_order": "delay_rr_id",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/queue_connection_budget_resource_02.py": "c5c9bb1fb6862d73b0651574014d8ae2ba83b224bcf96690dbe265001ef37223",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_connection_budget_resource_repair_v1.py": "218136f18fc943970f2f5c14eea64f933457c00576c67e17c898e8bd899aab03",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_resource_connection_budget_v1.py": "912d4fa38d7ba91cc8bcfc7cc5be6623f43a4d88bbc31e039cf51398f5cc687f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/connection_budget_grouping_validation_01/completion.json": "3a1ca49bea67d3d17bfdb08ae16033b4d088e08c610aeff8bb194aa84a36ff42",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vector_then_strict_comparison_02/queue/registration.json": "0af652c9bffa77383a8b02fc50ea4a4a8ca89956f156eadcb7ea09434fd28e85",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_dev_01/eltwise_A0_native/registration.json": "48407bbdb4d8608e6708c9bcce0aa3c481067b5fc7880fb6477ed55420b0d9a5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_dev_01/eltwise_A0_native/completion.json": "682f7704f12e30bfa271ea6f82684cece7923ce4c402b0e164cf1fce31596d6c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_dev_01/eltwise_A0_paired/registration.json": "5b6612fa4dc7120bb3dcbf4eb3cddf113bb834b981a83fb809fcdf1b7be44dc0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_dev_01/eltwise_A0_paired/completion.json": "b674229d5fe255ff2f669826b9a9bb3254639dc50872eca9f5702249ba94f33d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_dev_01/bnn_A0_native/registration.json": "9af16a2947b4b0b0f38297755ee0942790e2d451c2f60b9460f4bdf415b3a41b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_dev_01/bnn_A0_native/completion.json": "869428964d382d2eae927d850904e78aec984052fe67c55861726c5543e99d86",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_dev_01/bnn_A0_paired/registration.json": "457baf0458e9478398db24979a5c56ee0c631c7c275a76930354ae83ef3173ad",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_dev_01/bnn_A0_paired/completion.json": "7959777760277c6e3aff112cc89599fdebdc29de14bafaff32135f10d57dcca8"
+  },
+  "selection": "Preserve current ranking, skip cuts that exceed remaining connection budget, allow a later smaller cut of the same skipped network. Never split a cut. If no complete cut fits, take the first whole cut alone. Recompute selection after every commit.",
+  "comparison": "Original sealed K8 fixed-seed actors provide matched input/seed/domain references; both own-current native and paired modes are run with the new grouping. Prior timings are historical imported observations, not contemporaneous speedup controls.",
+  "limits": {
+    "native_workers_parent_plus_child": 2,
+    "other_registered_native_owners": 0,
+    "child_seconds": 1800,
+    "memory_bytes": 68719476736,
+    "disk_reserve_bytes": 85899345920
+  },
+  "qualification": "Fixed development grouping policy on two circuits; not an independent confirmation set or full cold timing. Actual native, FULLSTA, physical/domain and final context seals remain unchanged. No total trajectory step/call cap."
+}

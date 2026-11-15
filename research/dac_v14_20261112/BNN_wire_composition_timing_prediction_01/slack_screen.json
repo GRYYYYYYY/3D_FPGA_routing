@@ -1,0 +1,79 @@
+{
+  "supported": true,
+  "abstention_reasons": [],
+  "changed_connections": [
+    {
+      "net": 53617,
+      "pin": 2,
+      "delta_s": 9.291287739188192e-10,
+      "atom_edge_multiplicity_upper_bound": 1,
+      "current_setup_gap_to_worst_s": 8.65722560305926e-09,
+      "current_minimum_hold_slack_s": 4.17043599654221e-09
+    },
+    {
+      "net": 53617,
+      "pin": 6,
+      "delta_s": -3.7928993279479073e-10,
+      "atom_edge_multiplicity_upper_bound": 1,
+      "current_setup_gap_to_worst_s": 8.453109767714295e-09,
+      "current_minimum_hold_slack_s": 4.4745522842504215e-09
+    },
+    {
+      "net": 75108,
+      "pin": 2,
+      "delta_s": -9.291287739188192e-10,
+      "atom_edge_multiplicity_upper_bound": 1,
+      "current_setup_gap_to_worst_s": 7.996629136641786e-09,
+      "current_minimum_hold_slack_s": 4.550032350891797e-09
+    },
+    {
+      "net": 75108,
+      "pin": 3,
+      "delta_s": -9.291287739188192e-10,
+      "atom_edge_multiplicity_upper_bound": 1,
+      "current_setup_gap_to_worst_s": 6.881674341485677e-09,
+      "current_minimum_hold_slack_s": 4.258170704929398e-09
+    }
+  ],
+  "total_positive_timing_edge_perturbation_bound_s": 9.291287739188192e-10,
+  "total_negative_timing_edge_perturbation_bound_s": 2.237547480632429e-09,
+  "setup_checks": [
+    {
+      "net": 53617,
+      "pin": 2,
+      "available_gap_s": 8.65722560305926e-09,
+      "total_positive_edge_bound_s": 9.291287739188192e-10,
+      "passes": true
+    }
+  ],
+  "hold_checks": [
+    {
+      "net": 53617,
+      "pin": 6,
+      "available_hold_s": 4.4745522842504215e-09,
+      "total_negative_edge_bound_s": 2.237547480632429e-09,
+      "passes": true
+    },
+    {
+      "net": 75108,
+      "pin": 2,
+      "available_hold_s": 4.550032350891797e-09,
+      "total_negative_edge_bound_s": 2.237547480632429e-09,
+      "passes": true
+    },
+    {
+      "net": 75108,
+      "pin": 3,
+      "available_hold_s": 4.258170704929398e-09,
+      "total_negative_edge_bound_s": 2.237547480632429e-09,
+      "passes": true
+    }
+  ],
+  "model_no_worst_setup_degradation": true,
+  "model_no_new_or_increased_hold_violation": true,
+  "model_screen_passed": true,
+  "original_worst_setup_paths_unmodified_under_model": true,
+  "native_FULL_STA_required": true,
+  "used_for_acceptance": false,
+  "qualification": "Fixed timing-DAG perturbation screen only. Every path accumulates at most the sum of positive/negative changed timing edges; any path containing a positive change has the recorded current setup gap, and any path containing a negative change has the recorded current hold slack. Distinct atom-driver/receiver combinations conservatively bound repeated cluster-connection contributions. Unknown mappings/constraints abstain. Zero RC, unchanged packed/placed/clock/logic mapping and exact declared connection changes are prerequisites. Endpoint vectors may trade setup slack. Native route legality, actual native arithmetic/STA and original envelopes remain independent mandatory gates; no tolerance or predicted quality substitutes for them."
+}

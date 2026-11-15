@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "native_calls_new": 0,
+  "fixed_terminal_nets": 9903,
+  "nets_requiring_a_layer_crossing": 982,
+  "graph_crossing_edges": 579728,
+  "graph_crossing_sources": 67032,
+  "all_layer_crossings_are_unit_capacity_CB_sources": true,
+  "CB_occupancy_lower_bound": 982,
+  "observed_CB_occupancy": 982,
+  "bound_attained": true,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_cb_terminal_cut_bound_v1.py": "8cc7f3a82abc0d503cb553fd3e4e1a3dc80e95650a94fc6ca3319e107fe52dfd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_native/explicit_policy_verification.json": "abfb28700e08f15b5b7f0f743536b927619d47e80b340c07bb6482805b520222",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_native/flow/initial/completion.json": "cf68b976dc7034ed406c70230fb439c1b168c01a9798c808d6a9bf301efbb437",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_native/flow/initial/runs/state/manifest.json": "83ea664ec0338ebe692ab141743dae38c00c570dfd8793014e87a034fd40b77b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_native/flow/initial/runs/state/routed.route": "2ca1c89ab18397b5691ec6b415ce700b09bb0878f24c62e7d0cea03dd7c5a4a3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_native/flow/initial/runs/state/independent_audit.json": "3ee6b8837da102eaa52717e78169b36525e0c8e4385b18009f93630ac58c05ce",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_native/flow/graph_audit_cache/completion.json": "c0ad1806d41fb3b73751511f35bdaefa351a1ef1087fb0445b7083f5580bd564",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_native/flow/full_graph_cache/completion.json": "81c5e4b16c553906dd90a952ca05615c9e01c1f090118bd7c9f6e29c8eec6617",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cb_terminal_cut_bound_01/terminal_cut_witnesses.json": "750c1016692ff257661c5e17ce4425c5ba71ec665c59358d75c7942c5d1c5c7b"
+  },
+  "proof": "Every counted non-global net with fixed terminals on both layers requires a layer-crossing edge. All graph crossings leave unit-capacity OPIN nodes, so different nets cannot share a counted CB source. At least one distinct source per crossing net is necessary. The actual legal route attains that sum,982, with zero SB resources in this graph.",
+  "qualification": "Exact vertical-occupancy bound for the supplied two-layer CB-only graph, counted non-global net set and immutable packed/placed terminal RR mapping. This proves no vertical-count reduction under those fixed inputs; it is not a timing or wire bound, initial-routability guarantee, routing-global optimum, or bound after changing architecture, packing, placement or terminal mapping. Read-only one-time graph/route certificate, not measured algorithm work or a new benchmark sample."
+}

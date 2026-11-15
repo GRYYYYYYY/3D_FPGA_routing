@@ -1,0 +1,171 @@
+[
+  {
+    "tag": "source_serialization_control",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_crossing_source_seed_analysis_v1.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_recovery_01/bnn_R1_paired/round_007/candidate_00/reuse_on_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/source_serialization_control",
+      "--native-cases",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/source_empty_request.txt",
+      "--seed-order",
+      "delay_rr_id",
+      "--candidate-full-sta"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 193.5770361982286
+  },
+  {
+    "tag": "native_2pins_native",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_crossing_source_seed_analysis_v1.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_recovery_01/bnn_R1_paired/round_007/candidate_00/reuse_on_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/native_2pins",
+      "--native-cases",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/request.txt",
+      "--objective",
+      "weighted_soft",
+      "--seed-order",
+      "delay_rr_id",
+      "--candidate-full-sta",
+      "--expected-loaded-source-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/source_serialization_control/runs/state/candidate/routed.route"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 198.6991910636425
+  },
+  {
+    "tag": "native_2pins_audit",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_native_feedback_objective_cached.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction",
+      "--role",
+      "native_2pins",
+      "--cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rr_audit_cache_bnn_01",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/native_2pins_audit"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 38.534062925726175
+  },
+  {
+    "tag": "native_2pins_domain_audit",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_retained_crossing_domain.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction",
+      "--role",
+      "native_2pins"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 0.11619935557246208
+  },
+  {
+    "tag": "native_2pins_candidate_materialization",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/materialize_crossing_source_candidate_v1.py",
+      "--worker",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/native_2pins",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/native_2pins_evaluation",
+      "--audited-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/native_2pins_audit/candidate.route",
+      "--full-graph-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_route_graph_cache_bnn_01"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 111.50255123153329
+  },
+  {
+    "tag": "retained_CB_2pins_native",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_crossing_source_seed_analysis_v1.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/stable_seed_transfer_recovery_01/bnn_R1_paired/round_007/candidate_00/reuse_on_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/retained_CB_2pins",
+      "--native-cases",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/request.txt",
+      "--objective",
+      "weighted_soft",
+      "--seed-order",
+      "delay_rr_id",
+      "--candidate-full-sta",
+      "--expected-loaded-source-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/source_serialization_control/runs/state/candidate/routed.route",
+      "--explicit-crossings",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/target_CB_sources.txt",
+      "--crossing-domain",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/domain_nets.txt"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 192.1349270194769
+  },
+  {
+    "tag": "retained_CB_2pins_audit",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_native_feedback_objective_cached.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction",
+      "--role",
+      "retained_CB_2pins",
+      "--cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rr_audit_cache_bnn_01",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/retained_CB_2pins_audit"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 37.32675954326987
+  },
+  {
+    "tag": "retained_CB_2pins_domain_audit",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_partial_escape_owner_domain_v1.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction",
+      "--role",
+      "retained_CB_2pins"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 5.574876759201288
+  },
+  {
+    "tag": "retained_CB_2pins_candidate_materialization",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/materialize_crossing_source_candidate_v1.py",
+      "--worker",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/retained_CB_2pins",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/retained_CB_2pins_evaluation",
+      "--audited-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/partial_escape_owner_intervention_01/transaction/retained_CB_2pins_audit/candidate.route",
+      "--full-graph-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_route_graph_cache_bnn_01"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 112.25443099811673
+  }
+]

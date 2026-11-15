@@ -1,0 +1,164 @@
+{
+  "passed": true,
+  "execution_cohort_all_legal": true,
+  "registered_roles": 4,
+  "successful_legal_roles": 4,
+  "outcomes": {
+    "sb_native": {
+      "status": "complete_legal_configuration",
+      "architecture": "sb",
+      "CPD_ns": 6.040485445168997,
+      "resources": {
+        "wirelength": 227439,
+        "SB_pairs": 999,
+        "CB_sources": 0
+      },
+      "complete_wall_seconds": 424.5903935469687,
+      "accepted_steps": 4,
+      "attempted_scopes": 7,
+      "actual_native_work": {
+        "optional_native_skipped": 0,
+        "native_transactions": 7,
+        "queries": 115,
+        "search_attempts": 185,
+        "domain_releases": 0
+      },
+      "sampled_tree_PSS_peak_kib": 1333259,
+      "missing_memory_observations": 4
+    },
+    "sb_domain": {
+      "status": "complete_legal_configuration",
+      "architecture": "sb",
+      "CPD_ns": 6.040485445168997,
+      "resources": {
+        "wirelength": 227459,
+        "SB_pairs": 999,
+        "CB_sources": 0
+      },
+      "complete_wall_seconds": 533.5744794942439,
+      "accepted_steps": 2,
+      "attempted_scopes": 5,
+      "actual_native_work": {
+        "optional_native_skipped": 1,
+        "native_transactions": 9,
+        "queries": 188,
+        "search_attempts": 333,
+        "domain_releases": 0
+      },
+      "sampled_tree_PSS_peak_kib": 1344458,
+      "missing_memory_observations": 3
+    },
+    "cb_native": {
+      "status": "complete_legal_configuration",
+      "architecture": "cb_o",
+      "CPD_ns": 5.862299090608758,
+      "resources": {
+        "wirelength": 212511,
+        "SB_pairs": 0,
+        "CB_sources": 982
+      },
+      "complete_wall_seconds": 74.14957424625754,
+      "accepted_steps": 0,
+      "attempted_scopes": 0,
+      "actual_native_work": {
+        "optional_native_skipped": 0,
+        "native_transactions": 0,
+        "queries": 0,
+        "search_attempts": 0,
+        "domain_releases": 0
+      },
+      "sampled_tree_PSS_peak_kib": 775612,
+      "missing_memory_observations": 0
+    },
+    "cb_domain": {
+      "status": "complete_legal_configuration",
+      "architecture": "cb_o",
+      "CPD_ns": 5.862299090608758,
+      "resources": {
+        "wirelength": 212511,
+        "SB_pairs": 0,
+        "CB_sources": 982
+      },
+      "complete_wall_seconds": 72.45552078261971,
+      "accepted_steps": 0,
+      "attempted_scopes": 0,
+      "actual_native_work": {
+        "optional_native_skipped": 0,
+        "native_transactions": 0,
+        "queries": 0,
+        "search_attempts": 0,
+        "domain_releases": 0
+      },
+      "sampled_tree_PSS_peak_kib": 775596,
+      "missing_memory_observations": 0
+    }
+  },
+  "pairs": {
+    "sb": {
+      "quality_comparison_available": true,
+      "initial_full_vector_and_ordered_route_exact": true,
+      "initial_CPD_ns": 6.040485445168997,
+      "initial_resources": {
+        "planar_wirelength_excluding_sb_half_nodes": 227387,
+        "sb_pairs_used": 1012,
+        "sb_pair_net_occupancy": 1012,
+        "cb_crossing_output_sources_used": 0,
+        "cb_crossing_output_source_net_occupancy": 0,
+        "actual_crossing_edge_traversals": {
+          "CHANX->CHANX": 1012
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "domain_minus_native_resources": {
+        "wirelength": 20,
+        "SB_pairs": 0,
+        "CB_sources": 0
+      },
+      "domain_minus_native_CPD_ns": 0.0,
+      "observed_seconds_difference": 108.98408594727516
+    },
+    "cb": {
+      "quality_comparison_available": true,
+      "initial_full_vector_and_ordered_route_exact": true,
+      "initial_CPD_ns": 5.862299090608758,
+      "initial_resources": {
+        "planar_wirelength_excluding_sb_half_nodes": 212511,
+        "sb_pairs_used": 0,
+        "sb_pair_net_occupancy": 0,
+        "cb_crossing_output_sources_used": 982,
+        "cb_crossing_output_source_net_occupancy": 982,
+        "actual_crossing_edge_traversals": {
+          "OPIN->CHANX": 572,
+          "OPIN->CHANY": 464
+        },
+        "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+      },
+      "domain_minus_native_resources": {
+        "wirelength": 0,
+        "SB_pairs": 0,
+        "CB_sources": 0
+      },
+      "domain_minus_native_CPD_ns": 0.0,
+      "observed_seconds_difference": -1.6940534636378288
+    }
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/compare_complete_serial_architecture_transfer_v1.py": "ef76832089a4698f016a891304c862467a640a947966f7ef5f8572b40a8f6582",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/plan.json": "6b498dcfd04f8428f43f4de915ce52340e9303e73c222702273fc73ade217a35",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/queue/completion.json": "443bf4b02425594cc455a52cd93450ea723453934c246bbe281edd24ad24405d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/queue/results.json": "736c8d4ced2cd3fa8c1c3ba346835450cb6c539ec835a0d2566895ebce5929be",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/sb_native/config.json": "1eef44100627f441add3274af7d62bfabaa89d65a517334192a959586c0f3ff1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/sb_native/measurement/completion.json": "020f201bdfba65515606a23a9786dc4c98465c9de61cc0bab6bbceed44bef7f8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/sb_native/explicit_policy_verification.json": "9af5ff07812b69dd6ab04f1ed80bece5848d4f678aa56873decaf19c9dffae2e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/sb_domain/config.json": "335698087499f515f580257f276394a12d02686879e19efe821c1750a8887e74",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/sb_domain/measurement/completion.json": "1c12078fc35f6c398c406b776f8530a699aea4cf07113fc43659c466351fe8bf",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/sb_domain/explicit_policy_verification.json": "2f7a36c973868bd2b1b42580600a6f147e331ec3c252644d1c3d10e7afe2fb52",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_native/config.json": "22ec71e0c457ff4e4465dd8a1ba42352a0a190eafde00155f566b39f3fc5bb7c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_native/measurement/completion.json": "5b05c20ca94598b2e4a756e7661b9d93dc0c08bd435739d93c29c0a367befb33",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_native/explicit_policy_verification.json": "abfb28700e08f15b5b7f0f743536b927619d47e80b340c07bb6482805b520222",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_domain/config.json": "70b87b2aabc352f036c27d0bcc57577183ce714b6beb2bc69746023f7464cb77",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_domain/measurement/completion.json": "1708011ec9d8659a6dde6538e07b47a81a5602ef3136255ba4cbd7f05b9e03d7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_architecture_transfer_01/cb_domain/explicit_policy_verification.json": "f041be6bab5c6211ee3da6793d0a1c69b7077a2055fc3f276535e9dd25185ab0"
+  },
+  "qualification": "Verification of a prospectively fixed four-role alternate-3D-architecture transfer cohort; passed means records/identities verified, not that failed routing became legal. Failures retain their denominator and measured failed execution time without invented QoR. SB-only/CB-only share the pre-audited plane and fixed packing/placement; comparisons within each architecture use identical physical inputs/options and own-current branches. RR graphs are supplied upstream inputs; graph indexes, fresh routing and all actual repair/checking count inside each complete command. One known-circuit development observation per architecture/role, not held-out or statistical confirmation or equal silicon area."
+}

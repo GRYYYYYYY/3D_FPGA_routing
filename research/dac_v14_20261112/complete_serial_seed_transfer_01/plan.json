@@ -1,0 +1,32 @@
+{
+  "fixed_order": [
+    "eltwise_native",
+    "eltwise_domain",
+    "softmax_domain",
+    "softmax_native"
+  ],
+  "cases": {
+    "eltwise_native": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/configs/eltwise_native.json",
+    "eltwise_domain": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/configs/eltwise_domain.json",
+    "softmax_native": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/configs/softmax_native.json",
+    "softmax_domain": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/configs/softmax_domain.json"
+  },
+  "predecessor": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/budget47_current_timing_composition_01/queue",
+  "route_seed": 19,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_complete_serial_seed_transfer_01.py": "69dac8c22b4a7b5b209037e6310851a3c593ce66150f22db85f98d528ed54089",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_complete_serial_lazy_flow_v1.py": "9e78d8de626e4f7438c80e18f17c78c153c2f8dca70ae5a9b332a732c10af86a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_serial_lazy_resource_repair_v1.py": "1db3f5e8e39d6a7a03faecafb7fe8011364a852da63fd8820de61091da6e573a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_serial_lazy_resource_transactions_v1.py": "377c4fde711d478df2fadc66f1ba390c5302f8d6ffb2d17fb1438b42108ba00b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/resource_policy_scheduling_v1.py": "3bbd5829f281203558a745010e89122746acd1068e865bba065819d7426d4ae6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/lazy_resource_scheduling_validation_01/completion.json": "94aa7c8fd69b2ac90b01019fbeb74aeee2be982100ea23a7df74ffeb1f21fb47",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_complete_serial_lazy_policy_v1.py": "19ee51797a1915427889ceb29dcf4e658338e98e5426faeb3aaa04276ae5a396",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_complete_serial_lazy_flow_v1.py": "d4c7024c4c3c2f8768c056b3e2933c8355fee5c868d2f2fa837aecb98ae10f82",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/configs/eltwise_native.json": "083d7bed69c7aaad2aac3e9153b338477efa5a52ec32853c73a24b34ffd4f91a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/configs/eltwise_domain.json": "26275b38a0b2ce512d9db896c23b6ca8763a9cdc52028a4d9ed00ff064845f88",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/configs/softmax_native.json": "4c212a9b53d3f2ae1691a58e007fbdeaa156c4d28985e7cb98c2e71fa010f301",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_seed_transfer_01/configs/softmax_domain.json": "ea3d122fe6c7a809be531c8f1ee37f63647ade3a8384bbdcdf5b7d46ab0de3ad"
+  },
+  "hypothesis": "Test whether the already frozen resource/domain policy retains its observed quality tradeoffs when the initial router seed changes, without borrowing seed11 routes. Identical initial states falsify seed-only diversification for these fixed packing/placements and must not inflate independent sample counts.",
+  "qualification": "Four prospectively fixed complete configurations, two known circuits and one additional seed. Serialized after both 47SB timing arms with the same critical runner lock; no existing jobs or rules changed. Whole command time/memory and every actual quality state bound to its own configuration. All roles retained even on failure. Additional seed alone is not statistical or unseen-circuit confirmation."
+}

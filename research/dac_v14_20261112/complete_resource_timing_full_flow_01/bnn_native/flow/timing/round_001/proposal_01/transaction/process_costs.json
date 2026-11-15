@@ -1,0 +1,71 @@
+[
+  {
+    "tag": "current_group_native",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_independent_resource_state_analysis.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/timing/round_000/proposal_01/transaction/current_group_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/timing/round_001/proposal_01/transaction/current_group",
+      "--native-cases",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/timing/round_001/proposal_01/transaction/candidate.txt",
+      "--objective",
+      "weighted_soft"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 149.16499246656895
+  },
+  {
+    "tag": "current_group_audit",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_native_objective_cached.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/timing/round_001/proposal_01/transaction",
+      "--role",
+      "current_group",
+      "--cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/rr_audit_cache_bnn_01",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/timing/round_001/proposal_01/transaction/current_group_audit"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 39.93408435955644
+  },
+  {
+    "tag": "current_group_FULL_STA",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_independent_timing_cone_analysis.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/timing/round_000/proposal_01/transaction/current_group_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/timing/round_001/proposal_01/transaction/current_group_evaluation",
+      "--candidate-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/timing/round_001/proposal_01/transaction/current_group_audit/candidate.route",
+      "--full-graph-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_route_graph_cache_bnn_01",
+      "--timing-echo"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 217.03612641617656
+  },
+  {
+    "tag": "current_group_successor_selection",
+    "command": [
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_sta_arrival_cone_compact.py",
+      "--state",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/timing/round_001/proposal_01/transaction/current_group_evaluation",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_native/flow/timing/round_001/proposal_01/transaction/current_group_successor_cone.json"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 17.99550350382924
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/A0_observation",
+  "native_calls_new": 0,
+  "routed_nets": 78450,
+  "positive_excess_same_layer_target_nets": 42,
+  "certified_escape_cuts": 0,
+  "eligible_joint_groups": 0,
+  "selected_group": null,
+  "ranking": "decreasing crossing excess, increasing total connections, decreasing owner margin, decreasing target margin, target net, owner net, escape node",
+  "minimum_current_margin_ns": 0.2,
+  "resource_assurance": {
+    "passed": true,
+    "assurance_kind": "independent_physical_audit",
+    "independent_physical_audit": true,
+    "physical_metrics": {
+      "planar_wirelength_excluding_sb_half_nodes": 2059567,
+      "sb_pairs_used": 94,
+      "sb_pair_net_occupancy": 94,
+      "cb_crossing_output_sources_used": 5062,
+      "cb_crossing_output_source_net_occupancy": 5062,
+      "actual_crossing_edge_traversals": {
+        "OPIN->CHANY": 2491,
+        "OPIN->CHANX": 3038,
+        "CHANX->CHANX": 94
+      },
+      "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+    },
+    "resource_axes": {
+      "wirelength": 2059567,
+      "SB_pairs": 94,
+      "CB_sources": 5062
+    },
+    "evidence": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/A0_observation/runs/state/independent_audit.json",
+    "evidence_sha256": "de8e9c7c23f1be1c5fcbc4f2954f53ab0c21d3d90b3728c2ac441bc931a5356b"
+  },
+  "complete_read_only_seconds": 31.38297864794731,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/current_escape_owner_selector_v1.py": "5a94142fa529bea1ce38498b9c3ea19e8981b924ce8a1830b47c0f70789400d0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/A0_observation/completion.json": "fac9578aa0ddbd1cfa341b71a662d90422358458e45118a100696a545e467afe",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/A0_observation/endpoint_vector.json": "84ba71e9668e6535cf14aedc379a6a87c60da8c387bcf70436dd06bd1dd075ee",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/A0_observation/runs/state/manifest.json": "6634b26075f4dd736b6522663935519f8bcae585e08a34034733ce9c51172b38",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/A0_observation/runs/state/routed.route": "56b2cd98706266cd595f507d9f21b582d26f3245434bfd8e2881c15e2614305b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/A0_observation/runs/state/native_sta_frontier.jsonl": "193ec1fb142bf16479acc1c8a5b68b82e44fae66f8b917f0bff90c5622310e45",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_extra_opportunity_bnn_01/A0_observation/runs/state/independent_audit.json": "de8e9c7c23f1be1c5fcbc4f2954f53ab0c21d3d90b3728c2ac441bc931a5356b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/full_route_graph_cache_bnn_01/completion.json": "60cdcba600a58633f07f43f472706ab6ab6ae29dce74075e51e0eb2cd518dba8"
+  },
+  "artifact_sha256": {
+    "certificates.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "screens.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "groups.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "classifications.json": "2ebfc2caa3ae439fba3b8db42f2a827bf7d44e51940e56c6193125c89350a014",
+    "cache_identity.json": "9cef76f419b6d6605ebf19ba207e5b01f86b41c06e32582139662b188699fa99"
+  },
+  "qualification": "Circuit-independent diagnostic selector over actual current route/graph/STA. Supported cut requires a SOURCE with one OPIN and unit-capacity same-layer channel exits all held by other nets; remaining exits cross away. A source-layer target then needs a distinct return crossing while others are frozen. Shared terminal classes are never treated as unit-capacity conflicts. Unsupported topology and unblocked/screen-rejected cases remain explicit. This does not certify global optimality, replacement feasibility or native QoR; all accepted transactions still require real complete native/capacity/FULL/STA checks. Ownership census/cache verification and screening are one-time research costs here, not measured complete algorithm times. No net/RR IDs or benchmark-specific thresholds hardcoded; no existing actor/rule changed."
+}

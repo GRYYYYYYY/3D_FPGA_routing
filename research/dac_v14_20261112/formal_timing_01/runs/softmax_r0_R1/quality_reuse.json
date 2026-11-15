@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "checks": {
+    "native_full": true,
+    "packed": true,
+    "placed": true,
+    "metrics": true,
+    "route_body": true,
+    "reference_audit": true
+  },
+  "scope": "REUSED independent graph audit only when complete physical inputs, packed/place, native FULL, route body and metrics match. No new graph traversal claimed.",
+  "reference": {
+    "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/serial_strict_reexecution_20261103/runs/training_softmax_s11_hybrid_o_n60_w100_p0_delay_critical_c6",
+    "manifest_sha256": "bbdc4c9458bb8a2b65b5bf78df5f55c3546c8987c9459da5d95e6b43283f39e7",
+    "route_body_sha256": "cecd4745705c225e31a78cf250af6fea3e0d5b08ee6198e64b7480b1720beff2",
+    "independent_audit_sha256": "54c2e6b463908005cf3e772fef7de744879f40dce94ef8742dd17bea12e6af66",
+    "metrics": {
+      "critical_path_ns": 8.97575,
+      "wirelength": 169431,
+      "router_seconds": 5.88,
+      "iterations": 13,
+      "native_full_check_passed": true,
+      "routing_success_reported": true
+    },
+    "physical_metrics": {
+      "planar_wirelength_excluding_sb_half_nodes": 169431,
+      "sb_pairs_used": 6,
+      "sb_pair_net_occupancy": 6,
+      "cb_crossing_output_sources_used": 713,
+      "cb_crossing_output_source_net_occupancy": 713,
+      "actual_crossing_edge_traversals": {
+        "OPIN->CHANX": 422,
+        "OPIN->CHANY": 352,
+        "CHANX->CHANX": 6
+      },
+      "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+    }
+  },
+  "physical_inputs": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n60_w100/hybrid_o/import_only.xml": "d955f6de48e0458efc7ea1f2a2b7421ace821082c8c8673d1d62808793843583",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/softmax.blif": "dcfd605705d3ee5efbbba6b991536de53f239d26aa488776abcefc1ce2537cf7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n60_w100/hybrid_o/rr_graph.xml": "c3e14267d6971825ea7cf7d69c295b8efaead78de0bc22ec2bca0f0a95d67b9f"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "status": "development_batch_terminal",
+  "passed": true,
+  "roles": {
+    "reuse_off": {
+      "status": "legal_evaluated",
+      "scope": "own_current_resource_K8",
+      "baseline": "fresh_serial_current",
+      "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_joint_index_flow_01/bnn_native_joint_indexes/flow/resource_flow/repair/round_004/candidate_00/reuse_off_evaluation",
+      "reused_FULL_STA": false,
+      "cpd_s": 1.3607436066820355e-08,
+      "resources": {
+        "wirelength": 2059591,
+        "SB_pairs": 82,
+        "CB_sources": 5062
+      },
+      "native_reused": false,
+      "native_calls_new": 1,
+      "native_core_seconds_new": 5.670410569,
+      "reused_creation_native_core_seconds": null,
+      "native_core_seconds": 5.670410569,
+      "changed_connections": [
+        {
+          "net": 45226,
+          "pin": 1,
+          "before_s": 1.4956414162714537e-09,
+          "after_s": 1.035165092533319e-09
+        }
+      ],
+      "policies": {
+        "strict": {
+          "accepted": false,
+          "reason": "No full-precision strict CPD improvement"
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "reason": "Setup endpoint/domain vector unchanged"
+        },
+        "timing_under_resources": {
+          "accepted": false,
+          "reason": "No exact CPD reduction within resource limits"
+        },
+        "resources_under_timing": {
+          "accepted": true,
+          "reason": "Exact fixed-budget conditions satisfied"
+        }
+      }
+    }
+  },
+  "complete_orchestrator_seconds": 409.55406380444765,
+  "complete_child_process_seconds": 406.805390894413,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_joint_index_flow_01/bnn_native_joint_indexes/flow/resource_flow/repair/round_004/candidate_00/registration.json": "b12bd3ea08700722d502641df512f8197d2808e149ea53b4d9e240b6bad24753",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_joint_index_flow_01/bnn_native_joint_indexes/flow/resource_flow/repair/round_004/candidate_00/execution_registration.json": "9b6fcda00b18b7ac949165e4d30e69cdbb87b001a668d8373ea9187a05fba6c1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_joint_index_flow_01/bnn_native_joint_indexes/flow/resource_flow/repair/round_004/candidate_00/process_costs.json": "1233b30acca13a8e69c46ab9239698e43a6cfd9758d995cb19b296cd340148ed",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_joint_index_flow_01/bnn_native_joint_indexes/flow/resource_flow/repair/round_004/candidate_00/progress.json": "61c3f9089cda9b34c07dad8f1547d57f42665ca290420de451d441e88bcb3d41",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_joint_index_flow_01/bnn_native_joint_indexes/flow/resource_flow/repair/round_004/candidate_00/reuse_off_decisions.json": "f87a1712de8b153a8852ffd8cf96b8a80e7f891c8dc69bac01c7a0bf3bd4b9da",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_joint_index_flow_01/bnn_native_joint_indexes/flow/resource_flow/repair/round_004/candidate_00/reuse_off_strict_state.json": "c5089139a35a82b6f9de24d056902c440cb5d25bec4956c9ce9ef365a7391851",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_joint_index_flow_01/bnn_native_joint_indexes/flow/resource_flow/repair/round_004/candidate_00/reuse_off_timing_under_resources_state.json": "c5089139a35a82b6f9de24d056902c440cb5d25bec4956c9ce9ef365a7391851",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_joint_index_flow_01/bnn_native_joint_indexes/flow/resource_flow/repair/round_004/candidate_00/reuse_off_endpoint_vector_state.json": "c5089139a35a82b6f9de24d056902c440cb5d25bec4956c9ce9ef365a7391851",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_joint_index_flow_01/bnn_native_joint_indexes/flow/resource_flow/repair/round_004/candidate_00/reuse_off_resources_under_timing_state.json": "fe3c08557a3eaaf6a48fc8fa2df31120f5b4e2cab322b54bb8f8ad9cc078016d"
+  },
+  "execution_policy": "domain_first_stop_on_resource_accept",
+  "qualification": "Domain-first resource acceptance suppresses only the optional OFF diagnostic after a fully checked ON candidate passes. Skipped outcomes have no inferred metrics or rejection decision. Cross-batch exact free-native reuse is explicit; acceptance is fresh. Historical creation/core time is not newly executed time. Complete shared multi-arm development workflow cost, not a standalone configuration runtime. Individual failures do not stop other arms or the research goal. Further searches must use each accepted current state and updated occupancy/STA."
+}

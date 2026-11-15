@@ -1,0 +1,22 @@
+--- frozen/vpr/src/base/vpr_api.cpp
++++ private/vpr_api.cpp
+@@ -1648,6 +1648,19 @@
+             VTR_LOG("H3D_ACTUAL_STATE_COMPLETE %s\n", kind);
+         };
+         if (!candidate_directory.empty()) candidate_observer = [&]() { observe_state(candidate_directory, "candidate"); };
++        // Optional same-invocation serialization of the real loaded source.
++        // Initial FULL/STA and source frontier already ran; no replacement,
++        // search or second analysis is implied by this print-only observation.
++        const char* source_snapshot = std::getenv("VPR_JOINT_NATIVE_SOURCE_LOADED_EXPORT");
++        if (!candidate_directory.empty() && source_snapshot && std::string(source_snapshot) == "1") {
++            const std::string directory = candidate_directory + "_source";
++            h3d_candidate_observer::ScopedOutputPaths paths(directory);
++            print_route(net_list, vpr_setup.FileNameOpts.PlaceFile.c_str(), (directory + "/routed.route").c_str(), is_flat);
++            std::ofstream receipt(directory + "/native_state_gate.txt");
++            receipt << "loaded_source serialized_before_transaction initial_FULL initial_STA actual_installed_trees\n";
++            receipt.close();
++            if (!receipt) VPR_FATAL_ERROR(VPR_ERROR_ANALYSIS, "Cannot write loaded source snapshot gate");
++        }
+         h3d_joint_native_repair::run_if_requested(net_list, vpr_setup.RouterOpts, is_flat, candidate_observer);
+         if (!candidate_directory.empty()) observe_state(candidate_directory + "_restored", "restored_source");
+ 
