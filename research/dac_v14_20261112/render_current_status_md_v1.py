@@ -11,7 +11,7 @@ def render(status,D):
     recovery=status['original_flow_recovery'];paper=Path(status['paper_pdf']).relative_to(D)
     return f'''# 当前研究状态（{status['observed_at']}）
 
-Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN stream 工程对照，以及独立观测与选组迁移、三个已完成分组对照以及完整质量/测量覆盖区分及独立事务入口验证已增量推送至 `{status['latest_incremental_publication']['commit'][:7]}` 并经 GitHub 读回核对，后续本地分析以真实回执接续。无固定日期、总调用或矩阵完成停止条件。[增量发布说明](../../docs/GitHub_unified_method_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
+Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN stream 工程对照，以及独立观测与选组迁移、三个已完成分组对照以及完整质量/测量覆盖区分及独立事务入口验证已增量推送至 `{status['latest_incremental_publication']['commit'][:7]}` 并经 GitHub 读回核对，后续本地分析以真实回执接续。无固定日期、总调用或矩阵完成停止条件。[增量发布说明](../../docs/GitHub_mechanism_inputs_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
 
 [失败释放迁移验证](standalone_release_replay_01/completion.json)重放真实 robot 协议：3454/3438 释放，3140/8785 继续受域限制，全部科学字段与原记录一致；成功后释放、重复释放、错误保留域均被拒绝。该重放不替代 no-release 消融。另有[持久化事务执行检查](standalone_transaction_native_check_01/plan.json)排在原观测检查之后，计划两次 native 调用（源序列化控制＋实际 owner 修复），当前尚未执行，不新增独立输入。
 
@@ -19,9 +19,11 @@ Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN strea
 
 [独立完整方法开发包](standalone_unified_method_component_03.json)包含原完整资源/owner/终结选点/时序组合及原整流程核验器，116 个文件逐字节重建一致。工程外真实 eltwise 选组、反馈、组合和事务准备到首次 native 边界通过；容量/放宽查询各复用 5 条、重新求解 0 条。两个时序 worker 准备和四种实际子进程清理测试通过。新 native 调用 0、新独立输入 0；[完整方法实际执行检查](standalone_whole_method_check_01/plan_v2.json)排在现有事务检查之后，使用固定 dev03，不设总方法时间或调用上限。
 
+[跨输入结构诊断](structural_input_screen_01/completion.json)覆盖五个合法历史物理起点，并保留 attention 初始失败：clstm/reduction 有 6/268 个共享候选切口、均无当前支持的完全阻塞出口证书；robot 三个物理起点有 2/0/30 个证书，p1 同时改变 packing，不能解释为纯布局效果。这是适用性诊断，新增完整算法结果为 0。[robot 精确域/容量审计](robot_release_capacity_cut_01/completion.json)证明两个实际释放网络在固定外部 owner 与原域下无法服务源层 sink；释放后实际候选仍各有两个跨层资源。[原通用选组器](robot_current_owner_screen_01/completion.json)得到16个当前余量合格 owner 组，尚不代表 native 可实现性或收益。[clstm 固定 dev03 完整配对](portable_clstm_pair_01/plan.json)排在完整方法执行检查之后，检查失败则两臂保留未执行。新结构/STA 分析不计完整算法样本。
+
 统一方法以当前 STA 重选事务组，按跨层冗余构造共享域；网络搜索失败时释放其域，容量阻塞时另行协调 owner。完整合法候选按固定时序/资源规则接受，终结选点与中间接受分离。[开发入口](run_complete_unified_method_v1.py)已接通资源、owner 协调、重选组、终结选点和时序阶段；[通用 owner 接口](current_owner_transaction_validation_01/completion.json)重建原两臂 native 参数，无切口 SPMV 实际执行不启动求解。完整分支仍待实际集成结果与独立打包冻结，不能称为已完成跨输入确认。
 
-[当前统一档案](multiobjective_closed_stream_quality_01/verification.json)：**671 条合法观测、34 个完整质量配置，其中 33 个有完整观察者测量，1 个仅有带限定的原 GNU-time**；仍为 5 个成功电路身份、3 个垂直家族，不是独立样本数量。新纳入 stream 流程的 13 个真实状态，包括合法拒绝候选；完整时间仅归属于实际终点，缺失的 PSS/观察者墙钟/CPU 不补写，也不参与匹配计时支配。[当前六页稿]({paper}) 已同步上述口径，22 行统一主表含 2 个初始失败角色；前五页与上一版逐像素一致，第六页更新测量覆盖范围。历史轨迹、640 条图投影及恢复审计仍保留原范围。
+[当前统一档案](multiobjective_closed_stream_quality_01/verification.json)：**671 条合法观测、34 个完整质量配置，其中 33 个有完整观察者测量，1 个仅有带限定的原 GNU-time**；仍为 5 个成功电路身份、3 个垂直家族，不是独立样本数量。新纳入 stream 流程的 13 个真实状态，包括合法拒绝候选；完整时间仅归属于实际终点，缺失的 PSS/观察者墙钟/CPU 不补写，也不参与匹配计时支配。[当前六页稿]({paper}) 已同步上述口径，22 行统一主表含 2 个初始失败角色；新增 robot 域/容量条件证明已写入机制段落，变更的第2/3/4页完成视觉检查；第1/5/6页与上一版逐像素一致。历史轨迹、640 条图投影及恢复审计仍保留原范围。
 
 | 已验证完整 BNN 配置 | CPD/ns | wire / SB / CB | 完整秒 |
 |---|---:|---:|---:|
