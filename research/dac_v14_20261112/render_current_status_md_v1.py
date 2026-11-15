@@ -11,11 +11,13 @@ def render(status,D):
     recovery=status['original_flow_recovery'];paper=Path(status['paper_pdf']).relative_to(D)
     return f'''# 当前研究状态（{status['observed_at']}）
 
-Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN stream 工程对照，以及独立观测与选组迁移、三个已完成分组对照以及完整质量/测量覆盖区分及独立事务入口验证已增量推送至 `3fc1a4a` 并经 GitHub 读回核对，后续本地分析以真实回执接续。无固定日期、总调用或矩阵完成停止条件。[增量发布说明](../../docs/GitHub_release_execution_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
+Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN stream 工程对照，以及独立观测与选组迁移、三个已完成分组对照以及完整质量/测量覆盖区分及独立事务入口验证已增量推送至 `{status['latest_incremental_publication']['commit'][:7]}` 并经 GitHub 读回核对，后续本地分析以真实回执接续。无固定日期、总调用或矩阵完成停止条件。[增量发布说明](../../docs/GitHub_unified_method_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
 
 [失败释放迁移验证](standalone_release_replay_01/completion.json)重放真实 robot 协议：3454/3438 释放，3140/8785 继续受域限制，全部科学字段与原记录一致；成功后释放、重复释放、错误保留域均被拒绝。该重放不替代 no-release 消融。另有[持久化事务执行检查](standalone_transaction_native_check_01/plan.json)排在原观测检查之后，计划两次 native 调用（源序列化控制＋实际 owner 修复），当前尚未执行，不新增独立输入。
 
-[独立串行资源控制器组件](standalone_resource_controller_component_03.json)已接通新路由输入、原资源/owner 状态机及终结选点。真实无切口控制器执行和 R1 请求生成通过；三个 worker 与新路由入口仅完成启动前检查。73 个文件逐字节重建通过，实际 native 后端和 owner 提交后重选仍待验证；完整时序组合及外层全方法尚未移植，未冻结确认版本。
+[独立串行资源控制器组件](standalone_resource_controller_component_03.json)已接通新路由输入、原资源/owner 状态机及终结选点。真实无切口控制器执行和 R1 请求生成通过；三个 worker 与新路由入口仅完成启动前检查。该早期资源组件验证保留；当前完整时序组合及外层已迁入新开发包，未冻结确认版本。
+
+[独立完整方法开发包](standalone_unified_method_component_03.json)包含原完整资源/owner/终结选点/时序组合及原整流程核验器，116 个文件逐字节重建一致。工程外真实 eltwise 选组、反馈、组合和事务准备到首次 native 边界通过；容量/放宽查询各复用 5 条、重新求解 0 条。两个时序 worker 准备和四种实际子进程清理测试通过。新 native 调用 0、新独立输入 0；[完整方法实际执行检查](standalone_whole_method_check_01/plan_v2.json)排在现有事务检查之后，使用固定 dev03，不设总方法时间或调用上限。
 
 统一方法以当前 STA 重选事务组，按跨层冗余构造共享域；网络搜索失败时释放其域，容量阻塞时另行协调 owner。完整合法候选按固定时序/资源规则接受，终结选点与中间接受分离。[开发入口](run_complete_unified_method_v1.py)已接通资源、owner 协调、重选组、终结选点和时序阶段；[通用 owner 接口](current_owner_transaction_validation_01/completion.json)重建原两臂 native 参数，无切口 SPMV 实际执行不启动求解。完整分支仍待实际集成结果与独立打包冻结，不能称为已完成跨输入确认。
 
@@ -42,7 +44,7 @@ Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN strea
 
 [新登记集成配对](unified_input_integration_01/plan.json)：attention native/domain，以及 robot s23/p0 native/domain（同 packing、真实不同布局，明确 clk 20 ns、I/O max1 ns/min0 ns SDC）。两臂只改 domain_mode/domain_feedback，owner 均 unrestricted，所有工程改进一致；这是开发验证，尚无结果，SDC 是声明的基准目标而非外部应用要求。排在现有恢复链之后，独立只读比较 owner 已登记。
 
-[独立运行组件](standalone_native_runtime_dev_01/README.md)已封装为[24 KB 源码与 guard 包](standalone_native_runtime_artifact_01/standalone_native_runtime_component_01.tar.gz)，解包自检通过；迁出工程后，正常/超时/线程拒绝/输入篡改/错误二进制检查通过，实际 tiny 物理审计与原回执相同，错误 switch 被拒绝、失败角色计数保留。新 VPR 调用为 0，不增加独立电路或完整配置计数。选组与 STA 依赖现已有独立开发入口，事务和完整控制器仍待接通；不能把组件封存当作完整确认版冻结。
+[独立运行组件](standalone_native_runtime_dev_01/README.md)已封装为[24 KB 源码与 guard 包](standalone_native_runtime_artifact_01/standalone_native_runtime_component_01.tar.gz)，解包自检通过；迁出工程后，正常/超时/线程拒绝/输入篡改/错误二进制检查通过，实际 tiny 物理审计与原回执相同，错误 switch 被拒绝、失败角色计数保留。新 VPR 调用为 0，不增加独立电路或完整配置计数。选组、事务及完整控制器现已迁入独立开发入口，实际完整运行仍待验证；不能把组件封存当作完整确认版冻结。
 
 时钟审计：原质量核验第一次因 GNU-time 小时格式只显示整数秒、却使用 0.1 s 容差而失败；保留该失败，v2 按实际显示精度核验且原质量 gate 不变。query-reduction native 的父队列等待计时含 SIGSTOP，3133.7414 s 不作为算法耗时；子 actor 实际报告导入工作流 117.8027 s，paired 为 119.8088 s。原值均保留，见[独立计时说明](query_reduction_timing_qualification_01/completion.json)。
 
