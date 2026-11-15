@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/tmp/standalone-transactions-aiims5pa/runtime_v2/guarded_entry.py",
+    "--forbid-prefix",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing",
+    "--script",
+    "/tmp/standalone-transactions-aiims5pa/runtime_v2/materialize_crossing_source_candidate_v1.py",
+    "--worker",
+    "/tmp/standalone-transactions-aiims5pa/fixture/joint_native",
+    "--output",
+    "/tmp/standalone-transactions-aiims5pa/fixture/different_complete_tree_output",
+    "--full-graph-cache",
+    "/tmp/standalone-selection-uxhg_5jk/R1/full_cache",
+    "--audited-route",
+    "/tmp/standalone-transactions-aiims5pa/fixture/source/routed.route"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/tmp/standalone-transactions-aiims5pa/runtime_v2/guarded_entry.py\", line 10, in <module>\n    sys.addaudithook(guard);sys.argv=[str(a.script),*args];runpy.run_path(str(a.script),run_name='__main__')\n  File \"/usr/lib/python3.10/runpy.py\", line 289, in run_path\n    return _run_module_code(code, init_globals, run_name,\n  File \"/usr/lib/python3.10/runpy.py\", line 96, in _run_module_code\n    _run_code(code, mod_globals, init_globals,\n  File \"/usr/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/tmp/standalone-transactions-aiims5pa/runtime_v2/materialize_crossing_source_candidate_v1.py\", line 72, in <module>\n    print(materialize(a.worker,a.output,a.full_graph_cache,a.audited_route),flush=True)\n  File \"/tmp/standalone-transactions-aiims5pa/runtime_v2/materialize_crossing_source_candidate_v1.py\", line 31, in materialize\n    assert structure(native/'routed.route')==structure(audited_route),'Actual installed candidate differs from independent scope reconstruction'\nAssertionError: Actual installed candidate differs from independent scope reconstruction\n"
+}

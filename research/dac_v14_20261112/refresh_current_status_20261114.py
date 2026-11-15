@@ -131,7 +131,7 @@ status['outstanding']=[
 status['standalone_runtime_component']=read(D/'standalone_native_runtime_artifact_01/completion.json')
 status['standalone_runtime_component']['physical_validation']='standalone_physical_audit_validation_01/completion.json'
 status['standalone_runtime_component']['execution_validation']='standalone_native_runtime_validation_01/completion.json'
-status['latest_incremental_publication']=read(D.parents[1]/'docs/github_portable_selection_publication_receipt_20261115.json')
+status['latest_incremental_publication']=read(D.parents[1]/'docs/github_archive_scope_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
 status['orphaned_BNN_quality_analysis']=dict(registration=areg,actual_process=ap,
@@ -141,7 +141,7 @@ status['orphaned_BNN_quality_analysis']=dict(registration=areg,actual_process=ap
 status['orphaned_BNN_quality_analysis'].update(subsequent_v2_passed=True,subsequent_v2_receipt='orphaned_BNN_quality_analysis_02/completion.json',first_failure_preserved=True)
 status['completed_closed_stream_engineering']=read(D/'orphaned_BNN_engineering_comparison_01/completion.json')
 status['queue_timing_qualification']=read(D/'query_reduction_timing_qualification_01/completion.json')
-status['evidence'].update(observation_dependencies='standalone_observation_dependencies_validation_02/completion.json',native_observation_plan='standalone_native_observation_equivalence_01/plan.json',unified_implementation='unified_confirmation_candidate_01/implementation_status_05.json',unified_paper='unified_archive_paper_binding_03.json',paper='unified_archive_paper_binding_03.json',main_table_endpoints='unified_main_table_evidence_02/completion.json',archive='multiobjective_closed_stream_quality_01/verification.json')
+status['evidence'].update(observation_dependencies='standalone_observation_dependencies_validation_02/completion.json',native_observation_plan='standalone_native_observation_equivalence_01/plan.json',unified_implementation='unified_confirmation_candidate_01/implementation_status_06.json',unified_paper='unified_archive_paper_binding_03.json',paper='unified_archive_paper_binding_03.json',main_table_endpoints='unified_main_table_evidence_02/completion.json',archive='multiobjective_closed_stream_quality_01/verification.json')
 status['outstanding'][0]='Original full BNN completed and quality/work equivalence verified; keep original observer loss/overlap and qualified GNU time. Query-reduction queue resumed and continues BNN roles; follow existing recovery/integration chain without repeating completed roles.'
 status['standalone_observation_dependencies']=read(D/'standalone_observation_dependencies_validation_02/dependency_test.json')
 status['standalone_observation_dependencies'].update(native_execution_completed=False,native_queue='standalone_native_observation_equivalence_01/queue/registration.json')
@@ -149,6 +149,9 @@ status['standalone_selection_validation']=read(D/'standalone_selection_validatio
 status['completed_query_reduction_comparison']=read(D/'query_reduction_completed_comparison_02/rows.json')
 status['evidence'].update(portable_selectors='standalone_selection_validation_01/completion.json',completed_query_grouping='query_reduction_completed_comparison_02/completion.json')
 status['archive_coverage']=read(D/'multiobjective_closed_stream_quality_01/verification.json')
+status['standalone_transaction_dependencies']=read(D/'standalone_transactions_validation_03/completion.json')
+status['standalone_transaction_guards']=read(D/'standalone_transaction_guards_01/completion.json')
+status['evidence'].update(portable_transactions='standalone_transactions_validation_03/completion.json',portable_transaction_guards='standalone_transaction_guards_01/completion.json')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

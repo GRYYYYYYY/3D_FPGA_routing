@@ -11,7 +11,7 @@ def render(status,D):
     recovery=status['original_flow_recovery'];paper=Path(status['paper_pdf']).relative_to(D)
     return f'''# 当前研究状态（{status['observed_at']}）
 
-Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN stream 工程对照，以及独立观测与选组迁移、三个已完成分组对照已增量推送至 `02874a5` 并经 GitHub 读回核对，后续本地分析以真实回执接续。无固定日期、总调用或矩阵完成停止条件。[增量发布说明](../../docs/GitHub_unified_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
+Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN stream 工程对照，以及独立观测与选组迁移、三个已完成分组对照以及完整质量/测量覆盖区分已增量推送至 `b5d7297` 并经 GitHub 读回核对，后续本地分析以真实回执接续。无固定日期、总调用或矩阵完成停止条件。[增量发布说明](../../docs/GitHub_unified_progress_20261115.md) · [机器状态](CURRENT_STATUS.json)。
 
 统一方法以当前 STA 重选事务组，按跨层冗余构造共享域；网络搜索失败时释放其域，容量阻塞时另行协调 owner。完整合法候选按固定时序/资源规则接受，终结选点与中间接受分离。[开发入口](run_complete_unified_method_v1.py)已接通资源、owner 协调、重选组、终结选点和时序阶段；[通用 owner 接口](current_owner_transaction_validation_01/completion.json)重建原两臂 native 参数，无切口 SPMV 实际执行不启动求解。完整分支仍待实际集成结果与独立打包冻结，不能称为已完成跨输入确认。
 
@@ -47,6 +47,8 @@ Goal active；公开证据基点为 `9734eee`，统一方法/六页稿/BNN strea
 [独立选组迁移](standalone_selection_validation_01/completion.json)已用工程外完整 R1 和 tiny 数据实际执行，禁止 Python 读取旧工程：R1 的 8 个 owner 组、1 个共享切口、完整证书/筛选/排序/请求及 STA 目标与原实现一致；tiny 无切口保留。完整 NativeAnalysisPool 已原字节复制，尚未执行迁移后的池。完整方法仍未冻结。
 
 [新分组的三个已完成角色](query_reduction_completed_comparison_02/completion.json)与各自原 K8 的完整端点向量、路由正文、请求和决策序列一致；提议连接数分别仍为 94/32/70，未减少。BNN native 导入流程 2089.304 s，相比历史 2076.308 s 多 12.996 s；eltwise 两臂分别少 5.950/6.291 s，均不是交错计时或独立输入证据。BNN domain 仍待终结。
+
+[独立事务入口](standalone_transactions_validation_03/README.md)已实现显式输入/二进制/运行库绑定、源序列化控制、范围/域审计、真实候选物化和固定根接受。在工程外重放原 R1 两臂，完整请求/候选/端点/物理字段一致（只排除审计路径和耗时）；五连接 owner 准备与 VPR 调用前检查通过。篡改实际 gate 或换入错误完整树均被拒绝。两次校验失败分别为路径/耗时比较和实际 R1 固定参数未列入白名单，旧失败保留，未重跑 native。新入口尚未实际启动 VPR，不能称为完整方法冻结。
 
 接续重点：独立可执行确认版本、真实不同布局/路由起点、具有明确 SDC 的新实例，以及正文“问题—机制—完整结果—取舍—消融—开销与范围”。历史局部轨迹、恢复时间和审计移到补充材料；负结果用于调整方法。
 '''

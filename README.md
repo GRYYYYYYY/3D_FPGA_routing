@@ -10,6 +10,8 @@ Latest continuation: [portable selectors, completed grouping controls and live q
 
 [Archive integration and measurement coverage](docs/GitHub_archive_scope_progress_20261115.md): [671 actual observations](research/dac_v14_20261112/multiobjective_closed_stream_quality_01/verification.json) now include the completed stream flow. There are 34 quality-complete configurations: 33 with complete observer measurements and one with qualified original GNU-time only. No missing PSS/observer wall/CPU is reconstructed; the six-page main distinguishes these coverage counts. These are not independent samples.
 
+[Portable transaction development entry](docs/GitHub_transaction_entry_progress_20261115.md): actual outside-project two-arm owner protocol reconstruction, installed-candidate vectors/physical audit, five-connection request preparation and runtime/command preflight pass. Altered actual gates and wrong complete trees are rejected. No new VPR execution or independent sample is claimed; full method freeze remains pending.
+
 The 2026-11-09 section below is historical.
 
 ## Current snapshot — 2026-11-09 (experiments in progress)
