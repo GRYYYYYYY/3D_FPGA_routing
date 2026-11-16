@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "role": "eltwise_A0_native",
+      "queue_parent_wait_seconds": 3133.741392970085,
+      "child_reported_imported_workflow_seconds": 117.8026743978262,
+      "final_CPD_s": 6.018101128546505e-09,
+      "final_resources": {
+        "wirelength": 217050,
+        "SB_pairs": 26,
+        "CB_sources": 968
+      },
+      "complete_fresh_route_flow": false,
+      "parent_wait_contaminated_by_scheduler_pause": true
+    },
+    {
+      "role": "eltwise_A0_paired",
+      "queue_parent_wait_seconds": 120.17672987654805,
+      "child_reported_imported_workflow_seconds": 119.80877254903316,
+      "final_CPD_s": 6.018101128546505e-09,
+      "final_resources": {
+        "wirelength": 217183,
+        "SB_pairs": 24,
+        "CB_sources": 965
+      },
+      "complete_fresh_route_flow": false,
+      "parent_wait_contaminated_by_scheduler_pause": false
+    }
+  ],
+  "queue_results_capture": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/query_reduction_resource_dev_01/queue/results.json",
+  "VPR_calls_new": 0,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/qualify_query_reduction_queue_timing_01.py": "8f09f225aff5b608d7b88297d01b0b2da60b63f76e573e2528c478cae1bc0f6c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/query_reduction_timing_qualification_01/observed_queue_results.json": "de65fd8bacb84b10dbd96da2b39a18418c8534effc32d1216d11558b1908580c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/supervision_recovery_20261115_01/intervention.json": "84c0305072f57a053fde5f95c365e8783be000a3dc76981a6f4940d00169f7f7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/supervision_recovery_20261115_01/completion.json": "141ff180eca9dbcc73ef97def56adb3cfe64b34afcfa18f57dceffcd14e1b89a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/query_reduction_resource_dev_01/eltwise_A0_native/completion.json": "fc4c57e72d60671b8ae26fd9a24ed68b59e310f6825d60a2a3a715d7fe27ef6d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/query_reduction_resource_dev_01/eltwise_A0_paired/completion.json": "5db1894343313ffdcbcf4233352d67c8f6f592770e76d369c540930e53c87551"
+  },
+  "qualification": "Original queue field actor_process_seconds includes deferred parent wait return across its SIGSTOP, not just child execution. Retain original value; use explicitly labeled child internal imported-workflow stopwatch for that scope. Neither is fresh-route complete time or evidence of isolated statistical speedup; original BNN overlap and shared host remain. The live queue may append later roles; this snapshot captures only currently completed roles."
+}

@@ -1,6 +1,6 @@
-# 当前研究状态（2026-11-16T00:04:21.435920+00:00）
+# 当前研究状态（2026-11-16T00:13:43.009213+00:00）
 
-Goal active；公开证据基点 `9734eee`，最新增量 `ff39230`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[本轮说明](../../docs/GitHub_robot_owner_scope_progress_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
+Goal active；公开证据基点 `9734eee`，最新增量 `42ae2e4`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[本轮说明](../../docs/GitHub_routing_position_progress_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
 
 统一方法：当前 STA 重选事务组 → 跨层共享域 → 按网络失败释放 → 容量证书与当前余量驱动的 owner 协调 → 固定根规则下接受完整合法事务 → 重选与独立终结选点 → 完整时序组合。中间构造不要求逐个改善 CPD。[完整独立开发包 dev03](standalone_unified_method_component_03.json)已迁移原串行控制器；实际整流程验证仍排队，确认版尚未冻结。先前组件、真实请求重放和子进程清理验证只证明对应接口，不证明完整算法收益。
 
@@ -32,6 +32,6 @@ Goal active；公开证据基点 `9734eee`，最新增量 `ff39230`。本地实�
 
 BNN query-reduction domain 之后按现有顺序执行：未执行的线长组合验证 → robot no-release → 完整 terminal-wire BNN → attention/robot-SDC → 独立 native 观测/事务/完整方法检查 → clstm → robot owner 范围对照。PID 必须与 start ticks、终结回执交叉核对；正常 pool 轮换不触发恢复。各批次原规则及已完成结果保持不变。
 
-[当前六页正文](paper_snapshots/current_mechanism_inputs_20261115/build/current_repair_main.pdf)沿问题—机制—完整结果—取舍—消融—开销与范围组织，22行统一主表保留失败；robot 条件机制证明已整合，未执行消融未写成结论。[证据绑定](mechanism_inputs_paper_binding_04.json)核验页数、主表与视觉；[档案](multiobjective_closed_stream_quality_01/verification.json)为671条合法观测、34个完整质量配置，其中33个完整观察者测量、1个限定 GNU-time，均不等于独立样本数。详细局部轨迹、组件回放、恢复记录留在证据索引与补充材料。
+[当前六页正文](paper_snapshots/current_routing_position_20261116/build/current_repair_main.pdf)沿问题—机制—完整结果—取舍—消融—开销与范围组织，22行统一主表保留失败；robot 条件机制证明已整合，未执行消融未写成结论。[证据绑定](routing_position_paper_binding_05.json)核验页数、主表与视觉；[档案](multiobjective_closed_stream_quality_01/verification.json)为671条合法观测、34个完整质量配置，其中33个完整观察者测量、1个限定 GNU-time，均不等于独立样本数。新增五项直接相关工作，明确已有增量路由／多次收敛与本研究贡献的关系，区分历史拥塞价格、导入式修复和未验证 CHANZ；共9条参考文献。两段局部路径／核心时间细节已移入补充材料。详细历史仍保留。
 
 接续：以真实终结结果决定下一项干预，优先完成确认版本的实际运行、跨输入匹配和三机制归因。普通失败/退化用于调整方向；未执行计划、结构路径和局部时间不替代完整可复现收益。

@@ -15,14 +15,11 @@ Legal FPGA routes trade timing, wire and vertical resources. Our current-STA rep
 \section{Problem and Motivation}
 Three-dimensional FPGA routing couples directed reachability, scarce vertical channels and timing. With packing, placement and architecture fixed, repair may improve CPD or trade resources under an explicit timing requirement. Shorter local connections need not improve the complete route: another endpoint may become critical or capacity may block another network.
 
-VTR supplies routing and timing infrastructure~\cite{vtr9paper}. Following Escaping Flatland's separation of design tradeoffs~\cite{flatland}, each comparison fixes its physical input. Reduced fixed-device occupancy does not imply silicon-area or power savings.
+VTR supplies routing and STA infrastructure~\cite{vtr9paper}; LaZagna models configurable vertical SB/CB architectures~\cite{lazagna}, while Escaping Flatland improves 3D placement~\cite{flatland}. We hold architecture, packing and placement fixed. Reduced resource occupancy does not imply silicon-area or power savings.
 
-We use current STA to select groups, search native replacements and validate complete routes: sharing proxies alone omit timing, retained branches and convergence. 
+PathFinder negotiates congestion using timing priorities~\cite{pathfinder}. Critical-connection repair after PathFinder predates this work~\cite{liurepair}. AIR preserves legal subtrees, reroutes illegal or delay-degraded connections, and improves existing routes through multiple convergences~\cite{air}. CRoute uses timing-driven connection-based routing~\cite{croute}. Current timing, retained trees and incremental rerouting are therefore established ingredients. Our comparison concerns conditional vertical sharing domains, per-net domain release and capacity-certified owner scopes, with whole-candidate acceptance under fixed timing/resource envelopes. We do not claim a new native router or measured superiority over these external implementations.
 
-
-PathFinder resolves resource competition through negotiated congestion and timing-aware search~\cite{pathfinder}; our native search retains that foundation. We address post-route group selection, vertical sharing and transaction acceptance. Escaping Flatland addresses 3D placement~\cite{flatland}; here placement is fixed. VTR supplies the native legality and STA reference~\cite{vtr9paper}. The contribution is a measured timing--resource repair framework and mechanism-specific evidence, rather than a replacement claim for those placement or routing systems.
-
-The evidence supports three concrete contributions: current-state whole-group repair with explicit acceptance and rollback; separation of domain restriction, failure release and owner coordination; and complete-cost comparisons retaining infeasible inputs and unfavorable tradeoffs. A unified controller including every mechanism is a confirmation target, not an already validated universal algorithm.
+Poolad et al. introduce explicit CHANZ resources and multi-die-aware lookahead~\cite{multidie}. Our edge-encoded two-layer results do not validate those architectures or their lookahead. The contributions supported here are matched local mechanism effects, complete resource/time tradeoffs and explicit failure/applicability accounting. The fully integrated frozen controller remains a confirmation target.
 \section{Method: Current-State Transactional Repair}
 \subsection{Objectives and state identity}
 An input identity fixes the directed resource graph, packed netlist, placement, endpoint mapping, SDC and clock domains. A legal route $R$ uses actual graph edges and respects node capacities and native routing constraints. We record
@@ -57,7 +54,7 @@ After restoring all selected connections, independent checks validate real edges
 
 Candidates receive native LOAD/FULL/STA, or are installed in a private worker for FULL/fresh STA and dedicated export. The latter restores trees, sink lookups, occupancy, digest and hooks before reobservation. Tiny/BNN-resource/free-path timing tests match separate same-binary LOAD/STA and physical/scope checks; large forced-path timing remains unvalidated.
 
-Loaded contexts reset PathFinder prices; matched controls share this reset. In-router integration requires validating the price-history choice.
+AIR retains historical congestion costs across convergences~\cite{air}; our imported contexts reset PathFinder prices. Matched controls share that reset. In-router continuation requires a separate price-history comparison.
 
 
 \subsection{Composition and terminal selection}
@@ -159,10 +156,10 @@ In robot's first matched transaction, a still-guided net saves one CB; two nets 
 \subsection{Blocking-owner coordination}
 R 1's remaining excess crossing exposes a different limitation: all eight same-layer OPIN exits are owned by other nets. Fixed-scope trials preserve the extra crossing or fail with exact restoration; the 5104-resource state is a single-net local minimum. A current-margin selector adds one blocking-owner branch to the target's four connections. Unrestricted and target-CB-domain transactions both reach 2070653 wire,32 SB,5071 CB, with the original full endpoint vector unchanged. Both transfer the blocking resource and attain the 5103 terminal bound. The observed benefit is expanded coordination scope; there is no additional domain advantage in this comparison.
 
-Reducing that intervention to two connections produces 2070657 wire with the same vertical counts and full vector in both native arms and a separately constructed BFS candidate. All are legal but dominated by the five-connection result. Two-query cores take 13.58/13.69 s against five-query 13.40/14.19 s, so fewer queries alone do not demonstrate a faster mechanism. Shared diagnostic costs are not per-arm or complete-flow measurements.
+A two-connection intervention produces 2070657 wire at the same vertical counts and full vector in both native arms and a separate BFS construction. It is legal but dominated by the five-connection result. Fewer queries did not reduce the measured core time. Detailed paths, core timings and audits remain in the supplement; shared diagnostic costs are not complete-flow measurements.
 
 \subsection{Grouping and complete combinations}
-A 64-connection budget improves one large local scope by reducing 462 queries to 54, but fails as a general trajectory optimization. Across the complete four-role budget cohort, three endpoints match K 8 quality; BNN domain ends 46 wire worse at equal CPD/SB/CB, taking 10568.53 versus 7099.32 s of imported workflow. The first four rounds have identical vectors and ordered trees. At the fifth same source, budgeting splits 77 connections into 64; both trajectories eventually execute the same 2722-query multiset, with 32 versus 18 transactions. Extra loading, STA and audits erase the local query intuition. These are descriptive development timings, not cold or statistical speedups.
+A 64-connection budget reduces 462 to 54 queries in one local scope, yet worsens a complete BNN domain trajectory by 46 wire at equal CPD/SB/CB. Imported workflow time rises from 7099.32 to 10568.53 s. Both trajectories execute the same 2722-query multiset in 18 versus 32 transactions; extra loading, STA and audits erase the local query intuition. The other three cohort endpoints match K 8 quality. These are descriptive development times, not statistical speedups; the divergence history is in the supplement.
 
 Tied-path feedback supplies a complementary positive combination example. Jointly covering two tied-path targets with three donors improves ten setup components with no regression, gaining 7.638334 ps at 45 SB/5060 CB. A larger successor improves CPD further but regresses a noncritical setup component. The policy distinction is deliberate, and neither result establishes that every intermediate or module should improve CPD. Historical local trajectories and recovery costs are retained in the supplement.
 \section{Overhead and Applicability}
@@ -185,10 +182,15 @@ The next confirmation artifact must be independently executable with fixed sourc
 Independent input identity binds netlist, architecture, actual placement coordinates, constraints and initial route trees. Different seed labels with identical trees do not count as different starts; distinct routing starts on one placement and distinct placements are reported separately. Candidate inputs are selected before policy outcomes, and every registered failure is retained. Since BNN currently uses default constraints, application timing claims additionally require new paired instances with explicit SDC clocks and I/O requirements~\cite{vprsdc}; a development-relative CPD cap is not such a requirement.
 
 The supported claims are therefore specific: complete BNN resource/time tradeoffs, positive and negative circuit/topology transfer, and matched local mechanism effects. Broad superiority of the fully integrated controller, timing-closure guarantees, silicon-area savings and statistical acceleration are not established.
-\begin{thebibliography}{4}
+\begin{thebibliography}{9}
 \bibitem{vtr9paper} M. A. Elgammal et al., ``VTR 9: Open-source CAD for fabric and beyond FPGA architecture exploration,'' \emph{ACM Trans. Reconfigurable Technol. Syst.}, 2025, doi:10.1145/3734798.
+\bibitem{lazagna} I. Youssef, H. Yang, and C. Hao, ``LaZagna: An open-source framework for flexible 3D FPGA architectural exploration,'' in \emph{Proc. ICCAD}, 2025, pp.1--9, doi:10.1109/ICCAD66269.2025.11240893.
 \bibitem{flatland} C. Hao, A. B. Kahng, B. Pramanik, and I. Youssef, ``Escaping Flatland: A placement flow for enabling 3D FPGAs,'' in \emph{Proc. ACM/IEEE DAC}, 2026, doi:10.1145/3770743.3804424.
 \bibitem{pathfinder} L. McMurchie and C. Ebeling, ``PathFinder: A negotiation-based performance-driven router for FPGAs,'' in \emph{Proc. FPGA}, 1995, pp.111--117.
+\bibitem{liurepair} Y. Liu, H. Yang, W. Yu, X. Cui, and J. Huang, ``An FPGA timing routing algorithm based on PathFinder and rip-up and retry approach,'' \emph{J. Computer-Aided Design \& Computer Graphics}, vol.26, no.1, pp.138--145, 2014.
+\bibitem{air} K. E. Murray, S. Zhong, and V. Betz, ``AIR: A fast but lazy timing-driven FPGA router,'' in \emph{Proc. ASP-DAC}, 2020, pp.338--344.
+\bibitem{croute} D. Vercruyce, E. Vansteenkiste, and D. Stroobandt, ``CRoute: A fast high-quality timing-driven connection-based FPGA router,'' in \emph{Proc. FCCM}, 2019, pp.53--60, doi:10.1109/FCCM.2019.00017.
+\bibitem{multidie} A. Poolad, S. Gholami Shahrouz, A. Boutros, and V. Betz, ``Modeling, optimizing and exploring multi-die FPGA routing architectures,'' arXiv:2606.06421v3, 2026.
 \bibitem{vprsdc} Verilog-to-Routing, ``Timing constraints,'' \url{https://docs.verilogtorouting.org/en/latest/vpr/timing_constraints/}, accessed Nov.15,2026.
 \end{thebibliography}
 \end{document}
