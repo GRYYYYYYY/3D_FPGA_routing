@@ -33,6 +33,8 @@ The [domain engineering arm](docs/GitHub_domain_engineering_registration_2026111
 
 [Complete BNN cost hierarchy](docs/GitHub_BNN_cost_hierarchy_20261116.md):92.96% of the observed1821.07-s N/D difference falls inside resource transactions. Actual connection-query executions are70/1361; nested timers are kept separate from total wall. The final empty selector costs27.32 s, only0.2801% of domain whole time before any new certificate cost. No new speedup or changed CP1 rules.
 
+[Rebuild CP1 from public source](docs/CP1_public_source_reproduction_20261116.md): hash-pinned NumPy/lxml wheels restore1166 dependencies and reproduce all1289 sealed file hashes. Actual extension imports and relocated fixed admission pass, without the full local bundle. External native binaries and physical inputs remain explicit prerequisites; no new native experiment or changed CP1 rules.
+
 <details>
 <summary>Historical progress snapshots and earlier paper versions</summary>
 

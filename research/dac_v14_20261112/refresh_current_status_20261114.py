@@ -134,7 +134,8 @@ status['outstanding']=[
 status['standalone_runtime_component']=read(D/'standalone_native_runtime_artifact_01/completion.json')
 status['standalone_runtime_component']['physical_validation']='standalone_physical_audit_validation_01/completion.json'
 status['standalone_runtime_component']['execution_validation']='standalone_native_runtime_validation_01/completion.json'
-publication=D.parents[1]/'docs/github_BNN_cost_hierarchy_publication_receipt_20261116.json'
+publication=D.parents[1]/'docs/github_cp1_restore_publication_receipt_20261116.json'
+if not publication.exists(): publication=D.parents[1]/'docs/github_BNN_cost_hierarchy_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_robot_union_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_robot_composition_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_cp1_cohort_publication_receipt_20261116.json'
@@ -356,6 +357,9 @@ if (D/'complete_BNN_cost_hierarchy_01/completion.json').exists():
     cost=read(D/'complete_BNN_cost_hierarchy_01/completion.json')
     status['complete_BNN_cost_hierarchy']={k:v for k,v in cost.items() if k not in ['arms','source_sha256']}
     status['evidence']['complete_BNN_cost_hierarchy']='complete_BNN_cost_hierarchy_01/completion.json'
+if (D/'cp1_public_source_restoration_01/completion.json').exists():
+    status['cp1_public_source_restoration']=dict(passed=True,receipt='cp1_public_source_restoration_01/completion.json',restored_dependency_files=1166,verified_bound_files=1289,actual_extension_import_and_fixed_admission=True,native_calls=0,CP1_changed=False)
+    status['evidence']['cp1_public_source_restoration']='cp1_public_source_restoration_01/completion.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

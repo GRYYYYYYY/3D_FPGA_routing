@@ -91,6 +91,8 @@ def render(status,D):
         paper_update_text+=' [25连接联合机制实验](robot_union_mechanism_01/plan.json)现已登记并排在CP1确认之后：相同联合请求下native、domain-no-release、domain-release三臂；owner网络均不限域。八项开发检查通过，尚无新原生结果，不改CP1。'
     if status.get('complete_BNN_cost_hierarchy'):
         paper_update_text+=' [完整BNN费用分解](complete_BNN_cost_hierarchy_01/completion.json)：原1821.07秒额外时间中1692.84秒处于资源事务，占92.96%；70/1361次连接查询。核心38.23/1207.26秒为嵌套计时，不能与完整时间相加。最终空选择轮27.32秒仅占domain完整时间0.2801%，尚无可归功的提前停止加速；CP1和正在运行的工程臂不变。'
+    if status.get('cp1_public_source_restoration'):
+        paper_update_text+=' [CP1公开源码重建](cp1_public_source_restoration_01/completion.json)通过：两个固定发行wheel恢复1166依赖文件，1289封存文件全匹配，真实扩展导入/项目外固定入口检查通过；未使用完整运行包或已安装依赖。外部native二进制及物理输入仍需显式提供，0次新native执行。'
     if status.get('portable_whole_method_actual',{}).get('passed'):
         input_outcome_text+=' 项目外观测、已知 R1 非空 owner 事务和 tiny 整方法实际检查均已通过；完整 tiny 耗时101.43 s，零提交，不算新独立样本或正向机制整合收益。后续队列按实际回执接续；正向整合路径和独立确认结果仍待验证。'
     if status.get('clstm_input_compatibility_failure'):
