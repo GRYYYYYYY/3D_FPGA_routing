@@ -179,6 +179,8 @@ distinct_publication=D.parents[1]/'docs/github_CP1r3_distinct_protocol_publicati
 if distinct_publication.exists():publication=distinct_publication
 interrupted_publication=D.parents[1]/'docs/github_interrupted_stage_publication_receipt_20261116.json'
 if interrupted_publication.exists():publication=interrupted_publication
+flow_publication=D.parents[1]/'docs/github_interrupted_flow_publication_receipt_20261116.json'
+if flow_publication.exists():publication=flow_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -598,6 +600,15 @@ if (D/'interrupted_flow_recovery_01/protocol.json').exists():
     status['evidence']['remaining_interrupted_full_flow_dispatch']='interrupted_flow_recovery_01/protocol.json'
     status['outstanding']=[x for x in status['outstanding'] if not x.startswith('Four remaining CLSTM/reduction interrupted arms now')]
     status['outstanding'].append('Four CLSTM/reduction full-flow prefix recoveries are now implemented and queued after their readonly stage audit. Exact source transforms, actual4role/root/cut-point metadata and31negative guards pass; tiny stage-side-effect fixtures pass5checks/20guards. Per-case actual serial audit hashes and CP1r3 package/unchanged algorithm admission remain mandatory before new native work. CLSTM/native skips closed resource/terminal/handoff and preserves its original timing portfolio/query work; others resume resource prefixes. No new recovered result, independent input or cold whole-cost yet. All failures and old costs retained separately; candidate STA/audit failures cannot be promoted to a complete recovery.')
+if (D/'BNN_timing03_native0_receipt_02/completion.json').exists():
+    receipt=read(D/'BNN_timing03_native0_receipt_02/completion.json')
+    status['BNN_timing03_first_complete_arm']={k:receipt[k] for k in ['arm','quality','complete_command_seconds','sampled_tree_PSS_peak_kib','sampled_tree_PSS_peak_GiB','missing_memory_observations','observer_CPU_seconds','resource_commits','timing_commits','coarse_same_role_CPD_and_resources_equal','exact_same_role_trajectory_requests_native_work_and_graph_payload_equivalence','own_root_endpoint_summary','paired_domain_over_native_ratio','measured_identities_rechecked','completion_timestamps']}
+    status['BNN_timing03_first_complete_arm']['scope']='Historical first-arm snapshot before original batch finish; current owner table is authoritative for active case.'
+    status['evidence']['BNN_timing03_first_complete_arm']='BNN_timing03_native0_receipt_02/completion.json'
+    status['outstanding'].append('BNN03 native_0 completed at14:12UTC and existing full verifier passed14:13UTC:13.228145690ns,2059631wire/82SB/5062CB,7329.044554s,PSS11.060657GiB,22missing memory samples;157recorded identities rechecked dead. Queue has already advanced to domain_0; never infer active case from native_0 old timing checkpoint. This is one known-input repeat; exact same-role graph/trajectory/request/native-work and own-root/paired endpoint comparisons await original four-role finish. No optimized N/D ratio or statistical speedup yet; do not overwrite original22.95percent paired overhead or add a new independent main-table row.')
+if (D/'interrupted_entrypoint_startup_01/completion.json').exists():
+    status['recovery_entrypoint_startup']=dict(receipt='interrupted_entrypoint_startup_01/completion.json',passed=read(D/'interrupted_entrypoint_startup_01/completion.json')['passed'],probes=7,native_calls=0,actual_CP1r3_package_or_recovery_execution=False)
+    status['evidence']['recovery_entrypoint_startup']='interrupted_entrypoint_startup_01/completion.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

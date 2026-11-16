@@ -8,6 +8,10 @@ def render(status,D):
         phase=owner.get('effective_wait') or owner['phase_status']
         if owner.get('flow_active_stage'):phase+=' → '+owner['flow_active_stage']['phase']
         rows.append(f"| {owner['batch']} | {phase} | {owner['pid']} |")
+    timing_note=''
+    if status.get('BNN_timing03_first_complete_arm'):
+        timing=status['BNN_timing03_first_complete_arm']
+        timing_note=f"当前对称计时首臂：[native_0完整回执](BNN_timing03_native0_receipt_02/completion.json)已在14:12UTC落盘、14:13UTC通过原完整核验。13.228145690ns，2059631wire/82SB/5062CB，{timing['complete_command_seconds']:.2f}s，PSS{timing['sampled_tree_PSS_peak_GiB']:.3f}GiB，缺失内存观察22次，157个测量身份均已终止。首臂后队列自动转入后续角色，当前运行阶段以进程核对表为准；不能沿用旧native_0时序检查点。完整轨迹/请求/图载荷和端点等价核验待原四臂收尾；本次是已知BNN输入的重复计时，没有新独立样本、优化后N/D比值或统计加速结论。\n\n"
     paper=Path(status['paper_pdf']).relative_to(D)
     if status.get('closed_CP1r2_cohort'):
         return f'''# 当前研究状态
@@ -30,7 +34,7 @@ TPU_ws两臂均触发原1800s初始执行保护，完整尝试1904.67/1906.23s�
 
 新增归因核对：[10配置/9个声明物理输入矩阵](mechanism_selection_evidence_01/completion.json)是既有数据分析，不是新增独立确认。4配置初始无共享切口；6配置有切口但其中softmax、严格SB-only无额外垂直节省。SB-only两时序设置同初始树/48条候选/资源上限，CPD cap1.00/1.02下domain相对native多省SB为0/4，通用规则必须包含时序预算。所有实际guided资源角色均已覆盖审计：BNN9角色/0释放、robot3角色/5释放。资源owner依赖可避免跨层冗余与目标/owner余量；时序owner需要同一正延迟见证的容量冲突，不能混用两者。[开发分流原型](mechanism_triage_validation_02/completion.json)未装入冻结版本、无实测节省。
 
-完整费用：历史BNN同13.228145690ns，domain+1786wire换39SB/2CB；SB−47.56%，SB+CB−0.797%，完整时间+22.95%。对称工程改动的domain单次9116.40s，相对9754.31s少6.54%；优化后N/D比值仍待当前N/D/D/N完整交错计时。空查询补丁验证在其后排队，无已测节省。
+{timing_note}完整费用：历史BNN同13.228145690ns，domain+1786wire换39SB/2CB；SB−47.56%，SB+CB−0.797%，完整时间+22.95%。对称工程改动的domain单次9116.40s，相对9754.31s少6.54%；优化后N/D比值仍待当前N/D/D/N完整交错计时。空查询补丁验证在其后排队，无已测节省。
 
 无效、失败与边界：SPMV/CB-only无切口，Robot SDC无接受收益，conv-layer/attention初始路由失败；TPU为初始执行超时。旧加载错误、5次监督中断及4次保护程序打包失败单列基础设施费用。现有owner联合修复N/D同结果归于协调扩大，不能归于域。
 
