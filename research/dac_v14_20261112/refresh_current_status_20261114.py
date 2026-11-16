@@ -134,7 +134,8 @@ status['outstanding']=[
 status['standalone_runtime_component']=read(D/'standalone_native_runtime_artifact_01/completion.json')
 status['standalone_runtime_component']['physical_validation']='standalone_physical_audit_validation_01/completion.json'
 status['standalone_runtime_component']['execution_validation']='standalone_native_runtime_validation_01/completion.json'
-publication=D.parents[1]/'docs/github_cp1_restore_publication_receipt_20261116.json'
+publication=D.parents[1]/'docs/github_complete_tradeoff_paper_publication_receipt_20261116.json'
+if not publication.exists(): publication=D.parents[1]/'docs/github_cp1_restore_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_BNN_cost_hierarchy_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_robot_union_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_robot_composition_publication_receipt_20261116.json'
@@ -341,6 +342,13 @@ if (D/'owner_contract_paper_binding_09.json').exists():
       'Close matched domain engineering cost; retain original22.95% whole overhead,47.56% SB and0.797% total reductions until qualified new pair completes. Stable symmetric interleaved timing pending.',
       'Six-page09 sealed with31complete attempts and2scoped rows. Continue evidence-to-claim integration; no universal gain or external application timing claim.'
     ]
+if (D/'complete_tradeoff_paper_binding_10.json').exists():
+    paper=read(D/'complete_tradeoff_paper_binding_10.json');status['paper_pdf']=paper['pdf']
+    status['evidence'].update(unified_paper='complete_tradeoff_paper_binding_10.json',paper='complete_tradeoff_paper_binding_10.json')
+    status['complete_tradeoff_paper_update']=True
+    status['paper_figure_archive_records']=None
+    status['paper_figure_legal_configuration_pairs']=9
+    status['outstanding']=[s.replace('Six-page09 sealed with31complete attempts and2scoped rows.', 'Six-page10 sealed with31complete attempts and2scoped rows; complete-pair figure replaces historical BNN projection, now supplementary.') for s in status['outstanding']]
 if (D/'cp1_cross_circuit_cohort_01/launch.json').exists():
     cohort=read(D/'cp1_cross_circuit_cohort_01/plan.json')
     status['cp1_prospective_cohort']=dict(plan='cp1_cross_circuit_cohort_01/plan.json',launch='cp1_cross_circuit_cohort_01/launch.json',release_manifest_sha256=cohort['release_manifest_sha256'],registered_inputs=2,registered_roles=4,inputs=[x['id'] for x in cohort['inputs']],terminal=(D/'cp1_cross_circuit_cohort_01/comparison.json').exists(),qualification='New known historical conv_layer_hls and tpu_like.small.ws physical inputs; CP1 fixed before outcomes. Different circuits, not route seeds. No new results until actual completion.')

@@ -83,6 +83,8 @@ def render(status,D):
         paper_update_text='当前版本已更新为[完整输入与比较证据版08](qualified_complete_paper_binding_08.json)：27个完整尝试条目（含4个初始失败）及2个局部组件条目，整合 BNN 完整终结选点费用及相对基线比较、robot-SDC 无收益及 attention 失败；逐项绑定自身初态端点和同次完整费用。下述22行描述为前版06范围，历史档案计数不变。'
     if status.get('owner_contract_paper_update'):
         paper_update_text='当前[六页正文09](owner_contract_paper_binding_09.json)包含31个完整尝试（4个初始路由失败、4个输入加载失败）及2个局部组件条目。新增 robot owner 配对取舍、输入失败分类和 CP1 固定契约；旧批次不追认为确认。下述前版数字均属历史范围。'
+    if status.get('complete_tradeoff_paper_update'):
+        paper_update_text='当前[六页正文10](complete_tradeoff_paper_binding_10.json)保留31个完整尝试与2个局部条目，主图改为9个完整合法配置配对的资源／线长／CPD／时间变化；9行不等于9个独立输入。八个失败尝试保留，历史BNN局部散点图与原说明转入补充材料。完整BNN费用分解纳入开销节；本次无新增独立实验结果，CP1规则未改。'
     if status.get('cp1_prospective_cohort'):
         paper_update_text+=' [CP1 首批跨电路确认](cp1_cross_circuit_cohort_01/plan.json)已登记conv_layer_hls和tpu_like.small.ws两输入四臂，单一owner追加在修正robot-p1之后。实际固定入口检查通过；3.32GB物理输入准入待串行槽。历史成功/失败输入同时保留，当前没有新增确认结果；不称未见测试集，不改变正文已证实结论。'
     if status.get('robot_mechanism_composition_screen'):
@@ -101,13 +103,17 @@ def render(status,D):
         input_outcome_text+=' robot p1两臂同样在路由前报$undef不匹配，102.93/102.90 s保留为输入兼容性失败；[修正配对](robot_p1_input_contract_pair_02/plan.json)追加到修正clstm之后。当前BNN domain工程臂执行，随后reduction、修正clstm、修正robot p1；全部旧规则及回执保留。'
     if status.get('robot_owner_scope_actual'):
         input_outcome_text+=' [robot owner原生消融](robot_owner_scope_pair_01/verification.json)已闭合：target-only251173/10/653，target+owner251185/10/654，同13.354624073 ns；增加12wire/1CB换31setup改善、0退化。资源策略拒绝两者，endpoint规则仅接受owner候选；均未提交原actor。完整导入式配对155.10 s，不是冷启动整算法时间。该晚到局部结果已入补充回执，正文08尚未纳入。'
+    owner_scope_summary='[已登记 native 范围对照](robot_owner_scope_pair_01/plan.json)固定原通用选组器首选：目标3连接与目标＋owner4连接，两臂均 unrestricted；只改变协调范围，结果以实际终结回执为准。'
+    if status.get('robot_owner_scope_actual'):
+        owner_scope_summary='[已完成 native 范围对照](robot_owner_scope_pair_01/verification.json)：目标3连接与目标＋owner4连接，两臂均 unrestricted；扩大范围增加12 wire/1 CB，换取31个setup端点改善、0退化，CPD不变。固定资源策略拒绝，均未提交；这是协调范围的取舍证据。'
+        input_outcome_text=input_outcome_text.replace('该晚到局部结果已入补充回执，正文08尚未纳入。', '该局部结果已纳入正文09的owner取舍行，完整审计留在补充材料。' if status.get('owner_contract_paper_update') else '该局部结果已入补充回执，正文整合以当前版本证据绑定为准。')
     return f'''# 当前研究状态（{status['observed_at']}）
 
 Goal active；公开证据基点 `9734eee`，最新增量 `{status['latest_incremental_publication']['commit'][:7]}`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[工程缺失臂登记](../../docs/GitHub_domain_engineering_registration_20261116.md) · [跨输入登记](../../docs/GitHub_robot_p1_registration_20261116.md) · [最近完成结果](../../docs/GitHub_native_ablation_progress_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
 
 统一方法：当前 STA 重选事务组 → 跨层共享域 → 按网络失败释放 → 容量证书与当前余量驱动的 owner 协调 → 固定根规则下接受完整合法事务 → 重选与独立终结选点 → 完整时序组合。中间构造不要求逐个改善 CPD。[完整独立开发包 dev03](standalone_unified_method_component_03.json)已迁移原串行控制器；项目外 tiny 整流程已通过；[CP1 确认源码与规则](confirmation_release_cp1_01/completion.json)已冻结并通过23项入口检查及整包移位验证，独立确认结果仍待完成。先前组件、真实请求重放和子进程清理验证只证明对应接口，不证明完整算法收益。
 
-最新机制证据：[robot 精确域/容量审计](robot_release_capacity_cut_01/completion.json)表明两个实际释放网络的原域禁止返回源层，而同层出口被事务外 owner 占满。释放域不释放 owner。[同源无释放原生消融](robot_domain_release_ablation_01/verification.json)现已失败并精确回滚：23连接请求在首连接的9次尝试后失败，源字节及完整端点向量恢复；29.24 s是导入事务成本，没有候选质量。[18 次残余容量路径检查](robot_owner_local_reachability_01/completion.json)中，两次目标单独剪除均无同层路径；16次释放 owner 分支后均可达，无超时。这些路径不包含 owner 重接，不能算16次成功修复。[已登记 native 范围对照](robot_owner_scope_pair_01/plan.json)固定原通用选组器首选：目标3连接与目标＋owner4连接，两臂均 unrestricted；只改变协调范围，排在 clstm 之后，尚未执行。
+最新机制证据：[robot 精确域/容量审计](robot_release_capacity_cut_01/completion.json)表明两个实际释放网络的原域禁止返回源层，而同层出口被事务外 owner 占满。释放域不释放 owner。[同源无释放原生消融](robot_domain_release_ablation_01/verification.json)现已失败并精确回滚：23连接请求在首连接的9次尝试后失败，源字节及完整端点向量恢复；29.24 s是导入事务成本，没有候选质量。[18 次残余容量路径检查](robot_owner_local_reachability_01/completion.json)中，两次目标单独剪除均无同层路径；16次释放 owner 分支后均可达，无超时。这些路径不包含 owner 重接，不能算16次成功修复。{owner_scope_summary}
 
 跨输入：[结构筛选](structural_input_screen_01/completion.json)保留无切口和失败案例。{input_outcome_overview} 已完成原 clstm／robot p1 输入加载失败和 robot owner 对照；修正输入配对继续等待串行槽。robot p1 同时改变 packing 与实际坐标，非纯布局因果对照；已知历史输入不称未见测试集。同树不同 seed 不增加独立起点。
 
