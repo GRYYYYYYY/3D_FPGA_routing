@@ -193,6 +193,10 @@ domain_timing_publication=D.parents[1]/'docs/github_BNN_timing03_domain0_publica
 if domain_timing_publication.exists():publication=domain_timing_publication
 sharing_position_publication=D.parents[1]/'docs/github_sharing_prior_art_publication_receipt_20261116.json'
 if sharing_position_publication.exists():publication=sharing_position_publication
+for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
+             'github_BNN_timing03_balanced_publication_receipt_20261116.json']:
+    candidate=D.parents[1]/'docs'/name
+    if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -668,6 +672,29 @@ if (D/'sharing_prior_art_paper_binding_18.json').exists():
     paper=read(D/'sharing_prior_art_paper_binding_18.json');status['paper_pdf']=paper['pdf'];status['paper_pages']=6
     status['evidence'].update(current_paper='sharing_prior_art_paper_binding_18.json',sharing_prior_art='sharing_prior_art_paper_evidence_18/sources.json',contribution_and_attribution_map='sharing_prior_art_paper_evidence_18/contribution_comparison.md')
     status['paper_sharing_prior_art_scope']=dict(pages=6,quantitative_rows_unchanged=43,references_unchanged=9,new_independent_inputs=0,new_native_calls=0,external_router_reproduced=False,cross_paper_numeric_rank=False,new_benefit_claims=0)
+if (D/'BNN_timing03_balanced_receipt_01/completion.json').exists():
+    balanced=read(D/'BNN_timing03_balanced_receipt_01/completion.json')
+    status['BNN_timing03_balanced_complete']={k:balanced[k] for k in [
+        'paired_cost_observation_available','registered_order','rows','pairs',
+        'pair_domain_over_native_ratios','native_mean_seconds','domain_mean_seconds',
+        'ratio_of_arm_means','mean_of_pair_ratios','independent_new_inputs','goal_status']}
+    status['evidence'].update(BNN_timing03_balanced_complete='BNN_timing03_balanced_receipt_01/completion.json',
+                              BNN_timing03_balanced_claim_scope='BNN_timing03_balanced_claim_binding_01.json')
+    for key in ['BNN_timing03_first_complete_arm','BNN_timing03_first_complete_domain','BNN_timing03_second_complete_domain']:
+        if key in status:
+            status[key]['scope']='Historical intermediate receipt; superseded for batch matching by BNN_timing03_balanced_complete. Original measurement remains unchanged.'
+    status['outstanding']=[s for s in status['outstanding'] if not s.startswith((
+        'Preserve active BNN03','BNN03 native_0','BNN03 domain_0','Priority02: after the current balanced BNN batch'))]
+    status['outstanding'].insert(0,'BNN03 all four whole commands and original byte/trajectory/request/native-work/environment/root/full-endpoint matching passed. Reuse comparison and paired costs; no more BNN local repeats. Proceed with the actual Priority02 CP1r3 three-input/six-role owner, then the four-arm readonly admission and registered recoveries. Keep paper18 prior-art/contribution scope and all prior failures; same input repeats add zero independent evidence.')
+    package=D/'confirmation_release_cp1r3_01/completion.json'
+    if package.exists():
+        status['actual_CP1r3_precision_package']=read(package)
+        status['evidence']['actual_CP1r3_precision_package']='confirmation_release_cp1r3_01/completion.json'
+    cohort=D/'cp1r3_distinct_input_cohort_01'
+    if (cohort/'preflight.json').exists():
+        status['actual_CP1r3_activation_preflight']=read(cohort/'preflight.json')
+        status['evidence']['actual_CP1r3_activation_preflight']='cp1r3_distinct_input_cohort_01/preflight.json'
+        status['actual_CP1r3_preparation_costs']={p.name:read(p) for p in [cohort/'activation_cost.json',*cohort.glob('*_provisioning_cost.json')] if p.exists()}
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

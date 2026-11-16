@@ -1,43 +1,25 @@
 # 当前研究状态
 
-观察时间：2026-11-16T19:22:32.069618+00:00。Goal active；公开证据基点9734eee，原开发状态、冻结版本与失败回执保留。
+观察时间：2026-11-16T21:31:56.507406+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
 
-统一方法：按当前STA、跨层冗余与容量阻塞选完整连接组；在私有树上执行共享域、按网失败释放及owner协调；经物理/容量/FULL/STA完整检查，在固定根预算下接受或恢复，终结选点独立于中间提交。native享有同等选组、owner和收敛机会。CP1r2独立冻结，不追认旧开发结果为确认。
+统一方法：当前STA、跨层冗余与容量阻塞用于选择完整连接组；在事务副本中使用跨层共享域、按网失败释放及阻塞owner协调；完整组合经物理/容量/FULL/STA检查，在固定根预算下接受或恢复。终结选点独立于中间提交；native享有相同选组、owner与收敛机会。
 
 | 当前登记批次 | 实际状态 | owner PID |
 |---|---|---:|
-| BNN_interleaved_timing_03 | running [native_1] → fresh_route_and_complete_resource | 1695383 |
-| confirmation_release_cp1r3_01 | priority_dependency: BNN_interleaved_timing_03 | 3149029 |
-| cp1r3_distinct_input_cohort_01 | priority_dependency: confirmation_release_cp1r3_01 | 3149073 |
+| cp1r3_distinct_input_cohort_01 | running_confirmation_arm [lstm/native] → private_subreaper | 3149073 |
 | interrupted_stage_reconciliation_01 | priority_dependency: cp1r3_distinct_input_cohort_01 | 3149126 |
 | robot_p1_prefix_recovery_01 | priority_dependency: interrupted_stage_reconciliation_01 | 3149178 |
 | interrupted_flow_recovery_01 | priority_dependency: robot_p1_prefix_recovery_01 | 3149228 |
 | empty_query_patch_validation_01 | priority_dependency: interrupted_flow_recovery_01 | 3149280 |
 
-新增确认：[CP1r2四臂终结证据](cp1r2_cross_circuit_cohort_01/terminal_evidence_01/completion.json)。两个预先固定的已知独立电路/实际物理输入中，conv_hls两臂合法，初始树/完整向量匹配，终态同14.351002164ns、84291wire/0SB/37CB、4491setup/hold分量；零提交/提案，505.17/500.90s。18个当前关键连接固定/放宽容量均无物理时序增益。确认一个固定菜单无收益输入，不是普遍收益或全局最优。
+[BNN N/D/D/N完整对称计时](BNN_timing03_balanced_receipt_01/completion.json)已终结，原独立完整核验及四臂匹配均通过。完整命令时间按登记顺序为7329.044554 / 9146.351492 / 9112.139276 / 7288.184845s；D0/N0=1.24795960，D1/N1=1.25026182；N均值7308.614699s，D均值9129.245384s，均值之比1.24910749（约+24.91%）。使用原始完整计时区间，未拼接阶段或扣减observer CPU。所有同角色轨迹、请求、原生工作及六个实际图载荷字节一致；配对新鲜初始树、完整CPD/setup/hold/端点ID/约束匹配，终态完整端点比较兼容。共享主机/OS缓存未受控，两次每臂仅支持描述性费用。缺失内存观察依次22/28/27/29，保留采样局限。
 
-TPU_ws两臂均触发原1800s初始执行保护，完整尝试1904.67/1906.23s，PSS2.434/2.433GiB，缺失观察0/0。无合法根/质量/端点比较；不是200迭代拥塞失败或不可路由证明。四角色原回执、实际费用与PID身份均保留，无残留后代，不重跑。
+同一BNN输入复现资源—时序取舍：两臂CPD同13.228145690ns；N为2059631wire/82SB/5062CB，D为2061417wire/43SB/5060CB。SB减少47.56%，SB+CB从5144到5103减少0.797%，线长+1786。D相对N的setup为534改善/803退化，新增hold违例退化0；不满足端点完全无退化。资源计数减少反映固定架构占用，未测面积/功耗。历史完整时间+22.95%与新交错观察+24.91%分别保留；不能称为普遍收益或统计加速。
 
-机制：[robot固定25连接/5网三臂消融](robot_union_mechanism_02/verification_v2.json)已只读核验。源251161/10/653；native合法251140/9/654，setup240改善/0退化，却超原CB653上限；domain/no-release精确回滚；domain/release合法251160/9/653，CPD同13.354624073ns，setup240改善/32退化、hold增加0，满足资源预算但不满足端点无退化。共享导入命令194.52s，非各臂独立整流程费用；三个候选未提交原actor。域改变本例取舍，释放使该受限事务可行，owner范围扩大另行归因。
+独立证据没有增加：四次计时是同一电路、布局与架构的重复测量。CP1r3精度专用封装已实际完成，原三输入/六角色队列已接棒；[实际预检](cp1r3_distinct_input_cohort_01/preflight.json)记录冻结配置、公开源码重建、还原后保护程序/worker导入及迁移后的准入检查通过。大字节与完整输出门槛仍由逐输入准备和测量命令执行，不能将元数据准入当作结果通过。准备/公开重建8.494s、LSTM输入准备17.220s单独计费，不并入算法墙钟。逐臂实际状态以上表为准。LSTM与DLA-like.small为不同已知电路；eltwise SB-only仅为已知电路/架构的不同实际布局。保持冻结协议，不按结果替换输入或重复已完成角色。
 
-[robot-p1 owner接续审计](robot_owner_reentry_audit_02/completion.json)确认4次自动native owner提交及当前状态重入：231045/47/6677→231113/47/6673，CPD同11.633691344ns，即+68wire/−4CB；一阶段setup退化1。既有reload完整精度CPD/setup/hold/约束/端点ID精确相同，确认旧检查仅误比显示精度。仍是中断开发轨迹，不是完整确认或域收益。precision patch02已暂存，未写入CP1r2。
+机制归因仍受原证据限制：BNN九个guided资源角色无失败释放；既有R1 owner联合修复N/D相同结果归于协调范围扩大。robot三臂只证明该事务中域/释放改变可行取舍，尚非完整确认。conv_hls确认无收益、TPU初始超时、SPMV/CB-only无切口、Robot SDC无接受收益、attention/conv-layer初始失败继续保留。
 
-新增归因核对：[10配置/9个声明物理输入矩阵](mechanism_selection_evidence_01/completion.json)是既有数据分析，不是新增独立确认。4配置初始无共享切口；6配置有切口但其中softmax、严格SB-only无额外垂直节省。SB-only两时序设置同初始树/48条候选/资源上限，CPD cap1.00/1.02下domain相对native多省SB为0/4，通用规则必须包含时序预算。所有实际guided资源角色均已覆盖审计：BNN9角色/0释放、robot3角色/5释放。资源owner依赖可避免跨层冗余与目标/owner余量；时序owner需要同一正延迟见证的容量冲突，不能混用两者。[开发分流原型](mechanism_triage_validation_02/completion.json)未装入冻结版本、无实测节省。
+之后按登记顺序执行四臂只读来源/字节/完整请求/FULL/STA/端点/物理审计，再做robot-p1及四臂阶段接续，最后开发空查询回放。reduction/native原成功日志与running manifest必须独立审计；不改写历史completion、不重复已完成原生查询。新执行阶段单独登记计费，接续费用不冒充冷启动完整费用。
 
-当前对称计时首臂：[native_0完整回执](BNN_timing03_native0_receipt_02/completion.json)已在14:12UTC落盘、14:13UTC通过原完整核验。13.228145690ns，2059631wire/82SB/5062CB，7329.04s，PSS11.061GiB，缺失内存观察22次，157个测量身份均已终止。首臂后队列自动转入后续角色，当前运行阶段以进程核对表为准；不能沿用旧native_0时序检查点。完整轨迹/请求/图载荷和端点等价核验待原四臂收尾；本次是已知BNN输入的重复计时，没有新独立样本、优化后N/D比值或统计加速结论。
-
-完整费用：历史BNN同13.228145690ns，domain+1786wire换39SB/2CB；SB−47.56%，SB+CB−0.797%，完整时间+22.95%。对称工程改动的domain单次9116.40s，相对9754.31s少6.54%；优化后N/D比值仍待当前N/D/D/N完整交错计时。空查询补丁验证在其后排队，无已测节省。
-
-无效、失败与边界：SPMV/CB-only无切口，Robot SDC无接受收益，conv-layer/attention初始路由失败；TPU为初始执行超时。旧加载错误、5次监督中断及4次保护程序打包失败单列基础设施费用。现有owner联合修复N/D同结果归于协调扩大，不能归于域。
-
-论文：[当前六页PDF](paper_snapshots/current_sharing_prior_art_20261116/build/current_repair_main.pdf)，主表43行：36终结尝试、2组基础设施失败、5个局部组件。保留六节主线、机制伪代码与路由相关工作；新增完整确认无收益、TPU超时、robot三臂、owner局部接续及主张边界。历史轨迹/恢复与完整审计留补充材料。已公开版本以CURRENT_STATUS.json的latest_incremental_publication回执为准。
-
-优先级更新：[Priority02实际交接](confirmation_priority_handoff_02/completion.json)已替换6个未执行等待owner，旧登记和明确取消回执保留，原实验协议/方法规则不变。当前BNN交错计时保持连续；随后立即准备CP1r3并执行三输入六角色，再做四臂只读核验、开发接续，最后空查询回放。当前登记表读取queue_priority_02的实际进程和依赖；取消等待owner不计作实验失败。
-
-新确认协议：[CP1r3三输入/六角色](cp1r3_distinct_input_cohort_01/protocol.json)已登记并前移至CP1r3准备之后，包括LSTM、DLA-like.small和已知SB-only架构上的布局对照。尚未激活实际配置、重建或准入，不能声称确认通过。SB对照与旧主表同声明电路/图/打包，但1883块中1882块实际坐标不同，是新布局而非新电路；其余原始字节/新鲜根仍待核验。协议先绑定来源/规则，实际CP1r3冻结、公开源码重建及检查通过后，先封存配置再运行；现有版本和队列不变。
-
-请求独立核对：[四臂完整请求](interrupted_complete_request_audit_01/completion.json)已核对378个请求、454条原ATTEMPT，实际QUERY顺序与角色/序列化请求精确匹配，未重跑原生。reduction/native覆盖269请求，旧running manifest不改写；大字节/FULL/STA/端点/物理等完整阶段准入仍未通过，不能据此送入适配器或主张收益。
-
-其余中断阶段：[四臂真实回执清单](interrupted_stage_reconciliation_01/inventory.json)及[串行只读核验登记](interrupted_stage_reconciliation_01/plan.json)已补齐，排在原确认队列之后。CLSTM/native资源阶段已闭合，时序原生与候选审计也已完成；reduction/domain的原生、物理和域审计已完成，两者候选STA目录为空。CLSTM/domain仅原生完成；reduction/native有GNU退出0及269请求完成日志，但worker未封存。只核验旧字节/完整STA，不新增原生调用、改写旧回执或冒认整流程结果；[四臂完整接续入口](interrupted_flow_recovery_01/protocol.json)现已实现并登记在核验之后：CLSTM/native跳过已闭合阶段并保留原时序portfolio/查询，另三臂从原资源检查点继续；31项真实元数据拒绝检查与5项小型流程/20项拒绝检查通过。仍须实际串行核验和逐臂准入，尚无新接续质量或冷启动费用。
-
-后续：保持当前计时规则，完成已登记只读空查询验证；[精度专用CP1r3准备](confirmation_release_cp1r3_01/plan.json)已登记在当前BNN完整计时之后、获取串行锁才打包，不含空查询补丁/新路由，尚未形成新版本执行证据。[robot-p1完整接续](robot_p1_prefix_recovery_01/plan.json)已实现并后移至CP1r3六角色确认和四臂只读核验之后，24项元数据负向检查通过，原7步/合法拒绝档案/根预算保留；原生请求与STA复用仍须串行重图/完整轨迹核验，尚无新实验结果或冷启动费用。其余中断输入另行接续，继续真正不同输入/架构及通用机制规则研究。Goal不因批次、推送或普通负结果终止。
+论文：[paper18六页正文](paper_snapshots/current_sharing_prior_art_20261116/build/current_repair_main.pdf)的prior-art、贡献边界、43行主表与9篇引用保持不变。[新增费用主张绑定](BNN_timing03_balanced_claim_binding_01.json)仅补充同一输入完整费用和复现性证据，不新增独立输入或跨输入收益。完整轨迹与审计留补充材料。最新已核验公开提交见CURRENT_STATUS.json的latest_incremental_publication。Goal不因计时完成、推送、普通负结果或日期终止。
