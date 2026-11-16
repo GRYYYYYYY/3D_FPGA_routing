@@ -133,7 +133,8 @@ status['outstanding']=[
 status['standalone_runtime_component']=read(D/'standalone_native_runtime_artifact_01/completion.json')
 status['standalone_runtime_component']['physical_validation']='standalone_physical_audit_validation_01/completion.json'
 status['standalone_runtime_component']['execution_validation']='standalone_native_runtime_validation_01/completion.json'
-publication=D.parents[1]/'docs/github_current_entry_publication_receipt_20261116.json'
+publication=D.parents[1]/'docs/github_terminal_wire_complete_publication_receipt_20261116.json'
+if not publication.exists(): publication=D.parents[1]/'docs/github_current_entry_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_terminal_comparison_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_domain_engineering_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_robot_p1_publication_receipt_20261116.json'
@@ -210,6 +211,63 @@ if grouping_terminal.exists() and read(grouping_terminal).get('passed'):
 status['domain_engineering_plan']='complete_BNN_domain_engineering_01/plan.json'
 status['evidence'].update(domain_engineering='complete_BNN_domain_engineering_01/plan.json',domain_engineering_preflight='complete_BNN_domain_engineering_01/preflight.json')
 status['evidence'].update(terminal_wire_qualified_comparison='BNN_terminal_wire_qualified_comparison_02/plan.json',terminal_wire_comparison_validation='BNN_terminal_wire_qualified_comparison_validation_02.json')
+terminal_case=D/'complete_BNN_terminal_wire_flow_01/bnn_native_terminal_wire'
+terminal_flow=terminal_case/'flow'
+if (terminal_flow/'terminal_resource_handoff.json').exists():
+    handoff=read(terminal_flow/'terminal_resource_handoff.json')
+    selection=read(terminal_flow/'terminal_wire_selection/completion.json')
+    chosen=selection.get('selected')
+    stage=read(terminal_flow/'active_child.json') if (terminal_flow/'active_child.json').exists() else None
+    actual=process_identity(stage['pid']) if stage else None
+    stage_live=bool(actual and actual['state']!='Z' and actual['start_ticks']==stage['start_ticks'])
+    verified=(terminal_case/'completion.json').exists() and read(terminal_case/'completion.json').get('passed',False)
+    status['terminal_wire_actual_handoff_observation']=dict(
+        resource_stage_passed=read(terminal_flow/'resource_flow/completion.json')['passed'],
+        handoff_passed=handoff['passed'],terminal_wire_commits=handoff['terminal_wire_commits'],
+        before_resources=selection['current_resources'],selected_resources=chosen['resources'] if chosen else selection['current_resources'],
+        selected_CPD_s=chosen['CPD_s'] if chosen else None,setup_improved=chosen['setup_improved'] if chosen else 0,
+        setup_regressed=chosen['setup_regressed'] if chosen else 0,selected_checks=chosen['checks'] if chosen else {},
+        actual_same_source_candidates=selection['actual_same_source_candidates'],eligible_candidates=selection['eligible_candidates'],
+        current_native_phase=stage['phase'] if stage else None,current_native_phase_verified_live=stage_live,
+        current_native_phase_process=actual if stage_live else None,complete_configuration_verified=bool(verified),
+        handoff_receipt=str(terminal_flow/'terminal_resource_handoff.json'),
+        qualification='Actual same-flow intermediate handoff only; fresh native handoff, complete timing and final whole-cost verification remain distinct. No new independent input or historical time splice.')
+timing_steps=terminal_flow/'timing/steps.json'
+if timing_steps.exists():
+    steps=read(timing_steps)
+    if steps:
+        latest=steps[-1]
+        decision=Path(latest['evaluation']).parent.parent/'policy_decisions.json'
+        endpoint_summary=None
+        if decision.exists():
+            detail=read(decision).get('timing_under_resources',{}).get('endpoint_comparison')
+            if detail:
+                endpoint_summary={k:detail[k] for k in ['compatible','setup_improved','setup_regressed','hold_violation_regressions']}
+        status['terminal_wire_current_timing_observation']=dict(accepted_steps=len(steps),
+            current_CPD_s=latest['after_CPD_s'],current_resources=latest['after_resources'],
+            last_before_CPD_s=latest['before_CPD_s'],last_before_resources=latest['before_resources'],
+            current_state=latest['evaluation'],last_step_endpoint_summary=endpoint_summary,
+            receipt=str(timing_steps),complete_configuration_verified=(terminal_case/'completion.json').exists() and read(terminal_case/'completion.json').get('passed',False),
+            qualification='Current accepted timing checkpoint only; endpoint summary is relative to the immediately preceding state, not the baseline final or original root. Whole result/cost remain tied to the final verified configuration.')
+if (terminal_case/'completion.json').exists() and read(terminal_case/'completion.json').get('passed'):
+    flow_done=read(terminal_flow/'completion.json')
+    measured=read(terminal_case/'measurement/completion.json')
+    comparison_path=D/'BNN_terminal_wire_qualified_comparison_02/completion.json'
+    status['completed_terminal_wire_observation']=dict(
+        verified_configuration=str(terminal_case/'completion.json'),
+        final_CPD_s=flow_done['final_CPD_s'],resources=flow_done['final_resources'],
+        resource_accepted_steps=flow_done['resource_accepted_steps'],
+        terminal_wire_commits=flow_done['terminal_wire_commits'],
+        timing_accepted_steps=flow_done['timing_accepted_steps'],
+        complete_command_wall_seconds=measured['complete_command_wall_seconds'],
+        sampled_tree_PSS_peak_kib=measured['sampled_tree_PSS_peak_kib'],
+        missing_memory_observations=measured['missing_memory_observations'],
+        live_descendants_after_command_exit=measured['live_descendants_after_command_exit'],
+        qualified_baseline_comparison_pending=not comparison_path.exists(),
+        comparison_receipt=str(comparison_path),
+        qualification='Verified fresh-route complete native terminal-wire configuration. Same historical BNN physical input; not independent evidence or full dev03 confirmation. Baseline prefix equivalence, final endpoint comparison and qualified GNU-to-GNU cost difference require the separate comparator. Memory sampling gaps and uncontrolled shared-host/page-cache conditions retained.')
+    status['outstanding'][0]='BNN composition, robot no-release ablation and complete terminal-wire BNN are verified terminal. Original recovery owner exited normally and the registered cross-input chain can continue. Qualified terminal-wire baseline comparison and four-role endpoint/workload analysis wait for the shared serial slot; do not repeat native roles or infer comparisons from matching scalar metrics.'
+    status['evidence']['complete_terminal_wire']='complete_BNN_terminal_wire_flow_01/bnn_native_terminal_wire/completion.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

@@ -19,6 +19,40 @@ def render(status,D):
             f"同 SB/CB/CPD，历史时间增加 {grouping['historical_time_difference_percent']:.2f}%；不能作为加速证据。"
             "不据此将分组启发式加入已登记 dev03，也不继续优化几个 BNN 线长单位；优先执行既有跨输入与机制验证。"
             "完整四角色端点／工作量比较等待串行空位；此处不是冷启动完整配置费用。")
+    terminal_text=''
+    handoff=status.get('terminal_wire_actual_handoff_observation')
+    if handoff:
+        before,after=handoff['before_resources'],handoff['selected_resources']
+        terminal_text=(f"当前流程的资源阶段已通过，终结选点实际采用 {after['wirelength']} wire／{after['SB_pairs']} SB／{after['CB_sources']} CB，"
+            f"相对主资源终态 wire {after['wirelength']-before['wirelength']:+d}；setup {handoff['setup_improved']}改善／{handoff['setup_regressed']}退化。"
+            f"记录阶段为 `{handoff['current_native_phase']}`，进程身份实时核验={handoff['current_native_phase_verified_live']}；"
+            f"完整配置最终验证={handoff['complete_configuration_verified']}。这是本次同流程交接观察，最终时序结果和完整费用以终结回执为准。")
+    timing=status.get('terminal_wire_current_timing_observation')
+    if timing:
+        r=timing['current_resources']
+        terminal_text+=(f"时序阶段当前接受{timing['accepted_steps']}步，最近检查点为 {timing['current_CPD_s']*1e9:.9f} ns／"
+            f"{r['wirelength']} wire／{r['SB_pairs']} SB／{r['CB_sources']} CB。")
+        endpoints=timing['last_step_endpoint_summary']
+        if endpoints:
+            terminal_text+=(f"最近一步相对前态 setup {endpoints['setup_improved']}改善／{endpoints['setup_regressed']}退化，"
+                f"新增 hold 违例退化{endpoints['hold_violation_regressions']}项；不是相对完整基线终态的比较。")
+    completed_terminal=status.get('completed_terminal_wire_observation')
+    terminal_queue_text='原队列当前执行完整 terminal-wire BNN，随后按既有顺序执行'
+    terminal_comparison_text='等待实际终结及串行空位'
+    terminal_result_text='尚无新完整结果。'
+    if completed_terminal:
+        r=completed_terminal['resources']
+        terminal_queue_text='完整 terminal-wire BNN 已通过配置验证，原恢复队列正常终结；后续队列按既有顺序执行'
+        terminal_comparison_text='实际配置已终结并通过核验，基线比较等待串行空位'
+        terminal_result_text=''
+        terminal_text=(f"本次完整原生 terminal-wire 配置已核验：{completed_terminal['final_CPD_s']*1e9:.9f} ns，"
+            f"{r['wirelength']} wire／{r['SB_pairs']} SB／{r['CB_sources']} CB；"
+            f"资源接受{completed_terminal['resource_accepted_steps']}步、终结选点{completed_terminal['terminal_wire_commits']}次、时序接受{completed_terminal['timing_accepted_steps']}步。"
+            f"同次端到端测量 {completed_terminal['complete_command_wall_seconds']:.2f} s，"
+            f"采样 PSS 峰值 {completed_terminal['sampled_tree_PSS_peak_kib']/1048576:.3f} GiB，"
+            f"内存缺失观察{completed_terminal['missing_memory_observations']}次，无残留子进程。"
+            "这是同一历史 BNN 物理输入上的完整配置，非独立输入，也非统一 dev03 确认。"
+            "共同资源前缀等价、相对基线的完整端点变化及同口径费用差，仍以单独比较回执为准；不得由标量相同推断完整等价。")
     return f'''# 当前研究状态（{status['observed_at']}）
 
 Goal active；公开证据基点 `9734eee`，最新增量 `{status['latest_incremental_publication']['commit'][:7]}`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[工程缺失臂登记](../../docs/GitHub_domain_engineering_registration_20261116.md) · [跨输入登记](../../docs/GitHub_robot_p1_registration_20261116.md) · [最近完成结果](../../docs/GitHub_native_ablation_progress_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
@@ -46,9 +80,9 @@ Goal active；公开证据基点 `9734eee`，最新增量 `{status['latest_incre
 |---|---|---:|
 {chr(10).join(rows)}
 
-BNN 分组、固定组合 LOAD 和 robot no-release 已终结；原队列当前执行完整 terminal-wire BNN，随后按既有顺序执行 attention/robot-SDC → 独立 native 观测/事务/完整方法检查 → clstm → robot owner 范围对照 → 固定 dev03 robot p1 完整配对 → 缺失的 domain 工程臂。PID 必须与 start ticks、终结回执交叉核对；正常 pool 轮换不触发恢复。各批次原规则及已完成结果保持不变。
+BNN 分组、固定组合 LOAD 和 robot no-release 已终结；{terminal_queue_text} attention/robot-SDC → 独立 native 观测/事务/完整方法检查 → clstm → robot owner 范围对照 → 固定 dev03 robot p1 完整配对 → 缺失的 domain 工程臂。PID 必须与 start ticks、终结回执交叉核对；正常 pool 轮换不触发恢复。各批次原规则及已完成结果保持不变。
 
-[完整 terminal-wire 只读比较](BNN_terminal_wire_qualified_comparison_02/plan.json)已挂接原恢复队列，等待实际终结及串行空位。旧 v1 依赖缺失的观察者完成回执，新入口使用已核验的旧质量回执并保留缺口；比较共同资源前缀、完整端点和 GNU-time 同口径费用，不补造旧 PSS／观察者时间。[15项反例检查](BNN_terminal_wire_qualified_comparison_validation_02.json)通过，0次原生调用；尚无新完整结果。
+[完整 terminal-wire 只读比较](BNN_terminal_wire_qualified_comparison_02/plan.json)已挂接原恢复队列，{terminal_comparison_text}。旧 v1 依赖缺失的观察者完成回执，新入口使用已核验的旧质量回执并保留缺口；比较共同资源前缀、完整端点和 GNU-time 同口径费用，不补造旧 PSS／观察者时间。[15项反例检查](BNN_terminal_wire_qualified_comparison_validation_02.json)通过，0次原生调用；{terminal_result_text}{terminal_text}
 
 [四角色只读终结比较](query_reduction_resource_dev_01/analysis_03/registration.json)已挂接：等待原批次终结及串行空位，复用前三个已核验比较，补齐 BNN domain 的质量、完整端点、实际 QUERY／ATTEMPT 与完整导入流程费用；不重跑原生实验。[比较器验证](query_reduction_terminal_03_validation.json)覆盖既有结果回归、起点规则不匹配、未终结输入与失败查询记账。{grouping_text}
 

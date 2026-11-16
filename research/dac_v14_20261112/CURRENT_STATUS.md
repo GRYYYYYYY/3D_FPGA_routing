@@ -1,6 +1,6 @@
-# 当前研究状态（2026-11-16T01:50:04.833101+00:00）
+# 当前研究状态（2026-11-16T03:02:20.478929+00:00）
 
-Goal active；公开证据基点 `9734eee`，最新增量 `f1229fb`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[工程缺失臂登记](../../docs/GitHub_domain_engineering_registration_20261116.md) · [跨输入登记](../../docs/GitHub_robot_p1_registration_20261116.md) · [最近完成结果](../../docs/GitHub_native_ablation_progress_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
+Goal active；公开证据基点 `9734eee`，最新增量 `46ded82`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[工程缺失臂登记](../../docs/GitHub_domain_engineering_registration_20261116.md) · [跨输入登记](../../docs/GitHub_robot_p1_registration_20261116.md) · [最近完成结果](../../docs/GitHub_native_ablation_progress_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
 
 统一方法：当前 STA 重选事务组 → 跨层共享域 → 按网络失败释放 → 容量证书与当前余量驱动的 owner 协调 → 固定根规则下接受完整合法事务 → 重选与独立终结选点 → 完整时序组合。中间构造不要求逐个改善 CPD。[完整独立开发包 dev03](standalone_unified_method_component_03.json)已迁移原串行控制器；实际整流程验证仍排队，确认版尚未冻结。先前组件、真实请求重放和子进程清理验证只证明对应接口，不证明完整算法收益。
 
@@ -23,8 +23,7 @@ Goal active；公开证据基点 `9734eee`，最新增量 `f1229fb`。本地实�
 
 | 实际存活 owner 或子阶段 | 阶段 | 登记 PID |
 |---|---|---:|
-| unexecuted_recovery_20261115_01 | running | 404657 |
-| unified_input_integration_01 | waiting_for_registered_recovery_chain | 894335 |
+| unified_input_integration_01 | running → fresh_route_and_complete_resource | 894335 |
 | standalone_native_observation_equivalence_01 | waiting_for_registered_unified_input_chain | 2087555 |
 | standalone_transaction_native_check_01 | waiting_for_registered_portable_observation | 3385842 |
 | standalone_whole_method_check_01 | waiting_for_registered_transaction_interface_check | 4177680 |
@@ -33,9 +32,9 @@ Goal active；公开证据基点 `9734eee`，最新增量 `f1229fb`。本地实�
 | portable_robot_p1_pair_01 | waiting_for_registered_robot_owner_scope_pair | 2044888 |
 | complete_BNN_domain_engineering_01 | waiting_for_registered_robot_p1_pair | 2252200 |
 
-BNN 分组、固定组合 LOAD 和 robot no-release 已终结；原队列当前执行完整 terminal-wire BNN，随后按既有顺序执行 attention/robot-SDC → 独立 native 观测/事务/完整方法检查 → clstm → robot owner 范围对照 → 固定 dev03 robot p1 完整配对 → 缺失的 domain 工程臂。PID 必须与 start ticks、终结回执交叉核对；正常 pool 轮换不触发恢复。各批次原规则及已完成结果保持不变。
+BNN 分组、固定组合 LOAD 和 robot no-release 已终结；完整 terminal-wire BNN 已通过配置验证，原恢复队列正常终结；后续队列按既有顺序执行 attention/robot-SDC → 独立 native 观测/事务/完整方法检查 → clstm → robot owner 范围对照 → 固定 dev03 robot p1 完整配对 → 缺失的 domain 工程臂。PID 必须与 start ticks、终结回执交叉核对；正常 pool 轮换不触发恢复。各批次原规则及已完成结果保持不变。
 
-[完整 terminal-wire 只读比较](BNN_terminal_wire_qualified_comparison_02/plan.json)已挂接原恢复队列，等待实际终结及串行空位。旧 v1 依赖缺失的观察者完成回执，新入口使用已核验的旧质量回执并保留缺口；比较共同资源前缀、完整端点和 GNU-time 同口径费用，不补造旧 PSS／观察者时间。[15项反例检查](BNN_terminal_wire_qualified_comparison_validation_02.json)通过，0次原生调用；尚无新完整结果。
+[完整 terminal-wire 只读比较](BNN_terminal_wire_qualified_comparison_02/plan.json)已挂接原恢复队列，实际配置已终结并通过核验，基线比较等待串行空位。旧 v1 依赖缺失的观察者完成回执，新入口使用已核验的旧质量回执并保留缺口；比较共同资源前缀、完整端点和 GNU-time 同口径费用，不补造旧 PSS／观察者时间。[15项反例检查](BNN_terminal_wire_qualified_comparison_validation_02.json)通过，0次原生调用；本次完整原生 terminal-wire 配置已核验：13.228145690 ns，2059607 wire／82 SB／5062 CB；资源接受5步、终结选点1次、时序接受3步。同次端到端测量 7351.26 s，采样 PSS 峰值 11.063 GiB，内存缺失观察24次，无残留子进程。这是同一历史 BNN 物理输入上的完整配置，非独立输入，也非统一 dev03 确认。共同资源前缀等价、相对基线的完整端点变化及同口径费用差，仍以单独比较回执为准；不得由标量相同推断完整等价。
 
 [四角色只读终结比较](query_reduction_resource_dev_01/analysis_03/registration.json)已挂接：等待原批次终结及串行空位，复用前三个已核验比较，补齐 BNN domain 的质量、完整端点、实际 QUERY／ATTEMPT 与完整导入流程费用；不重跑原生实验。[比较器验证](query_reduction_terminal_03_validation.json)覆盖既有结果回归、起点规则不匹配、未终结输入与失败查询记账。BNN domain 分组开发已终结并封存：16步，2061345/43/5060，13.607436067 ns，完整导入流程 10308.49 s。相对历史 K8，仅少 32 wire，同 SB/CB/CPD，历史时间增加 45.20%；不能作为加速证据。不据此将分组启发式加入已登记 dev03，也不继续优化几个 BNN 线长单位；优先执行既有跨输入与机制验证。完整四角色端点／工作量比较等待串行空位；此处不是冷启动完整配置费用。
 
