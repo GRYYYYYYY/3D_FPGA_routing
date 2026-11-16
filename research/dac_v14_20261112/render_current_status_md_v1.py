@@ -36,6 +36,8 @@ Goal active；公开证据基点 `9734eee`，最新增量 `{status['latest_incre
 
 BNN query-reduction domain 之后按现有顺序执行：未执行的线长组合验证 → robot no-release → 完整 terminal-wire BNN → attention/robot-SDC → 独立 native 观测/事务/完整方法检查 → clstm → robot owner 范围对照。PID 必须与 start ticks、终结回执交叉核对；正常 pool 轮换不触发恢复。各批次原规则及已完成结果保持不变。
 
+[四角色只读终结比较](query_reduction_resource_dev_01/analysis_03/registration.json)已挂接：等待原批次终结及串行空位，复用前三个已核验比较，补齐 BNN domain 的质量、完整端点、实际 QUERY／ATTEMPT 与完整导入流程费用；不重跑原生实验。[比较器验证](query_reduction_terminal_03_validation.json)覆盖既有结果回归、起点规则不匹配、未终结输入与失败查询记账。该入口不表示第四角色或冷启动完整计时已经完成。
+
 [当前六页正文]({paper})沿问题—机制—完整结果—取舍—消融—开销与范围组织，22行统一主表保留失败；robot 条件机制证明已整合，未执行消融未写成结论。[证据绑定](routing_position_paper_binding_05.json)核验页数、主表与视觉；[档案](multiobjective_closed_stream_quality_01/verification.json)为671条合法观测、34个完整质量配置，其中33个完整观察者测量、1个限定 GNU-time，均不等于独立样本数。新增五项直接相关工作，明确已有增量路由／多次收敛与本研究贡献的关系，区分历史拥塞价格、导入式修复和未验证 CHANZ；共9条参考文献。两段局部路径／核心时间细节已移入补充材料。详细历史仍保留。
 
 接续：以真实终结结果决定下一项干预，优先完成确认版本的实际运行、跨输入匹配和三机制归因。普通失败/退化用于调整方向；未执行计划、结构路径和局部时间不替代完整可复现收益。

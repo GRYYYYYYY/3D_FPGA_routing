@@ -49,7 +49,7 @@ summary=read(D/'multiobjective_completed_feedback_01/composition_summary.json')
 paper=read(D/'routing_position_paper_binding_05.json')
 seed=read(D/'completed_seed_transfer_summary_02.json')
 live_checkpoints=[]
-for name in ['stable_seed_transfer_recovery_02/bnn_Tf_paired',
+for name in ['query_reduction_resource_dev_01/bnn_A0_paired','stable_seed_transfer_recovery_02/bnn_Tf_paired',
              'native_checkpoint_recovery_03/bnn_R1_native','native_checkpoint_recovery_02/bnn_Tf_native','rejection_feedback_controller_dev_01/endpoint','direct_scope_resource_equivalence_recovery_02/bnn_A0_paired','budget47_current_timing_composition_01/native_full462/timing','budget47_current_timing_composition_01/guided_budget54/timing','complete_resource_timing_full_flow_01/bnn_native/flow/resource_flow/repair','complete_resource_timing_full_flow_01/bnn_native/flow/timing','complete_resource_timing_full_flow_01/bnn_domain/flow/resource_flow/repair','complete_resource_timing_full_flow_01/bnn_domain/flow/timing','complete_BNN_joint_index_flow_01/bnn_native_joint_indexes/flow/resource_flow/repair','complete_BNN_joint_index_flow_01/bnn_native_joint_indexes/flow/timing','complete_BNN_closed_stream_flow_01/bnn_native_closed_stream/flow/resource_flow/repair','complete_BNN_closed_stream_flow_01/bnn_native_closed_stream/flow/timing']:
     actor=D/name
     if (actor/'current_state.json').exists():state=read(actor/'current_state.json')
@@ -64,6 +64,8 @@ for name in ['stable_seed_transfer_recovery_02/bnn_Tf_paired',
             for row in attempts[-2:]],
         qualification='Live checkpoint only; final workflow, cost and context seals require terminal receipts.'))
 postprocessors=[]
+q=D/'query_reduction_resource_dev_01/analysis_03';r=read(q/'registration.json');p=process_identity(r['pid'])
+postprocessors.append(dict(directory='query_reduction_resource_dev_01/analysis_03',pid=r['pid'],start_ticks=r['start_ticks'],verified_live=bool(p and p['state']!='Z' and p['start_ticks']==r['start_ticks']),status=read(q/'status.json'),native_calls=0))
 for rel in ['complete_serial_seed_transfer_01/analysis','complete_serial_timing_budget_01/analysis','R1_crossing_source_probe_01/analysis','R1_owner_release_joint_probe_01/analysis','complete_serial_additional_circuits_01/analysis','complete_serial_lazy_source_snapshot_01/analysis','complete_resource_timing_full_flow_01/analysis','complete_resource_timing_full_flow_01/domain_archive_analysis','R1_BFS_native_timing_prediction_01/analysis','unified_input_integration_01/analysis']:
     q=D/rel;r=read(q/'registration.json');p=process_identity(r['pid']);live=bool(p and p['state']!='Z' and p['start_ticks']==r['start_ticks'])
     postprocessors.append(dict(directory=rel,pid=r['pid'],start_ticks=r['start_ticks'],verified_live=live,status=read(q/'status.json'),native_calls=0))
@@ -173,6 +175,7 @@ status['robot_owner_scope_plan']='robot_owner_scope_pair_01/plan.json'
 status['robot_owner_local_reachability']=read(D/'robot_owner_local_reachability_01/completion.json')
 status['evidence'].update(robot_owner_scope='robot_owner_scope_pair_01/plan.json',robot_owner_local_reachability='robot_owner_local_reachability_01/completion.json')
 status['outstanding'].insert(2,'Robot same-root unrestricted target-only vs added-owner scope pair registered after clstm. Generic rank0 frozen before native outcomes;18 actual residual reachability checks give2 target-only no-path and16 owner unlock models. Owner replacement/native FULL/STA and costs still pending; do not count these as completed repairs or independent inputs.')
+status['evidence'].update(query_reduction_terminal_analysis='query_reduction_resource_dev_01/analysis_03/registration.json',query_reduction_terminal_analysis_validation='query_reduction_terminal_03_validation.json')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
