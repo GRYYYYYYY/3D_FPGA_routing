@@ -1,0 +1,159 @@
+{
+  "passed": true,
+  "matched_source_request_cuts_weights_binary_and_seed": true,
+  "only_domain_failure_release_flag_changed": true,
+  "actual_status": "transaction_failed_rolled_back",
+  "quality": null,
+  "all_original_source_bytes_and_full_vector_restored": true,
+  "no_domain_release_executed": true,
+  "actual_queries": [
+    {
+      "net": 3454,
+      "pin": 1,
+      "feasible": false,
+      "criticality": 0.8784818649291992,
+      "pushes": 2917522,
+      "pops": 2707519,
+      "seconds": 1.140705485
+    }
+  ],
+  "actual_attempts": [
+    {
+      "net": 3454,
+      "pin": 1,
+      "pressure": 1.0,
+      "found": true,
+      "feasible": false
+    },
+    {
+      "net": 3454,
+      "pin": 1,
+      "pressure": 10.0,
+      "found": true,
+      "feasible": false
+    },
+    {
+      "net": 3454,
+      "pin": 1,
+      "pressure": 100.0,
+      "found": true,
+      "feasible": false
+    },
+    {
+      "net": 3454,
+      "pin": 1,
+      "pressure": 1000.0,
+      "found": true,
+      "feasible": false
+    },
+    {
+      "net": 3454,
+      "pin": 1,
+      "pressure": 10000.0,
+      "found": true,
+      "feasible": false
+    },
+    {
+      "net": 3454,
+      "pin": 1,
+      "pressure": 100000.0,
+      "found": true,
+      "feasible": false
+    },
+    {
+      "net": 3454,
+      "pin": 1,
+      "pressure": 1000000.0,
+      "found": true,
+      "feasible": false
+    },
+    {
+      "net": 3454,
+      "pin": 1,
+      "pressure": 10000000.0,
+      "found": true,
+      "feasible": false
+    },
+    {
+      "net": 3454,
+      "pin": 1,
+      "pressure": 100000000.0,
+      "found": true,
+      "feasible": false
+    }
+  ],
+  "component_process_costs": [
+    {
+      "tag": "reuse_on_native",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_serial_seed_resource_state_analysis_v1.py",
+        "--source",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/initial/runs/state",
+        "--batch",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/transaction/reuse_on",
+        "--native-cases",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/request.txt",
+        "--objective",
+        "weighted_soft",
+        "--seed-order",
+        "delay_rr_id",
+        "--crossing-domain",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/domain.txt"
+      ],
+      "returncode": 0,
+      "status": "completed",
+      "complete_process_seconds": 27.35843113809824
+    },
+    {
+      "tag": "reuse_on_audit",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_native_feedback_objective_cached.py",
+        "--batch",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/transaction",
+        "--role",
+        "reuse_on",
+        "--cache",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/graph_audit_cache",
+        "--output",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/transaction/reuse_on_audit"
+      ],
+      "returncode": 0,
+      "status": "completed",
+      "complete_process_seconds": 0.41618113592267036
+    },
+    {
+      "tag": "reuse_on_domain_audit",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_retained_crossing_domain.py",
+        "--batch",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/transaction",
+        "--role",
+        "reuse_on"
+      ],
+      "returncode": 0,
+      "status": "completed",
+      "complete_process_seconds": 0.9169352166354656
+    }
+  ],
+  "complete_workflow_seconds": 29.24474970623851,
+  "native_repair_workers_new": 1,
+  "candidate_LOADs_new": 0,
+  "native_calls_new": 1,
+  "committed_to_original_actor": false,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_robot_domain_release_ablation_v2.py": "328a6724641c1c448c3b16656c83789ac9236ee33d3f148faae5b0bd0a4ad539",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/plan.json": "9ef01ade8fa5112d050466c67c65f493901c02d23cd4f08a19f9cbbb07dc8349",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/transaction/registration.json": "982cf399adfdf9066beb4182da5ff778482154972449bd3dda8c0f0755d7a424",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/transaction/completion.json": "bc5b7559c06316378fb7cd587a533a72a5e4ed567972ea91a0b3e81c9cdce803",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/transaction/reuse_on/completion.json": "6b3fea00b86143b6d416562b0e06fce708e570ecd6d0d91e38a8c96e12dec29e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/transaction/reuse_on/runs/state/joint_native.log": "2d6f791022be9ae133868a9d31857eddae58102af044a2b0c51c98b0f1ad987a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/transaction/reuse_on/runs/state/vertical_domain.log": "5243d0135d52a6e73dd9d092eb23164a30a4e2acfb1954205e2a9b978216edce",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/transaction/reuse_on_audit/analysis.json": "155e6ca4d77f23f8fd2b613a2c5465cd60d31e0fe2d58c351efe201f329d41af",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_release_ablation_01/transaction/reuse_on_domain_audit.json": "194f2d69343fceae89f1316cb6383fc1e64b1911a2b34ac0c6713f325e8f6617",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/repair/round_000/candidate_00/registration.json": "ba2f40f178d30a0e1a0b087675f82aadb8d269131e2a993a93de0cc146fac788"
+  },
+  "qualification": "Single same-current prospective release-flag ablation against previously executed native and domain-with-release first scopes. Operational search failure is not mathematical domain infeasibility. Failed transaction has no legal quality, while source remains exact. Shared imported component time cannot be used as full cold algorithm time or speedup against historical measured configurations."
+}

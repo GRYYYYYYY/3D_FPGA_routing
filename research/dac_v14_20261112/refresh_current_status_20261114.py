@@ -46,7 +46,7 @@ for n in ['stable_seed_transfer_dev_01/bnn_R1_native','stable_seed_transfer_reco
     v=read(D/n/'current_state.json');checkpoint.append(dict(batch=n,accepted_steps=v['accepted_steps'],state=v['state'],
         original_final_pool_seal_present=(D/n/'pool/completion.json').exists(),recovery='native_checkpoint_recovery_03',recovery_successfully_closed=True,actual_completion=str(D/('native_checkpoint_recovery_03/bnn_R1_native/completion.json' if 'R1' in n else 'native_checkpoint_recovery_02/bnn_Tf_native/completion.json'))))
 summary=read(D/'multiobjective_completed_feedback_01/composition_summary.json')
-paper=read(D/'routing_position_paper_binding_05.json')
+paper=read(D/'native_ablation_paper_binding_06.json')
 seed=read(D/'completed_seed_transfer_summary_02.json')
 live_checkpoints=[]
 for name in ['query_reduction_resource_dev_01/bnn_A0_paired','stable_seed_transfer_recovery_02/bnn_Tf_paired',
@@ -133,7 +133,8 @@ status['outstanding']=[
 status['standalone_runtime_component']=read(D/'standalone_native_runtime_artifact_01/completion.json')
 status['standalone_runtime_component']['physical_validation']='standalone_physical_audit_validation_01/completion.json'
 status['standalone_runtime_component']['execution_validation']='standalone_native_runtime_validation_01/completion.json'
-publication=D.parents[1]/'docs/github_routing_position_publication_receipt_20261116.json'
+publication=D.parents[1]/'docs/github_query_terminal_publication_receipt_20261116.json'
+if not publication.exists(): publication=D.parents[1]/'docs/github_routing_position_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_robot_owner_scope_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_mechanism_inputs_publication_receipt_20261115.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_unified_method_publication_receipt_20261115.json'
@@ -176,6 +177,26 @@ status['robot_owner_local_reachability']=read(D/'robot_owner_local_reachability_
 status['evidence'].update(robot_owner_scope='robot_owner_scope_pair_01/plan.json',robot_owner_local_reachability='robot_owner_local_reachability_01/completion.json')
 status['outstanding'].insert(2,'Robot same-root unrestricted target-only vs added-owner scope pair registered after clstm. Generic rank0 frozen before native outcomes;18 actual residual reachability checks give2 target-only no-path and16 owner unlock models. Owner replacement/native FULL/STA and costs still pending; do not count these as completed repairs or independent inputs.')
 status['evidence'].update(query_reduction_terminal_analysis='query_reduction_resource_dev_01/analysis_03/registration.json',query_reduction_terminal_analysis_validation='query_reduction_terminal_03_validation.json')
+status['completed_composition_validation']=read(D/'BNN_wire_timing_native_validation_01/verification.json')
+status['completed_robot_no_release_ablation']=read(D/'robot_domain_release_ablation_01/verification.json')
+status['pending_structural_proposals']=[]
+status['evidence'].update(unified_paper='native_ablation_paper_binding_06.json',paper='native_ablation_paper_binding_06.json',native_composition='BNN_wire_timing_native_validation_01/verification.json',robot_no_release='robot_domain_release_ablation_01/verification.json')
+status['outstanding'][0]='BNN grouping, fixed three-net composition LOAD and robot no-release ablation are terminal. Keep their imported cost scopes separate. Original recovery queue has entered complete terminal-wire BNN; follow the existing integration chain without repeating completed roles. Four-role endpoint/workload comparison waits for the shared serial slot.'
+status['outstanding']=[s.replace('no-release native ablation remains queued.', 'no-release native ablation now fails with exact rollback on the same request; actual owner scope remains queued.') for s in status['outstanding']]
+grouping_terminal=D/'query_reduction_resource_dev_01/bnn_A0_paired/completion.json'
+if grouping_terminal.exists() and read(grouping_terminal).get('passed'):
+    grouping=read(grouping_terminal);control_path=D/'stable_seed_transfer_dev_01/bnn_A0_paired/completion.json';control=read(control_path)
+    status['query_reduction_terminal_observation']=dict(
+        completion=str(grouping_terminal),completion_sha256=sha(grouping_terminal),
+        control_completion=str(control_path),control_completion_sha256=sha(control_path),
+        accepted_steps=grouping['accepted_steps'],final_resources=grouping['final_resources'],CPD_s=grouping['final_CPD_s'],
+        imported_workflow_seconds=grouping['complete_imported_algorithm_workflow_seconds'],
+        K8_imported_workflow_seconds=control['complete_imported_algorithm_workflow_seconds'],
+        K8_wire_delta=grouping['final_resources']['wirelength']-control['final_resources']['wirelength'],
+        historical_time_difference_percent=100*(grouping['complete_imported_algorithm_workflow_seconds']/control['complete_imported_algorithm_workflow_seconds']-1),
+        full_four_role_comparison_pending=not (D/'query_reduction_completed_comparison_03/completion.json').exists(),
+        interpretation='No cost benefit established for the factor-two proposed-query grouping heuristic. Do not promote it into the registered dev03 confirmation candidate or tune a few BNN wire units. Retain the actual tradeoff and prioritize queued cross-input and mechanism checks.',
+        qualification='Terminal receipt observation only; historical imported-state times are not interleaved causal speed measurements or complete cold-configuration costs. Full endpoint/workload comparison waits for the shared serial slot.')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
@@ -195,6 +216,7 @@ for n in ['CONTINUATION.json','live_handoff.json']:
         running_jobs=[o for o in active if not o['phase_status'].startswith('waiting')],
         queued_jobs=[o for o in active if o['phase_status'].startswith('waiting')],
         latest_owner_verification={o['batch']:o for o in owners},latest_paper=paper,
+        latest_publication=status['latest_incremental_publication'],
         latest_multiobjective=dict(archive='multiobjective_closed_stream_quality_01',points=671,complete_configurations=34,complete_observer_measured_configurations=33,qualified_GNU_only_configurations=1,complete_cold_configuration_seconds=None),
         pending_interrupted_resource_cases=[],next_actions=status['outstanding'],research_blockers=[])
     v['multiobjective_policy']['archive']='multiobjective_closed_stream_quality_01'
