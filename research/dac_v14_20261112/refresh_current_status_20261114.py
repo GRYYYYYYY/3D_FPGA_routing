@@ -13,7 +13,7 @@ for name in ['stable_seed_transfer_recovery_02','direct_scope_resource_equivalen
              'rejection_feedback_controller_dev_01','complete_route_resource_measurements_01',
              'vector_then_strict_comparison_01','connection_budget_resource_dev_01',
              'complete_serial_resource_measurement_dev_01','complete_serial_resource_measurement_paired_dev_01',
-             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01']:
+             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01','cp1r1_cross_circuit_cohort_01','cp1r2_cross_circuit_cohort_01','robot_union_mechanism_02','robot_union_verification_recovery_01','BNN_interleaved_timing_02','BNN_interleaved_timing_03']:
     q=D/name/('' if name.startswith('serial_fused_candidate_validation_') else 'queue');reg=read(q/'registration.json')
     phase=read(q/'status.json') if (q/'status.json').exists() else dict(status='running')
     live=process_identity(reg['pid'])
@@ -438,6 +438,49 @@ if (reduction_root/'plan.json').exists():
         status['portable_reduction_actual']['native_initial_legal']=dict(receipt=str(initial/'completion.json'),CPD_ns=initial_done['full_precision_cpd_s']*1e9,
             wirelength=audit['physical_metrics']['planar_wirelength_excluding_sb_half_nodes'],SB_pairs=audit['physical_metrics']['sb_pairs_used'],CB_sources=audit['physical_metrics']['cb_crossing_output_sources_used'],
             route_body_sha256=initial_done['route_body_sha256'],qualification='Legal fresh starting state only, not final method output or paired mechanism benefit.')
+if status.get('portable_reduction_actual'):
+    workspace=Path(read(reduction_root/'plan.json')['workspace'])
+    resource_progress={}
+    for arm in ['native','domain']:
+        repair=workspace/arm/'flow/resource_flow/repair'
+        if not (repair/'steps.json').exists():continue
+        steps=read(repair/'steps.json')
+        progress=dict(accepted_steps=len(steps),last_accepted_resources=None,last_accepted_CPD_ns=None,
+            qualification='Resource trajectory only; complete method verification is a separate receipt, not inferred here.')
+        if steps:
+            last=steps[-1];role=last['roles'][last['accepted_role']]
+            progress.update(last_accepted_resources=role['resources'],last_accepted_CPD_ns=role['cpd_s']*1e9)
+        resource_progress[arm]=progress
+    status['portable_reduction_actual']['resource_progress']=resource_progress
+    first=reduction_root/'first_native_resource_acceptance_01.json'
+    if first.exists():
+        status['portable_reduction_actual']['first_native_resource_acceptance']={k:v for k,v in read(first).items() if k!='source_sha256'}
+        status['evidence']['reduction_first_native_resource']='portable_reduction_pair_01/first_native_resource_acceptance_01.json'
+reconciliation=D/'execution_reconciliation_20261116_01/completion.json'
+if reconciliation.exists():
+    status['execution_reconciliation_20261116']=read(reconciliation)
+    status['confirmation_release_cp1r1']=read(D/'confirmation_release_cp1r1_01/completion.json')
+    status['evidence'].update(proc_race_reconciliation=str(reconciliation),CP1r1='confirmation_release_cp1r1_01/completion.json',CP1r1_cohort='cp1r1_cross_circuit_cohort_01/plan.json',robot_union_current='robot_union_mechanism_02/plan.json',BNN_interleaved_current='BNN_interleaved_timing_02/plan.json')
+    status['outstanding']=[
+        'Continue actual CP1r1 conv_hls/tpu_ws native/domain cohort, then robot_union_mechanism_02 and BNN_interleaved_timing_02. Old owners are terminal; only new registered owners may execute these previously unexecuted roles.',
+        'Five interrupted development arms have legal initial routes but no complete-method output. Preserve partial states, all measured failure costs and missing supervision receipts. Never count them as routing or scientific negatives, or use partial terminal metrics in whole-flow comparisons.',
+        'CP1 and dev03 remain immutable. CP1r1 only changes vanished-proc handling and release seals; fixed algorithm/rules and original prospective circuit selection preserved. New complete native evidence is pending.',
+        'Original robot-p1/domain never executed. Revisit the interrupted reduction/CLSTM/robot-p1 development flows under a separately registered recovery/new-version experiment after independent confirmation, preserving prior attempts and distinguishing recovered costs from complete fresh costs. Do not retry original output directories.',
+        'Integrate interrupted attempts and corrected input-loading evidence into six-page main table and supplement, then publish reviewed source/PDF and exact evidence without altering local HEAD/index or main.',
+        'Do not stop the research Goal for queue/matrix/publication completion or ordinary negative results. No fixed date or total-call stop.']
+    if (D/'proc_race_paper_binding_12.json').exists():
+        paper=read(D/'proc_race_paper_binding_12.json');status['paper_pdf']=paper['pdf'];status['paper_pages']=6
+if (D/'CP1r1_packaging_failure_01/completion.json').exists():
+    status['CP1r1_packaging_failure']=read(D/'CP1r1_packaging_failure_01/completion.json')
+    status['confirmation_release_cp1r2']=read(D/'confirmation_release_cp1r2_01/completion.json')
+    status['outstanding'][0]='Continue robot_union_mechanism_02 already running; CP1r2 cohort waits for shared serial slot, BNN_interleaved_timing_02 waits for robot union then the same slot. Verify actual lock holder and do not overlap. Original CP1r1 four arms failed to launch VPR (guard mode126); keep attempts, no scientific-negative claim.'
+    status['outstanding'][2]='CP1/dev03/CP1r1 remain immutable. CP1r2 fixes vanished-proc reads and preserves/admission-checks executable guard mode; real guard tests pass in original and public-source-restored runtime. Fixed algorithms, rules and prospective circuits unchanged; independent complete outcomes pending.'
+    status['evidence'].update(CP1r1_packaging='CP1r1_packaging_failure_01/completion.json',CP1r2='confirmation_release_cp1r2_01/completion.json',CP1r2_reproduction='confirmation_release_cp1r2_01/public_source_reconstruction.json',CP1r2_cohort='cp1r2_cross_circuit_cohort_01/plan.json')
+    if (D/'runtime_recovery_paper_binding_13.json').exists():
+        paper=read(D/'runtime_recovery_paper_binding_13.json');status['paper_pdf']=paper['pdf'];status['paper_pages']=6
+if (D/'robot_union_verification_recovery_01/plan.json').exists():
+    status['outstanding'][0]='CP1r2 cohort is running. Robot union02 native work completed, but original readonly verifier misread compact schemas; no-native verification_recovery01 waits for serial lock. BNN_interleaved_timing03 is the sole pending measurement owner after that audit;01/02 never executed. No duplicate native work.'
+    status['evidence'].update(robot_union_readonly_recovery='robot_union_verification_recovery_01/plan.json',BNN_interleaved_current='BNN_interleaved_timing_03/plan.json')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

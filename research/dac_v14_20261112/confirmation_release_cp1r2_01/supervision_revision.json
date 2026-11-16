@@ -1,0 +1,53 @@
+{
+  "parent_release": "current_sta_cp1",
+  "parent_manifest_sha256": "c970883e5e017a657c98455011b7d760944948d3116b5576927222d4665f72cb",
+  "changed_runtime_files": [
+    "runtime/artifact_manifest.json",
+    "runtime/supervise_method_phase.py"
+  ],
+  "algorithm_configuration_unchanged": true,
+  "diagnosis": "ProcessLookupError during proc stat or children read must be treated like FileNotFoundError. Permission and other errors remain visible.",
+  "validation": {
+    "passed": true,
+    "injected_checks": [
+      "FileNotFoundError_proc_reads_tolerated",
+      "ProcessLookupError_proc_reads_tolerated",
+      "permission_error_not_hidden"
+    ],
+    "actual_process_checks": [
+      {
+        "mode": "clean",
+        "status": "completed",
+        "killed": 0
+      },
+      {
+        "mode": "churn",
+        "status": "completed",
+        "killed": 0
+      },
+      {
+        "mode": "timeout",
+        "status": "wall_timeout",
+        "killed": 2
+      },
+      {
+        "mode": "orphan",
+        "status": "live_descendant_after_root_exit",
+        "killed": 1
+      },
+      {
+        "mode": "interrupted",
+        "status": "Phase supervisor received signal 15",
+        "killed": 2
+      }
+    ],
+    "native_calls_new": 0,
+    "source_sha256": {
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/supervise_method_phase_v2.py": "f5f5c54663dd8ed15025395ff0fbbaef06e25ad6682915be2248fc904056106a",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/validate_method_phase_proc_race_02.py": "9c19b0d992ab856873c380c2e442b20a881cb7b7bc3d989ea1d1453d39269dd4",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/method_phase_proc_race_validation_02/fork_setsid.py": "5139fe6e1ea857d4faef31ff7319336f184abafc1bd5724fb30528a4e2befd9f"
+    },
+    "qualification": "Only vanished /proc reads are tolerated. Fixed algorithms, timeout, ownership and cleanup policy unchanged. No algorithm-result or timing-equivalence claim."
+  },
+  "reconciliation_sha256": "53dde8b41117aa39cc59670f4deb90baae14e5a97118db666c015de3ac771929"
+}
