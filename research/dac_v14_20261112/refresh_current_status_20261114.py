@@ -134,7 +134,8 @@ status['outstanding']=[
 status['standalone_runtime_component']=read(D/'standalone_native_runtime_artifact_01/completion.json')
 status['standalone_runtime_component']['physical_validation']='standalone_physical_audit_validation_01/completion.json'
 status['standalone_runtime_component']['execution_validation']='standalone_native_runtime_validation_01/completion.json'
-publication=D.parents[1]/'docs/github_complete_tradeoff_paper_publication_receipt_20261116.json'
+publication=D.parents[1]/'docs/github_BNN_engineering_complete_publication_receipt_20261116.json'
+if not publication.exists(): publication=D.parents[1]/'docs/github_complete_tradeoff_paper_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_cp1_restore_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_BNN_cost_hierarchy_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_robot_union_publication_receipt_20261116.json'
@@ -220,6 +221,40 @@ if grouping_terminal.exists() and read(grouping_terminal).get('passed'):
         qualification='Terminal receipt observation only; historical imported-state times are not interleaved causal speed measurements or complete cold-configuration costs. Full endpoint/workload comparison waits for the shared serial slot.')
 status['domain_engineering_plan']='complete_BNN_domain_engineering_01/plan.json'
 status['evidence'].update(domain_engineering='complete_BNN_domain_engineering_01/plan.json',domain_engineering_preflight='complete_BNN_domain_engineering_01/preflight.json')
+engineering_root=D/'complete_BNN_domain_engineering_01'
+engineering_case=engineering_root/'bnn_domain_closed_stream'
+engineering_resource=engineering_case/'flow/resource_flow/repair'
+engineering_timing=engineering_case/'flow/timing'
+if (engineering_resource/'steps.json').exists():
+    resource_steps=read(engineering_resource/'steps.json')
+    timing_steps=read(engineering_timing/'steps.json') if (engineering_timing/'steps.json').exists() else []
+    resource_done=read(engineering_resource/'completion.json') if (engineering_resource/'completion.json').exists() else None
+    progress=dict(resource_accepted_steps=len(resource_steps),timing_accepted_steps=len(timing_steps),
+        resource_phase_verified_terminal=bool(resource_done and resource_done.get('passed')),
+        resource_completion=str(engineering_resource/'completion.json') if resource_done else None,
+        current_CPD_s=None,current_resources=None,current_state=None,
+        whole_case_verified=False,whole_case_receipt=None,full_comparison=None)
+    if resource_steps:
+        last=resource_steps[-1];role=last['roles'][last['accepted_role']]
+        progress.update(current_CPD_s=role['cpd_s'],current_resources=role['resources'],current_state=last['committed_evaluation'])
+    if timing_steps:
+        last=timing_steps[-1]
+        progress.update(current_CPD_s=last['after_CPD_s'],current_resources=last['after_resources'],current_state=last['evaluation'])
+    if (engineering_case/'completion.json').exists():
+        actual=read(engineering_case/'completion.json')
+        progress['whole_case_receipt']=str(engineering_case/'completion.json')
+        progress['whole_case_verified']=bool(actual.get('passed'))
+        if actual.get('passed'):
+            progress.update(final_CPD_ns=actual['CPD_ns'],final_resources=actual['resources'],complete_wall_seconds=actual['complete_wall_seconds'],
+                sampled_tree_PSS_peak_kib=actual['sampled_tree_PSS_peak_kib'],missing_memory_observations=actual['missing_memory_observations'])
+    if (engineering_root/'comparison.json').exists():
+        comparison=read(engineering_root/'comparison.json')
+        progress['full_comparison']={k:comparison[k] for k in ['passed','successful_new_roles','failure_stage','same_role_execution_exact',
+            'comparable_engineering_cost_observation','descriptive_same_role_seconds_difference','descriptive_same_role_percent_difference',
+            'actual_complete_seconds','optimized_pair_cost_ratio_established','stable_interleaved_timing_complete'] if k in comparison}
+        status['evidence']['domain_engineering_comparison']='complete_BNN_domain_engineering_01/comparison.json'
+    progress['qualification']='Intermediate accepted states are not complete outputs. Only a verified whole case supplies final cost; same-role engineering attribution requires completed execution equivalence. No independent input or interleaved timing claim.'
+    status['domain_engineering_actual_progress']=progress
 status['evidence'].update(terminal_wire_qualified_comparison='BNN_terminal_wire_qualified_comparison_02/plan.json',terminal_wire_comparison_validation='BNN_terminal_wire_qualified_comparison_validation_02.json')
 terminal_case=D/'complete_BNN_terminal_wire_flow_01/bnn_native_terminal_wire'
 terminal_flow=terminal_case/'flow'
@@ -368,6 +403,14 @@ if (D/'complete_BNN_cost_hierarchy_01/completion.json').exists():
 if (D/'cp1_public_source_restoration_01/completion.json').exists():
     status['cp1_public_source_restoration']=dict(passed=True,receipt='cp1_public_source_restoration_01/completion.json',restored_dependency_files=1166,verified_bound_files=1289,actual_extension_import_and_fixed_admission=True,native_calls=0,CP1_changed=False)
     status['evidence']['cp1_public_source_restoration']='cp1_public_source_restoration_01/completion.json'
+if (D/'BNN_engineering_paper_binding_11.json').exists():
+    paper=read(D/'BNN_engineering_paper_binding_11.json');status['paper_pdf']=paper['pdf']
+    status['evidence'].update(unified_paper='BNN_engineering_paper_binding_11.json',paper='BNN_engineering_paper_binding_11.json',domain_engineering_comparison='complete_BNN_domain_engineering_01/comparison.json')
+    status['BNN_engineering_paper_update']=True
+    status['outstanding']=[s for s in status['outstanding'] if not s.startswith(('Preserve actual BNN domain engineering','Close matched domain engineering cost','Six-page10'))]
+    status['outstanding'].insert(0,'BNN domain engineering closed at9116.396s, same-role graphs/states/requests/native work/full endpoint vectors exact. Preserve active reduction and corrected input queues; no reruns of completed roles.')
+    status['outstanding'].append('Original matched22.95% overhead remains. Domain same-role descriptive -637.916s/-6.540% is not an optimized pair ratio; native observer/PSS loss and overlap remain. Stable symmetric interleaved timing pending after priority distinct-input cohort.')
+    status['outstanding'].append('Six-page11 sealed:32complete attempts and2scoped rows; one new complete engineering execution, zero new independent inputs. CP1 and prior paired figure unchanged.')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

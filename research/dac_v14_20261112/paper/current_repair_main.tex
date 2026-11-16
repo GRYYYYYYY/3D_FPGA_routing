@@ -104,6 +104,7 @@ BNN cold N&13.228146&2059631/82/5062&7933.25&11.055&14/17/0\\
 BNN cold D&13.228146&2061417/43/5060&9754.31&11.063&547/820/0\\
 BNN index N&13.228146&2059631/82/5062&7463.17&11.062&14/17/0\\
 BNN stream N&13.228146&2059631/82/5062&7247$^{*}$&--&14/17/0\\
+BNN stream D&13.228146&2061417/43/5060&9116.40&11.067&547/820/0\\
 Robot N&13.354624&251116/9/653&377.71&2.517&209/0/0\\
 Robot D&13.354624&251136/9/652&424.45&2.509&209/32/0\\
 Conv-layer N (initial fail)&--&--&260.10&--&--\\
@@ -127,7 +128,7 @@ Robot owner $\Delta^{\ddagger}$&0&+12/0/+1&155.10&2.340&31/0/0\\\hline
 \end{table*}
 
 
-The first 31 rows of Table~\ref{tab:completecost} retain complete attempts, including four routing and four input-loading failures. The last two rows are scoped components; the owner row reports paired deltas and shared cost. The measurement starts from supplied architecture, RR graph, BLIF, packed netlist and placement, includes index construction, fresh routing, complete repair, actual rejected candidates, native STA, checks and rollback, and ends at the final seal. Packing, placement and compilation are upstream. BNN resource and timing phases use explicitly bound different binaries. The other full-flow rows are complete resource-repair configurations; identical notation does not imply identical portfolios across rows.
+The first 32 rows of Table~\ref{tab:completecost} retain complete attempts, including four routing and four input-loading failures. The last two rows are scoped components; the owner row reports paired deltas and shared cost. The measurement starts from supplied architecture, RR graph, BLIF, packed netlist and placement, includes index construction, fresh routing, complete repair, actual rejected candidates, native STA, checks and rollback, and ends at the final seal. Packing, placement and compilation are upstream. BNN resource and timing phases use explicitly bound different binaries. The other full-flow rows are complete resource-repair configurations; identical notation does not imply identical portfolios across rows.
 
 The original complete BNN native/domain pair starts with identical route trees and endpoint vectors. Native makes five resource commits, domain nine; both then make three current-STA timing commits and reach 13.228145690 ns. Domain uses 2061417 wire,43 SB,5060 CB against native 2059631,82,5062. It spends 1786 wire and 1821.07 s (22.95\%) for 39 fewer SB and two fewer CB. Setup changes include 534 improvements and 803 regressions, with no increased hold violation: equal CPD is not endpointwise equivalence.
 
@@ -177,7 +178,7 @@ Batch grouping is not a reliable cost proxy. K 8 and budget64 execute the same q
 Tied-path feedback supplies a complementary positive combination example. Jointly covering two tied-path targets with three donors improves ten setup components with no regression, gaining 7.638334 ps at 45 SB/5060 CB. A larger successor improves CPD further but regresses a noncritical setup component. The policy distinction is deliberate, and neither result establishes that every intermediate or module should improve CPD. Historical local trajectories and recovery costs are retained in the supplement.
 \section{Overhead and Applicability}
 \subsection{Engineering cost and symmetric controls}
-Single-pass indexing preserves all BNN graph payloads, downstream states, requests, native work and quality at 7463.17 versus 7933.25 s. Explicit same-flow metadata plus streaming parsing also preserves that actual execution. Its original GNU-time records 7247 s (integer-second precision), versus 7463/7933 s in the same clock scope: about 216/686 s less. The observer was lost and another case briefly overlapped; complete PSS is unavailable. This qualified engineering observation neither establishes statistical acceleration nor revises the matched-pair 22.95\% domain overhead. Both arms need the same stable implementation and interleaved measurement.
+Single-pass indexing preserves BNN graph payloads, downstream states, requests and native work at 7463.17 versus 7933.25 s. Adding same-flow metadata and streaming parsing preserves native execution at 7247 s (original integer-second GNU-time); its observer/PSS loss and brief overlap remain. The same engineering changes now preserve all original domain states, requests, native work, graph payloads and full endpoint vectors at 9116.40 versus 9754.31 s: 637.92 s (6.54\%) less in this single observation. Sampled peak PSS is 11.067 GiB with 28 missing observations. These same-input engineering results establish behavior preservation, not statistical acceleration or a new optimized domain/native ratio. The original matched 22.95\% overhead remains; stable symmetric interleaved timing is pending.
 
 In the original BNN pair, resource transactions account for 1692.84 s of the observed 1821.07-s total difference (92.96\%). Native/domain execute 70/1361 connection queries, counting repeated queries separately. Nested native-core times are 38.23/1207.26 s and cannot be added to complete costs. This decomposition identifies the dominant work, not a new speedup.
 
@@ -188,7 +189,7 @@ Combining lazy scheduling with in-call source snapshots preserves the actual sta
 Every time binds one command/output. Cold preparation and reusable indexes are different modes. Shared-host concurrency/caches are uncontrolled; stable matched arms require interleaved repetitions including failures. Recovery, cores and research validation stay separate from complete cost.
 
 \subsection{Evidence coverage and confirmation boundary}
-The historical 671-record archive contains 34 quality-complete configurations on five known successful circuits and three vertical families, not independent samples: 33 have observer measurements and one qualified GNU-time. Nine new complete attempts and two scoped rows are outside those counts. Failed routes/transactions have no legal quality. New BNN and robot N/D PSS sampling misses 24 and 5/2 observations; sampled peaks are not exact maxima.
+The historical 671-record archive contains 34 quality-complete configurations on five known successful circuits and three vertical families, not independent samples: 33 have observer measurements and one qualified GNU-time. Ten new complete attempts and two scoped rows are outside those counts. Failed routes/transactions have no legal quality. New BNN and robot N/D PSS sampling misses 24 and 5/2 observations; sampled peaks are not exact maxima.
 
 CLSTM and robot-p1 each fail both roles while loading packing, before routing: an input template omitted the historical constant-net interpretation flag, producing an unknown-net error. These are input-compatibility failures, not congestion or repair failures. CP1 binds that interpretation and rejects mismatched commands; corrected development executions remain queued.
 

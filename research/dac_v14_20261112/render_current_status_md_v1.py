@@ -85,6 +85,8 @@ def render(status,D):
         paper_update_text='当前[六页正文09](owner_contract_paper_binding_09.json)包含31个完整尝试（4个初始路由失败、4个输入加载失败）及2个局部组件条目。新增 robot owner 配对取舍、输入失败分类和 CP1 固定契约；旧批次不追认为确认。下述前版数字均属历史范围。'
     if status.get('complete_tradeoff_paper_update'):
         paper_update_text='当前[六页正文10](complete_tradeoff_paper_binding_10.json)保留31个完整尝试与2个局部条目，主图改为9个完整合法配置配对的资源／线长／CPD／时间变化；9行不等于9个独立输入。八个失败尝试保留，历史BNN局部散点图与原说明转入补充材料。完整BNN费用分解纳入开销节；本次无新增独立实验结果，CP1规则未改。'
+    if status.get('BNN_engineering_paper_update'):
+        paper_update_text='当前[六页正文11](BNN_engineering_paper_binding_11.json)纳入已闭合的BNN domain工程臂：32个完整尝试与2个局部条目。新臂9116.40秒、11.067GiB采样PSS、28次缺测；与历史同臂图数据、状态、请求、原生修复工作及完整端点向量一致，单次少637.92秒（6.54%）。原22.95%配对费用增幅保留；尚无新的优化后N/D费用比或统计加速结论。新增独立输入为零，CP1未改；原9对完整配置图及失败保留。'
     if status.get('cp1_prospective_cohort'):
         paper_update_text+=' [CP1 首批跨电路确认](cp1_cross_circuit_cohort_01/plan.json)已登记conv_layer_hls和tpu_like.small.ws两输入四臂，单一owner追加在修正robot-p1之后。实际固定入口检查通过；3.32GB物理输入准入待串行槽。历史成功/失败输入同时保留，当前没有新增确认结果；不称未见测试集，不改变正文已证实结论。'
     if status.get('robot_mechanism_composition_screen'):
@@ -103,11 +105,35 @@ def render(status,D):
         input_outcome_text+=' robot p1两臂同样在路由前报$undef不匹配，102.93/102.90 s保留为输入兼容性失败；[修正配对](robot_p1_input_contract_pair_02/plan.json)追加到修正clstm之后。当前BNN domain工程臂执行，随后reduction、修正clstm、修正robot p1；全部旧规则及回执保留。'
     if status.get('robot_owner_scope_actual'):
         input_outcome_text+=' [robot owner原生消融](robot_owner_scope_pair_01/verification.json)已闭合：target-only251173/10/653，target+owner251185/10/654，同13.354624073 ns；增加12wire/1CB换31setup改善、0退化。资源策略拒绝两者，endpoint规则仅接受owner候选；均未提交原actor。完整导入式配对155.10 s，不是冷启动整算法时间。该晚到局部结果已入补充回执，正文08尚未纳入。'
+    engineering_progress_text=''
+    engineering=status.get('domain_engineering_actual_progress')
+    if engineering:
+        engineering_progress_text=(f"实际回执：资源阶段接受{engineering['resource_accepted_steps']}步，资源阶段已核验终结={engineering['resource_phase_verified_terminal']}；"
+            f"时序阶段接受{engineering['timing_accepted_steps']}步。")
+        if engineering['current_resources']:
+            r=engineering['current_resources']
+            engineering_progress_text+=(f"最近已接受检查点为{engineering['current_CPD_s']*1e9:.9f} ns／{r['wirelength']} wire／{r['SB_pairs']} SB／{r['CB_sources']} CB。")
+        if engineering['whole_case_verified']:
+            r=engineering['final_resources']
+            engineering_progress_text+=(f"整配置已核验：{engineering['final_CPD_ns']:.9f} ns／{r['wirelength']} wire／{r['SB_pairs']} SB／{r['CB_sources']} CB，"
+                f"完整时间{engineering['complete_wall_seconds']:.2f} s；采样PSS峰值{engineering['sampled_tree_PSS_peak_kib']/1048576:.3f} GiB，内存缺失观察{engineering['missing_memory_observations']}次。")
+        else:
+            engineering_progress_text+='整配置尚未核验终结，不把中间质量或阶段时间当作完整结果。'
+        comparison=engineering['full_comparison']
+        if comparison:
+            if comparison.get('successful_new_roles') and comparison.get('same_role_execution_exact'):
+                engineering_progress_text+=(f"完整同角色比较已通过执行等价：相对历史domain完整时间变化{comparison['descriptive_same_role_seconds_difference']:+.2f} s"
+                    f"（{comparison['descriptive_same_role_percent_difference']:+.2f}%），仅为单次描述性观测。")
+            else:
+                engineering_progress_text+='完整比较回执已生成，失败或执行差异按原回执保留，不宣称同等行为的工程加速。'
+        else:
+            engineering_progress_text+='完整同角色执行等价比较尚待终结。'
+        engineering_progress_text+='旧native观察者／PSS缺口及并发限制保留；稳定对称交错计时仍待完成。'
     owner_scope_summary='[已登记 native 范围对照](robot_owner_scope_pair_01/plan.json)固定原通用选组器首选：目标3连接与目标＋owner4连接，两臂均 unrestricted；只改变协调范围，结果以实际终结回执为准。'
     if status.get('robot_owner_scope_actual'):
         owner_scope_summary='[已完成 native 范围对照](robot_owner_scope_pair_01/verification.json)：目标3连接与目标＋owner4连接，两臂均 unrestricted；扩大范围增加12 wire/1 CB，换取31个setup端点改善、0退化，CPD不变。固定资源策略拒绝，均未提交；这是协调范围的取舍证据。'
         input_outcome_text=input_outcome_text.replace('该晚到局部结果已入补充回执，正文08尚未纳入。', '该局部结果已纳入正文09的owner取舍行，完整审计留在补充材料。' if status.get('owner_contract_paper_update') else '该局部结果已入补充回执，正文整合以当前版本证据绑定为准。')
-    return f'''# 当前研究状态（{status['observed_at']}）
+    result=f'''# 当前研究状态（{status['observed_at']}）
 
 Goal active；公开证据基点 `9734eee`，最新增量 `{status['latest_incremental_publication']['commit'][:7]}`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[工程缺失臂登记](../../docs/GitHub_domain_engineering_registration_20261116.md) · [跨输入登记](../../docs/GitHub_robot_p1_registration_20261116.md) · [最近完成结果](../../docs/GitHub_native_ablation_progress_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
 
@@ -126,7 +152,7 @@ Goal active；公开证据基点 `9734eee`，最新增量 `{status['latest_incre
 
 原匹配两臂：SB −47.56%，SB＋CB 约−0.797%，wire＋1786，完整时间约＋22.95%；setup 534改善/803退化，无新增 hold 违例。占用减少不等于面积或功耗降低。stream 的观察者丢失、全程 PSS 缺口及短暂并发保留，不能称无干扰统计加速；新工程改进须匹配两臂，稳定后交错计时。
 
-[补齐 domain 工程臂](complete_BNN_domain_engineering_01/plan.json)已排在原 robot p1 完整配对之后：复用已完成 stream-native 的单遍索引、显式同流程缓存和 streaming-v2，只恢复原 domain 开关，保持原完整 domain 算法规则。未引入 terminal-wire、owner 或分组新策略；native 不重跑。新结果尚无，重型输入核验在串行槽内执行。按完整轨迹／请求／原生工作及端点核对同角色等价后，才比较历史完整费用；native 观察者缺失的限定保留，稳定交错计时另行开展。
+[补齐 domain 工程臂](complete_BNN_domain_engineering_01/plan.json)：复用已完成 stream-native 的单遍索引、显式同流程缓存和 streaming-v2，只恢复原 domain 开关，保持原完整 domain 算法规则。原native结果复用，重型输入核验与执行在串行槽内完成。按完整轨迹／请求／原生工作及端点核对同角色等价后，才解释历史完整费用差。{engineering_progress_text}
 
 完整结果边界：robot native/domain 为251116/9/653与251136/9/652，同13.354624073 ns，377.71/424.45 s；20 wire和46.74 s换1 CB。conv_layer 两臂初始失败，SPMV/CB-only无适用切口，softmax同质量，SB-only严格时序无额外收益。R1五连接 owner 两臂均2070653/32/5071、完整端点向量相同，归因于协调范围扩大。R1/Tf原生菜单已闭合，不能重跑。
 
@@ -154,3 +180,10 @@ BNN 分组、组合验证、terminal-wire、robot no-release/owner、attention/r
 
 接续：以真实终结结果决定下一项干预，优先完成确认版本的实际运行、跨输入匹配和三机制归因。普通失败/退化用于调整方向；未执行计划、结构路径和局部时间不替代完整可复现收益。
 '''
+    if engineering and engineering.get('whole_case_verified'):
+        result=result.replace('当前 BNN domain 工程臂运行，随后 reduction → 修正 clstm → 修正 robot p1；', '完整BNN domain工程臂已终结，后继顺序为reduction → 修正clstm → 修正robot p1；')
+        result=result.replace('当前BNN domain工程臂执行，随后reduction、修正clstm、修正robot p1；', 'BNN domain工程臂已终结，后继reduction、修正clstm、修正robot p1按实际状态接续；')
+        result=result.replace('CP1和正在运行的工程臂不变。', 'CP1和原登记工程配置保持不变。')
+        result=result.replace('已登记并由单一 owner 等待现有 domain 工程臂终结，同时要求独立整方法检查通过。', '由原单一owner在domain工程臂正常终结后接续；实际阶段以上表为准，独立整方法检查仍是准入条件。')
+        result=result.replace('[最近完成结果](../../docs/GitHub_native_ablation_progress_20261116.md)', '[最近完整工程结果](../../docs/GitHub_BNN_engineering_complete_20261116.md)')
+    return result
