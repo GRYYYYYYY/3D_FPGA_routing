@@ -157,6 +157,8 @@ if not publication.exists(): publication=D.parents[1]/'docs/github_routing_posit
 if not publication.exists(): publication=D.parents[1]/'docs/github_robot_owner_scope_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_mechanism_inputs_publication_receipt_20261115.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_unified_method_publication_receipt_20261115.json'
+new_publication=D.parents[1]/'docs/github_runtime_recovery_publication_receipt_20261116.json'
+if new_publication.exists():publication=new_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -481,6 +483,17 @@ if (D/'CP1r1_packaging_failure_01/completion.json').exists():
 if (D/'robot_union_verification_recovery_01/plan.json').exists():
     status['outstanding'][0]='CP1r2 cohort is running. Robot union02 native work completed, but original readonly verifier misread compact schemas; no-native verification_recovery01 waits for serial lock. BNN_interleaved_timing03 is the sole pending measurement owner after that audit;01/02 never executed. No duplicate native work.'
     status['evidence'].update(robot_union_readonly_recovery='robot_union_verification_recovery_01/plan.json',BNN_interleaved_current='BNN_interleaved_timing_03/plan.json')
+native_confirmation=D/'cp1r2_cross_circuit_cohort_01/conv_hls_native_evidence_01/evidence.json'
+if native_confirmation.exists():
+    status['first_complete_CP1r2_native_arm']=read(native_confirmation)
+    status['evidence']['first_complete_CP1r2_native']='cp1r2_cross_circuit_cohort_01/conv_hls_native_evidence_01/evidence.json'
+pair=D/'cp1r2_cross_circuit_cohort_01/conv_hls_comparison.json'
+if pair.exists():
+    v=read(pair)
+    status['first_complete_CP1r2_pair']=dict(passed=v['passed'],verified_legal_roles=v['verified_legal_roles'],matched_initial=v['matched_comparison']['matched_initial_route_and_full_vector'],results={a:{k:r[k] for k in ['status','quality','complete_seconds','sampled_PSS_kib','missing_memory_observations']} for a,r in v['results'].items()},endpoint_summary={k:x for k,x in v['matched_comparison']['endpoint_changes'].items() if k!='changes'},qualification='One distinct known input prospectively confirmed as fixed-menu no-op. No positive mechanism or statistical speedup claim.')
+    status['evidence']['first_complete_CP1r2_pair']='cp1r2_cross_circuit_cohort_01/conv_hls_comparison.json'
+if (D/'CP1r2_pair_paper_binding_14.json').exists():
+    paper=read(D/'CP1r2_pair_paper_binding_14.json');status['paper_pdf']=paper['pdf'];status['paper_pages']=6
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

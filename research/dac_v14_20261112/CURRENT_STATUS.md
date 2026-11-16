@@ -1,6 +1,6 @@
 # 当前研究状态
 
-观察时间：2026-11-16T10:53:13.031645+00:00。Goal active；公开证据基点9734eee；历史结果与冻结包保留。
+观察时间：2026-11-16T11:10:33.220068+00:00。Goal active；公开证据基点9734eee；历史结果与冻结包保留。
 
 统一方法：当前STA/跨层冗余选完整连接组，在私有路由上执行共享域、按网失败释放与容量阻塞owner协调，检查完整组合，按固定根预算接受；终结选点独立于中间提交。native享有同等选组、owner与收敛机会。CP1r2修复Linux进程消失时的监督异常并校验保护程序执行权限，算法/规则不变；[新冻结版本](confirmation_release_cp1r2_01/completion.json)不把既有开发结果追认为确认。
 
@@ -20,13 +20,15 @@
 | clstm_input_contract_pair_02/domain | 346.66 | 2.822 |
 | robot_p1_input_contract_pair_02/native | 1857.32 | 2.639 |
 
+首个完整CP1r2配对已核验：conv_hls两臂初始树/完整向量匹配，终态同14.351002164ns、84291wire/0SB/37CB，4491setup/hold分量均无变化；零提交/零时序提案。完整N/D时间505.17/500.90s，仅单次描述。18个关键连接在固定/放宽容量查询中均零物理增益；7个放宽见证有占用冲突，但无正时序动机。确认一个独立已知电路/实际物理输入的固定菜单无收益，不代表全局最优或算法普遍优势。[配对回执](cp1r2_cross_circuit_cohort_01/conv_hls_comparison.json)。tpu_ws继续按原规则运行。
+
 独立证据：CLSTM两臂、robot-p1/native的修正输入已实际加载并完成合法初始路由；完整方法确认仍缺失。reduction保留native10步/domain4步轨迹，不把不同中断点作N/D因果比较。robot-p1/domain从未执行，原计划与缺口保留，后续单独登记接续。
 
 机制与取舍：BNN完整历史配对同13.228145690ns；domain花1786wire换39SB/2CB。SB减少47.56%，SB+CB减少约0.797%；历史完整时间增加22.95%。新domain工程版9116.40s相对历史9754.31s少6.54%，行为核验精确，但尚无稳定优化后N/D时间比。robot失败释放是原作用域的运行使能；owner范围扩大另有端点/资源交换，不能归因于域。
 
 无效或失败输入继续保留：SPMV/CB-only无切口、Robot SDC无接受收益、conv-layer/attention初始路由失败、历史CLSTM/robot-p1打包解释错误。新五次为基础设施中断，不能混入算法负结果。
 
-论文：[当前六页PDF](paper_snapshots/current_runtime_recovery_20261116/build/current_repair_main.pdf)。正文按问题—机制—完整结果—多目标取舍—消融—开销与范围组织；局部轨迹和恢复费用在补充材料。完整CP1r2确认、联合机制效果与对称交错费用仍待实际回执。最新已核验公开提交与回读见CURRENT_STATUS.json的latest_incremental_publication；本轮未发布内容不得视为已公开。
+论文：[当前六页PDF](paper_snapshots/current_CP1r2_pair_20261116/build/current_repair_main.pdf)。正文按问题—机制—完整结果—多目标取舍—消融—开销与范围组织；局部轨迹和恢复费用在补充材料。完整CP1r2确认、联合机制效果与对称交错费用仍待实际回执。最新已核验公开提交与回读见CURRENT_STATUS.json的latest_incremental_publication；本轮未发布内容不得视为已公开。
 
 CP1r1四臂因冻结打包误去掉保护程序执行权限而以126终结，均未启动VPR，不算路由失败。原尝试保留在[打包失败回执](CP1r1_packaging_failure_01/completion.json)。CP1r2已通过原生保护测试、固定规则准入及公开源码重建后的同一保护测试。
 

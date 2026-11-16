@@ -12,6 +12,13 @@ def render(status,D):
     if status.get('execution_reconciliation_20261116'):
         reconciliation=status['execution_reconciliation_20261116']
         attempts='\n'.join(f"| {r['input']}/{r['arm']} | {r['failed_attempt_seconds']:.2f} | {r['sampled_PSS_kib']/1048576:.3f} |" for r in reconciliation['attempts'])
+        confirmation_text=''
+        if status.get('first_complete_CP1r2_native_arm'):
+            c=status['first_complete_CP1r2_native_arm'];r=c['quality']['resources']
+            confirmation_text=(f"首个完整CP1r2确认臂已核验：conv_hls/native {c['quality']['CPD_ns']:.9f}ns，{r['wirelength']}wire/{r['SB_pairs']}SB/{r['CB_sources']}CB，{c['complete_seconds']:.2f}s；资源/owner/时序提交均0，时序修复候选0。该已登记独立电路输入在固定菜单中无适用修复；domain配对仍待实际比较。证据：[完整原生臂](cp1r2_cross_circuit_cohort_01/conv_hls_native_evidence_01/evidence.json)。继承development_v1字符串是内部兼容标记，实际外层运行回执绑定CP1r2。")
+        if status.get('first_complete_CP1r2_pair'):
+            pair=status['first_complete_CP1r2_pair'];n=pair['results']['native'];d=pair['results']['domain']
+            confirmation_text=(f"首个完整CP1r2配对已核验：conv_hls两臂初始树/完整向量匹配，终态同14.351002164ns、84291wire/0SB/37CB，4491setup/hold分量均无变化；零提交/零时序提案。完整N/D时间{n['complete_seconds']:.2f}/{d['complete_seconds']:.2f}s，仅单次描述。18个关键连接在固定/放宽容量查询中均零物理增益；7个放宽见证有占用冲突，但无正时序动机。确认一个独立已知电路/实际物理输入的固定菜单无收益，不代表全局最优或算法普遍优势。[配对回执](cp1r2_cross_circuit_cohort_01/conv_hls_comparison.json)。tpu_ws继续按原规则运行。")
         return f'''# 当前研究状态
 
 观察时间：{status['observed_at']}。Goal active；公开证据基点9734eee；历史结果与冻结包保留。
@@ -27,6 +34,8 @@ def render(status,D):
 | 输入/臂 | 实际时间(s) | 采样PSS(GiB) |
 |---|---:|---:|
 {attempts}
+
+{confirmation_text}
 
 独立证据：CLSTM两臂、robot-p1/native的修正输入已实际加载并完成合法初始路由；完整方法确认仍缺失。reduction保留native10步/domain4步轨迹，不把不同中断点作N/D因果比较。robot-p1/domain从未执行，原计划与缺口保留，后续单独登记接续。
 
