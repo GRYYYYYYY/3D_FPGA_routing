@@ -2,7 +2,9 @@
 
 ## Current research snapshot — 2026-11-16
 
-Research remains active; public evidence base `9734eee` and local development are preserved. [Current status](research/dac_v14_20261112/CURRENT_STATUS.md) · [Closed confirmation, mechanism attribution and running work](docs/GitHub_cohort_mechanism_20261116.md) · [Current six-page paper](research/dac_v14_20261112/paper_snapshots/current_cohort_mechanism_20261116/build/current_repair_main.pdf) · [Paper evidence binding](research/dac_v14_20261112/cohort_mechanism_paper_binding_15.json).
+Research remains active; public evidence base `9734eee` and local development are preserved. [Current status](research/dac_v14_20261112/CURRENT_STATUS.md) · [Closed confirmation, mechanism attribution and running work](docs/GitHub_cohort_mechanism_20261116.md) · [Current six-page paper](research/dac_v14_20261112/paper_snapshots/current_mechanism_triggers_20261116/build/current_repair_main.pdf) · [Paper evidence binding](research/dac_v14_20261112/mechanism_trigger_paper_binding_16.json).
+
+[Objective-specific mechanism evidence](docs/GitHub_mechanism_selection_20261116.md):10existing complete configurations cover9declared physical identities, with no new experiment. Identical48SB-only initial cuts lead to different trades under1.00/1.02CPD caps. Complete resource release coverage is BNN9guided roles/0events and robot3roles/5events. Resource-owner scope and positive-conflicting-witness timing-owner triggers are separated; the pure triage prototype is uninstalled and predicts no gain.
 
 The unified method uses current STA and crossing redundancy to choose complete connection groups, applies retained-crossing domains, releases a failed network's restriction and coordinates capacity-blocking owners. Complete physical/capacity/FULL/STA checks precede acceptance under fixed root envelopes; terminal selection and current-STA timing repair are separate. Intermediate modules need not each improve CPD; native receives matching selection, owner and convergence opportunities.
 

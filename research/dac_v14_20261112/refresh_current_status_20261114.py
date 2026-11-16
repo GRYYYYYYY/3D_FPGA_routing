@@ -171,6 +171,10 @@ cohort_publication=D.parents[1]/'docs/github_cohort_mechanism_publication_receip
 if cohort_publication.exists():publication=cohort_publication
 precision_publication=D.parents[1]/'docs/github_precision_registration_publication_receipt_20261116.json'
 if precision_publication.exists():publication=precision_publication
+prefix_publication=D.parents[1]/'docs/github_prefix_recovery_publication_receipt_20261116.json'
+if prefix_publication.exists():publication=prefix_publication
+mechanism_publication=D.parents[1]/'docs/github_mechanism_selection_publication_receipt_20261116.json'
+if mechanism_publication.exists():publication=mechanism_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -562,6 +566,13 @@ if (D/'robot_p1_prefix_recovery_01/plan.json').exists():
     status['evidence']['robot_prefix_recovery']='robot_p1_prefix_recovery_01/plan.json'
     status['robot_prefix_recovery_metadata_validation']=read(D/'robot_p1_prefix_recovery_01/metadata_validation.json')
     status['outstanding'].append('Robot-p1/native recovery adapter is implemented and registered after CP1r3 preparation and the serial lock. Metadata/24negative guards and exact reversible controller transforms pass. Heavy original-root/archive/trace proof precedes any new work; seven accepted prefix states, legal rejected archive and original envelopes are retained. Completed round7 native request/STA is consumed, not repeated. Continue through resource closure, terminal handoff and timing only after actual admission. Suffix wall/PSS remains separate from original failed attempt; no fresh full cost or confirmation claim. Other interrupted development cases and original unexecuted robot domain require separately verified adapters/registrations.')
+if (D/'mechanism_trigger_paper_binding_16.json').exists():
+    paper=read(D/'mechanism_trigger_paper_binding_16.json');status['paper_pdf']=paper['pdf'];status['paper_pages']=6
+    status['mechanism_selection_metadata']=read(D/'mechanism_selection_evidence_01/completion.json')
+    status['release_coverage_metadata']=read(D/'release_coverage_01/completion.json')
+    status['mechanism_triage_development']=read(D/'mechanism_triage_validation_02/completion.json')
+    status['evidence'].update(mechanism_input_context='mechanism_selection_evidence_01/completion.json',release_event_coverage='release_coverage_01/completion.json',mechanism_triage='mechanism_triage_validation_02/completion.json',current_paper='mechanism_trigger_paper_binding_16.json')
+    status['outstanding'].append('Retrospective10configuration/9declared-physical-input metadata matrix shows initial sharing eligibility is not gain prediction; identical48SB-only candidate records need the distinct1.00/1.02CPD budget context. Every BNN guided resource role is audited(9roles,0release events); robot has3roles/5events. Draft objective-specific triage separates resource owner scopes from positive capacity-conflicting timing witnesses and per-net actual-failure release; it is uninstalled and no savings/generalization is proved. Keep fixed confirmations unchanged and validate any integrated new mechanism rule prospectively on genuinely different inputs.')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
