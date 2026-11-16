@@ -66,7 +66,7 @@ for name in ['query_reduction_resource_dev_01/bnn_A0_paired','stable_seed_transf
 postprocessors=[]
 q=D/'query_reduction_resource_dev_01/analysis_03';r=read(q/'registration.json');p=process_identity(r['pid'])
 postprocessors.append(dict(directory='query_reduction_resource_dev_01/analysis_03',pid=r['pid'],start_ticks=r['start_ticks'],verified_live=bool(p and p['state']!='Z' and p['start_ticks']==r['start_ticks']),status=read(q/'status.json'),native_calls=0))
-for rel in ['complete_serial_seed_transfer_01/analysis','complete_serial_timing_budget_01/analysis','R1_crossing_source_probe_01/analysis','R1_owner_release_joint_probe_01/analysis','complete_serial_additional_circuits_01/analysis','complete_serial_lazy_source_snapshot_01/analysis','complete_resource_timing_full_flow_01/analysis','complete_resource_timing_full_flow_01/domain_archive_analysis','R1_BFS_native_timing_prediction_01/analysis','unified_input_integration_01/analysis']:
+for rel in ['complete_serial_seed_transfer_01/analysis','complete_serial_timing_budget_01/analysis','R1_crossing_source_probe_01/analysis','R1_owner_release_joint_probe_01/analysis','complete_serial_additional_circuits_01/analysis','complete_serial_lazy_source_snapshot_01/analysis','complete_resource_timing_full_flow_01/analysis','complete_resource_timing_full_flow_01/domain_archive_analysis','R1_BFS_native_timing_prediction_01/analysis','unified_input_integration_01/analysis','BNN_terminal_wire_qualified_comparison_02/analysis']:
     q=D/rel;r=read(q/'registration.json');p=process_identity(r['pid']);live=bool(p and p['state']!='Z' and p['start_ticks']==r['start_ticks'])
     postprocessors.append(dict(directory=rel,pid=r['pid'],start_ticks=r['start_ticks'],verified_live=live,status=read(q/'status.json'),native_calls=0))
 status=dict(observed_at=now,postprocessors=postprocessors,research_status='active',public_reference='9734eee83b62fc012f0bb137f75aba919df514e4',publication_receipt='../../docs/github_progress_publication_receipt_20261115.json',
@@ -133,7 +133,8 @@ status['outstanding']=[
 status['standalone_runtime_component']=read(D/'standalone_native_runtime_artifact_01/completion.json')
 status['standalone_runtime_component']['physical_validation']='standalone_physical_audit_validation_01/completion.json'
 status['standalone_runtime_component']['execution_validation']='standalone_native_runtime_validation_01/completion.json'
-publication=D.parents[1]/'docs/github_domain_engineering_publication_receipt_20261116.json'
+publication=D.parents[1]/'docs/github_terminal_comparison_publication_receipt_20261116.json'
+if not publication.exists(): publication=D.parents[1]/'docs/github_domain_engineering_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_robot_p1_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_native_ablation_links_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_native_ablation_publication_receipt_20261116.json'
@@ -207,6 +208,7 @@ if grouping_terminal.exists() and read(grouping_terminal).get('passed'):
         qualification='Terminal receipt observation only; historical imported-state times are not interleaved causal speed measurements or complete cold-configuration costs. Full endpoint/workload comparison waits for the shared serial slot.')
 status['domain_engineering_plan']='complete_BNN_domain_engineering_01/plan.json'
 status['evidence'].update(domain_engineering='complete_BNN_domain_engineering_01/plan.json',domain_engineering_preflight='complete_BNN_domain_engineering_01/preflight.json')
+status['evidence'].update(terminal_wire_qualified_comparison='BNN_terminal_wire_qualified_comparison_02/plan.json',terminal_wire_comparison_validation='BNN_terminal_wire_qualified_comparison_validation_02.json')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
