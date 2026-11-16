@@ -1,6 +1,6 @@
 # 当前研究状态
 
-观察时间：2026-11-16T12:17:08.149548+00:00。Goal active；公开证据基点9734eee，原开发状态、冻结版本与失败回执保留。
+观察时间：2026-11-16T12:24:04.848846+00:00。Goal active；公开证据基点9734eee，原开发状态、冻结版本与失败回执保留。
 
 统一方法：按当前STA、跨层冗余与容量阻塞选完整连接组；在私有树上执行共享域、按网失败释放及owner协调；经物理/容量/FULL/STA完整检查，在固定根预算下接受或恢复，终结选点独立于中间提交。native享有同等选组、owner和收敛机会。CP1r2独立冻结，不追认旧开发结果为确认。
 
@@ -8,6 +8,7 @@
 |---|---|---:|
 | BNN_interleaved_timing_03 | running → fresh_route_and_complete_resource | 1695383 |
 | empty_query_patch_validation_01 | waiting_for_registered_BNN_interleaved_timing03 | 3003214 |
+| confirmation_release_cp1r3_01 | waiting_for_registered_empty_query_fixture_validation | 3596581 |
 
 新增确认：[CP1r2四臂终结证据](cp1r2_cross_circuit_cohort_01/terminal_evidence_01/completion.json)。两个预先固定的已知独立电路/实际物理输入中，conv_hls两臂合法，初始树/完整向量匹配，终态同14.351002164ns、84291wire/0SB/37CB、4491setup/hold分量；零提交/提案，505.17/500.90s。18个当前关键连接固定/放宽容量均无物理时序增益。确认一个固定菜单无收益输入，不是普遍收益或全局最优。
 
@@ -23,4 +24,4 @@ TPU_ws两臂均触发原1800s初始执行保护，完整尝试1904.67/1906.23s�
 
 论文：[当前六页PDF](paper_snapshots/current_cohort_mechanism_20261116/build/current_repair_main.pdf)，主表43行：36终结尝试、2组基础设施失败、5个局部组件。保留六节主线、机制伪代码与路由相关工作；新增完整确认无收益、TPU超时、robot三臂、owner局部接续及主张边界。历史轨迹/恢复与完整审计留补充材料。已公开版本以CURRENT_STATUS.json的latest_incremental_publication回执为准。
 
-后续：保持当前计时规则，完成已登记只读空查询验证；另立修正版本与无重复前缀的接续适配器，继续真正不同输入/架构确认及跨层冗余—容量—余量机制规则研究。Goal不因批次、推送或普通负结果终止。
+后续：保持当前计时规则，完成已登记只读空查询验证；[精度专用CP1r3准备](confirmation_release_cp1r3_01/plan.json)已登记在其后、获取串行锁才打包，不含空查询补丁/新路由，尚未形成新版本执行证据。另立无重复前缀接续适配器，继续真正不同输入/架构确认及跨层冗余—容量—余量机制规则研究。Goal不因批次、推送或普通负结果终止。

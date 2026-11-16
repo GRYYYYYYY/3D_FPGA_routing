@@ -47,7 +47,7 @@ TPU 两臂均触发原登记 1800 s 初始路由执行保护，实际原生命�
 
 相同工程优化已分别验证两臂行为保持，domain 单次 9116.40 s 相对原 9754.31 s 少 6.54%；尚未建立优化后的匹配时间比。[BNN timing03](../research/dac_v14_20261112/BNN_interleaved_timing_03/plan.json)已由原 owner 自动启动 native_0，保持 N/D/D/N 次序和全部登记规则。不得将旧角色费用或本轮中间时间填入新完整比较。
 
-[空查询补丁](../research/dac_v14_20261112/empty_query_patch_01/preparation.json)仍为开发暂存；[实际空/非空 fixture 验证](../research/dac_v14_20261112/empty_query_patch_validation_01/plan.json)在 BNN03 后等待串行资源。它不启动新 query/VPR，非空路径仅检查到原图构造入口，不能证明完整非空等价或实际加速。精度修正和无重复前缀接续适配器将另立版本，原冻结版本保持不变。
+[空查询补丁](../research/dac_v14_20261112/empty_query_patch_01/preparation.json)仍为开发暂存；[实际空/非空 fixture 验证](../research/dac_v14_20261112/empty_query_patch_validation_01/plan.json)在 BNN03 后等待串行资源。它不启动新 query/VPR，非空路径仅检查到原图构造入口，不能证明完整非空等价或实际加速。精度修正已另立 [CP1r3 准备登记](../research/dac_v14_20261112/confirmation_release_cp1r3_01/plan.json)，owner PID3596581/start_ticks1960459265，经真实进程核验正在等待既有空查询验证终结，再获取同一串行锁。只打包两处观察器修正和精确身份 helper，并检查保护程序/导入；不含空查询优化，无新 VPR/STA 调用，尚无 CP1r3 完整执行或公开重建证据。无重复前缀接续适配器仍待开发；原冻结版本保持不变。
 
 ## 正文证据对应
 
