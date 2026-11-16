@@ -1,6 +1,6 @@
 # 当前研究状态
 
-观察时间：2026-11-16T21:31:56.507406+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
+观察时间：2026-11-16T22:04:24.096924+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
 
 统一方法：当前STA、跨层冗余与容量阻塞用于选择完整连接组；在事务副本中使用跨层共享域、按网失败释放及阻塞owner协调；完整组合经物理/容量/FULL/STA检查，在固定根预算下接受或恢复。终结选点独立于中间提交；native享有相同选组、owner与收敛机会。
 
@@ -18,8 +18,10 @@
 
 独立证据没有增加：四次计时是同一电路、布局与架构的重复测量。CP1r3精度专用封装已实际完成，原三输入/六角色队列已接棒；[实际预检](cp1r3_distinct_input_cohort_01/preflight.json)记录冻结配置、公开源码重建、还原后保护程序/worker导入及迁移后的准入检查通过。大字节与完整输出门槛仍由逐输入准备和测量命令执行，不能将元数据准入当作结果通过。准备/公开重建8.494s、LSTM输入准备17.220s单独计费，不并入算法墙钟。逐臂实际状态以上表为准。LSTM与DLA-like.small为不同已知电路；eltwise SB-only仅为已知电路/架构的不同实际布局。保持冻结协议，不按结果替换输入或重复已完成角色。
 
+当前lstm/native新鲜初始路由通过原FULL/完整精度STA/物理门槛：14.600438192ns，2388086wire/509SB/8316CB。图构建397.084s、初始原生命令377.450s分别记录，不拼接为完整时间。该状态是初始准入证据，尚非完整方法结果或配对收益。
+
 机制归因仍受原证据限制：BNN九个guided资源角色无失败释放；既有R1 owner联合修复N/D相同结果归于协调范围扩大。robot三臂只证明该事务中域/释放改变可行取舍，尚非完整确认。conv_hls确认无收益、TPU初始超时、SPMV/CB-only无切口、Robot SDC无接受收益、attention/conv-layer初始失败继续保留。
 
 之后按登记顺序执行四臂只读来源/字节/完整请求/FULL/STA/端点/物理审计，再做robot-p1及四臂阶段接续，最后开发空查询回放。reduction/native原成功日志与running manifest必须独立审计；不改写历史completion、不重复已完成原生查询。新执行阶段单独登记计费，接续费用不冒充冷启动完整费用。
 
-论文：[paper18六页正文](paper_snapshots/current_sharing_prior_art_20261116/build/current_repair_main.pdf)的prior-art、贡献边界、43行主表与9篇引用保持不变。[新增费用主张绑定](BNN_timing03_balanced_claim_binding_01.json)仅补充同一输入完整费用和复现性证据，不新增独立输入或跨输入收益。完整轨迹与审计留补充材料。最新已核验公开提交见CURRENT_STATUS.json的latest_incremental_publication。Goal不因计时完成、推送、普通负结果或日期终止。
+论文：[当前六页正文](paper_snapshots/current_balanced_cost_20261116/build/current_repair_main.pdf)。paper19将四次匹配完整计时用两行汇总；主表42行，三行早期BNN工程明细完整移入补充材料。原paper18及prior-art、贡献边界、9篇引用保持；没有新增独立输入或CP1r3结果。[新增费用主张绑定](BNN_timing03_balanced_claim_binding_01.json)仅补充同一输入完整费用和复现性证据，不新增独立输入或跨输入收益。完整轨迹与审计留补充材料。最新已核验公开提交见CURRENT_STATUS.json的latest_incremental_publication。Goal不因计时完成、推送、普通负结果或日期终止。

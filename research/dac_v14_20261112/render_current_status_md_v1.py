@@ -22,6 +22,11 @@ def render(status,D):
         times=' / '.join(f"{r['complete_command_seconds']:.6f}" for r in b['rows'])
         ratios=b['pair_domain_over_native_ratios']
         ratio_text=(f"D0/N0={ratios[0]:.8f}，D1/N1={ratios[1]:.8f}；N均值{b['native_mean_seconds']:.6f}s，D均值{b['domain_mean_seconds']:.6f}s，均值之比{b['ratio_of_arm_means']:.8f}（约+{(b['ratio_of_arm_means']-1)*100:.2f}%）" if ratios else '匹配不满足，正式比例不可用；四次尝试仍完整保留')
+        initial=status.get('actual_CP1r3_live_initial_state')
+        initial_note=''
+        paper_note=('paper19将四次匹配完整计时用两行汇总；主表42行，三行早期BNN工程明细完整移入补充材料。原paper18及prior-art、贡献边界、9篇引用保持；没有新增独立输入或CP1r3结果。' if status.get('paper_balanced_cost_update') else 'paper18的prior-art、贡献边界、43行主表与9篇引用保持不变。')
+        if initial:
+            initial_note=(f"当前{initial['input']}/{initial['arm']}新鲜初始路由通过原FULL/完整精度STA/物理门槛：{initial['CPD_ns']:.9f}ns，{initial['wirelength']}wire/{initial['SB_pairs']}SB/{initial['CB_sources']}CB。图构建{initial['graph_build_seconds']:.3f}s、初始原生命令{initial['initial_native_command_seconds']:.3f}s分别记录，不拼接为完整时间。该状态是初始准入证据，尚非完整方法结果或配对收益。\n\n")
         return f'''# 当前研究状态
 
 观察时间：{status['observed_at']}。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
@@ -38,11 +43,11 @@ def render(status,D):
 
 独立证据没有增加：四次计时是同一电路、布局与架构的重复测量。CP1r3精度专用封装已实际完成，原三输入/六角色队列已接棒；[实际预检](cp1r3_distinct_input_cohort_01/preflight.json)记录冻结配置、公开源码重建、还原后保护程序/worker导入及迁移后的准入检查通过。大字节与完整输出门槛仍由逐输入准备和测量命令执行，不能将元数据准入当作结果通过。准备/公开重建8.494s、LSTM输入准备17.220s单独计费，不并入算法墙钟。逐臂实际状态以上表为准。LSTM与DLA-like.small为不同已知电路；eltwise SB-only仅为已知电路/架构的不同实际布局。保持冻结协议，不按结果替换输入或重复已完成角色。
 
-机制归因仍受原证据限制：BNN九个guided资源角色无失败释放；既有R1 owner联合修复N/D相同结果归于协调范围扩大。robot三臂只证明该事务中域/释放改变可行取舍，尚非完整确认。conv_hls确认无收益、TPU初始超时、SPMV/CB-only无切口、Robot SDC无接受收益、attention/conv-layer初始失败继续保留。
+{initial_note}机制归因仍受原证据限制：BNN九个guided资源角色无失败释放；既有R1 owner联合修复N/D相同结果归于协调范围扩大。robot三臂只证明该事务中域/释放改变可行取舍，尚非完整确认。conv_hls确认无收益、TPU初始超时、SPMV/CB-only无切口、Robot SDC无接受收益、attention/conv-layer初始失败继续保留。
 
 之后按登记顺序执行四臂只读来源/字节/完整请求/FULL/STA/端点/物理审计，再做robot-p1及四臂阶段接续，最后开发空查询回放。reduction/native原成功日志与running manifest必须独立审计；不改写历史completion、不重复已完成原生查询。新执行阶段单独登记计费，接续费用不冒充冷启动完整费用。
 
-论文：[paper18六页正文]({paper})的prior-art、贡献边界、43行主表与9篇引用保持不变。[新增费用主张绑定](BNN_timing03_balanced_claim_binding_01.json)仅补充同一输入完整费用和复现性证据，不新增独立输入或跨输入收益。完整轨迹与审计留补充材料。最新已核验公开提交见CURRENT_STATUS.json的latest_incremental_publication。Goal不因计时完成、推送、普通负结果或日期终止。
+论文：[当前六页正文]({paper})。{paper_note}[新增费用主张绑定](BNN_timing03_balanced_claim_binding_01.json)仅补充同一输入完整费用和复现性证据，不新增独立输入或跨输入收益。完整轨迹与审计留补充材料。最新已核验公开提交见CURRENT_STATUS.json的latest_incremental_publication。Goal不因计时完成、推送、普通负结果或日期终止。
 '''
     if status.get('closed_CP1r2_cohort'):
         return f'''# 当前研究状态

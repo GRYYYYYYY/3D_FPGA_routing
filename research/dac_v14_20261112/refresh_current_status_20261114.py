@@ -194,7 +194,8 @@ if domain_timing_publication.exists():publication=domain_timing_publication
 sharing_position_publication=D.parents[1]/'docs/github_sharing_prior_art_publication_receipt_20261116.json'
 if sharing_position_publication.exists():publication=sharing_position_publication
 for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
-             'github_BNN_timing03_balanced_publication_receipt_20261116.json']:
+             'github_BNN_timing03_balanced_publication_receipt_20261116.json',
+             'github_balanced_cost_paper_publication_receipt_20261116.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -695,6 +696,44 @@ if (D/'BNN_timing03_balanced_receipt_01/completion.json').exists():
         status['actual_CP1r3_activation_preflight']=read(cohort/'preflight.json')
         status['evidence']['actual_CP1r3_activation_preflight']='cp1r3_distinct_input_cohort_01/preflight.json'
         status['actual_CP1r3_preparation_costs']={p.name:read(p) for p in [cohort/'activation_cost.json',*cohort.glob('*_provisioning_cost.json')] if p.exists()}
+    phase_path=cohort/'queue_priority_02/status.json'
+    phase=read(phase_path)
+    if phase.get('case') and phase.get('status')=='running_confirmation_arm':
+        case=Path(phase['case']);initial=case/'flow/resource_flow/initial'
+        proof=initial/'completion.json';audit=initial/'physical_audit.json'
+        if proof.exists() and audit.exists():
+            verified=read(proof);physical=read(audit)
+            if verified['passed'] and physical['passed']:
+                physical_row=physical['legal'][0]
+                manifest=initial/'runs/state/manifest.json'
+                graph=case/'flow/resource_flow/joint_graph_indexes/completion.json'
+                status['actual_CP1r3_live_initial_state']=dict(
+                    input=phase['input'],arm=phase['arm'],case=str(case),
+                    status=verified['status'],initial_route_imported=verified['initial_route_imported'],
+                    CPD_ns=verified['full_precision_cpd_s']*1e9,
+                    wirelength=physical_row['physical_metrics']['planar_wirelength_excluding_sb_half_nodes'],
+                    SB_pairs=physical_row['physical_metrics']['sb_pairs_used'],
+                    CB_sources=physical_row['physical_metrics']['cb_crossing_output_sources_used'],
+                    route_body_sha256=verified['route_body_sha256'],
+                    initial_native_command_seconds=read(manifest)['wall_seconds'],
+                    graph_build_seconds=read(graph)['shared_complete_build_seconds'],
+                    measured_whole_algorithm_seconds=None,complete_confirmation_passed=False,
+                    source_sha256={str(p):sha(p) for p in [proof,audit,manifest,graph]},
+                    qualification='Original fresh initial-state gate only; not terminal method quality, paired confirmation or an application-SDC claim. Component times are not summed into a complete cost.')
+if (D/'balanced_cost_paper_binding_19.json').exists():
+    paper=read(D/'balanced_cost_paper_binding_19.json');status['paper_pdf']=paper['pdf'];status['paper_pages']=6
+    status['evidence'].update(current_paper='balanced_cost_paper_binding_19.json',
+        balanced_complete_cost_paper='balanced_cost_paper_evidence_19/completion.json')
+    status['paper_balanced_cost_update']=dict(pages=6,table_rows=42,terminal_display_rows=35,
+        represented_terminal_attempts=37,balanced_measurements=4,moved_historical_engineering_rows=3,
+        references_unchanged=9,prior_art_and_contribution_boundaries_unchanged=True,
+        new_independent_inputs=0,new_CP1r3_results=0)
+    status['paper_sharing_prior_art_scope']['scope']='Historical paper18, retained unchanged; current paper19 updates only matched costs, display counts and historical plot qualification.'
+if (D/'CP1r3_lstm_native_progress_01/completion.json').exists():
+    prefix=read(D/'CP1r3_lstm_native_progress_01/completion.json')
+    status['CP1r3_lstm_native_historical_resource_prefix']={k:prefix[k] for k in [
+        'observed_at','summarized_prefix_steps','rows','whole_algorithm_cost','complete_confirmation_passed','qualification']}
+    status['evidence']['CP1r3_lstm_native_historical_resource_prefix']='CP1r3_lstm_native_progress_01/completion.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

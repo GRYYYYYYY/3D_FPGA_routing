@@ -2,9 +2,11 @@
 
 ## Current research snapshot — 2026-11-16
 
-Research remains active; public evidence base `9734eee`, subsequent `279bdb4` and local development are preserved. [Current status](research/dac_v14_20261112/CURRENT_STATUS.md) · [Closed confirmation, mechanism attribution and running work](docs/GitHub_cohort_mechanism_20261116.md) · [Current six-page paper](research/dac_v14_20261112/paper_snapshots/current_sharing_prior_art_20261116/build/current_repair_main.pdf) · [Paper evidence binding](research/dac_v14_20261112/sharing_prior_art_paper_binding_18.json).
+Research remains active; public evidence base `9734eee`, subsequent `279bdb4` and local development are preserved. [Current status](research/dac_v14_20261112/CURRENT_STATUS.md) · [Closed confirmation, mechanism attribution and running work](docs/GitHub_cohort_mechanism_20261116.md) · [Current six-page paper](research/dac_v14_20261112/paper_snapshots/current_balanced_cost_20261116/build/current_repair_main.pdf) · [Paper evidence binding](research/dac_v14_20261112/balanced_cost_paper_binding_19.json).
 
-[Prior ingredients and contribution scope](docs/GitHub_sharing_prior_art_20261116.md): the literature statement and supplementary attribution map distinguish established sharing/timing-repair primitives from the actual local domain, release and coordination controls. Six pages,43quantitative rows and9references remain; no new external-router baseline, independent input, cost ratio or benefit claim.
+[Prior ingredients and contribution scope](docs/GitHub_sharing_prior_art_20261116.md): paper18's literature statement and supplementary attribution map distinguish established sharing/timing-repair primitives from the actual local domain, release and coordination controls. Its source/PDF is preserved; the same prior-art and contribution boundaries and9references continue in paper19.
+
+[Matched costs integrated into paper19](docs/GitHub_balanced_cost_paper_20261116.md): six pages now report the verified BNN balanced mean overhead+24.91% separately from historical22.95%. Two summary rows represent four complete repeats; three earlier engineering rows are retained in the supplement. The main table has42display rows, including all previous failure categories. No new independent input, CP1r3 complete outcome or broader benefit claim is introduced.
 
 [Actual command seed correction](docs/GitHub_input_seed_provenance_20261116.md): CP1r2 conv_hls/TPU use router seed21; Robot's upstream s23 placement uses router seed11. Eight original command manifests are bound in the supplement. All43quantitative rows and existing claim limits remain unchanged; this is no new independent input or benefit result.
 

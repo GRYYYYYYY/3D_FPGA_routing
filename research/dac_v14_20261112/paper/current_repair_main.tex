@@ -6,7 +6,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Legal routing trades timing, wire and vertical resources. Current-STA transactional repair selects groups, applies retained-crossing domains with per-net failed-search release, and coordinates blocking owners before whole-candidate checks. Matched complete BNN flows reach 13.228146 ns in 7933.25/9754.31 s: domain-first spends 1786 wire for 39 fewer SB/two fewer CB. Three timing repairs improve strong native CPD by 2.787376\%. Local owner controls establish coordination effects; a fixed-scope robot union separates domain-induced tradeoffs from release-enabled feasibility. Transfer includes no-gain, routing-failure and execution-timeout inputs. A prospective frozen conv-hls pair confirms a no-op, not positive controller benefit. Symmetric engineering and complete costs remain essential to assessing these tradeoffs.
+Legal routing trades timing, wire and vertical resources. Current-STA transactional repair selects groups, applies retained-crossing domains with per-net failed-search release, and coordinates blocking owners before whole-candidate checks. Symmetric N/D/D/N repeats reach 13.228146 ns with native/domain mean complete times 7308.61/9129.25 s (24.91\% overhead): domain-first spends 1786 wire for 39 fewer SB/two fewer CB. Three timing repairs improve strong native CPD by 2.787376\%. Local owner controls establish coordination effects; a fixed-scope robot union separates domain-induced tradeoffs from release-enabled feasibility. Transfer includes no-gain, routing-failure and execution-timeout inputs. A prospective frozen conv-hls pair confirms a no-op, not positive controller benefit. Symmetric engineering and complete costs remain essential to assessing these tradeoffs.
 \end{abstract}
 \begin{IEEEkeywords}
 3D FPGA, detailed routing, static timing analysis, transactional repair, multiobjective optimization
@@ -82,7 +82,7 @@ The implementation derives from VTR revision \texttt{0b912334fdd83bb754b302146ac
 
 \begin{table*}[t]
 \centering\footnotesize\setlength{\tabcolsep}{3 pt}
-\caption{Unified complete attempts and scoped ablations. Grouped infrastructure rows report cost/PSS ranges; per-arm receipts are supplementary. N/D: native/domain-first. Hybrid-O except eltwise topology rows; seeds vary by input. Robot SDC: distinct placement, 20-ns clock, 1/0-ns maximum/minimum I/O. SB 102\% caps CPD at 1.02 times root. PSS: sampled tree sum, GiB. Endpoints: improved/regressed setup and increased hold violations versus each arm's own root. $^{*}$GNU-time, 1-s precision; observer/PSS lost, brief overlap. $^{\dagger}$Imported scope only. $^{\ddagger}$Owner-minus-target deltas; shared pair cost/PSS. $^{\S}$Same-source union: shared three-arm command 194.52 s, 2.342 GiB; no standalone per-arm cost.}
+\caption{Unified complete attempts and scoped ablations. Grouped infrastructure rows report cost/PSS ranges; per-arm receipts are supplementary. N/D: native/domain-first. Balanced rows: two complete repeats per arm, mean time and maximum sampled PSS. Hybrid-O except eltwise topology rows; seeds vary by input. Robot SDC: distinct placement, 20-ns clock, 1/0-ns maximum/minimum I/O. SB 102\% caps CPD at 1.02 times root. PSS: sampled tree sum, GiB. Endpoints: improved/regressed setup and increased hold violations versus each arm's own root. $^{*}$GNU-time, 1-s precision; observer/PSS lost, brief overlap. $^{\dagger}$Imported scope only. $^{\ddagger}$Owner-minus-target deltas; shared pair cost/PSS. $^{\S}$Same-source union: shared three-arm command 194.52 s, 2.342 GiB; no standalone per-arm cost.}
 \label{tab:completecost}
 \begin{tabular}{lrrrrr}\hline
 Circuit/role & CPD(ns) & Wire/SB/CB & Time(s) & PSS & Setup $+/-$/Hold$^-$\\\hline
@@ -100,9 +100,8 @@ SB 102\% N&6.040485&227439/999/0&448.09&1.285&2/49/0\\
 SB 102\% D&6.114032&227583/995/0&581.65&1.257&90/482/0\\
 BNN cold N&13.228146&2059631/82/5062&7933.25&11.055&14/17/0\\
 BNN cold D&13.228146&2061417/43/5060&9754.31&11.063&547/820/0\\
-BNN index N&13.228146&2059631/82/5062&7463.17&11.062&14/17/0\\
-BNN stream N&13.228146&2059631/82/5062&7247$^{*}$&--&14/17/0\\
-BNN stream D&13.228146&2061417/43/5060&9116.40&11.067&547/820/0\\
+BNN balanced N&13.228146&2059631/82/5062&7308.61&11.062&14/17/0\\
+BNN balanced D&13.228146&2061417/43/5060&9129.25&11.063&547/820/0\\
 Robot N&13.354624&251116/9/653&377.71&2.517&209/0/0\\
 Robot D&13.354624&251136/9/652&424.45&2.509&209/32/0\\
 Conv-layer N (initial fail)&--&--&260.10&--&--\\
@@ -136,7 +135,7 @@ Robot union D/release$^{\S}$&13.354624&251160/9/653&--&--&240/32/0\\\hline
 \end{table*}
 
 
-Table~\ref{tab:completecost} retains 36 terminal attempts (four routing failures, four loading failures, two initial execution timeouts), nine infrastructure failures in two grouped rows, and five scoped components. Shared component costs are not assigned to individual arms. The measurement starts from supplied architecture, RR graph, BLIF, packed netlist and placement, includes index construction, fresh routing, complete repair, actual rejected candidates, native STA, checks and rollback, and ends at the final seal. Packing, placement and compilation are upstream. BNN resource and timing phases use explicitly bound different binaries. The other full-flow rows are complete resource-repair configurations; identical notation does not imply identical portfolios across rows.
+Table~\ref{tab:completecost} has 35 terminal rows representing 37 attempts, including four routing failures, four loading failures, two initial timeouts and four balanced repeats in two summary rows. Nine infrastructure failures remain in two grouped rows, plus five scoped components. Three earlier BNN engineering rows move intact to the supplement. Shared component costs are not assigned to individual arms. The measurement starts from supplied architecture, RR graph, BLIF, packed netlist and placement, includes index construction, fresh routing, complete repair, actual rejected candidates, native STA, checks and rollback, and ends at the final seal. Packing, placement and compilation are upstream. BNN resource and timing phases use explicitly bound different binaries. The other full-flow rows are complete resource-repair configurations; identical notation does not imply identical portfolios across rows.
 
 The original complete BNN native/domain pair starts with identical route trees and endpoint vectors. Native makes five resource commits, domain nine; both then make three current-STA timing commits and reach 13.228145690 ns. Domain uses 2061417 wire,43 SB,5060 CB against native 2059631,82,5062. It spends 1786 wire and 1821.07 s (22.95\%) for 39 fewer SB and two fewer CB. Setup changes include 534 improvements and 803 regressions, with no increased hold violation: equal CPD is not endpointwise equivalence.
 
@@ -154,7 +153,7 @@ On the fixed eltwise packing/placement, SB-only native/domain both reach 999 SB 
 \section{Multiobjective Tradeoffs}
 \begin{figure*}[t]
 \centering\includegraphics[width=.98\textwidth]{data/complete_paired_tradeoffs_10.pdf}
-\caption{Complete domain-first/native tradeoffs from Table~\ref{tab:completecost}: $100(D-N)/N$ within each matched pair. Brackets report separate SB/CB count changes. Each panel has its own scale; lower is better for that metric. Nine development configuration pairs are not nine independent inputs; the new no-op confirmation pair is reported in Table~\ref{tab:completecost}. Initial/input failures and grouped infrastructure failures retain costs without quality deltas. Single-run time differences are descriptive, not statistical speedups.}
+\caption{Complete domain-first/native tradeoffs from Table~\ref{tab:completecost}: $100(D-N)/N$ within each matched pair. Brackets report separate SB/CB count changes. Each panel has its own scale; lower is better for that metric. The BNN bar uses the original cold pair; balanced repeats are reported separately. Nine development configuration pairs are not nine independent inputs; the new no-op confirmation pair is reported in Table~\ref{tab:completecost}. Initial/input failures and grouped infrastructure failures retain costs without quality deltas. Single-run time differences are descriptive, not statistical speedups.}
 \label{fig:joint}
 \end{figure*}
 
@@ -193,7 +192,7 @@ Transaction count is not a cost proxy: K 8/budget64 execute the same query multi
 Tied-path feedback supplies a complementary positive combination example. Jointly covering two tied-path targets with three donors improves ten setup components with no regression, gaining 7.638334 ps at 45 SB/5060 CB. A larger successor improves CPD further but regresses a noncritical setup component. The policy distinction is deliberate, and neither result establishes that every intermediate or module should improve CPD. Historical local trajectories and recovery costs are retained in the supplement.
 \section{Overhead and Applicability}
 \subsection{Engineering cost and symmetric controls}
-Single-pass indexing preserves BNN graph payloads, states, requests and native work at 7463.17 versus 7933.25 s. Metadata reuse/streaming preserves native execution at 7247 s (qualified GNU-time; observer/PSS lost, brief overlap). The same changes preserve domain states, requests, work and full vectors at 9116.40 versus 9754.31 s, a descriptive 637.92-s/6.54\% reduction; sampled PSS is 11.067 GiB with 28 missing observations. This establishes behavior preservation, not statistical acceleration or an optimized N/D ratio. Original matched overhead remains 22.95\%; symmetric interleaving is running.
+Behavior-preserving indexing/streaming observations, including the qualified 7247-s GNU-time run, remain supplementary. With identical engineering, serial N/D/D/N gives mean complete times 7308.61/9129.25 s: ratio 1.24911, or 24.91\% domain overhead. Paired ratios are 1.24796/1.25026. Same-role trajectories, full requests, native work and six actual graph payloads match; paired fresh roots/full endpoint vectors match, with compatible final endpoint comparisons. Missing memory observations are 22/28/27/29 in registered order. Four whole repeats add no independent input. Two observations per arm on a shared host with uncontrolled OS caches support descriptive costs only. The original 22.95\% overhead is retained as a separate historical observation; no component times are summed or observer CPU subtracted.
 
 In the original BNN pair, resource transactions account for 1692.84 s of the observed 1821.07-s total difference (92.96\%). Native/domain execute 70/1361 connection queries, counting repeated queries separately. Nested native-core times are 38.23/1207.26 s and cannot be added to complete costs. This decomposition identifies the dominant work, not a new speedup.
 
@@ -204,7 +203,7 @@ Lazy scheduling skips optional native diagnostics only after complete domain acc
 Complete times bind commands/outputs; shared-host activity and caches remain uncontrolled. Interleaving retains failures; recovery and validation costs stay separate.
 
 \subsection{Evidence coverage and confirmation boundary}
-The historical 671-record archive has 34 quality-complete configurations, not independent samples: 33 observer measurements and one qualified GNU-time. Fourteen later terminal attempts, nine infrastructure failures and five scoped components lie outside those counts. Failed roles have no legal quality; sampled PSS may miss transient peaks. Full trajectories, vectors and per-arm failure costs remain supplementary.
+The historical 671-record archive has 34 quality-complete configurations, not independent samples: 33 observer measurements and one qualified GNU-time. Fourteen later terminal attempts, four balanced timing repeats, nine infrastructure failures and five scoped components lie outside those counts. Failed roles have no legal quality; sampled PSS may miss transient peaks. Full trajectories, vectors and per-arm failure costs remain supplementary.
 
 Corrected CLSTM N/D, robot-p1 N and reduction N/D reach legal initial routes before supervision interruption. Four CP1r1 attempts fail guard launch before VPR. Original failures/costs remain. CP1r2 fixes runtime supervision and permissions; actual guard tests/public reconstruction pass without algorithm changes.
 
