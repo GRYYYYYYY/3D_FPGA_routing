@@ -657,6 +657,13 @@ if (D/'BNN_timing03_domain0_receipt_01/completion.json').exists():
     status['BNN_timing03_first_complete_domain']['scope']='Historical second-arm snapshot; original full verifier passed, current owner table is authoritative for active case. Four-role equivalence/matching and descriptive paired costs remain pending.'
     status['evidence']['BNN_timing03_first_complete_domain']='BNN_timing03_domain0_receipt_01/completion.json'
     status['outstanding'].append('BNN03 domain_0 independently verified:13.228145690ns,2061417wire/43SB/5060CB,9146.351492s,PSS11.063066GiB,28missing samples;174measured identities rechecked dead. Original queue advanced to domain_1. Two of four known-input measurement roles complete; no new independent input, CP1r3result, optimized paired ratio or statistical speedup. Reuse original verifier. Exact same-role trajectory/request/native-work/sixgraph and full own-root/paired endpoint comparisons remain original four-role finish gates; original22.95percent overhead and paper17 claims remain unchanged.')
+if (D/'BNN_timing03_domain1_receipt_01/completion.json').exists():
+    receipt=read(D/'BNN_timing03_domain1_receipt_01/completion.json')
+    status['BNN_timing03_second_complete_domain']=receipt
+    status['BNN_timing03_second_complete_domain']['scope']='Historical third-arm snapshot; original full verifier passed. Current owner table identifies the last native arm. Four-role trajectories, requests, graph bytes, roots and endpoints must match before paired ratios.'
+    status['evidence']['BNN_timing03_second_complete_domain']='BNN_timing03_domain1_receipt_01/completion.json'
+    status['evidence']['BNN_timing03_second_domain_claim_scope']='BNN_timing03_domain1_claim_binding_01.json'
+
 if (D/'sharing_prior_art_paper_binding_18.json').exists():
     paper=read(D/'sharing_prior_art_paper_binding_18.json');status['paper_pdf']=paper['pdf'];status['paper_pages']=6
     status['evidence'].update(current_paper='sharing_prior_art_paper_binding_18.json',sharing_prior_art='sharing_prior_art_paper_evidence_18/sources.json',contribution_and_attribution_map='sharing_prior_art_paper_evidence_18/contribution_comparison.md')

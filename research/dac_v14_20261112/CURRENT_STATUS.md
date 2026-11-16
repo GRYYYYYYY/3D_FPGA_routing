@@ -1,12 +1,12 @@
 # 当前研究状态
 
-观察时间：2026-11-16T16:57:57.190898+00:00。Goal active；公开证据基点9734eee，原开发状态、冻结版本与失败回执保留。
+观察时间：2026-11-16T19:22:32.069618+00:00。Goal active；公开证据基点9734eee，原开发状态、冻结版本与失败回执保留。
 
 统一方法：按当前STA、跨层冗余与容量阻塞选完整连接组；在私有树上执行共享域、按网失败释放及owner协调；经物理/容量/FULL/STA完整检查，在固定根预算下接受或恢复，终结选点独立于中间提交。native享有同等选组、owner和收敛机会。CP1r2独立冻结，不追认旧开发结果为确认。
 
 | 当前登记批次 | 实际状态 | owner PID |
 |---|---|---:|
-| BNN_interleaved_timing_03 | running [domain_1] → fresh_route_and_complete_resource | 1695383 |
+| BNN_interleaved_timing_03 | running [native_1] → fresh_route_and_complete_resource | 1695383 |
 | confirmation_release_cp1r3_01 | priority_dependency: BNN_interleaved_timing_03 | 3149029 |
 | cp1r3_distinct_input_cohort_01 | priority_dependency: confirmation_release_cp1r3_01 | 3149073 |
 | interrupted_stage_reconciliation_01 | priority_dependency: cp1r3_distinct_input_cohort_01 | 3149126 |
