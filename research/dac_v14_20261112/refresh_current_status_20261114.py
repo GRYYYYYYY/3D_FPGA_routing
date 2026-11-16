@@ -185,6 +185,10 @@ flow_publication=D.parents[1]/'docs/github_interrupted_flow_publication_receipt_
 if flow_publication.exists():publication=flow_publication
 native_timing_publication=D.parents[1]/'docs/github_BNN_timing03_native0_publication_receipt_20261116.json'
 if native_timing_publication.exists():publication=native_timing_publication
+priority_publication=D.parents[1]/'docs/github_confirmation_priority_publication_receipt_20261116.json'
+if priority_publication.exists():publication=priority_publication
+seed_publication=D.parents[1]/'docs/github_input_seed_publication_receipt_20261116.json'
+if seed_publication.exists():publication=seed_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -637,6 +641,12 @@ if (D/'interrupted_complete_request_audit_01/completion.json').exists():
     status['evidence']['interrupted_complete_request_scope']='interrupted_complete_request_audit_01/completion.json'
 if (D/'interrupted_recovery_outcomes_01/DRAFT_STATUS.json').exists():
     status['deferred_unregistered_recovery_outcome_verifier']=read(D/'interrupted_recovery_outcomes_01/DRAFT_STATUS.json')
+if (D/'input_seed_paper_binding_17.json').exists():
+    paper=read(D/'input_seed_paper_binding_17.json');status['paper_pdf']=paper['pdf'];status['paper_pages']=6
+    status['evidence'].update(current_paper='input_seed_paper_binding_17.json',actual_router_seed_provenance='input_seed_paper_evidence_17/seed_provenance.json')
+    status['paper_router_seed_correction']=dict(command_manifests=8,BNN=11,Robot_SDC_upstream_s23=11,CP1r2_conv_hls=21,CP1r2_tpu_ws=21,new_independent_inputs=0,new_full_method_results=0,fresh_physical_byte_audit=False,quantitative_rows_unchanged=43)
+if (D/'BNN_timing03_domain0_progress_01/completion.json').exists():
+    status['evidence']['BNN_timing03_domain0_historical_phase_snapshot']='BNN_timing03_domain0_progress_01/completion.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
