@@ -31,6 +31,8 @@ The [domain engineering arm](docs/GitHub_domain_engineering_registration_2026111
 
 [Executable robot union experiment](docs/GitHub_robot_union_registration_20261116.md): three matched treatments on the25-connection union isolate domain and failure-release effects inside a fixed coordination scope. Eight development checks pass; the single owner waits after the CP1 cross-circuit cohort. No new native outcome or change to frozen CP1.
 
+[Complete BNN cost hierarchy](docs/GitHub_BNN_cost_hierarchy_20261116.md):92.96% of the observed1821.07-s N/D difference falls inside resource transactions. Actual connection-query executions are70/1361; nested timers are kept separate from total wall. The final empty selector costs27.32 s, only0.2801% of domain whole time before any new certificate cost. No new speedup or changed CP1 rules.
+
 <details>
 <summary>Historical progress snapshots and earlier paper versions</summary>
 

@@ -134,7 +134,8 @@ status['outstanding']=[
 status['standalone_runtime_component']=read(D/'standalone_native_runtime_artifact_01/completion.json')
 status['standalone_runtime_component']['physical_validation']='standalone_physical_audit_validation_01/completion.json'
 status['standalone_runtime_component']['execution_validation']='standalone_native_runtime_validation_01/completion.json'
-publication=D.parents[1]/'docs/github_robot_union_publication_receipt_20261116.json'
+publication=D.parents[1]/'docs/github_BNN_cost_hierarchy_publication_receipt_20261116.json'
+if not publication.exists(): publication=D.parents[1]/'docs/github_robot_union_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_robot_composition_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_cp1_cohort_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_cp1_publication_receipt_20261116.json'
@@ -351,6 +352,10 @@ if (D/'robot_mechanism_composition_screen_01/completion.json').exists():
 if (D/'robot_union_mechanism_01/launch.json').exists():
     status['robot_union_mechanism_plan']=dict(plan='robot_union_mechanism_01/plan.json',launch='robot_union_mechanism_01/launch.json',roles=3,connections=25,domain_nets=3,new_independent_results=0,qualification='Same-root development union and separate domain/release controls; queued after independent CP1 cohort, never changing CP1.')
     status['evidence']['robot_union_mechanism_plan']='robot_union_mechanism_01/plan.json'
+if (D/'complete_BNN_cost_hierarchy_01/completion.json').exists():
+    cost=read(D/'complete_BNN_cost_hierarchy_01/completion.json')
+    status['complete_BNN_cost_hierarchy']={k:v for k,v in cost.items() if k not in ['arms','source_sha256']}
+    status['evidence']['complete_BNN_cost_hierarchy']='complete_BNN_cost_hierarchy_01/completion.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
