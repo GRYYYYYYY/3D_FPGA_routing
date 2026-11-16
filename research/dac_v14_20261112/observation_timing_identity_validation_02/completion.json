@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "reproduced_v1_list_tuple_false_rejection": true,
+  "checks": [
+    {
+      "name": "full_precision_manifest",
+      "list_tuple_semantically_equal": true
+    },
+    {
+      "name": "rounded_manifest",
+      "list_tuple_semantically_equal": true
+    },
+    {
+      "name": "sub_display_CPD",
+      "rejected": true,
+      "failed_checks": [
+        "full_precision_CPD_exact"
+      ]
+    },
+    {
+      "name": "setup_drift",
+      "rejected": true,
+      "failed_checks": [
+        "setup_exact"
+      ]
+    },
+    {
+      "name": "hold_drift",
+      "rejected": true,
+      "failed_checks": [
+        "hold_exact"
+      ]
+    },
+    {
+      "name": "endpoint_reordered",
+      "rejected": true,
+      "failed_checks": [
+        "endpoint_ids_exact"
+      ]
+    },
+    {
+      "name": "endpoint_identity",
+      "rejected": true,
+      "failed_checks": [
+        "endpoint_ids_exact"
+      ]
+    },
+    {
+      "name": "constraint_drift",
+      "rejected": true,
+      "failed_checks": [
+        "constraints_sha256_exact"
+      ]
+    }
+  ],
+  "changed_display_rejected": true,
+  "wrong_source_manifest_rejected": true,
+  "native_calls_new": 0,
+  "actual_full_trace_replay_complete": false,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/observation_timing_identity_v2.py": "2bf1d5d4569a4074e5fa90024f4fd99445984cdfecd8a92e87f32a627394fad4"
+  },
+  "qualification": "Regression follows actual persisted JSON list and parser tuple formats. Normalize only tuple/list representation, preserve order and exact values. Full existing-trace audit remains a separate queued check."
+}

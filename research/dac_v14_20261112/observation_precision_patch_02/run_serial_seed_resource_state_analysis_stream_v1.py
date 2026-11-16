@@ -1,0 +1,166 @@
+#!/usr/bin/env python3
+"""Evaluate an immutable current/candidate route once with native endpoint STA.
+
+An identical-route observation reuses the source physical audit. A replacement
+receives its own independent physical/capacity audit after native FULL/STA.
+Acceptance is deliberately a separate policy decision.
+"""
+import argparse
+import fcntl
+import os
+from pathlib import Path
+import shutil
+import sys
+import time
+from retained_prefix_workflow import D, read, write, sha, route_body
+from endpoint_timing_policy_streaming_v2 import load
+from observation_timing_identity_v2 import check as check_observation_timing
+
+import runtime_io as io
+import runtime_audit as study
+from controller_runtime import admit_worker,package_files
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--inputs',type=Path,required=True)
+    parser.add_argument('--seed-order',choices=['native','rr_id','delay_rr_id'],required=True)
+    parser.add_argument('--domain-feedback',action='store_true')
+    parser.add_argument('--source', type=Path, required=True)
+    parser.add_argument('--batch', type=Path, required=True)
+    parser.add_argument('--candidate-route', type=Path)
+    parser.add_argument('--trace-off', action='store_true')
+    parser.add_argument('--native-cases', type=Path)
+    parser.add_argument('--crossing-domain', type=Path)
+    parser.add_argument('--objective',choices=['weighted_soft','weighted_capacity','physical_soft','physical_capacity'],default='weighted_soft')
+    parser.add_argument('--pressure-start',type=float,default=1.)
+    args = parser.parse_args()
+    started = time.monotonic()
+    config, paths, cache, portable_command = admit_worker(args.inputs,args.source,args.batch)
+    lock = (args.batch.resolve().parent / (args.batch.name + '.independent_native.lock')).open('w')
+    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    assert shutil.disk_usage(D).free >= 80 * 1024**3
+    source, b = args.source.resolve(), args.batch.resolve()
+    manifest = read(source / 'manifest.json')
+    assert manifest['status'] == 'completed' and manifest['metrics']['native_full_check_passed']
+    assert read(source / 'independent_audit.json')['audit']['passed']
+    route = args.candidate_route.resolve() if args.candidate_route else source / 'routed.route'
+    observation = sha(route) == sha(source / 'routed.route')
+    source_vector = None
+    source_vector_path = None
+    if observation and not args.trace_off:
+        cached = source.parent.parent / 'endpoint_vector.json'
+        if source.name == 'state' and source.parent.name == 'runs' and cached.is_file():
+            source_vector_path = cached
+            source_vector = read(cached)
+        else:
+            source_vector_path = source / 'native_sta_frontier.jsonl'
+            source_vector = load(source_vector_path)
+
+    graph = Path(manifest['command'][manifest['command'].index('--read_rr_graph') + 1])
+    assert sha(graph) == manifest['shared_inputs'][str(graph)]['sha256']
+    io.configure(b,paths['binary'])
+    files = [*package_files(),args.inputs.resolve(),*paths.values(),source/'manifest.json',source/'routed.route',source/'packed.net',source/'placed.place',source/'independent_audit.json',route,graph]
+    for key in ['native_cases','crossing_domain','explicit_crossings','expected_loaded_source_route']:
+        value=getattr(args,key,None)
+        if value:files.append(value.resolve())
+    for directory in [cache.directory,cache.g.directory]:
+        files += [directory/'completion.json',*[directory/n for n in read(directory/'completion.json')['payload_sha256']]]
+    if hasattr(args,'full_graph_cache'):assert args.full_graph_cache.resolve()==cache.directory
+    if source_vector_path is not None: files.append(source_vector_path)
+    hashes = {str(p): sha(p) for p in files}
+    write(b / 'registration.json', dict(status='registered_before_native', source=str(source), candidate_route=str(route),
+          observation_only=observation, trace_off=args.trace_off, source_sha256=hashes,
+          pid=os.getpid(), start_ticks=Path('/proc/self/stat').read_text().split(') ', 1)[1].split()[19],
+          native_analysis_calls_planned=1, route_search_calls=0,seed_order=args.seed_order,domain_failure_release=args.domain_feedback,
+          limits=dict(timeout_seconds=1800, memory_bytes=64*1024**3, disk_reserve_bytes=80*1024**3)))
+    io.BASE = b
+    io.ADDRESS_SPACE_BYTES = 64 * 1024**3
+    for p, h in hashes.items():
+        io.frozen_hash(p, h)
+    rd = b / 'runs/state'
+    rd.mkdir(parents=True)
+    for name in ['packed.net', 'placed.place']:
+        shutil.copy2(source / name, rd / name)
+    shutil.copy2(route, rd / 'routed.route')
+    before = {n: sha(rd / n) for n in ['packed.net', 'placed.place', 'routed.route']}
+    write(rd / 'pair_check.json', dict(passed=True, checks={n: sha(rd/n) == sha(source/n) for n in ['packed.net', 'placed.place']},
+          scope='Exact packing and placement; input route frozen within this evaluation.'))
+    cmd = list(manifest['command'])
+    cmd[0] = str(paths['binary'])
+    if '--route' in cmd:
+        cmd.remove('--route')
+    assert '--analysis' in cmd and '--route' not in cmd
+    cmd[cmd.index('--timing_report_npaths') + 1] = '10'
+    if '--verify_route_file_switch_id' not in cmd:
+        cmd += ['--verify_route_file_switch_id', 'on']
+    else:
+        cmd[cmd.index('--verify_route_file_switch_id') + 1] = 'on'
+    for option, name in [('--net_file', 'packed.net'), ('--place_file', 'placed.place'), ('--route_file', 'routed.route')]:
+        cmd[cmd.index(option) + 1] = str(rd / name)
+    assert cmd==portable_command, 'Admitted command differs from the actual source-derived command'
+    env = {'VPR_H3D_MODE': 'off', 'VPR_JOINT_NATIVE_REUSE_CROSSINGS': '', 'VPR_JOINT_NATIVE_VERTICAL_DOMAIN_TRACE': ''}
+    assert not args.domain_feedback or args.crossing_domain is not None
+    env.update(VPR_JOINT_NATIVE_SEED_ORDER=args.seed_order,VPR_JOINT_NATIVE_DOMAIN_FAILURE_RELEASE='1' if args.domain_feedback else '0')
+    if args.crossing_domain:
+        env['VPR_JOINT_NATIVE_REUSE_CROSSINGS'] = str(args.crossing_domain.resolve())
+        env['VPR_JOINT_NATIVE_VERTICAL_DOMAIN_TRACE'] = str(rd/'vertical_domain.log')
+    if not args.trace_off:
+        env['VPR_H3D_FINAL_STA_TRACE'] = str(rd / 'native_sta_frontier.jsonl')
+    if args.native_cases:
+        env['VPR_JOINT_NATIVE_OBJECTIVE'] = args.objective
+        env['VPR_JOINT_NATIVE_REQUEST'] = str(args.native_cases.resolve())
+        env['VPR_CURRENT_STA_NATIVE_PRESSURE_START'] = str(args.pressure_start)
+        env['VPR_JOINT_NATIVE_OUTPUT'] = str(rd / 'joint_native.log')
+    preparation_seconds = time.monotonic() - started
+    result = io.run(rd.name, cmd, environment=env, timeout=1800,
+                    frozen=[cmd[0], cmd[1], cmd[2], graph, b / 'registration.json'],
+                    private_inputs=[rd / n for n in before], tags=dict(phase='native_endpoint_vector', route_search_calls=0))
+    checks = dict(completed=result['status'] == 'completed', native_FULL=result['metrics'].get('native_full_check_passed', False),
+                  inputs_unchanged=all(sha(rd/n) == h for n, h in before.items()),
+                  route_loaded='Finished loading route file' in (rd/'stdout.log').read_text())
+    if args.crossing_domain:
+        checks['domain_trace_created'] = (rd/'vertical_domain.log').is_file() and 'occupancy_restored' in (rd/'vertical_domain.log').read_text()
+    audit_start = time.monotonic()
+    if observation:
+        shutil.copy2(source / 'independent_audit.json', rd / 'independent_audit.json')
+        write(b / 'physical_audit_reuse.json', dict(passed=checks['inputs_unchanged'], original=str(source/'independent_audit.json'),
+              original_sha256=sha(source/'independent_audit.json'), exact_route_sha256=sha(route), graph_sha256=sha(graph),
+              qualification='Audit content is copied with explicit original provenance, not presented as a newly executed physical audit.'))
+        checks['physical_audit'] = checks['inputs_unchanged']
+        if args.native_cases:
+            query_lines=(rd/'joint_native.log').read_text().splitlines() if (rd/'joint_native.log').exists() else []
+            checks['native_control_complete'] = bool(query_lines) and 'occupancy_restored' in query_lines[-1]
+        checks['CPD_matches_original'] = result['metrics'].get('critical_path_ns') == float(format(manifest['metrics']['critical_path_ns'], '.6g'))
+    else:
+        study.BASE = b
+        audit = study.audit_batch({'fixture': {'original_graph': str(graph)}}, [result], b/'independent_native_analysis_audit.json')
+        checks['physical_audit'] = audit['passed']
+    audit_seconds = time.monotonic() - audit_start
+    vector = None
+    if all(checks.values()) and not args.trace_off:
+        vector = load(rd / 'native_sta_frontier.jsonl')
+        checks['full_precision_CPD_matches_report'] = float(format(vector['cpd_s']*1e9, '.6g')) == result['metrics']['critical_path_ns']
+        if observation:
+            identity = check_observation_timing(result['metrics']['critical_path_ns'], manifest['metrics']['critical_path_ns'], source_vector, vector)
+            checks['observation_full_precision_and_endpoints_exact'] = identity['passed']
+            write(b / 'observation_timing_identity.json', identity)
+        write(b / 'endpoint_vector.json', vector)
+    io.seal_inputs(b / 'input_seal.json')
+    checks['inputs_sealed'] = read(b/'input_seal.json')['passed']
+    write(rd / 'analysis_gate.json', dict(passed=all(checks.values()), checks=checks))
+    write(b / 'completion.json', dict(status='native_analysis_terminal', passed=all(checks.values()), accepted=None,
+          run=str(rd), observation_only=observation, native_analysis_calls=1, route_search_calls=0,
+          cpd_ns=result['metrics'].get('critical_path_ns'), full_precision_cpd_s=None if vector is None else vector['cpd_s'],
+          endpoints=None if vector is None else len(vector['endpoint_ids']),
+          process_status=result['status'], route_body_sha256=route_body(rd/'routed.route'),
+          timing=dict(preparation_seconds=preparation_seconds, native_process_seconds=result['wall_seconds'],
+                      independent_audit_seconds=audit_seconds, complete_evaluation_seconds=time.monotonic()-started),
+          checks=checks, acceptance='Deferred to full-precision branch policy; never inferred from process success.'))
+    print(dict(passed=all(checks.values()), cpd_ns=result['metrics'].get('critical_path_ns'),
+               cpd_s=None if vector is None else vector['cpd_s'], endpoints=None if vector is None else len(vector['endpoint_ids'])), flush=True)
+    assert all(checks.values()), 'Preserve terminal evaluation; diagnose without repeating a completed native process'
+
+
+if __name__ == '__main__':
+    main()

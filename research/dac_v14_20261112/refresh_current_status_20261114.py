@@ -13,7 +13,7 @@ for name in ['stable_seed_transfer_recovery_02','direct_scope_resource_equivalen
              'rejection_feedback_controller_dev_01','complete_route_resource_measurements_01',
              'vector_then_strict_comparison_01','connection_budget_resource_dev_01',
              'complete_serial_resource_measurement_dev_01','complete_serial_resource_measurement_paired_dev_01',
-             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01','cp1r1_cross_circuit_cohort_01','cp1r2_cross_circuit_cohort_01','robot_union_mechanism_02','robot_union_verification_recovery_01','BNN_interleaved_timing_02','BNN_interleaved_timing_03']:
+             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01','cp1r1_cross_circuit_cohort_01','cp1r2_cross_circuit_cohort_01','robot_union_mechanism_02','robot_union_verification_recovery_01','BNN_interleaved_timing_02','BNN_interleaved_timing_03','robot_owner_reentry_audit_01','robot_owner_reentry_audit_02','empty_query_patch_validation_01']:
     q=D/name/('' if name.startswith('serial_fused_candidate_validation_') else 'queue');reg=read(q/'registration.json')
     phase=read(q/'status.json') if (q/'status.json').exists() else dict(status='running')
     live=process_identity(reg['pid'])
@@ -159,6 +159,10 @@ if not publication.exists(): publication=D.parents[1]/'docs/github_mechanism_inp
 if not publication.exists(): publication=D.parents[1]/'docs/github_unified_method_publication_receipt_20261115.json'
 new_publication=D.parents[1]/'docs/github_runtime_recovery_publication_receipt_20261116.json'
 if new_publication.exists():publication=new_publication
+pair_publication=D.parents[1]/'docs/github_CP1r2_first_pair_publication_receipt_20261116.json'
+if pair_publication.exists():publication=pair_publication
+cohort_publication=D.parents[1]/'docs/github_cohort_mechanism_publication_receipt_20261116.json'
+if cohort_publication.exists():publication=cohort_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -494,6 +498,55 @@ if pair.exists():
     status['evidence']['first_complete_CP1r2_pair']='cp1r2_cross_circuit_cohort_01/conv_hls_comparison.json'
 if (D/'CP1r2_pair_paper_binding_14.json').exists():
     paper=read(D/'CP1r2_pair_paper_binding_14.json');status['paper_pdf']=paper['pdf'];status['paper_pages']=6
+if (D/'robot_owner_reentry_audit_01/pending_observation.json').exists():
+    status['robot_owner_reentry_pending_audit']=read(D/'robot_owner_reentry_audit_01/pending_observation.json')
+    status['evidence']['robot_owner_reentry_audit']='robot_owner_reentry_audit_01/plan.json'
+    status['outstanding'].append('Readonly owner-reentry audit01 waits for serial slot: four robot-p1 native owner commits observed, but exact existing reload-vector comparison remains pending; full/rounded CPD manifest mismatch is an additional latent check failure. Keep frozenCP1r2 immutable and require a separate corrected version only after actual audit. No rerouting or original receipt rewrite.')
+precision_patch=D/'observation_precision_patch_01/preparation.json'
+if precision_patch.exists():
+    status['observation_precision_patch']=read(precision_patch)
+    status['evidence']['observation_precision_patch']='observation_precision_patch_01/preparation.json'
+    status['outstanding'].append('Precision patch01 stages both observation workers with display normalization plus exact full-vector identity and bound source vectors; not installed. Await actual readonly trace audit before new runtime packaging/registration. Do not mutate CP1r2 or repeat native work.')
+tpu_timeout=D/'cp1r2_cross_circuit_cohort_01/tpu_ws_native_timeout_evidence_01/evidence.json'
+if tpu_timeout.exists():
+    v=read(tpu_timeout)
+    status['CP1r2_tpu_native_timeout']={k:x for k,x in v.items() if k not in ['copied_receipts','registered_input_identity']}
+    status['evidence']['CP1r2_tpu_native_timeout']='cp1r2_cross_circuit_cohort_01/tpu_ws_native_timeout_evidence_01/evidence.json'
+if (D/'robot_owner_reentry_audit_02/plan.json').exists():
+    status['evidence']['robot_owner_reentry_audit']='robot_owner_reentry_audit_02/plan.json'
+    status['evidence']['observation_precision_patch']='observation_precision_patch_02/preparation.json'
+    status['observation_precision_patch']=read(D/'observation_precision_patch_02/preparation.json')
+    status['observation_format_regression']=read(D/'observation_timing_identity_validation_02/completion.json')
+    status['outstanding']=[x.replace('audit01','audit02').replace('patch01','patch02') for x in status['outstanding']]
+    status['outstanding'].append('Readonly owner audit01 superseded before execution after exact live wait-channel/no-child check: JSON endpoint lists and parser tuples need semantic canonicalization. Audit02 and precision patch02 use helperv2; no order/numeric relaxation. Original01scripts/registration and cancellation receipt retained; all native runs unchanged.')
+empty_query_patch=D/'empty_query_patch_01/preparation.json'
+if empty_query_patch.exists():
+    status['empty_query_development_patch']=read(empty_query_patch)
+    status['evidence']['empty_query_development_patch']='empty_query_patch_01/preparation.json'
+    status['outstanding'].append('Empty-query patch01 stages exact empty protected/exchange exits after upstream digest/state checks, with graph argument/driver binding guards. Nonempty bodies unchanged; no runtime installed or savings measured. Validate completed empty+nonempty fixtures under serial lock, then new-version matched native/domain whole controls; do not alter fixed BNN timing03.')
+if (D/'empty_query_patch_validation_01/plan.json').exists():
+    status['evidence']['empty_query_actual_replay_queue']='empty_query_patch_validation_01/plan.json'
+    status['outstanding'].append('Actual empty/nonempty fixture replay is now registered after BNN timing03; queue performs existing-input digest/state guards under serial lock, forbids mapping/query/native processes for empty branch, and stops nonempty execution at original mapping boundary. This tests branch behavior only, not complete method equivalence or measured savings. No completed routes or queries repeated.')
+closed_cohort=D/'cp1r2_cross_circuit_cohort_01/terminal_evidence_01/completion.json'
+if closed_cohort.exists():
+    status['closed_CP1r2_cohort']={k:v for k,v in read(closed_cohort).items() if k!='source_sha256'}
+    union=read(D/'robot_union_mechanism_02/verification_v2.json')
+    status['verified_robot_union']=dict(passed=union['passed'],shared_imported_seconds=union['complete_imported_three_arm_seconds'],
+        outcomes={role:dict(status=r['status'],quality=r['quality'],native_core_seconds=r['native_core_seconds'],
+            endpoint_summary=None if not r.get('endpoint_comparison') else {k:v for k,v in r['endpoint_comparison'].items() if k!='changes'},
+            resource_accepted=r.get('resource_policy_decision',{}).get('accepted'),committed=False) for role,r in union['outcomes'].items()})
+    status['verified_robot_owner_reentry']={k:v for k,v in read(D/'robot_owner_reentry_audit_02/completion.json').items() if k!='source_sha256'}
+    status['evidence'].update(closed_CP1r2_cohort=str(closed_cohort),verified_robot_union='robot_union_mechanism_02/verification_v2.json',verified_owner_reentry='robot_owner_reentry_audit_02/completion.json')
+    status['outstanding']=[
+        'Continue sole BNN_interleaved_timing03 owner in original N/D/D/N order; check real PID/start ticks and actual receipts. No role repeated, no runtime/config/algorithm changes. Empty-query fixture validation waits for its terminal receipt and the shared serial slot.',
+        'CP1r2 cohort closed: conv_hls legal fixed-menu no-op pair, TPU N/D fixed 1800-s initial execution timeouts. Preserve all four original roles/costs; no timeout quality, infeasibility or domain delta inferred.',
+        'Verified fixed-scope robot union: native legal but CB cap exceeded; no-release exact rollback; domain+release legal resource-accepted candidate,32 setup regressions. No actor commit or complete-controller claim. Four native robot-p1 owner commits/reentries and exact existing reload STA verified only on partial development path.',
+        'Precision patch02 actual existing-vector identity now validated by audit02; stage a separately versioned runtime/recovery adapter while preserving original root envelopes, budgets and legal archive. No mutation of CP1r2 or repeated completed native prefixes; recovered suffix costs remain distinct from fresh full cost.',
+        'Empty-query patch remains staged/unmeasured. Existing-fixture validation is queued after BNN03; require new-version symmetric whole-flow controls before savings claims. Nonempty replay stops at original graph boundary, not a full equivalence proof.',
+        'Broaden genuinely different physical inputs and applicable architectures with prospective fixed rules, retaining no-cut/no-gain/degradation/failure outcomes. Develop crossing-redundancy/capacity/slack mechanism selection beyond a single BNN state.',
+        'Publish reviewed six-page source/PDF and actual evidence without changing local HEAD/index or main. Goal stays active; cohort/matrix/publication completion and ordinary negatives do not stop research.']
+    if (D/'cohort_mechanism_paper_binding_15.json').exists():
+        paper=read(D/'cohort_mechanism_paper_binding_15.json');status['paper_pdf']=paper['pdf'];status['paper_pages']=6
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

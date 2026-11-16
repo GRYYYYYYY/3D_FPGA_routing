@@ -9,6 +9,33 @@ def render(status,D):
         if owner.get('flow_active_stage'):phase+=' → '+owner['flow_active_stage']['phase']
         rows.append(f"| {owner['batch']} | {phase} | {owner['pid']} |")
     paper=Path(status['paper_pdf']).relative_to(D)
+    if status.get('closed_CP1r2_cohort'):
+        return f'''# 当前研究状态
+
+观察时间：{status['observed_at']}。Goal active；公开证据基点9734eee，原开发状态、冻结版本与失败回执保留。
+
+统一方法：按当前STA、跨层冗余与容量阻塞选完整连接组；在私有树上执行共享域、按网失败释放及owner协调；经物理/容量/FULL/STA完整检查，在固定根预算下接受或恢复，终结选点独立于中间提交。native享有同等选组、owner和收敛机会。CP1r2独立冻结，不追认旧开发结果为确认。
+
+| 当前登记批次 | 实际状态 | owner PID |
+|---|---|---:|
+{chr(10).join(rows)}
+
+新增确认：[CP1r2四臂终结证据](cp1r2_cross_circuit_cohort_01/terminal_evidence_01/completion.json)。两个预先固定的已知独立电路/实际物理输入中，conv_hls两臂合法，初始树/完整向量匹配，终态同14.351002164ns、84291wire/0SB/37CB、4491setup/hold分量；零提交/提案，505.17/500.90s。18个当前关键连接固定/放宽容量均无物理时序增益。确认一个固定菜单无收益输入，不是普遍收益或全局最优。
+
+TPU_ws两臂均触发原1800s初始执行保护，完整尝试1904.67/1906.23s，PSS2.434/2.433GiB，缺失观察0/0。无合法根/质量/端点比较；不是200迭代拥塞失败或不可路由证明。四角色原回执、实际费用与PID身份均保留，无残留后代，不重跑。
+
+机制：[robot固定25连接/5网三臂消融](robot_union_mechanism_02/verification_v2.json)已只读核验。源251161/10/653；native合法251140/9/654，setup240改善/0退化，却超原CB653上限；domain/no-release精确回滚；domain/release合法251160/9/653，CPD同13.354624073ns，setup240改善/32退化、hold增加0，满足资源预算但不满足端点无退化。共享导入命令194.52s，非各臂独立整流程费用；三个候选未提交原actor。域改变本例取舍，释放使该受限事务可行，owner范围扩大另行归因。
+
+[robot-p1 owner接续审计](robot_owner_reentry_audit_02/completion.json)确认4次自动native owner提交及当前状态重入：231045/47/6677→231113/47/6673，CPD同11.633691344ns，即+68wire/−4CB；一阶段setup退化1。既有reload完整精度CPD/setup/hold/约束/端点ID精确相同，确认旧检查仅误比显示精度。仍是中断开发轨迹，不是完整确认或域收益。precision patch02已暂存，未写入CP1r2。
+
+完整费用：历史BNN同13.228145690ns，domain+1786wire换39SB/2CB；SB−47.56%，SB+CB−0.797%，完整时间+22.95%。对称工程改动的domain单次9116.40s，相对9754.31s少6.54%；优化后N/D比值仍待当前N/D/D/N完整交错计时。空查询补丁验证在其后排队，无已测节省。
+
+无效、失败与边界：SPMV/CB-only无切口，Robot SDC无接受收益，conv-layer/attention初始路由失败；TPU为初始执行超时。旧加载错误、5次监督中断及4次保护程序打包失败单列基础设施费用。现有owner联合修复N/D同结果归于协调扩大，不能归于域。
+
+论文：[当前六页PDF]({paper})，主表43行：36终结尝试、2组基础设施失败、5个局部组件。保留六节主线、机制伪代码与路由相关工作；新增完整确认无收益、TPU超时、robot三臂、owner局部接续及主张边界。历史轨迹/恢复与完整审计留补充材料。已公开版本以CURRENT_STATUS.json的latest_incremental_publication回执为准。
+
+后续：保持当前计时规则，完成已登记只读空查询验证；另立修正版本与无重复前缀的接续适配器，继续真正不同输入/架构确认及跨层冗余—容量—余量机制规则研究。Goal不因批次、推送或普通负结果终止。
+'''
     if status.get('execution_reconciliation_20261116'):
         reconciliation=status['execution_reconciliation_20261116']
         attempts='\n'.join(f"| {r['input']}/{r['arm']} | {r['failed_attempt_seconds']:.2f} | {r['sampled_PSS_kib']/1048576:.3f} |" for r in reconciliation['attempts'])
@@ -19,6 +46,9 @@ def render(status,D):
         if status.get('first_complete_CP1r2_pair'):
             pair=status['first_complete_CP1r2_pair'];n=pair['results']['native'];d=pair['results']['domain']
             confirmation_text=(f"首个完整CP1r2配对已核验：conv_hls两臂初始树/完整向量匹配，终态同14.351002164ns、84291wire/0SB/37CB，4491setup/hold分量均无变化；零提交/零时序提案。完整N/D时间{n['complete_seconds']:.2f}/{d['complete_seconds']:.2f}s，仅单次描述。18个关键连接在固定/放宽容量查询中均零物理增益；7个放宽见证有占用冲突，但无正时序动机。确认一个独立已知电路/实际物理输入的固定菜单无收益，不代表全局最优或算法普遍优势。[配对回执](cp1r2_cross_circuit_cohort_01/conv_hls_comparison.json)。tpu_ws继续按原规则运行。")
+        if status.get('CP1r2_tpu_native_timeout'):
+            t=status['CP1r2_tpu_native_timeout']
+            confirmation_text+=(f"\n\nTPU_ws/native已按真实回执归为初始路由执行超时：原命令1800s保护触发，最后完成190/200迭代，原生命令{t['native_command_seconds']:.2f}s，完整失败尝试{t['failed_attempt_seconds']:.2f}s，采样PSS{t['sampled_PSS_kib']/1048576:.3f}GiB，缺失观察{t['missing_memory_observations']}。无合法根与质量指标；不是200迭代拥塞终态或不可路由证明。9个原测量身份均无存活后代，原队列已转domain，不重跑native。[精确超时证据](cp1r2_cross_circuit_cohort_01/tpu_ws_native_timeout_evidence_01/evidence.json)。")
         return f'''# 当前研究状态
 
 观察时间：{status['observed_at']}。Goal active；公开证据基点9734eee；历史结果与冻结包保留。
@@ -46,6 +76,8 @@ def render(status,D):
 论文：[当前六页PDF]({paper})。正文按问题—机制—完整结果—多目标取舍—消融—开销与范围组织；局部轨迹和恢复费用在补充材料。完整CP1r2确认、联合机制效果与对称交错费用仍待实际回执。最新已核验公开提交与回读见CURRENT_STATUS.json的latest_incremental_publication；本轮未发布内容不得视为已公开。
 
 CP1r1四臂因冻结打包误去掉保护程序执行权限而以126终结，均未启动VPR，不算路由失败。原尝试保留在[打包失败回执](CP1r1_packaging_failure_01/completion.json)。CP1r2已通过原生保护测试、固定规则准入及公开源码重建后的同一保护测试。
+
+robot-p1/native中断轨迹另观察到4次owner提交（round3–6），从47SB/6677CB走到47SB/6673CB，线长231045→231113，CPD不变。后续reload出现完整精度manifest与六位显示值比较问题；[只读审计](robot_owner_reentry_audit_02/plan.json)已排队核对固定根预算、状态重入和原有完整向量。审计01在执行前因JSON list/parser tuple格式误判而留据替换为02；修正版仅规范list/tuple，保留顺序和数值精确比较。数值回归拒绝显示精度以下的CPD漂移及setup/hold/端点顺序/身份/约束漂移；实际完整向量复核尚未完成。开发局部轨迹不计完整算法收益或CP1r2确认。
 
 robot联合机制三臂原生工作已结束，原只读校验器错误要求紧凑回执具有额外字段；[独立校验接续](robot_union_verification_recovery_01/plan.json)等待串行锁，只复核原产物，零新原生工作。CP1r2正在执行，BNN03在该复核后等待，旧BNN01/02均未执行。
 

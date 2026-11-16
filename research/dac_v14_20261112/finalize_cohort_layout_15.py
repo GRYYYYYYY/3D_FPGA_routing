@@ -1,0 +1,11 @@
+"""Remove repeated qualifications, retaining six sections and normal typography."""
+from pathlib import Path
+from retained_prefix_workflow import D,read,write,sha
+p=D/'paper/current_repair_cohort_mechanism_15.tex';t=p.read_text()
+a=t.index('Complete resource--timing pairs belong');b=t.index('\n\n',a)
+t=t[:a]+r'''Figure~\ref{fig:joint} compares complete paired quality/cost, including no-gain cases. Older imported endpoints lack comparable complete times and receive no new cold costs. Local trajectories and full vectors remain supplementary; coincident points add no independent inputs.'''+t[b:]
+t=t.replace('Nondominated archives bind versions and opportunities. Quality projections cannot establish quality/time dominance when complete cost is unknown.\n\n','')
+t=t.replace('Times bind individual commands/outputs. Cold and reusable-index modes differ. Shared-host activity/caches remain uncontrolled; matched interleaved repetitions retain failures. Recovery, cores and research validation are separate costs.','Complete times bind commands/outputs; shared-host activity and caches remain uncontrolled. Interleaving retains failures; recovery and validation costs stay separate.')
+t=t.replace('The original CLSTM/robot-p1 pairs fail packing interpretation. Corrected CLSTM N/D, robot-p1 N and reduction N/D reach legal initial routes, then stop on vanished-process supervision errors. Four CP1r1 attempts fail before VPR from a missing guard executable bit. Grouped costs and supplementary per-arm receipts preserve these infrastructure failures. CP1r2 fixes both runtime issues; actual process/guard tests and public-source reconstruction pass. Algorithms and rules stay fixed; positive mechanism confirmation is pending.','Corrected CLSTM N/D, robot-p1 N and reduction N/D reach legal initial routes before supervision interruption. Four CP1r1 attempts fail guard launch before VPR. Original failures/costs remain. CP1r2 fixes runtime supervision and permissions; actual guard tests/public reconstruction pass without algorithm changes.')
+p.write_text(t);e=D/'cohort_mechanism_paper_evidence_15';r=read(e/'edit_registration.json')
+r['source_sha256'][str(p)]=sha(p);r['source_sha256'][str(Path(__file__).resolve())]=sha(__file__);r['final_layout_source_sha256']=sha(p);write(e/'edit_registration.json',r)

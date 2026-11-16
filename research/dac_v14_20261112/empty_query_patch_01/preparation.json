@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "status": "staged_development_patch_not_installed",
+  "changes": [
+    {
+      "file": "query_current_protected_critical.py",
+      "original_sha256": "b5caa605e8e80ccb7a5edee69357fe47fd3a69b08e348ee0c847df7c5dd9d23c",
+      "patched_sha256": "14f445052cb9a354ed5367c069d3ce9b5dcc9b8df8cef8df1458b7bcd5eea2ac"
+    },
+    {
+      "file": "query_critical_owner_exchange.py",
+      "original_sha256": "7c2c86b7fa0f3fb774910e98fcd305fde2784fa499eebde294ff5bee1aace36a",
+      "patched_sha256": "5de9c0c690fc343ed37925d7b3d632d15571371e69ab2bae7d19e4470066cb92"
+    }
+  ],
+  "motivating_complete_input": "CP1r2 conv_hls/native, verified505.16725363209844s complete no-op arm",
+  "actual_empty_protected_query_process_seconds": 3.2740933559834957,
+  "actual_original_nested_phase_seconds": [
+    {
+      "tag": "000_protected_query",
+      "status": "completed",
+      "returncode": 0,
+      "command": [
+        "/usr/bin/python3",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r2/runtime/query_current_protected_critical.py",
+        "--capacity-batch",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r2_cross_circuit_01/conv_hls/native/flow/timing/round_000/feedback/capacity",
+        "--opportunities",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r2_cross_circuit_01/conv_hls/native/flow/timing/round_000/feedback/owners/completion.json",
+        "--output",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r2_cross_circuit_01/conv_hls/native/flow/timing/round_000/feedback/protected",
+        "--audit-cache",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r2_cross_circuit_01/conv_hls/native/flow/resource_flow/joint_graph_indexes/audit_cache",
+        "--query-graph",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r2_cross_circuit_01/conv_hls/native/flow/resource_flow/joint_graph_indexes/query_graph"
+      ],
+      "complete_process_seconds": 16.720023404806852
+    },
+    {
+      "tag": "000_exchange_query",
+      "status": "completed",
+      "returncode": 0,
+      "command": [
+        "/usr/bin/python3",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r2/runtime/query_critical_owner_exchange.py",
+        "--feedback",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r2_cross_circuit_01/conv_hls/native/flow/timing/round_000/feedback",
+        "--output",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r2_cross_circuit_01/conv_hls/native/flow/timing/round_000/exchange_query",
+        "--audit-cache",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r2_cross_circuit_01/conv_hls/native/flow/resource_flow/joint_graph_indexes/audit_cache",
+        "--query-graph",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r2_cross_circuit_01/conv_hls/native/flow/resource_flow/joint_graph_indexes/query_graph"
+      ],
+      "complete_process_seconds": 15.110109884291887
+    }
+  ],
+  "projected_or_measured_savings": null,
+  "nested_times_are_not_predicted_savings": true,
+  "syntax_checked": true,
+  "actual_patched_worker_execution": false,
+  "native_calls_new": 0,
+  "nonempty_case_body_preserved_byte_exact": true,
+  "future_validation": "Run staged workers on exact completed empty and nonempty inputs under exclusive serial slot. Verify downstream proposal/terminal identity and source guards, then package a new version and apply symmetrically in complete native/domain controls. No changes to current registered timing03.",
+  "original_frozen_files_unchanged": true,
+  "qualification": "Only exact current empty target sets omit unused graph mapping/query processes. Existing upstream digest and state checks execute first. Protected-net selector still executes for matching metadata; no guessed protection list. Unexecuted query seconds are null and execution flags explicit. No universal mechanism gain, early optimality certificate or end-to-end saving established.",
+  "empty_branch_argument_guards": "Before skipping unused mappings, verify graph/cache metadata identity against current source graph and the declared query driver binding; include those used inputs in the empty certificate. Unused payloads are not claimed revalidated by this operator."
+}
