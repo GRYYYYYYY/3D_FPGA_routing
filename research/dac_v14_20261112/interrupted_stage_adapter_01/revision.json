@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "bootstrap": "import os,sys\nsys.path.insert(0,os.environ['H3D_RECOVERY_RUNTIME'])\n",
+  "revisions": {
+    "resume_resource_transaction.py": {
+      "parent": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r2/runtime/run_serial_lazy_resource_transactions_stream_v1.py",
+      "parent_sha256": "210def37eed9bcbae418ccb1b50e92b62f575c3c357d2d6c7944249778cd8488",
+      "source_sha256": "85886303667ee212ecacc755539cc3750b0a72dd5a3ad6df8950b6ead64691e3",
+      "replacements": [
+        [
+          "from phase_supervision import run_phase",
+          "from phase_supervision import run_phase\nfrom same_actor_stage_reuse_v1 import StageReuse"
+        ],
+        [
+          "p=argparse.ArgumentParser();",
+          "p=argparse.ArgumentParser();p.add_argument('--resume-plan',type=Path,required=True);"
+        ],
+        [
+          "def invoke(script,args,tag):",
+          "stage_reuse=StageReuse(a.resume_plan,b)\ndef invoke(script,args,tag):\n replay_started=time.monotonic()\n if stage_reuse.consume(script,args,tag):\n  costs.append(dict(tag=tag,status='audited_same_actor_stage_reused',complete_process_seconds=time.monotonic()-replay_started,native_calls_new=0,creation_cost_borrowed=False));write(b/'process_costs.json',costs);return True"
+        ],
+        [
+          "assert all(sha(path)==h for path,h in read(b/'execution_registration.json')['source_sha256'].items())",
+          "assert all(sha(path)==h for path,h in read(b/'execution_registration.json')['source_sha256'].items())\nstage_reuse.finish()"
+        ],
+        [
+          "native_reused=hit is not None,native_calls_new=0 if hit is not None else 1,native_core_seconds_new=0. if hit is not None else audit['native_transaction_seconds'],reused_creation_native_core_seconds=audit['native_transaction_seconds'] if hit is not None else None",
+          "native_reused=hit is not None or (b/(name+'_native_stage_reuse.json')).exists(),native_calls_new=0 if hit is not None or (b/(name+'_native_stage_reuse.json')).exists() else 1,native_core_seconds_new=0. if hit is not None or (b/(name+'_native_stage_reuse.json')).exists() else audit['native_transaction_seconds'],reused_creation_native_core_seconds=audit['native_transaction_seconds'] if hit is not None or (b/(name+'_native_stage_reuse.json')).exists() else None"
+        ]
+      ],
+      "reversible_to_parent": true
+    },
+    "resume_timing_transaction.py": {
+      "parent": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r2/runtime/run_registered_independent_stream_transactions_v1.py",
+      "parent_sha256": "10ea9ee5d85accf6cdab52693d7b4618ba865b2b30952c623be7d44771f37f5f",
+      "source_sha256": "7cfed5904e05df7ebcc1d9fd2a1c8380e7840fd198ff39a840b44d17eadfe540",
+      "replacements": [
+        [
+          "from phase_supervision import run_phase",
+          "from phase_supervision import run_phase\nfrom same_actor_stage_reuse_v1 import StageReuse"
+        ],
+        [
+          "p=argparse.ArgumentParser();",
+          "p=argparse.ArgumentParser();p.add_argument('--resume-plan',type=Path,required=True);"
+        ],
+        [
+          "def invoke(script,args,tag):",
+          "stage_reuse=StageReuse(a.resume_plan,b)\ndef invoke(script,args,tag):\n replay_started=time.monotonic()\n if stage_reuse.consume(script,args,tag):\n  costs.append(dict(tag=tag,status='audited_same_actor_stage_reused',complete_process_seconds=time.monotonic()-replay_started,native_calls_new=0,creation_cost_borrowed=False));write(b/'process_costs.json',costs);return True"
+        ],
+        [
+          "assert all(sha(path)==h for path,h in read(b/'execution_registration.json')['source_sha256'].items())",
+          "assert all(sha(path)==h for path,h in read(b/'execution_registration.json')['source_sha256'].items())\nstage_reuse.finish()"
+        ]
+      ],
+      "reversible_to_parent": true
+    }
+  },
+  "algorithm_remainder_byte_identical": true,
+  "acceptance_selection_and_stage_order_changed": false,
+  "requires_actual_serial_audit_and_sealed_per_case_admission": true,
+  "new_native_calls": 0,
+  "qualification": "Development transaction adapters only. Hooks consume exact same-actor audited native/physical/domain stages, reject partial candidate STA and permit genuinely unexecuted work. All frozen audit/STA/acceptance bodies remain. No full-flow dispatch, queue activation or behavior-equivalence claim yet."
+}

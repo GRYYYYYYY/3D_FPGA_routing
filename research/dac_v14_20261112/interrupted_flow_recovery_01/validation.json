@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "actual_case_metadata": [
+    {
+      "pair": "clstm_input_contract_pair_02",
+      "arm": "native",
+      "accepted_resource_steps": 2,
+      "actual_role_and_original_envelope_metadata_match": true
+    },
+    {
+      "pair": "clstm_input_contract_pair_02",
+      "arm": "domain",
+      "accepted_resource_steps": 1,
+      "actual_role_and_original_envelope_metadata_match": true
+    },
+    {
+      "pair": "reduction_pair_01",
+      "arm": "native",
+      "accepted_resource_steps": 10,
+      "actual_role_and_original_envelope_metadata_match": true
+    },
+    {
+      "pair": "reduction_pair_01",
+      "arm": "domain",
+      "accepted_resource_steps": 4,
+      "actual_role_and_original_envelope_metadata_match": true
+    }
+  ],
+  "negative_guards": [
+    "clstm_input_contract_pair_02native_original_CPD",
+    "clstm_input_contract_pair_02native_query_order",
+    "clstm_input_contract_pair_02native_request_bytes",
+    "clstm_input_contract_pair_02native_resource_limit_wirelength",
+    "clstm_input_contract_pair_02native_resource_limit_SB_pairs",
+    "clstm_input_contract_pair_02native_resource_limit_CB_sources",
+    "timing_fraction",
+    "timing_policy",
+    "timing_budget_mode",
+    "timing_native_mode",
+    "timing_reuse_plan",
+    "timing_reuse_portfolio",
+    "timing_fixed_SB_cap",
+    "clstm_input_contract_pair_02domain_original_CPD",
+    "clstm_input_contract_pair_02domain_query_order",
+    "clstm_input_contract_pair_02domain_request_bytes",
+    "clstm_input_contract_pair_02domain_resource_limit_wirelength",
+    "clstm_input_contract_pair_02domain_resource_limit_SB_pairs",
+    "clstm_input_contract_pair_02domain_resource_limit_CB_sources",
+    "reduction_pair_01native_original_CPD",
+    "reduction_pair_01native_query_order",
+    "reduction_pair_01native_request_bytes",
+    "reduction_pair_01native_resource_limit_wirelength",
+    "reduction_pair_01native_resource_limit_SB_pairs",
+    "reduction_pair_01native_resource_limit_CB_sources",
+    "reduction_pair_01domain_original_CPD",
+    "reduction_pair_01domain_query_order",
+    "reduction_pair_01domain_request_bytes",
+    "reduction_pair_01domain_resource_limit_wirelength",
+    "reduction_pair_01domain_resource_limit_SB_pairs",
+    "reduction_pair_01domain_resource_limit_CB_sources"
+  ],
+  "source_transforms_reversible": true,
+  "synthetic_stage_integration": "interrupted_stage_adapter_01/validation.json",
+  "actual_CLSTM_native_closed_resource_and_original_timing_envelope_metadata_match": true,
+  "new_native_calls": 0,
+  "actual_serial_byte_STA_audit_complete": false,
+  "actual_recovery_execution_verified": false,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/validate_interrupted_flow_dispatch_01.py": "ec61e13b4298a2fad681685decd3057f14dbb03abe5a9cd4db8218664d1abed5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/dispatch_revision.json": "1df99b2053059b09f7a5b62733a75112cfef41ee7607b317fbd6240e926c6692",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_stage_adapter_01/validation.json": "a771ff6704c6df7dc4236162e4b5af6d7cc173e9951fb617929942701934ba90",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_stage_reconciliation_01/inventory.json": "4eda7f929fbcbb22aeb3ae1a548e127046dacd256dfe8927e1cda06df63cef9d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/resume_timing_transaction.py": "2e85198678994c797b8e8fa4866fde7b4d0975bb222a251158e02c92ae18f5b3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/resume_resource_controller.py": "3aa746f33fa4471d6187e6dc3632c1c0977c50e43e195c274ed9fea349af9944",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/resume_timing_controller.py": "48a95dcabc79d9c9d06e8ce2bdeacf50ea0a251942a4efc1dbabf0a0f820a525",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/same_actor_timing_prefix_v1.py": "8ae3b4412d1f7ca558628a019f757ca690f5c7b3d9da7ee66e337b134457814d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/same_actor_resource_prefix_v2.py": "8265dfa0c0693dd922f79c9dae8671b7ea4bcf649af74b97eea3fc9a8bd671b2",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/run_interrupted_full_flow_recovery_v1.py": "a6b3cfe1002382cc120e5a7a25411d6edf7fb37f8d5778e65666fca745b99dbf",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/resume_resource_transaction.py": "8a216d094ee4e3341f25e0e539f898b7fbd43b703ae888efd399d801b07653bb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/same_actor_stage_reuse_v1.py": "ebfc5953a02cb09f0d0ebef02ba35a4fc15ccf54ebdcaecaa6d8a59475f2b53b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/recovery_prefix_v1.py": "b10ee592c9963c8484da7b5c9d2183f9654769f7b15d73bb6721b61e230a7243"
+  },
+  "qualification": "Actual role/envelope/cut-point metadata and exact source transforms plus earlier tiny replay-side-effect fixtures. No heavy graph/STA parsing, actual native equivalence, completed method result or cold-cost proof. Per-case actual serial audit and sealed plan remain mandatory."
+}
