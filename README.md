@@ -6,6 +6,8 @@
 
 [Prospective fixed-dev03 robot p1 pair](docs/GitHub_robot_p1_registration_20261116.md): verified different actual packing and block-coordinate mapping from modern robot p0, with the same circuit and architecture. Two full-method arms share dev03 and owner opportunities, start fresh routing and are queued after existing work. No native execution or new independent outcome yet; known historical input, not an unseen holdout.
 
+[Missing domain engineering arm registered](docs/GitHub_domain_engineering_registration_20261116.md): apply the completed native single-pass/cache/stream implementation to the original full domain configuration after existing cross-input work. No repeated native batch or changed algorithm rule; no new result or revised overhead claim yet.
+
 Earlier [routing contribution comparison](docs/GitHub_routing_position_progress_20261116.md) added five primary references (nine total), credited prior incremental/current-timing routing and separated imported price resets from unvalidated CHANZ scope.
 
 [Robot owner-scope continuation](docs/GitHub_robot_owner_scope_progress_20261116.md): 18 actual residual-capacity queries separate two target-only no-path cases from 16 owner-release local-path cases. A fixed same-root 3-connection/4-connection unrestricted native contrast is queued after existing work; owner reconnection, complete legality and timing remain unverified. [Current concise status](research/dac_v14_20261112/CURRENT_STATUS.md).

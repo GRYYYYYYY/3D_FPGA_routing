@@ -21,7 +21,7 @@ def render(status,D):
             "完整四角色端点／工作量比较等待串行空位；此处不是冷启动完整配置费用。")
     return f'''# 当前研究状态（{status['observed_at']}）
 
-Goal active；公开证据基点 `9734eee`，最新增量 `{status['latest_incremental_publication']['commit'][:7]}`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[本轮说明](../../docs/GitHub_native_ablation_progress_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
+Goal active；公开证据基点 `9734eee`，最新增量 `{status['latest_incremental_publication']['commit'][:7]}`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[工程缺失臂登记](../../docs/GitHub_domain_engineering_registration_20261116.md) · [跨输入登记](../../docs/GitHub_robot_p1_registration_20261116.md) · [最近完成结果](../../docs/GitHub_native_ablation_progress_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
 
 统一方法：当前 STA 重选事务组 → 跨层共享域 → 按网络失败释放 → 容量证书与当前余量驱动的 owner 协调 → 固定根规则下接受完整合法事务 → 重选与独立终结选点 → 完整时序组合。中间构造不要求逐个改善 CPD。[完整独立开发包 dev03](standalone_unified_method_component_03.json)已迁移原串行控制器；实际整流程验证仍排队，确认版尚未冻结。先前组件、真实请求重放和子进程清理验证只证明对应接口，不证明完整算法收益。
 
@@ -38,13 +38,15 @@ Goal active；公开证据基点 `9734eee`，最新增量 `{status['latest_incre
 
 原匹配两臂：SB −47.56%，SB＋CB 约−0.797%，wire＋1786，完整时间约＋22.95%；setup 534改善/803退化，无新增 hold 违例。占用减少不等于面积或功耗降低。stream 的观察者丢失、全程 PSS 缺口及短暂并发保留，不能称无干扰统计加速；新工程改进须匹配两臂，稳定后交错计时。
 
+[补齐 domain 工程臂](complete_BNN_domain_engineering_01/plan.json)已排在原 robot p1 完整配对之后：复用已完成 stream-native 的单遍索引、显式同流程缓存和 streaming-v2，只恢复原 domain 开关，保持原完整 domain 算法规则。未引入 terminal-wire、owner 或分组新策略；native 不重跑。新结果尚无，重型输入核验在串行槽内执行。按完整轨迹／请求／原生工作及端点核对同角色等价后，才比较历史完整费用；native 观察者缺失的限定保留，稳定交错计时另行开展。
+
 完整结果边界：robot native/domain 为251116/9/653与251136/9/652，同13.354624073 ns，377.71/424.45 s；20 wire和46.74 s换1 CB。conv_layer 两臂初始失败，SPMV/CB-only无适用切口，softmax同质量，SB-only严格时序无额外收益。R1五连接 owner 两臂均2070653/32/5071、完整端点向量相同，归因于协调范围扩大。R1/Tf原生菜单已闭合，不能重跑。
 
 | 实际存活 owner 或子阶段 | 阶段 | 登记 PID |
 |---|---|---:|
 {chr(10).join(rows)}
 
-BNN 分组、固定组合 LOAD 和 robot no-release 已终结；原队列当前执行完整 terminal-wire BNN，随后按既有顺序执行 attention/robot-SDC → 独立 native 观测/事务/完整方法检查 → clstm → robot owner 范围对照 → 固定 dev03 robot p1 完整配对。PID 必须与 start ticks、终结回执交叉核对；正常 pool 轮换不触发恢复。各批次原规则及已完成结果保持不变。
+BNN 分组、固定组合 LOAD 和 robot no-release 已终结；原队列当前执行完整 terminal-wire BNN，随后按既有顺序执行 attention/robot-SDC → 独立 native 观测/事务/完整方法检查 → clstm → robot owner 范围对照 → 固定 dev03 robot p1 完整配对 → 缺失的 domain 工程臂。PID 必须与 start ticks、终结回执交叉核对；正常 pool 轮换不触发恢复。各批次原规则及已完成结果保持不变。
 
 [四角色只读终结比较](query_reduction_resource_dev_01/analysis_03/registration.json)已挂接：等待原批次终结及串行空位，复用前三个已核验比较，补齐 BNN domain 的质量、完整端点、实际 QUERY／ATTEMPT 与完整导入流程费用；不重跑原生实验。[比较器验证](query_reduction_terminal_03_validation.json)覆盖既有结果回归、起点规则不匹配、未终结输入与失败查询记账。{grouping_text}
 

@@ -1,0 +1,25 @@
+{
+  "pid": 2252200,
+  "state": "R",
+  "start_ticks": "1956476400",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_domain_engineering_01/configs/bnn_domain_closed_stream.json": "8a9c36e01140b916821836ae5f5f9b0eacb7aa87d758cf32be182cccfef67060",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/prepare_BNN_domain_engineering_01.py": "517c0362b88ed018db88037ed3d9c36cf464fa724900d56b84c15092e85dc412",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_closed_stream_flow_01/configs/bnn_native_closed_stream.json": "9d8682f9796921004bc89bb70b6479766b6354d612c34a965523f29a4d855301",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_domain/config.json": "7dad85ade2c10db703157ad7c9752b1d429d54beae62f13354874926764b03c2",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_full_flow_01/bnn_domain/completion.json": "48705029635a3d8fc8827eb4c4e23c911fb207d339a7bc4d39e2db0b5d6841bb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/orphaned_BNN_engineering_comparison_01/completion.json": "5804bcbf406ad6f902d9ab942d4d168666a6053a2b1a86c3bd7004a5739c19bb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/queue_BNN_domain_engineering_01.py": "bd10dca1cf0abc4d1df11a23d3b6003c56fb2bdecc433842384f2b7b192d1068",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/compare_BNN_domain_engineering_01.py": "a93c19371ac6920a7168d5534f2dcdeaf1416b1bce7eca8192c85482c4e467e3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_resource_timing_equivalence_v1.py": "587bee4e1437e1b56b4b2be19896e850459d54b7c5c96a83957b26c7e6fb73e0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/endpoint_timing_policy_streaming_v2.py": "aac1214c369123f831f702a45aefa99ed8025bc40e9254d1fd32bf34562fcba7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/measure_process_tree_v1.py": "7267538ee1bf25c395445011fbb1144eff554da9425a2ef87da350b88357c0b4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_complete_resource_timing_joint_stream_v1.py": "852a9c6bd3690551487c90e19c8183597c52e285e7d37b4cfc747057b660d955",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_complete_resource_timing_joint_stream_v1.py": "6fc83a881d36e6b988930ee230808466046c8c40d343a959772787b57f58f6f4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_BNN_domain_engineering_01/plan.json": "fc7a5446df2d697f30a89cbad7a1fd3fc7cc397e4c6fda4035310861051c00fa"
+  },
+  "fixed_order": [
+    "bnn_domain_closed_stream"
+  ],
+  "qualification": "One previously unexecuted complete domain engineering arm. Reuse the completed native closed-stream implementation: one-pass graph generation, explicit same-command caches and streaming-v2 observations. Only domain_mode/domain_feedback differ from that native configuration. Preserve the historical full-domain policy, binaries, physical inputs, seed11, count8/1.01 convergence, current-STA selection, acceptance and stopping rules. No new terminal-wire selection, owner escalation or grouping heuristic. Rebuild indexes and fresh initial route inside one measured command; no historical candidates/routes/query history. Run after all existing cross-input and mechanism queues, under the existing serial lock. Retain failures and divergence; require complete endpoint/state/request/native-work and graph payload equivalence against the original domain arm before a same-behavior cost comparison. Native is not rerun. Its earlier observer loss/PSS gap/overlap remain qualifications; this single observation does not revise the original matched 22.95 percent overhead or establish a clean optimized-pair ratio. Stable interleaved timing remains separate future work. No overall research date/call/matrix stopping condition."
+}
