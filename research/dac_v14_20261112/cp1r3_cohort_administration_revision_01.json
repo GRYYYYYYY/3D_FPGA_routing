@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "parent": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r2_confirmation_cohort_v1.py",
+  "parent_sha256": "24f55be90c5538ed84529ff84ee9061289def27b5a57fa6c0d1c301ee62521d7",
+  "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r3_confirmation_cohort_v1.py",
+  "source_sha256": "01617abdb58386330c9790a9bec823291f277d7fb630438981e94a84009d91b6",
+  "reversible_to_parent": true,
+  "changes": [
+    [
+      "import json,os,subprocess,sys,shutil,hashlib",
+      "import json,os,subprocess,sys,shutil,hashlib,time"
+    ],
+    [
+      "ROOT=D/'cp1r2_cross_circuit_cohort_01'",
+      "ROOT=D/'cp1r3_distinct_input_cohort_01'"
+    ],
+    [
+      "def environment():",
+      "class InputAdmissionError(Exception):pass\n\ndef verify_copy_source(source,row):\n    source=Path(source)\n    if not source.is_file():raise InputAdmissionError('Physical input unavailable: '+str(source))\n    if source.stat().st_size!=row['bytes'] or sha(source)!=row['sha256']:\n        raise InputAdmissionError('Physical bytes differ from preregistered provenance: '+str(source))\n\ndef classify_actual_initial_failure(manifest,stdout,initial_legal_present=False):\n    if manifest.get('execution_status')=='timeout' and not initial_legal_present:\n        return 'initial_routing_execution_timeout'\n    return classify_initial_failure(manifest,stdout)\n\ndef environment():"
+    ],
+    [
+      "        assert source.stat().st_size==row['bytes'] and sha(source)==row['sha256']",
+      "        verify_copy_source(source,row)"
+    ],
+    [
+      "    verified=False",
+      "    verified=False;verification_seconds=None"
+    ],
+    [
+      "        with (case/'verification.log').open('x') as log:",
+      "        verification_start=time.monotonic()\n        with (case/'verification.log').open('x') as log:"
+    ],
+    [
+      "        verified=check.returncode==0",
+      "        verification_seconds=time.monotonic()-verification_start\n        verified=check.returncode==0"
+    ],
+    [
+      "if code and initial.exists():status=classify_initial_failure(read(initial),(initial.parent/'stdout.log').read_text())",
+      "if code and initial.exists():status=classify_actual_initial_failure(read(initial),(initial.parent/'stdout.log').read_text(),(case/'flow/resource_flow/initial/completion.json').exists())"
+    ],
+    [
+      "return dict(status=status,case=str(case),command_returncode=code,quality=",
+      "return dict(status=status,case=str(case),command_returncode=code,independent_research_verification_seconds=verification_seconds,quality="
+    ],
+    [
+      "Prospective CP1 pair on one known historical physical input.",
+      "Prospective CP1r3 pair on one known historical physical input."
+    ],
+    [
+      "def execute(plan):\n    outcomes={}\n    for item in plan['inputs']:\n        assert all(sha(f)==h for f,h in plan['source_sha256'].items())\n        write(ROOT/'queue/status.json',dict(status='provisioning_under_serial_lock',input=item['id']))\n        provision(plan,item);results={}\n        for arm in plan['fixed_arm_order']:\n            assert all(sha(f)==h for f,h in plan['source_sha256'].items())\n            results[arm]=run_arm(plan,item,arm);write(ROOT/(item['id']+'_results.json'),results)\n        outcomes[item['id']]=compare_pair(plan,item,results)\n    write(ROOT/'comparison.json',dict(passed=True,registered_inputs=len(plan['inputs']),registered_roles=2*len(plan['inputs']),verified_legal_roles=sum(r['verified_legal_roles'] for r in outcomes.values()),input_comparisons={key:str(ROOT/(key+'_comparison.json')) for key in outcomes},release_manifest_sha256=plan['release_manifest_sha256'],qualification='All preregistered roles reconciled; not a research stopping condition.'))\n",
+      "def execute(plan):\n    outcomes={}\n    for item in plan['inputs']:\n        assert all(sha(f)==h for f,h in plan['source_sha256'].items())\n        write(ROOT/'queue/status.json',dict(status='provisioning_under_serial_lock',input=item['id']))\n        before=time.monotonic();admission_failure=item.get('admission_failure')\n        if not admission_failure:\n            try:provision(plan,item)\n            except InputAdmissionError as error:admission_failure=repr(error)\n        write(ROOT/(item['id']+'_provisioning_cost.json'),dict(seconds=time.monotonic()-before,scope='Input provisioning/research admission, outside measured algorithm commands',admission_failure=admission_failure))\n        if admission_failure:\n            rows={arm:dict(status='unexecuted_physical_input_admission_failed',quality=None,complete_seconds=None,measurement=None,supervision=None,native_calls_new=0,reason=admission_failure) for arm in plan['fixed_arm_order']}\n            result=dict(passed=True,input=item['id'],registered_roles=2,verified_legal_roles=0,unexecuted_roles=2,results=rows,matched_comparison=None,own_initial_to_final_endpoint_changes={},qualification='Input bytes/provenance failed admission. Both roles remain preregistered and unexecuted; no zero algorithm cost, legal quality, router-failure or infeasibility claim.')\n            write(ROOT/(item['id']+'_results.json'),rows);write(ROOT/(item['id']+'_comparison.json'),result);outcomes[item['id']]=result;continue\n        results={}\n        for arm in plan['fixed_arm_order']:\n            assert all(sha(f)==h for f,h in plan['source_sha256'].items())\n            results[arm]=run_arm(plan,item,arm);write(ROOT/(item['id']+'_results.json'),results)\n        outcomes[item['id']]=compare_pair(plan,item,results)\n    write(ROOT/'comparison.json',dict(passed=True,registered_inputs=len(plan['inputs']),registered_roles=2*len(plan['inputs']),verified_legal_roles=sum(r['verified_legal_roles'] for r in outcomes.values()),unexecuted_admission_roles=sum(r.get('unexecuted_roles',0) for r in outcomes.values()),input_comparisons={key:str(ROOT/(key+'_comparison.json')) for key in outcomes},release_manifest_sha256=plan['release_manifest_sha256'],qualification='Every preregistered input/role retained, including input admission, timeout, no-cut/no-gain and degraded outcomes. Packing/provisioning/public reconstruction and independent research verification costs are distinct from complete measured run-arm time. No matrix or ordinary-negative stopping condition for research.'))\n"
+    ]
+  ],
+  "native_algorithm_or_frozen_release_changed": false
+}
