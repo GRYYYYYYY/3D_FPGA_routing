@@ -1,6 +1,6 @@
-# 当前研究状态（2026-11-16T04:00:48.148208+00:00）
+# 当前研究状态（2026-11-16T04:10:22.971599+00:00）
 
-Goal active；公开证据基点 `9734eee`，最新增量 `612b764`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[工程缺失臂登记](../../docs/GitHub_domain_engineering_registration_20261116.md) · [跨输入登记](../../docs/GitHub_robot_p1_registration_20261116.md) · [最近完成结果](../../docs/GitHub_native_ablation_progress_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
+Goal active；公开证据基点 `9734eee`，最新增量 `40875ec`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[工程缺失臂登记](../../docs/GitHub_domain_engineering_registration_20261116.md) · [跨输入登记](../../docs/GitHub_robot_p1_registration_20261116.md) · [最近完成结果](../../docs/GitHub_native_ablation_progress_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
 
 统一方法：当前 STA 重选事务组 → 跨层共享域 → 按网络失败释放 → 容量证书与当前余量驱动的 owner 协调 → 固定根规则下接受完整合法事务 → 重选与独立终结选点 → 完整时序组合。中间构造不要求逐个改善 CPD。[完整独立开发包 dev03](standalone_unified_method_component_03.json)已迁移原串行控制器；实际整流程验证仍排队，确认版尚未冻结。先前组件、真实请求重放和子进程清理验证只证明对应接口，不证明完整算法收益。
 
@@ -23,17 +23,16 @@ Goal active；公开证据基点 `9734eee`，最新增量 `612b764`。本地实�
 
 | 实际存活 owner 或子阶段 | 阶段 | 登记 PID |
 |---|---|---:|
-| portable_clstm_pair_01 | running | 286682 |
-| robot_owner_scope_pair_01 | waiting_for_registered_clstm_pair | 580012 |
-| portable_robot_p1_pair_01 | waiting_for_registered_robot_owner_scope_pair | 2044888 |
-| complete_BNN_domain_engineering_01 | waiting_for_registered_robot_p1_pair | 2252200 |
+| complete_BNN_domain_engineering_01 | running → fresh_route_and_complete_resource | 2252200 |
 | portable_reduction_pair_01 | waiting_for_registered_domain_engineering_arm | 1002060 |
+| clstm_input_contract_pair_02 | waiting_for_registered_reduction_pair | 1628082 |
+| robot_p1_input_contract_pair_02 | waiting_for_registered_clstm_input_contract_pair | 1665631 |
 
 BNN 分组、固定组合 LOAD 和 robot no-release 已终结；完整 terminal-wire BNN 已通过配置验证，原恢复队列正常终结；后续队列按既有顺序执行 attention/robot-SDC → 独立 native 观测/事务/完整方法检查 → clstm → robot owner 范围对照 → 固定 dev03 robot p1 完整配对 → 缺失的 domain 工程臂 → reduction 固定 dev03 配对。PID 必须与 start ticks、终结回执交叉核对；正常 pool 轮换不触发恢复。各批次原规则及已完成结果保持不变。
 
 [attention-native 测量环境记录](unified_input_integration_01/measurement_environment_note_01.json)：本地同步公开提交触发短暂 Git 自动打包，三个打包进程已核验终止，原实验进程保持不变。保留该实际共享主机重叠，不能称受控交错计时；此前已结束的 BNN 测量不受影响。后续 Git 同步关闭自动打包。
 
-[跨输入实际回执](unified_input_integration_01/queue/results.json)：登记的4个臂中，4个已终结，2个通过完整合法验证。 `attention_native`：initial_route_failed，完整命令 794.67 s。 `attention_domain`：initial_route_failed，完整命令 792.69 s。 `robot_s23_SDC_native`：complete_legal_verified，完整命令 498.00 s。 `robot_s23_SDC_domain`：complete_legal_verified，完整命令 504.09 s。初始路由失败的质量为 None；迭代中的 CPD／线长不作合法质量点。单臂结果不支持配对机制归因，两个臂不算两个独立输入。该批次保持较早登记开发版本，不冒充 dev03 确认。 [attention 匹配失败审计](attention_initial_failure_pair_01/completion.json)通过：两臂实际命令除私有路径外相同，已记录物理输入摘要匹配，均执行200轮后剩231个过用节点，未进入资源／时序修复。0次新原生调用；记录摘要与当前文件身份核对不冒充新的大输入重哈希。缺少合法起点属于适用范围证据，不是三种修复机制的收益比较。 [完整配对比较](unified_input_integration_01/comparison.json)通过：robot 两臂起始路由体及完整端点一致，终态端点也一致；CPD 12.727250365 ns，250411 wire/2 SB/526 CB，完整费用 498.00/504.09 s。实际布局不同于旧 robot p0；声明的20 ns/IO 1 ns SDC不是外部应用要求。两臂均无资源切口或 owner 提交，三项时序候选均拒绝；较快候选超出固定资源预算。不能据此归因任一机制收益。 项目外观测、已知 R1 非空 owner 事务和 tiny 整方法实际检查均已通过；完整 tiny 耗时101.43 s，零提交，不算新独立样本或正向机制整合收益。clstm 已自动接续；确认冻结及正向整合路径仍待验证。
+[跨输入实际回执](unified_input_integration_01/queue/results.json)：登记的4个臂中，4个已终结，2个通过完整合法验证。 `attention_native`：initial_route_failed，完整命令 794.67 s。 `attention_domain`：initial_route_failed，完整命令 792.69 s。 `robot_s23_SDC_native`：complete_legal_verified，完整命令 498.00 s。 `robot_s23_SDC_domain`：complete_legal_verified，完整命令 504.09 s。初始路由失败的质量为 None；迭代中的 CPD／线长不作合法质量点。单臂结果不支持配对机制归因，两个臂不算两个独立输入。该批次保持较早登记开发版本，不冒充 dev03 确认。 [attention 匹配失败审计](attention_initial_failure_pair_01/completion.json)通过：两臂实际命令除私有路径外相同，已记录物理输入摘要匹配，均执行200轮后剩231个过用节点，未进入资源／时序修复。0次新原生调用；记录摘要与当前文件身份核对不冒充新的大输入重哈希。缺少合法起点属于适用范围证据，不是三种修复机制的收益比较。 [完整配对比较](unified_input_integration_01/comparison.json)通过：robot 两臂起始路由体及完整端点一致，终态端点也一致；CPD 12.727250365 ns，250411 wire/2 SB/526 CB，完整费用 498.00/504.09 s。实际布局不同于旧 robot p0；声明的20 ns/IO 1 ns SDC不是外部应用要求。两臂均无资源切口或 owner 提交，三项时序候选均拒绝；较快候选超出固定资源预算。不能据此归因任一机制收益。 项目外观测、已知 R1 非空 owner 事务和 tiny 整方法实际检查均已通过；完整 tiny 耗时101.43 s，零提交，不算新独立样本或正向机制整合收益。后续队列按实际回执接续；确认冻结及正向整合路径仍待验证。 [clstm 失败重分类](clstm_input_contract_pair_02/failure_reclassification.json)：两臂在 packed-netlist 读取阶段报$undef不匹配，尚未开始路由；107.00/106.48 s作为失败完整尝试保留。原模板漏带历史--merge_constant_generators off，不能算路由拥塞或机制负结果。新输入契约在两臂继承该选项、复用未改动dev03，追加到reduction之后；[新登记](clstm_input_contract_pair_02/plan.json)不覆盖旧回执，不增独立样本，也不宣称修复已获原生验证。 robot p1两臂同样在路由前报$undef不匹配，102.93/102.90 s保留为输入兼容性失败；[修正配对](robot_p1_input_contract_pair_02/plan.json)追加到修正clstm之后。当前BNN domain工程臂执行，随后reduction、修正clstm、修正robot p1；全部旧规则及回执保留。 [robot owner原生消融](robot_owner_scope_pair_01/verification.json)已闭合：target-only251173/10/653，target+owner251185/10/654，同13.354624073 ns；增加12wire/1CB换31setup改善、0退化。资源策略拒绝两者，endpoint规则仅接受owner候选；均未提交原actor。完整导入式配对155.10 s，不是冷启动整算法时间。该晚到局部结果已入补充回执，正文08尚未纳入。
 
 [追加 reduction_layer 配对](portable_reduction_pair_01/plan.json)已登记并由单一 owner 等待现有 domain 工程臂终结，同时要求独立整方法检查通过。该已知历史 n125 Hybrid-O 输入有268个共享范围、62个相关网络、0个支持的 owner 切口；当前 STA 资格与新路由机会尚未知。选择依据是已闭合 attention 初始失败及 robot-SDC 当前无资源候选，检验跨电路共享机会，而非继续调 BNN 线长。两臂仍用同一 dev03、seed21、count8/1.01，只改域/释放开关，不指定 net/RR 目标；不是未见输入、确认冻结或新架构族结论。[配置与实现核对](portable_reduction_pair_01/implementation_review.json)通过，0次原生调用。约5.40 GB物理输入的复制、完整摘要验证和独立运行时准入延后到串行槽；不能把登记预检当作实际准入已通过。
 

@@ -1,0 +1,2183 @@
+{
+  "passed": true,
+  "native_calls_observed": 5,
+  "new_independent_physical_inputs": 0,
+  "source_resources": {
+    "wirelength": 251161,
+    "SB_pairs": 10,
+    "CB_sources": 653
+  },
+  "outcomes": {
+    "target_only": {
+      "status": "legal_evaluated",
+      "quality": {
+        "CPD_ns": 13.354624073258492,
+        "resources": {
+          "wirelength": 251173,
+          "SB_pairs": 10,
+          "CB_sources": 653
+        }
+      },
+      "committed_to_original_actor": false,
+      "native_core_seconds": 1.946321562,
+      "actual_queries": 3,
+      "actual_attempts": 6,
+      "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only_evaluation",
+      "endpoint_comparison": {
+        "compatible": true,
+        "cpd_before_s": 1.3354624073258492e-08,
+        "cpd_after_s": 1.3354624073258492e-08,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 0,
+        "setup_regressed": 1,
+        "hold_violation_regressions": 0,
+        "setup_components": 10972,
+        "hold_components": 10972,
+        "changes": [
+          {
+            "kind": "setup",
+            "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+            "before_s": -6.679148345511976e-09,
+            "after_s": -6.864974366749266e-09,
+            "delta_s": -1.8582602123728975e-10
+          }
+        ]
+      },
+      "resource_policy_decision": {
+        "accepted": false,
+        "reason": "No resource Pareto improvement within fixed CPD budget",
+        "mode": "resources_under_timing",
+        "resource_objectives": [
+          "SB_pairs",
+          "CB_sources"
+        ],
+        "cpd_limit_s": 1.3354624073258492e-08,
+        "resource_limits": {
+          "wirelength": 251413,
+          "SB_pairs": 10,
+          "CB_sources": 653
+        },
+        "endpoint_comparison": {
+          "compatible": true,
+          "cpd_before_s": 1.3354624073258492e-08,
+          "cpd_after_s": 1.3354624073258492e-08,
+          "cpd_strictly_better": false,
+          "cpd_nonworse": true,
+          "setup_improved": 0,
+          "setup_regressed": 1,
+          "hold_violation_regressions": 0,
+          "setup_components": 10972,
+          "hold_components": 10972,
+          "changes": [
+            {
+              "kind": "setup",
+              "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+              "before_s": -6.679148345511976e-09,
+              "after_s": -6.864974366749266e-09,
+              "delta_s": -1.8582602123728975e-10
+            }
+          ]
+        },
+        "resource_delta": {
+          "wirelength": 12,
+          "SB_pairs": 0,
+          "CB_sources": 0
+        },
+        "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+      },
+      "all_policies": {
+        "strict": {
+          "accepted": false,
+          "policy": "strict",
+          "reason": "No full-precision strict CPD improvement",
+          "comparison": {
+            "compatible": true,
+            "cpd_before_s": 1.3354624073258492e-08,
+            "cpd_after_s": 1.3354624073258492e-08,
+            "cpd_strictly_better": false,
+            "cpd_nonworse": true,
+            "setup_improved": 0,
+            "setup_regressed": 1,
+            "hold_violation_regressions": 0,
+            "setup_components": 10972,
+            "hold_components": 10972,
+            "changes": [
+              {
+                "kind": "setup",
+                "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+                "before_s": -6.679148345511976e-09,
+                "after_s": -6.864974366749266e-09,
+                "delta_s": -1.8582602123728975e-10
+              }
+            ]
+          }
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "policy": "endpoint_vector",
+          "reason": "Setup endpoint/domain vector has regressions",
+          "comparison": {
+            "compatible": true,
+            "cpd_before_s": 1.3354624073258492e-08,
+            "cpd_after_s": 1.3354624073258492e-08,
+            "cpd_strictly_better": false,
+            "cpd_nonworse": true,
+            "setup_improved": 0,
+            "setup_regressed": 1,
+            "hold_violation_regressions": 0,
+            "setup_components": 10972,
+            "hold_components": 10972,
+            "changes": [
+              {
+                "kind": "setup",
+                "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+                "before_s": -6.679148345511976e-09,
+                "after_s": -6.864974366749266e-09,
+                "delta_s": -1.8582602123728975e-10
+              }
+            ]
+          }
+        },
+        "timing_under_resources": {
+          "accepted": false,
+          "reason": "No exact CPD reduction within resource limits",
+          "mode": "timing_under_resources",
+          "resource_objectives": [
+            "SB_pairs",
+            "CB_sources"
+          ],
+          "cpd_limit_s": 1.3354624073258492e-08,
+          "resource_limits": {
+            "wirelength": 251413,
+            "SB_pairs": 10,
+            "CB_sources": 653
+          },
+          "endpoint_comparison": {
+            "compatible": true,
+            "cpd_before_s": 1.3354624073258492e-08,
+            "cpd_after_s": 1.3354624073258492e-08,
+            "cpd_strictly_better": false,
+            "cpd_nonworse": true,
+            "setup_improved": 0,
+            "setup_regressed": 1,
+            "hold_violation_regressions": 0,
+            "setup_components": 10972,
+            "hold_components": 10972,
+            "changes": [
+              {
+                "kind": "setup",
+                "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+                "before_s": -6.679148345511976e-09,
+                "after_s": -6.864974366749266e-09,
+                "delta_s": -1.8582602123728975e-10
+              }
+            ]
+          },
+          "resource_delta": {
+            "wirelength": 12,
+            "SB_pairs": 0,
+            "CB_sources": 0
+          },
+          "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+        },
+        "resources_under_timing": {
+          "accepted": false,
+          "reason": "No resource Pareto improvement within fixed CPD budget",
+          "mode": "resources_under_timing",
+          "resource_objectives": [
+            "SB_pairs",
+            "CB_sources"
+          ],
+          "cpd_limit_s": 1.3354624073258492e-08,
+          "resource_limits": {
+            "wirelength": 251413,
+            "SB_pairs": 10,
+            "CB_sources": 653
+          },
+          "endpoint_comparison": {
+            "compatible": true,
+            "cpd_before_s": 1.3354624073258492e-08,
+            "cpd_after_s": 1.3354624073258492e-08,
+            "cpd_strictly_better": false,
+            "cpd_nonworse": true,
+            "setup_improved": 0,
+            "setup_regressed": 1,
+            "hold_violation_regressions": 0,
+            "setup_components": 10972,
+            "hold_components": 10972,
+            "changes": [
+              {
+                "kind": "setup",
+                "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+                "before_s": -6.679148345511976e-09,
+                "after_s": -6.864974366749266e-09,
+                "delta_s": -1.8582602123728975e-10
+              }
+            ]
+          },
+          "resource_delta": {
+            "wirelength": 12,
+            "SB_pairs": 0,
+            "CB_sources": 0
+          },
+          "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+        }
+      }
+    },
+    "target_plus_owner": {
+      "status": "legal_evaluated",
+      "quality": {
+        "CPD_ns": 13.354624073258492,
+        "resources": {
+          "wirelength": 251185,
+          "SB_pairs": 10,
+          "CB_sources": 654
+        }
+      },
+      "committed_to_original_actor": false,
+      "native_core_seconds": 2.052091869,
+      "actual_queries": 4,
+      "actual_attempts": 9,
+      "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_evaluation",
+      "endpoint_comparison": {
+        "compatible": true,
+        "cpd_before_s": 1.3354624073258492e-08,
+        "cpd_after_s": 1.3354624073258492e-08,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 31,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 10972,
+        "hold_components": 10972,
+        "changes": [
+          {
+            "kind": "setup",
+            "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+            "before_s": -6.679148345511976e-09,
+            "after_s": -6.218672243818446e-09,
+            "delta_s": 4.6047610169352993e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[105273,81611,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[2].D[0]\",0,0]",
+            "before_s": -6.296845267428353e-09,
+            "after_s": -6.0221947428829026e-09,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[105793,81614,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[3].D[0]\",0,0]",
+            "before_s": -6.6578453861154685e-09,
+            "after_s": -6.3831948615700185e-09,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[105945,81617,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[4].D[0]\",0,0]",
+            "before_s": -7.330707596509001e-09,
+            "after_s": -7.056057071963551e-09,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[105946,81620,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[5].D[0]\",0,0]",
+            "before_s": -7.018845504802584e-09,
+            "after_s": -6.744194980257134e-09,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[106123,81623,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[6].D[0]\",0,0]",
+            "before_s": -8.003569362813323e-09,
+            "after_s": -7.728918838267873e-09,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[106124,81626,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[7].D[0]\",0,0]",
+            "before_s": -8.003569362813323e-09,
+            "after_s": -7.728918838267873e-09,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[106479,81629,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[8].D[0]\",0,0]",
+            "before_s": -8.36456859332202e-09,
+            "after_s": -8.089918956954989e-09,
+            "delta_s": 2.746496363670303e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[107540,81632,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[9].D[0]\",0,0]",
+            "before_s": -8.725568712009135e-09,
+            "after_s": -8.450919075642105e-09,
+            "delta_s": 2.746496363670303e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[107541,81635,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[10].D[0]\",0,0]",
+            "before_s": -8.725568712009135e-09,
+            "after_s": -8.450918187463685e-09,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[108401,81638,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[11].D[0]\",0,0]",
+            "before_s": -9.64404645031891e-09,
+            "after_s": -9.36939592577346e-09,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[108402,81641,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[12].D[0]\",0,0]",
+            "before_s": -9.64404645031891e-09,
+            "after_s": -9.36939592577346e-09,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[108403,81644,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[13].D[0]\",0,0]",
+            "before_s": -9.272394407844331e-09,
+            "after_s": -8.9977447714773e-09,
+            "delta_s": 2.746496363670303e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109073,81647,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[14].D[0]\",0,0]",
+            "before_s": -9.13570730176616e-09,
+            "after_s": -8.86105677722071e-09,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109074,81650,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[15].D[0]\",0,0]",
+            "before_s": -9.759430597000573e-09,
+            "after_s": -9.484780072455123e-09,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109589,81653,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[16].D[0]\",0,0]",
+            "before_s": -1.0803944405779475e-08,
+            "after_s": -1.0529292993055606e-08,
+            "delta_s": 2.746514127238697e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109590,81656,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[17].D[0]\",0,0]",
+            "before_s": -1.0306257181014189e-08,
+            "after_s": -1.003160576829032e-08,
+            "delta_s": 2.746514127238697e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109591,81659,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[18].D[0]\",0,0]",
+            "before_s": -9.808569068070483e-09,
+            "after_s": -9.533918543525033e-09,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109691,81662,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[19].D[0]\",0,0]",
+            "before_s": -1.0667257299701305e-08,
+            "after_s": -1.0392605886977435e-08,
+            "delta_s": 2.746514127238697e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109692,81665,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[20].D[0]\",0,0]",
+            "before_s": -1.0667257299701305e-08,
+            "after_s": -1.0392605886977435e-08,
+            "delta_s": 2.746514127238697e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109693,81668,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[21].D[0]\",0,0]",
+            "before_s": -1.0667257299701305e-08,
+            "after_s": -1.0392605886977435e-08,
+            "delta_s": 2.746514127238697e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109694,81671,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[22].D[0]\",0,0]",
+            "before_s": -1.061875654073674e-08,
+            "after_s": -1.034410601619129e-08,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109792,81674,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[23].D[0]\",0,0]",
+            "before_s": -1.1849095926663722e-08,
+            "after_s": -1.1574444513939852e-08,
+            "delta_s": 2.746514127238697e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109793,81677,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[24].D[0]\",0,0]",
+            "before_s": -1.1154292600679128e-08,
+            "after_s": -1.0879642076133678e-08,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109849,81680,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[25].D[0]\",0,0]",
+            "before_s": -1.1701118296514323e-08,
+            "after_s": -1.1426468660147293e-08,
+            "delta_s": 2.746496363670303e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109850,81683,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[26].D[0]\",0,0]",
+            "before_s": -1.1701118296514323e-08,
+            "after_s": -1.1426468660147293e-08,
+            "delta_s": 2.746496363670303e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109851,81686,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[27].D[0]\",0,0]",
+            "before_s": -1.1515292719366244e-08,
+            "after_s": -1.1240642194820794e-08,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109906,81689,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[28].D[0]\",0,0]",
+            "before_s": -1.1564431190436153e-08,
+            "after_s": -1.1289780665890703e-08,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109907,81692,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[29].D[0]\",0,0]",
+            "before_s": -1.1564431190436153e-08,
+            "after_s": -1.1289780665890703e-08,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109908,81695,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[30].D[0]\",0,0]",
+            "before_s": -1.1564431190436153e-08,
+            "after_s": -1.1289780665890703e-08,
+            "delta_s": 2.7465052454545e-10
+          },
+          {
+            "kind": "setup",
+            "endpoint_domain": "[109909,81698,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[31].D[0]\",0,0]",
+            "before_s": -1.1564431190436153e-08,
+            "after_s": -1.1289780665890703e-08,
+            "delta_s": 2.7465052454545e-10
+          }
+        ]
+      },
+      "resource_policy_decision": {
+        "accepted": false,
+        "reason": "Fixed registered resource budget exceeded",
+        "mode": "resources_under_timing",
+        "resource_objectives": [
+          "SB_pairs",
+          "CB_sources"
+        ],
+        "cpd_limit_s": 1.3354624073258492e-08,
+        "resource_limits": {
+          "wirelength": 251413,
+          "SB_pairs": 10,
+          "CB_sources": 653
+        },
+        "endpoint_comparison": {
+          "compatible": true,
+          "cpd_before_s": 1.3354624073258492e-08,
+          "cpd_after_s": 1.3354624073258492e-08,
+          "cpd_strictly_better": false,
+          "cpd_nonworse": true,
+          "setup_improved": 31,
+          "setup_regressed": 0,
+          "hold_violation_regressions": 0,
+          "setup_components": 10972,
+          "hold_components": 10972,
+          "changes": [
+            {
+              "kind": "setup",
+              "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+              "before_s": -6.679148345511976e-09,
+              "after_s": -6.218672243818446e-09,
+              "delta_s": 4.6047610169352993e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[105273,81611,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[2].D[0]\",0,0]",
+              "before_s": -6.296845267428353e-09,
+              "after_s": -6.0221947428829026e-09,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[105793,81614,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[3].D[0]\",0,0]",
+              "before_s": -6.6578453861154685e-09,
+              "after_s": -6.3831948615700185e-09,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[105945,81617,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[4].D[0]\",0,0]",
+              "before_s": -7.330707596509001e-09,
+              "after_s": -7.056057071963551e-09,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[105946,81620,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[5].D[0]\",0,0]",
+              "before_s": -7.018845504802584e-09,
+              "after_s": -6.744194980257134e-09,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[106123,81623,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[6].D[0]\",0,0]",
+              "before_s": -8.003569362813323e-09,
+              "after_s": -7.728918838267873e-09,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[106124,81626,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[7].D[0]\",0,0]",
+              "before_s": -8.003569362813323e-09,
+              "after_s": -7.728918838267873e-09,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[106479,81629,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[8].D[0]\",0,0]",
+              "before_s": -8.36456859332202e-09,
+              "after_s": -8.089918956954989e-09,
+              "delta_s": 2.746496363670303e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[107540,81632,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[9].D[0]\",0,0]",
+              "before_s": -8.725568712009135e-09,
+              "after_s": -8.450919075642105e-09,
+              "delta_s": 2.746496363670303e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[107541,81635,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[10].D[0]\",0,0]",
+              "before_s": -8.725568712009135e-09,
+              "after_s": -8.450918187463685e-09,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[108401,81638,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[11].D[0]\",0,0]",
+              "before_s": -9.64404645031891e-09,
+              "after_s": -9.36939592577346e-09,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[108402,81641,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[12].D[0]\",0,0]",
+              "before_s": -9.64404645031891e-09,
+              "after_s": -9.36939592577346e-09,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[108403,81644,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[13].D[0]\",0,0]",
+              "before_s": -9.272394407844331e-09,
+              "after_s": -8.9977447714773e-09,
+              "delta_s": 2.746496363670303e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109073,81647,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[14].D[0]\",0,0]",
+              "before_s": -9.13570730176616e-09,
+              "after_s": -8.86105677722071e-09,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109074,81650,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[15].D[0]\",0,0]",
+              "before_s": -9.759430597000573e-09,
+              "after_s": -9.484780072455123e-09,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109589,81653,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[16].D[0]\",0,0]",
+              "before_s": -1.0803944405779475e-08,
+              "after_s": -1.0529292993055606e-08,
+              "delta_s": 2.746514127238697e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109590,81656,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[17].D[0]\",0,0]",
+              "before_s": -1.0306257181014189e-08,
+              "after_s": -1.003160576829032e-08,
+              "delta_s": 2.746514127238697e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109591,81659,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[18].D[0]\",0,0]",
+              "before_s": -9.808569068070483e-09,
+              "after_s": -9.533918543525033e-09,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109691,81662,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[19].D[0]\",0,0]",
+              "before_s": -1.0667257299701305e-08,
+              "after_s": -1.0392605886977435e-08,
+              "delta_s": 2.746514127238697e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109692,81665,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[20].D[0]\",0,0]",
+              "before_s": -1.0667257299701305e-08,
+              "after_s": -1.0392605886977435e-08,
+              "delta_s": 2.746514127238697e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109693,81668,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[21].D[0]\",0,0]",
+              "before_s": -1.0667257299701305e-08,
+              "after_s": -1.0392605886977435e-08,
+              "delta_s": 2.746514127238697e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109694,81671,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[22].D[0]\",0,0]",
+              "before_s": -1.061875654073674e-08,
+              "after_s": -1.034410601619129e-08,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109792,81674,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[23].D[0]\",0,0]",
+              "before_s": -1.1849095926663722e-08,
+              "after_s": -1.1574444513939852e-08,
+              "delta_s": 2.746514127238697e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109793,81677,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[24].D[0]\",0,0]",
+              "before_s": -1.1154292600679128e-08,
+              "after_s": -1.0879642076133678e-08,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109849,81680,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[25].D[0]\",0,0]",
+              "before_s": -1.1701118296514323e-08,
+              "after_s": -1.1426468660147293e-08,
+              "delta_s": 2.746496363670303e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109850,81683,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[26].D[0]\",0,0]",
+              "before_s": -1.1701118296514323e-08,
+              "after_s": -1.1426468660147293e-08,
+              "delta_s": 2.746496363670303e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109851,81686,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[27].D[0]\",0,0]",
+              "before_s": -1.1515292719366244e-08,
+              "after_s": -1.1240642194820794e-08,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109906,81689,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[28].D[0]\",0,0]",
+              "before_s": -1.1564431190436153e-08,
+              "after_s": -1.1289780665890703e-08,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109907,81692,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[29].D[0]\",0,0]",
+              "before_s": -1.1564431190436153e-08,
+              "after_s": -1.1289780665890703e-08,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109908,81695,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[30].D[0]\",0,0]",
+              "before_s": -1.1564431190436153e-08,
+              "after_s": -1.1289780665890703e-08,
+              "delta_s": 2.7465052454545e-10
+            },
+            {
+              "kind": "setup",
+              "endpoint_domain": "[109909,81698,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[31].D[0]\",0,0]",
+              "before_s": -1.1564431190436153e-08,
+              "after_s": -1.1289780665890703e-08,
+              "delta_s": 2.7465052454545e-10
+            }
+          ]
+        },
+        "resource_delta": {
+          "wirelength": 24,
+          "SB_pairs": 0,
+          "CB_sources": 1
+        },
+        "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+      },
+      "all_policies": {
+        "strict": {
+          "accepted": false,
+          "policy": "strict",
+          "reason": "No full-precision strict CPD improvement",
+          "comparison": {
+            "compatible": true,
+            "cpd_before_s": 1.3354624073258492e-08,
+            "cpd_after_s": 1.3354624073258492e-08,
+            "cpd_strictly_better": false,
+            "cpd_nonworse": true,
+            "setup_improved": 31,
+            "setup_regressed": 0,
+            "hold_violation_regressions": 0,
+            "setup_components": 10972,
+            "hold_components": 10972,
+            "changes": [
+              {
+                "kind": "setup",
+                "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+                "before_s": -6.679148345511976e-09,
+                "after_s": -6.218672243818446e-09,
+                "delta_s": 4.6047610169352993e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105273,81611,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[2].D[0]\",0,0]",
+                "before_s": -6.296845267428353e-09,
+                "after_s": -6.0221947428829026e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105793,81614,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[3].D[0]\",0,0]",
+                "before_s": -6.6578453861154685e-09,
+                "after_s": -6.3831948615700185e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105945,81617,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[4].D[0]\",0,0]",
+                "before_s": -7.330707596509001e-09,
+                "after_s": -7.056057071963551e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105946,81620,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[5].D[0]\",0,0]",
+                "before_s": -7.018845504802584e-09,
+                "after_s": -6.744194980257134e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[106123,81623,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[6].D[0]\",0,0]",
+                "before_s": -8.003569362813323e-09,
+                "after_s": -7.728918838267873e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[106124,81626,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[7].D[0]\",0,0]",
+                "before_s": -8.003569362813323e-09,
+                "after_s": -7.728918838267873e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[106479,81629,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[8].D[0]\",0,0]",
+                "before_s": -8.36456859332202e-09,
+                "after_s": -8.089918956954989e-09,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[107540,81632,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[9].D[0]\",0,0]",
+                "before_s": -8.725568712009135e-09,
+                "after_s": -8.450919075642105e-09,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[107541,81635,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[10].D[0]\",0,0]",
+                "before_s": -8.725568712009135e-09,
+                "after_s": -8.450918187463685e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[108401,81638,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[11].D[0]\",0,0]",
+                "before_s": -9.64404645031891e-09,
+                "after_s": -9.36939592577346e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[108402,81641,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[12].D[0]\",0,0]",
+                "before_s": -9.64404645031891e-09,
+                "after_s": -9.36939592577346e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[108403,81644,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[13].D[0]\",0,0]",
+                "before_s": -9.272394407844331e-09,
+                "after_s": -8.9977447714773e-09,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109073,81647,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[14].D[0]\",0,0]",
+                "before_s": -9.13570730176616e-09,
+                "after_s": -8.86105677722071e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109074,81650,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[15].D[0]\",0,0]",
+                "before_s": -9.759430597000573e-09,
+                "after_s": -9.484780072455123e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109589,81653,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[16].D[0]\",0,0]",
+                "before_s": -1.0803944405779475e-08,
+                "after_s": -1.0529292993055606e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109590,81656,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[17].D[0]\",0,0]",
+                "before_s": -1.0306257181014189e-08,
+                "after_s": -1.003160576829032e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109591,81659,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[18].D[0]\",0,0]",
+                "before_s": -9.808569068070483e-09,
+                "after_s": -9.533918543525033e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109691,81662,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[19].D[0]\",0,0]",
+                "before_s": -1.0667257299701305e-08,
+                "after_s": -1.0392605886977435e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109692,81665,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[20].D[0]\",0,0]",
+                "before_s": -1.0667257299701305e-08,
+                "after_s": -1.0392605886977435e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109693,81668,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[21].D[0]\",0,0]",
+                "before_s": -1.0667257299701305e-08,
+                "after_s": -1.0392605886977435e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109694,81671,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[22].D[0]\",0,0]",
+                "before_s": -1.061875654073674e-08,
+                "after_s": -1.034410601619129e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109792,81674,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[23].D[0]\",0,0]",
+                "before_s": -1.1849095926663722e-08,
+                "after_s": -1.1574444513939852e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109793,81677,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[24].D[0]\",0,0]",
+                "before_s": -1.1154292600679128e-08,
+                "after_s": -1.0879642076133678e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109849,81680,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[25].D[0]\",0,0]",
+                "before_s": -1.1701118296514323e-08,
+                "after_s": -1.1426468660147293e-08,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109850,81683,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[26].D[0]\",0,0]",
+                "before_s": -1.1701118296514323e-08,
+                "after_s": -1.1426468660147293e-08,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109851,81686,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[27].D[0]\",0,0]",
+                "before_s": -1.1515292719366244e-08,
+                "after_s": -1.1240642194820794e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109906,81689,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[28].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109907,81692,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[29].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109908,81695,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[30].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109909,81698,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[31].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              }
+            ]
+          }
+        },
+        "endpoint_vector": {
+          "accepted": true,
+          "policy": "endpoint_vector",
+          "reason": "Exact policy conditions satisfied",
+          "comparison": {
+            "compatible": true,
+            "cpd_before_s": 1.3354624073258492e-08,
+            "cpd_after_s": 1.3354624073258492e-08,
+            "cpd_strictly_better": false,
+            "cpd_nonworse": true,
+            "setup_improved": 31,
+            "setup_regressed": 0,
+            "hold_violation_regressions": 0,
+            "setup_components": 10972,
+            "hold_components": 10972,
+            "changes": [
+              {
+                "kind": "setup",
+                "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+                "before_s": -6.679148345511976e-09,
+                "after_s": -6.218672243818446e-09,
+                "delta_s": 4.6047610169352993e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105273,81611,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[2].D[0]\",0,0]",
+                "before_s": -6.296845267428353e-09,
+                "after_s": -6.0221947428829026e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105793,81614,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[3].D[0]\",0,0]",
+                "before_s": -6.6578453861154685e-09,
+                "after_s": -6.3831948615700185e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105945,81617,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[4].D[0]\",0,0]",
+                "before_s": -7.330707596509001e-09,
+                "after_s": -7.056057071963551e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105946,81620,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[5].D[0]\",0,0]",
+                "before_s": -7.018845504802584e-09,
+                "after_s": -6.744194980257134e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[106123,81623,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[6].D[0]\",0,0]",
+                "before_s": -8.003569362813323e-09,
+                "after_s": -7.728918838267873e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[106124,81626,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[7].D[0]\",0,0]",
+                "before_s": -8.003569362813323e-09,
+                "after_s": -7.728918838267873e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[106479,81629,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[8].D[0]\",0,0]",
+                "before_s": -8.36456859332202e-09,
+                "after_s": -8.089918956954989e-09,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[107540,81632,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[9].D[0]\",0,0]",
+                "before_s": -8.725568712009135e-09,
+                "after_s": -8.450919075642105e-09,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[107541,81635,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[10].D[0]\",0,0]",
+                "before_s": -8.725568712009135e-09,
+                "after_s": -8.450918187463685e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[108401,81638,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[11].D[0]\",0,0]",
+                "before_s": -9.64404645031891e-09,
+                "after_s": -9.36939592577346e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[108402,81641,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[12].D[0]\",0,0]",
+                "before_s": -9.64404645031891e-09,
+                "after_s": -9.36939592577346e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[108403,81644,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[13].D[0]\",0,0]",
+                "before_s": -9.272394407844331e-09,
+                "after_s": -8.9977447714773e-09,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109073,81647,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[14].D[0]\",0,0]",
+                "before_s": -9.13570730176616e-09,
+                "after_s": -8.86105677722071e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109074,81650,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[15].D[0]\",0,0]",
+                "before_s": -9.759430597000573e-09,
+                "after_s": -9.484780072455123e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109589,81653,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[16].D[0]\",0,0]",
+                "before_s": -1.0803944405779475e-08,
+                "after_s": -1.0529292993055606e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109590,81656,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[17].D[0]\",0,0]",
+                "before_s": -1.0306257181014189e-08,
+                "after_s": -1.003160576829032e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109591,81659,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[18].D[0]\",0,0]",
+                "before_s": -9.808569068070483e-09,
+                "after_s": -9.533918543525033e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109691,81662,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[19].D[0]\",0,0]",
+                "before_s": -1.0667257299701305e-08,
+                "after_s": -1.0392605886977435e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109692,81665,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[20].D[0]\",0,0]",
+                "before_s": -1.0667257299701305e-08,
+                "after_s": -1.0392605886977435e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109693,81668,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[21].D[0]\",0,0]",
+                "before_s": -1.0667257299701305e-08,
+                "after_s": -1.0392605886977435e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109694,81671,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[22].D[0]\",0,0]",
+                "before_s": -1.061875654073674e-08,
+                "after_s": -1.034410601619129e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109792,81674,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[23].D[0]\",0,0]",
+                "before_s": -1.1849095926663722e-08,
+                "after_s": -1.1574444513939852e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109793,81677,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[24].D[0]\",0,0]",
+                "before_s": -1.1154292600679128e-08,
+                "after_s": -1.0879642076133678e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109849,81680,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[25].D[0]\",0,0]",
+                "before_s": -1.1701118296514323e-08,
+                "after_s": -1.1426468660147293e-08,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109850,81683,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[26].D[0]\",0,0]",
+                "before_s": -1.1701118296514323e-08,
+                "after_s": -1.1426468660147293e-08,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109851,81686,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[27].D[0]\",0,0]",
+                "before_s": -1.1515292719366244e-08,
+                "after_s": -1.1240642194820794e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109906,81689,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[28].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109907,81692,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[29].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109908,81695,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[30].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109909,81698,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[31].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              }
+            ]
+          }
+        },
+        "timing_under_resources": {
+          "accepted": false,
+          "reason": "Fixed registered resource budget exceeded",
+          "mode": "timing_under_resources",
+          "resource_objectives": [
+            "SB_pairs",
+            "CB_sources"
+          ],
+          "cpd_limit_s": 1.3354624073258492e-08,
+          "resource_limits": {
+            "wirelength": 251413,
+            "SB_pairs": 10,
+            "CB_sources": 653
+          },
+          "endpoint_comparison": {
+            "compatible": true,
+            "cpd_before_s": 1.3354624073258492e-08,
+            "cpd_after_s": 1.3354624073258492e-08,
+            "cpd_strictly_better": false,
+            "cpd_nonworse": true,
+            "setup_improved": 31,
+            "setup_regressed": 0,
+            "hold_violation_regressions": 0,
+            "setup_components": 10972,
+            "hold_components": 10972,
+            "changes": [
+              {
+                "kind": "setup",
+                "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+                "before_s": -6.679148345511976e-09,
+                "after_s": -6.218672243818446e-09,
+                "delta_s": 4.6047610169352993e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105273,81611,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[2].D[0]\",0,0]",
+                "before_s": -6.296845267428353e-09,
+                "after_s": -6.0221947428829026e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105793,81614,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[3].D[0]\",0,0]",
+                "before_s": -6.6578453861154685e-09,
+                "after_s": -6.3831948615700185e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105945,81617,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[4].D[0]\",0,0]",
+                "before_s": -7.330707596509001e-09,
+                "after_s": -7.056057071963551e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105946,81620,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[5].D[0]\",0,0]",
+                "before_s": -7.018845504802584e-09,
+                "after_s": -6.744194980257134e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[106123,81623,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[6].D[0]\",0,0]",
+                "before_s": -8.003569362813323e-09,
+                "after_s": -7.728918838267873e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[106124,81626,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[7].D[0]\",0,0]",
+                "before_s": -8.003569362813323e-09,
+                "after_s": -7.728918838267873e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[106479,81629,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[8].D[0]\",0,0]",
+                "before_s": -8.36456859332202e-09,
+                "after_s": -8.089918956954989e-09,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[107540,81632,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[9].D[0]\",0,0]",
+                "before_s": -8.725568712009135e-09,
+                "after_s": -8.450919075642105e-09,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[107541,81635,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[10].D[0]\",0,0]",
+                "before_s": -8.725568712009135e-09,
+                "after_s": -8.450918187463685e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[108401,81638,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[11].D[0]\",0,0]",
+                "before_s": -9.64404645031891e-09,
+                "after_s": -9.36939592577346e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[108402,81641,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[12].D[0]\",0,0]",
+                "before_s": -9.64404645031891e-09,
+                "after_s": -9.36939592577346e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[108403,81644,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[13].D[0]\",0,0]",
+                "before_s": -9.272394407844331e-09,
+                "after_s": -8.9977447714773e-09,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109073,81647,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[14].D[0]\",0,0]",
+                "before_s": -9.13570730176616e-09,
+                "after_s": -8.86105677722071e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109074,81650,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[15].D[0]\",0,0]",
+                "before_s": -9.759430597000573e-09,
+                "after_s": -9.484780072455123e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109589,81653,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[16].D[0]\",0,0]",
+                "before_s": -1.0803944405779475e-08,
+                "after_s": -1.0529292993055606e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109590,81656,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[17].D[0]\",0,0]",
+                "before_s": -1.0306257181014189e-08,
+                "after_s": -1.003160576829032e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109591,81659,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[18].D[0]\",0,0]",
+                "before_s": -9.808569068070483e-09,
+                "after_s": -9.533918543525033e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109691,81662,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[19].D[0]\",0,0]",
+                "before_s": -1.0667257299701305e-08,
+                "after_s": -1.0392605886977435e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109692,81665,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[20].D[0]\",0,0]",
+                "before_s": -1.0667257299701305e-08,
+                "after_s": -1.0392605886977435e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109693,81668,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[21].D[0]\",0,0]",
+                "before_s": -1.0667257299701305e-08,
+                "after_s": -1.0392605886977435e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109694,81671,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[22].D[0]\",0,0]",
+                "before_s": -1.061875654073674e-08,
+                "after_s": -1.034410601619129e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109792,81674,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[23].D[0]\",0,0]",
+                "before_s": -1.1849095926663722e-08,
+                "after_s": -1.1574444513939852e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109793,81677,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[24].D[0]\",0,0]",
+                "before_s": -1.1154292600679128e-08,
+                "after_s": -1.0879642076133678e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109849,81680,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[25].D[0]\",0,0]",
+                "before_s": -1.1701118296514323e-08,
+                "after_s": -1.1426468660147293e-08,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109850,81683,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[26].D[0]\",0,0]",
+                "before_s": -1.1701118296514323e-08,
+                "after_s": -1.1426468660147293e-08,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109851,81686,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[27].D[0]\",0,0]",
+                "before_s": -1.1515292719366244e-08,
+                "after_s": -1.1240642194820794e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109906,81689,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[28].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109907,81692,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[29].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109908,81695,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[30].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109909,81698,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[31].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              }
+            ]
+          },
+          "resource_delta": {
+            "wirelength": 24,
+            "SB_pairs": 0,
+            "CB_sources": 1
+          },
+          "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+        },
+        "resources_under_timing": {
+          "accepted": false,
+          "reason": "Fixed registered resource budget exceeded",
+          "mode": "resources_under_timing",
+          "resource_objectives": [
+            "SB_pairs",
+            "CB_sources"
+          ],
+          "cpd_limit_s": 1.3354624073258492e-08,
+          "resource_limits": {
+            "wirelength": 251413,
+            "SB_pairs": 10,
+            "CB_sources": 653
+          },
+          "endpoint_comparison": {
+            "compatible": true,
+            "cpd_before_s": 1.3354624073258492e-08,
+            "cpd_after_s": 1.3354624073258492e-08,
+            "cpd_strictly_better": false,
+            "cpd_nonworse": true,
+            "setup_improved": 31,
+            "setup_regressed": 0,
+            "hold_violation_regressions": 0,
+            "setup_components": 10972,
+            "hold_components": 10972,
+            "changes": [
+              {
+                "kind": "setup",
+                "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+                "before_s": -6.679148345511976e-09,
+                "after_s": -6.218672243818446e-09,
+                "delta_s": 4.6047610169352993e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105273,81611,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[2].D[0]\",0,0]",
+                "before_s": -6.296845267428353e-09,
+                "after_s": -6.0221947428829026e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105793,81614,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[3].D[0]\",0,0]",
+                "before_s": -6.6578453861154685e-09,
+                "after_s": -6.3831948615700185e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105945,81617,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[4].D[0]\",0,0]",
+                "before_s": -7.330707596509001e-09,
+                "after_s": -7.056057071963551e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[105946,81620,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[5].D[0]\",0,0]",
+                "before_s": -7.018845504802584e-09,
+                "after_s": -6.744194980257134e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[106123,81623,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[6].D[0]\",0,0]",
+                "before_s": -8.003569362813323e-09,
+                "after_s": -7.728918838267873e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[106124,81626,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[7].D[0]\",0,0]",
+                "before_s": -8.003569362813323e-09,
+                "after_s": -7.728918838267873e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[106479,81629,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[8].D[0]\",0,0]",
+                "before_s": -8.36456859332202e-09,
+                "after_s": -8.089918956954989e-09,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[107540,81632,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[9].D[0]\",0,0]",
+                "before_s": -8.725568712009135e-09,
+                "after_s": -8.450919075642105e-09,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[107541,81635,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[10].D[0]\",0,0]",
+                "before_s": -8.725568712009135e-09,
+                "after_s": -8.450918187463685e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[108401,81638,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[11].D[0]\",0,0]",
+                "before_s": -9.64404645031891e-09,
+                "after_s": -9.36939592577346e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[108402,81641,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[12].D[0]\",0,0]",
+                "before_s": -9.64404645031891e-09,
+                "after_s": -9.36939592577346e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[108403,81644,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[13].D[0]\",0,0]",
+                "before_s": -9.272394407844331e-09,
+                "after_s": -8.9977447714773e-09,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109073,81647,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[14].D[0]\",0,0]",
+                "before_s": -9.13570730176616e-09,
+                "after_s": -8.86105677722071e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109074,81650,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[15].D[0]\",0,0]",
+                "before_s": -9.759430597000573e-09,
+                "after_s": -9.484780072455123e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109589,81653,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[16].D[0]\",0,0]",
+                "before_s": -1.0803944405779475e-08,
+                "after_s": -1.0529292993055606e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109590,81656,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[17].D[0]\",0,0]",
+                "before_s": -1.0306257181014189e-08,
+                "after_s": -1.003160576829032e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109591,81659,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[18].D[0]\",0,0]",
+                "before_s": -9.808569068070483e-09,
+                "after_s": -9.533918543525033e-09,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109691,81662,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[19].D[0]\",0,0]",
+                "before_s": -1.0667257299701305e-08,
+                "after_s": -1.0392605886977435e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109692,81665,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[20].D[0]\",0,0]",
+                "before_s": -1.0667257299701305e-08,
+                "after_s": -1.0392605886977435e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109693,81668,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[21].D[0]\",0,0]",
+                "before_s": -1.0667257299701305e-08,
+                "after_s": -1.0392605886977435e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109694,81671,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[22].D[0]\",0,0]",
+                "before_s": -1.061875654073674e-08,
+                "after_s": -1.034410601619129e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109792,81674,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[23].D[0]\",0,0]",
+                "before_s": -1.1849095926663722e-08,
+                "after_s": -1.1574444513939852e-08,
+                "delta_s": 2.746514127238697e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109793,81677,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[24].D[0]\",0,0]",
+                "before_s": -1.1154292600679128e-08,
+                "after_s": -1.0879642076133678e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109849,81680,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[25].D[0]\",0,0]",
+                "before_s": -1.1701118296514323e-08,
+                "after_s": -1.1426468660147293e-08,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109850,81683,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[26].D[0]\",0,0]",
+                "before_s": -1.1701118296514323e-08,
+                "after_s": -1.1426468660147293e-08,
+                "delta_s": 2.746496363670303e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109851,81686,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[27].D[0]\",0,0]",
+                "before_s": -1.1515292719366244e-08,
+                "after_s": -1.1240642194820794e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109906,81689,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[28].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109907,81692,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[29].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109908,81695,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[30].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              },
+              {
+                "kind": "setup",
+                "endpoint_domain": "[109909,81698,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[31].D[0]\",0,0]",
+                "before_s": -1.1564431190436153e-08,
+                "after_s": -1.1289780665890703e-08,
+                "delta_s": 2.7465052454545e-10
+              }
+            ]
+          },
+          "resource_delta": {
+            "wirelength": 24,
+            "SB_pairs": 0,
+            "CB_sources": 1
+          },
+          "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+        }
+      }
+    }
+  },
+  "paired_comparison": {
+    "CPD_delta_ns": 0.0,
+    "resource_deltas": {
+      "wirelength": 12,
+      "SB_pairs": 0,
+      "CB_sources": 1
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.3354624073258492e-08,
+      "cpd_after_s": 1.3354624073258492e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 31,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 10972,
+      "hold_components": 10972,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[104980,81605,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[0].D[0]\",0,0]",
+          "before_s": -6.864974366749266e-09,
+          "after_s": -6.218672243818446e-09,
+          "delta_s": 6.463021229308197e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[105273,81611,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[2].D[0]\",0,0]",
+          "before_s": -6.296845267428353e-09,
+          "after_s": -6.0221947428829026e-09,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[105793,81614,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[3].D[0]\",0,0]",
+          "before_s": -6.6578453861154685e-09,
+          "after_s": -6.3831948615700185e-09,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[105945,81617,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[4].D[0]\",0,0]",
+          "before_s": -7.330707596509001e-09,
+          "after_s": -7.056057071963551e-09,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[105946,81620,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[5].D[0]\",0,0]",
+          "before_s": -7.018845504802584e-09,
+          "after_s": -6.744194980257134e-09,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[106123,81623,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[6].D[0]\",0,0]",
+          "before_s": -8.003569362813323e-09,
+          "after_s": -7.728918838267873e-09,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[106124,81626,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[7].D[0]\",0,0]",
+          "before_s": -8.003569362813323e-09,
+          "after_s": -7.728918838267873e-09,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[106479,81629,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[8].D[0]\",0,0]",
+          "before_s": -8.36456859332202e-09,
+          "after_s": -8.089918956954989e-09,
+          "delta_s": 2.746496363670303e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[107540,81632,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[9].D[0]\",0,0]",
+          "before_s": -8.725568712009135e-09,
+          "after_s": -8.450919075642105e-09,
+          "delta_s": 2.746496363670303e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[107541,81635,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[10].D[0]\",0,0]",
+          "before_s": -8.725568712009135e-09,
+          "after_s": -8.450918187463685e-09,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[108401,81638,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[11].D[0]\",0,0]",
+          "before_s": -9.64404645031891e-09,
+          "after_s": -9.36939592577346e-09,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[108402,81641,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[12].D[0]\",0,0]",
+          "before_s": -9.64404645031891e-09,
+          "after_s": -9.36939592577346e-09,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[108403,81644,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[13].D[0]\",0,0]",
+          "before_s": -9.272394407844331e-09,
+          "after_s": -8.9977447714773e-09,
+          "delta_s": 2.746496363670303e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109073,81647,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[14].D[0]\",0,0]",
+          "before_s": -9.13570730176616e-09,
+          "after_s": -8.86105677722071e-09,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109074,81650,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[15].D[0]\",0,0]",
+          "before_s": -9.759430597000573e-09,
+          "after_s": -9.484780072455123e-09,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109589,81653,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[16].D[0]\",0,0]",
+          "before_s": -1.0803944405779475e-08,
+          "after_s": -1.0529292993055606e-08,
+          "delta_s": 2.746514127238697e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109590,81656,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[17].D[0]\",0,0]",
+          "before_s": -1.0306257181014189e-08,
+          "after_s": -1.003160576829032e-08,
+          "delta_s": 2.746514127238697e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109591,81659,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[18].D[0]\",0,0]",
+          "before_s": -9.808569068070483e-09,
+          "after_s": -9.533918543525033e-09,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109691,81662,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[19].D[0]\",0,0]",
+          "before_s": -1.0667257299701305e-08,
+          "after_s": -1.0392605886977435e-08,
+          "delta_s": 2.746514127238697e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109692,81665,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[20].D[0]\",0,0]",
+          "before_s": -1.0667257299701305e-08,
+          "after_s": -1.0392605886977435e-08,
+          "delta_s": 2.746514127238697e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109693,81668,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[21].D[0]\",0,0]",
+          "before_s": -1.0667257299701305e-08,
+          "after_s": -1.0392605886977435e-08,
+          "delta_s": 2.746514127238697e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109694,81671,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[22].D[0]\",0,0]",
+          "before_s": -1.061875654073674e-08,
+          "after_s": -1.034410601619129e-08,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109792,81674,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[23].D[0]\",0,0]",
+          "before_s": -1.1849095926663722e-08,
+          "after_s": -1.1574444513939852e-08,
+          "delta_s": 2.746514127238697e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109793,81677,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[24].D[0]\",0,0]",
+          "before_s": -1.1154292600679128e-08,
+          "after_s": -1.0879642076133678e-08,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109849,81680,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[25].D[0]\",0,0]",
+          "before_s": -1.1701118296514323e-08,
+          "after_s": -1.1426468660147293e-08,
+          "delta_s": 2.746496363670303e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109850,81683,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[26].D[0]\",0,0]",
+          "before_s": -1.1701118296514323e-08,
+          "after_s": -1.1426468660147293e-08,
+          "delta_s": 2.746496363670303e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109851,81686,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[27].D[0]\",0,0]",
+          "before_s": -1.1515292719366244e-08,
+          "after_s": -1.1240642194820794e-08,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109906,81689,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[28].D[0]\",0,0]",
+          "before_s": -1.1564431190436153e-08,
+          "after_s": -1.1289780665890703e-08,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109907,81692,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[29].D[0]\",0,0]",
+          "before_s": -1.1564431190436153e-08,
+          "after_s": -1.1289780665890703e-08,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109908,81695,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[30].D[0]\",0,0]",
+          "before_s": -1.1564431190436153e-08,
+          "after_s": -1.1289780665890703e-08,
+          "delta_s": 2.7465052454545e-10
+        },
+        {
+          "kind": "setup",
+          "endpoint_domain": "[109909,81698,\"robot_2.module_2.u_Sum_Calc.Sum1_out1_flopped[31].D[0]\",0,0]",
+          "before_s": -1.1564431190436153e-08,
+          "after_s": -1.1289780665890703e-08,
+          "delta_s": 2.7465052454545e-10
+        }
+      ]
+    },
+    "attribution": "Added owner coordination scope under unrestricted search; no domain/release attribution or complete-method gain."
+  },
+  "measurement": {
+    "passed": true,
+    "returncode": 0,
+    "complete_command_wall_seconds": 155.09703858941793,
+    "waited_process_RSS_high_water_kib": 2346668,
+    "sampled_tree_RSS_peak_kib": 2482288,
+    "sampled_tree_PSS_peak_kib": 2453581,
+    "samples": 299,
+    "sample_interval_seconds": 0.5,
+    "missing_memory_observations": 0,
+    "observer_CPU_seconds": 5.997907283,
+    "process_identities": {
+      "1508068": "1957445974",
+      "1508070": "1957445975",
+      "1508071": "1957445982",
+      "1508076": "1957446009",
+      "1510975": "1957446672",
+      "1510977": "1957446672",
+      "1521503": "1957449526",
+      "1521762": "1957450005",
+      "1521764": "1957450005",
+      "1532174": "1957452927",
+      "1535690": "1957453690",
+      "1535705": "1957453725",
+      "1540656": "1957455515",
+      "1542550": "1957455993",
+      "1542552": "1957455993",
+      "1553807": "1957458984",
+      "1555829": "1957459736"
+    },
+    "live_descendants_after_command_exit": [],
+    "qualification": "Wall ends at the independent wait-thread terminal receipt and includes command startup, all awaited phases and final result writing. GNU RSS is a process high-water statistic, not simultaneous tree memory. Summed RSS double-counts shared pages; sampled summed PSS apportions them and can miss transient peaks. OS page cache is uncontrolled; no cache flush or cold-storage claim. Observer CPU is separate and observation overhead is not calibrated away."
+  },
+  "complete_imported_pair_seconds": 155.09703858941793,
+  "process_costs": [
+    {
+      "tag": "source_serialization_control",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_crossing_source_seed_analysis_v1.py",
+        "--source",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/initial/runs/state",
+        "--batch",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/source_serialization_control",
+        "--native-cases",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/source_empty_request.txt",
+        "--seed-order",
+        "delay_rr_id",
+        "--candidate-full-sta"
+      ],
+      "returncode": 0,
+      "status": "completed",
+      "complete_process_seconds": 34.990970868617296
+    },
+    {
+      "tag": "target_only_native",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_crossing_source_seed_analysis_v1.py",
+        "--source",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/initial/runs/state",
+        "--batch",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only",
+        "--native-cases",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/target_only_request.txt",
+        "--objective",
+        "weighted_soft",
+        "--seed-order",
+        "delay_rr_id",
+        "--candidate-full-sta",
+        "--expected-loaded-source-route",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/source_serialization_control/runs/state/candidate/routed.route"
+      ],
+      "returncode": 0,
+      "status": "completed",
+      "complete_process_seconds": 33.94330993667245
+    },
+    {
+      "tag": "target_only_audit",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_native_feedback_objective_cached.py",
+        "--batch",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction",
+        "--role",
+        "target_only",
+        "--cache",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_native/flow/graph_audit_cache",
+        "--output",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only_audit"
+      ],
+      "returncode": 0,
+      "status": "completed",
+      "complete_process_seconds": 7.628368344157934
+    },
+    {
+      "tag": "target_only_domain_audit",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_retained_crossing_domain.py",
+        "--batch",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction",
+        "--role",
+        "target_only"
+      ],
+      "returncode": 0,
+      "status": "completed",
+      "complete_process_seconds": 0.16579619795084
+    },
+    {
+      "tag": "target_only_candidate_materialization",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/materialize_crossing_source_candidate_v1.py",
+        "--worker",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only",
+        "--output",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only_evaluation",
+        "--audited-route",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only_audit/candidate.route",
+        "--full-graph-cache",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_native/flow/full_graph_cache"
+      ],
+      "returncode": 0,
+      "status": "completed",
+      "complete_process_seconds": 17.543207950890064
+    },
+    {
+      "tag": "target_plus_owner_native",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_crossing_source_seed_analysis_v1.py",
+        "--source",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/initial/runs/state",
+        "--batch",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner",
+        "--native-cases",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/owner_preparation/request.txt",
+        "--objective",
+        "weighted_soft",
+        "--seed-order",
+        "delay_rr_id",
+        "--candidate-full-sta",
+        "--expected-loaded-source-route",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/source_serialization_control/runs/state/candidate/routed.route"
+      ],
+      "returncode": 0,
+      "status": "completed",
+      "complete_process_seconds": 34.61999703198671
+    },
+    {
+      "tag": "target_plus_owner_audit",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_native_feedback_objective_cached.py",
+        "--batch",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction",
+        "--role",
+        "target_plus_owner",
+        "--cache",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_native/flow/graph_audit_cache",
+        "--output",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_audit"
+      ],
+      "returncode": 0,
+      "status": "completed",
+      "complete_process_seconds": 6.977483164519072
+    },
+    {
+      "tag": "target_plus_owner_domain_audit",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_retained_crossing_domain.py",
+        "--batch",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction",
+        "--role",
+        "target_plus_owner"
+      ],
+      "returncode": 0,
+      "status": "completed",
+      "complete_process_seconds": 0.1656687818467617
+    },
+    {
+      "tag": "target_plus_owner_candidate_materialization",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/materialize_crossing_source_candidate_v1.py",
+        "--worker",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner",
+        "--output",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_evaluation",
+        "--audited-route",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_audit/candidate.route",
+        "--full-graph-cache",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_native/flow/full_graph_cache"
+      ],
+      "returncode": 0,
+      "status": "completed",
+      "complete_process_seconds": 16.993439588695765
+    }
+  ],
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_robot_owner_scope_pair_01.py": "1afbbea9dbe2d9a0b45161dc26e9a8f810c64f2e5d585baf5ef5f3de2057ed93",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/plan.json": "457e28eeac05d1d4815019a70ca742445584b9a16fbbe60c3dfc3ff1b41f841d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/prepared_transaction_registration.json": "07860787f0598c25d2317dba065818f08efe93cf5c08eebb6ad4c26d54a3cf4b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only/completion.json": "b199d4aee2b264456187d3fb6087878f890094131fdb2e0a13a5ac2265859676",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only/endpoint_vector.json": "c212a1050c64ad0494639a2a1c7fdf6294d39d9f4b41430c3ec17a7bb251c376",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only/runs/state/manifest.json": "286b8988d286752ac9a1061f19978c2482ac95ce8a98fc4557469ab938d43f9f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only_audit/analysis.json": "52981f4c054bca8a2f17af4b36a5ee81d8a485885b28996e100a434cff7a136b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only_domain_audit.json": "d155fcf05f4c0802512a3f8b47e98f4ee22dfc4bd95f25c025acab6f66b0bd3e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only_evaluation/completion.json": "c57b96206d1dd85302ad23261e097b1acd1db35174c92859f09be38378d1d43a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only_evaluation/endpoint_vector.json": "5df9e7af574b77b0f91582635f75f177f7298d0708e2d75c20db05779e11a7af",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only_evaluation/runs/state/manifest.json": "114704d0a1316a56a0761b51d2afa10976f79aef78a92a6384d7cd8a99d178ad",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only_evaluation/runs/state/independent_audit.json": "fe9d4e401e3fd8299c3e8d34acd2b73c1ad9095846eefbee9eb76c31b8f9d532",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only_evaluation/runs/state/routed.route": "050e14bb2307fbf07a33cb542cb11b5536a5841f7f4cf9ed1d45434e0c2d4158",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_only_decisions.json": "c20afa77a74abdef3124405cb452c34f7a49dca957fdc87f38e7013f050ff571",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner/completion.json": "c524b073131be244fe8b7fea59e0ffd39483683e1d43214a0068ebe10f11082e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner/endpoint_vector.json": "c212a1050c64ad0494639a2a1c7fdf6294d39d9f4b41430c3ec17a7bb251c376",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner/runs/state/manifest.json": "2d4f26f882d47e05b71cf92c18e4fe2b2bab67789ff97abcb1f0bf8fb5bda2da",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_audit/analysis.json": "b6765c1af6d858693bfd5f7cd2e1a945326f0b020bea150b9619800390760ff3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_domain_audit.json": "936c53ae95e1c3e5ca73a70bf318bea8856cb3152cea16070079dce8a69e9585",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_evaluation/completion.json": "159ad5a1a4386d9ddee67e814a03f82a7b342ad1cd0ad5ba2e4f0d54dc2bcb0c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_evaluation/endpoint_vector.json": "82c8359e8b881ed4e36f111ab5f9e8ee77308b2956fdecefd94752cf1789d135",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_evaluation/runs/state/manifest.json": "2748fe84ae37d3964a29cd4b8138de7ce3c7c95e4caa885ac3149f30efe11ad5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_evaluation/runs/state/independent_audit.json": "4913fe8ae513a8a3e0c19ddfb96d1d1e1e70c68ce366f57e5eee063bffbdc722",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_evaluation/runs/state/routed.route": "393059a2d1761ba11231e88493bf0ddb1d2de4b6dd1d1ed60a203a41cf25cb1e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_decisions.json": "1fc2ef1997cd708a5604453a9e0c39993e8d3a9242985c95e2a9d34a39eef40a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/queue/execution_receipt.json": "dbc080b1ebd9dbb14b093d1f1c7c3ccd37f11c91177332ca82301812085e3997",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/measurement/completion.json": "6b65c8f498d59db02d6b5d562b53bc3cecc9ace27e2694ef6830182be11c41af",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/supervision.json": "b59cc51100734d30607aed0d111d27de2d051c891ac7df4d8cc830c718920431",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/registration.json": "07860787f0598c25d2317dba065818f08efe93cf5c08eebb6ad4c26d54a3cf4b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/completion.json": "2e394e7160fcee2895a0959a3c2a54483459b94958dcfabc009554dd2dcc9634",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/progress.json": "b7da9389aaa83a2b1b11cb25bb60419e02004ea40e7df283da749f157fbc7d5f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/process_costs.json": "f2dec1a8784452db59f7ccaf3974da2fd306ceeb41c5ce608b8ad104168dceef",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/execution_registration.json": "75a19092e854b7421f4e28392a3ad185e3bf820f762f9d626d3b6db8d9c83d7c"
+  },
+  "qualification": "Registered denominator retained. Complete shared imported pair includes one source control, both native repairs and required gates/materialization, not initial-route algorithm cost. Failed or incomplete roles have no candidate quality. Ordered pair not statistical speedup. Full endpoint changes retained; no commitment or automatic freeze of whole method."
+}

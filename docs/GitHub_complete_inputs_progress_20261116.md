@@ -32,8 +32,17 @@ robot 同源 no-release 消融实际失败并精确回滚，支持失败释放�
 
 [新版六页正文](../research/dac_v14_20261112/paper_snapshots/current_qualified_inputs_20261116/build/current_repair_main.pdf)与[证据绑定](../research/dac_v14_20261112/qualified_complete_paper_binding_08.json)沿“问题—机制—完整结果—多目标取舍—消融—开销与范围”组织。统一主表为 27 个完整尝试（含 4 个初始失败）和 2 个明确限定范围的组件条目；新增完整费用、SDC 无收益与 attention 失败，端点来自各自初态／终态完整向量，不累加局部变化。机制图和九项相关工作保留；局部轨迹、恢复与审计留在补充材料。历史档案的 671 条观测与 34 个完整质量配置计数不冒充已纳入这些新结果。
 
-独立打包的原生观察接口已在项目外实际执行，FULL/STA、原生 trace、完整端点及物理审计精确一致；这是组件执行检查，不是独立输入或整算法收益。已知 R1 非空事务也在项目外通过，请求、路由体、端点及物理审计精确复现（806.16 s 组件费用）。已有 tiny 输入的整方法实际通过，101.43 s，零资源／owner／时序提交；它验证完整可执行路径，不证明正向机制整合收益。clstm 已接续运行，robot owner-scope、robot p1、domain 工程臂继续按原单 owner 队列等待。
+独立打包的原生观察接口已在项目外实际执行，FULL/STA、原生 trace、完整端点及物理审计精确一致；这是组件执行检查，不是独立输入或整算法收益。已知 R1 非空事务也在项目外通过，请求、路由体、端点及物理审计精确复现（806.16 s 组件费用）。已有 tiny 输入的整方法实际通过，101.43 s，零资源／owner／时序提交；它验证完整可执行路径，不证明正向机制整合收益。随后 clstm 两臂在 packed-netlist 加载时报 `$undef` 不匹配，未进入路由；107.00／106.48 s 是输入兼容性失败成本，不是拥塞或修复负结果。已查明模板遗漏历史 `--merge_constant_generators off`，保留原回执并[单独重分类](../research/dac_v14_20261112/clstm_input_contract_pair_02/failure_reclassification.json)。robot owner-scope 已接续运行，其余原队列保持不变。
+
+[修正输入契约的新 clstm 配对](../research/dac_v14_20261112/clstm_input_contract_pair_02/plan.json)已追加到 reduction 之后：同一 dev03、相同物理输入及算法规则，两臂继承历史常量解释选项，不改旧批次。实际命令继承函数和失败分类检查通过，0 次新原生调用；完整准入与执行仍待串行槽。它不增加独立物理样本，修复尚未获原生结果确认。该输入兼容性发现保留在补充回执中，不冒充当前主表的路由失败。
 
 根据 attention 失败及 robot-SDC 无适用资源切口，已将一个固定 dev03 的 [reduction_layer 配对](../research/dac_v14_20261112/portable_reduction_pair_01/plan.json)追加到原工程臂之后。历史输入有 268 个共享范围、62 个相关网络、无支持的 owner 切口；只用于选择待检输入，不算新算法收益。新的实际路由与 STA 资格未知，约 5.40 GB 输入的完整验证／复制延后到串行槽。没有重新优化单个 BNN 的几个线长单位，也没有改变当前确认候选规则。
 
 [发布时实际进程快照](../research/dac_v14_20261112/CURRENT_STATUS.md)区分运行、等待与终结状态。该 GitHub 增量包含文稿、代码、精选回执和绑定，不是全部大型原始图、路由及端点数据的异地备份。
+
+
+## 发布后接续回执（04:08 UTC）
+
+robot owner-scope 原生配对现已[验证通过](../research/dac_v14_20261112/robot_owner_scope_pair_01/verification.json)：target-only 为251173 wire/10 SB/653 CB，加入owner为251185/10/654，CPD均13.354624073 ns。相对target-only，新增12wire和1CB换31个setup分量改善、0退化；相对各自源，target-only为0改善/1退化，owner为31改善/0退化。两者均无新增hold违例。固定资源策略拒绝两者，独立endpoint规则接受owner候选；均未提交原actor。完整共享导入式配对155.10 s，不能分摊或冒充冷启动算法时间。域限制与失败释放在两臂均关闭，因此归于协调范围的局部取舍，未减少本例垂直资源。正文08保留其封存时边界，此晚到消融先以补充回执发布，待下一次正文整合。
+
+robot p1两臂也在packed-netlist读取阶段因同一常量网解释选项缺失失败，完整费用102.93/102.90 s，未开始路由；[重分类回执](../research/dac_v14_20261112/robot_p1_input_contract_pair_02/failure_reclassification.json)保留原始失败。[修正robot p1配对](../research/dac_v14_20261112/robot_p1_input_contract_pair_02/plan.json)复用未变dev03和物理输入，在修正clstm之后等待。实际修复结果尚未知，不增加独立样本；当前BNN domain工程臂运行，其后依次是reduction、修正clstm、修正robot p1。旧队列和科学批次不被重启或覆写。

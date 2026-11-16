@@ -1,0 +1,231 @@
+VPR FPGA Placement and Routing.
+Version: 9.0.0-dev+b132a1d
+Revision: b132a1d
+Compiled: 2026-11-14T14:16:07
+Compiler: GNU 11.4.0 on Linux-5.15.0-119-generic x86_64
+Build Info: release VTR_ASSERT_LEVEL=2
+
+University of Toronto
+verilogtorouting.org
+vtr-users@googlegroups.com
+This is free open source code under MIT license.
+
+VPR was run with the following command-line:
+/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/unified_method_01/inputs/binary_resource /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/robot_p1_pair_01/inputs/architecture.xml /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/robot_p1_pair_01/inputs/circuit.blif --route --analysis --device fixture --route_chan_width 100 --seed 21 --num_workers 1 --clock_modeling ideal --check_route full --verify_file_digests off --verify_route_file_switch_id on --read_rr_graph /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/robot_p1_pair_01/inputs/graph.xml --net_file /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/robot_p1_pair_01/domain/flow/resource_flow/initial/runs/state/packed.net --place_file /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/robot_p1_pair_01/domain/flow/resource_flow/initial/runs/state/placed.place --route_file /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/robot_p1_pair_01/domain/flow/resource_flow/initial/runs/state/routed.route --timing_report_npaths 10 --max_router_iterations 200 --router_max_convergence_count 8 --router_reconvergence_cpd_threshold 1.01
+
+
+Architecture file: /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/robot_p1_pair_01/inputs/architecture.xml
+Circuit name: circuit
+
+# Loading Architecture Description
+Warning 1: Model 'io' input port 'outpad' has no timing specification (no clock specified to create a sequential input port, not combinationally connected to any outputs, not a clock input)
+Warning 2: Model 'io' output port 'inpad' has no timing specification (no clock specified to create a sequential output port, not combinationally connected to any inputs, not a clock output)
+Warning 3: Model 'dsp' input port 'I' has no timing specification (no clock specified to create a sequential input port, not combinationally connected to any outputs, not a clock input)
+Warning 4: Model 'dsp' output port 'result' has no timing specification (no clock specified to create a sequential output port, not combinationally connected to any inputs, not a clock output)
+mode 'io[physical]' is defined by user to be disabled in packing
+mode 'complex_dsp[physical]' is defined by user to be disabled in packing
+mode 'spram[physical]' is defined by user to be disabled in packing
+Warning 5: Multiple matching Fc overrides found; the last will be applied
+# Loading Architecture Description took 0.02 seconds (max_rss 8.0 MiB, delta_rss +1.9 MiB)
+
+Timing analysis: ON
+Circuit netlist file: /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/robot_p1_pair_01/domain/flow/resource_flow/initial/runs/state/packed.net
+Circuit placement file: /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/robot_p1_pair_01/domain/flow/resource_flow/initial/runs/state/placed.place
+Circuit routing file: /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/robot_p1_pair_01/domain/flow/resource_flow/initial/runs/state/routed.route
+Circuit SDC file: circuit.sdc
+Vpr floorplanning constraints file: not specified
+
+Packer: LOAD
+Placer: LOAD
+Analytical Placer: DISABLED
+Router: ENABLED
+Analysis: ENABLED
+
+VPR was run with the following options:
+
+netlist_opts.absorb_buffer_luts            : true
+netlist_opts.merge_constant_generators     : true
+netlist_opts.sweep_dangling_primary_ios    : true
+netlist_opts.sweep_dangling_nets           : true
+netlist_opts.sweep_dangling_blocks         : true
+netlist_opts.sweep_constant_primary_outputs: false
+netlist_opts.netlist_verbosity             : 1
+netlist_opts.const_gen_inference           : COMB_SEQ
+
+packer_opts.allow_unrelated_clustering: auto
+packer_opts.timing_gain_weight: 0.750000
+packer_opts.connection_gain_weight: 0.900000
+packer_opts.cluster_seed_type: BLEND2
+packer_opts.connection_driven: true
+packer_opts.timing_driven: true
+packer_opts.target_external_pin_util: auto
+
+placer_opts.place_freq: ONCE
+placer_opts.place_algorithm: CRITICALITY_TIMING_PLACE
+placer_opts.pad_loc_type: FREE
+placer_opts.constraints_file: No constraints file given
+placer_opts.place_chan_width: 100
+placer_opts.congestion_factor: 0.000000
+placer_opts.interposer_cost_params.net_cost_type: two_stage
+placer_opts.interposer_cost_params.two_stage_net_cost_first_stage_type: minimize_interposer_crossing_bb
+placer_opts.interposer_cost_params.two_stage_net_cost_second_stage_type: interposer_wire_aware_crossing_bb
+placer_opts.interposer_cost_params.net_cost_change_threshold: 0.005000
+placer_opts.inner_loop_recompute_divider: 0
+placer_opts.recompute_crit_iter: 1
+placer_opts.timing_tradeoff: 0.500000
+placer_opts.td_place_exp_first: 1.000000
+placer_opts.td_place_exp_last: 8.000000
+placer_opts.delay_offset: 0.000000
+placer_opts.delay_ramp_delta_threshold: -1
+placer_opts.delay_ramp_slope: 0.000000
+placer_opts.tsu_rel_margin: 1.000000
+placer_opts.tsu_abs_margin: 0.000000
+placer_opts.post_place_timing_report_file: 
+placer_opts.allowed_tiles_for_delay_model: 
+placer_opts.delay_model_reducer: MIN
+placer_opts.delay_model_type: SIMPLE
+placer_opts.rlim_escape_fraction: 0.000000
+placer_opts.move_stats_file: 
+placer_opts.placement_saves_per_temperature: 0
+placer_opts.effort_scaling: CIRCUIT
+placer_opts.place_delta_delay_matrix_calculation_method: ASTAR_ROUTE
+placer_opts.seed: 21
+anneal_sched.type: AUTO_SCHED
+anneal_sched.inner_num: 0.500000
+placer_opts.anneal_init_t_estimator: EQUILIBRIUM
+
+router_opts.route_type: DETAILED
+router_opts.flat_routing: false
+router_opts.choke_points: on
+router_opts.router_algorithm: TIMING_DRIVEN
+router_opts.base_cost_type: DELAY_NORMALIZED_LENGTH
+router_opts.fixed_channel_width: 100
+router_opts.check_route: FULL
+router_opts.acc_fac: 1.000000
+router_opts.bb_factor: 3
+router_opts.bend_cost: 0.000000
+router_opts.first_iter_pres_fac: 0.000000
+router_opts.initial_pres_fac: 0.500000
+router_opts.pres_fac_mult: 1.300000
+router_opts.max_pres_fac: 1000.000000
+router_opts.max_router_iterations: 200
+router_opts.min_incremental_reroute_fanout: 16
+router_opts.initial_acc_cost_chan_congestion_threshold: 0.500000
+router_opts.initial_acc_cost_chan_congestion_weight: 0.500000
+router_opts.do_check_rr_graph: true
+router_opts.verify_binary_search: false
+router_opts.min_channel_width_hint: 0
+router_opts.read_rr_edge_metadata: false
+router_opts.exit_after_first_routing_iteration: false
+router_opts.astar_fac: 1.200000
+router_opts.astar_offset: 0.000000
+router_opts.router_profiler_astar_fac: 1.200000
+router_opts.enable_parallel_connection_router: false
+router_opts.post_target_prune_fac: 1.200000
+router_opts.post_target_prune_offset: 0
+router_opts.multi_queue_num_threads: 1
+router_opts.multi_queue_num_queues: 2
+router_opts.multi_queue_direct_draining: false
+router_opts.criticality_exp: 1.000000
+router_opts.max_criticality: 0.990000
+router_opts.init_wirelength_abort_threshold: 0.850000
+router_opts.incr_reroute_delay_ripup: AUTO
+router_opts.save_routing_per_iteration: false
+router_opts.congested_routing_iteration_threshold_frac: 1.000000
+router_opts.high_fanout_threshold: 64
+router_opts.router_debug_net: -2
+router_opts.router_debug_sink_rr: -2
+router_opts.router_debug_iteration: -2
+router_opts.max_convergence_count: 8
+router_opts.reconvergence_cpd_threshold: 1.010000
+router_opts.update_lower_bound_delays: true
+router_opts.first_iteration_timing_report_file: 
+router_opts.route_bb_update: DYNAMIC
+router_opts.lookahead_type: MAP
+router_opts.initial_timing: LOOKAHEAD
+router_opts.router_heap: FOUR_ARY_HEAP
+router_opts.routing_failure_predictor = SAFE
+router_opts.routing_predictor_min_history: 8
+router_opts.routing_budgets_algorithm = DISABLE
+
+analysis_opts.gen_post_synthesis_netlist: false
+analysis_opts.gen_post_implementation_merged_netlist: false
+analysis_opts.gen_post_implementation_sdc: false
+analysis_opts.timing_report_npaths: 10
+analysis_opts.timing_report_skew: false
+analysis_opts.echo_dot_timing_graph_node: -1
+analysis_opts.timing_report_detail: NETLIST
+analysis_opts.post_synth_netlist_unconn_input_handling: UNCONNECTED
+analysis_opts.post_synth_netlist_unconn_output_handling: UNCONNECTED
+analysis_opts.post_synth_netlist_module_parameters: on
+
+# Building complex block graph
+# Building complex block graph took 0.02 seconds (max_rss 9.3 MiB, delta_rss +1.3 MiB)
+Circuit file: /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/robot_p1_pair_01/inputs/circuit.blif
+# Load circuit
+Found 3 constant generator(s) in the netlist (2 constant-zero, 1 constant-one) (run with --netlist_verbosity 2 to list names)
+# Load circuit took 0.53 seconds (max_rss 74.8 MiB, delta_rss +65.5 MiB)
+# Clean circuit
+Absorbed 2957 LUT buffers
+Merged 1 constant generators
+Found 96 primitive output pin(s) with no connected inputs; marked them as constants
+Swept input(s)      : 0
+Swept output(s)     : 0 (0 dangling, 0 constant)
+Swept net(s)        : 1381
+Swept block(s)      : 97
+Constant Pins Marked: 96
+# Clean circuit took 0.03 seconds (max_rss 74.8 MiB, delta_rss +0.0 MiB)
+# Compress circuit
+# Compress circuit took 0.03 seconds (max_rss 74.8 MiB, delta_rss +0.0 MiB)
+# Verify circuit
+# Verify circuit took 0.01 seconds (max_rss 74.8 MiB, delta_rss +0.0 MiB)
+Circuit Statistics:
+  Blocks: 23923
+    .input        :       3
+    .latch        :    7276
+    .names        :   16176
+        0-LUT:       1
+        1-LUT:       2
+        2-LUT:    4285
+        3-LUT:    3713
+        4-LUT:    2394
+        5-LUT:    2133
+        6-LUT:    3648
+    .output       :     384
+    spram512x40   :      48
+    two_mult_18x19:      36
+  Nets  : 25447
+    Avg Fanout:     3.2
+    Max Fanout:  7324.0
+    Min Fanout:     1.0
+  Netlist Clocks: 1
+# Build Timing Graph
+  Timing Graph Nodes: 109939
+  Timing Graph Edges: 258492
+  Timing Graph Levels: 34
+# Build Timing Graph took 0.18 seconds (max_rss 92.1 MiB, delta_rss +17.3 MiB)
+Netlist contains 1 clocks
+  Netlist Clock 'clk' Fanout: 7324 pins (6.9%), 7324 blocks (30.6%)
+# Load Timing Constraints
+
+SDC file 'circuit.sdc' not found
+Setting default timing constraints:
+   * constrain all primary inputs and primary outputs on netlist clock 'clk'
+   * optimize netlist clock to run as fast as possible
+Timing constraints created 1 clocks
+  Constrained Clock 'clk' Source: 'clk.inpad[0]'
+
+# Load Timing Constraints took 0.00 seconds (max_rss 92.1 MiB, delta_rss +0.0 MiB)
+Error 1: 
+Type: Netlist file
+File: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/native_resource_census_workspace_01/vpr/src/base/read_netlist.cpp
+Line: 702
+Message: .blif and .net do not match, unknown net $undef found in .net file.
+.
+# Load packing
+## Loading packed FPGA netlist file.
+Netlist generated from file '/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/heldout_robot_rl_s21_hybrid_o_n60_w100_p1_place/packed.net'.
+Warning 6: Netlist was generated from a different architecture file (loaded architecture ID: SHA256:d955f6de48e0458efc7ea1f2a2b7421ace821082c8c8673d1d62808793843583, netlist file architecture ID: SHA256:7dd3dc310da0825b4b79f7cabb808f917c2e8919aba3e9312365e2f250e7c418)
+## Loading packed FPGA netlist file. took 0.42 seconds (max_rss 132.4 MiB, delta_rss +40.3 MiB)
+# Load packing took 0.42 seconds (max_rss 132.4 MiB, delta_rss +40.3 MiB)
+The entire flow of VPR took 1.29 seconds (max_rss 132.4 MiB)
