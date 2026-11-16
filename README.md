@@ -25,6 +25,8 @@ Portable observation, a known R1 nonempty owner transaction, and the existing ti
 
 The [domain engineering arm](docs/GitHub_domain_engineering_registration_20261116.md) applies the completed native single-pass/cache/stream implementation with the original domain rules. The earlier native observation has qualified GNU-time only, with observer loss, a full PSS gap and brief overlap. The [terminal-wire completion comparator](docs/GitHub_terminal_comparison_progress_20261116.md) preserves these limitations and compares matching GNU-time scopes after actual completion. The qualified terminal comparison and pending domain arm do not revise the original22.95% overhead; stable same-environment interleaved timing remains pending.
 
+[First prospective CP1 cross-circuit cohort](research/dac_v14_20261112/cp1_cross_circuit_cohort_01/plan.json): conv_layer_hls and tpu_like.small.ws, two different known circuits and four matched arms, registered before CP1 outcomes. Both historical success and failure inputs are retained. Actual frozen admission checks pass; large physical provisioning and native runs wait behind corrected robot p1 under the shared serial lock. Registration adds no completed independent result and changes no existing batch. [Registration and live-owner evidence](docs/GitHub_CP1_cohort_progress_20261116.md).
+
 <details>
 <summary>Historical progress snapshots and earlier paper versions</summary>
 
