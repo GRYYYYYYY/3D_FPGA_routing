@@ -134,7 +134,8 @@ status['outstanding']=[
 status['standalone_runtime_component']=read(D/'standalone_native_runtime_artifact_01/completion.json')
 status['standalone_runtime_component']['physical_validation']='standalone_physical_audit_validation_01/completion.json'
 status['standalone_runtime_component']['execution_validation']='standalone_native_runtime_validation_01/completion.json'
-publication=D.parents[1]/'docs/github_input_contract_publication_receipt_20261116.json'
+publication=D.parents[1]/'docs/github_cp1_publication_receipt_20261116.json'
+if not publication.exists(): publication=D.parents[1]/'docs/github_input_contract_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_complete_inputs_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_terminal_wire_complete_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_current_entry_publication_receipt_20261116.json'
@@ -322,6 +323,19 @@ if (D/'robot_p1_input_contract_pair_02/failure_reclassification.json').exists():
     status['evidence'].update(robot_p1_failure_reclassification='robot_p1_input_contract_pair_02/failure_reclassification.json',robot_p1_corrected_input_plan='robot_p1_input_contract_pair_02/plan.json',robot_owner_scope_actual='robot_owner_scope_pair_01/verification.json')
     owner_result=read(D/'robot_owner_scope_pair_01/verification.json')
     status['robot_owner_scope_actual']=dict(passed=owner_result['passed'],complete_imported_pair_seconds=owner_result['complete_imported_pair_seconds'],source_resources=owner_result['source_resources'],outcomes={k:dict(status=v['status'],quality=v['quality'],endpoint_summary={a:b for a,b in v['endpoint_comparison'].items() if a!='changes'},resource_policy_accepted=v['resource_policy_decision']['accepted'],endpoint_policy_accepted=v['all_policies']['endpoint_vector']['accepted'],committed_to_original_actor=False) for k,v in owner_result['outcomes'].items()},qualification='Same-source unrestricted owner-scope ablation;31endpoint improvements for+12wire/+1CB relative to target-only. Not resource reduction or complete-flow cost; no original actor committed.')
+if (D/'owner_contract_paper_binding_09.json').exists():
+    paper=read(D/'owner_contract_paper_binding_09.json');status['paper_pdf']=paper['pdf']
+    status['evidence'].update(unified_paper='owner_contract_paper_binding_09.json',paper='owner_contract_paper_binding_09.json',unified_implementation='unified_confirmation_candidate_01/implementation_status_11.json',confirmation_release='confirmation_release_cp1_01/completion.json')
+    status['confirmation_release']=read(D/'confirmation_release_cp1_01/completion.json')
+    status['owner_contract_paper_update']=True
+    status['outstanding']=[
+      'Preserve actual BNN domain engineering owner and reduction, corrected clstm, corrected robot-p1 queues; no completed batch reruns.',
+      'CP1 source/rules fixed and relocated admission validated. Preregister distinct physical-input confirmation cohorts; do not reclassify previous development. Positive integrated owner reentry and timing feedback remain unconfirmed.',
+      'Separate domain restriction, failed-domain release and owner scope. Robot owner trades12wire/1CB for31setup improvements; no fixed-resource commit. General triggers use redundancy, capacity and slack.',
+      'Keep no-cut/no-gain/worse, initial-route failure and input-loading failure distinct. Corrected input compatibility is not yet established by native execution.',
+      'Close matched domain engineering cost; retain original22.95% whole overhead,47.56% SB and0.797% total reductions until qualified new pair completes. Stable symmetric interleaved timing pending.',
+      'Six-page09 sealed with31complete attempts and2scoped rows. Continue evidence-to-claim integration; no universal gain or external application timing claim.'
+    ]
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

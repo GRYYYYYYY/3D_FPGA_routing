@@ -1,0 +1,101 @@
+{
+  "release_id": "current_sta_cp1",
+  "frozen_for_prospective_confirmation": true,
+  "internal_compatibility_tag": "development_v1 retained byte-exact in inherited runtime; outer release seal identifies future CP1 runs",
+  "fixed_configuration": {
+    "initial_route_imported": false,
+    "cache_mode": "joint_build_inside_flow",
+    "seed_order": "delay_rr_id",
+    "owner_escalation": true,
+    "owner_domain_mode": "unrestricted_in_both_arms",
+    "owner_rank_windows": 3,
+    "endpoint_loader_strategy": "existing_streaming_v2_all_observations",
+    "metadata_cache_strategy": "explicit_same_measured_flow_only",
+    "external_history_allowed": false,
+    "timing_fraction": 0.9,
+    "unified_controller_version": "development_v1",
+    "final_state_policy": "strict_timing_terminal_after_endpoint_wire_handoff",
+    "terminal_resource_policy": "endpoint_wire_before_timing",
+    "phase_binary_sha256": {
+      "route_and_resource": "cad1d5671ae5dbbe6c7fbdbf21243ed46f43a5d08dcd6b541d3f08b26b8c189a",
+      "owner_coordination": "14d842f9cc3b28e1d332c43cb201955e880ed6f17fa53d33f2cc2ba9b40a9655",
+      "timing_native_repair": "25f24fc2d606dc2d551c460f89b8cffbbcd6e7b7642c4078a199007bea3735c2",
+      "timing_candidate_STA": "d7b6bf37a37a2f81999b8a2a004e44a4577310e78d0f27413266fa42c07cd639"
+    }
+  },
+  "route_fixed_options": {
+    "--num_workers": "1",
+    "--clock_modeling": "ideal",
+    "--check_route": "full",
+    "--verify_file_digests": "off",
+    "--verify_route_file_switch_id": "on",
+    "--timing_report_npaths": "10",
+    "--max_router_iterations": "200",
+    "--routing_failure_predictor": "off",
+    "--router_max_convergence_count": "8",
+    "--router_reconvergence_cpd_threshold": "1.01"
+  },
+  "route_input_options": [
+    "--device",
+    "--route_chan_width",
+    "--seed",
+    "--read_rr_graph",
+    "--net_file",
+    "--place_file",
+    "--route_file",
+    "--sdc_file"
+  ],
+  "native_defaults": {
+    "merge_constant_generators": "on"
+  },
+  "execution_environment": {
+    "python_major_minor": [
+      3,
+      10
+    ],
+    "platform": "linux",
+    "machine": "x86_64",
+    "numpy": "2.2.6",
+    "lxml": "6.1.3"
+  },
+  "phase_binary_sha256": {
+    "resource": "cad1d5671ae5dbbe6c7fbdbf21243ed46f43a5d08dcd6b541d3f08b26b8c189a",
+    "owner": "14d842f9cc3b28e1d332c43cb201955e880ed6f17fa53d33f2cc2ba9b40a9655",
+    "timing_repair": "25f24fc2d606dc2d551c460f89b8cffbbcd6e7b7642c4078a199007bea3735c2",
+    "timing_observer": "d7b6bf37a37a2f81999b8a2a004e44a4577310e78d0f27413266fa42c07cd639"
+  },
+  "query_engine_sha256": {
+    "capacity": "5cac2598d7a6b796fdd0448810190fb340351b1e7b0fe97c441d2f2da62ec4dd",
+    "relaxed": "1215f1d28a9b52e6c6083d8afe66076465f73f1e4f6c8f319e094b94339dc3e0"
+  },
+  "query_validation_sha256": {
+    "capacity": "0d991a5a332a78aa1f8bff5768037b3e587d22465744e1484a24d5805bead821"
+  },
+  "mechanism_order": [
+    "Fresh route from declared physical inputs; initial failure has no legal root.",
+    "Current STA/crossing selector: complete slack-eligible sharing cuts, deterministic groups of up to8 distinct nets.",
+    "Native unrestricted or domain-first paired search; domain failure releases only affected network inside private transaction.",
+    "Complete-group physical/capacity/FULL/STA checks and fixed-root resource acceptance.",
+    "On resource-menu closure use capacity/slack owner selector, first3rank windows; unrestricted owner transactions in both arms; accepted owner commits reenter selection.",
+    "At resource menu closure apply endpoint-nonregressing wire terminal selection over actual same-flow observations.",
+    "Handoff FULL/STA then current critical/tied-path timing portfolio at fraction0.9, fixed absolute limits; final strict timing terminal."
+  ],
+  "acceptance": {
+    "resource": "Root CPD cap, hold nonregression;ceil(root_wire*1.001),root SB/CB; nonincreasing SB/CB with one strict gain.",
+    "timing": "Strict complete CPD improvement; wire cap from initial root, SB/CB caps from selected resource handoff, fixed throughout timing.",
+    "terminal": "Endpoint-nonregressing wire handoff followed by strict-timing terminal. Never imported historical candidates.",
+    "intermediate": "No per-module or per-connection CPD-improvement requirement."
+  },
+  "input_contract": "Explicit packed-netlist provenance and constant-net interpretation must agree across initial route and all inherited analysis/repair commands. Historical file/seed names do not establish independence.",
+  "scope": "Two-layer edge-encoded architectures; explicit matching physical files/phase binaries. No general CHANZ/multilayer or external application timing claim.",
+  "outcome_policy": "Retain invalid input/load failure separately from routing congestion, legal no-cut, no-gain, tradeoff, worse and verified complete outcomes.",
+  "cost": "Measured run-arm includes release admission plus original complete native command: indexes, route, resource/owner/timing search, rejection, STA, rollback and seals. Input provisioning and separate research verification are not spliced into algorithm time.",
+  "limits": "Original per-child1800s,64GiB memory,80GiB disk reserve remain. No whole-research date/call/matrix stopping condition.",
+  "confirmation_results_available": false,
+  "unverified_paths": [
+    "Automatic positive owner commit followed by full source reselection and complete timing in one fresh-route execution.",
+    "Positive full timing acceptance/rejection feedback in the relocated complete package.",
+    "Actual corrected clstm/robot-p1 input execution; existing queues remain separate development versions.",
+    "Independent paired confirmation and stable interleaved performance measurements."
+  ]
+}
