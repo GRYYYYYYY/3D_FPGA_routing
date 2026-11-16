@@ -1,0 +1,207 @@
+{
+  "passed": true,
+  "registered_roles": 4,
+  "verified_legal_roles": 2,
+  "outcomes": {
+    "attention_native": {
+      "status": "initial_route_failed",
+      "command_returncode": 1,
+      "complete_seconds": 794.6697756014764,
+      "measurement": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/attention_native/measurement/completion.json",
+      "completion": null,
+      "quality": null
+    },
+    "attention_domain": {
+      "status": "initial_route_failed",
+      "command_returncode": 1,
+      "complete_seconds": 792.6913333125412,
+      "measurement": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/attention_domain/measurement/completion.json",
+      "completion": null,
+      "quality": null
+    },
+    "robot_s23_SDC_native": {
+      "status": "complete_legal_verified",
+      "command_returncode": 0,
+      "complete_seconds": 497.99868397042155,
+      "measurement": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_native/measurement/completion.json",
+      "completion": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_native/completion.json",
+      "quality": {
+        "CPD_ns": 12.727250364719112,
+        "resources": {
+          "wirelength": 250411,
+          "SB_pairs": 2,
+          "CB_sources": 526
+        }
+      }
+    },
+    "robot_s23_SDC_domain": {
+      "status": "complete_legal_verified",
+      "command_returncode": 0,
+      "complete_seconds": 504.0948683768511,
+      "measurement": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_domain/measurement/completion.json",
+      "completion": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_domain/completion.json",
+      "quality": {
+        "CPD_ns": 12.727250364719112,
+        "resources": {
+          "wirelength": 250411,
+          "SB_pairs": 2,
+          "CB_sources": 526
+        }
+      }
+    }
+  },
+  "pairs": {
+    "attention": {
+      "complete_quality_comparison_available": false,
+      "outcomes": {
+        "attention_native": {
+          "status": "initial_route_failed",
+          "command_returncode": 1,
+          "complete_seconds": 794.6697756014764,
+          "measurement": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/attention_native/measurement/completion.json",
+          "completion": null,
+          "quality": null
+        },
+        "attention_domain": {
+          "status": "initial_route_failed",
+          "command_returncode": 1,
+          "complete_seconds": 792.6913333125412,
+          "measurement": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/attention_domain/measurement/completion.json",
+          "completion": null,
+          "quality": null
+        }
+      },
+      "reason": "Initial failure or incomplete execution/verification remains in the paired denominator; no quality or relative benefit inferred."
+    },
+    "robot_s23_SDC": {
+      "complete_quality_comparison_available": true,
+      "initial_full_vector_and_ordered_route_exact": true,
+      "input_is_known_historical": true,
+      "independent_frozen_confirmation": false,
+      "native": {
+        "CPD_ns": 12.727250364719112,
+        "resources": {
+          "wirelength": 250411,
+          "SB_pairs": 2,
+          "CB_sources": 526
+        },
+        "complete_wall_seconds": 497.99868397042155,
+        "sampled_tree_PSS_peak_kib": 2556935,
+        "missing_memory_observations": 5,
+        "owner_commits": 0,
+        "explicit_SDC_result": {
+          "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_50MHz.sdc",
+          "sha256": "c3e280896920baa8d7a7dd8a6b2d08482781def0d3497782c61b730c6d2411d1",
+          "clock_and_IO_spec": {
+            "clock": "clk",
+            "period_ns": 20,
+            "max_IO_delay_ns": 1,
+            "min_IO_delay_ns": 0,
+            "origin": "declared benchmark integration target, not external application requirement"
+          },
+          "observed_final_component_counts": {
+            "setup": {
+              "negative": 0,
+              "nonfinite_or_unconstrained": 0,
+              "components": 10972
+            },
+            "hold": {
+              "negative": 0,
+              "nonfinite_or_unconstrained": 0,
+              "components": 10972
+            }
+          },
+          "all_observed_components_finite_and_nonnegative": true,
+          "qualification": "Declared benchmark timing instance, not an externally supplied application requirement. Report actual native constraint echo and all observed components; no timing-closure assumption."
+        }
+      },
+      "domain": {
+        "CPD_ns": 12.727250364719112,
+        "resources": {
+          "wirelength": 250411,
+          "SB_pairs": 2,
+          "CB_sources": 526
+        },
+        "complete_wall_seconds": 504.0948683768511,
+        "sampled_tree_PSS_peak_kib": 2538290,
+        "missing_memory_observations": 2,
+        "owner_commits": 0,
+        "explicit_SDC_result": {
+          "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_50MHz.sdc",
+          "sha256": "c3e280896920baa8d7a7dd8a6b2d08482781def0d3497782c61b730c6d2411d1",
+          "clock_and_IO_spec": {
+            "clock": "clk",
+            "period_ns": 20,
+            "max_IO_delay_ns": 1,
+            "min_IO_delay_ns": 0,
+            "origin": "declared benchmark integration target, not external application requirement"
+          },
+          "observed_final_component_counts": {
+            "setup": {
+              "negative": 0,
+              "nonfinite_or_unconstrained": 0,
+              "components": 10972
+            },
+            "hold": {
+              "negative": 0,
+              "nonfinite_or_unconstrained": 0,
+              "components": 10972
+            }
+          },
+          "all_observed_components_finite_and_nonnegative": true,
+          "qualification": "Declared benchmark timing instance, not an externally supplied application requirement. Report actual native constraint echo and all observed components; no timing-closure assumption."
+        }
+      },
+      "final_endpoint_comparison": {
+        "compatible": true,
+        "cpd_before_s": 1.2727250364719112e-08,
+        "cpd_after_s": 1.2727250364719112e-08,
+        "cpd_strictly_better": false,
+        "cpd_nonworse": true,
+        "setup_improved": 0,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 10972,
+        "hold_components": 10972,
+        "changes": []
+      },
+      "domain_minus_native_resources": {
+        "wirelength": 0,
+        "SB_pairs": 0,
+        "CB_sources": 0
+      },
+      "domain_minus_native_CPD_ns": 0.0,
+      "descriptive_domain_minus_native_seconds": 6.096184406429529,
+      "descriptive_full_time_overhead_percent": 1.224136649885521,
+      "SB_reduction_percent": 0.0,
+      "total_SB_CB_reduction_percent": 0.0,
+      "interpretation": "Within-input matched complete outputs. Owner escalation unrestricted in both arms; any final difference is not isolated domain-only or release-only causation. Shared-host single timings are descriptive. Keep no improvement, regressions, zero commits and no cuts."
+    }
+  },
+  "native_calls_new": 0,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/compare_unified_input_integration_v1.py": "343fb6e9becb4a766e0304f7046c05421c3674760956b70280114ec0a35bd24c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/plan.json": "5d624f3a627990e5f673a7d4f86a7928eeacbf30906850dd5bbd5dca6aae6a3d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/queue/completion.json": "23ffdb7146d2643e7f6c1f8bf5c6f16ecc445fab099e7c1316db9a045854dffc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/queue/results.json": "4889bb62be650cf4c74c5e0e1618aa3a2848e41c4c3e1638af689a8e62fe3a1f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/configs/attention_native.json": "56a2d810dea0a453e00c5e754937b8ba235c041c6a9b2d7a23c3d6a33312ec44",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/configs/attention_domain.json": "268aed99f25fc705d88164fc518d34b4628e1086eb0acc1d13145af5c7213f29",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/configs/robot_s23_SDC_native.json": "6f59474365cc7ab299a04cb3f7419fa5e1ed413347d1ef94fbf41c731b465fce",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/configs/robot_s23_SDC_domain.json": "04f879994d51ad8c6310272dbf18753fe5dfe3243ca6d9935d04649761f2b4d9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_native/completion.json": "f709c0139b12b33fa8c4d6fa36efc234bd6f7d9b4e2f6b9354742db175deaf5e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_domain/completion.json": "16367ee0f0fa26b74d3e306830429bc5ef1f62cbcd4d15eed6cedab2dfd2a4ae",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_native/flow/resource_flow/initial/completion.json": "714550e57f919f02f3d283d05ab0ef88b730500a54355aca0888cdf46cef3140",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_native/flow/resource_flow/initial/endpoint_vector.json": "22f174cee27ecb32907cc3a80cb12b80d97c9406bcf8faa2099242f20341b02a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_native/flow/resource_flow/initial/runs/state/manifest.json": "3a7845a035a76663823ef8184fa1a3f5fcdf766cf0038e3ed696f5666c1544ff",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_domain/flow/resource_flow/initial/completion.json": "30a6c23c018958e6faeb47a8f1ed670627c11fe628392de2a6a56679d5a16691",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_domain/flow/resource_flow/initial/endpoint_vector.json": "22f174cee27ecb32907cc3a80cb12b80d97c9406bcf8faa2099242f20341b02a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_domain/flow/resource_flow/initial/runs/state/manifest.json": "5f31d6d7fc3c18e3d1fb42a9bf1dea9eddc5e1172a0e51a83cb4f21bc35d3365",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_native/flow/timing_initial/completion.json": "626ca212142da838a7cccc663b69f738b9855749564394ab197c4380be865bdb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_native/flow/timing_initial/endpoint_vector.json": "22f174cee27ecb32907cc3a80cb12b80d97c9406bcf8faa2099242f20341b02a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_native/flow/timing_initial/runs/state/manifest.json": "2c7efb9b3dc8cc4a5608637c644683bb728330b2ce5906f306338f8acb649383",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_domain/flow/timing_initial/completion.json": "ca5d297a3a61acb74a6fb6a9b3b73662180036599d7eb700d8afa2a06f68ddbc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_domain/flow/timing_initial/endpoint_vector.json": "22f174cee27ecb32907cc3a80cb12b80d97c9406bcf8faa2099242f20341b02a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/unified_input_integration_01/robot_s23_SDC_domain/flow/timing_initial/runs/state/manifest.json": "623626a8cb8362ac2750d920cc1dc4538aaa01c03e88c46a2b5ab2db3e85905b"
+  },
+  "qualification": "Own exact full-command quality/time/endpoint comparisons. No imported native result, no dropping failed input roles, no seed-based independent-start count, no universal full-method benefit or external application requirement inferred."
+}

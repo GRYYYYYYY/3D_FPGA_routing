@@ -1,0 +1,48 @@
+{
+  "status": "automatic_git_gc_termination_requested",
+  "observed_at": "2026-11-16T03:05:40.374371+00:00",
+  "processes": [
+    {
+      "pid": 306931,
+      "start_ticks": "1957105983",
+      "state": "S",
+      "command": "/usr/lib/git-core/git gc --auto --no-quiet ",
+      "cwd": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing",
+      "cpu_ticks": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "pid": 306932,
+      "start_ticks": "1957105983",
+      "state": "S",
+      "command": "/usr/lib/git-core/git repack -d -l --no-write-bitmap-index ",
+      "cwd": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing",
+      "cpu_ticks": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "pid": 306933,
+      "start_ticks": "1957105984",
+      "state": "D",
+      "command": "/usr/lib/git-core/git pack-objects --local --delta-base-offset .git/objects/pack/.tmp-306932-pack --keep-true-parents --honor-pack-keep --non-empty --all --reflog --indexed-objects --unpacked --incremental ",
+      "cwd": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing",
+      "cpu_ticks": [
+        "64",
+        "256"
+      ]
+    }
+  ],
+  "trigger": "Local git fetch of already-published commit automatically started background git gc; subsequent sync commands must use -c gc.auto=0.",
+  "active_experiment_status": {
+    "status": "running",
+    "case": "attention_native",
+    "pid": 150325,
+    "start_ticks": "1957062278"
+  },
+  "BNN_measurement_affected": false,
+  "qualification": "BNN complete measurement ended before this housekeeping. Preserve brief shared-host overlap for the active attention-native timing; do not interpret it as controlled/interleaved timing. No experiment or queue process signaled."
+}

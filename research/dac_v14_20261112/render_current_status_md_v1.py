@@ -53,6 +53,36 @@ def render(status,D):
             f"内存缺失观察{completed_terminal['missing_memory_observations']}次，无残留子进程。"
             "这是同一历史 BNN 物理输入上的完整配置，非独立输入，也非统一 dev03 确认。"
             "共同资源前缀等价、相对基线的完整端点变化及同口径费用差，仍以单独比较回执为准；不得由标量相同推断完整等价。")
+    qualified=status.get('qualified_terminal_comparison')
+    if qualified and qualified.get('passed') and qualified.get('quality_comparison_available'):
+        terminal_comparison_text='已完成，匹配共同资源前缀／最终完整端点／同口径 GNU-time'
+        terminal_result_text='比较已通过：共同资源前缀状态、请求和原生工作精确一致；相对旧终态少24 wire，setup2改善／0退化，CPD/SB/CB相同。GNU-time7351/7247 s，增加104 s，非加速；旧观察者/PSS缺口及并发限制保留。'
+        terminal_text=terminal_text.replace('共同资源前缀等价、相对基线的完整端点变化及同口径费用差，仍以单独比较回执为准；不得由标量相同推断完整等价。','相对自身初始根 setup16改善／17退化；相对旧终态2改善／0退化，两个比较口径分别保留。')
+    environment_text=''
+    if status.get('measurement_environment_notes'):
+        environment_text='[attention-native 测量环境记录](unified_input_integration_01/measurement_environment_note_01.json)：本地同步公开提交触发短暂 Git 自动打包，三个打包进程已核验终止，原实验进程保持不变。保留该实际共享主机重叠，不能称受控交错计时；此前已结束的 BNN 测量不受影响。后续 Git 同步关闭自动打包。'
+    input_outcome_text=''
+    input_outcome_overview='新登记跨输入配对尚无终结回执。'
+    input_outcomes=status.get('unified_input_actual_outcomes')
+    if input_outcomes:
+        input_outcome_overview=(f"新登记跨输入配对已终结{input_outcomes['terminal_roles']}/{input_outcomes['registered_roles']}臂，"
+            f"其中{input_outcomes['verified_legal_roles']}臂通过完整合法验证；失败记录同样保留。")
+        input_outcome_text=(f"[跨输入实际回执](unified_input_integration_01/queue/results.json)：登记的{input_outcomes['registered_roles']}个臂中，"
+            f"{input_outcomes['terminal_roles']}个已终结，{input_outcomes['verified_legal_roles']}个通过完整合法验证。")
+        for name,row in input_outcomes['results'].items():
+            input_outcome_text+=f" `{name}`：{row['status']}，完整命令 {row['complete_seconds']:.2f} s。"
+        input_outcome_text+='初始路由失败的质量为 None；迭代中的 CPD／线长不作合法质量点。单臂结果不支持配对机制归因，两个臂不算两个独立输入。该批次保持较早登记开发版本，不冒充 dev03 确认。'
+    if status.get('attention_initial_failure_pair'):
+        input_outcome_text+=' [attention 匹配失败审计](attention_initial_failure_pair_01/completion.json)通过：两臂实际命令除私有路径外相同，已记录物理输入摘要匹配，均执行200轮后剩231个过用节点，未进入资源／时序修复。0次新原生调用；记录摘要与当前文件身份核对不冒充新的大输入重哈希。缺少合法起点属于适用范围证据，不是三种修复机制的收益比较。'
+    completed_pairs=status.get('unified_input_complete_comparison')
+    if completed_pairs:
+        r=completed_pairs['pairs']['robot_s23_SDC']
+        input_outcome_text+=(f" [完整配对比较](unified_input_integration_01/comparison.json)通过：robot 两臂起始路由体及完整端点一致，终态端点也一致；CPD {r['native']['CPD_ns']:.9f} ns，250411 wire/2 SB/526 CB，完整费用 {r['native']['complete_wall_seconds']:.2f}/{r['domain']['complete_wall_seconds']:.2f} s。实际布局不同于旧 robot p0；声明的20 ns/IO 1 ns SDC不是外部应用要求。两臂均无资源切口或 owner 提交，三项时序候选均拒绝；较快候选超出固定资源预算。不能据此归因任一机制收益。")
+    paper_update_text=''
+    if status.get('complete_input_paper_update'):
+        paper_update_text='当前版本已更新为[完整输入与比较证据版08](qualified_complete_paper_binding_08.json)：27个完整尝试条目（含4个初始失败）及2个局部组件条目，整合 BNN 完整终结选点费用及相对基线比较、robot-SDC 无收益及 attention 失败；逐项绑定自身初态端点和同次完整费用。下述22行描述为前版06范围，历史档案计数不变。'
+    if status.get('portable_whole_method_actual',{}).get('passed'):
+        input_outcome_text+=' 项目外观测、已知 R1 非空 owner 事务和 tiny 整方法实际检查均已通过；完整 tiny 耗时101.43 s，零提交，不算新独立样本或正向机制整合收益。clstm 已自动接续；确认冻结及正向整合路径仍待验证。'
     return f'''# 当前研究状态（{status['observed_at']}）
 
 Goal active；公开证据基点 `9734eee`，最新增量 `{status['latest_incremental_publication']['commit'][:7]}`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[工程缺失臂登记](../../docs/GitHub_domain_engineering_registration_20261116.md) · [跨输入登记](../../docs/GitHub_robot_p1_registration_20261116.md) · [最近完成结果](../../docs/GitHub_native_ablation_progress_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
@@ -61,7 +91,7 @@ Goal active；公开证据基点 `9734eee`，最新增量 `{status['latest_incre
 
 最新机制证据：[robot 精确域/容量审计](robot_release_capacity_cut_01/completion.json)表明两个实际释放网络的原域禁止返回源层，而同层出口被事务外 owner 占满。释放域不释放 owner。[同源无释放原生消融](robot_domain_release_ablation_01/verification.json)现已失败并精确回滚：23连接请求在首连接的9次尝试后失败，源字节及完整端点向量恢复；29.24 s是导入事务成本，没有候选质量。[18 次残余容量路径检查](robot_owner_local_reachability_01/completion.json)中，两次目标单独剪除均无同层路径；16次释放 owner 分支后均可达，无超时。这些路径不包含 owner 重接，不能算16次成功修复。[已登记 native 范围对照](robot_owner_scope_pair_01/plan.json)固定原通用选组器首选：目标3连接与目标＋owner4连接，两臂均 unrestricted；只改变协调范围，排在 clstm 之后，尚未执行。
 
-跨输入：[结构筛选](structural_input_screen_01/completion.json)保留五个合法历史根和 attention 初始失败。clstm/reduction 有6/268个共享候选切口、均无当前支持的完全阻塞源出口证书；robot 三个实际物理起点有2/0/30个证书，p1同时改变 packing，非纯布局因果对照。新增完整方法结果仍为0。[clstm 固定 dev03 两臂](portable_clstm_pair_01/plan.json)在完整方法检查后从物理输入新路由；实际起点必须匹配，先决检查失败则保持未执行。[固定 dev03 robot p1 配对](portable_robot_p1_pair_01/plan.json)已排在原 owner 范围对照之后；[实物输入核对](portable_robot_p1_pair_01/physical_identity_check.json)确认其 packing 和2468块的归一化坐标均不同于现代 p0，电路/架构相同。它是已知历史物理输入上的完整方法开发验证，尚无新结果，非未见测试集，也不作纯布局因果归因。原 [attention 与 robot s23 SDC 配对](unified_input_integration_01/plan.json)保留先前登记版本；同树不同 seed 不算独立输入。
+跨输入：[结构筛选](structural_input_screen_01/completion.json)保留五个合法历史根和 attention 初始失败。clstm/reduction 有6/268个共享候选切口、均无当前支持的完全阻塞源出口证书；robot 三个实际物理起点有2/0/30个证书，p1同时改变 packing，非纯布局因果对照。{input_outcome_overview}[clstm 固定 dev03 两臂](portable_clstm_pair_01/plan.json)在完整方法检查后从物理输入新路由；实际起点必须匹配，先决检查失败则保持未执行。[固定 dev03 robot p1 配对](portable_robot_p1_pair_01/plan.json)已排在原 owner 范围对照之后；[实物输入核对](portable_robot_p1_pair_01/physical_identity_check.json)确认其 packing 和2468块的归一化坐标均不同于现代 p0，电路/架构相同。它是已知历史物理输入上的完整方法开发验证，尚无新结果，非未见测试集，也不作纯布局因果归因。原 [attention 与 robot s23 SDC 配对](unified_input_integration_01/plan.json)保留先前登记版本；同树不同 seed 不算独立输入。
 
 | 已核验完整 BNN 配置 | CPD/ns | wire / SB / CB | 完整秒 |
 |---|---:|---:|---:|
@@ -80,7 +110,13 @@ Goal active；公开证据基点 `9734eee`，最新增量 `{status['latest_incre
 |---|---|---:|
 {chr(10).join(rows)}
 
-BNN 分组、固定组合 LOAD 和 robot no-release 已终结；{terminal_queue_text} attention/robot-SDC → 独立 native 观测/事务/完整方法检查 → clstm → robot owner 范围对照 → 固定 dev03 robot p1 完整配对 → 缺失的 domain 工程臂。PID 必须与 start ticks、终结回执交叉核对；正常 pool 轮换不触发恢复。各批次原规则及已完成结果保持不变。
+BNN 分组、固定组合 LOAD 和 robot no-release 已终结；{terminal_queue_text} attention/robot-SDC → 独立 native 观测/事务/完整方法检查 → clstm → robot owner 范围对照 → 固定 dev03 robot p1 完整配对 → 缺失的 domain 工程臂 → reduction 固定 dev03 配对。PID 必须与 start ticks、终结回执交叉核对；正常 pool 轮换不触发恢复。各批次原规则及已完成结果保持不变。
+
+{environment_text}
+
+{input_outcome_text}
+
+[追加 reduction_layer 配对](portable_reduction_pair_01/plan.json)已登记并由单一 owner 等待现有 domain 工程臂终结，同时要求独立整方法检查通过。该已知历史 n125 Hybrid-O 输入有268个共享范围、62个相关网络、0个支持的 owner 切口；当前 STA 资格与新路由机会尚未知。选择依据是已闭合 attention 初始失败及 robot-SDC 当前无资源候选，检验跨电路共享机会，而非继续调 BNN 线长。两臂仍用同一 dev03、seed21、count8/1.01，只改域/释放开关，不指定 net/RR 目标；不是未见输入、确认冻结或新架构族结论。[配置与实现核对](portable_reduction_pair_01/implementation_review.json)通过，0次原生调用。约5.40 GB物理输入的复制、完整摘要验证和独立运行时准入延后到串行槽；不能把登记预检当作实际准入已通过。
 
 [完整 terminal-wire 只读比较](BNN_terminal_wire_qualified_comparison_02/plan.json)已挂接原恢复队列，{terminal_comparison_text}。旧 v1 依赖缺失的观察者完成回执，新入口使用已核验的旧质量回执并保留缺口；比较共同资源前缀、完整端点和 GNU-time 同口径费用，不补造旧 PSS／观察者时间。[15项反例检查](BNN_terminal_wire_qualified_comparison_validation_02.json)通过，0次原生调用；{terminal_result_text}{terminal_text}
 
@@ -88,7 +124,9 @@ BNN 分组、固定组合 LOAD 和 robot no-release 已终结；{terminal_queue_
 
 [固定三网络组合](BNN_wire_timing_native_validation_01/verification.json)现已通过原生 FULL/STA、独立物理审计及固定规则：2059607 wire/82 SB/5062 CB，13.228145690 ns，相对源少24 wire，setup 2改善/0退化，无新增 hold 违例；34个延迟预测全部精确匹配。217.95 s是单个导入候选验证费用，不附加旧完整时间，也不作为独立输入。
 
-[当前六页正文]({paper})沿问题—机制—完整结果—取舍—消融—开销与范围组织，统一主表保留22个完整流程条目，新增2个明确标注范围的组合／消融条目；robot 无释放失败、精确回滚和合法线长组合已整合。[证据绑定](native_ablation_paper_binding_06.json)核验页数、主表与视觉；[档案](multiobjective_closed_stream_quality_01/verification.json)为671条合法观测、34个完整质量配置，其中33个完整观察者测量、1个限定 GNU-time，均不等于独立样本数。新增五项直接相关工作，明确已有增量路由／多次收敛与本研究贡献的关系，区分历史拥塞价格、导入式修复和未验证 CHANZ；共9条参考文献。新增组件不计入该历史档案的671条记录；历史局部路径、分组和前缀轨迹已移入补充材料。
+{paper_update_text}
+
+[当前六页正文]({paper})沿问题—机制—完整结果—取舍—消融—开销与范围组织。前版06主表保留22个完整流程条目，新增2个明确标注范围的组合／消融条目；robot 无释放失败、精确回滚和合法线长组合已整合。[前版证据绑定](native_ablation_paper_binding_06.json)核验页数、主表与视觉；[历史档案](multiobjective_closed_stream_quality_01/verification.json)为671条合法观测、34个完整质量配置，其中33个完整观察者测量、1个限定 GNU-time，均不等于独立样本数。新增五项直接相关工作，明确已有增量路由／多次收敛与本研究贡献的关系，区分历史拥塞价格、导入式修复和未验证 CHANZ；共9条参考文献。新增条目不计入该历史档案的671条记录；历史局部路径、分组和前缀轨迹已移入补充材料。
 
 接续：以真实终结结果决定下一项干预，优先完成确认版本的实际运行、跨输入匹配和三机制归因。普通失败/退化用于调整方向；未执行计划、结构路径和局部时间不替代完整可复现收益。
 '''
