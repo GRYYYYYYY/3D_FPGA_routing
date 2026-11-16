@@ -1,5 +1,31 @@
 # H3D-inspired native 3D FPGA routing
 
+## Current research snapshot — 2026-11-16
+
+Research remains active, with public evidence base `9734eee`. Use the [current status and evidence index](research/dac_v14_20261112/CURRENT_STATUS.md) for captured process identities and receipts. Completed batches are reused; local updates and original experiment rules are preserved.
+
+The unified method selects groups using current STA, applies retained-crossing sharing domains, releases a failed network's domain, and expands stalled scopes using capacity-certified owners and current timing margins. It accepts complete legal transactions under fixed root envelopes, then performs independent terminal selection and current-STA timing repair. Intermediate states need not each improve CPD. The [dev03 package](research/dac_v14_20261112/standalone_unified_method_component_03.json) is fixed for its registered development runs; actual complete execution and frozen confirmation remain pending.
+
+[Current six-page paper](research/dac_v14_20261112/paper_snapshots/current_native_ablation_20261116/build/current_repair_main.pdf) · [Source and evidence binding](research/dac_v14_20261112/native_ablation_paper_binding_06.json) · [Completed native composition and release ablation](docs/GitHub_native_ablation_progress_20261116.md). The main table separates 22 complete-flow rows from two scoped component rows; local trajectories and recovery audits stay in supplementary material.
+
+| Original complete BNN configuration | CPD (ns) | Wire | SB | CB | Complete time (s) |
+|---|---:|---:|---:|---:|---:|
+| Native | 13.228145690 | 2059631 | 82 | 5062 | 7933.25 |
+| Domain-first | 13.228145690 | 2061417 | 43 | 5060 | 9754.31 |
+
+These matched configurations trade 1786 wire and approximately 22.95% more complete time for 39 SB and two CB. SB alone falls 47.56%; total SB+CB falls approximately 0.797%. Domain-first improves 534 setup components and regresses 803, with no increased hold violation. These are occupancy reductions on a fixed architecture, not measured silicon-area or power savings. [Full paired evidence](research/dac_v14_20261112/complete_resource_timing_full_flow_01/comparison.json).
+
+Mechanism evidence remains scoped: a fixed three-net BNN composition saves 24 wire with unchanged CPD and two improved setup components; disabling only failure release in robot fails and restores the source exactly. R1 owner repair produces the same result in native and domain arms, supporting expanded coordination scope rather than an additional domain benefit. Recorded transfer outcomes retain conv-layer initial routing failures, SPMV/CB-only no-cut cases, softmax equal quality, SB-only strict-mode no gain, and robot's wire/CB tradeoff.
+
+At the captured status, the complete terminal-wire BNN flow is running. The existing queue continues through attention/robot-SDC pairs, portable native observation/transaction/whole-method checks, clstm, robot owner-scope ablation, robot p1, and the missing domain engineering arm. See the fixed [clstm plan](research/dac_v14_20261112/portable_clstm_pair_01/plan.json), [robot p1 physical-input evidence](docs/GitHub_robot_p1_registration_20261116.md), and [owner-scope contrast](docs/GitHub_robot_owner_scope_progress_20261116.md). Robot p1 has different actual packing and coordinates from p0; it is a known historical input, not an unseen holdout. These registered complete-method pairs have no new independent outcome yet.
+
+The [domain engineering arm](docs/GitHub_domain_engineering_registration_20261116.md) applies the completed native single-pass/cache/stream implementation with the original domain rules. The earlier native observation has qualified GNU-time only, with observer loss, a full PSS gap and brief overlap. The [terminal-wire completion comparator](docs/GitHub_terminal_comparison_progress_20261116.md) preserves these limitations and compares matching GNU-time scopes after actual completion. Neither pending work revises the original 22.95% overhead; stable same-environment interleaved timing remains pending.
+
+<details>
+<summary>Historical progress snapshots and earlier paper versions</summary>
+
+The following entries retain their original publication-time wording. Their running/pending labels are historical; use the current status link above for continuation.
+
 ## Current snapshot — 2026-11-15 (research active)
 
 [Current six-page manuscript and native ablations](docs/GitHub_native_ablation_progress_20261116.md): the fixed BNN three-net composition passes native FULL/STA and independent physical checks; robot no-release fails with exact rollback. The unified table retains 22 complete-flow rows and adds two explicitly scoped component rows, without attaching old whole-flow costs. [Current PDF](research/dac_v14_20261112/paper_snapshots/current_native_ablation_20261116/build/current_repair_main.pdf) · [Evidence binding](research/dac_v14_20261112/native_ablation_paper_binding_06.json). Complete terminal-wire BNN is running; full frozen-controller confirmation remains pending. Its [qualified completion comparison](docs/GitHub_terminal_comparison_progress_20261116.md) is registered to preserve the old observer loss and compare GNU-time on matching scopes.
@@ -26,7 +52,9 @@ Latest continuation: [portable selectors, completed grouping controls and live q
 
 The 2026-11-09 section below is historical.
 
-## Current snapshot — 2026-11-09 (experiments in progress)
+</details>
+
+## Historical snapshot — 2026-11-09
 
 This repository preserves the current research code, source patches, experiment
 protocols, selected evidence and handoff documents. The registered experiment
