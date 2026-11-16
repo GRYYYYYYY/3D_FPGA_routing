@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "source_state": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/initial",
+  "same_actual_source": true,
+  "root_resources": {
+    "wirelength": 251161,
+    "SB_pairs": 10,
+    "CB_sources": 653
+  },
+  "candidate_resources": {
+    "sharing": {
+      "wirelength": 251136,
+      "SB_pairs": 9,
+      "CB_sources": 652
+    },
+    "owner": {
+      "wirelength": 251185,
+      "SB_pairs": 10,
+      "CB_sources": 654
+    }
+  },
+  "root_to_candidate_endpoints": {
+    "sharing": {
+      "compatible": true,
+      "cpd_before_s": 1.3354624073258492e-08,
+      "cpd_after_s": 1.3354624073258492e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 209,
+      "setup_regressed": 32,
+      "hold_violation_regressions": 0,
+      "setup_components": 10972,
+      "hold_components": 10972
+    },
+    "owner": {
+      "compatible": true,
+      "cpd_before_s": 1.3354624073258492e-08,
+      "cpd_after_s": 1.3354624073258492e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 31,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 10972,
+      "hold_components": 10972
+    }
+  },
+  "requested_connections": {
+    "sharing": 23,
+    "owner": 4
+  },
+  "shared_requested_nets": [
+    3454
+  ],
+  "shared_requested_connections": [
+    [
+      3454,
+      1
+    ],
+    [
+      3454,
+      3
+    ]
+  ],
+  "union_requested_connections": 25,
+  "sharing_setup_regression_components": 32,
+  "owner_setup_improvement_components": 31,
+  "regressions_with_same_endpoint_owner_improvement": 0,
+  "scalar_addition_validated": false,
+  "whole_combination_capacity_checked": false,
+  "whole_combination_STA_checked": false,
+  "native_calls_new": 0,
+  "new_independent_inputs": 0,
+  "decision": "Do not splice these two accepted/evaluated routes or sum their scalar deltas. Shared target network has different cut boundaries; reconstruct a union request and recompute native legality/STA to test any combined tradeoff. Such development must be separate from frozen CP1.",
+  "qualification": "Both endpoint comparisons use the exact same initial root, unlike final N/D or target-only-relative comparisons. Endpoint sets expose direct overlap only; absence of overlap does not prove timing independence. Scope overlap rules out naive independent-tree composition, not existence of a legal joint candidate. No new physical benefit or formal infeasibility claim.",
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/analyze_robot_mechanism_composition_01.py": "15a16ad17176a5cd0da5c128769629bdcb6a4e5be5837e19c9f83b7cdaf791d9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/endpoint_timing_policy_streaming_v2.py": "aac1214c369123f831f702a45aefa99ed8025bc40e9254d1fd32bf34562fcba7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/initial/completion.json": "b8fd94fa0254858db4fd746787f61a618b2506095f9c986865eba0b4fb917c03",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/initial/endpoint_vector.json": "c212a1050c64ad0494639a2a1c7fdf6294d39d9f4b41430c3ec17a7bb251c376",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/repair/round_000/candidate_00/registration.json": "ba2f40f178d30a0e1a0b087675f82aadb8d269131e2a993a93de0cc146fac788",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/repair/round_000/candidate_00/progress.json": "dcab08564ff6fe7c8a58b676c582f64439180991a971b56e0c194c4693f22581",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/registration.json": "07860787f0598c25d2317dba065818f08efe93cf5c08eebb6ad4c26d54a3cf4b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/progress.json": "b7da9389aaa83a2b1b11cb25bb60419e02004ea40e7df283da749f157fbc7d5f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/verification.json": "8cd3d0fbc001c909d04b66161433e7a1a8550dbd24a8f31730cd4ef9b658e2e8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_domain_first_scope_analysis_02/completion.json": "9515f238dc4611d7b099405e7948c015f9cd86b2e8b376b9f779b405836f6799",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/repair/round_000/candidate_00/reuse_on_evaluation/completion.json": "66cbe5691e01367017636c0d018cbc9fa12ffa50577a3f433e678861146a5c94",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/repair/round_000/candidate_00/reuse_on_evaluation/endpoint_vector.json": "5ebf88952c2209ca6a475308aac1a0a3a9564626371d2f9b14c50608c9449d0f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/repair/round_000/candidate_00/reuse_on_evaluation/runs/state/independent_audit.json": "f269f8c0c1331b16b7443ea4cc4a402dd3cf05f4d7769771f85075f253779ee9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_evaluation/completion.json": "159ad5a1a4386d9ddee67e814a03f82a7b342ad1cd0ad5ba2e4f0d54dc2bcb0c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_evaluation/endpoint_vector.json": "82c8359e8b881ed4e36f111ab5f9e8ee77308b2956fdecefd94752cf1789d135",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/target_plus_owner_evaluation/runs/state/independent_audit.json": "4913fe8ae513a8a3e0c19ddfb96d1d1e1e70c68ce366f57e5eee063bffbdc722",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/initial/runs/state/independent_audit.json": "f62b76ff6e79bb30364cb21ac01e04604bd91fd1cc8c72bb70bb44b639e320a4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/initial/runs/state/manifest.json": "01f94adf6c34803a1aaf2c1f63f4b72f7841b66ccc67198ef16eacda3f314f5a"
+  },
+  "endpoint_artifact_sha256": "7f0255426f9b2c4741e36e681687702f87c59ea768e6278dcca4fcfa70b44d2f"
+}

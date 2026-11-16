@@ -27,6 +27,8 @@ The [domain engineering arm](docs/GitHub_domain_engineering_registration_2026111
 
 [First prospective CP1 cross-circuit cohort](research/dac_v14_20261112/cp1_cross_circuit_cohort_01/plan.json): conv_layer_hls and tpu_like.small.ws, two different known circuits and four matched arms, registered before CP1 outcomes. Both historical success and failure inputs are retained. Actual frozen admission checks pass; large physical provisioning and native runs wait behind corrected robot p1 under the shared serial lock. Registration adds no completed independent result and changes no existing batch. [Registration and live-owner evidence](docs/GitHub_CP1_cohort_progress_20261116.md).
 
+[Robot composition screen](docs/GitHub_robot_composition_screen_20261116.md): same-root sharing and owner candidates overlap two requested connections; sharing's32 regressed setup components do not overlap owner's31 improved components. Existing scalar gains cannot be added into a claimed combined route. A union request needs fresh capacity/FULL/STA validation; no new native result or CP1 rule change.
+
 <details>
 <summary>Historical progress snapshots and earlier paper versions</summary>
 

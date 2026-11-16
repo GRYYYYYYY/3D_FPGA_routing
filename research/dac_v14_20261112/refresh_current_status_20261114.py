@@ -134,7 +134,8 @@ status['outstanding']=[
 status['standalone_runtime_component']=read(D/'standalone_native_runtime_artifact_01/completion.json')
 status['standalone_runtime_component']['physical_validation']='standalone_physical_audit_validation_01/completion.json'
 status['standalone_runtime_component']['execution_validation']='standalone_native_runtime_validation_01/completion.json'
-publication=D.parents[1]/'docs/github_cp1_cohort_publication_receipt_20261116.json'
+publication=D.parents[1]/'docs/github_robot_composition_publication_receipt_20261116.json'
+if not publication.exists(): publication=D.parents[1]/'docs/github_cp1_cohort_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_cp1_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_input_contract_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_complete_inputs_publication_receipt_20261116.json'
@@ -342,6 +343,10 @@ if (D/'cp1_cross_circuit_cohort_01/launch.json').exists():
     status['cp1_prospective_cohort']=dict(plan='cp1_cross_circuit_cohort_01/plan.json',launch='cp1_cross_circuit_cohort_01/launch.json',release_manifest_sha256=cohort['release_manifest_sha256'],registered_inputs=2,registered_roles=4,inputs=[x['id'] for x in cohort['inputs']],terminal=(D/'cp1_cross_circuit_cohort_01/comparison.json').exists(),qualification='New known historical conv_layer_hls and tpu_like.small.ws physical inputs; CP1 fixed before outcomes. Different circuits, not route seeds. No new results until actual completion.')
     status['evidence']['cp1_prospective_cohort']='cp1_cross_circuit_cohort_01/plan.json'
     status['outstanding'].insert(1,'CP1 first prospective cohort conv_layer_hls/tpu_like.small.ws has4roles, single owner after corrected robot-p1. Keep historical success/failure inputs; full3.32GB physical provisioning waits for serial slot; actual native compatibility/outcomes unknown. No independent result claimed at registration.')
+if (D/'robot_mechanism_composition_screen_01/completion.json').exists():
+    screen=read(D/'robot_mechanism_composition_screen_01/completion.json')
+    status['robot_mechanism_composition_screen']={k:v for k,v in screen.items() if k not in ['source_sha256','root_to_candidate_endpoints']}
+    status['evidence']['robot_mechanism_composition_screen']='robot_mechanism_composition_screen_01/completion.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
