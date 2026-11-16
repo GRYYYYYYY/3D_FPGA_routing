@@ -87,6 +87,8 @@ def render(status,D):
         paper_update_text+=' [CP1 首批跨电路确认](cp1_cross_circuit_cohort_01/plan.json)已登记conv_layer_hls和tpu_like.small.ws两输入四臂，单一owner追加在修正robot-p1之后。实际固定入口检查通过；3.32GB物理输入准入待串行槽。历史成功/失败输入同时保留，当前没有新增确认结果；不称未见测试集，不改变正文已证实结论。'
     if status.get('robot_mechanism_composition_screen'):
         paper_update_text+=' [robot 联合机制预筛](robot_mechanism_composition_screen_01/completion.json)：共享与owner候选来自同一根，却重叠同一网络的两连接；共享32个退化端点与owner31个改善端点无交集。不能拼接树或相加标量来宣称组合收益；需要重新构造25连接联合请求并验证完整容量/STA。0次新native调用，CP1不变。'
+    if status.get('robot_union_mechanism_plan'):
+        paper_update_text+=' [25连接联合机制实验](robot_union_mechanism_01/plan.json)现已登记并排在CP1确认之后：相同联合请求下native、domain-no-release、domain-release三臂；owner网络均不限域。八项开发检查通过，尚无新原生结果，不改CP1。'
     if status.get('portable_whole_method_actual',{}).get('passed'):
         input_outcome_text+=' 项目外观测、已知 R1 非空 owner 事务和 tiny 整方法实际检查均已通过；完整 tiny 耗时101.43 s，零提交，不算新独立样本或正向机制整合收益。后续队列按实际回执接续；正向整合路径和独立确认结果仍待验证。'
     if status.get('clstm_input_compatibility_failure'):

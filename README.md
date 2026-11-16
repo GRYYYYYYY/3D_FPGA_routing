@@ -29,6 +29,8 @@ The [domain engineering arm](docs/GitHub_domain_engineering_registration_2026111
 
 [Robot composition screen](docs/GitHub_robot_composition_screen_20261116.md): same-root sharing and owner candidates overlap two requested connections; sharing's32 regressed setup components do not overlap owner's31 improved components. Existing scalar gains cannot be added into a claimed combined route. A union request needs fresh capacity/FULL/STA validation; no new native result or CP1 rule change.
 
+[Executable robot union experiment](docs/GitHub_robot_union_registration_20261116.md): three matched treatments on the25-connection union isolate domain and failure-release effects inside a fixed coordination scope. Eight development checks pass; the single owner waits after the CP1 cross-circuit cohort. No new native outcome or change to frozen CP1.
+
 <details>
 <summary>Historical progress snapshots and earlier paper versions</summary>
 

@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "actual_same_source_union",
+      "passed": true
+    },
+    {
+      "name": "changed_source",
+      "passed": true
+    },
+    {
+      "name": "changed_weight",
+      "passed": true
+    },
+    {
+      "name": "changed_budget",
+      "passed": true
+    },
+    {
+      "name": "actual_release_trace",
+      "passed": true,
+      "actual_returncode": 0,
+      "expected_success": true
+    },
+    {
+      "name": "release_disabled_on_actual_releases",
+      "passed": true,
+      "actual_returncode": 1,
+      "expected_success": false
+    },
+    {
+      "name": "trace_contains_undeclared_domain_net",
+      "passed": true,
+      "actual_returncode": 1,
+      "expected_success": false
+    },
+    {
+      "name": "native_option_and_new_dispatch_present",
+      "passed": true,
+      "qualification": "Source capability/dispatch check, not new native execution."
+    }
+  ],
+  "union_connections": 25,
+  "union_nets": 5,
+  "restricted_nets": [
+    3140,
+    3438,
+    8785
+  ],
+  "new_native_calls": 0,
+  "existing_receipts_unchanged": true,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/validate_robot_union_mechanism_01.py": "bed6f6cac1d9dfa21194d035333c79459dd846be8364847d59b9f60f62a4158a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/compose_current_scope_union_v1.py": "e6b3cdf94bd7e8f37d3e758129d4926232eb504e04c899ef9f95bc3025e5f394",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_selected_retained_domain_v1.py": "98933473c43d0fe8884261bf0a51d4992fa344f96c852fe54e2d3b874c376155",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_joint_crossing_source_transactions_v3.py": "e15086aa7b53bb9e3c7d54beb821920c90c4ec5d6a17d640e6faee933c6335db",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_joint_crossing_source_transactions_v2.py": "5d4cf7231dcc1b6b7aaf905ce474f58b962041d1d45f0f9f137bae026c7a1fe2",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/crossing_source_stage_01/h3d_joint_native_repair.h": "82266108b3aaaad07197feb33247915c1475049927e343a8f11d17e976005997",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/repair/round_000/candidate_00/registration.json": "ba2f40f178d30a0e1a0b087675f82aadb8d269131e2a993a93de0cc146fac788",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_domain/flow/repair/round_000/candidate_00/reuse_on_domain_audit.json": "dfe3955aa189451bfef61fa339196ab48884d2ccee29f94fde18f9747d613e7b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_owner_scope_pair_01/transaction/registration.json": "07860787f0598c25d2317dba065818f08efe93cf5c08eebb6ad4c26d54a3cf4b"
+  },
+  "qualification": "Actual prior released-domain trace passes new auditor; altered release policy and undeclared domain membership reject. New partial-domain combined native outcomes remain unexecuted."
+}
