@@ -2,7 +2,9 @@
 
 ## Current research snapshot — 2026-11-16
 
-Research remains active; public evidence base `9734eee`, subsequent `279bdb4` and local development are preserved. [Current status](research/dac_v14_20261112/CURRENT_STATUS.md) · [Closed confirmation, mechanism attribution and running work](docs/GitHub_cohort_mechanism_20261116.md) · [Current six-page paper](research/dac_v14_20261112/paper_snapshots/current_input_seeds_20261116/build/current_repair_main.pdf) · [Paper evidence binding](research/dac_v14_20261112/input_seed_paper_binding_17.json).
+Research remains active; public evidence base `9734eee`, subsequent `279bdb4` and local development are preserved. [Current status](research/dac_v14_20261112/CURRENT_STATUS.md) · [Closed confirmation, mechanism attribution and running work](docs/GitHub_cohort_mechanism_20261116.md) · [Current six-page paper](research/dac_v14_20261112/paper_snapshots/current_sharing_prior_art_20261116/build/current_repair_main.pdf) · [Paper evidence binding](research/dac_v14_20261112/sharing_prior_art_paper_binding_18.json).
+
+[Prior ingredients and contribution scope](docs/GitHub_sharing_prior_art_20261116.md): the literature statement and supplementary attribution map distinguish established sharing/timing-repair primitives from the actual local domain, release and coordination controls. Six pages,43quantitative rows and9references remain; no new external-router baseline, independent input, cost ratio or benefit claim.
 
 [Actual command seed correction](docs/GitHub_input_seed_provenance_20261116.md): CP1r2 conv_hls/TPU use router seed21; Robot's upstream s23 placement uses router seed11. Eight original command manifests are bound in the supplement. All43quantitative rows and existing claim limits remain unchanged; this is no new independent input or benefit result.
 

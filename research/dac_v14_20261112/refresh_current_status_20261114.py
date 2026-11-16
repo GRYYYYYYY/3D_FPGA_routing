@@ -191,6 +191,8 @@ seed_publication=D.parents[1]/'docs/github_input_seed_publication_receipt_202611
 if seed_publication.exists():publication=seed_publication
 domain_timing_publication=D.parents[1]/'docs/github_BNN_timing03_domain0_publication_receipt_20261116.json'
 if domain_timing_publication.exists():publication=domain_timing_publication
+sharing_position_publication=D.parents[1]/'docs/github_sharing_prior_art_publication_receipt_20261116.json'
+if sharing_position_publication.exists():publication=sharing_position_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -655,6 +657,10 @@ if (D/'BNN_timing03_domain0_receipt_01/completion.json').exists():
     status['BNN_timing03_first_complete_domain']['scope']='Historical second-arm snapshot; original full verifier passed, current owner table is authoritative for active case. Four-role equivalence/matching and descriptive paired costs remain pending.'
     status['evidence']['BNN_timing03_first_complete_domain']='BNN_timing03_domain0_receipt_01/completion.json'
     status['outstanding'].append('BNN03 domain_0 independently verified:13.228145690ns,2061417wire/43SB/5060CB,9146.351492s,PSS11.063066GiB,28missing samples;174measured identities rechecked dead. Original queue advanced to domain_1. Two of four known-input measurement roles complete; no new independent input, CP1r3result, optimized paired ratio or statistical speedup. Reuse original verifier. Exact same-role trajectory/request/native-work/sixgraph and full own-root/paired endpoint comparisons remain original four-role finish gates; original22.95percent overhead and paper17 claims remain unchanged.')
+if (D/'sharing_prior_art_paper_binding_18.json').exists():
+    paper=read(D/'sharing_prior_art_paper_binding_18.json');status['paper_pdf']=paper['pdf'];status['paper_pages']=6
+    status['evidence'].update(current_paper='sharing_prior_art_paper_binding_18.json',sharing_prior_art='sharing_prior_art_paper_evidence_18/sources.json',contribution_and_attribution_map='sharing_prior_art_paper_evidence_18/contribution_comparison.md')
+    status['paper_sharing_prior_art_scope']=dict(pages=6,quantitative_rows_unchanged=43,references_unchanged=9,new_independent_inputs=0,new_native_calls=0,external_router_reproduced=False,cross_paper_numeric_rank=False,new_benefit_claims=0)
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

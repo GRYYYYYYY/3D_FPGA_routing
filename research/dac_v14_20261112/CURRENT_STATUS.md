@@ -1,6 +1,6 @@
 # 当前研究状态
 
-观察时间：2026-11-16T16:48:40.784204+00:00。Goal active；公开证据基点9734eee，原开发状态、冻结版本与失败回执保留。
+观察时间：2026-11-16T16:57:57.190898+00:00。Goal active；公开证据基点9734eee，原开发状态、冻结版本与失败回执保留。
 
 统一方法：按当前STA、跨层冗余与容量阻塞选完整连接组；在私有树上执行共享域、按网失败释放及owner协调；经物理/容量/FULL/STA完整检查，在固定根预算下接受或恢复，终结选点独立于中间提交。native享有同等选组、owner和收敛机会。CP1r2独立冻结，不追认旧开发结果为确认。
 
@@ -30,7 +30,7 @@ TPU_ws两臂均触发原1800s初始执行保护，完整尝试1904.67/1906.23s�
 
 无效、失败与边界：SPMV/CB-only无切口，Robot SDC无接受收益，conv-layer/attention初始路由失败；TPU为初始执行超时。旧加载错误、5次监督中断及4次保护程序打包失败单列基础设施费用。现有owner联合修复N/D同结果归于协调扩大，不能归于域。
 
-论文：[当前六页PDF](paper_snapshots/current_input_seeds_20261116/build/current_repair_main.pdf)，主表43行：36终结尝试、2组基础设施失败、5个局部组件。保留六节主线、机制伪代码与路由相关工作；新增完整确认无收益、TPU超时、robot三臂、owner局部接续及主张边界。历史轨迹/恢复与完整审计留补充材料。已公开版本以CURRENT_STATUS.json的latest_incremental_publication回执为准。
+论文：[当前六页PDF](paper_snapshots/current_sharing_prior_art_20261116/build/current_repair_main.pdf)，主表43行：36终结尝试、2组基础设施失败、5个局部组件。保留六节主线、机制伪代码与路由相关工作；新增完整确认无收益、TPU超时、robot三臂、owner局部接续及主张边界。历史轨迹/恢复与完整审计留补充材料。已公开版本以CURRENT_STATUS.json的latest_incremental_publication回执为准。
 
 优先级更新：[Priority02实际交接](confirmation_priority_handoff_02/completion.json)已替换6个未执行等待owner，旧登记和明确取消回执保留，原实验协议/方法规则不变。当前BNN交错计时保持连续；随后立即准备CP1r3并执行三输入六角色，再做四臂只读核验、开发接续，最后空查询回放。当前登记表读取queue_priority_02的实际进程和依赖；取消等待owner不计作实验失败。
 
