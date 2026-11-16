@@ -189,6 +189,8 @@ priority_publication=D.parents[1]/'docs/github_confirmation_priority_publication
 if priority_publication.exists():publication=priority_publication
 seed_publication=D.parents[1]/'docs/github_input_seed_publication_receipt_20261116.json'
 if seed_publication.exists():publication=seed_publication
+domain_timing_publication=D.parents[1]/'docs/github_BNN_timing03_domain0_publication_receipt_20261116.json'
+if domain_timing_publication.exists():publication=domain_timing_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -647,6 +649,12 @@ if (D/'input_seed_paper_binding_17.json').exists():
     status['paper_router_seed_correction']=dict(command_manifests=8,BNN=11,Robot_SDC_upstream_s23=11,CP1r2_conv_hls=21,CP1r2_tpu_ws=21,new_independent_inputs=0,new_full_method_results=0,fresh_physical_byte_audit=False,quantitative_rows_unchanged=43)
 if (D/'BNN_timing03_domain0_progress_01/completion.json').exists():
     status['evidence']['BNN_timing03_domain0_historical_phase_snapshot']='BNN_timing03_domain0_progress_01/completion.json'
+if (D/'BNN_timing03_domain0_receipt_01/completion.json').exists():
+    receipt=read(D/'BNN_timing03_domain0_receipt_01/completion.json')
+    status['BNN_timing03_first_complete_domain']={k:receipt[k] for k in ['arm','quality','complete_command_seconds','sampled_tree_PSS_peak_kib','sampled_tree_PSS_peak_GiB','missing_memory_observations','observer_CPU_seconds','resource_commits','timing_commits','coarse_same_role_CPD_and_resources_equal','exact_same_role_trajectory_requests_native_work_and_graph_payload_equivalence','own_root_endpoint_summary','paired_domain_over_native_ratio','measured_identities_rechecked','completion_timestamps']}
+    status['BNN_timing03_first_complete_domain']['scope']='Historical second-arm snapshot; original full verifier passed, current owner table is authoritative for active case. Four-role equivalence/matching and descriptive paired costs remain pending.'
+    status['evidence']['BNN_timing03_first_complete_domain']='BNN_timing03_domain0_receipt_01/completion.json'
+    status['outstanding'].append('BNN03 domain_0 independently verified:13.228145690ns,2061417wire/43SB/5060CB,9146.351492s,PSS11.063066GiB,28missing samples;174measured identities rechecked dead. Original queue advanced to domain_1. Two of four known-input measurement roles complete; no new independent input, CP1r3result, optimized paired ratio or statistical speedup. Reuse original verifier. Exact same-role trajectory/request/native-work/sixgraph and full own-root/paired endpoint comparisons remain original four-role finish gates; original22.95percent overhead and paper17 claims remain unchanged.')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
