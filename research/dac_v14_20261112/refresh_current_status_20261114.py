@@ -14,7 +14,9 @@ for name in ['stable_seed_transfer_recovery_02','direct_scope_resource_equivalen
              'vector_then_strict_comparison_01','connection_budget_resource_dev_01',
              'complete_serial_resource_measurement_dev_01','complete_serial_resource_measurement_paired_dev_01',
              'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01','cp1r1_cross_circuit_cohort_01','cp1r2_cross_circuit_cohort_01','robot_union_mechanism_02','robot_union_verification_recovery_01','BNN_interleaved_timing_02','BNN_interleaved_timing_03','robot_owner_reentry_audit_01','robot_owner_reentry_audit_02','empty_query_patch_validation_01','confirmation_release_cp1r3_01','robot_p1_prefix_recovery_01','cp1r3_distinct_input_cohort_01','interrupted_stage_reconciliation_01','interrupted_flow_recovery_01']:
-    q=D/name/('' if name.startswith('serial_fused_candidate_validation_') else 'queue');reg=read(q/'registration.json')
+    q=D/name/('' if name.startswith('serial_fused_candidate_validation_') else 'queue')
+    if (D/name/'queue_priority_02/registration.json').exists():q=D/name/'queue_priority_02'
+    reg=read(q/'registration.json')
     phase=read(q/'status.json') if (q/'status.json').exists() else dict(status='running')
     live=process_identity(reg['pid'])
     live=live if live and live['state']!='Z' and live['start_ticks']==reg['start_ticks'] else None
@@ -43,7 +45,7 @@ for name in ['stable_seed_transfer_recovery_02','direct_scope_resource_equivalen
             stage=read(recovery_flow/'active_child.json');actual=process_identity(stage['pid'])
             if actual and actual['state']!='Z' and actual['start_ticks']==stage['start_ticks']:
                 flow_stage=dict(phase=stage.get('tag',stage.get('phase')),pid=stage['pid'],start_ticks=stage['start_ticks'],verified_live=True,actual_process=actual)
-    owners.append(dict(flow_active_stage=flow_stage,completed_flow_stages=completed_flow_stages,batch=name,wait_channel=wait_channel,effective_wait='shared_serial_slot' if wait_channel and wait_channel.startswith('locks_lock') and phase['status'].startswith('waiting') else None,registration=str(q/'registration.json'),pid=reg['pid'],start_ticks=reg['start_ticks'],
+    owners.append(dict(queue_directory=str(q),queue_generation='priority_02' if q.name=='queue_priority_02' else 'original',flow_active_stage=flow_stage,completed_flow_stages=completed_flow_stages,batch=name,wait_channel=wait_channel,effective_wait='shared_serial_slot' if wait_channel and wait_channel.startswith('locks_lock') and phase['status'].startswith('waiting') else None,registration=str(q/'registration.json'),pid=reg['pid'],start_ticks=reg['start_ticks'],
         verified_live=live is not None,actual_process=live,actual_child=child,
         phase_status='terminal' if terminal else phase['status'],case_or_phase=phase.get('case',phase.get('phase')),terminal_receipt=None if terminal is None else str(q/'completion.json'),
         terminal_passed=None if terminal is None else terminal['passed'],observed_at=now))
@@ -181,6 +183,8 @@ interrupted_publication=D.parents[1]/'docs/github_interrupted_stage_publication_
 if interrupted_publication.exists():publication=interrupted_publication
 flow_publication=D.parents[1]/'docs/github_interrupted_flow_publication_receipt_20261116.json'
 if flow_publication.exists():publication=flow_publication
+native_timing_publication=D.parents[1]/'docs/github_BNN_timing03_native0_publication_receipt_20261116.json'
+if native_timing_publication.exists():publication=native_timing_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -609,6 +613,30 @@ if (D/'BNN_timing03_native0_receipt_02/completion.json').exists():
 if (D/'interrupted_entrypoint_startup_01/completion.json').exists():
     status['recovery_entrypoint_startup']=dict(receipt='interrupted_entrypoint_startup_01/completion.json',passed=read(D/'interrupted_entrypoint_startup_01/completion.json')['passed'],probes=7,native_calls=0,actual_CP1r3_package_or_recovery_execution=False)
     status['evidence']['recovery_entrypoint_startup']='interrupted_entrypoint_startup_01/completion.json'
+if (D/'confirmation_priority_handoff_02/completion.json').exists():
+    handoff=read(D/'confirmation_priority_handoff_02/completion.json');priority=read(D/'confirmation_priority_handoff_02/plan.json')
+    status['confirmation_priority_handoff']=dict(receipt='confirmation_priority_handoff_02/completion.json',validation='confirmation_priority_handoff_02/validation.json',applied=handoff['passed'],schedule=[s['batch'] for s in priority['stages']],input_and_fixed_algorithm_rules_unchanged=True,old_cancellations_are_not_experiment_failures=True)
+    status['evidence']['confirmation_priority_handoff']='confirmation_priority_handoff_02/completion.json'
+    status['active_schedule_order']=['BNN_interleaved_timing_03',*[n['batch'] for n in priority['stages']]]
+    status['superseded_unexecuted_queue_owners']=[dict(batch=n['batch'],registration=str(Path(n['old_queue'])/'registration.json'),receipt=str(Path(n['old_queue'])/'completion.json'),pid=n['pid'],start_ticks=n['start_ticks'],method_executed=False) for n in priority['stages']]
+    predecessors={n['batch']:n['predecessor'] for n in priority['stages']}
+    for owner in owners:
+        if owner['batch'] in predecessors and owner['queue_generation']=='priority_02':
+            owner['actual_predecessor_queue']=predecessors[owner['batch']]
+            if owner['phase_status'].startswith('waiting'):owner['effective_wait']='priority_dependency: '+str(Path(predecessors[owner['batch']]).parent.name)
+    remove_prefixes=['Continue sole BNN_interleaved_timing03','Precision-only CP1r3 source preparation is registered','Robot-p1/native recovery adapter is implemented','Next CP1r3 protocol is registered','Four CLSTM/reduction full-flow prefix recoveries','Empty-query patch remains staged']
+    status['outstanding']=[x for x in status['outstanding'] if not any(x.startswith(prefix) for prefix in remove_prefixes)]
+    status['outstanding'][:0]=[
+        'Preserve active BNN03 N/D/D/N without interruption or source/rule change; native0 is already complete. Use actual current queue case/PID/start_ticks and whole receipts. Complete all4 and exact same-role graph/request/native work/root/endpoints before optimized ratios; never splice components or repeat an arm.',
+        'Priority02: after the current balanced BNN batch, package CP1r3, then run the original preregistered3inputs/6roles immediately before any development recovery. Freeze actual config/release/source/public reconstruction and physical byte admission before first native. LSTM/DLA-like.small are distinct known circuits; eltwise on known SB-only family is an actual alternate placement, not a new circuit or new architecture sample. No outcomes yet.',
+        'After fixed confirmation, run the registered four-arm readonly source/byte/full-request/FULL/STA/endpoint/physical audit. reduction/native raw GNU exit0/COMPLETE269 and running manifest must be independently reconciled; never fabricate old completion or repeat completed native queries. Only independently verified actual stages may be adopted; new candidate audits/STA and all new commands retain their own cost.',
+        'Then continue robot-p1 and the4interrupted flows only through their original-root/archive/acceptance gates. Preserve all old failure/timeout/negative costs; suffix costs remain separate from cold complete cost and cannot become a complete N/D ratio. Empty-query fixture replay is last and its patch remains excluded from frozen confirmation.']
+if (D/'interrupted_complete_request_audit_01/completion.json').exists():
+    request_scope=read(D/'interrupted_complete_request_audit_01/completion.json')
+    status['interrupted_complete_request_scope']=dict(receipt='interrupted_complete_request_audit_01/completion.json',passed=request_scope['passed'],registered_roles=4,matched_queries=request_scope['exactly_matched_registered_queries'],native_attempt_rows=request_scope['native_attempt_rows'],complete_readonly_seconds=request_scope['complete_readonly_seconds'],full_stage_admission_passed=False,new_native_calls=0)
+    status['evidence']['interrupted_complete_request_scope']='interrupted_complete_request_audit_01/completion.json'
+if (D/'interrupted_recovery_outcomes_01/DRAFT_STATUS.json').exists():
+    status['deferred_unregistered_recovery_outcome_verifier']=read(D/'interrupted_recovery_outcomes_01/DRAFT_STATUS.json')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

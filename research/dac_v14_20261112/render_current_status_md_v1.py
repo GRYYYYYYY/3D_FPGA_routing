@@ -3,9 +3,13 @@ from pathlib import Path
 
 def render(status,D):
     rows=[]
-    for owner in status['owners']:
+    order=status.get('active_schedule_order',[])
+    for owner in sorted(status['owners'],key=lambda row:order.index(row['batch']) if row['batch'] in order else len(order)):
         if not owner['verified_live'] and not owner.get('flow_active_stage'):continue
         phase=owner.get('effective_wait') or owner['phase_status']
+        if owner.get('case_or_phase') and not owner['phase_status'].startswith('waiting') and owner['phase_status']!='terminal':
+            case=str(owner['case_or_phase']);label=(Path(case).parent.name+'/'+Path(case).name) if case.startswith('/') else case
+            phase+=' ['+label+']'
         if owner.get('flow_active_stage'):phase+=' → '+owner['flow_active_stage']['phase']
         rows.append(f"| {owner['batch']} | {phase} | {owner['pid']} |")
     timing_note=''
@@ -40,11 +44,11 @@ TPU_ws两臂均触发原1800s初始执行保护，完整尝试1904.67/1906.23s�
 
 论文：[当前六页PDF]({paper})，主表43行：36终结尝试、2组基础设施失败、5个局部组件。保留六节主线、机制伪代码与路由相关工作；新增完整确认无收益、TPU超时、robot三臂、owner局部接续及主张边界。历史轨迹/恢复与完整审计留补充材料。已公开版本以CURRENT_STATUS.json的latest_incremental_publication回执为准。
 
-新确认协议：[CP1r3三输入/六角色](cp1r3_distinct_input_cohort_01/protocol.json)已登记在robot接续之后，包括LSTM、DLA-like.small和SB-only布局对照。尚未激活实际配置、重建或准入，不能声称确认通过。SB对照与旧主表同声明电路/图/打包，但1883块中1882块实际坐标不同，是新布局而非新电路；其余原始字节/新鲜根仍待核验。协议先绑定来源/规则，实际CP1r3冻结、公开源码重建及检查通过后，先封存配置再运行；现有版本和队列不变。
+优先级更新：[Priority02实际交接](confirmation_priority_handoff_02/completion.json)已替换6个未执行等待owner，旧登记和明确取消回执保留，原实验协议/方法规则不变。当前BNN交错计时保持连续；随后立即准备CP1r3并执行三输入六角色，再做四臂只读核验、开发接续，最后空查询回放。当前登记表读取queue_priority_02的实际进程和依赖；取消等待owner不计作实验失败。\n\n新确认协议：[CP1r3三输入/六角色](cp1r3_distinct_input_cohort_01/protocol.json)已登记并前移至CP1r3准备之后，包括LSTM、DLA-like.small和已知SB-only架构上的布局对照。尚未激活实际配置、重建或准入，不能声称确认通过。SB对照与旧主表同声明电路/图/打包，但1883块中1882块实际坐标不同，是新布局而非新电路；其余原始字节/新鲜根仍待核验。协议先绑定来源/规则，实际CP1r3冻结、公开源码重建及检查通过后，先封存配置再运行；现有版本和队列不变。
 
-其余中断阶段：[四臂真实回执清单](interrupted_stage_reconciliation_01/inventory.json)及[串行只读核验登记](interrupted_stage_reconciliation_01/plan.json)已补齐，排在原确认队列之后。CLSTM/native资源阶段已闭合，时序原生与候选审计也已完成；reduction/domain的原生、物理和域审计已完成，两者候选STA目录为空。CLSTM/domain仅原生完成；reduction/native有GNU退出0及269请求完成日志，但worker未封存。只核验旧字节/完整STA，不新增原生调用、改写旧回执或冒认整流程结果；[四臂完整接续入口](interrupted_flow_recovery_01/protocol.json)现已实现并登记在核验之后：CLSTM/native跳过已闭合阶段并保留原时序portfolio/查询，另三臂从原资源检查点继续；31项真实元数据拒绝检查与5项小型流程/20项拒绝检查通过。仍须实际串行核验和逐臂准入，尚无新接续质量或冷启动费用。
+请求独立核对：[四臂完整请求](interrupted_complete_request_audit_01/completion.json)已核对378个请求、454条原ATTEMPT，实际QUERY顺序与角色/序列化请求精确匹配，未重跑原生。reduction/native覆盖269请求，旧running manifest不改写；大字节/FULL/STA/端点/物理等完整阶段准入仍未通过，不能据此送入适配器或主张收益。\n\n其余中断阶段：[四臂真实回执清单](interrupted_stage_reconciliation_01/inventory.json)及[串行只读核验登记](interrupted_stage_reconciliation_01/plan.json)已补齐，排在原确认队列之后。CLSTM/native资源阶段已闭合，时序原生与候选审计也已完成；reduction/domain的原生、物理和域审计已完成，两者候选STA目录为空。CLSTM/domain仅原生完成；reduction/native有GNU退出0及269请求完成日志，但worker未封存。只核验旧字节/完整STA，不新增原生调用、改写旧回执或冒认整流程结果；[四臂完整接续入口](interrupted_flow_recovery_01/protocol.json)现已实现并登记在核验之后：CLSTM/native跳过已闭合阶段并保留原时序portfolio/查询，另三臂从原资源检查点继续；31项真实元数据拒绝检查与5项小型流程/20项拒绝检查通过。仍须实际串行核验和逐臂准入，尚无新接续质量或冷启动费用。
 
-后续：保持当前计时规则，完成已登记只读空查询验证；[精度专用CP1r3准备](confirmation_release_cp1r3_01/plan.json)已登记在其后、获取串行锁才打包，不含空查询补丁/新路由，尚未形成新版本执行证据。[robot-p1完整接续](robot_p1_prefix_recovery_01/plan.json)已实现并登记在CP1r3之后，24项元数据负向检查通过，原7步/合法拒绝档案/根预算保留；原生请求与STA复用仍须串行重图/完整轨迹核验，尚无新实验结果或冷启动费用。其余中断输入另行接续，继续真正不同输入/架构及通用机制规则研究。Goal不因批次、推送或普通负结果终止。
+后续：保持当前计时规则，完成已登记只读空查询验证；[精度专用CP1r3准备](confirmation_release_cp1r3_01/plan.json)已登记在当前BNN完整计时之后、获取串行锁才打包，不含空查询补丁/新路由，尚未形成新版本执行证据。[robot-p1完整接续](robot_p1_prefix_recovery_01/plan.json)已实现并后移至CP1r3六角色确认和四臂只读核验之后，24项元数据负向检查通过，原7步/合法拒绝档案/根预算保留；原生请求与STA复用仍须串行重图/完整轨迹核验，尚无新实验结果或冷启动费用。其余中断输入另行接续，继续真正不同输入/架构及通用机制规则研究。Goal不因批次、推送或普通负结果终止。
 '''
     if status.get('execution_reconciliation_20261116'):
         reconciliation=status['execution_reconciliation_20261116']
