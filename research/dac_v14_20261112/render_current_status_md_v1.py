@@ -186,4 +186,19 @@ BNN 分组、组合验证、terminal-wire、robot no-release/owner、attention/r
         result=result.replace('CP1和正在运行的工程臂不变。', 'CP1和原登记工程配置保持不变。')
         result=result.replace('已登记并由单一 owner 等待现有 domain 工程臂终结，同时要求独立整方法检查通过。', '由原单一owner在domain工程臂正常终结后接续；实际阶段以上表为准，独立整方法检查仍是准入条件。')
         result=result.replace('[最近完成结果](../../docs/GitHub_native_ablation_progress_20261116.md)', '[最近完整工程结果](../../docs/GitHub_BNN_engineering_complete_20261116.md)')
+    reduction=status.get('portable_reduction_actual')
+    if reduction and reduction['admission_passed']:
+        actual=(f"[实际输入准入](portable_reduction_pair_01/admission.json)已通过完整复制、摘要及独立运行时检查，"
+            f"准备耗时{reduction['preparation_seconds_outside_measured_arms']:.2f}秒，位于两臂测量命令之外；各臂仍自行承担登记的新路由、索引与修复工作。")
+        observed=reduction.get('native_input_observation')
+        if observed:
+            actual+=(f"[原生输入加载观察](portable_reduction_pair_01/actual_native_input_observation_01.json)于{observed['observed_at']}确认native已通过packed-netlist读取和布局一致性检查，并加载RR graph。"
+                "这不是旧CLSTM/p1的加载失败重现；尚不证明合法路由、完整结果或机制收益，未修改原配置。")
+        legal=reduction.get('native_initial_legal')
+        if legal:
+            actual+=(f"后续原生FULL/STA与独立物理审计已确认合法新初态：{legal['CPD_ns']:.9f}ns、{legal['wirelength']}wire/{legal['SB_pairs']}SB/{legal['CB_sources']}CB；"
+                "控制器继续资源修复。该初态不等于完整方法结果，仍待两臂终态比较。")
+        result=result.replace('约5.40 GB物理输入的复制、完整摘要验证和独立运行时准入延后到串行槽；不能把登记预检当作实际准入已通过。',actual)
+    if status.get('BNN_interleaved_timing_plan'):
+        result+='\n[稳定BNN交错计时登记](BNN_interleaved_timing_01/plan.json)：N→D→D→N，固定相同工程、环境设置及完整测量边界；排在robot联合机制批次之后，未挤占跨输入确认。12项配置与记账门槛检查通过，不是原生结果。每次重新生成路由和索引，保留全部失败／差异；旧native缺失测量不能补入。两个配对只支持描述性均值、范围与比值，不作统计加速或独立样本主张；四次尝试不是研究Goal停止条件。\n'
     return result

@@ -1,6 +1,6 @@
-# 当前研究状态（2026-11-16T06:47:56.041252+00:00）
+# 当前研究状态（2026-11-16T07:02:08.500357+00:00）
 
-Goal active；公开证据基点 `9734eee`，最新增量 `7fb0552`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[工程缺失臂登记](../../docs/GitHub_domain_engineering_registration_20261116.md) · [跨输入登记](../../docs/GitHub_robot_p1_registration_20261116.md) · [最近完整工程结果](../../docs/GitHub_BNN_engineering_complete_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
+Goal active；公开证据基点 `9734eee`，最新增量 `f864f4a`。本地实际回执优先；无固定日期、总调用次数或矩阵完成停止条件。[工程缺失臂登记](../../docs/GitHub_domain_engineering_registration_20261116.md) · [跨输入登记](../../docs/GitHub_robot_p1_registration_20261116.md) · [最近完整工程结果](../../docs/GitHub_BNN_engineering_complete_20261116.md) · [完整机器状态与证据索引](CURRENT_STATUS.json)。
 
 统一方法：当前 STA 重选事务组 → 跨层共享域 → 按网络失败释放 → 容量证书与当前余量驱动的 owner 协调 → 固定根规则下接受完整合法事务 → 重选与独立终结选点 → 完整时序组合。中间构造不要求逐个改善 CPD。[完整独立开发包 dev03](standalone_unified_method_component_03.json)已迁移原串行控制器；项目外 tiny 整流程已通过；[CP1 确认源码与规则](confirmation_release_cp1_01/completion.json)已冻结并通过23项入口检查及整包移位验证，独立确认结果仍待完成。先前组件、真实请求重放和子进程清理验证只证明对应接口，不证明完整算法收益。
 
@@ -28,6 +28,7 @@ Goal active；公开证据基点 `9734eee`，最新增量 `7fb0552`。本地实�
 | robot_p1_input_contract_pair_02 | waiting_for_registered_clstm_input_contract_pair | 1665631 |
 | cp1_cross_circuit_cohort_01 | waiting_for_corrected_robot_p1 | 2449997 |
 | robot_union_mechanism_01 | waiting_for_CP1_cross_circuit_cohort | 2712487 |
+| BNN_interleaved_timing_01 | waiting_for_registered_robot_union | 1057401 |
 
 BNN 分组、组合验证、terminal-wire、robot no-release/owner、attention/robot-SDC、项目外接口检查及原 clstm/p1 失败批次已终结。完整BNN domain工程臂已终结，后继顺序为reduction → 修正clstm → 修正robot p1；以表内实时身份和终结回执为准，不重跑已完成批次。
 
@@ -35,7 +36,7 @@ BNN 分组、组合验证、terminal-wire、robot no-release/owner、attention/r
 
 [跨输入实际回执](unified_input_integration_01/queue/results.json)：登记的4个臂中，4个已终结，2个通过完整合法验证。 `attention_native`：initial_route_failed，完整命令 794.67 s。 `attention_domain`：initial_route_failed，完整命令 792.69 s。 `robot_s23_SDC_native`：complete_legal_verified，完整命令 498.00 s。 `robot_s23_SDC_domain`：complete_legal_verified，完整命令 504.09 s。初始路由失败的质量为 None；迭代中的 CPD／线长不作合法质量点。单臂结果不支持配对机制归因，两个臂不算两个独立输入。该批次保持较早登记开发版本，不冒充 dev03 确认。 [attention 匹配失败审计](attention_initial_failure_pair_01/completion.json)通过：两臂实际命令除私有路径外相同，已记录物理输入摘要匹配，均执行200轮后剩231个过用节点，未进入资源／时序修复。0次新原生调用；记录摘要与当前文件身份核对不冒充新的大输入重哈希。缺少合法起点属于适用范围证据，不是三种修复机制的收益比较。 [完整配对比较](unified_input_integration_01/comparison.json)通过：robot 两臂起始路由体及完整端点一致，终态端点也一致；CPD 12.727250365 ns，250411 wire/2 SB/526 CB，完整费用 498.00/504.09 s。实际布局不同于旧 robot p0；声明的20 ns/IO 1 ns SDC不是外部应用要求。两臂均无资源切口或 owner 提交，三项时序候选均拒绝；较快候选超出固定资源预算。不能据此归因任一机制收益。 项目外观测、已知 R1 非空 owner 事务和 tiny 整方法实际检查均已通过；完整 tiny 耗时101.43 s，零提交，不算新独立样本或正向机制整合收益。后续队列按实际回执接续；正向整合路径和独立确认结果仍待验证。 [clstm 失败重分类](clstm_input_contract_pair_02/failure_reclassification.json)：两臂在 packed-netlist 读取阶段报$undef不匹配，尚未开始路由；107.00/106.48 s作为失败完整尝试保留。原模板漏带历史--merge_constant_generators off，不能算路由拥塞或机制负结果。新输入契约在两臂继承该选项、复用未改动dev03，追加到reduction之后；[新登记](clstm_input_contract_pair_02/plan.json)不覆盖旧回执，不增独立样本，也不宣称修复已获原生验证。 robot p1两臂同样在路由前报$undef不匹配，102.93/102.90 s保留为输入兼容性失败；[修正配对](robot_p1_input_contract_pair_02/plan.json)追加到修正clstm之后。BNN domain工程臂已终结，后继reduction、修正clstm、修正robot p1按实际状态接续；全部旧规则及回执保留。 [robot owner原生消融](robot_owner_scope_pair_01/verification.json)已闭合：target-only251173/10/653，target+owner251185/10/654，同13.354624073 ns；增加12wire/1CB换31setup改善、0退化。资源策略拒绝两者，endpoint规则仅接受owner候选；均未提交原actor。完整导入式配对155.10 s，不是冷启动整算法时间。该局部结果已纳入正文09的owner取舍行，完整审计留在补充材料。
 
-[追加 reduction_layer 配对](portable_reduction_pair_01/plan.json)由原单一owner在domain工程臂正常终结后接续；实际阶段以上表为准，独立整方法检查仍是准入条件。该已知历史 n125 Hybrid-O 输入有268个共享范围、62个相关网络、0个支持的 owner 切口；当前 STA 资格与新路由机会尚未知。选择依据是已闭合 attention 初始失败及 robot-SDC 当前无资源候选，检验跨电路共享机会，而非继续调 BNN 线长。两臂仍用同一 dev03、seed21、count8/1.01，只改域/释放开关，不指定 net/RR 目标；不是未见输入、确认冻结或新架构族结论。[配置与实现核对](portable_reduction_pair_01/implementation_review.json)通过，0次原生调用。约5.40 GB物理输入的复制、完整摘要验证和独立运行时准入延后到串行槽；不能把登记预检当作实际准入已通过。
+[追加 reduction_layer 配对](portable_reduction_pair_01/plan.json)由原单一owner在domain工程臂正常终结后接续；实际阶段以上表为准，独立整方法检查仍是准入条件。该已知历史 n125 Hybrid-O 输入有268个共享范围、62个相关网络、0个支持的 owner 切口；当前 STA 资格与新路由机会尚未知。选择依据是已闭合 attention 初始失败及 robot-SDC 当前无资源候选，检验跨电路共享机会，而非继续调 BNN 线长。两臂仍用同一 dev03、seed21、count8/1.01，只改域/释放开关，不指定 net/RR 目标；不是未见输入、确认冻结或新架构族结论。[配置与实现核对](portable_reduction_pair_01/implementation_review.json)通过，0次原生调用。[实际输入准入](portable_reduction_pair_01/admission.json)已通过完整复制、摘要及独立运行时检查，准备耗时49.90秒，位于两臂测量命令之外；各臂仍自行承担登记的新路由、索引与修复工作。[原生输入加载观察](portable_reduction_pair_01/actual_native_input_observation_01.json)于2026-11-16T06:52:32.072561+00:00确认native已通过packed-netlist读取和布局一致性检查，并加载RR graph。这不是旧CLSTM/p1的加载失败重现；尚不证明合法路由、完整结果或机制收益，未修改原配置。后续原生FULL/STA与独立物理审计已确认合法新初态：12.606378164ns、1240433wire/184SB/3058CB；控制器继续资源修复。该初态不等于完整方法结果，仍待两臂终态比较。
 
 [完整 terminal-wire 只读比较](BNN_terminal_wire_qualified_comparison_02/plan.json)已挂接原恢复队列，已完成，匹配共同资源前缀／最终完整端点／同口径 GNU-time。旧 v1 依赖缺失的观察者完成回执，新入口使用已核验的旧质量回执并保留缺口；比较共同资源前缀、完整端点和 GNU-time 同口径费用，不补造旧 PSS／观察者时间。[15项反例检查](BNN_terminal_wire_qualified_comparison_validation_02.json)通过，0次原生调用；比较已通过：共同资源前缀状态、请求和原生工作精确一致；相对旧终态少24 wire，setup2改善／0退化，CPD/SB/CB相同。GNU-time7351/7247 s，增加104 s，非加速；旧观察者/PSS缺口及并发限制保留。本次完整原生 terminal-wire 配置已核验：13.228145690 ns，2059607 wire／82 SB／5062 CB；资源接受5步、终结选点1次、时序接受3步。同次端到端测量 7351.26 s，采样 PSS 峰值 11.063 GiB，内存缺失观察24次，无残留子进程。这是同一历史 BNN 物理输入上的完整配置，非独立输入，也非统一 dev03 确认。相对自身初始根 setup16改善／17退化；相对旧终态2改善／0退化，两个比较口径分别保留。
 
@@ -48,3 +49,5 @@ BNN 分组、组合验证、terminal-wire、robot no-release/owner、attention/r
 [当前六页正文](paper_snapshots/current_BNN_engineering_20261116/build/current_repair_main.pdf)沿问题—机制—完整结果—取舍—消融—开销与范围组织。前版06主表保留22个完整流程条目，新增2个明确标注范围的组合／消融条目；robot 无释放失败、精确回滚和合法线长组合已整合。[前版证据绑定](native_ablation_paper_binding_06.json)核验页数、主表与视觉；[历史档案](multiobjective_closed_stream_quality_01/verification.json)为671条合法观测、34个完整质量配置，其中33个完整观察者测量、1个限定 GNU-time，均不等于独立样本数。新增五项直接相关工作，明确已有增量路由／多次收敛与本研究贡献的关系，区分历史拥塞价格、导入式修复和未验证 CHANZ；共9条参考文献。新增条目不计入该历史档案的671条记录；历史局部路径、分组和前缀轨迹已移入补充材料。
 
 接续：以真实终结结果决定下一项干预，优先完成确认版本的实际运行、跨输入匹配和三机制归因。普通失败/退化用于调整方向；未执行计划、结构路径和局部时间不替代完整可复现收益。
+
+[稳定BNN交错计时登记](BNN_interleaved_timing_01/plan.json)：N→D→D→N，固定相同工程、环境设置及完整测量边界；排在robot联合机制批次之后，未挤占跨输入确认。12项配置与记账门槛检查通过，不是原生结果。每次重新生成路由和索引，保留全部失败／差异；旧native缺失测量不能补入。两个配对只支持描述性均值、范围与比值，不作统计加速或独立样本主张；四次尝试不是研究Goal停止条件。

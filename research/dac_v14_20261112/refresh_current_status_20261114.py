@@ -13,7 +13,7 @@ for name in ['stable_seed_transfer_recovery_02','direct_scope_resource_equivalen
              'rejection_feedback_controller_dev_01','complete_route_resource_measurements_01',
              'vector_then_strict_comparison_01','connection_budget_resource_dev_01',
              'complete_serial_resource_measurement_dev_01','complete_serial_resource_measurement_paired_dev_01',
-             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01']:
+             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01']:
     q=D/name/('' if name.startswith('serial_fused_candidate_validation_') else 'queue');reg=read(q/'registration.json')
     phase=read(q/'status.json') if (q/'status.json').exists() else dict(status='running')
     live=process_identity(reg['pid'])
@@ -134,7 +134,8 @@ status['outstanding']=[
 status['standalone_runtime_component']=read(D/'standalone_native_runtime_artifact_01/completion.json')
 status['standalone_runtime_component']['physical_validation']='standalone_physical_audit_validation_01/completion.json'
 status['standalone_runtime_component']['execution_validation']='standalone_native_runtime_validation_01/completion.json'
-publication=D.parents[1]/'docs/github_BNN_engineering_complete_publication_receipt_20261116.json'
+publication=D.parents[1]/'docs/github_BNN_interleaved_registration_publication_receipt_20261116.json'
+if not publication.exists(): publication=D.parents[1]/'docs/github_BNN_engineering_complete_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_complete_tradeoff_paper_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_cp1_restore_publication_receipt_20261116.json'
 if not publication.exists(): publication=D.parents[1]/'docs/github_BNN_cost_hierarchy_publication_receipt_20261116.json'
@@ -411,6 +412,32 @@ if (D/'BNN_engineering_paper_binding_11.json').exists():
     status['outstanding'].insert(0,'BNN domain engineering closed at9116.396s, same-role graphs/states/requests/native work/full endpoint vectors exact. Preserve active reduction and corrected input queues; no reruns of completed roles.')
     status['outstanding'].append('Original matched22.95% overhead remains. Domain same-role descriptive -637.916s/-6.540% is not an optimized pair ratio; native observer/PSS loss and overlap remain. Stable symmetric interleaved timing pending after priority distinct-input cohort.')
     status['outstanding'].append('Six-page11 sealed:32complete attempts and2scoped rows; one new complete engineering execution, zero new independent inputs. CP1 and prior paired figure unchanged.')
+reduction_root=D/'portable_reduction_pair_01'
+if (reduction_root/'admission.json').exists():
+    admission=read(reduction_root/'admission.json')
+    status['portable_reduction_actual']=dict(admission_passed=bool(admission.get('passed')),
+        physical_inputs_rehashed_and_copied=admission.get('physical_inputs_rehashed_and_copied'),
+        preparation_seconds_outside_measured_arms=admission.get('complete_preparation_seconds'),
+        receipt='portable_reduction_pair_01/admission.json',native_input_observation=None)
+    observed=reduction_root/'actual_native_input_observation_01.json'
+    if observed.exists():
+        status['portable_reduction_actual']['native_input_observation']=read(observed)
+        status['evidence']['portable_reduction_input_observation']='portable_reduction_pair_01/actual_native_input_observation_01.json'
+if (D/'BNN_interleaved_timing_01/launch.json').exists():
+    status['BNN_interleaved_timing_plan']=dict(plan='BNN_interleaved_timing_01/plan.json',validation='BNN_interleaved_timing_01/validation.json',
+        fixed_order=['native_0','domain_0','domain_1','native_1'],predecessor='robot_union_mechanism_01',new_independent_inputs=0,
+        qualification='New balanced repeated complete measurements after priority independent-input and mechanism batches. Registered sources/rules fixed; no new timing outcome until actual receipts. Not a Goal stopping condition.')
+    status['evidence']['BNN_interleaved_timing']='BNN_interleaved_timing_01/plan.json'
+    status['outstanding']=[s.replace('Stable symmetric interleaved timing pending after priority distinct-input cohort.', 'Stable symmetric interleaved timing registered as N/D/D/N after robot union; preserve original priority cohorts and all attempts.') for s in status['outstanding']]
+if (reduction_root/'plan.json').exists():
+    workspace=Path(read(reduction_root/'plan.json')['workspace'])
+    initial=workspace/'native/flow/resource_flow/initial'
+    if (initial/'completion.json').exists() and read(initial/'completion.json').get('passed'):
+        initial_done=read(initial/'completion.json');audit=read(initial/'runs/state/independent_audit.json')
+        assert audit['audit']['passed']
+        status['portable_reduction_actual']['native_initial_legal']=dict(receipt=str(initial/'completion.json'),CPD_ns=initial_done['full_precision_cpd_s']*1e9,
+            wirelength=audit['physical_metrics']['planar_wirelength_excluding_sb_half_nodes'],SB_pairs=audit['physical_metrics']['sb_pairs_used'],CB_sources=audit['physical_metrics']['cb_crossing_output_sources_used'],
+            route_body_sha256=initial_done['route_body_sha256'],qualification='Legal fresh starting state only, not final method output or paired mechanism benefit.')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
