@@ -2,6 +2,10 @@
 
 ## Current research snapshot — 2026-11-17
 
+[LSTM完整执行与原验证失败；CP1r3接续DLA-small](docs/GitHub_LSTM_complete_execution_20261117.md)：N/D完整命令分别7615.07/26657.73秒，原独立验证均失败，正式配对比例不发布。保存原失败、具体断言定位、完整费用及下一角色状态；六页叙事03和既有收益边界不变。
+
+以下较早进度入口为当时快照；最新角色状态、验证分类和ETA以本入口及CURRENT_STATUS为准。
+
 [Priority05状态入口修正与实际8个owner](docs/GitHub_priority05_status_correction_20261117.md)：修复刷新脚本漏列已排队基线及四个后继owner的问题；实际进程、队列顺序和实验规则未改。最近15步接受前缀及费用、端点变化和条件性ETA均保留，完整LSTM配对仍未准入。
 
 [六页投稿稿的接受条件与覆盖计数澄清](docs/GitHub_submission_clarifications_20261117.md)：另存叙事03版，明确端点域匹配与hold保护，消除搜索失败的可行性预设及覆盖计数歧义；摘要、数值主表、引用、贡献边界不变。原叙事02及投稿候选保留，未加入未完成确认收益。

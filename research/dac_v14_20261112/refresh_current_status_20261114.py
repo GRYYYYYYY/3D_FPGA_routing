@@ -253,7 +253,9 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_submission_export_publication_receipt_20261117.json',
              'github_LSTM_tradeoffs_publication_receipt_20261117.json',
              'github_LSTM_incident_publication_receipt_20261117.json',
-             'github_submission_clarifications_publication_receipt_20261117.json']:
+             'github_submission_clarifications_publication_receipt_20261117.json',
+             'github_priority05_status_publication_receipt_20261117.json',
+             'github_lstm_complete_execution_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -1030,6 +1032,18 @@ if wait_pointer.exists():
     status['resource_phase_wait_qualification']='Supervision handoff pointer only; original process identity and terminal receipts determine actual state.'
 if (D/'LSTM_retention_metadata_incident_01/actual_metadata_guard_validation.json').exists():
     status['evidence']['LSTM_incident_actual_metadata_guard']='LSTM_retention_metadata_incident_01/actual_metadata_guard_validation.json'
+if (D/'LSTM_complete_execution_01/verification_result.json').exists():
+    latest=read(D/'LSTM_complete_execution_01/verification_result.json')
+    status['LSTM_complete_execution_verification']=latest
+    status['evidence']['LSTM_complete_execution_verification']='LSTM_complete_execution_01/verification_result.json'
+    status['evidence']['LSTM_resource_phase_terminal']='LSTM_resource_phase_terminal_01/checkpoint.json'
+    status['submission_candidate_latest_conditional_ETA']=latest['conditional_ETA']
+    status['evidence']['submission_candidate_latest_conditional_ETA']='LSTM_complete_execution_01/verification_result.json'
+    status['outstanding'].insert(0,'LSTM N/D commands are complete but both original verifiers failed; quality and formal paired ratio remain unavailable. Preserve native owner-registration failure and domain round013/candidate00 false completion. Original cohort continues DLA-small/native; no LSTM native/STA replay or historical completion rewrite. TableI LSTM claim awaits separate actual evidence admission.')
+active_arm_pointer=Path('/tmp/dac_cp1r3_active_arm_pidfd_wait_01.json')
+if active_arm_pointer.exists():
+    status['active_CP1r3_arm_wait']=read(active_arm_pointer)
+    status['active_CP1r3_arm_wait_qualification']='Handoff locator only; actual queue and process identities above determine liveness.'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

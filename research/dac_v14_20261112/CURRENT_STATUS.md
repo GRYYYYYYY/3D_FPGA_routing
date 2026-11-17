@@ -2,13 +2,15 @@
 
 [LSTM归档干扰更正](../../docs/GitHub_LSTM_retention_incident_20261117.md)：助手硬链接归档改变活动源ctime，触发round013/candidate00一次封存失败；135项登记摘要与原最终重哈希一致，失败5项仅ctime变化。保留原失败及费用，不补造成功、不重跑查询、不改预算；当前运行期禁止对上游输入创建/删除硬链接或改元数据。完整LSTM配对及干净计时尚未准入。
 
-观察时间：2026-11-17T04:34:38.264461+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
+[LSTM完整执行与原验证失败](LSTM_complete_execution_01/STATUS.md)：N/D完整命令均返回0，分别实测7615.074177/26657.726866秒；原独立验证分别74.441375/142.926628秒后失败，quality均为null，正式配对比例仍不可用。domain原line64首次失败定位到attempt_index15、round013/candidate00原passed=false；此前155个小型来源哈希均匹配，未重跑native/STA或改历史完成记录。实际队列已接续DLA-small/native，后续以本页进程表为准。完整费用保留ctime事件，不称干净算法开销；正文收益主张不变。剩余四角色与原补充规划约2.17–8.67小时，raw/基线/事件审计另计未校准；此前菜单ETA仅是历史情景。
+
+观察时间：2026-11-17T07:10:34.043472+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
 
 统一方法：当前STA、跨层冗余与容量阻塞用于选择完整连接组；在事务副本中使用跨层共享域、按网失败释放及阻塞owner协调；完整组合经物理/容量/FULL/STA检查，在固定根预算下接受或恢复。终结选点独立于中间提交；native享有相同选组、owner与收敛机会。
 
 | 当前登记批次 | 实际状态 | owner PID |
 |---|---|---:|
-| cp1r3_distinct_input_cohort_01 | running_confirmation_arm [lstm/domain] → fresh_route_and_complete_resource | 3149073 |
+| cp1r3_distinct_input_cohort_01 | running_confirmation_arm [dla_small/native] → fresh_route_and_complete_resource | 3149073 |
 | CP1r3_supplemental_verifier_01 | priority_dependency: cp1r3_distinct_input_cohort_01 | 1993735 |
 | CP1r3_raw_admission_01 | priority_dependency: CP1r3_supplemental_verifier_01 | 2488794 |
 | vertical_cost_baseline_dev_01 | priority_dependency: CP1r3_raw_admission_01 | 306102 |
@@ -22,12 +24,6 @@
 同一BNN输入复现资源—时序取舍：两臂CPD同13.228145690ns；N为2059631wire/82SB/5062CB，D为2061417wire/43SB/5060CB。SB减少47.56%，SB+CB从5144到5103减少0.797%，线长+1786。D相对N的setup为534改善/803退化，新增hold违例退化0；不满足端点完全无退化。资源计数减少反映固定架构占用，未测面积/功耗。历史完整时间+22.95%与新交错观察+24.91%分别保留；不能称为普遍收益或统计加速。
 
 独立证据没有增加：四次计时是同一电路、布局与架构的重复测量。CP1r3精度专用封装已实际完成，原三输入/六角色队列已接棒；[实际预检](cp1r3_distinct_input_cohort_01/preflight.json)记录冻结配置、公开源码重建、还原后保护程序/worker导入及迁移后的准入检查通过。大字节与完整输出门槛仍由逐输入准备和测量命令执行，不能将元数据准入当作结果通过。准备/公开重建8.494s、LSTM输入准备17.220s单独计费，不并入算法墙钟。逐臂实际状态以上表为准。LSTM与DLA-like.small为不同已知电路；eltwise SB-only仅为已知电路/架构的不同实际布局。保持冻结协议，不按结果替换输入或重复已完成角色。
-
-当前lstm/domain新鲜初始路由通过原FULL/完整精度STA/物理门槛：14.600438192ns，2388086wire/509SB/8316CB。图构建395.045s、初始原生命令371.262s分别记录，不拼接为完整时间。该状态是初始准入证据，尚非完整方法结果或配对收益。
-
-资源前缀已接受15次，最新核验检查点为14.600438192ns、2390318wire/423SB/8316CB。最近接受的资源窗口事务相对其前态setup 0改善/2退化，新增hold违例退化0；该事务完整耗时1018.804s。完整算法时间与配对确认仍不可用，不把资源阶段检查点冒充终态或域收益。
-
-最近完成尝试为round14/candidate2，接受=True，事务处理回执通过=True，完整事务耗时1018.804s。原规则原因：reuse_on: Fixed registered resource budget exceeded；reuse_off: Exact fixed-budget conditions satisfied。拒绝/失败费用同样保留；此处不替代接受检查点或完整流程费用。
 
 [已封存LSTM/native资源子流程](CP1r3_lstm_native_resource_phase_01/completion.json)：驱动6775.915s，接受4次、尝试12个作用域，owner提交0。按原精确变化记录沿接受链还原的初始到资源终态setup为20改善/5退化，新增hold违例退化0；未新增整向量重读。终结endpoint规则在6个同源候选中无合格选点，保留原资源终态；交接FULL/STA通过。该包仅封存资源子流程，完整方法是否准入须另查原独立核验终态；当前活动阶段以上表实际进程为准。
 

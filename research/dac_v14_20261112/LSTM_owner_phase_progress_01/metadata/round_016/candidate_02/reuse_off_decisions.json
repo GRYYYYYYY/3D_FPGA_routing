@@ -1,0 +1,138 @@
+{
+  "strict": {
+    "accepted": false,
+    "policy": "strict",
+    "reason": "No full-precision strict CPD improvement",
+    "comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.4600438191791909e-08,
+      "cpd_after_s": 1.4600438191791909e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 1,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 111876,
+      "hold_components": 111876,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[773404,596414,\"lstm.f_gatex.mult_u7.a[10].D[0]\",0,0]",
+          "before_s": -6.773285043948363e-09,
+          "after_s": -6.401633889652203e-09,
+          "delta_s": 3.716511542961598e-10
+        }
+      ]
+    }
+  },
+  "endpoint_vector": {
+    "accepted": true,
+    "policy": "endpoint_vector",
+    "reason": "Exact policy conditions satisfied",
+    "comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.4600438191791909e-08,
+      "cpd_after_s": 1.4600438191791909e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 1,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 111876,
+      "hold_components": 111876,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[773404,596414,\"lstm.f_gatex.mult_u7.a[10].D[0]\",0,0]",
+          "before_s": -6.773285043948363e-09,
+          "after_s": -6.401633889652203e-09,
+          "delta_s": 3.716511542961598e-10
+        }
+      ]
+    }
+  },
+  "timing_under_resources": {
+    "accepted": false,
+    "reason": "No exact CPD reduction within resource limits",
+    "mode": "timing_under_resources",
+    "resource_objectives": [
+      "SB_pairs",
+      "CB_sources"
+    ],
+    "cpd_limit_s": 1.4600438191791909e-08,
+    "resource_limits": {
+      "wirelength": 2390475,
+      "SB_pairs": 509,
+      "CB_sources": 8316
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.4600438191791909e-08,
+      "cpd_after_s": 1.4600438191791909e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 1,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 111876,
+      "hold_components": 111876,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[773404,596414,\"lstm.f_gatex.mult_u7.a[10].D[0]\",0,0]",
+          "before_s": -6.773285043948363e-09,
+          "after_s": -6.401633889652203e-09,
+          "delta_s": 3.716511542961598e-10
+        }
+      ]
+    },
+    "resource_delta": {
+      "wirelength": -12,
+      "SB_pairs": 0,
+      "CB_sources": 0
+    },
+    "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+  },
+  "resources_under_timing": {
+    "accepted": false,
+    "reason": "No resource Pareto improvement within fixed CPD budget",
+    "mode": "resources_under_timing",
+    "resource_objectives": [
+      "SB_pairs",
+      "CB_sources"
+    ],
+    "cpd_limit_s": 1.4600438191791909e-08,
+    "resource_limits": {
+      "wirelength": 2390475,
+      "SB_pairs": 509,
+      "CB_sources": 8316
+    },
+    "endpoint_comparison": {
+      "compatible": true,
+      "cpd_before_s": 1.4600438191791909e-08,
+      "cpd_after_s": 1.4600438191791909e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 1,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "setup_components": 111876,
+      "hold_components": 111876,
+      "changes": [
+        {
+          "kind": "setup",
+          "endpoint_domain": "[773404,596414,\"lstm.f_gatex.mult_u7.a[10].D[0]\",0,0]",
+          "before_s": -6.773285043948363e-09,
+          "after_s": -6.401633889652203e-09,
+          "delta_s": 3.716511542961598e-10
+        }
+      ]
+    },
+    "resource_delta": {
+      "wirelength": -12,
+      "SB_pairs": 0,
+      "CB_sources": 0
+    },
+    "qualification": "This transition policy is separate from final multiobjective archive retention. A final non-dominated tradeoff may be archived even when this particular resource-Pareto transition rejects it. No endpoint-vector non-regression requirement is inferred beyond configured CPD and hold bounds."
+  }
+}

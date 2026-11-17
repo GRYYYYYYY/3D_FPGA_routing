@@ -3,6 +3,12 @@ from pathlib import Path
 
 def render(status,D):
     result = _render(status,D)
+    if status.get('LSTM_complete_execution_verification'):
+        latest=status['LSTM_complete_execution_verification']
+        native=latest['roles']['native'];domain=latest['roles']['domain']
+        note=(f"\n[LSTM完整执行与原验证失败](LSTM_complete_execution_01/STATUS.md)：N/D完整命令均返回0，分别实测{native['complete_command_wall_seconds']:.6f}/{domain['complete_command_wall_seconds']:.6f}秒；原独立验证分别{native['independent_research_verification_seconds']:.6f}/{domain['independent_research_verification_seconds']:.6f}秒后失败，quality均为null，正式配对比例仍不可用。domain原line64首次失败定位到attempt_index15、round013/candidate00原passed=false；此前155个小型来源哈希均匹配，未重跑native/STA或改历史完成记录。实际队列已接续DLA-small/native，后续以本页进程表为准。完整费用保留ctime事件，不称干净算法开销；正文收益主张不变。剩余四角色与原补充规划约2.17–8.67小时，raw/基线/事件审计另计未校准；此前菜单ETA仅是历史情景。\n")
+        first,rest=result.split('\n',1)
+        result=first+'\n'+note+rest
     if status.get('LSTM_retention_metadata_incident'):
         note = '\n[LSTM归档干扰更正](../../docs/GitHub_LSTM_retention_incident_20261117.md)：助手硬链接归档改变活动源ctime，触发round013/candidate00一次封存失败；135项登记摘要与原最终重哈希一致，失败5项仅ctime变化。保留原失败及费用，不补造成功、不重跑查询、不改预算；当前运行期禁止对上游输入创建/删除硬链接或改元数据。完整LSTM配对及干净计时尚未准入。\n'
         first, rest = result.split('\n',1)

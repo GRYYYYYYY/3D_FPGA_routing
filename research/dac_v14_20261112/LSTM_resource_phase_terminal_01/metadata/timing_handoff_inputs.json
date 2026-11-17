@@ -1,0 +1,79 @@
+{
+  "format": "standalone_native_observation_input_v1",
+  "files": {
+    "architecture": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/inputs/architecture.xml",
+      "sha256": "1a32ca1d4e9db92402d7f2c4b60d3974fbb6c3195268351bdccf2604c9ee0e94"
+    },
+    "circuit": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/inputs/circuit.blif",
+      "sha256": "38ecd31e85c8afa11a8f8840b4d62f89d763506d0d936417d78650afe4be09b1"
+    },
+    "graph": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/inputs/graph.xml",
+      "sha256": "f745f8bd2fedd310f3f47f068bd9a0a82d727633026bc83319332708f2eb17a2"
+    },
+    "packed": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_016/candidate_02/reuse_off_evaluation/runs/state/packed.net",
+      "sha256": "a5c5bf4472d12a2c31c9af6048e6a10042db1f4909617214f7ea6b86e3bed282"
+    },
+    "placement": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_016/candidate_02/reuse_off_evaluation/runs/state/placed.place",
+      "sha256": "e1896783ea140c6fae4d0c61de0fa7e4a1cbb347d8add9631027a6dcb07ef60c"
+    },
+    "binary": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/unified_method_01/inputs/binary_resource",
+      "sha256": "cad1d5671ae5dbbe6c7fbdbf21243ed46f43a5d08dcd6b541d3f08b26b8c189a"
+    },
+    "route": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_016/candidate_02/reuse_off_evaluation/runs/state/routed.route",
+      "sha256": "c2621fc64a01700d63da8d9657c5621d28d74384dbb383e1590d75736449c219"
+    }
+  },
+  "analysis_arguments": [
+    "--analysis",
+    "--num_workers",
+    "1",
+    "--clock_modeling",
+    "ideal",
+    "--check_route",
+    "full",
+    "--verify_file_digests",
+    "off",
+    "--verify_route_file_switch_id",
+    "on",
+    "--timing_report_npaths",
+    "10",
+    "--max_router_iterations",
+    "200",
+    "--routing_failure_predictor",
+    "off",
+    "--router_max_convergence_count",
+    "8",
+    "--router_reconvergence_cpd_threshold",
+    "1.01",
+    "--device",
+    "fixture",
+    "--route_chan_width",
+    "100",
+    "--seed",
+    "21",
+    "--read_rr_graph",
+    "{graph}",
+    "--net_file",
+    "{packed}",
+    "--place_file",
+    "{placement}",
+    "--route_file",
+    "{route}",
+    "--merge_constant_generators",
+    "off"
+  ],
+  "full_graph_cache": {
+    "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/joint_graph_indexes/full_cache",
+    "completion_sha256": "b43d50a250846b4797820c502f00afc603fcf03e3387ebb29a5cddcd79dd72c3"
+  },
+  "phase": "resource",
+  "runtime_config": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/phase_runtime.json",
+  "runtime_config_sha256": "d4f32cd46a6af8979190d25934ecd9c0f493060558024db1729bc664f0e4b62b"
+}

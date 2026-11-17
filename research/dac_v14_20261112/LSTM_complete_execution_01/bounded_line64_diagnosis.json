@@ -1,0 +1,1020 @@
+{
+  "scope": "Reproduce only the ordered assertions on original verifier line64 using bounded completed metadata; no graph/rawSTA/native calls or quality admission",
+  "checked_small_sources": 155,
+  "all_preceding_small_source_hashes_match": true,
+  "stop": {
+    "attempt_index": 15,
+    "condition": "original_closed_passed_false",
+    "transaction": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00",
+    "completion": {
+      "status": "development_batch_terminal",
+      "passed": false,
+      "roles": {
+        "reuse_on": {
+          "status": "FULL_STA_failed",
+          "scope": "own_current_resource_K8",
+          "baseline": "fresh_serial_current",
+          "accepted": false
+        },
+        "reuse_off": {
+          "status": "legal_evaluated",
+          "scope": "own_current_resource_K8",
+          "baseline": "fresh_serial_current",
+          "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/reuse_off_evaluation",
+          "reused_FULL_STA": false,
+          "cpd_s": 1.4600438191791909e-08,
+          "resources": {
+            "wirelength": 2390314,
+            "SB_pairs": 425,
+            "CB_sources": 8316
+          },
+          "native_reused": false,
+          "native_calls_new": 1,
+          "native_core_seconds_new": 8.731681409,
+          "reused_creation_native_core_seconds": null,
+          "native_core_seconds": 8.731681409,
+          "changed_connections": [
+            {
+              "net": 44,
+              "pin": 6,
+              "before_s": 3.725551006583672e-09,
+              "after_s": 4.468854203354411e-09
+            },
+            {
+              "net": 2254,
+              "pin": 6,
+              "before_s": 4.112480606055513e-09,
+              "after_s": 4.855783802826252e-09
+            }
+          ],
+          "policies": {
+            "strict": {
+              "accepted": false,
+              "reason": "No full-precision strict CPD improvement"
+            },
+            "endpoint_vector": {
+              "accepted": false,
+              "reason": "Setup endpoint/domain vector has regressions"
+            },
+            "timing_under_resources": {
+              "accepted": false,
+              "reason": "No exact CPD reduction within resource limits"
+            },
+            "resources_under_timing": {
+              "accepted": false,
+              "reason": "No resource Pareto improvement within fixed CPD budget"
+            }
+          }
+        }
+      },
+      "complete_orchestrator_seconds": 1034.7893796414137,
+      "complete_child_process_seconds": 939.3687971197069,
+      "source_sha256": {
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/registration.json": "e077032213dd6f500453d6ae4028133f760f47f74a7b7b0fb43ba368267b43b9",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/execution_registration.json": "f089f80635cc3f0a48ec1d8c5786d15245b7454e701dce301ec2fb809941a3ed",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/process_costs.json": "8cbdbaab5c2777944a43fca989a8a3529b4c91baa014bcd2862efdbef9811ebd",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/progress.json": "e2a72b8bcc9849216f7d840760408421eff14f916d8524fe1411de7ca94cde26",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/reuse_off_decisions.json": "7217d142991b675fba6b6f984ae87cd91fcc363bfbc3c691dd9db908ffe52996",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/reuse_off_strict_state.json": "24e8870ccb8e6a9bf66f4928fb47be2217ed810fcea1a079c8918dbb6af99350",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/reuse_off_timing_under_resources_state.json": "24e8870ccb8e6a9bf66f4928fb47be2217ed810fcea1a079c8918dbb6af99350",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/reuse_off_endpoint_vector_state.json": "24e8870ccb8e6a9bf66f4928fb47be2217ed810fcea1a079c8918dbb6af99350",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/reuse_off_resources_under_timing_state.json": "24e8870ccb8e6a9bf66f4928fb47be2217ed810fcea1a079c8918dbb6af99350"
+      },
+      "execution_policy": "domain_first_stop_on_resource_accept",
+      "qualification": "Domain-first resource acceptance suppresses only the optional OFF diagnostic after a fully checked ON candidate passes. Skipped outcomes have no inferred metrics or rejection decision. Cross-batch exact free-native reuse is explicit; acceptance is fresh. Historical creation/core time is not newly executed time. Complete shared multi-arm development workflow cost, not a standalone configuration runtime. Individual failures do not stop other arms or the research goal. Further searches must use each accepted current state and updated occupancy/STA."
+    }
+  },
+  "diagnostic_seconds": 0.019073735922574997,
+  "checked_sources": [
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_000/candidate_00/registration.json",
+      "expected": "f912020e76bcfe9adcd2d8f2cf4a441723dd5e2dd6d28166d6337c3a35c6ffe7",
+      "actual": "f912020e76bcfe9adcd2d8f2cf4a441723dd5e2dd6d28166d6337c3a35c6ffe7",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_000/candidate_00/execution_registration.json",
+      "expected": "22eb9d5040677076812040e79fa3e79f2f2a0e54da2987ef6a8678ef6bd64949",
+      "actual": "22eb9d5040677076812040e79fa3e79f2f2a0e54da2987ef6a8678ef6bd64949",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_000/candidate_00/process_costs.json",
+      "expected": "a1879d24145f0ad15f58b670b9f0143df8e9e3f1ec3abd60341296bb3d265eac",
+      "actual": "a1879d24145f0ad15f58b670b9f0143df8e9e3f1ec3abd60341296bb3d265eac",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_000/candidate_00/progress.json",
+      "expected": "e487ad98a3d9013e82d97224501fa2723597ab96af14fc8f06f3560bf089a329",
+      "actual": "e487ad98a3d9013e82d97224501fa2723597ab96af14fc8f06f3560bf089a329",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_000/candidate_00/reuse_on_decisions.json",
+      "expected": "e7bfd7f334614b128e586ba8b6b02df88debefe8f8d080638587feb96cf82a85",
+      "actual": "e7bfd7f334614b128e586ba8b6b02df88debefe8f8d080638587feb96cf82a85",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_000/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "3c9da69bcedefe5b69ea40c300ebdf24a71c23a498f3954320f3850a011fc7c8",
+      "actual": "3c9da69bcedefe5b69ea40c300ebdf24a71c23a498f3954320f3850a011fc7c8",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_000/candidate_00/reuse_on_strict_state.json",
+      "expected": "28ca7dd94f12288ec268138c92f014683ff3c8b59129ab8c34ec7cb5e5463392",
+      "actual": "28ca7dd94f12288ec268138c92f014683ff3c8b59129ab8c34ec7cb5e5463392",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_000/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "28ca7dd94f12288ec268138c92f014683ff3c8b59129ab8c34ec7cb5e5463392",
+      "actual": "28ca7dd94f12288ec268138c92f014683ff3c8b59129ab8c34ec7cb5e5463392",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_000/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "3c9da69bcedefe5b69ea40c300ebdf24a71c23a498f3954320f3850a011fc7c8",
+      "actual": "3c9da69bcedefe5b69ea40c300ebdf24a71c23a498f3954320f3850a011fc7c8",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_001/candidate_00/registration.json",
+      "expected": "b10dffd90fba5321ea0b5acedb9366648ec518b1e1e29d9ebee3aabb6f4f66b9",
+      "actual": "b10dffd90fba5321ea0b5acedb9366648ec518b1e1e29d9ebee3aabb6f4f66b9",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_001/candidate_00/execution_registration.json",
+      "expected": "2bd7e5316b3c3235faf684f47863602742ff1f2b397bf0e95e56ef2ba6d69ff5",
+      "actual": "2bd7e5316b3c3235faf684f47863602742ff1f2b397bf0e95e56ef2ba6d69ff5",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_001/candidate_00/process_costs.json",
+      "expected": "48065f9a6a29918ce30642cf527c9b42777a3c7026c9c7c7ac2f73ffb72b5b20",
+      "actual": "48065f9a6a29918ce30642cf527c9b42777a3c7026c9c7c7ac2f73ffb72b5b20",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_001/candidate_00/progress.json",
+      "expected": "f074b798b4a126a377e6a65d8d55b633701669d340bfbf5af90045c926420e7f",
+      "actual": "f074b798b4a126a377e6a65d8d55b633701669d340bfbf5af90045c926420e7f",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_001/candidate_00/reuse_on_decisions.json",
+      "expected": "817e064c4ebb3777a7e5a097cff8d1fd389835f4ddb68fdd199e42ce216b9a46",
+      "actual": "817e064c4ebb3777a7e5a097cff8d1fd389835f4ddb68fdd199e42ce216b9a46",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_001/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "94754157a44b862701f6b87fcca357dc974bc4e10b11392260c534fcb398b6fd",
+      "actual": "94754157a44b862701f6b87fcca357dc974bc4e10b11392260c534fcb398b6fd",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_001/candidate_00/reuse_on_strict_state.json",
+      "expected": "94754157a44b862701f6b87fcca357dc974bc4e10b11392260c534fcb398b6fd",
+      "actual": "94754157a44b862701f6b87fcca357dc974bc4e10b11392260c534fcb398b6fd",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_001/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "94754157a44b862701f6b87fcca357dc974bc4e10b11392260c534fcb398b6fd",
+      "actual": "94754157a44b862701f6b87fcca357dc974bc4e10b11392260c534fcb398b6fd",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_001/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "8079345f87d0c0bd2d354173800030d35ac484cd1e9c12154c7ba52a9d985f1a",
+      "actual": "8079345f87d0c0bd2d354173800030d35ac484cd1e9c12154c7ba52a9d985f1a",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_002/candidate_00/registration.json",
+      "expected": "e7ae4ff14ebf71354a812dd51b83bcb14e39da18935663bc2e4dbdab6a0e3323",
+      "actual": "e7ae4ff14ebf71354a812dd51b83bcb14e39da18935663bc2e4dbdab6a0e3323",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_002/candidate_00/execution_registration.json",
+      "expected": "a87ba100bbb154fc596243d3322e8ca7e58b495f1571309b5a3b99073b869371",
+      "actual": "a87ba100bbb154fc596243d3322e8ca7e58b495f1571309b5a3b99073b869371",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_002/candidate_00/process_costs.json",
+      "expected": "af119a51dc8422ad221ac73321c7cf1abe4055c0c68f00cb278d12d4ce6be433",
+      "actual": "af119a51dc8422ad221ac73321c7cf1abe4055c0c68f00cb278d12d4ce6be433",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_002/candidate_00/progress.json",
+      "expected": "75b866d6ee26fe20d375f0ad96fa9f2fdcf16320e571d9c3e43a4bd2e4c4bd02",
+      "actual": "75b866d6ee26fe20d375f0ad96fa9f2fdcf16320e571d9c3e43a4bd2e4c4bd02",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_002/candidate_00/reuse_on_decisions.json",
+      "expected": "63e9f6afa0c49558b9b972fcadb4a80c9e0c3c2a322ccde7cc7009ad5a888a41",
+      "actual": "63e9f6afa0c49558b9b972fcadb4a80c9e0c3c2a322ccde7cc7009ad5a888a41",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_002/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "9c42afe06cbe3f01731117c2ac71f53bbfa128339ad2c4cfbc91c8e2c6668cd7",
+      "actual": "9c42afe06cbe3f01731117c2ac71f53bbfa128339ad2c4cfbc91c8e2c6668cd7",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_002/candidate_00/reuse_on_strict_state.json",
+      "expected": "9c42afe06cbe3f01731117c2ac71f53bbfa128339ad2c4cfbc91c8e2c6668cd7",
+      "actual": "9c42afe06cbe3f01731117c2ac71f53bbfa128339ad2c4cfbc91c8e2c6668cd7",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_002/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "9c42afe06cbe3f01731117c2ac71f53bbfa128339ad2c4cfbc91c8e2c6668cd7",
+      "actual": "9c42afe06cbe3f01731117c2ac71f53bbfa128339ad2c4cfbc91c8e2c6668cd7",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_002/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "e935d69ad6f54464f058486bf93ce23e4b4952d3e3e84b86fee75e9a32339702",
+      "actual": "e935d69ad6f54464f058486bf93ce23e4b4952d3e3e84b86fee75e9a32339702",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_003/candidate_00/registration.json",
+      "expected": "f3162baa528f956362a5e0e4575a8dfd341c4272aeacbe70f05950f24927038c",
+      "actual": "f3162baa528f956362a5e0e4575a8dfd341c4272aeacbe70f05950f24927038c",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_003/candidate_00/execution_registration.json",
+      "expected": "e3daf082330c42c45a179fb3d641a2ed7caaaffd9f079bd3d5b2de91316fab27",
+      "actual": "e3daf082330c42c45a179fb3d641a2ed7caaaffd9f079bd3d5b2de91316fab27",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_003/candidate_00/process_costs.json",
+      "expected": "49dba6ec3a9c7de574e63f88d14ddddb99795d9419f493dc49995268d850c21c",
+      "actual": "49dba6ec3a9c7de574e63f88d14ddddb99795d9419f493dc49995268d850c21c",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_003/candidate_00/progress.json",
+      "expected": "8e4bb816e07b39341d567b39b1d8b6debc0e9b8001b2eec396aebd5094d4d89c",
+      "actual": "8e4bb816e07b39341d567b39b1d8b6debc0e9b8001b2eec396aebd5094d4d89c",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_003/candidate_00/reuse_on_decisions.json",
+      "expected": "6b61c86063cbd3bf12f9e56003870c20d70f72753ee807081f017ac999e360ca",
+      "actual": "6b61c86063cbd3bf12f9e56003870c20d70f72753ee807081f017ac999e360ca",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_003/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "6a6ed4e2c0f95694e8a33ad8f093b9035eda875c3122c652a6de0fd7580e5a86",
+      "actual": "6a6ed4e2c0f95694e8a33ad8f093b9035eda875c3122c652a6de0fd7580e5a86",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_003/candidate_00/reuse_on_strict_state.json",
+      "expected": "6a6ed4e2c0f95694e8a33ad8f093b9035eda875c3122c652a6de0fd7580e5a86",
+      "actual": "6a6ed4e2c0f95694e8a33ad8f093b9035eda875c3122c652a6de0fd7580e5a86",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_003/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "6a6ed4e2c0f95694e8a33ad8f093b9035eda875c3122c652a6de0fd7580e5a86",
+      "actual": "6a6ed4e2c0f95694e8a33ad8f093b9035eda875c3122c652a6de0fd7580e5a86",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_003/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "5e29a1bde5ac5c6f0d6f5ca23e1f368b686b4cf7fb51b337bc6d2015dfaa9d7a",
+      "actual": "5e29a1bde5ac5c6f0d6f5ca23e1f368b686b4cf7fb51b337bc6d2015dfaa9d7a",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_004/candidate_00/registration.json",
+      "expected": "74896296b358110bf2b1a44ad3813a7980c31b2d547d4218b53bd81be71fecfd",
+      "actual": "74896296b358110bf2b1a44ad3813a7980c31b2d547d4218b53bd81be71fecfd",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_004/candidate_00/execution_registration.json",
+      "expected": "437cf6415514e36447d20b4558cfaf96f110c33dcb1a9b02552e01c42eac1815",
+      "actual": "437cf6415514e36447d20b4558cfaf96f110c33dcb1a9b02552e01c42eac1815",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_004/candidate_00/process_costs.json",
+      "expected": "d7be4a195d8ac23f951ca3636a0eb68a4f60859407351b81f1416fa29131363d",
+      "actual": "d7be4a195d8ac23f951ca3636a0eb68a4f60859407351b81f1416fa29131363d",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_004/candidate_00/progress.json",
+      "expected": "78f73beaf0130541ee6e1c002d868e67b493af96fb5bf332686c935c372981c5",
+      "actual": "78f73beaf0130541ee6e1c002d868e67b493af96fb5bf332686c935c372981c5",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_004/candidate_00/reuse_on_decisions.json",
+      "expected": "473ee4177372011fe2dc104ae670525ed346ae944c32d8fb2702706339d36ee6",
+      "actual": "473ee4177372011fe2dc104ae670525ed346ae944c32d8fb2702706339d36ee6",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_004/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "24eef0fb9685318ca39efc988029c6911fc4406e1c7e1b42b88b76e441379c6e",
+      "actual": "24eef0fb9685318ca39efc988029c6911fc4406e1c7e1b42b88b76e441379c6e",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_004/candidate_00/reuse_on_strict_state.json",
+      "expected": "24eef0fb9685318ca39efc988029c6911fc4406e1c7e1b42b88b76e441379c6e",
+      "actual": "24eef0fb9685318ca39efc988029c6911fc4406e1c7e1b42b88b76e441379c6e",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_004/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "24eef0fb9685318ca39efc988029c6911fc4406e1c7e1b42b88b76e441379c6e",
+      "actual": "24eef0fb9685318ca39efc988029c6911fc4406e1c7e1b42b88b76e441379c6e",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_004/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "3f4105f5af5dd102e8f136c6e807286a03c0c99ccda017e5bd05fa9377ed1995",
+      "actual": "3f4105f5af5dd102e8f136c6e807286a03c0c99ccda017e5bd05fa9377ed1995",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_005/candidate_00/registration.json",
+      "expected": "812c812dd104922f579f46e671cfa1e274b956f36730fc98037bd6121dbadecd",
+      "actual": "812c812dd104922f579f46e671cfa1e274b956f36730fc98037bd6121dbadecd",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_005/candidate_00/execution_registration.json",
+      "expected": "b67241eec95cb9cd397e855abdc61c3817d246cc8724d0da53d7462eca1ade19",
+      "actual": "b67241eec95cb9cd397e855abdc61c3817d246cc8724d0da53d7462eca1ade19",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_005/candidate_00/process_costs.json",
+      "expected": "2aaf011d1fcf143b437dd4c3050f770bebaba6da00e4becfde7068c0106447eb",
+      "actual": "2aaf011d1fcf143b437dd4c3050f770bebaba6da00e4becfde7068c0106447eb",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_005/candidate_00/progress.json",
+      "expected": "9078c3dcf9449d8cfd392e6fa1468e639e61c05b3d0a8b9746c821ca72bd1389",
+      "actual": "9078c3dcf9449d8cfd392e6fa1468e639e61c05b3d0a8b9746c821ca72bd1389",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_005/candidate_00/reuse_on_decisions.json",
+      "expected": "bb6ffb421eb1b3f85936a1b9bc6ac97691d307948ff116a9219a3abd9043082f",
+      "actual": "bb6ffb421eb1b3f85936a1b9bc6ac97691d307948ff116a9219a3abd9043082f",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_005/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "0e24dc60ae8ba5f5d6c04f2487376a6e3710e73a2a0c70ffc4d7cdcf05c7a283",
+      "actual": "0e24dc60ae8ba5f5d6c04f2487376a6e3710e73a2a0c70ffc4d7cdcf05c7a283",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_005/candidate_00/reuse_on_strict_state.json",
+      "expected": "0e24dc60ae8ba5f5d6c04f2487376a6e3710e73a2a0c70ffc4d7cdcf05c7a283",
+      "actual": "0e24dc60ae8ba5f5d6c04f2487376a6e3710e73a2a0c70ffc4d7cdcf05c7a283",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_005/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "0e24dc60ae8ba5f5d6c04f2487376a6e3710e73a2a0c70ffc4d7cdcf05c7a283",
+      "actual": "0e24dc60ae8ba5f5d6c04f2487376a6e3710e73a2a0c70ffc4d7cdcf05c7a283",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_005/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "f6dd00a2ef6d020fec48ffaff229e077648d1b8ee812e8e33744dca079380864",
+      "actual": "f6dd00a2ef6d020fec48ffaff229e077648d1b8ee812e8e33744dca079380864",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_006/candidate_00/registration.json",
+      "expected": "f20e462ecb5a3d9da557ec5cf53832c4440297b0f793a0fea454f3dd117d4e55",
+      "actual": "f20e462ecb5a3d9da557ec5cf53832c4440297b0f793a0fea454f3dd117d4e55",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_006/candidate_00/execution_registration.json",
+      "expected": "28ab8af3cba6c6fbda3ddab26f5c91b88fb3777025e078ab4e488a2aeb4bdc03",
+      "actual": "28ab8af3cba6c6fbda3ddab26f5c91b88fb3777025e078ab4e488a2aeb4bdc03",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_006/candidate_00/process_costs.json",
+      "expected": "6a96e694ed6bbf95cc49038dc69dc235279072dc9de2bc019eaea369d68c50c0",
+      "actual": "6a96e694ed6bbf95cc49038dc69dc235279072dc9de2bc019eaea369d68c50c0",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_006/candidate_00/progress.json",
+      "expected": "ae3e0420e22a99b8f85c8a4928801ad99626d226a5e717812ee5756faf7da988",
+      "actual": "ae3e0420e22a99b8f85c8a4928801ad99626d226a5e717812ee5756faf7da988",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_006/candidate_00/reuse_on_decisions.json",
+      "expected": "60702fdcda2486b5d3770877ed56b4510769312e3ee2162b1ec1e81660d464fa",
+      "actual": "60702fdcda2486b5d3770877ed56b4510769312e3ee2162b1ec1e81660d464fa",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_006/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "df89b06782adecb37dafced410b67ba9899018c331c4ced09a0c987dcf0d19f5",
+      "actual": "df89b06782adecb37dafced410b67ba9899018c331c4ced09a0c987dcf0d19f5",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_006/candidate_00/reuse_on_strict_state.json",
+      "expected": "df89b06782adecb37dafced410b67ba9899018c331c4ced09a0c987dcf0d19f5",
+      "actual": "df89b06782adecb37dafced410b67ba9899018c331c4ced09a0c987dcf0d19f5",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_006/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "df89b06782adecb37dafced410b67ba9899018c331c4ced09a0c987dcf0d19f5",
+      "actual": "df89b06782adecb37dafced410b67ba9899018c331c4ced09a0c987dcf0d19f5",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_006/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "e18be0ba0c73ae8f011eceace91737c1cc55439955bc45f8f440af6d9871c099",
+      "actual": "e18be0ba0c73ae8f011eceace91737c1cc55439955bc45f8f440af6d9871c099",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_007/candidate_00/registration.json",
+      "expected": "5cfa06430eb8f0db33769fd2161e53125d5c3c64a81c86a589a022c1ef98e473",
+      "actual": "5cfa06430eb8f0db33769fd2161e53125d5c3c64a81c86a589a022c1ef98e473",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_007/candidate_00/execution_registration.json",
+      "expected": "c7bd33bd71ba4fc097f4fda318f042ea6fe1151d6bf6c6b21f54c8fe60081ddc",
+      "actual": "c7bd33bd71ba4fc097f4fda318f042ea6fe1151d6bf6c6b21f54c8fe60081ddc",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_007/candidate_00/process_costs.json",
+      "expected": "8f8a9bd18aa7d93ca15c3e367826ac1dfd55c2678af4e5bb645eda1f75c1d23e",
+      "actual": "8f8a9bd18aa7d93ca15c3e367826ac1dfd55c2678af4e5bb645eda1f75c1d23e",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_007/candidate_00/progress.json",
+      "expected": "fe428d49327ec7e8d8a3395879157abd2c9bb9544a0816cf3c1bd3cbac4c7d27",
+      "actual": "fe428d49327ec7e8d8a3395879157abd2c9bb9544a0816cf3c1bd3cbac4c7d27",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_007/candidate_00/reuse_on_decisions.json",
+      "expected": "5b43821baa5ff04a9d740ee7fb72299f411b68b9c051ca2d2504f23e49a337b3",
+      "actual": "5b43821baa5ff04a9d740ee7fb72299f411b68b9c051ca2d2504f23e49a337b3",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_007/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "f10f7ba8629d859ade711d80186698177eca60c16cacff406bd49f9fd5a95c0b",
+      "actual": "f10f7ba8629d859ade711d80186698177eca60c16cacff406bd49f9fd5a95c0b",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_007/candidate_00/reuse_on_strict_state.json",
+      "expected": "f10f7ba8629d859ade711d80186698177eca60c16cacff406bd49f9fd5a95c0b",
+      "actual": "f10f7ba8629d859ade711d80186698177eca60c16cacff406bd49f9fd5a95c0b",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_007/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "f10f7ba8629d859ade711d80186698177eca60c16cacff406bd49f9fd5a95c0b",
+      "actual": "f10f7ba8629d859ade711d80186698177eca60c16cacff406bd49f9fd5a95c0b",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_007/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "0bf7720b6311a533ee9bd7bbf84773a1dbe0f925f6f6b8fbc6b0151087835da9",
+      "actual": "0bf7720b6311a533ee9bd7bbf84773a1dbe0f925f6f6b8fbc6b0151087835da9",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_008/candidate_00/registration.json",
+      "expected": "4265d7d4624451a197b89d844ec8312a62ec04f4042728e445590511f76914f3",
+      "actual": "4265d7d4624451a197b89d844ec8312a62ec04f4042728e445590511f76914f3",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_008/candidate_00/execution_registration.json",
+      "expected": "bbee91601f4d3e9f531a2b051134f400186eb5de4b9f2fb9a7310fb51ca2e6fa",
+      "actual": "bbee91601f4d3e9f531a2b051134f400186eb5de4b9f2fb9a7310fb51ca2e6fa",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_008/candidate_00/process_costs.json",
+      "expected": "8e828df657b6f97e88682c344ff683f920e2b1f5653c8dad516374b0507a99cb",
+      "actual": "8e828df657b6f97e88682c344ff683f920e2b1f5653c8dad516374b0507a99cb",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_008/candidate_00/progress.json",
+      "expected": "2f66287449c5d19fa73a58dc6a1d9fcd12a4d07e4e59da0a12fb38c9e223fdba",
+      "actual": "2f66287449c5d19fa73a58dc6a1d9fcd12a4d07e4e59da0a12fb38c9e223fdba",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_008/candidate_00/reuse_on_decisions.json",
+      "expected": "d0d6b716e1eca6731128e65dad2172042827d153d450ab4065456afdb805857b",
+      "actual": "d0d6b716e1eca6731128e65dad2172042827d153d450ab4065456afdb805857b",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_008/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "9ab0fd02b13ff1484c8a2529623c37a164ddb4cb871038f333a7c5c3e349d9be",
+      "actual": "9ab0fd02b13ff1484c8a2529623c37a164ddb4cb871038f333a7c5c3e349d9be",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_008/candidate_00/reuse_on_strict_state.json",
+      "expected": "9ab0fd02b13ff1484c8a2529623c37a164ddb4cb871038f333a7c5c3e349d9be",
+      "actual": "9ab0fd02b13ff1484c8a2529623c37a164ddb4cb871038f333a7c5c3e349d9be",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_008/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "9ab0fd02b13ff1484c8a2529623c37a164ddb4cb871038f333a7c5c3e349d9be",
+      "actual": "9ab0fd02b13ff1484c8a2529623c37a164ddb4cb871038f333a7c5c3e349d9be",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_008/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "357d13db25aec42b3d601fac1e38f0dbf7b7bedd4c33a8b5dd84235b6a73073f",
+      "actual": "357d13db25aec42b3d601fac1e38f0dbf7b7bedd4c33a8b5dd84235b6a73073f",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_009/candidate_00/registration.json",
+      "expected": "15173970164b765dc7f3d418cac9640eb001021f6e7e4978cae60742f048c4ff",
+      "actual": "15173970164b765dc7f3d418cac9640eb001021f6e7e4978cae60742f048c4ff",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_009/candidate_00/execution_registration.json",
+      "expected": "c84e4466e81cce8515d1ac57b5d046baf8c17dd89f194fbb3f7770582c6cb8cc",
+      "actual": "c84e4466e81cce8515d1ac57b5d046baf8c17dd89f194fbb3f7770582c6cb8cc",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_009/candidate_00/process_costs.json",
+      "expected": "44a320c0c28322c8f1b9a437d649d5835bf608f2d415e23760df5bb11d772cde",
+      "actual": "44a320c0c28322c8f1b9a437d649d5835bf608f2d415e23760df5bb11d772cde",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_009/candidate_00/progress.json",
+      "expected": "d6a08b548db00fca9fd5ac9f526c6f9e08ace2991c522738a8af19f82813b0f1",
+      "actual": "d6a08b548db00fca9fd5ac9f526c6f9e08ace2991c522738a8af19f82813b0f1",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_009/candidate_00/reuse_on_decisions.json",
+      "expected": "a5e6cd8172b6c24f8a8c5dee1eff229a080d5ec72f97577300084b907379a3ee",
+      "actual": "a5e6cd8172b6c24f8a8c5dee1eff229a080d5ec72f97577300084b907379a3ee",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_009/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "4f6874e7d462225d15582a4760de8d9797841ab5c53a2826ec320cd368684e83",
+      "actual": "4f6874e7d462225d15582a4760de8d9797841ab5c53a2826ec320cd368684e83",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_009/candidate_00/reuse_on_strict_state.json",
+      "expected": "4f6874e7d462225d15582a4760de8d9797841ab5c53a2826ec320cd368684e83",
+      "actual": "4f6874e7d462225d15582a4760de8d9797841ab5c53a2826ec320cd368684e83",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_009/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "4f6874e7d462225d15582a4760de8d9797841ab5c53a2826ec320cd368684e83",
+      "actual": "4f6874e7d462225d15582a4760de8d9797841ab5c53a2826ec320cd368684e83",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_009/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "2b2e9962b5d2defbf5f5ac4d6f97cf9d0e80a09ad6cf0690812b7f475ce286ed",
+      "actual": "2b2e9962b5d2defbf5f5ac4d6f97cf9d0e80a09ad6cf0690812b7f475ce286ed",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_010/candidate_00/registration.json",
+      "expected": "83cc945bebd27580aa3eff011c76cb3702abfbdce34d972891d4de41b2a4bb77",
+      "actual": "83cc945bebd27580aa3eff011c76cb3702abfbdce34d972891d4de41b2a4bb77",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_010/candidate_00/execution_registration.json",
+      "expected": "3b494750120de568f8d767526fe36b41aa22d05e332a5c388365c5b3f2af56c6",
+      "actual": "3b494750120de568f8d767526fe36b41aa22d05e332a5c388365c5b3f2af56c6",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_010/candidate_00/process_costs.json",
+      "expected": "975e0f83f6241d685a3512749025749e282ae523a4bdeb6521ec7642d9a544e1",
+      "actual": "975e0f83f6241d685a3512749025749e282ae523a4bdeb6521ec7642d9a544e1",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_010/candidate_00/progress.json",
+      "expected": "8057bdfe059d269adb7a2b62e9ffc18fa9825bd2df76b1be41c0901cd2f23ed7",
+      "actual": "8057bdfe059d269adb7a2b62e9ffc18fa9825bd2df76b1be41c0901cd2f23ed7",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_010/candidate_00/reuse_on_decisions.json",
+      "expected": "3c03b91504e3e2c176cb373602540e8a16a5321eef69b490cd09331eda6cd7fc",
+      "actual": "3c03b91504e3e2c176cb373602540e8a16a5321eef69b490cd09331eda6cd7fc",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_010/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "169fdec8542c72325e1269b0fd8a86101006c263f0973ee72ad70b7d42c9d107",
+      "actual": "169fdec8542c72325e1269b0fd8a86101006c263f0973ee72ad70b7d42c9d107",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_010/candidate_00/reuse_on_strict_state.json",
+      "expected": "169fdec8542c72325e1269b0fd8a86101006c263f0973ee72ad70b7d42c9d107",
+      "actual": "169fdec8542c72325e1269b0fd8a86101006c263f0973ee72ad70b7d42c9d107",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_010/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "169fdec8542c72325e1269b0fd8a86101006c263f0973ee72ad70b7d42c9d107",
+      "actual": "169fdec8542c72325e1269b0fd8a86101006c263f0973ee72ad70b7d42c9d107",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_010/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "f93e6a2f472c0b03b24e860f7cfcd4ea5036a3a1f776bac946f9c029377caea7",
+      "actual": "f93e6a2f472c0b03b24e860f7cfcd4ea5036a3a1f776bac946f9c029377caea7",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/registration.json",
+      "expected": "f88f141c0e141430ec5b8be539a16e129d76cf9d28798ff3286161064be51f76",
+      "actual": "f88f141c0e141430ec5b8be539a16e129d76cf9d28798ff3286161064be51f76",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/execution_registration.json",
+      "expected": "f2c45ce8b2d5cc568b1106384f263c8b074c261aff95ca6b87c3c8461f50020a",
+      "actual": "f2c45ce8b2d5cc568b1106384f263c8b074c261aff95ca6b87c3c8461f50020a",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/process_costs.json",
+      "expected": "d75cee72f5574d5de51c10dd91b2f36a8880dd6ead050559758957c26a469cf9",
+      "actual": "d75cee72f5574d5de51c10dd91b2f36a8880dd6ead050559758957c26a469cf9",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/progress.json",
+      "expected": "d7b4e3709190fa016d679fd5dd95bf457671a05c0a36dba4f599e85372391047",
+      "actual": "d7b4e3709190fa016d679fd5dd95bf457671a05c0a36dba4f599e85372391047",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_on_decisions.json",
+      "expected": "1eca256c9e7b20d2fdd7ac8ab2530e59e613a019781bf246c2a1c9377bc971ca",
+      "actual": "1eca256c9e7b20d2fdd7ac8ab2530e59e613a019781bf246c2a1c9377bc971ca",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_off_decisions.json",
+      "expected": "a63cf94e66cf643daa345f3a4ff18b2394ab543a7c3c632e47adedb207c55931",
+      "actual": "a63cf94e66cf643daa345f3a4ff18b2394ab543a7c3c632e47adedb207c55931",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "a250ac7c30e7446af2d0ffdc21b4067f47d72ec638470d0bdbf5037744842fba",
+      "actual": "a250ac7c30e7446af2d0ffdc21b4067f47d72ec638470d0bdbf5037744842fba",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_off_strict_state.json",
+      "expected": "e678b5ea655a4e4854af4d9fadb62acea26fd9f86ccb97a4463cddcb88508f58",
+      "actual": "e678b5ea655a4e4854af4d9fadb62acea26fd9f86ccb97a4463cddcb88508f58",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_off_timing_under_resources_state.json",
+      "expected": "e678b5ea655a4e4854af4d9fadb62acea26fd9f86ccb97a4463cddcb88508f58",
+      "actual": "e678b5ea655a4e4854af4d9fadb62acea26fd9f86ccb97a4463cddcb88508f58",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_on_strict_state.json",
+      "expected": "a250ac7c30e7446af2d0ffdc21b4067f47d72ec638470d0bdbf5037744842fba",
+      "actual": "a250ac7c30e7446af2d0ffdc21b4067f47d72ec638470d0bdbf5037744842fba",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "a250ac7c30e7446af2d0ffdc21b4067f47d72ec638470d0bdbf5037744842fba",
+      "actual": "a250ac7c30e7446af2d0ffdc21b4067f47d72ec638470d0bdbf5037744842fba",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "a250ac7c30e7446af2d0ffdc21b4067f47d72ec638470d0bdbf5037744842fba",
+      "actual": "a250ac7c30e7446af2d0ffdc21b4067f47d72ec638470d0bdbf5037744842fba",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_off_endpoint_vector_state.json",
+      "expected": "e678b5ea655a4e4854af4d9fadb62acea26fd9f86ccb97a4463cddcb88508f58",
+      "actual": "e678b5ea655a4e4854af4d9fadb62acea26fd9f86ccb97a4463cddcb88508f58",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_off_resources_under_timing_state.json",
+      "expected": "497dbb56751c082d3b5b7a6dc7ac2ed54ae9e2c449107c49beca86c31135220e",
+      "actual": "497dbb56751c082d3b5b7a6dc7ac2ed54ae9e2c449107c49beca86c31135220e",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/registration.json",
+      "expected": "c8440a0f0bcfac13cb4a8147323a397a049f78bb96f5d3abca8696922037d55f",
+      "actual": "c8440a0f0bcfac13cb4a8147323a397a049f78bb96f5d3abca8696922037d55f",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/execution_registration.json",
+      "expected": "19889cdf5b782a63e00670d33142d2f50f3ab9254b66610eb86d5ad60f8e24f2",
+      "actual": "19889cdf5b782a63e00670d33142d2f50f3ab9254b66610eb86d5ad60f8e24f2",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/process_costs.json",
+      "expected": "8bdb49750d302cb25a713ae28ac89d6433dc21516f0370f740a602a6e41a412b",
+      "actual": "8bdb49750d302cb25a713ae28ac89d6433dc21516f0370f740a602a6e41a412b",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/progress.json",
+      "expected": "79b3411d99c1e11076fb2620ed3ff638a063b8f517fbd6f1b8c9235d64900d15",
+      "actual": "79b3411d99c1e11076fb2620ed3ff638a063b8f517fbd6f1b8c9235d64900d15",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/reuse_on_decisions.json",
+      "expected": "844986f5606777fc7c7dd5a5ebdc3538ed409cbc22120a42edb86c343a95bddf",
+      "actual": "844986f5606777fc7c7dd5a5ebdc3538ed409cbc22120a42edb86c343a95bddf",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/reuse_off_decisions.json",
+      "expected": "0207e34336ebc02cb8305d85659b8f6b0cad4d174cd1e6fa2287fb64b7aed8f8",
+      "actual": "0207e34336ebc02cb8305d85659b8f6b0cad4d174cd1e6fa2287fb64b7aed8f8",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/reuse_on_endpoint_vector_state.json",
+      "expected": "737b89823c68346450354a3fad84324e3334674489cdf9bf60b2d1a76be2e1f5",
+      "actual": "737b89823c68346450354a3fad84324e3334674489cdf9bf60b2d1a76be2e1f5",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/reuse_off_strict_state.json",
+      "expected": "986ff1cf69c9f26e86f6d552e68bbe073ec456eaad83a42c7ce11003e421ab89",
+      "actual": "986ff1cf69c9f26e86f6d552e68bbe073ec456eaad83a42c7ce11003e421ab89",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/reuse_off_timing_under_resources_state.json",
+      "expected": "986ff1cf69c9f26e86f6d552e68bbe073ec456eaad83a42c7ce11003e421ab89",
+      "actual": "986ff1cf69c9f26e86f6d552e68bbe073ec456eaad83a42c7ce11003e421ab89",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/reuse_on_strict_state.json",
+      "expected": "737b89823c68346450354a3fad84324e3334674489cdf9bf60b2d1a76be2e1f5",
+      "actual": "737b89823c68346450354a3fad84324e3334674489cdf9bf60b2d1a76be2e1f5",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/reuse_on_timing_under_resources_state.json",
+      "expected": "737b89823c68346450354a3fad84324e3334674489cdf9bf60b2d1a76be2e1f5",
+      "actual": "737b89823c68346450354a3fad84324e3334674489cdf9bf60b2d1a76be2e1f5",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/reuse_on_resources_under_timing_state.json",
+      "expected": "737b89823c68346450354a3fad84324e3334674489cdf9bf60b2d1a76be2e1f5",
+      "actual": "737b89823c68346450354a3fad84324e3334674489cdf9bf60b2d1a76be2e1f5",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/reuse_off_endpoint_vector_state.json",
+      "expected": "986ff1cf69c9f26e86f6d552e68bbe073ec456eaad83a42c7ce11003e421ab89",
+      "actual": "986ff1cf69c9f26e86f6d552e68bbe073ec456eaad83a42c7ce11003e421ab89",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_00/reuse_off_resources_under_timing_state.json",
+      "expected": "986ff1cf69c9f26e86f6d552e68bbe073ec456eaad83a42c7ce11003e421ab89",
+      "actual": "986ff1cf69c9f26e86f6d552e68bbe073ec456eaad83a42c7ce11003e421ab89",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/registration.json",
+      "expected": "d4819d516ae91bea40bef64a6ba865d5f24fd929c39feff3247b7748de0d977a",
+      "actual": "d4819d516ae91bea40bef64a6ba865d5f24fd929c39feff3247b7748de0d977a",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/execution_registration.json",
+      "expected": "ce6d8134611acf80cb1d1a3794ea4e517cd2f3e954848cf370a01338333a4174",
+      "actual": "ce6d8134611acf80cb1d1a3794ea4e517cd2f3e954848cf370a01338333a4174",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/process_costs.json",
+      "expected": "4f65a455deb2fdbbfbfa0f36618d1ccaf31a50fcaf9e6f0cd2528b0c0393a63b",
+      "actual": "4f65a455deb2fdbbfbfa0f36618d1ccaf31a50fcaf9e6f0cd2528b0c0393a63b",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/progress.json",
+      "expected": "ae4bbb487b72be35b0b8e2304a932c8a43da50c17a00d9026ced8bb81b3fa30e",
+      "actual": "ae4bbb487b72be35b0b8e2304a932c8a43da50c17a00d9026ced8bb81b3fa30e",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/reuse_on_decisions.json",
+      "expected": "1648ba1d7be040b9470de86a905462d1da0424688cd2bc49b8d2eab64aee9941",
+      "actual": "1648ba1d7be040b9470de86a905462d1da0424688cd2bc49b8d2eab64aee9941",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/reuse_off_decisions.json",
+      "expected": "693a410c9c4d0a052320742e4bc0ac113aa49cbdd22d71e9c4bd011d11226512",
+      "actual": "693a410c9c4d0a052320742e4bc0ac113aa49cbdd22d71e9c4bd011d11226512",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/reuse_on_endpoint_vector_state.json",
+      "expected": "462d6076c3b20f723495c91693b9d38f64e011a47596334c751755d643a93076",
+      "actual": "462d6076c3b20f723495c91693b9d38f64e011a47596334c751755d643a93076",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/reuse_off_strict_state.json",
+      "expected": "61aabe1b342875f8b6201bb767539cde50d05d2bf7fee7f5eb50e12bdd3d9977",
+      "actual": "61aabe1b342875f8b6201bb767539cde50d05d2bf7fee7f5eb50e12bdd3d9977",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/reuse_off_timing_under_resources_state.json",
+      "expected": "61aabe1b342875f8b6201bb767539cde50d05d2bf7fee7f5eb50e12bdd3d9977",
+      "actual": "61aabe1b342875f8b6201bb767539cde50d05d2bf7fee7f5eb50e12bdd3d9977",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/reuse_on_strict_state.json",
+      "expected": "462d6076c3b20f723495c91693b9d38f64e011a47596334c751755d643a93076",
+      "actual": "462d6076c3b20f723495c91693b9d38f64e011a47596334c751755d643a93076",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/reuse_on_timing_under_resources_state.json",
+      "expected": "462d6076c3b20f723495c91693b9d38f64e011a47596334c751755d643a93076",
+      "actual": "462d6076c3b20f723495c91693b9d38f64e011a47596334c751755d643a93076",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/reuse_on_resources_under_timing_state.json",
+      "expected": "462d6076c3b20f723495c91693b9d38f64e011a47596334c751755d643a93076",
+      "actual": "462d6076c3b20f723495c91693b9d38f64e011a47596334c751755d643a93076",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/reuse_off_endpoint_vector_state.json",
+      "expected": "61aabe1b342875f8b6201bb767539cde50d05d2bf7fee7f5eb50e12bdd3d9977",
+      "actual": "61aabe1b342875f8b6201bb767539cde50d05d2bf7fee7f5eb50e12bdd3d9977",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_01/reuse_off_resources_under_timing_state.json",
+      "expected": "61aabe1b342875f8b6201bb767539cde50d05d2bf7fee7f5eb50e12bdd3d9977",
+      "actual": "61aabe1b342875f8b6201bb767539cde50d05d2bf7fee7f5eb50e12bdd3d9977",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/registration.json",
+      "expected": "07c8cfa28f8bea0547244ba9d33186d4214dd989363329325dbed59470e622a6",
+      "actual": "07c8cfa28f8bea0547244ba9d33186d4214dd989363329325dbed59470e622a6",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/execution_registration.json",
+      "expected": "eb5802ff2ee651363c530693cb321393f414f6434f8bc806b247473c26a416bd",
+      "actual": "eb5802ff2ee651363c530693cb321393f414f6434f8bc806b247473c26a416bd",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/process_costs.json",
+      "expected": "82c84e73efa3c18b9f45aff89badc804258dff452dd6412540b961f44bf89298",
+      "actual": "82c84e73efa3c18b9f45aff89badc804258dff452dd6412540b961f44bf89298",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/progress.json",
+      "expected": "329c22e9b39ee5d64c2f93de37cc63b78525acb1febf0e4c6fc9d13baffb4664",
+      "actual": "329c22e9b39ee5d64c2f93de37cc63b78525acb1febf0e4c6fc9d13baffb4664",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_on_decisions.json",
+      "expected": "1ddb496f371d338026715971c582506f1c123cd2e823ac2985ccdf9df9beb993",
+      "actual": "1ddb496f371d338026715971c582506f1c123cd2e823ac2985ccdf9df9beb993",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_off_decisions.json",
+      "expected": "4c768c2df84befa6ce234dda269c9534f8d17e5370906db42ebc57e1beec0bd4",
+      "actual": "4c768c2df84befa6ce234dda269c9534f8d17e5370906db42ebc57e1beec0bd4",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_on_endpoint_vector_state.json",
+      "expected": "49400e7c7ba4cc6fd34cfa4e0cfb99aca678a605ba2308cab0a023d65f5f6f22",
+      "actual": "49400e7c7ba4cc6fd34cfa4e0cfb99aca678a605ba2308cab0a023d65f5f6f22",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_off_strict_state.json",
+      "expected": "ff2ccd7941bad597bf963f845f8d47706f7ee09b61f9f9e74fbcf5baff8b122b",
+      "actual": "ff2ccd7941bad597bf963f845f8d47706f7ee09b61f9f9e74fbcf5baff8b122b",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_off_timing_under_resources_state.json",
+      "expected": "ff2ccd7941bad597bf963f845f8d47706f7ee09b61f9f9e74fbcf5baff8b122b",
+      "actual": "ff2ccd7941bad597bf963f845f8d47706f7ee09b61f9f9e74fbcf5baff8b122b",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_on_strict_state.json",
+      "expected": "49400e7c7ba4cc6fd34cfa4e0cfb99aca678a605ba2308cab0a023d65f5f6f22",
+      "actual": "49400e7c7ba4cc6fd34cfa4e0cfb99aca678a605ba2308cab0a023d65f5f6f22",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_on_timing_under_resources_state.json",
+      "expected": "49400e7c7ba4cc6fd34cfa4e0cfb99aca678a605ba2308cab0a023d65f5f6f22",
+      "actual": "49400e7c7ba4cc6fd34cfa4e0cfb99aca678a605ba2308cab0a023d65f5f6f22",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_on_resources_under_timing_state.json",
+      "expected": "49400e7c7ba4cc6fd34cfa4e0cfb99aca678a605ba2308cab0a023d65f5f6f22",
+      "actual": "49400e7c7ba4cc6fd34cfa4e0cfb99aca678a605ba2308cab0a023d65f5f6f22",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_off_endpoint_vector_state.json",
+      "expected": "efd918250bb22d6293f0e465beb307ae9be0a7b8a5d1a2eb65b17ea292d71464",
+      "actual": "efd918250bb22d6293f0e465beb307ae9be0a7b8a5d1a2eb65b17ea292d71464",
+      "matched": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_off_resources_under_timing_state.json",
+      "expected": "efd918250bb22d6293f0e465beb307ae9be0a7b8a5d1a2eb65b17ea292d71464",
+      "actual": "efd918250bb22d6293f0e465beb307ae9be0a7b8a5d1a2eb65b17ea292d71464",
+      "matched": true
+    }
+  ]
+}
