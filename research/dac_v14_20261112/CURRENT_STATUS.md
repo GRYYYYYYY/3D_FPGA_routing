@@ -96,6 +96,18 @@ net2896/pin3的9档受限搜索均失败；原开启释放后继续完成，关�
 
 
 
+# clma独立电路与实际两层布局确认
+
+已登记并启动CP1r6 native→domain，随后原有native raw/domain raw/配对核验。clma为当前CP1中新公开电路；945CLB/144IO，共1089实际块，层0/1为483/606；同既有n40 Hybrid-O架构族，不计新架构。共用预登记20ns时钟SDC，未提供I/O延迟，不声称外部应用要求。
+
+CP1r6仅将核验器缺失报告字段换成已绑定实际SDC文本；原88断言、算法、范围、预算、接受和终结规则不变。两实际SDC分支及6项错误绑定/无SDC分支通过；源包+固定既有依赖恢复及新输入迁移准入通过，旧CP1r5/Frisc失败不改。
+
+上游打包3.038411秒、布局17.054743秒独立计费，不能推算路由时间。native当前执行，尚无同输入完整耗时；两臂及三项核验剩余，以实际回执更新。先用native终态建立条件性domain ETA，单阶段超时不是完成预测。未完成结果不进入收益，六页投稿12保持独立作者审阅。
+
+原生资源阶段实际终结：初始CPD15.053021940ns、106027wire/4SB/450CB，3个超出终端参考的跨层网，但可选共享域组0、owner组0；3网局部出口并非完全由其他owner阻塞。当前继续原时序阶段，不把阶段指标当完整收益。具体共享域排除原因待原确认和必要核验结束后复用既有选择器函数解释，不改阈值或重跑查询。
+
+
+
 # Elliptic整臂判定与完整配对
 
 **实际配对：通过。**
@@ -126,7 +138,7 @@ Elliptic为当前CP1确认中的不同公开顺序电路，使用新生成的实
 CLSTM-SB完整配对已通过：D−N为+52线长/−1SB/同CPD及CB，单次N/D费用仅描述。已核验投稿稿可独立作者审阅。
 
 
-当前登记的必要核验已终结；无存活执行owner。
+cp1r6_clma_pair_01: running_confirmation_arm；CLMA_complete_admission_01: waiting_for_original_CLMA_pair_terminal
 
 [当前投稿稿](submission_narrative_12/build/main.pdf) · [证据影响与作者审阅](submission_narrative_12/EXPERIMENT_IMPACT.md) · [完整判定](LSTM_domain_whole_admission_03/admission_decision.json)。原06保留；本轮只把LSTM实际结论和已完成四档代价机制证据纳入对应位置。
 

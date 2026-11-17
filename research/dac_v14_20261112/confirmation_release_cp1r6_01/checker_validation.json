@@ -1,0 +1,106 @@
+{
+  "passed": true,
+  "all88_original_assertions_byte_AST_identical": true,
+  "actual_SDC_arms": [
+    {
+      "arm": "native",
+      "result": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_frisc_pair_01/frisc/inputs/sdc.sdc",
+        "sha256": "a2b31b8f9bda0a15b91f1a826fe84869c11c9b42b63b7785abae4bb0380fb237",
+        "clock_and_IO_spec": {
+          "source": "actual SHA256-bound SDC text",
+          "text": "# Preregistered benchmark clock; not an external application requirement.\ncreate_clock -period 20 [get_ports {pclk}]\n",
+          "interpretation": "Native constraint echo is authoritative; no unstated IO delays or external application requirements inferred"
+        },
+        "observed_final_component_counts": {
+          "setup": {
+            "negative": 0,
+            "nonfinite_or_unconstrained": 0,
+            "components": 886
+          },
+          "hold": {
+            "negative": 0,
+            "nonfinite_or_unconstrained": 0,
+            "components": 886
+          }
+        },
+        "all_observed_components_finite_and_nonnegative": true,
+        "qualification": "Declared benchmark timing instance, not an externally supplied application requirement. Report actual native constraint echo and all observed components; no timing-closure assumption."
+      },
+      "states": {
+        "initial": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_frisc_pair_01/frisc/native/flow/resource_flow/initial",
+        "resource_final": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_frisc_pair_01/frisc/native/flow/resource_flow/initial",
+        "handoff": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_frisc_pair_01/frisc/native/flow/resource_flow/initial",
+        "final": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_frisc_pair_01/frisc/native/flow/timing/round_000/proposal_01/transaction/current_group_evaluation"
+      }
+    },
+    {
+      "arm": "domain",
+      "result": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_frisc_pair_01/frisc/inputs/sdc.sdc",
+        "sha256": "a2b31b8f9bda0a15b91f1a826fe84869c11c9b42b63b7785abae4bb0380fb237",
+        "clock_and_IO_spec": {
+          "source": "actual SHA256-bound SDC text",
+          "text": "# Preregistered benchmark clock; not an external application requirement.\ncreate_clock -period 20 [get_ports {pclk}]\n",
+          "interpretation": "Native constraint echo is authoritative; no unstated IO delays or external application requirements inferred"
+        },
+        "observed_final_component_counts": {
+          "setup": {
+            "negative": 0,
+            "nonfinite_or_unconstrained": 0,
+            "components": 886
+          },
+          "hold": {
+            "negative": 0,
+            "nonfinite_or_unconstrained": 0,
+            "components": 886
+          }
+        },
+        "all_observed_components_finite_and_nonnegative": true,
+        "qualification": "Declared benchmark timing instance, not an externally supplied application requirement. Report actual native constraint echo and all observed components; no timing-closure assumption."
+      },
+      "states": {
+        "initial": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_frisc_pair_01/frisc/domain/flow/resource_flow/initial",
+        "resource_final": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_frisc_pair_01/frisc/domain/flow/resource_flow/initial",
+        "handoff": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_frisc_pair_01/frisc/domain/flow/resource_flow/initial",
+        "final": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_frisc_pair_01/frisc/domain/flow/timing/round_000/proposal_01/transaction/current_group_evaluation"
+      }
+    }
+  ],
+  "adversarial_original_gates": [
+    {
+      "arm": "native",
+      "mutation": "changed_SDC_digest",
+      "rejected": true
+    },
+    {
+      "arm": "native",
+      "mutation": "missing_SDC_native_command",
+      "rejected": true
+    },
+    {
+      "arm": "native",
+      "mutation": "changed_constraint_echo_digest",
+      "rejected": true
+    },
+    {
+      "arm": "domain",
+      "mutation": "changed_SDC_digest",
+      "rejected": true
+    },
+    {
+      "arm": "domain",
+      "mutation": "missing_SDC_native_command",
+      "rejected": true
+    },
+    {
+      "arm": "domain",
+      "mutation": "changed_constraint_echo_digest",
+      "rejected": true
+    }
+  ],
+  "actual_no_SDC_branch_unchanged": true,
+  "new_native_or_STA_calls": 0,
+  "whole_arm_replay": false,
+  "qualification": "Exact report block on existing admitted artifacts; tests validate software/report compatibility, not new complete-method confirmation or new scientific quality."
+}
