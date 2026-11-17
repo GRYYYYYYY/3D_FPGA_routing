@@ -1,0 +1,7 @@
+# CP1r4独立冻结与源包重建
+
+父版为实际CP1r3 manifest cd1636ff2e6f468be42becd8d5837e93f84287605a3d426d35d63f7cef8e2b8e。新manifest e299054278a4f624f531f7e250f358ee3d04dd0a67a1166944bcfd780c0c06ce；唯一运行代码变化为plan_current_critical_group.py的数值slack比较/排序，另更新artifact manifest。两臂实际原输入回放证明+inf修复可执行；所有其他运行代码、搜索、物理Tdel、资源预算、failure-release、owner、接受及终结规则不变。未加入跨层代价或空查询探索补丁。
+
+冻结完整实测5.043295614秒，内部4.941522706秒嵌套。独立source tar362734字节配合两项固定SHA wheel成功重建1295项绑定文件，实际NumPy2.2.6/lxml6.1.3加载、guard执行及迁移GEMM配置checker通过。原CP1r3和全部原失败保留。原freeze完成记录里的reconstruction_pending是当时快照，实际后继结果见public_source_reconstruction.json，不重写历史。
+
+GEMM配置激活/源包重建实际内部5.261965245秒，属于输入准备，不能加到或替代单臂完整算法计时。source archive/wheel/guard/admission检查不是新的路由或完整确认结果。确认规则与配置已在任何新native执行前封存。

@@ -1,0 +1,7 @@
+# Current-STA confirmation CP1r4
+
+Separate frozen successor to CP1r3. Only the planner's numeric donor/cutoff slack comparison and numeric target-sort key change; actual serialized +inf in both SB-layout arms and full original-input planner replays validate the correction. No native candidate or complete method outcome follows from those proposals. The failed diagnostic first attempt and all original CP1r3 failures/costs remain intact.
+
+Native binaries, physical Tdel, search scope/order, resource root envelopes, per-net failure release, owner coordination, whole-group acceptance, terminal selection and phase guards retain CP1r3 bytes/rules. No empty-query or vertical-cost exploration patch is installed. New native/domain configs must both bind this fixed release. Physical input compatibility, fresh legal roots, full byte/request/FULL/STA/vector/physical checks and actual complete per-arm timing remain mandatory. A known historical GEMM input is a different circuit in the same architecture family, not an unseen source or new architecture.
+
+Use the check/run-arm CLI with newly registered external inputs and pinned dependencies. Parent freeze/precision/supervision receipts are retained provenance. Current outer manifest and numeric_slack_revision bind this source. Source/wheel reconstruction and relocated admission are recorded separately before any new confirmation execution. Research has no date/call/matrix stopping condition.

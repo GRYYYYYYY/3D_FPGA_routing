@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/replay_numeric_slack_actual_01.py", line 121, in <module>
+    worker(sys.argv[2])
+  File "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/replay_numeric_slack_actual_01.py", line 62, in worker
+    scope = runpy.run_path(str(planner), run_name='__main__')
+  File "/usr/lib/python3.10/runpy.py", line 289, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "/usr/lib/python3.10/runpy.py", line 96, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/planner_numeric_slack_dev_01/plan_current_critical_group.py", line 45, in <module>
+    assert all(float(sta[x]['setup_slack_s'])>float(cone['worst_slack_s']) for x in donors)
+  File "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/planner_numeric_slack_dev_01/plan_current_critical_group.py", line 45, in <genexpr>
+    assert all(float(sta[x]['setup_slack_s'])>float(cone['worst_slack_s']) for x in donors)
+  File "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/planner_numeric_slack_dev_01/plan_current_critical_group.py", line 45, in <genexpr>
+    assert all(float(sta[x]['setup_slack_s'])>float(cone['worst_slack_s']) for x in donors)
+  File "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/replay_numeric_slack_actual_01.py", line 38, in trace
+    environment = {k: values[k] for k in ['sta', 'donors', 'cone']}
+  File "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/replay_numeric_slack_actual_01.py", line 38, in <dictcomp>
+    environment = {k: values[k] for k in ['sta', 'donors', 'cone']}
+KeyError: 'sta'

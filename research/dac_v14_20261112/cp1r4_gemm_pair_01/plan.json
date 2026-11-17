@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "registered_before_new_outcomes": true,
+  "release": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r4",
+  "release_manifest_sha256": "e299054278a4f624f531f7e250f358ee3d04dd0a67a1166944bcfd780c0c06ce",
+  "contract_sha256": "499ca838ffe20a6bae1555f769a83e59fe2c68cb12ddd44745cb234e20a7cc37",
+  "workspace": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01",
+  "inputs": [
+    {
+      "id": "gemm",
+      "workspace": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm",
+      "source_name": "training_gemm_layer_s11_hybrid_o_n200_w100_p0_a0",
+      "copies": {
+        "architecture": {
+          "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/import_only.xml",
+          "destination": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm/inputs/architecture.xml",
+          "sha256": "b6fdf70e6da91b34bfb01ac212ebc20e6141216b5130c980e5ab513d23e66e83",
+          "bytes": 28919
+        },
+        "circuit": {
+          "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/gemm_layer.blif",
+          "destination": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm/inputs/circuit.blif",
+          "sha256": "351572ff1d5af340fcf517cdb74c4320eef6cef74a7672d0ff56cc0909f5b37c",
+          "bytes": 149474058
+        },
+        "graph": {
+          "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/rr_graph.xml",
+          "destination": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm/inputs/graph.xml",
+          "sha256": "f9992444df427c56a037d73a0e1344e96b010cb731f656dfe8a9f961eb0210fd",
+          "bytes": 13382215196
+        },
+        "packed": {
+          "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_a0/packed.net",
+          "destination": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm/inputs/packed.net",
+          "sha256": "aace09ac33ae011ad128a5e63b03d63ceb09d17a195ddf325f385baea882b5ee",
+          "bytes": 656348772
+        },
+        "placement": {
+          "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_a0/placed.place",
+          "destination": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm/inputs/placement.place",
+          "sha256": "33652521e9c853b11ef7c97c7532371ec34ba4b3cab62faab2693de739a8a0f8",
+          "bytes": 3572873
+        }
+      },
+      "configs": {
+        "native": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm/native_config.json",
+        "domain": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm/domain_config.json"
+      },
+      "packing_manifest": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm/packing_manifest.json",
+      "physical_identity": {
+        "architecture": "b6fdf70e6da91b34bfb01ac212ebc20e6141216b5130c980e5ab513d23e66e83",
+        "circuit": "351572ff1d5af340fcf517cdb74c4320eef6cef74a7672d0ff56cc0909f5b37c",
+        "graph": "f9992444df427c56a037d73a0e1344e96b010cb731f656dfe8a9f961eb0210fd",
+        "packed": "aace09ac33ae011ad128a5e63b03d63ceb09d17a195ddf325f385baea882b5ee",
+        "placement": "33652521e9c853b11ef7c97c7532371ec34ba4b3cab62faab2693de739a8a0f8",
+        "normalized_coordinates_sha256": "2f2d55393c1b52cb06fb512ab29c3f9ce8410c95b10d0994bc14eee19410f5ef",
+        "placed_blocks": 38567,
+        "known_historical_input": true,
+        "explicit_SDC": false
+      },
+      "purpose": "Different GEMM circuit, same architecture family; known historical source, no old route import"
+    }
+  ],
+  "fixed_arm_order": [
+    "native",
+    "domain"
+  ],
+  "registered_inputs": 1,
+  "registered_roles": 2,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/activate_cp1r4_gemm_pair_01.py": "735664da3c91c36f527407ca2190aaa901bfb3e70de12bfc747c0a3b3d555025",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r4_confirmation_cohort_v1.py": "ab589c58c97c4c501b85823647b249db7155029c96e44312765e31d5f64355b0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/run_cp1r4_gemm_pair_01.py": "e640c2b6873a2994fa25b665770770fe64a2ba64b57c8a7900dfa197207faab9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/package_cp1r4_public_source_01.py": "45ece3ec24ed8ef0518fa58a485bfe5163b9109dfa2b060008563ae0de64aae3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/packed_input_contract_v1.py": "90c7b93e4f6864f44a6ba7bafb690a4b300a7162de026b9a39efb911c7b4e2f5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/seed_census_analysis_pool_v2.py": "0b2b2edb22d882505332cdf4f1292c22ca01ade788a608145b88da146928fba9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retained_prefix_workflow.py": "0ceaf39cc96af7dfd775d0a909bb4cd3265b66301afab36aa7f63962f67e5ba7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/endpoint_timing_policy_streaming_v2.py": "aac1214c369123f831f702a45aefa99ed8025bc40e9254d1fd32bf34562fcba7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/GEMM_input_preflight_01/completion.json": "94b7b5bb5fcd4f8d2eb8515860e0276be8833a45b7b1bdc3a7129837f9dc5731",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/GEMM_input_preflight_01/measurement/completion.json": "6073d022459177888ecacecf97968765591140292d3f88c8adfe2a32a3afafb5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/independent_input_candidates_03/inputs.json": "90804f501f09da1cef4de0af8e796c4c1ec2cfa6874d3469a13dce9293624e35",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/confirmation_release_cp1r4_01/completion.json": "7c3ac35cb43a17aa4373949db3732cd6e339e548a468db56d8cc29efeefc388a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r4/release_manifest.json": "e299054278a4f624f531f7e250f358ee3d04dd0a67a1166944bcfd780c0c06ce",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r4/contract.json": "499ca838ffe20a6bae1555f769a83e59fe2c68cb12ddd44745cb234e20a7cc37",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_a0/manifest.json": "7f296f2ebd5acacd381cd1efe1936218a7249925f6e013e63ff0b36ee44fec90",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_place/manifest.json": "cda02f0f368975bab6d4588b502528f7e8123c8753f1a145cde6132496e7c7ad",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r2_cross_circuit_cohort_01/conv_hls_phase_runtime.json": "6b178fecb00f9a22dbd3c63c3528f716d8cc09175f5470578c5d5738bd9854d3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm/phase_runtime.json": "c41ae0304d33599f8e3fe35b6c1f61229eccf1bd6c9a39c2a44eb935806973db",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm/packing_manifest.json": "cda02f0f368975bab6d4588b502528f7e8123c8753f1a145cde6132496e7c7ad",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm/native_config.json": "0b1aaa598ae6cb13d477503f899ef8988c18c24d06d87380686f1418e3b2651b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r4_gemm_pair_01/gemm/domain_config.json": "18afce493e758c6bf23f760ecaf332daf7bac3641f2e53d725ff647dba99c8c5",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/unified_method_01/inputs/binary_resource": "cad1d5671ae5dbbe6c7fbdbf21243ed46f43a5d08dcd6b541d3f08b26b8c189a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/unified_method_01/inputs/binary_owner": "14d842f9cc3b28e1d332c43cb201955e880ed6f17fa53d33f2cc2ba9b40a9655",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/unified_method_01/inputs/binary_timing_repair": "25f24fc2d606dc2d551c460f89b8cffbbcd6e7b7642c4078a199007bea3735c2",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/unified_method_01/inputs/binary_timing_observer": "d7b6bf37a37a2f81999b8a2a004e44a4577310e78d0f27413266fa42c07cd639",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/unified_method_01/inputs/capacity/critical_capacity_driver": "5cac2598d7a6b796fdd0448810190fb340351b1e7b0fe97c441d2f2da62ec4dd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/unified_method_01/inputs/relaxed/critical_capacity_driver": "1215f1d28a9b52e6c6083d8afe66076465f73f1e4f6c8f319e094b94339dc3e0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/unified_method_01/inputs/query_unit_validation.json": "0d991a5a332a78aa1f8bff5768037b3e587d22465744e1484a24d5805bead821",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r4_gemm_pair_01/admission_plan.json": "693f4195c824de73f018ca66a861c19de39ac0c22d01c4c40238476121ff1ebf",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/confirmation_release_cp1r4_01/public_source_reconstruction.json": "dd4aeee07f346c45daaf52c1b591d9de742a7debc76f12280756372da944db1d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/restore_confirmation_cp1r4_dependencies.py": "5b571f02da8a63ed194ef9792e17cb643fca2f55a5c783a2c97b7fa704845d65",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/confirmation_release_cp1r4_01/current_sta_cp1r4_source.tar.gz": "7c75487762fd18808cf41f3846c5df8659ef1852e9d0e782e68deceeeac8db72"
+  },
+  "confirmation_batch": true,
+  "large_physical_provisioning_deferred": true,
+  "requires_exclusive_serial_slot": true,
+  "full_method_time_cap": null,
+  "research_total_call_cap": null,
+  "source_runtime_or_algorithm_selected_from_outcomes": false,
+  "explicit_application_timing_claim": false,
+  "source_route_will_be_imported": false,
+  "independence": "One different GEMM circuit at its fixed actual packed placement; two roles are one input. Known historical training source, not unseen or new architecture. Fresh roots and complete matched admission remain required.",
+  "qualification": "Frozen numeric-only CP1r4 correction; CP1r3 budgets, acceptance, search/owner/domain/release and terminal rules retained. Seed11/constant-merge off follow actual upstream command. All failure, timeout, no-cut/no-gain and degraded outcomes retained. Provisioning, reconstruction and research verification costs are separate from measured complete run-arm. No date/call/matrix Goal stopping condition."
+}

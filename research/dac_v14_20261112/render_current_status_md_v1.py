@@ -48,6 +48,12 @@ def render(status,D):
     if status.get('submission_candidate_latest'):
         note='\n[最新六页投稿候选05](submission_narrative_05/build/main.pdf) · [逐项证据影响清单](submission_narrative_05/EXPERIMENT_IMPACT.md)：在04稿基础上仅加入表III/§V-A的四档同组代价对照及相关摘要、适用性和结论；问题、方法、引言/prior-art、BNN完整结果、表I负结果和表II归因保持。此前稿件完整保留，无新增完整确认配对或独立输入。以下旧稿与旧排程入口为历史记录；实际角色以上述终结回执及进程表为准。\n'
         first,rest=result.split('\n',1);result=first+'\n'+note+rest
+    if status.get('GEMM_input_byte_coordinate_preflight'):
+        note='\n[GEMM-p0实际字节/坐标预检](GEMM_input_preflight_01/STATUS.md)：五项输入14,191,639,818字节的SHA256及38567个实际block坐标读取通过，完整预检17.272952秒、native/STA调用0。已知历史来源的不同电路、同架构族；这项只证明输入字节和坐标读取，不自动建立完整graph/packing/placement兼容性、合法新鲜路由根或完整方法配对。公开范围以最新发布回执为准，不新增确认收益。\n'
+        first,rest=result.split('\n',1);result=first+'\n'+note+rest
+    if status.get('CP1r4_GEMM_registered_pair'):
+        note='\n[CP1r4 GEMM一输入两角色确认](cp1r4_gemm_pair_01/STATUS.md)：实际+inf donor故障及两个完整规划器回放已核验（8.218278秒；首次观测钩子失败10.608246秒保留），独立冻结5.043296秒，source+固定wheel重建及迁移checker通过。仅数值解析改变，预算/搜索/接受/终结规则继承。GEMM输入复制核验56.263702秒；登记native/domain顺序固定，实际角色/阶段以上表和原回执为准。已知历史不同电路，同架构族；完整方法与配对收益尚未准入，初始根门槛另见CURRENT_STATUS.json。后续整臂耗时尚无同电路样本，不借用BNN耗时；投稿05与原CP1r3失败保持。\n'
+        first,rest=result.split('\n',1);result=first+'\n'+note+rest
     return result
 
 def _render(status,D):

@@ -2,6 +2,9 @@
 
 ## Current research snapshot — 2026-11-17
 
+[CP1r4实际slack修复与GEMM匹配确认启动](docs/GitHub_CP1r4_GEMM_20261117.md)：实际"+inf"故障及双臂完整规划器回放通过，5连接仅为提案；独立冻结和source+固定wheel重建/迁移准入完成。GEMM约13.22GiB字节/实际布局预检及56.26秒输入复制复核通过，native已真实启动、domain随后；不同已知历史电路、同架构族，暂无完整配对收益。CP1r3原失败与六页投稿05保持，软件诊断费用和准备费用均单列。
+
+
 [四档代价对照独立准入与六页投稿05](docs/GitHub_confirmed_cost_submission_20261117.md)：0/0.5/1/2全部路由合法、完整同组核验通过，但均因CB654>653策略拒绝；1/2另有37项setup退化。测试权重减少SB，却未复现release分支的CB预算内工作点，不外推普遍优势。原四档尝试353.24秒、后续只读核验80.74秒分列，未重跑native/STA。[最新PDF](research/dac_v14_20261112/submission_narrative_05/build/main.pdf) · [剩余证据影响](research/dac_v14_20261112/submission_narrative_05/EXPERIMENT_IMPACT.md)。
 
 reduction原N/D开发接续均终结：同CPD、72SB/3058CB，线长1241199/1241281；各自后缀5161.46/10116.16秒和旧失败费用单列，不以不同前缀的后缀比冒充完整费用。CLSTM既有23连接来源阶段独立审计通过，候选物理/域/STA及完整接续尚未完成；原空回执与失败保留。CP1r3仍无新增完整准入配对，Goal继续。[实际状态](research/dac_v14_20261112/CURRENT_STATUS.md)。
