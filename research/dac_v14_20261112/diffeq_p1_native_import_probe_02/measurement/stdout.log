@@ -1,0 +1,307 @@
+VPR FPGA Placement and Routing.
+Version: 9.0.0-dev+0b91233
+Revision: 0b91233
+Compiled: 2026-10-22T11:56:17
+Compiler: GNU 11.4.0 on Linux-5.15.0-119-generic x86_64
+Build Info: release VTR_ASSERT_LEVEL=2
+
+University of Toronto
+verilogtorouting.org
+vtr-users@googlegroups.com
+This is free open source code under MIT license.
+
+VPR was run with the following command-line:
+/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/baseline/vpr /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/model_fixtures/n25_w100/hybrid_o/import_only.xml /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_02/inputs/diffeq.blif --analysis --device fixture --route_chan_width 100 --num_workers 1 --seed 21 --clock_modeling ideal --verify_file_digests off --read_rr_graph /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/model_fixtures/n25_w100/hybrid_o/rr_graph.xml --timing_report_npaths 0 --net_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_02/place_01/packed.net --place_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_02/place_01/placed.place --route_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/diffeq_p1_native_import_probe_02/intentionally_missing.route --sdc_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_02/inputs/diffeq.sdc
+
+Using up to 1 parallel worker(s)
+
+Architecture file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/model_fixtures/n25_w100/hybrid_o/import_only.xml
+Circuit name: diffeq
+
+# Loading Architecture Description
+Warning 1: Model 'io' input port 'outpad' has no timing specification (no clock specified to create a sequential input port, not combinationally connected to any outputs, not a clock input)
+Warning 2: Model 'io' output port 'inpad' has no timing specification (no clock specified to create a sequential output port, not combinationally connected to any inputs, not a clock output)
+Warning 3: Model 'dsp' input port 'I' has no timing specification (no clock specified to create a sequential input port, not combinationally connected to any outputs, not a clock input)
+Warning 4: Model 'dsp' output port 'result' has no timing specification (no clock specified to create a sequential output port, not combinationally connected to any inputs, not a clock output)
+mode 'io[physical]' is defined by user to be disabled in packing
+mode 'complex_dsp[physical]' is defined by user to be disabled in packing
+mode 'spram[physical]' is defined by user to be disabled in packing
+Warning 5: Multiple matching Fc overrides found; the last will be applied
+# Loading Architecture Description took 0.01 seconds (max_rss 8.7 MiB, delta_rss +1.9 MiB)
+
+Timing analysis: ON
+Circuit netlist file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_02/place_01/packed.net
+Circuit placement file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_02/place_01/placed.place
+Circuit routing file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/diffeq_p1_native_import_probe_02/intentionally_missing.route
+Circuit SDC file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_02/inputs/diffeq.sdc
+Vpr floorplanning constraints file: not specified
+
+Packer: LOAD
+Placer: LOAD
+Analytical Placer: DISABLED
+Router: LOAD
+Analysis: ENABLED
+
+VPR was run with the following options:
+
+netlist_opts.absorb_buffer_luts            : true
+netlist_opts.merge_constant_generators     : true
+netlist_opts.sweep_dangling_primary_ios    : true
+netlist_opts.sweep_dangling_nets           : true
+netlist_opts.sweep_dangling_blocks         : true
+netlist_opts.sweep_constant_primary_outputs: false
+netlist_opts.netlist_verbosity             : 1
+netlist_opts.const_gen_inference           : COMB_SEQ
+
+packer_opts.allow_unrelated_clustering: auto
+packer_opts.timing_gain_weight: 0.750000
+packer_opts.connection_gain_weight: 0.900000
+packer_opts.cluster_seed_type: BLEND2
+packer_opts.connection_driven: true
+packer_opts.timing_driven: true
+packer_opts.target_external_pin_util: auto
+
+placer_opts.place_freq: ONCE
+placer_opts.place_algorithm: CRITICALITY_TIMING_PLACE
+placer_opts.pad_loc_type: FREE
+placer_opts.constraints_file: No constraints file given
+placer_opts.place_chan_width: 100
+placer_opts.congestion_factor: 0.000000
+placer_opts.interposer_cost_params.net_cost_type: two_stage
+placer_opts.interposer_cost_params.two_stage_net_cost_first_stage_type: minimize_interposer_crossing_bb
+placer_opts.interposer_cost_params.two_stage_net_cost_second_stage_type: interposer_wire_aware_crossing_bb
+placer_opts.interposer_cost_params.net_cost_change_threshold: 0.005000
+placer_opts.inner_loop_recompute_divider: 0
+placer_opts.recompute_crit_iter: 1
+placer_opts.timing_tradeoff: 0.500000
+placer_opts.td_place_exp_first: 1.000000
+placer_opts.td_place_exp_last: 8.000000
+placer_opts.delay_offset: 0.000000
+placer_opts.delay_ramp_delta_threshold: -1
+placer_opts.delay_ramp_slope: 0.000000
+placer_opts.tsu_rel_margin: 1.000000
+placer_opts.tsu_abs_margin: 0.000000
+placer_opts.post_place_timing_report_file: 
+placer_opts.allowed_tiles_for_delay_model: 
+placer_opts.delay_model_reducer: MIN
+placer_opts.delay_model_type: SIMPLE
+placer_opts.rlim_escape_fraction: 0.000000
+placer_opts.move_stats_file: 
+placer_opts.placement_saves_per_temperature: 0
+placer_opts.effort_scaling: CIRCUIT
+placer_opts.place_delta_delay_matrix_calculation_method: ASTAR_ROUTE
+placer_opts.seed: 21
+anneal_sched.type: AUTO_SCHED
+anneal_sched.inner_num: 0.500000
+placer_opts.anneal_init_t_estimator: EQUILIBRIUM
+
+router_opts.route_type: DETAILED
+router_opts.flat_routing: false
+router_opts.choke_points: on
+router_opts.router_algorithm: TIMING_DRIVEN
+router_opts.base_cost_type: DELAY_NORMALIZED_LENGTH
+router_opts.fixed_channel_width: 100
+router_opts.check_route: FULL
+router_opts.acc_fac: 1.000000
+router_opts.bb_factor: 3
+router_opts.bend_cost: 0.000000
+router_opts.first_iter_pres_fac: 0.000000
+router_opts.initial_pres_fac: 0.500000
+router_opts.pres_fac_mult: 1.300000
+router_opts.max_pres_fac: 1000.000000
+router_opts.max_router_iterations: 50
+router_opts.min_incremental_reroute_fanout: 16
+router_opts.initial_acc_cost_chan_congestion_threshold: 0.500000
+router_opts.initial_acc_cost_chan_congestion_weight: 0.500000
+router_opts.do_check_rr_graph: true
+router_opts.verify_binary_search: false
+router_opts.min_channel_width_hint: 0
+router_opts.read_rr_edge_metadata: false
+router_opts.exit_after_first_routing_iteration: false
+router_opts.astar_fac: 1.200000
+router_opts.astar_offset: 0.000000
+router_opts.router_profiler_astar_fac: 1.200000
+router_opts.enable_parallel_connection_router: false
+router_opts.post_target_prune_fac: 1.200000
+router_opts.post_target_prune_offset: 0
+router_opts.multi_queue_num_threads: 1
+router_opts.multi_queue_num_queues: 2
+router_opts.multi_queue_direct_draining: false
+router_opts.criticality_exp: 1.000000
+router_opts.max_criticality: 0.990000
+router_opts.init_wirelength_abort_threshold: 0.850000
+router_opts.incr_reroute_delay_ripup: AUTO
+router_opts.save_routing_per_iteration: false
+router_opts.congested_routing_iteration_threshold_frac: 1.000000
+router_opts.high_fanout_threshold: 64
+router_opts.router_debug_net: -2
+router_opts.router_debug_sink_rr: -2
+router_opts.router_debug_iteration: -2
+router_opts.max_convergence_count: 1
+router_opts.reconvergence_cpd_threshold: 0.990000
+router_opts.update_lower_bound_delays: true
+router_opts.first_iteration_timing_report_file: 
+router_opts.route_bb_update: DYNAMIC
+router_opts.lookahead_type: MAP
+router_opts.initial_timing: LOOKAHEAD
+router_opts.router_heap: FOUR_ARY_HEAP
+router_opts.routing_failure_predictor = SAFE
+router_opts.routing_predictor_min_history: 8
+router_opts.routing_budgets_algorithm = DISABLE
+
+analysis_opts.gen_post_synthesis_netlist: false
+analysis_opts.gen_post_implementation_merged_netlist: false
+analysis_opts.gen_post_implementation_sdc: false
+analysis_opts.timing_report_npaths: 0
+analysis_opts.timing_report_skew: false
+analysis_opts.echo_dot_timing_graph_node: -1
+analysis_opts.timing_report_detail: NETLIST
+analysis_opts.post_synth_netlist_unconn_input_handling: UNCONNECTED
+analysis_opts.post_synth_netlist_unconn_output_handling: UNCONNECTED
+analysis_opts.post_synth_netlist_module_parameters: on
+
+# Building complex block graph
+# Building complex block graph took 0.01 seconds (max_rss 10.8 MiB, delta_rss +2.1 MiB)
+Circuit file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_02/inputs/diffeq.blif
+# Load circuit
+# Load circuit took 0.02 seconds (max_rss 14.4 MiB, delta_rss +3.6 MiB)
+# Clean circuit
+Absorbed 0 LUT buffers
+Merged 0 constant generators
+Swept input(s)      : 0
+Swept output(s)     : 0 (0 dangling, 0 constant)
+Swept net(s)        : 0
+Swept block(s)      : 0
+Constant Pins Marked: 0
+# Clean circuit took 0.00 seconds (max_rss 14.4 MiB, delta_rss +0.0 MiB)
+# Compress circuit
+# Compress circuit took 0.00 seconds (max_rss 14.4 MiB, delta_rss +0.0 MiB)
+# Verify circuit
+# Verify circuit took 0.00 seconds (max_rss 14.4 MiB, delta_rss +0.0 MiB)
+Circuit Statistics:
+  Blocks: 1974
+    .input :      64
+    .latch :     377
+    .names :    1494
+        2-LUT:     141
+        3-LUT:     440
+        4-LUT:     913
+    .output:      39
+  Nets  : 1935
+    Avg Fanout:     3.1
+    Max Fanout:   496.0
+    Min Fanout:     1.0
+  Netlist Clocks: 1
+# Build Timing Graph
+  Timing Graph Nodes: 7982
+  Timing Graph Edges: 12055
+  Timing Graph Levels: 32
+# Build Timing Graph took 0.01 seconds (max_rss 16.3 MiB, delta_rss +1.9 MiB)
+Netlist contains 1 clocks
+  Netlist Clock 'pclk' Fanout: 377 pins (4.7%), 377 blocks (19.1%)
+# Load Timing Constraints
+
+Applied 5 SDC commands from '/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_02/inputs/diffeq.sdc'
+Timing constraints created 1 clocks
+  Constrained Clock 'pclk' Source: 'pclk.inpad[0]'
+
+# Load Timing Constraints took 0.01 seconds (max_rss 19.8 MiB, delta_rss +3.5 MiB)
+Error 1: 
+Type: Routing
+File: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/diffeq_p1_native_import_probe_02/intentionally_missing.route
+Line: 0
+Message: Cannot open /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/diffeq_p1_native_import_probe_02/intentionally_missing.route routing file
+# Load packing
+## Loading packed FPGA netlist file.
+Netlist generated from file '/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_02/place_01/packed.net'.
+Warning 6: Netlist was generated from a different architecture file (loaded architecture ID: SHA256:0c593cfd3a5fc92691006f8bac65c898548b48ea945d6baa3b2c75dcebd88004, netlist file architecture ID: SHA256:bff4547bb48e346f673c4dda9dcde6f30b2243fe0ab5739d008431162da734d9)
+Detected 0 constant generators (to see names run with higher pack verbosity)
+## Loading packed FPGA netlist file. took 0.11 seconds (max_rss 28.6 MiB, delta_rss +8.8 MiB)
+Warning 7: Treated 0 constant nets as global which will not be routed (to see net names increase packer verbosity).
+Completed clustering consistency check successfully.
+Cluster level netlist and block usage statistics
+Netlist num_nets: 867
+Netlist num_blocks: 267
+Netlist EMPTY blocks: 0.
+Netlist io blocks: 103.
+Netlist clb blocks: 164.
+Netlist complex_dsp blocks: 0.
+Netlist spram blocks: 0.
+Netlist inputs pins: 64
+Netlist output pins: 39
+
+Pb types usage...
+  io         : 103
+   inpad     : 64
+   outpad    : 39
+  clb        : 164
+   fle       : 1497
+    ble6     : 1497
+     lut6    : 1494
+      lut    : 1494
+     ff      : 377
+
+# Load packing took 0.18 seconds (max_rss 64.8 MiB, delta_rss +45.1 MiB)
+# Create Device
+## Build Device Grid
+FPGA sized to 25 x 25: 1250 grid tiles (fixture)
+## Build Device Grid took 0.00 seconds (max_rss 64.8 MiB, delta_rss +0.0 MiB)
+## Loading routing resource graph
+
+Warning 8: This RR graph file is Generated from arch file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/controlled_architectures/n25/hybrid_o.xml while your input architecture file is /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/model_fixtures/n25_w100/hybrid_o/import_only.xml, compatibility issues may arise
+
+
+Warning 9: This architecture version is for VPR 9.0.0-dev+84ba44a-dirty while your current VPR version is 9.0.0-dev+0b91233, compatibility issues may arise
+
+Warning 10: Found 3 cost indices where no instances of RR nodes could be found
+## Loading routing resource graph took 1.32 seconds (max_rss 404.6 MiB, delta_rss +339.8 MiB)
+  RR Graph Nodes: 391838
+  RR Graph Edges: 1886772
+# Create Device took 1.38 seconds (max_rss 404.6 MiB, delta_rss +339.8 MiB)
+
+Resource usage...
+	Netlist
+		103	blocks of type: io
+	Architecture
+		1472	blocks of type: io
+	Netlist
+		164	blocks of type: clb
+	Architecture
+		782	blocks of type: clb
+	Netlist
+		0	blocks of type: complex_dsp
+	Architecture
+		138	blocks of type: complex_dsp
+	Netlist
+		0	blocks of type: spram
+	Architecture
+		138	blocks of type: spram
+
+Device Utilization: 0.14 (target 1.00)
+	Physical Tile io:
+	Block Utilization: 0.07 Logical Block: io
+	Physical Tile clb:
+	Block Utilization: 0.21 Logical Block: clb
+	Physical Tile spram:
+	Block Utilization: 0.00 Logical Block: spram
+	Physical Tile complex_dsp:
+	Block Utilization: 0.00 Logical Block: complex_dsp
+
+
+# Load Placement
+Reading /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_02/place_01/placed.place.
+
+Successfully read /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_02/place_01/placed.place.
+
+Completed placement consistency check successfully.
+# Load Placement took 0.00 seconds (max_rss 404.6 MiB, delta_rss +0.0 MiB)
+
+# Load Routing
+Begin loading FPGA routing file.
+# Load Routing took 0.00 seconds (max_rss 404.6 MiB, delta_rss +0.0 MiB)
+Incr Slack updates 0 in 0 sec
+Full Max Req/Worst Slack updates 0 in 0 sec
+Incr Max Req/Worst Slack updates 0 in 0 sec
+Incr Criticality updates 0 in 0 sec
+Full Criticality updates 0 in 0 sec
+The entire flow of VPR took 1.63 seconds (max_rss 404.6 MiB)

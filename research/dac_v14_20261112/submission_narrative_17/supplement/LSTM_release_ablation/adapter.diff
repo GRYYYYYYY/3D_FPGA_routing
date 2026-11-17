@@ -1,0 +1,20 @@
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/run_serial_lazy_resource_transactions_stream_v1.py
++++ /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/LSTM_release_ablation_01/run_single_registered_scope.py
+@@ -1,3 +1,5 @@
++import sys
++sys.path.insert(0, '/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime')
+ from phase_supervision import run_phase
+ #!/usr/bin/env python3
+ """Serial resource transactions with matched optional crossing domains and fixed envelopes."""
+@@ -37,8 +39,9 @@
+  write(b/'active_child.json',dict(pid=proc.pid,tag=tag,phase='terminal',status=status,returncode=code));return code==0
+ 
+ assert not a.reuse_native_batch,'No external result reuse in the lazy policy measurement'
+-assert reg['execution_policy']=='domain_first_stop_on_resource_accept'
+-for name in execution_order(reg['roles']):
++assert reg['execution_policy']=='single_registered_resource_scope'
++assert set(reg['roles'])=={'reuse_on'}
++for name in reg['roles']:
+  role=reg['roles'][name]
+  if skip_optional_native(name,results):
+   assert not (b/name).exists()

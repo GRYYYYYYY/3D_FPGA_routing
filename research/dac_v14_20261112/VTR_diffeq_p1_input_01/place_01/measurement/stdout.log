@@ -1,0 +1,178 @@
+VPR FPGA Placement and Routing.
+Version: 9.0.0-dev+84ba44a-dirty
+Revision: 84ba44a-dirty
+Compiled: 2026-10-27T20:45:22
+Compiler: GNU 11.4.0 on Linux-5.15.0-119-generic x86_64
+Build Info: Release IPO VTR_ASSERT_LEVEL=2
+
+University of Toronto
+verilogtorouting.org
+vtr-users@googlegroups.com
+This is free open source code under MIT license.
+
+VPR was run with the following command-line:
+/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/flatland-triton-integrated/vpr /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/controlled_architectures/n25/hybrid_o.xml /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_01/inputs/diffeq.blif --pack --place --device controlled_25 --route_chan_width 100 --num_workers 1 --seed 21 --clock_modeling ideal --verify_file_digests off --read_rr_graph /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/common_plane_models/v2/n25_w100/hybrid_o.xml --timing_report_npaths 0 --net_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_01/place_01/packed.net --place_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_01/place_01/placed.place --sdc_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_01/inputs/diffeq.sdc --rl_agent_move_set prob_layer_swap --timing_layer_weight_adjustor quadratic --timing_layer_weight_end 1.0 --timing_layer_weight_end_sr 0.15 --timing_layer_weight_start 2.0 --timing_layer_weight_start_sr 0.26 --timing_tradeoff_adjustor linear --timing_tradeoff_end 0.79 --timing_tradeoff_end_sr 0.15 --timing_tradeoff_start 0.35000000000000003 --timing_tradeoff_start_sr 1.0 --partition_post_pack --soft_partitioning init_place
+
+
+Architecture file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/controlled_architectures/n25/hybrid_o.xml
+Circuit name: diffeq
+
+# Loading Architecture Description
+Warning 1: Model 'io' input port 'outpad' has no timing specification (no clock specified to create a sequential input port, not combinationally connected to any outputs, not a clock input)
+Warning 2: Model 'io' output port 'inpad' has no timing specification (no clock specified to create a sequential output port, not combinationally connected to any inputs, not a clock output)
+Warning 3: Model 'dsp' input port 'I' has no timing specification (no clock specified to create a sequential input port, not combinationally connected to any outputs, not a clock input)
+Warning 4: Model 'dsp' output port 'result' has no timing specification (no clock specified to create a sequential output port, not combinationally connected to any inputs, not a clock output)
+mode 'io[physical]' is defined by user to be disabled in packing
+mode 'complex_dsp[physical]' is defined by user to be disabled in packing
+mode 'spram[physical]' is defined by user to be disabled in packing
+# Loading Architecture Description took 0.02 seconds (max_rss 12.2 MiB, delta_rss +0.0 MiB)
+
+Timing analysis: ON
+Circuit netlist file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_01/place_01/packed.net
+Circuit placement file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_01/place_01/placed.place
+Circuit routing file: diffeq.route
+Circuit SDC file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_01/inputs/diffeq.sdc
+Vpr floorplanning constraints file: not specified
+
+Packer: ENABLED
+Placer: ENABLED
+Analytical Placer: DISABLED
+Router: DISABLED
+Analysis: DISABLED
+
+VPR was run with the following options:
+
+NetlistOpts.absorb_buffer_luts            : true
+NetlistOpts.sweep_dangling_primary_ios    : true
+NetlistOpts.sweep_dangling_nets           : true
+NetlistOpts.sweep_dangling_blocks         : true
+NetlistOpts.sweep_constant_primary_outputs: false
+NetlistOpts.netlist_verbosity             : 1
+NetlistOpts.const_gen_inference           : COMB_SEQ
+
+PackerOpts.allow_unrelated_clustering: auto
+PackerOpts.alpha_clustering: 0.750000
+PackerOpts.beta_clustering: 0.900000
+PackerOpts.cluster_seed_type: BLEND2
+PackerOpts.connection_driven: true
+PackerOpts.global_clocks: true
+PackerOpts.inter_cluster_net_delay: 1.000000
+PackerOpts.timing_driven: true
+PackerOpts.target_external_pin_util: auto
+
+PlacerOpts.place_freq: PLACE_ONCE
+PlacerOpts.place_algorithm: CRITICALITY_TIMING_PLACE
+PlacerOpts.pad_loc_type: FREE
+PlacerOpts.constraints_file: No constraints file given
+PlacerOpts.place_chan_width: 100
+PlacerOpts.inner_loop_recompute_divider: 0
+PlacerOpts.recompute_crit_iter: 1
+PlacerOpts.timing_tradeoff: 0.500000
+PlacerOpts.td_place_exp_first: 1.000000
+PlacerOpts.td_place_exp_last: 8.000000
+PlacerOpts.delay_offset: 0.000000
+PlacerOpts.delay_ramp_delta_threshold: -1
+PlacerOpts.delay_ramp_slope: 0.000000
+PlacerOpts.tsu_rel_margin: 1.000000
+PlacerOpts.tsu_abs_margin: 0.000000
+PlacerOpts.post_place_timing_report_file: 
+PlacerOpts.allowed_tiles_for_delay_model: 
+PlacerOpts.delay_model_reducer: MIN
+PlacerOpts.delay_model_type: SIMPLE
+PlacerOpts.rlim_escape_fraction: 0.000000
+PlacerOpts.move_stats_file: 
+PlacerOpts.placement_saves_per_temperature: 0
+PlacerOpts.effort_scaling: CIRCUIT
+PlacerOpts.place_delta_delay_matrix_calculation_method: ASTAR_ROUTE
+PlaceOpts.seed: 21
+AnnealSched.type: AUTO_SCHED
+AnnealSched.inner_num: 0.500000
+
+# Building complex block graph
+Warning 5: mult_27x27_top[0].I[54] unconnected pin in architecture.
+Warning 6: mult_27x27_top[0].I[55] unconnected pin in architecture.
+Warning 7: mult_27x27_top[0].I[56] unconnected pin in architecture.
+Warning 8: mult_27x27_top[0].I[57] unconnected pin in architecture.
+Warning 9: mult_27x27_top[0].I[58] unconnected pin in architecture.
+Warning 10: mult_27x27_top[0].I[59] unconnected pin in architecture.
+Warning 11: mult_27x27_top[0].I[60] unconnected pin in architecture.
+Warning 12: mult_27x27_top[0].I[61] unconnected pin in architecture.
+Warning 13: mult_27x27_top[0].I[62] unconnected pin in architecture.
+Warning 14: mult_27x27_top[0].I[63] unconnected pin in architecture.
+Warning 15: mult_27x27_top[0].I[64] unconnected pin in architecture.
+Warning 16: mult_27x27_top[0].I[65] unconnected pin in architecture.
+Warning 17: mult_27x27_top[0].I[66] unconnected pin in architecture.
+Warning 18: mult_27x27_top[0].I[67] unconnected pin in architecture.
+Warning 19: mult_27x27_top[0].I[68] unconnected pin in architecture.
+Warning 20: mult_27x27_top[0].I[69] unconnected pin in architecture.
+Warning 21: mult_27x27_top[0].I[70] unconnected pin in architecture.
+Warning 22: mult_27x27_top[0].I[71] unconnected pin in architecture.
+Warning 23: mult_27x27_top[0].I[72] unconnected pin in architecture.
+Warning 24: mult_27x27_top[0].I[73] unconnected pin in architecture.
+Warning 25: mult_27x27_top[0].result[54] unconnected pin in architecture.
+Warning 26: mult_27x27_top[0].result[55] unconnected pin in architecture.
+Warning 27: mult_27x27_top[0].result[56] unconnected pin in architecture.
+Warning 28: mult_27x27_top[0].result[57] unconnected pin in architecture.
+Warning 29: mult_27x27_top[0].result[58] unconnected pin in architecture.
+Warning 30: mult_27x27_top[0].result[59] unconnected pin in architecture.
+Warning 31: mult_27x27_top[0].result[60] unconnected pin in architecture.
+Warning 32: mult_27x27_top[0].result[61] unconnected pin in architecture.
+Warning 33: mult_27x27_top[0].result[62] unconnected pin in architecture.
+Warning 34: mult_27x27_top[0].result[63] unconnected pin in architecture.
+Warning 35: mult_27x27_top[0].result[64] unconnected pin in architecture.
+Warning 36: mult_27x27_top[0].result[65] unconnected pin in architecture.
+Warning 37: mult_27x27_top[0].result[66] unconnected pin in architecture.
+Warning 38: mult_27x27_top[0].result[67] unconnected pin in architecture.
+Warning 39: mult_27x27_top[0].result[68] unconnected pin in architecture.
+Warning 40: mult_27x27_top[0].result[69] unconnected pin in architecture.
+Warning 41: mult_27x27_top[0].result[70] unconnected pin in architecture.
+Warning 42: mult_27x27_top[0].result[71] unconnected pin in architecture.
+Warning 43: mult_27x27_top[0].result[72] unconnected pin in architecture.
+Warning 44: mult_27x27_top[0].result[73] unconnected pin in architecture.
+# Building complex block graph took 0.01 seconds (max_rss 12.2 MiB, delta_rss +0.0 MiB)
+Error 1: 
+Type: SDC file
+File: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_01/inputs/diffeq.sdc
+Line: -1
+Message: syntax error, unexpected [ near '['
+Circuit file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_diffeq_p1_input_01/inputs/diffeq.blif
+# Load circuit
+# Load circuit took 0.03 seconds (max_rss 12.2 MiB, delta_rss +0.0 MiB)
+# Clean circuit
+Absorbed 0 LUT buffers
+Inferred    0 additional primitive pins as constant generators since they have no combinationally connected inputs
+Inferred    0 additional primitive pins as constant generators due to constant inputs
+Swept input(s)      : 0
+Swept output(s)     : 0 (0 dangling, 0 constant)
+Swept net(s)        : 0
+Swept block(s)      : 0
+Constant Pins Marked: 0
+# Clean circuit took 0.00 seconds (max_rss 12.2 MiB, delta_rss +0.0 MiB)
+# Compress circuit
+# Compress circuit took 0.01 seconds (max_rss 12.2 MiB, delta_rss +0.0 MiB)
+# Verify circuit
+# Verify circuit took 0.00 seconds (max_rss 12.2 MiB, delta_rss +0.0 MiB)
+Circuit Statistics:
+  Blocks: 1974
+    .input :      64
+    .latch :     377
+    .names :    1494
+        2-LUT:     141
+        3-LUT:     440
+        4-LUT:     913
+    .output:      39
+  Nets  : 1935
+    Avg Fanout:     3.1
+    Max Fanout:   496.0
+    Min Fanout:     1.0
+  Netlist Clocks: 1
+# Build Timing Graph
+  Timing Graph Nodes: 7982
+  Timing Graph Edges: 12055
+  Timing Graph Levels: 32
+# Build Timing Graph took 0.01 seconds (max_rss 12.7 MiB, delta_rss +0.5 MiB)
+Netlist contains 1 clocks
+  Netlist Clock 'pclk' Fanout: 377 pins (4.7%), 377 blocks (19.1%)
+# Load Timing Constraints
+# Load Timing Constraints took 0.00 seconds (max_rss 12.9 MiB, delta_rss +0.3 MiB)
+The entire flow of VPR took 0.10 seconds (max_rss 12.9 MiB)

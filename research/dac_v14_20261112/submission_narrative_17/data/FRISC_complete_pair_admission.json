@@ -1,0 +1,171 @@
+{
+  "decided_at": "2026-11-17T19:16:30.792068+00:00",
+  "rows": [
+    {
+      "arm": "native",
+      "execution_ended": true,
+      "original_status": "execution_or_verification_failed",
+      "quality_admission": "passed",
+      "quality": {
+        "CPD_ns": 16.19816636377891,
+        "resources": {
+          "wirelength": 41576,
+          "SB_pairs": 0,
+          "CB_sources": 256
+        }
+      },
+      "own_root_endpoint_summary": {
+        "compatible": true,
+        "cpd_before_s": 1.638399105274857e-08,
+        "cpd_after_s": 1.619816636377891e-08,
+        "cpd_strictly_better": true,
+        "cpd_nonworse": true,
+        "setup_improved": 192,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 886,
+        "hold_components": 886
+      },
+      "legal_no_gain_to_own_root": false,
+      "timeout": false,
+      "infrastructure_error": false,
+      "complete_command_seconds": 103.28079925850034,
+      "original_verification_seconds": 1.1767412200570107,
+      "sampled_PSS_GiB": 0.580317497253418,
+      "missing_memory_observations": 3
+    },
+    {
+      "arm": "domain",
+      "execution_ended": true,
+      "original_status": "execution_or_verification_failed",
+      "quality_admission": "passed",
+      "quality": {
+        "CPD_ns": 16.19816636377891,
+        "resources": {
+          "wirelength": 41576,
+          "SB_pairs": 0,
+          "CB_sources": 256
+        }
+      },
+      "own_root_endpoint_summary": {
+        "compatible": true,
+        "cpd_before_s": 1.638399105274857e-08,
+        "cpd_after_s": 1.619816636377891e-08,
+        "cpd_strictly_better": true,
+        "cpd_nonworse": true,
+        "setup_improved": 192,
+        "setup_regressed": 0,
+        "hold_violation_regressions": 0,
+        "setup_components": 886,
+        "hold_components": 886
+      },
+      "legal_no_gain_to_own_root": false,
+      "timeout": false,
+      "infrastructure_error": false,
+      "complete_command_seconds": 103.23046981543303,
+      "original_verification_seconds": 1.027135830372572,
+      "sampled_PSS_GiB": 0.5937795639038086,
+      "missing_memory_observations": 1
+    }
+  ],
+  "complete_pair_admission": "passed",
+  "gaps": [],
+  "domain_minus_native": {
+    "wirelength": 0,
+    "SB_pairs": 0,
+    "CB_sources": 0,
+    "CPD_ns": 0.0
+  },
+  "paired_endpoint_summary": {
+    "compatible": true,
+    "cpd_before_s": 1.619816636377891e-08,
+    "cpd_after_s": 1.619816636377891e-08,
+    "cpd_strictly_better": false,
+    "cpd_nonworse": true,
+    "setup_improved": 0,
+    "setup_regressed": 0,
+    "hold_violation_regressions": 0,
+    "setup_components": 886,
+    "hold_components": 886
+  },
+  "identical_final_working_point_including_full_vector": true,
+  "descriptive_single_pair_time_ratio": 0.9995126931295202,
+  "formal_interleaved_time_ratio": null,
+  "readonly_stage_costs": [
+    {
+      "stage": "replay_native",
+      "returncode": 0,
+      "passed": true,
+      "complete_command_seconds": 1.3812628835439682,
+      "result": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/supplement/cases/frisc/native/completion.json",
+      "new_native_or_STA_calls": 0,
+      "status": "passed"
+    },
+    {
+      "stage": "replay_domain",
+      "returncode": 0,
+      "passed": true,
+      "complete_command_seconds": 1.052443902939558,
+      "result": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/supplement/cases/frisc/domain/completion.json",
+      "new_native_or_STA_calls": 0,
+      "status": "passed"
+    },
+    {
+      "stage": "raw_native",
+      "returncode": 0,
+      "passed": true,
+      "complete_command_seconds": 1.014187328517437,
+      "result": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/native/completion.json",
+      "new_native_or_STA_calls": 0,
+      "status": "passed"
+    },
+    {
+      "stage": "raw_domain",
+      "returncode": 0,
+      "passed": true,
+      "complete_command_seconds": 0.9967820905148983,
+      "result": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/domain/completion.json",
+      "new_native_or_STA_calls": 0,
+      "status": "passed"
+    },
+    {
+      "stage": "pair_pair",
+      "returncode": 1,
+      "passed": false,
+      "complete_command_seconds": 0.13290395215153694,
+      "result": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/pair/completion.json",
+      "new_native_or_STA_calls": 0,
+      "status": "failed_duplicate_lock_before_pair"
+    },
+    {
+      "stage": "pair_recovery_03",
+      "status": "matched_full_quality_pair",
+      "complete_command_seconds": 0.8185159452259541,
+      "passed": true
+    }
+  ],
+  "waiting_seconds": null,
+  "complete_readonly_queue_seconds": 4.6216453686356544,
+  "new_native_or_STA_calls": 0,
+  "new_architecture": false,
+  "new_to_current_CP1_circuit": true,
+  "architecture_configuration": "Hybrid_O",
+  "original_failures_rewritten": false,
+  "automatic_manuscript_update": false,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/finalize_FRISC_admission_03.py": "361ad03660941dd573e5bfcaa2779e453c32ae5fdbd1ad2b0b21026f74f85855",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/plan.json": "4b09f86a4777ca76b9f831722871120e936a71194006e73ecd82b2521bc07a32",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/queue/completion.json": "5c389b3902e8c59871ef7a4919695b753c09de98981d769d6feb35ad2c6dc9a8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/admission_stage_accounting_03.json": "1f0e42364373242aa21653ce714a22f5a48bb7fc957971d1b8684cc34c0ca67d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/pair_recovery_registration_03.json": "2c73b3b187ed2e5952fb8137714778a82677287026a792a7bc488f322afce465",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/pair_recovery_measurement_03/completion.json": "b37f1cb60909d4dd3185e54fa0e2bb04f92c71693939a85a339909237ede6bd9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/pair/completion.json": "afb48e3e998f0805861772e45f367fec8db64a8e0aaf33a8de2ca2cbfcc95c38",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r5_frisc_pair_01/frisc_results.json": "ef3ad347ce9984b093bc6bedbbc16e34d51ee80bd87d237d6a059a61fc951bb6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r5_frisc_pair_01/queue/completion.json": "d2b9ec3e8f75a8f57cf39a3c12a76c08cc6c8b3451a0ebc2c88c2aed0a7bf459",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/native/completion.json": "0e4279e2499e30f3d03f5cac8107a9c7c851ecab609d7f5d7171b3f5a5d836ac",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/native/own_initial_final_endpoints.json": "f807d5a3dd8b4ddb41b4580c46eac2dbbdf6ced6d5efad7ef98e238d31bcd965",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/domain/completion.json": "9c7f4f44ec7d6c432c10a57b06064f92a8dab0f1c5827a20c4de782d73f061e3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/FRISC_sdc_readonly_02/domain/own_initial_final_endpoints.json": "f807d5a3dd8b4ddb41b4580c46eac2dbbdf6ced6d5efad7ef98e238d31bcd965"
+  },
+  "qualification": "Supplementary frozen-check replay with original report-only SDC declaration plus existing raw/request/FULL/STA/physical and state continuity gates passed; original verifier failures retained; actual initial trees/vectors/constraints/six graph payloads paired. Own-root gain and domain increment are separate. Costs are real whole commands; audits/waiting separate. Single N/D observation on shared host is not symmetric interleaved timing or universal superiority."
+}
