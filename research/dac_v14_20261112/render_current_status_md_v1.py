@@ -3,6 +3,13 @@ from pathlib import Path
 
 def render(status,D):
     result = _render(status,D)
+    if status.get('DLA_small_initial_failure'):
+        if status['DLA_small_initial_failure']['status']=='both_original_arms_initial_route_failed_no_legal_root':
+            note='\n[DLA-small原N/D初始路由失败](DLA_small_initial_failure_01/STATUS.md)：完整命令分别709.742677/702.413717秒，原日志在W100/200次迭代后均仍有525个过用节点；没有合法起点，未进入修复，不是超时或合法无收益。初始命令仅替换arm输出路径后逐项相同，共同binary/arch/BLIF/RRG登记摘要匹配；未新增大字节独立准入。失败路由打印的CPD不进入质量结果，也不计算算法收益或费用比例。实际队列接续eltwise-SB/native；这是已知电路/架构的新布局，不计新电路/新架构。剩余两臂及原补充规划约1.17–4.67小时，raw/基线/事件审计另计未校准。\n'
+        else:
+            note='\n[DLA-small初始路由失败记录](DLA_small_initial_failure_01/STATUS.md)：native完整命令709.742677秒后返回1，原日志在W100/200次迭代后仍有525个过用节点；未进入修复，不是超时或合法无收益。失败路由打印的CPD不进入质量结果。domain原批次继续，实际角色状态以上表进程身份为准；条件ETA及后续核验范围见记录，未修改预算或重试。\n'
+        first,rest=result.split('\n',1)
+        result=first+'\n'+note+rest
     if status.get('LSTM_complete_execution_verification'):
         latest=status['LSTM_complete_execution_verification']
         native=latest['roles']['native'];domain=latest['roles']['domain']

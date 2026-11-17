@@ -255,7 +255,8 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_LSTM_incident_publication_receipt_20261117.json',
              'github_submission_clarifications_publication_receipt_20261117.json',
              'github_priority05_status_publication_receipt_20261117.json',
-             'github_lstm_complete_execution_publication_receipt_20261117.json']:
+             'github_lstm_complete_execution_publication_receipt_20261117.json',
+             'github_dla_initial_failure_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -1040,6 +1041,16 @@ if (D/'LSTM_complete_execution_01/verification_result.json').exists():
     status['submission_candidate_latest_conditional_ETA']=latest['conditional_ETA']
     status['evidence']['submission_candidate_latest_conditional_ETA']='LSTM_complete_execution_01/verification_result.json'
     status['outstanding'].insert(0,'LSTM N/D commands are complete but both original verifiers failed; quality and formal paired ratio remain unavailable. Preserve native owner-registration failure and domain round013/candidate00 false completion. Original cohort continues DLA-small/native; no LSTM native/STA replay or historical completion rewrite. TableI LSTM claim awaits separate actual evidence admission.')
+if (D/'DLA_small_initial_failure_01/checkpoint.json').exists():
+    latest_dla=read(D/'DLA_small_initial_failure_01/checkpoint.json')
+    status['DLA_small_initial_failure']=latest_dla
+    status['evidence']['DLA_small_initial_failure']='DLA_small_initial_failure_01/checkpoint.json'
+    status['submission_candidate_latest_conditional_ETA']=latest_dla['conditional_ETA']
+    status['evidence']['submission_candidate_latest_conditional_ETA']='DLA_small_initial_failure_01/checkpoint.json'
+    if latest_dla['status']=='both_original_arms_initial_route_failed_no_legal_root':
+        status['outstanding'].insert(0,'DLA-small N/D both failed initial routing under frozen W100/200-iteration settings with525 overused nodes; actual whole command costs709.742677/702.413717s retained, no legal quality or method-cost ratio. Original cohort continues eltwise-SB; no DLA retry or budget change.')
+    else:
+        status['outstanding'].insert(0,'DLA-small/native initial routing failed under frozen W100/200-iteration settings, with525 overused nodes; retain709.742677s actual cost and no quality CPD. Original domain arm continues; keep original budget and classify its own terminal outcome before paired applicability claims.')
 active_arm_pointer=Path('/tmp/dac_cp1r3_active_arm_pidfd_wait_01.json')
 if active_arm_pointer.exists():
     status['active_CP1r3_arm_wait']=read(active_arm_pointer)

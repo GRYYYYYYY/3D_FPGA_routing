@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[DLA-small N/D初始路由失败；接续eltwise-SB](docs/GitHub_DLA_initial_failure_20261117.md)：原完整费用709.74/702.41秒，两臂均未获得合法起点，失败路由时序不计QoR；原预算和日志保留。eltwise-SB属于既有电路/架构的新布局；剩余核验及基线队列不变。
+
 [LSTM完整执行与原验证失败；CP1r3接续DLA-small](docs/GitHub_LSTM_complete_execution_20261117.md)：N/D完整命令分别7615.07/26657.73秒，原独立验证均失败，正式配对比例不发布。保存原失败、具体断言定位、完整费用及下一角色状态；六页叙事03和既有收益边界不变。
 
 以下较早进度入口为当时快照；最新角色状态、验证分类和ETA以本入口及CURRENT_STATUS为准。
