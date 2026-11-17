@@ -296,7 +296,7 @@ latest_elliptic_publication=D.parents[1]/'docs/github_elliptic_confirmation64_pu
 if latest_elliptic_publication.exists():publication=latest_elliptic_publication
 latest_elliptic_admission_publication=D.parents[1]/'docs/github_elliptic_admission65_publication_receipt_20261117.json'
 if latest_elliptic_admission_publication.exists():publication=latest_elliptic_admission_publication
-for pub in ['github_frisc_confirmation66_publication_receipt_20261117.json','github_frisc_admission67_publication_receipt_20261117.json','github_LSTM_release68_publication_receipt_20261117.json','github_clma_confirmation69_publication_receipt_20261117.json','github_clma_native70_publication_receipt_20261117.json','github_clma_admission71_publication_receipt_20261117.json','github_clma_io72_publication_receipt_20261117.json','github_clma_IO_native73_publication_receipt_20261117.json','github_clma_IO_admission74_publication_receipt_20261117.json','github_s38584_admission75_publication_receipt_20261117.json']:
+for pub in ['github_frisc_confirmation66_publication_receipt_20261117.json','github_frisc_admission67_publication_receipt_20261117.json','github_LSTM_release68_publication_receipt_20261117.json','github_clma_confirmation69_publication_receipt_20261117.json','github_clma_native70_publication_receipt_20261117.json','github_clma_admission71_publication_receipt_20261117.json','github_clma_io72_publication_receipt_20261117.json','github_clma_IO_native73_publication_receipt_20261117.json','github_clma_IO_admission74_publication_receipt_20261117.json','github_s38584_admission75_publication_receipt_20261117.json','github_s38584_applicability76_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/pub
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -1574,7 +1574,7 @@ if s38584_native.exists():
     status['research_next_pair_conditional_ETA']=checkpoint['conditional_ETA']
     status['active_schedule_order']=['s38584 domain','s38584 native raw','s38584 domain raw','s38584 pair matching','s38584 terminal decision']
     status['evidence']['s38584_native_complete']='cp1r6_s38584_pair_01/NATIVE_COMPLETE.md'
-    status['evidence']['current_applicability']='mechanism_applicability_current_03/APPLICABILITY.md'
+    status['evidence']['current_applicability']='mechanism_applicability_current_05/APPLICABILITY.md'
     status['outstanding']=['s38584 distinct-circuit native original verifier passed in278.23s; current initial root has no multi-crossing nets/shared or owner groups. Continue actual domain then existing raw/pair/terminal gates; do not infer complete pair or domain benefit. Submission14 is independent. Initial scope count is not a gain predictor; retain finite-slack and budget boundaries. Goal active.']
 s38584_decision=D/'S38584_complete_admission_01/admission_decision.json'
 if s38584_decision.exists():

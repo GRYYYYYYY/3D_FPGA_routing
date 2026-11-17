@@ -1,6 +1,6 @@
 # s38584.1完整配对通过与六页投稿15
 
-[投稿15 PDF](../research/dac_v14_20261112/submission_narrative_15/build/main.pdf) · [48行完整配对表](../research/dac_v14_20261112/submission_narrative_15/COMPLETE_PAIR_TABLE.md) · [适用性汇总](../research/dac_v14_20261112/mechanism_applicability_current_04/APPLICABILITY.md) · [整臂及配对判定](../research/dac_v14_20261112/S38584_complete_admission_01/admission_decision.json)。投稿14保留，原46行、统一方法、prior-art和机制对照保持。
+[投稿15 PDF](../research/dac_v14_20261112/submission_narrative_15/build/main.pdf) · [48行完整配对表](../research/dac_v14_20261112/submission_narrative_15/COMPLETE_PAIR_TABLE.md) · [适用性汇总](../research/dac_v14_20261112/mechanism_applicability_current_05/APPLICABILITY.md) · [整臂及配对判定](../research/dac_v14_20261112/S38584_complete_admission_01/admission_decision.json)。投稿14保留，原46行、统一方法、prior-art和机制对照保持。
 
 ## 完整配对：通过，缺口为空
 
@@ -17,7 +17,7 @@
 
 不同公开电路s38584.1含1260锁存器，真实seed21布局1068块，层0/1为635/433；同既有Hybrid-O架构族，不称新架构或未见留出集。预登记20ns+明确IOmax1/min0为基准设置，1544个setup/hold分量各自保留，不声称外部应用要求。
 
-现有适用性表保留不同条件：TPU-OS初始19组无最终垂直增量；CLSTM-SB初始14组最终少1SB、多52线长；clma有结构机会但原时钟型SDC分支slack未知；s38584占用跨层资源但没有可选冗余组。组数不是收益预测，结构、有限时序余量、失败/容量见证和整组预算接受各自必要。不同版本、布局及clma两种SDC不是独立电路计数。
+现有适用性表保留不同条件：TPU-OS初始19组无最终垂直增量；CLSTM-SB初始14组最终少1SB、多52线长；clma有结构机会但原时钟型SDC分支slack未知；s38584占用跨层资源但没有可选冗余组。组数不是收益预测：完整共享分支和有限时序余量用于选择共享域尝试；实际失败才触发按网释放，受支持的容量阻塞见证才触发owner协调；最终候选须整组合法并满足预算。BNN九个已核验域组均无释放事件。不同版本、布局及clma两种SDC不是独立电路计数。
 
 投稿15六页、48行结果保留原46行、所有负结果和费用边界。新增只影响摘要、匹配主表、适用性和结论；BNN交错24.91%/冷启动22.95%、LSTM归档干扰及失败回退、四档代价和owner归因保持。七页构建草稿保存，字体及10条参考文献保留；无未来实验前置条件。
 
