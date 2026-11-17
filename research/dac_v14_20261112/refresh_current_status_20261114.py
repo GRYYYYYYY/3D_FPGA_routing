@@ -55,11 +55,12 @@ for name in ['stable_seed_transfer_recovery_02','direct_scope_resource_equivalen
              'rejection_feedback_controller_dev_01','complete_route_resource_measurements_01',
              'vector_then_strict_comparison_01','connection_budget_resource_dev_01',
              'complete_serial_resource_measurement_dev_01','complete_serial_resource_measurement_paired_dev_01',
-             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01','cp1r1_cross_circuit_cohort_01','cp1r2_cross_circuit_cohort_01','robot_union_mechanism_02','robot_union_verification_recovery_01','BNN_interleaved_timing_02','BNN_interleaved_timing_03','robot_owner_reentry_audit_01','robot_owner_reentry_audit_02','empty_query_patch_validation_01','confirmation_release_cp1r3_01','robot_p1_prefix_recovery_01','cp1r3_distinct_input_cohort_01','interrupted_stage_reconciliation_01','interrupted_flow_recovery_01','CP1r3_supplemental_verifier_01','CP1r3_raw_admission_01']:
+             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01','cp1r1_cross_circuit_cohort_01','cp1r2_cross_circuit_cohort_01','robot_union_mechanism_02','robot_union_verification_recovery_01','BNN_interleaved_timing_02','BNN_interleaved_timing_03','robot_owner_reentry_audit_01','robot_owner_reentry_audit_02','empty_query_patch_validation_01','confirmation_release_cp1r3_01','robot_p1_prefix_recovery_01','cp1r3_distinct_input_cohort_01','interrupted_stage_reconciliation_01','interrupted_flow_recovery_01','CP1r3_supplemental_verifier_01','CP1r3_raw_admission_01','vertical_cost_baseline_dev_01']:
     q=D/name/('' if name.startswith('serial_fused_candidate_validation_') else 'queue')
     if (D/name/'queue_priority_02/registration.json').exists():q=D/name/'queue_priority_02'
     if (D/name/'queue_priority_03/registration.json').exists():q=D/name/'queue_priority_03'
     if (D/name/'queue_priority_04/registration.json').exists():q=D/name/'queue_priority_04'
+    if (D/name/'queue_priority_05/registration.json').exists():q=D/name/'queue_priority_05'
     reg=read(q/'registration.json')
     phase=read(q/'status.json') if (q/'status.json').exists() else dict(status='running')
     live=process_identity(reg['pid'])
@@ -250,7 +251,9 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_vertical_cost_queue_publication_receipt_20261117.json',
              'github_closing_menu_inputs_publication_receipt_20261117.json',
              'github_submission_export_publication_receipt_20261117.json',
-             'github_LSTM_tradeoffs_publication_receipt_20261117.json']:
+             'github_LSTM_tradeoffs_publication_receipt_20261117.json',
+             'github_LSTM_incident_publication_receipt_20261117.json',
+             'github_submission_clarifications_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -964,6 +967,15 @@ if (D/'LSTM_round012_rejection_01/summary.json').exists():
     status['latest_closed_LSTM_rejection']=read(D/'LSTM_round012_rejection_01/summary.json')
 if (D/'confirmation_priority_handoff_05/completion.json').exists():
     status['active_schedule']='confirmation_priority_handoff_05/plan.json'
+    handoff05=read(D/'confirmation_priority_handoff_05/plan.json')
+    status['active_schedule_order']=['cp1r3_distinct_input_cohort_01','CP1r3_supplemental_verifier_01','CP1r3_raw_admission_01','vertical_cost_baseline_dev_01',*[n['batch'] for n in handoff05['stages']]]
+    pred05={n['batch']:n['predecessor'] for n in handoff05['stages']}
+    pred05['vertical_cost_baseline_dev_01']=str(D/'CP1r3_raw_admission_01/queue_priority_04')
+    for owner in owners:
+        if owner['batch'] in pred05 and owner['queue_generation']=='priority_05':
+            owner['actual_predecessor_queue']=pred05[owner['batch']]
+            if owner['phase_status'].startswith('waiting'):owner['effective_wait']='priority_dependency: '+str(Path(pred05[owner['batch']]).parent.name)
+
     status['simple_vertical_cost_baseline'].update(queued=True,execution_plan='vertical_cost_baseline_dev_01/execution_plan.json',checks=32)
     status['evidence']['simple_cost_queue_handoff']='confirmation_priority_handoff_05/completion.json'
     status['outstanding']=[x for x in status['outstanding'] if not x.startswith(('Priority04:','Current user priority:'))]
@@ -985,9 +997,39 @@ if (D/'LSTM_retention_metadata_incident_01/incident.json').exists():
     status['LSTM_retention_metadata_incident']='LSTM_retention_metadata_incident_01/incident.json'
     status['evidence']['LSTM_retention_metadata_incident']='../../docs/GitHub_LSTM_retention_incident_20261117.md'
     status['outstanding'].insert(0,'Preserve round013/candidate00 guided FULL_STA_failed caused by archival hardlink ctime interference. No synthetic completion or replay; existing supplemental/raw admission must retain infrastructure classification. Do not link/unlink/chmod/touch/replace live upstream inputs. Full LSTM pair and clean timing remain unadmitted.')
+if (D/'LSTM_retention_metadata_incident_01/registered_admission_scope_review.json').exists():
+    status['evidence']['LSTM_registered_admission_scope']='LSTM_retention_metadata_incident_01/registered_admission_scope_review.json'
+    status['LSTM_registered_admission_scope']='Original frozen verifier and raw v1 require every transaction passed. Actual round013/candidate00 is false and contains a vector without final completion. Existing queue termination is not sufficient for quality admission; preserve first actual verifier failure and reconcile existing evidence separately if needed. Baseline dependency is raw queue termination, not all roles admitted.'
 if (D/'LSTM_native_fallback_progress_02/progress_and_eta.json').exists():
     status['submission_candidate_latest_conditional_ETA']=read(D/'LSTM_native_fallback_progress_02/progress_and_eta.json')
     status['evidence']['submission_candidate_latest_conditional_ETA']='LSTM_native_fallback_progress_02/progress_and_eta.json'
+if (D/'submission_narrative_03/verification.json').exists():
+    status['submission_narrative_clarification']=dict(verification='submission_narrative_03/verification.json',pages=6,abstract_and_numerical_table_unchanged=True,original_02_preserved=True)
+    status['evidence']['submission_narrative_clarification']='submission_narrative_03/verification.json'
+if (D/'LSTM_round013_candidate01_receipt_01/summary.json').exists():
+    status['latest_closed_LSTM_resource_transaction']=read(D/'LSTM_round013_candidate01_receipt_01/summary.json')
+    status['evidence']['latest_closed_LSTM_resource_transaction']='LSTM_round013_candidate01_receipt_01/summary.json'
+if (D/'LSTM_native_fallback_progress_03/progress_and_eta.json').exists():
+    status['submission_candidate_latest_conditional_ETA']=read(D/'LSTM_native_fallback_progress_03/progress_and_eta.json')
+    status['evidence']['submission_candidate_latest_conditional_ETA']='LSTM_native_fallback_progress_03/progress_and_eta.json'
+    status['latest_closed_LSTM_resource_transaction']=status['submission_candidate_latest_conditional_ETA']
+    status['evidence']['latest_closed_LSTM_resource_transaction']='LSTM_native_fallback_progress_03/progress_and_eta.json'
+if (D/'LSTM_native_fallback_progress_04/progress_and_eta.json').exists():
+    status['submission_candidate_latest_conditional_ETA']=read(D/'LSTM_native_fallback_progress_04/progress_and_eta.json')
+    status['evidence']['submission_candidate_latest_conditional_ETA']='LSTM_native_fallback_progress_04/progress_and_eta.json'
+    status['latest_closed_LSTM_resource_transaction']=status['submission_candidate_latest_conditional_ETA']
+    status['evidence']['latest_closed_LSTM_resource_transaction']='LSTM_native_fallback_progress_04/progress_and_eta.json'
+if (D/'LSTM_retention_metadata_incident_01/development_guard_validation.json').exists():
+    status['evidence']['LSTM_failed_evaluation_independent_audit_development']='LSTM_retention_metadata_incident_01/development_guard_validation.json'
+wait_pointer=Path('/tmp/dac_resource_phase_pidfd_wait_01.json')
+if wait_pointer.exists():
+    pointer=read(wait_pointer)
+    # This pointer locates supervision only. Actual owner/child liveness above
+    # remains independently queried; no running experiment is inferred here.
+    status['resource_phase_wait']=pointer
+    status['resource_phase_wait_qualification']='Supervision handoff pointer only; original process identity and terminal receipts determine actual state.'
+if (D/'LSTM_retention_metadata_incident_01/actual_metadata_guard_validation.json').exists():
+    status['evidence']['LSTM_incident_actual_metadata_guard']='LSTM_retention_metadata_incident_01/actual_metadata_guard_validation.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

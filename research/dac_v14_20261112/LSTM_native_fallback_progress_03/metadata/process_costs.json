@@ -1,0 +1,155 @@
+[
+  {
+    "tag": "reuse_on_native",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/run_serial_seed_resource_state_analysis_stream_v1.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_off_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/reuse_on",
+      "--native-cases",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/request.txt",
+      "--objective",
+      "weighted_soft",
+      "--seed-order",
+      "delay_rr_id",
+      "--domain-feedback",
+      "--crossing-domain",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/domain.txt",
+      "--inputs",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/reuse_on_native_inputs.json"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 190.3469770438969
+  },
+  {
+    "tag": "reuse_on_audit",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/audit_native_feedback_objective_cached.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02",
+      "--role",
+      "reuse_on",
+      "--cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/joint_graph_indexes/audit_cache",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/reuse_on_audit"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 42.471178501844406
+  },
+  {
+    "tag": "reuse_on_domain_audit",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/audit_failure_release_domain.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02",
+      "--role",
+      "reuse_on"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 11.07945790886879
+  },
+  {
+    "tag": "reuse_on_FULL_STA",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/run_serial_census_state_analysis_stream_v1.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_off_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/reuse_on_evaluation",
+      "--candidate-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/reuse_on_audit/candidate.route",
+      "--full-graph-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/joint_graph_indexes/full_cache",
+      "--timing-echo",
+      "--inputs",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/reuse_on_FULL_STA_inputs.json"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 234.46271784603596
+  },
+  {
+    "tag": "reuse_off_native",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/run_serial_seed_resource_state_analysis_stream_v1.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_off_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/reuse_off",
+      "--native-cases",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/request.txt",
+      "--objective",
+      "weighted_soft",
+      "--seed-order",
+      "delay_rr_id",
+      "--inputs",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/reuse_off_native_inputs.json"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 171.56999947875738
+  },
+  {
+    "tag": "reuse_off_audit",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/audit_native_feedback_objective_cached.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02",
+      "--role",
+      "reuse_off",
+      "--cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/joint_graph_indexes/audit_cache",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/reuse_off_audit"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 42.337204832583666
+  },
+  {
+    "tag": "reuse_off_domain_audit",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/audit_retained_crossing_domain.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02",
+      "--role",
+      "reuse_off"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 0.21133069694042206
+  },
+  {
+    "tag": "reuse_off_FULL_STA",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/run_serial_census_state_analysis_stream_v1.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_012/candidate_02/reuse_off_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/reuse_off_evaluation",
+      "--candidate-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/reuse_off_audit/candidate.route",
+      "--full-graph-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/joint_graph_indexes/full_cache",
+      "--timing-echo",
+      "--inputs",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_02/reuse_off_FULL_STA_inputs.json"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 233.55887927860022
+  }
+]

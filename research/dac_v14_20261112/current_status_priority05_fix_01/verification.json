@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "observed_at": "2026-11-17T04:35:28.464809+00:00",
+  "before_live_owner_count": 3,
+  "after_live_owner_count": 8,
+  "actual_applied_order": [
+    "cp1r3_distinct_input_cohort_01",
+    "CP1r3_supplemental_verifier_01",
+    "CP1r3_raw_admission_01",
+    "vertical_cost_baseline_dev_01",
+    "interrupted_stage_reconciliation_01",
+    "robot_p1_prefix_recovery_01",
+    "interrupted_flow_recovery_01",
+    "empty_query_patch_validation_01"
+  ],
+  "rows": [
+    {
+      "batch": "cp1r3_distinct_input_cohort_01",
+      "pid": 3149073,
+      "start_ticks": "1961539809",
+      "queue_generation": "priority_02",
+      "queue_directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r3_distinct_input_cohort_01/queue_priority_02",
+      "phase_status": "running_confirmation_arm",
+      "verified_live": true
+    },
+    {
+      "batch": "CP1r3_supplemental_verifier_01",
+      "pid": 1993735,
+      "start_ticks": "1964796670",
+      "queue_generation": "priority_03",
+      "queue_directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CP1r3_supplemental_verifier_01/queue_priority_03",
+      "phase_status": "waiting_for_original_CP1r3_confirmation_terminal",
+      "verified_live": true
+    },
+    {
+      "batch": "CP1r3_raw_admission_01",
+      "pid": 2488794,
+      "start_ticks": "1964932963",
+      "queue_generation": "priority_04",
+      "queue_directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CP1r3_raw_admission_01/queue_priority_04",
+      "phase_status": "waiting_for_original_checks_supplement_terminal",
+      "verified_live": true
+    },
+    {
+      "batch": "vertical_cost_baseline_dev_01",
+      "pid": 306102,
+      "start_ticks": "1965462295",
+      "queue_generation": "priority_05",
+      "queue_directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_baseline_dev_01/queue_priority_05",
+      "phase_status": "waiting_for_CP1r3_raw_admission_terminal",
+      "verified_live": true
+    },
+    {
+      "batch": "interrupted_stage_reconciliation_01",
+      "pid": 306103,
+      "start_ticks": "1965462305",
+      "queue_generation": "priority_05",
+      "queue_directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_stage_reconciliation_01/queue_priority_05",
+      "phase_status": "waiting_for_registered_distinct_confirmation_cohort",
+      "verified_live": true
+    },
+    {
+      "batch": "robot_p1_prefix_recovery_01",
+      "pid": 306104,
+      "start_ticks": "1965462316",
+      "queue_generation": "priority_05",
+      "queue_directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/robot_p1_prefix_recovery_01/queue_priority_05",
+      "phase_status": "waiting_for_priority_readonly_four_arm_audit",
+      "verified_live": true
+    },
+    {
+      "batch": "interrupted_flow_recovery_01",
+      "pid": 306105,
+      "start_ticks": "1965462331",
+      "queue_generation": "priority_05",
+      "queue_directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/queue_priority_05",
+      "phase_status": "waiting_for_registered_four_arm_stage_audit",
+      "verified_live": true
+    },
+    {
+      "batch": "empty_query_patch_validation_01",
+      "pid": 306106,
+      "start_ticks": "1965462342",
+      "queue_generation": "priority_05",
+      "queue_directory": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/empty_query_patch_validation_01/queue_priority_05",
+      "phase_status": "waiting_for_priority_confirmation_and_recoveries",
+      "verified_live": true
+    }
+  ],
+  "all_current_original_identities_revalidated": true,
+  "frozen_baseline_and_all_handoff_sources_unchanged": true,
+  "queue_owners_or_experiment_rules_changed": false,
+  "new_native_or_STA_calls": 0,
+  "wait_pointer_is_not_liveness_evidence": true,
+  "resource_wait_session_id": 49615,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/refresh_current_status_20261114.py": "2ec2bad1dacb675da721d9ce275136bb92e2fe3708c452129cec43388924e4f7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/render_current_status_md_v1.py": "d3fc64805cd1808adbcbc52aad962002655da82f0aff91ae5e7f7e1f1fb17b32"
+  },
+  "qualification": "Actual status-rendering/discovery fix only. Registered queue contents and processes retained. Selection of priority05 matches existing applied queues; phase wait pointer is a supervisor locator, never an inferred running experiment. No new quality or paired admission."
+}

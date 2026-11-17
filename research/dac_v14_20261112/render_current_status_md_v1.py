@@ -78,7 +78,7 @@ def _render(status,D):
 
 {initial_note}机制归因仍受原证据限制：BNN九个guided资源角色无失败释放；既有R1 owner联合修复N/D相同结果归于协调范围扩大。robot三臂只证明该事务中域/释放改变可行取舍，尚非完整确认。conv_hls确认无收益、TPU初始超时、SPMV/CB-only无切口、Robot SDC无接受收益、attention/conv-layer初始失败继续保留。
 
-当前CP1r3确认终结后，Priority04保持已登记补充验证器在先，随后执行CP1r3完整请求/原始STA/实际字节/物理证明/配对准入，再执行四臂只读来源/字节/完整请求/FULL/STA/端点/物理审计、robot-p1及四臂阶段接续，最后开发空查询回放。独立投稿候选稿与逐项实验影响、条件性ETA见submission_candidate_01；历史恢复不是稿件统一前置条件。reduction/native原成功日志与running manifest必须独立审计；不改写历史completion、不重复已完成原生查询。新执行阶段单独登记计费，接续费用不冒充冷启动完整费用。
+当前CP1r3确认终结后，Priority05保持已登记补充验证器在先，随后执行CP1r3完整请求/原始STA/实际字节/物理证明/配对准入，再执行已登记0/0.5/1/2跨层代价基线，随后执行四臂只读来源/字节/完整请求/FULL/STA/端点/物理审计、robot-p1及四臂阶段接续，最后开发空查询回放。独立投稿候选稿与逐项实验影响、条件性ETA见submission_candidate_01；历史恢复不是稿件统一前置条件。reduction/native原成功日志与running manifest必须独立审计；不改写历史completion、不重复已完成原生查询。新执行阶段单独登记计费，接续费用不冒充冷启动完整费用。
 
 论文：[当前六页正文]({paper})。{paper_note}[新增费用主张绑定](BNN_timing03_balanced_claim_binding_01.json)仅补充同一输入完整费用和复现性证据，不新增独立输入或跨输入收益。完整轨迹与审计留补充材料。最新已核验公开提交见CURRENT_STATUS.json的latest_incremental_publication。Goal不因计时完成、推送、普通负结果或日期终止。
 '''

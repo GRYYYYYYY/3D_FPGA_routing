@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[Priority05状态入口修正与实际8个owner](docs/GitHub_priority05_status_correction_20261117.md)：修复刷新脚本漏列已排队基线及四个后继owner的问题；实际进程、队列顺序和实验规则未改。最近15步接受前缀及费用、端点变化和条件性ETA均保留，完整LSTM配对仍未准入。
+
 [六页投稿稿的接受条件与覆盖计数澄清](docs/GitHub_submission_clarifications_20261117.md)：另存叙事03版，明确端点域匹配与hold保护，消除搜索失败的可行性预设及覆盖计数歧义；摘要、数值主表、引用、贡献边界不变。原叙事02及投稿候选保留，未加入未完成确认收益。
 
 [LSTM归档干扰更正](docs/GitHub_LSTM_retention_incident_20261117.md)：助手的硬链接归档改变活动下游源文件ctime，造成一次最终封存失败。135项登记摘要与原最终重哈希一致；失败5项仅ctime变化。原失败、费用、预算及回退轨迹保留，不补造成功或重跑查询，运行期停止此类硬链接操作。LSTM完整配对尚未准入。
