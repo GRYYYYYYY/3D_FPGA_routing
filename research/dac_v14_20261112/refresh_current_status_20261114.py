@@ -295,7 +295,7 @@ latest_elliptic_publication=D.parents[1]/'docs/github_elliptic_confirmation64_pu
 if latest_elliptic_publication.exists():publication=latest_elliptic_publication
 latest_elliptic_admission_publication=D.parents[1]/'docs/github_elliptic_admission65_publication_receipt_20261117.json'
 if latest_elliptic_admission_publication.exists():publication=latest_elliptic_admission_publication
-for pub in ['github_frisc_confirmation66_publication_receipt_20261117.json','github_frisc_admission67_publication_receipt_20261117.json','github_LSTM_release68_publication_receipt_20261117.json','github_clma_confirmation69_publication_receipt_20261117.json','github_clma_native70_publication_receipt_20261117.json']:
+for pub in ['github_frisc_confirmation66_publication_receipt_20261117.json','github_frisc_admission67_publication_receipt_20261117.json','github_LSTM_release68_publication_receipt_20261117.json','github_clma_confirmation69_publication_receipt_20261117.json','github_clma_native70_publication_receipt_20261117.json','github_clma_admission71_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/pub
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -1518,6 +1518,15 @@ clma_decision=D/'CLMA_complete_admission_01/admission_decision.json'
 if clma_decision.exists():
     status['CLMA_complete_pair_admission']=read(clma_decision)
     status['outstanding']=['Inspect actual clma complete admission and initial-scope exclusion diagnosis, then update only supported complete-table/applicability/abstract/conclusion evidence in a separate manuscript; preserve submission12 and all negative records. Continue independent-input/dependency research, no fixed Goal stop.']
+paper13=D/'submission_narrative_13/verification.json'
+if paper13.exists():
+    status['submission_candidate_latest']=read(paper13);status['paper_pdf']=str(D/'submission_narrative_13/build/main.pdf');status['paper_pages']=6
+    status['evidence']['submission_candidate_latest']='submission_narrative_13/verification.json'
+    status['active_schedule_order']=[]
+    status['research_next_pair_conditional_ETA']=dict(remaining_roles=0,remaining_checks=0,completion_ETA_seconds=0,qualification='All clma original arms/raw/pair and terminal diagnosis finished; future research has no invented ETA.')
+    status['submission_candidate_latest_conditional_ETA']=status['research_next_pair_conditional_ETA']
+    status['outstanding']=['Clma full pair admitted with identical final vectors and no domain increment. Six unconstrained-slack scopes excluded, three structurally reusable; preserve current finite-margin rule and clock-onlySDC limitation. Submission13 ready for independent author review. Next evaluate explicit timing-coverage conditions in a separately preregistered input instance rather than calling this lack of structural opportunity or repeating the same query. Original failures/negative results remain; Goal active.']
+    paper=dict(pdf=status['paper_pdf'],pages=6,verification=str(paper13),submission='13',scope='Verified independent manuscript,44 complete rows; clma zero domain increment and actual timing-coverage exclusion boundary.')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
