@@ -1,0 +1,263 @@
+VPR FPGA Placement and Routing.
+Version: 9.0.0-dev+0b91233
+Revision: 0b91233
+Compiled: 2026-10-22T11:56:17
+Compiler: GNU 11.4.0 on Linux-5.15.0-119-generic x86_64
+Build Info: release VTR_ASSERT_LEVEL=2
+
+University of Toronto
+verilogtorouting.org
+vtr-users@googlegroups.com
+This is free open source code under MIT license.
+
+VPR was run with the following command-line:
+/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/baseline/vpr /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/import_only.xml /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_elliptic_input_01/inputs/elliptic.blif --pack --device fixture --seed 11 --num_workers 1 --clock_modeling ideal --route_chan_width 100 --merge_constant_generators off --net_file /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_elliptic_input_01/pack_04/packed.net
+
+Using up to 1 parallel worker(s)
+
+Architecture file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/import_only.xml
+Circuit name: elliptic
+
+# Loading Architecture Description
+Warning 1: Model 'io' input port 'outpad' has no timing specification (no clock specified to create a sequential input port, not combinationally connected to any outputs, not a clock input)
+Warning 2: Model 'io' output port 'inpad' has no timing specification (no clock specified to create a sequential output port, not combinationally connected to any inputs, not a clock output)
+Warning 3: Model 'dsp' input port 'I' has no timing specification (no clock specified to create a sequential input port, not combinationally connected to any outputs, not a clock input)
+Warning 4: Model 'dsp' output port 'result' has no timing specification (no clock specified to create a sequential output port, not combinationally connected to any inputs, not a clock output)
+mode 'io[physical]' is defined by user to be disabled in packing
+mode 'complex_dsp[physical]' is defined by user to be disabled in packing
+mode 'spram[physical]' is defined by user to be disabled in packing
+Warning 5: Multiple matching Fc overrides found; the last will be applied
+# Loading Architecture Description took 0.02 seconds (max_rss 12.1 MiB, delta_rss +0.0 MiB)
+
+Timing analysis: ON
+Circuit netlist file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_elliptic_input_01/pack_04/packed.net
+Circuit placement file: elliptic.place
+Circuit routing file: elliptic.route
+Circuit SDC file: elliptic.sdc
+Vpr floorplanning constraints file: not specified
+
+Packer: ENABLED
+Placer: DISABLED
+Analytical Placer: DISABLED
+Router: DISABLED
+Analysis: DISABLED
+
+VPR was run with the following options:
+
+netlist_opts.absorb_buffer_luts            : true
+netlist_opts.merge_constant_generators     : false
+netlist_opts.sweep_dangling_primary_ios    : true
+netlist_opts.sweep_dangling_nets           : true
+netlist_opts.sweep_dangling_blocks         : true
+netlist_opts.sweep_constant_primary_outputs: false
+netlist_opts.netlist_verbosity             : 1
+netlist_opts.const_gen_inference           : COMB_SEQ
+
+packer_opts.allow_unrelated_clustering: auto
+packer_opts.timing_gain_weight: 0.750000
+packer_opts.connection_gain_weight: 0.900000
+packer_opts.cluster_seed_type: BLEND2
+packer_opts.connection_driven: true
+packer_opts.timing_driven: true
+packer_opts.target_external_pin_util: auto
+
+# Building complex block graph
+# Building complex block graph took 0.01 seconds (max_rss 12.1 MiB, delta_rss +0.0 MiB)
+Circuit file: /inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_elliptic_input_01/inputs/elliptic.blif
+# Load circuit
+# Load circuit took 0.08 seconds (max_rss 20.0 MiB, delta_rss +7.8 MiB)
+# Clean circuit
+Absorbed 0 LUT buffers
+Swept input(s)      : 0
+Swept output(s)     : 0 (0 dangling, 0 constant)
+Swept net(s)        : 0
+Swept block(s)      : 0
+Constant Pins Marked: 0
+# Clean circuit took 0.00 seconds (max_rss 20.0 MiB, delta_rss +0.0 MiB)
+# Compress circuit
+# Compress circuit took 0.01 seconds (max_rss 20.8 MiB, delta_rss +0.8 MiB)
+# Verify circuit
+# Verify circuit took 0.00 seconds (max_rss 20.8 MiB, delta_rss +0.0 MiB)
+Circuit Statistics:
+  Blocks: 4969
+    .input :     131
+    .latch :    1122
+    .names :    3602
+        2-LUT:     433
+        3-LUT:    1024
+        4-LUT:    2145
+    .output:     114
+  Nets  : 4855
+    Avg Fanout:     3.1
+    Max Fanout:  1470.0
+    Min Fanout:     1.0
+  Netlist Clocks: 1
+# Build Timing Graph
+  Timing Graph Nodes: 19731
+  Timing Graph Edges: 29638
+  Timing Graph Levels: 40
+# Build Timing Graph took 0.03 seconds (max_rss 26.7 MiB, delta_rss +5.4 MiB)
+Netlist contains 1 clocks
+  Netlist Clock 'pclk' Fanout: 1122 pins (5.7%), 1122 blocks (22.6%)
+# Load Timing Constraints
+
+SDC file 'elliptic.sdc' not found
+Setting default timing constraints:
+   * constrain all primary inputs and primary outputs on netlist clock 'pclk'
+   * optimize netlist clock to run as fast as possible
+Timing constraints created 1 clocks
+  Constrained Clock 'pclk' Source: 'pclk.inpad[0]'
+
+# Load Timing Constraints took 0.00 seconds (max_rss 26.7 MiB, delta_rss +0.0 MiB)
+# Packing
+## Prepacker
+## Prepacker took 0.01 seconds (max_rss 27.1 MiB, delta_rss +0.4 MiB)
+## Initializing Pre-Cluster Timing
+Using inter-cluster delay: 1.91075e-09
+## Initializing Pre-Cluster Timing took 0.04 seconds (max_rss 30.0 MiB, delta_rss +2.9 MiB)
+## Estimate Device Size
+Device is fixed to fixture.
+## Estimate Device Size took 0.02 seconds (max_rss 30.3 MiB, delta_rss +0.3 MiB)
+## Ram Mapper
+No pre-computed RAM groups, running grouping and area assignment.
+Inferred 0 logical RAM group(s).
+Device ram utilizations after area driven assignment:
+Timing pass for logical RAMs.
+Max atom criticality: 0.0000 (0 critical group(s)).
+Device ram utilizations after timing driven remapping:
+## Ram Mapper took 0.00 seconds (max_rss 30.3 MiB, delta_rss +0.0 MiB)
+Begin packing '/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_elliptic_input_01/inputs/elliptic.blif'.
+
+After removing unused inputs...
+	total blocks: 4969, total nets: 4855, total inputs: 131, total outputs: 114
+Packing with pin utilization targets: io:1,1 clb:0.8,0.6 spram:1,1 complex_dsp:1,1
+Packing with high fanout thresholds: io:128 clb:32 spram:128 complex_dsp:128
+Starting Clustering - Clustering Progress: 
+-------------------   --------------------------   ---------
+Molecules processed   Number of clusters created   FPGA size
+-------------------   --------------------------   ---------
+   159/3849      4%                           16   200 x 200   
+   315/3849      8%                           32   200 x 200   
+   475/3849     12%                           48   200 x 200   
+   635/3849     16%                           64   200 x 200   
+   794/3849     20%                           80   200 x 200   
+   954/3849     24%                           96   200 x 200   
+  1114/3849     28%                          112   200 x 200   
+  1274/3849     33%                          128   200 x 200   
+  1432/3849     37%                          144   200 x 200   
+  1592/3849     41%                          160   200 x 200   
+  1751/3849     45%                          176   200 x 200   
+  1904/3849     49%                          192   200 x 200   
+  2064/3849     53%                          208   200 x 200   
+  2224/3849     57%                          224   200 x 200   
+  2382/3849     61%                          241   200 x 200   
+  2544/3849     66%                          259   200 x 200   
+  2704/3849     70%                          276   200 x 200   
+  2862/3849     74%                          294   200 x 200   
+  3018/3849     78%                          310   200 x 200   
+  3171/3849     82%                          328   200 x 200   
+  3330/3849     86%                          344   200 x 200   
+  3485/3849     90%                          364   200 x 200   
+  3638/3849     94%                          429   200 x 200   
+  3791/3849     98%                          582   200 x 200   
+  3849/3849    100%                          640   200 x 200   
+
+Logic Element (fle) detailed count:
+  Total number of Logic Elements used : 3604
+  LEs used for logic and registers    : 1120
+  LEs used for logic only             : 2482
+  LEs used for registers only         : 2
+
+FPGA sized to 200 x 200: 80000 grid tiles (fixture)
+Device Utilization: 0.01 (target 1.00)
+	Block Utilization: 0.02 Type: io
+	Block Utilization: 0.01 Type: clb
+
+Final Clustering Statistics: 
+----------   --------   ------------------------------------   --------------------------
+Block Type   # Blocks   Avg. # of input clocks and pins used   Avg. # of output pins used
+----------   --------   ------------------------------------   --------------------------
+     EMPTY          0                                      0                            0   
+        io        245                               0.465306                     0.534694   
+       clb        395                                16.1215                      4.41772   
+complex_dsp          0                                      0                            0   
+     spram          0                                      0                            0   
+Absorbed logical nets 2979 out of 4855 nets, 1876 nets not absorbed.
+
+Netlist conversion complete.
+
+Incr Slack updates 1 in 0.000418891 sec
+Full Max Req/Worst Slack updates 1 in 4.8465e-05 sec
+Incr Max Req/Worst Slack updates 0 in 0 sec
+Incr Criticality updates 0 in 0 sec
+Full Criticality updates 1 in 0.000985702 sec
+# Packing took 0.90 seconds (max_rss 50.6 MiB, delta_rss +23.9 MiB)
+# Load packing
+## Loading packed FPGA netlist file.
+Netlist generated from file '/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_elliptic_input_01/pack_04/packed.net'.
+Detected 0 constant generators (to see names run with higher pack verbosity)
+## Loading packed FPGA netlist file. took 0.24 seconds (max_rss 59.4 MiB, delta_rss +8.8 MiB)
+Warning 6: Treated 0 constant nets as global which will not be routed (to see net names increase packer verbosity).
+Completed clustering consistency check successfully.
+Cluster level netlist and block usage statistics
+Netlist num_nets: 1876
+Netlist num_blocks: 640
+Netlist EMPTY blocks: 0.
+Netlist io blocks: 245.
+Netlist clb blocks: 395.
+Netlist complex_dsp blocks: 0.
+Netlist spram blocks: 0.
+Netlist inputs pins: 131
+Netlist output pins: 114
+
+Pb types usage...
+  io         : 245
+   inpad     : 131
+   outpad    : 114
+  clb        : 395
+   fle       : 3604
+    ble6     : 3604
+     lut6    : 3602
+      lut    : 3602
+     ff      : 1122
+
+# Load packing took 0.32 seconds (max_rss 91.9 MiB, delta_rss +41.3 MiB)
+# Create Device
+## Build Device Grid
+FPGA sized to 200 x 200: 80000 grid tiles (fixture)
+## Build Device Grid took 0.01 seconds (max_rss 92.2 MiB, delta_rss +0.3 MiB)
+# Create Device took 0.01 seconds (max_rss 92.2 MiB, delta_rss +0.3 MiB)
+
+Resource usage...
+	Netlist
+		245	blocks of type: io
+	Architecture
+		12672	blocks of type: io
+	Netlist
+		395	blocks of type: clb
+	Architecture
+		58608	blocks of type: clb
+	Netlist
+		0	blocks of type: complex_dsp
+	Architecture
+		9900	blocks of type: complex_dsp
+	Netlist
+		0	blocks of type: spram
+	Architecture
+		9900	blocks of type: spram
+
+Device Utilization: 0.01 (target 1.00)
+	Physical Tile io:
+	Block Utilization: 0.02 Logical Block: io
+	Physical Tile clb:
+	Block Utilization: 0.01 Logical Block: clb
+	Physical Tile spram:
+	Block Utilization: 0.00 Logical Block: spram
+	Physical Tile complex_dsp:
+	Block Utilization: 0.00 Logical Block: complex_dsp
+
+
+
+Flow timing analysis took 0.0121196 seconds (0.0105717 STA, 0.00154791 slack) (1 full updates: 1 setup, 0 hold, 0 combined).
+VPR succeeded
+The entire flow of VPR took 1.42 seconds (max_rss 92.4 MiB)

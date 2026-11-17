@@ -1,0 +1,42 @@
+{
+  "registered_at": "2026-11-17T18:36:18.212173+00:00",
+  "command": [
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/baseline/vpr",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/import_only.xml",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_elliptic_input_01/inputs/elliptic.blif",
+    "--pack",
+    "--device",
+    "fixture",
+    "--seed",
+    "11",
+    "--num_workers",
+    "1",
+    "--clock_modeling",
+    "ideal",
+    "--route_chan_width",
+    "100",
+    "--merge_constant_generators",
+    "off",
+    "--net_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_elliptic_input_01/pack_04/packed.net"
+  ],
+  "pack_binary": {
+    "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/baseline/vpr",
+    "sha256": "37cc22c8b1b5d9d378e25379e85afcb7e56b5f1f6f72e3e9186e5e107ed5ce62"
+  },
+  "supervisor": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r5/runtime/supervise_method_phase.py",
+  "supervisor_sha256": "f5f5c54663dd8ed15025395ff0fbbaef06e25ad6682915be2248fc904056106a",
+  "architecture_sha256": "b6fdf70e6da91b34bfb01ac212ebc20e6141216b5130c980e5ab513d23e66e83",
+  "logic_model_tile_and_pb_bytes_match_all_ready_sizes": {
+    "40": true,
+    "60": true,
+    "80": true,
+    "100": true,
+    "125": true,
+    "200": true
+  },
+  "reason": "Native A0 rejects the original author census XML without a Z segment before packing. Use existing native-import n200 architecture for census only; its models/tiles/complexblocklist match all candidate devices. Device selection still follows actual packed capacity, not routing QoR.",
+  "original_input_registration_sha256": "486ff7e1a9372e1f195082006cc0a0c7d26dee60fc8476960472edac19d3731e",
+  "prior_attempt": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_elliptic_input_01/pack_03/execution_completion.json",
+  "new_native_routing_queries": 0
+}

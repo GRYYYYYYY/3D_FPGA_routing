@@ -1,5 +1,7 @@
 # H3D-inspired native 3D FPGA routing
 
+[Elliptic独立电路完整确认已启动](docs/GitHub_elliptic_confirmation_20261117.md)：已核验640块真实打包/布局，固定CP1r5 native→domain及后续三项只读准入。不同公开电路、同Hybrid-O架构族；当前不新增完整质量主张，六页投稿09可独立审阅。下方各实验状态以对应记录时间为准。
+
 ## Current research snapshot — 2026-11-17
 
 [CLSTM-SB完整配对通过、六页投稿09](docs/GitHub_CLSTM_SB_admission_submission09_20261117.md)：同6.590324286ns，N/D为234918/941/0与234970/940/0；少1SB、多52wire，配对setup85改善/22退化。完整1430.08/918.13秒为单次描述，无一般加速主张。无释放/owner事件，所有搜索失败及预算拒绝保留。已知CLSTM的不同SB-only图/实际布局，不计新电路家族。[投稿09 PDF](research/dac_v14_20261112/submission_narrative_09/build/main.pdf)；当前两臂与三项准入全部终结，下面运行/阶段描述是历史状态。
