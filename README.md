@@ -2,6 +2,10 @@
 
 ## Current research snapshot — 2026-11-17
 
+[LSTM整臂与实际配对通过、六页投稿07](docs/GitHub_LSTM_admission_submission_20261117.md)：同14.600438192ns，N/D为2388083/492/8316与2390270/422/8316；少70SB、增加2187wire、CB不变，配对setup51改善/23退化、hold新增0。原ctime失败、native回退拒绝和后续轨迹保留；完整7615.07/26657.73秒照录，domain受外部归档干扰，不推算无干扰时间或正式开销比。[PDF](research/dac_v14_20261112/submission_narrative_07/build/main.pdf) · [完整配对表](research/dac_v14_20261112/submission_narrative_07/LSTM_PAIR_TABLE.md) · [作者审阅/证据影响](research/dac_v14_20261112/submission_narrative_07/EXPERIMENT_IMPACT.md)。四档代价对照已经完成并突出为同组CB预算可行性增量，非所有权重/输入优势；CLSTM历史恢复不阻塞主稿。原06和更早版本保留。
+
+以下为历史快照；当前LSTM准入及稿件以上述交付为准。
+
 [六页投稿06、LSTM必要准入与GEMM真实终态](docs/GitHub_GEMM_LSTM_submission_20261117.md)：[投稿PDF](research/dac_v14_20261112/submission_narrative_06/build/main.pdf) · [剩余证据影响](research/dac_v14_20261112/submission_narrative_06/EXPERIMENT_IMPACT.md)。LSTM/native补充完整准入通过，domain仅原失败候选来源通过，尚无完整配对收益；两个419候选分别保留超402的原策略拒绝与超357的原ctime失败。GEMM两臂完整2940.97/2925.41秒后原初始超时，质量为空。CLSTM02来源闭合失败保持，03补齐实际manifest审计后已封存旧23请求真实复用及新候选FULL/STA；历史恢复终态另记，不阻塞六页稿。
 
 [GEMM native原预算超时与CLSTM已登记接续](docs/GitHub_GEMM_native_timeout_20261117.md)：native完整尝试2940.97秒，未获通过FULL/STA的合法根；domain已进入原初始路由。中间零过用打印不计合法候选，不重跑或放宽预算。CLSTM接续02的11项元数据检查通过，实际等待GEMM终结后先复核来源字节，复用既有23条native请求，缺失阶段新执行计费。当前没有新增完整收益；六页投稿05和BNN完整取舍保持。

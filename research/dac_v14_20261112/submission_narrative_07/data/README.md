@@ -1,0 +1,1 @@
+当前表I以main.tex和current_main_table_rows.tex为准；LSTM_complete_pair_admission.json给本次独立整臂/配对判定。其他继承自06的数据文件保留其原版本与历史状态，不能覆盖当前补充准入，也不能改写原失败。原失败和新补充通过是不同事件。

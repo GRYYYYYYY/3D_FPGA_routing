@@ -1,0 +1,155 @@
+{
+  "observed_at": "2026-11-17T12:44:51.481880+00:00",
+  "status": "all_four_strengths_legal_independently_admitted_all_resource_policy_rejected",
+  "fixed_scope": {
+    "circuit": "robot_rl",
+    "source_wire_SB_CB": [
+      251161,
+      10,
+      653
+    ],
+    "CPD_ns": 13.354624073258492,
+    "connections": 25,
+    "nets": 5,
+    "wire_SB_CB_caps": [
+      251413,
+      10,
+      653
+    ],
+    "weights": [
+      0,
+      0.5,
+      1,
+      2
+    ],
+    "penalty": "Multiply cross-layer congestion cost by1+lambda, with original1-criticality factor; physical Tdel unchanged",
+    "matched_target_scope_request_seed_order_search_range_acceptance_and_budget": true,
+    "domain_or_failure_release_or_owner_added": false,
+    "zero_equivalence_passed": true
+  },
+  "roles": [
+    {
+      "role": "weight_0",
+      "weight": 0,
+      "resources": {
+        "wirelength": 251140,
+        "SB_pairs": 9,
+        "CB_sources": 654
+      },
+      "CPD_ns": 13.354624073258492,
+      "setup_improved": 240,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "resource_policy_accepted": false,
+      "resource_policy_reason": "CB654 exceeds original fixed CB cap653; policy rejection, not routing failure",
+      "original_verification_status": "passed",
+      "original_quality_admitted": true,
+      "quality_admitted_by_completed_audit": true,
+      "route_legal": true,
+      "endpoint_policy_accepted": true,
+      "current_admission_receipt": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_baseline_dev_01/execution/zero_equivalence.json"
+    },
+    {
+      "role": "weight_05",
+      "weight": 0.5,
+      "resources": {
+        "wirelength": 251140,
+        "SB_pairs": 9,
+        "CB_sources": 654
+      },
+      "CPD_ns": 13.354624073258492,
+      "setup_improved": 240,
+      "setup_regressed": 0,
+      "hold_violation_regressions": 0,
+      "resource_policy_accepted": false,
+      "resource_policy_reason": "CB654 exceeds original fixed CB cap653; policy rejection, not routing failure",
+      "original_verification_status": "infrastructure_error",
+      "original_quality_admitted": false,
+      "quality_admitted_by_completed_audit": true,
+      "route_legal": true,
+      "endpoint_policy_accepted": true,
+      "candidate_vector_semantic_sha256": "a8782cd4078829008b5ca2ee4129b0c85141ff757f86d10a9f7417cea7cf1881",
+      "current_admission_receipt": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_admission_reconciliation_01/execution/weight_05_admission.json"
+    },
+    {
+      "role": "weight_1",
+      "weight": 1,
+      "resources": {
+        "wirelength": 251125,
+        "SB_pairs": 9,
+        "CB_sources": 654
+      },
+      "CPD_ns": 13.354624073258492,
+      "setup_improved": 205,
+      "setup_regressed": 37,
+      "hold_violation_regressions": 0,
+      "resource_policy_accepted": false,
+      "resource_policy_reason": "CB654 exceeds original fixed CB cap653; policy rejection, not routing failure",
+      "original_verification_status": "infrastructure_error",
+      "original_quality_admitted": false,
+      "quality_admitted_by_completed_audit": true,
+      "route_legal": true,
+      "endpoint_policy_accepted": false,
+      "candidate_vector_semantic_sha256": "fd4f45b3fddcfd9495e53e442d0c5c848a4d380d0ec3144016812ccece6319b2",
+      "current_admission_receipt": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_admission_reconciliation_01/execution/weight_1_admission.json"
+    },
+    {
+      "role": "weight_2",
+      "weight": 2,
+      "resources": {
+        "wirelength": 251125,
+        "SB_pairs": 9,
+        "CB_sources": 654
+      },
+      "CPD_ns": 13.354624073258492,
+      "setup_improved": 205,
+      "setup_regressed": 37,
+      "hold_violation_regressions": 0,
+      "resource_policy_accepted": false,
+      "resource_policy_reason": "CB654 exceeds original fixed CB cap653; policy rejection, not routing failure",
+      "original_verification_status": "infrastructure_error",
+      "original_quality_admitted": false,
+      "quality_admitted_by_completed_audit": true,
+      "route_legal": true,
+      "endpoint_policy_accepted": false,
+      "candidate_vector_semantic_sha256": "fd4f45b3fddcfd9495e53e442d0c5c848a4d380d0ec3144016812ccece6319b2",
+      "current_admission_receipt": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_admission_reconciliation_01/execution/weight_2_admission.json"
+    }
+  ],
+  "costs": {
+    "original_complete_imported_four_strength_command_seconds": 353.2444857135415,
+    "original_complete_imported_scope_seconds": 352.99637919291854,
+    "new_complete_readonly_reconciliation_seconds": 80.73572258278728,
+    "readonly_slot_wait_seconds_separate": 15749.396618355066,
+    "per_role_audit_command_seconds": [
+      31.23159496858716,
+      25.11926820501685,
+      24.366008937358856
+    ],
+    "qualification": "Separate actual execution and later independent reconciliation commands. Not full-controller cost and not assembled into a complete-method ratio. Original failed positive admissions and their cost remain in original execution."
+  },
+  "inference": "Tested simple penalties also reduce one SB. At0 and0.5 the resource point is251140/9/654; at1 and2 it is251125/9/654 with37 setup regressions. None reproduces the release-enabled251160/9/653 CB-feasible point. This is a matched fixed-scope mechanism control, not general superiority, external-router reproduction, new independent circuit or whole-method transfer.",
+  "original_failure_rewritten": false,
+  "new_native_or_STA_calls_in_reconciliation": 0,
+  "new_queries_by_evidence_archival": 0,
+  "main_paper_update_scope": [
+    "mechanism control table",
+    "SectionV-A",
+    "applicability",
+    "abstract/conclusion qualification only"
+  ],
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_baseline_terminal_01/checkpoint.json": "e624b2dcc81bf2231042b7107caca4374eade54229bf4324f52e2c6897130547",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_baseline_dev_01/execution/zero_equivalence.json": "d29d0197a105bb11a3dd6c403092a1757f8060d68711578295af8037e2c23ea8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_baseline_dev_01/execution/completion.json": "07bc6c5210fa6e620e1b14c2b83fa956db6aa8df2b00b88e2869e52098dfc0e8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_baseline_dev_01/execution/process_costs.json": "d59fabbeb947ff3b6acaeb539037236d5213c31c436f044aaa6e0af1fc53a51a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_admission_reconciliation_01/execution/completion.json": "edce5fa5efa97663708fcd0292cd4846d000dfa687760a57710b8aebdd811faa",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_admission_reconciliation_01/execution/status.json": "40e3ad66433168f659744db00da85f292114de8efa5d50b9a5fa9a88b6322403",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_admission_reconciliation_01/execution_plan.json": "43fb5f24e66c18025076c950479d36d9db0542368d7ab3572b87afda29a10dca",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_evidence_reconcile_v3.py": "13451b7b0702a022a3c5712472b7d885c0761bafdb62ea169516a4eaa024be84",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_zero_progress_transition_v1.py": "69271dfac51e30f22f5d201217449aba94d3fb3e35b70fcb4b3a5808cf3d5920",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_admission_reconciliation_01/execution/weight_05_admission.json": "b6933553f5223223dc34c504b07ff6bc63f83c0d806854b0830e64809e3e4d3d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_admission_reconciliation_01/execution/weight_1_admission.json": "b6bc5e872131234a71ee5c4cedcb0cd0f185430b43bbb0b8ee927cc13e274e47",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/vertical_cost_admission_reconciliation_01/execution/weight_2_admission.json": "91c1eebb2183289c14413a1cd3a3ae654528958a059708ce32616e970329b30f"
+  }
+}

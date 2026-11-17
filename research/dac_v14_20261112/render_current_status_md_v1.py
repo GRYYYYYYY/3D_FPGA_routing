@@ -2,6 +2,20 @@
 from pathlib import Path
 
 def render(status,D):
+    latest=status.get('LSTM_domain_whole_admission_03',{}).get('decision')
+    if latest:
+        decision_text=(D/'LSTM_domain_whole_admission_03/STATUS.md').read_text()
+        live=[o for o in status['owners'] if o['verified_live']]
+        jobs='；'.join(o['batch']+': '+o['phase_status'] for o in live) or '当前登记的必要核验已终结；无存活执行owner。'
+        paper='submission_narrative_07' if (D/'submission_narrative_07/verification.json').exists() else 'submission_narrative_06'
+        return ('# 当前研究状态\n\n'+decision_text.split('\n',1)[1]+
+            '\n\n'+jobs+'\n\n'+
+            f'[当前投稿稿]({paper}/build/main.pdf) · [证据影响与作者审阅]({paper}/EXPERIMENT_IMPACT.md) · '
+            '[完整判定](LSTM_domain_whole_admission_03/admission_decision.json)。原06保留；本轮只把LSTM实际结论和已完成四档代价机制证据纳入对应位置。\n\n'
+            'BNN完整配对保持：CPD13.228145690ns，N/D为2059631/82/5062与2061417/43/5060；SB减少47.56%，SB+CB减少约0.797%，线长增加1786。对称N/D/D/N完整均值7308.61/9129.25秒，+24.91%；冷启动22.95%分列。\n\n'
+            '失败覆盖保持：DLA初始失败、TPU/GEMM初始超时、SB-layout执行错误不作合法无收益；相同电路的新布局不计新电路或架构。CLSTM等历史恢复费用及失败仍留补充材料，不阻塞主稿。\n\n'
+            '本次三项必要检查均以实际终结回执为准，旧排程ETA已失效。提交作者审阅不等待整个研究Goal结束；后续独立输入确认只修改对应表格和适用范围，不重跑已完成BNN局部或四档代价实验。\n\n'
+            '公开版本以[最新发布回执](../../docs/github_LSTM_admission_publication_receipt_20261117.json)存在且完整回读通过为准；未发布的新本地结果不冒充已公开。保留9734eee/279bdb4；Goal active，无固定次数或日期终止条件。\n')
     result = _render(status,D)
     if status.get('DLA_small_initial_failure'):
         if status['DLA_small_initial_failure']['status']=='both_original_arms_initial_route_failed_no_legal_root':
