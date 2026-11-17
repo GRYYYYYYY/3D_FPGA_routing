@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[reduction/native开发恢复完整终结；原domain接续](docs/GitHub_reduction_native_recovered_20261117.md)：12.606378ns、1241199wire/72SB/3058CB，setup1746改善/286退化、hold退化0；恢复后缀5161.46秒与原失败6147.85秒单列。旧269连接原生阶段实际复用、原running manifest不改。不是新鲜完整费用、冻结确认或配对域收益；正文主张保持。
+
 [CLSTM/native与robot-p1历史恢复终态、必要只读核验](docs/GitHub_legacy_recovery_readonly_queue_20261117.md)：后缀费用分别206.33/705.29秒，原失败费用单列，不拼接完整时间或配对收益。CLSTM/domain原空监督回执及失败保留；21项元数据检查通过，完整独立阶段核验已排在三档代价基线只读协调之后。原reduction恢复继续，投稿04稿和主张不变。
 
 [四档跨层代价基线实际执行终结](docs/GitHub_vertical_cost_terminal_20261117.md)：完整尝试353.24秒，0档等价通过；0.5/1/2原独立准入被可变进度摘要拦住，真实候选与原拒绝保留。只读协调已登记并等待原串行槽，不重跑native/STA；正强度结果尚不进入论文主张。

@@ -263,6 +263,8 @@ terminal_publication=D.parents[1]/'docs/github_CP1r3_terminal_publication_receip
 if terminal_publication.exists():publication=terminal_publication
 vertical_terminal_publication=D.parents[1]/'docs/github_vertical_cost_terminal_publication_receipt_20261117.json'
 if vertical_terminal_publication.exists():publication=vertical_terminal_publication
+legacy_recovery_publication=D.parents[1]/'docs/github_legacy_recovery_publication_receipt_20261117.json'
+if legacy_recovery_publication.exists():publication=legacy_recovery_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -1096,6 +1098,14 @@ if (empty_audit/'queue/registration.json').exists():
     status['evidence']['CLSTM_empty_supervision_readonly_audit']='CLSTM_domain_empty_supervision_audit_02/execution_plan.json'
     status['evidence']['CLSTM_empty_supervision_identity_guards']='CLSTM_domain_empty_supervision_audit_02/identity_validation.json'
     status['evidence']['legacy_recovered_development_outcomes']='legacy_recovery_progress_02/checkpoint.json'
+if (D/'reduction_native_complete_recovery_01/checkpoint.json').exists():
+    recovered_native=read(D/'reduction_native_complete_recovery_01/checkpoint.json')
+    status['reduction_native_complete_recovery']=recovered_native
+    status['evidence']['reduction_native_complete_recovery']='reduction_native_complete_recovery_01/checkpoint.json'
+    status['evidence']['reduction_native_closed_resource']='reduction_native_resource_phase_terminal_01/checkpoint.json'
+    status['submission_candidate_latest_conditional_ETA']=recovered_native['conditional_ETA']
+    status['evidence']['submission_candidate_latest_conditional_ETA']='reduction_native_complete_recovery_01/checkpoint.json'
+    status['outstanding'].insert(0,'reduction/native recovered development full method is terminal at12.606378164ns,1241199wire/72SB/3058CB; own-root setup1746better286worse,hold0. New suffix5161.457547s and old failed6147.846396s stay separate; original269-query native work reused without rewriting running manifest. Original reduction/domain suffix now runs. No frozen confirmation, independent input, fresh whole cost or full N/D ratio; main paper benefits unchanged.')
 active_arm_pointer=Path('/tmp/dac_cp1r3_active_arm_pidfd_wait_01.json')
 if active_arm_pointer.exists():
     status['active_CP1r3_arm_wait']=read(active_arm_pointer)

@@ -32,6 +32,10 @@ def render(status,D):
         note='\n[已登记四档代价基线执行终结](vertical_cost_baseline_terminal_01/STATUS.md)：完整实际尝试353.244486秒，0档等价通过；正强度0.5/1/2的独立准入均因可变progress摘要失败，仍不进入收益。精确旧进度重建与19项小型检查通过；新只读owner等待原串行槽，仅复用已有候选，不重跑native/STA。实际执行剩余0，独立正强度准入剩余3；槽位可用后按原0档33.07秒参照规划2–5分钟，等待槽位未校准。不是完整方法时间或新独立输入。\n'
         first,rest=result.split('\n',1)
         result=first+'\n'+note+rest
+    if status.get('reduction_native_complete_recovery'):
+        note='\n[reduction/native完整开发恢复终态](reduction_native_complete_recovery_01/STATUS.md)：12.606378164ns、1241199wire/72SB/3058CB，根setup1746改善/286退化、hold退化0；本次后缀5161.457547秒，原失败6147.846396秒单列。14资源接受含10步原前缀和4步新增，时序正常闭菜单无新接受。既有269连接原生阶段实际复用且旧running manifest不改。当前原domain后缀继续；不是CP1r3确认、新独立输入或新鲜完整费用，完整N/D比值仍不可用。\n'
+        first,rest=result.split('\n',1)
+        result=first+'\n'+note+rest
     return result
 
 def _render(status,D):
