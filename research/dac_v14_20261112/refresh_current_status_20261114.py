@@ -275,6 +275,8 @@ gemm_timeout_publication=D.parents[1]/'docs/github_GEMM_native_timeout_publicati
 if gemm_timeout_publication.exists():publication=gemm_timeout_publication
 latest_GEMM_LSTM_publication=D.parents[1]/'docs/github_GEMM_LSTM_submission_publication_receipt_20261117.json'
 if latest_GEMM_LSTM_publication.exists():publication=latest_GEMM_LSTM_publication
+latest_LSTM_admission_publication=D.parents[1]/'docs/github_LSTM_admission_publication_receipt_20261117.json'
+if latest_LSTM_admission_publication.exists():publication=latest_LSTM_admission_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
