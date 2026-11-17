@@ -243,7 +243,8 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_CP1r3_native_failure_publication_receipt_20261117.json',
              'github_research_status_publication_receipt_20261117.json',
              'github_submission_candidate_publication_receipt_20261117.json',
-             'github_CP1r3_raw_admission_publication_receipt_20261117.json']:
+             'github_CP1r3_raw_admission_publication_receipt_20261117.json',
+             'github_LSTM_cost_progress_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -931,6 +932,16 @@ if (D/'LSTM_transaction_costs_01/completion.json').exists():
     transaction_costs=read(D/'LSTM_transaction_costs_01/completion.json')
     status['LSTM_transaction_cost_diagnostic']={k:transaction_costs[k] for k in ['observed_at','completed_transactions','groups','engineering_direction','whole_pair_quality_admitted','formal_pair_cost_ratio','qualification']}
     status['evidence']['LSTM_transaction_cost_diagnostic']='LSTM_transaction_costs_01/completion.json'
+if (D/'owner_registration_development_fix_02/completion.json').exists():
+    status['prospective_owner_registration_fix']=read(D/'owner_registration_development_fix_02/completion.json')
+    status['evidence']['prospective_owner_registration_fix']='owner_registration_development_fix_02/completion.json'
+if (D/'LSTM_observation_cost_layers_01/completion.json').exists():
+    layers=read(D/'LSTM_observation_cost_layers_01/completion.json')
+    status['LSTM_observation_cost_layers']={k:layers[k] for k in ['observed_at','closed_ordinary_transactions','observation_workers','groups','whole_pair_quality_admitted','formal_pair_cost_ratio','qualification']}
+    status['evidence']['LSTM_observation_cost_layers']='LSTM_observation_cost_layers_01/completion.json'
+if (D/'submission_candidate_followup_02/role_status_and_eta.json').exists():
+    status['submission_candidate_latest_conditional_ETA']=read(D/'submission_candidate_followup_02/role_status_and_eta.json')
+    status['evidence']['submission_candidate_latest_conditional_ETA']='submission_candidate_followup_02/role_status_and_eta.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

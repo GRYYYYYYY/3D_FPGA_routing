@@ -45,6 +45,9 @@ def render(status,D):
         release_scope=status.get('LSTM_domain_release_scope')
         if release_scope:
             initial_note+=(f"[LSTM/domain第三次接受事务中的失败释放](LSTM_domain_release_scope_01/completion.json)：网{release_scope['released_net']}的pin{release_scope['trigger_pin']}在域内九次搜索失败后触发按网释放，释放后第二次搜索成功；整组八请求完成，原候选FULL/STA/物理审计通过。完整事务{release_scope['complete_transaction_seconds']:.6f}s，相对前态+194线长/−7SB/CB不变，CPD同14.600438192ns，setup2改善/2退化、hold违例退化0。七个SB的变化属于整组事务，没有匹配的no-release反事实，不能全部归因于释放；也不是完整配对方法收益。\n\n")
+        layers=status.get('LSTM_observation_cost_layers')
+        if layers:
+            initial_note+=(f"[已结束观测费用分层](LSTM_observation_cost_layers_01/ENGINEERING_SCOPE.md)覆盖{layers['closed_ordinary_transactions']}个普通事务、{layers['observation_workers']}次观测，排除不同回调范围的owner事务。新候选评估的原生进程封装均值约107–109秒、物理审计约70秒、准备约39–40秒；剩余时间仍需细分。原生进程封装不是纯搜索或纯STA，内部timer不重复相加；复用候选不重复计费。这是工程定位证据，不是完整配对速度或收益，未改冻结代码。\n\n")
         failure=status.get('CP1r3_lstm_native_whole_verification_failure')
         if failure:
             initial_note+=(f"LSTM/native完整命令已结束（returncode={failure['command_returncode']}），实测{failure['complete_command_seconds']:.6f}s；原冻结完整核验在{failure['independent_failed_verification_seconds']:.6f}s后失败，原角色状态仍为`{failure['original_status']}`、quality=null。PSS峰值{failure['sampled_tree_PSS_peak_kib']}KiB，缺失内存观察{failure['missing_memory_observations']}次，observer CPU {failure['observer_CPU_seconds']:.6f}s不扣减。\n\n")

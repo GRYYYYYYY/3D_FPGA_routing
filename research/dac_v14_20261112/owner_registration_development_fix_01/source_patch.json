@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/owner_runtime_registration_v2.py": "b18ff24e164a80c28500132eb0c05c3065a38955430425570329cd3d723084f6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/current_owner_transaction_v1.py": "c78cc2e7acf8ad6afa0d10042371b64f3304f59e3cb5f7c6d5f69cefefbbae50",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/run_unified_resource_repair_v1.py": "bc5bd80a4e9f4fc4b605ee96cef047600d3f06d6c4901cc23f4dfd26f6a05d73"
+  },
+  "edits": [
+    {
+      "file": "current_owner_transaction_v1.py",
+      "old": "from controller_runtime import package_files",
+      "new": "from controller_runtime import package_files\nfrom owner_runtime_registration_v2 import bind_runtime"
+    },
+    {
+      "file": "current_owner_transaction_v1.py",
+      "old": "domain_mode='unrestricted', seed_order='delay_rr_id'):",
+      "new": "domain_mode='unrestricted', seed_order='delay_rr_id', *, runtime_config):"
+    },
+    {
+      "file": "current_owner_transaction_v1.py",
+      "old": "    write(output/'registration.json',registration)",
+      "new": "    registration=bind_runtime(registration,runtime_config)\n    write(output/'registration.json',registration)"
+    },
+    {
+      "file": "current_owner_transaction_v1.py",
+      "old": "    a=p.parse_args();r=prepare(a.state,a.root_state,a.selection,a.full_graph_cache,a.output,a.rank,a.domain_mode,a.seed_order)",
+      "new": "    p.add_argument('--runtime-config',type=Path,required=True)\n    a=p.parse_args();r=prepare(a.state,a.root_state,a.selection,a.full_graph_cache,a.output,a.rank,a.domain_mode,a.seed_order,runtime_config=a.runtime_config)"
+    },
+    {
+      "file": "run_unified_resource_repair_v1.py",
+      "old": "from controller_runtime import package_files,admit_controller",
+      "new": "from controller_runtime import package_files,admit_controller\nfrom owner_runtime_registration_v2 import bind_for_execution"
+    },
+    {
+      "file": "run_unified_resource_repair_v1.py",
+      "old": " registered=read(tx/'registration.json');registered['runtime_config']=str(a.runtime_config.resolve());registered['source_sha256'][str(a.runtime_config.resolve())]=sha(a.runtime_config);write(tx/'registration.json',registered)",
+      "new": " bind_for_execution(tx,a.runtime_config)"
+    },
+    {
+      "file": "run_unified_resource_repair_v1.py",
+      "old": "prepared=prepare_owner(current,initial,owner_selection,cache_dir,tx,rank=oi,domain_mode='unrestricted',seed_order=a.seed_order)",
+      "new": "prepared=prepare_owner(current,initial,owner_selection,cache_dir,tx,rank=oi,domain_mode='unrestricted',seed_order=a.seed_order,runtime_config=a.runtime_config)"
+    }
+  ],
+  "development_source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/owner_registration_development_fix_01/runtime/owner_runtime_registration_v2.py": "b18ff24e164a80c28500132eb0c05c3065a38955430425570329cd3d723084f6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/owner_registration_development_fix_01/runtime/run_unified_resource_repair_v1.py": "003bec8fdd012817dd9d54305995f490f8f997c1028b6699f1ebd7f9aadf7271",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/owner_registration_development_fix_01/runtime/current_owner_transaction_v1.py": "7598aa31a796005d0cb36a17ed6e5781ed7ae323f7874441e824ebaddd10c0b0"
+  },
+  "inverse_transform_exact": true,
+  "new_native_or_STA_calls": 0,
+  "installed_in_release": false,
+  "qualification": "Prospective source patch only. Owner runtime binding moves before preparation sealing; invoke validates exact bytes before launch. Requests, selection, acceptance, terminal rules, and original verifier remain unchanged. The original historical failure is not repaired in place. Full future release packaging and end-to-end validation remain required."
+}

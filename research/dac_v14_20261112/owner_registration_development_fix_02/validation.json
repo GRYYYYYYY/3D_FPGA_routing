@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "valid_owner_passes_unchanged_frozen_assertion_without_write",
+      "passed": true
+    },
+    {
+      "name": "request_and_role_bindings_unchanged_despite_shared_input_dictionary",
+      "passed": true
+    },
+    {
+      "name": "ordinary_first_bind_then_idempotent_before_execution",
+      "passed": true
+    },
+    {
+      "name": "changed_registration",
+      "passed": true,
+      "failed_before_mutation": true
+    },
+    {
+      "name": "different_runtime_path",
+      "passed": true,
+      "failed_before_mutation": true
+    },
+    {
+      "name": "previous_execution",
+      "passed": true,
+      "failed_before_mutation": true
+    },
+    {
+      "name": "failed_preparation",
+      "passed": true,
+      "failed_before_mutation": true
+    },
+    {
+      "name": "unregistered_preparation",
+      "passed": true,
+      "failed_before_mutation": true
+    },
+    {
+      "name": "legacy_unbound_owner_not_silently_repaired",
+      "passed": true,
+      "failed_before_mutation": true
+    },
+    {
+      "name": "runtime_bytes_drift",
+      "passed": true,
+      "failed_before_mutation": true
+    },
+    {
+      "name": "partial_binding",
+      "passed": true,
+      "failed_before_mutation": true
+    },
+    {
+      "name": "prospective_prepare_and_invoke_order_before_seal_and_launch",
+      "passed": true
+    }
+  ],
+  "count": 12,
+  "fixture_directory": "/tmp/owner-runtime-lifecycle-e6dyfvsg",
+  "unchanged_frozen_assertion": "assert prep['passed'] and prep['transaction_registered'] and (prep['registration_sha256'] == sha(tx / 'registration.json'))",
+  "frozen_verifier_sha256": "6cb7aba8fa27e4f994e8561ee6294382e9673c9cd523eae6f6dee56c6132e7b0",
+  "new_native_or_STA_calls": 0,
+  "installed_in_release": false,
+  "complete_native_validation": false,
+  "qualification": "Actual lifecycle helper and integration placement checks using tiny fixtures. The unchanged original preparation-seal assertion passes after prospective binding. Negative cases reject before writes or launch. This does not execute a full owner selector, worker, native query, physical audit or complete release. Historical failed records stay unchanged; queued supplemental/raw admission still operates on the original frozen code."
+}

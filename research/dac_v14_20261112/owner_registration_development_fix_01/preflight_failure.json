@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "observed_at": "2026-11-17T01:30:29.998736+00:00",
+  "failure": "AssertionError: read(registration)[roles] != original[roles]",
+  "check": "request_and_role_bindings_unchanged_despite_shared_input_dictionary",
+  "cause": "deepcopy preserves object aliases; top-level source_sha256 and role source_sha256 still share the copied dictionary",
+  "actual_native_calls": 0,
+  "installed_in_release": false,
+  "correction": "Detach top-level source_sha256 before adding runtime binding; validate in a new output namespace."
+}

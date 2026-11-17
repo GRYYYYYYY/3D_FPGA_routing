@@ -1,0 +1,77 @@
+[
+  {
+    "tag": "reuse_off_native",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/run_serial_seed_resource_state_analysis_stream_v1.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_002/candidate_00/reuse_off_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_003/candidate_02/reuse_off",
+      "--native-cases",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_003/candidate_02/request.txt",
+      "--objective",
+      "weighted_soft",
+      "--seed-order",
+      "delay_rr_id",
+      "--inputs",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_003/candidate_02/reuse_off_native_inputs.json"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 162.1732963807881
+  },
+  {
+    "tag": "reuse_off_audit",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/audit_native_feedback_objective_cached.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_003/candidate_02",
+      "--role",
+      "reuse_off",
+      "--cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/joint_graph_indexes/audit_cache",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_003/candidate_02/reuse_off_audit"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 39.61692072451115
+  },
+  {
+    "tag": "reuse_off_domain_audit",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/audit_retained_crossing_domain.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_003/candidate_02",
+      "--role",
+      "reuse_off"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 0.25083279609680176
+  },
+  {
+    "tag": "reuse_off_FULL_STA",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/run_serial_census_state_analysis_stream_v1.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_002/candidate_00/reuse_off_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_003/candidate_02/reuse_off_evaluation",
+      "--candidate-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_003/candidate_02/reuse_off_audit/candidate.route",
+      "--full-graph-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/joint_graph_indexes/full_cache",
+      "--timing-echo",
+      "--inputs",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_003/candidate_02/reuse_off_FULL_STA_inputs.json"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 231.23640846461058
+  }
+]

@@ -1,0 +1,63 @@
+--- a/runtime/current_owner_transaction_v1.py
++++ b/runtime/current_owner_transaction_v1.py
+@@ -7,6 +7,7 @@
+ from current_resource_bundle_v2 import serialize_request
+ from endpoint_timing_policy_streaming_v2 import compare
+ from controller_runtime import package_files
++from owner_runtime_registration_v2 import bind_runtime
+ 
+ 
+ def physical_identity(state):
+@@ -38,7 +39,7 @@
+ 
+ 
+ def prepare(state, root_state, selection, full_graph_cache, output, rank=0,
+-            domain_mode='unrestricted', seed_order='delay_rr_id'):
++            domain_mode='unrestricted', seed_order='delay_rr_id', *, runtime_config):
+     """The caller owns the serial slot and runs the returned registered backend."""
+     state, root_state, selection, cache, output = [Path(p).resolve() for p in
+         [state, root_state, selection, full_graph_cache, output]]
+@@ -110,6 +111,7 @@
+         current_resource_selector_after_commit=True,source_sha256=bound,
+         root_state=str(root_state),owner_selection=str(selection),owner_rank=rank,
+         resource_conditions=dict(anchor=anchor,resource_limits=limits,resource_objectives=['SB_pairs','CB_sources']))
++    registration=bind_runtime(registration,runtime_config)
+     write(output/'registration.json',registration)
+     result=dict(passed=True,status='registered_current_owner_scope',transaction_registered=True,
+         state=str(state),root_state=str(root_state),rank=rank,selected_group=group,
+@@ -128,5 +130,6 @@
+     p.add_argument('--rank',type=int,default=0)
+     p.add_argument('--domain-mode',choices=['unrestricted','matched_target_CB'],default='unrestricted')
+     p.add_argument('--seed-order',choices=['native','rr_id','delay_rr_id'],default='delay_rr_id')
+-    a=p.parse_args();r=prepare(a.state,a.root_state,a.selection,a.full_graph_cache,a.output,a.rank,a.domain_mode,a.seed_order)
++    p.add_argument('--runtime-config',type=Path,required=True)
++    a=p.parse_args();r=prepare(a.state,a.root_state,a.selection,a.full_graph_cache,a.output,a.rank,a.domain_mode,a.seed_order,runtime_config=a.runtime_config)
+     print({k:r[k] for k in ['passed','status','transaction_registered','native_calls_new']},flush=True)
+--- a/runtime/run_unified_resource_repair_v1.py
++++ b/runtime/run_unified_resource_repair_v1.py
+@@ -11,6 +11,7 @@
+ from current_escape_owner_selector_v1 import select as select_owners
+ from current_owner_transaction_v1 import prepare as prepare_owner
+ from controller_runtime import package_files,admit_controller
++from owner_runtime_registration_v2 import bind_for_execution
+ p=argparse.ArgumentParser();p.add_argument('--runtime-config',type=Path,required=True);p.add_argument('--initial-state',type=Path,required=True);p.add_argument('--batch',type=Path,required=True);p.add_argument('--seed-order',choices=['native','rr_id','delay_rr_id'],required=True);p.add_argument('--domain-feedback',action='store_true');p.add_argument('--full-graph-cache',type=Path,required=True);p.add_argument('--domain-mode',choices=['paired','unrestricted'],required=True);p.add_argument('--bundle-size',type=int,default=4);p.add_argument('--reuse-native-batch',type=Path,action='append',default=[]);p.add_argument('--assert-no-native-work',action='store_true');p.add_argument('--disable-owner-escalation',action='store_true');p.add_argument('--owner-rank-windows',type=int,default=3);a=p.parse_args();assert not a.reuse_native_batch, 'No historical query/transaction reuse in unified controller';assert a.owner_rank_windows>0;assert a.bundle_size>0;started=time.monotonic();b=a.batch.resolve();b.mkdir(exist_ok=False);lock=(b/'owner.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);resource.setrlimit(resource.RLIMIT_AS,(64*1024**3,64*1024**3));initial=a.initial_state.resolve();r=run_dir(initial);assert read(initial/'completion.json')['passed']and read(r/'independent_audit.json')['audit']['passed'];root=read(initial/'endpoint_vector.json');physical=read(r/'independent_audit.json')['physical_metrics'];rootres=dict(wirelength=physical['planar_wirelength_excluding_sb_half_nodes'],SB_pairs=physical['sb_pairs_used'],CB_sources=physical['cb_crossing_output_sources_used']);anchor=dict(CPD_s=root['cpd_s'],**rootres);limits=dict(rootres,wirelength=(rootres['wirelength']*1001+999)//1000);cache_dir=a.full_graph_cache.resolve();m=read(r/'manifest.json');graph=Path(m['command'][m['command'].index('--read_rr_graph')+1]);cache=FullRouteGraphCache(graph,cache_dir);files=[*package_files(),a.runtime_config.resolve(),initial/'completion.json',initial/'endpoint_vector.json',r/'routed.route',r/'manifest.json',r/'independent_audit.json',cache_dir/'completion.json'];files += admit_controller(a.runtime_config,initial,cache_dir);bindings={str(f):sha(f)for f in files};write(b/'registration.json',dict(pid=os.getpid(),start_ticks=Path('/proc/self/stat').read_text().split(') ',1)[1].split()[19],initial_state=str(initial),owner_escalation=not a.disable_owner_escalation,owner_rank_windows=a.owner_rank_windows,owner_domain_mode='unrestricted_in_both_arms',anchor=anchor,resource_limits=limits,bundle_size=a.bundle_size,domain_mode=a.domain_mode,seed_order=a.seed_order,domain_feedback=a.domain_feedback,reuse_native_batches=[str(p.resolve())for p in a.reuse_native_batch],source_sha256=bindings,question='Does the globally fixed seed policy improve complete fresh-route resource refinement under matched native controls and exact physical/FULLSTA checks?',selection='Registered seed policy and optional domain failure release. First current rank windows of distinct-net cuts, criticality-sorted restoration, fresh complete current STA/resource selector after each accepted whole transaction.',local_probe=dict(accepted_steps=0,rank_windows=3),limits=dict(child_seconds=1800,memory_bytes=64*1024**3,disk_reserve_bytes=80*1024**3),qualification='Independent diagnostic from a sealed automatically obtained timing state. Serial native workers at most one, concurrent main chain at most two. Full current-state menu to completion; no accepted-step cap. This backend uses registered seed order and optional domain failure release. Different implementation backend costs are not a formal speedup comparison. Versions and roots fixed; local operator end does not finish research.'))
+ assert all(sha(path)==h for path,h in bindings.items())
+ current=initial;steps=[];attempts=[];costs=[];seen=set();stop=None
+@@ -19,7 +20,7 @@
+  write(b/'steps.json',steps);write(b/'attempts.json',attempts);write(b/'process_costs.json',costs);write(b/'current_state.json',dict(state=str(current),accepted_steps=len(steps),anchor=anchor,resource_limits=limits))
+ def invoke(tx,tag,backend='run_serial_lazy_resource_transactions_stream_v1.py'):
+  assert not a.assert_no_native_work, 'Read-only preflight encountered a candidate requiring native execution'
+- registered=read(tx/'registration.json');registered['runtime_config']=str(a.runtime_config.resolve());registered['source_sha256'][str(a.runtime_config.resolve())]=sha(a.runtime_config);write(tx/'registration.json',registered)
++ bind_for_execution(tx,a.runtime_config)
+  assert shutil.disk_usage(D).free>=80*1024**3;t=time.monotonic();cmd=[sys.executable,str(D/backend),'--batch',str(tx)]
+  for history in a.reuse_native_batch:cmd+=['--reuse-native-batch',str(history.resolve())]
+  proc,code,status=run_phase(cmd,b,tag,None)
+@@ -56,7 +57,7 @@
+   groups=read(owner_selection/'groups.json');persist()
+   for oi in range(min(a.owner_rank_windows,len(groups))):
+    tx=rd/f'owner_{oi:02d}'
+-   prepared=prepare_owner(current,initial,owner_selection,cache_dir,tx,rank=oi,domain_mode='unrestricted',seed_order=a.seed_order)
++   prepared=prepare_owner(current,initial,owner_selection,cache_dir,tx,rank=oi,domain_mode='unrestricted',seed_order=a.seed_order,runtime_config=a.runtime_config)
+    assert prepared['transaction_registered'] and prepared['anchor']==anchor and prepared['resource_limits']==limits
+    # Owner expansion is the same unrestricted mechanism in both arms. Optional
+    # target-CB owner restriction belongs to a separate attribution experiment.
