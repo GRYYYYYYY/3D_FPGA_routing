@@ -238,7 +238,8 @@ if sharing_position_publication.exists():publication=sharing_position_publicatio
 for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_BNN_timing03_balanced_publication_receipt_20261116.json',
              'github_balanced_cost_paper_publication_receipt_20261116.json',
-             'github_CP1r3_native_failure_publication_receipt_20261117.json']:
+             'github_CP1r3_native_failure_publication_receipt_20261117.json',
+             'github_research_status_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -876,6 +877,14 @@ if (D/'CP1r3_supplemental_verifier_01/plan.json').exists():
         execution_requires_original_cohort_terminal=True,execution_requires_nonblocking_shared_lock=True,
         complete_confirmation_passed=False,paper_benefit_claims_authorized=False)
     status['evidence']['CP1r3_supplemental_verifier']='CP1r3_supplemental_verifier_01/plan.json'
+if (D/'LSTM_first_scope_mechanism_audit_01/completion.json').exists():
+    first_scope=read(D/'LSTM_first_scope_mechanism_audit_01/completion.json')
+    status['LSTM_first_scope_mechanism_audit']={k:first_scope[k] for k in [
+        'kind','actual_request_and_domain_bytes_equal','declared_initial_route_body_and_vector_hashes_equal',
+        'raw_large_source_bytes_reverified','original_endpoint_change_records_equal','raw_full_vectors_reverified',
+        'local_domain_minus_native','no_release_event_or_owner_coordination_in_this_scope',
+        'whole_method_quality_admitted','paper_benefit_claims_authorized','qualification']}
+    status['evidence']['LSTM_first_scope_mechanism_audit']='LSTM_first_scope_mechanism_audit_01/completion.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
