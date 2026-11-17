@@ -1,0 +1,21 @@
+"""Fix one different circuit and real partitioned placement before routing."""
+from pathlib import Path
+from datetime import datetime,timezone
+import hashlib,json,re,subprocess
+D=Path(__file__).resolve().parent;U=D/'VTR_diffeq_p1_input_01';ROOT=D.parents[1]
+def read(p):return json.loads(Path(p).read_text())
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def write(p,v):Path(p).write_text(json.dumps(v,indent=2,ensure_ascii=False)+'\n')
+old=read(D/'VTR_clma_input_01/registration.json');src=ROOT/'vendor/vtr/vtr_flow/benchmarks/blif/diffeq.blif';data=src.read_bytes();assert data==subprocess.check_output(['git','show',old['source_commit']+':vtr_flow/benchmarks/blif/diffeq.blif'],cwd=src.parents[3]);text=data.decode().replace('\\\n',' ');ports={k:next(l for l in text.splitlines() if l.startswith('.'+k+' ')).split()[1:] for k in ['inputs','outputs']};assert all(re.fullmatch(r'[A-Za-z0-9_]+',p) for names in ports.values() for p in names);latches=[l.split() for l in text.splitlines() if l.startswith('.latch ')];assert len(latches)==377 and all(l[3]=='re' and l[4]=='pclk' for l in latches);inputs=[p for p in ports['inputs'] if p!='pclk'];assert len(inputs)+1==len(ports['inputs'])
+prior=[]
+for folder in D.iterdir():
+ if not folder.is_dir():continue
+ for name in ['plan.json','registration.json']:
+  p=folder/name
+  if p.exists() and p.stat().st_size<1000000 and re.search(r'diffeq',p.read_text(),re.I):prior.append(str(p))
+assert not prior,prior
+protocol=ROOT/'results/architecture_flow_20261027/benchmark_protocol.json';reference=ROOT/'results/architecture_flow_20261027/published_reference_analysis.json';p1=read(protocol)['binaries']['P1'];assert sha(p1['path'])==p1['sha256'];configs=read(reference)['datasets']['Hybrid-O_paper']['configs'];unique={json.dumps(v,sort_keys=True) for v in configs.values()};assert len(unique)==1;options=json.loads(unique.pop())
+runner=ROOT/'scripts/run_flatland_triton.py';openroad=ROOT/'vendor/openroad-local/root/usr/bin/openroad';libs=ROOT/'vendor/openroad-local/library_dirs.txt';prepare=D/'prepare_diffeq_p1_input_01.py';assert not U.exists();U.mkdir();(U/'inputs').mkdir();blif=U/'inputs/diffeq.blif';blif.write_bytes(data);sdc=U/'inputs/diffeq.sdc';sdc.write_text('# Explicit benchmark constraint; not an external application requirement.\ncreate_clock -period 20 [get_ports {pclk}]\n'+''.join(f'set_{kind}_delay -clock pclk -{limit} {val} [get_ports {{'+' '.join(names)+'}]\n' for kind,names in [('input',inputs),('output',ports['outputs'])] for limit,val in [('max',1),('min',0)]))
+bindings={p:h for p,h in old['source_sha256'].items() if 'VTR_clma_input_01' not in p and not p.endswith('prepare_clma_input_01.py')};bindings.update({str(p):sha(p) for p in [Path(__file__).resolve(),prepare,D/'prepare_s38417_input_01.py',src,blif,sdc,protocol,reference,runner,openroad,libs,Path(p1['path'])]})
+plan={**old,'registered_at':datetime.now(timezone.utc).isoformat(),'input':'diffeq','source_path':'vtr_flow/benchmarks/blif/diffeq.blif','actual_source_sha256':sha(src),'names':sum(l.startswith('.names') for l in text.splitlines()),'latches':len(latches),'subckts':sum(l.startswith('.subckt') for l in text.splitlines()),'prior_registered_matches':prior,'IO_delay_constraints':dict(input_max_ns=1,input_min_ns=0,output_max_ns=1,output_min_ns=0,data_input_ports=len(inputs),output_ports=len(ports['outputs'])),'new_to_current_CP1_confirmation':True,'new_architecture_family':False,'p1_binary':p1,'p1_options':options,'placement_flow':'published P1 partition_post_pack/soft_partitioning init_place, one real pack/place, seed21','selection_reason':'Different pinned public sequential circuit, 377 pclk latches and 80 static nets with >=8 combinational uses. Preregistered real partitioned P1 layout investigates whether actual cross-layer opportunities differ from low-crossing placements; these proxies are not evidence of blockers or gain. Existing Hybrid-O family and explicit benchmark SDC. Fixed80% device census before routing; no rerolls or route-QoR selection.','execution_after_current_required_queue':str(D/'S38417_postqueue_01/queue'),'source_sha256':bindings}
+write(U/'registration.json',plan);print(json.dumps(dict(registered=True,circuit='diffeq',latches=len(latches),data_inputs=len(inputs),outputs=len(ports['outputs']),routing_queries=0,placement='P1')))
