@@ -1,0 +1,76 @@
+{
+  "status": "existing_receipt_and_frozen_code_scope_review_not_admission",
+  "observed_at": "2026-11-17T03:09:21.008512+00:00",
+  "source_checks": [
+    {
+      "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/verify_complete_unified_method_v1.py",
+      "sha256": "6cb7aba8fa27e4f994e8561ee6294382e9673c9cd523eae6f6dee56c6132e7b0",
+      "relevant_lines": [
+        {
+          "line": 64,
+          "text": "assert attempt['native_transaction_complete'];tx=Path(attempt['transaction']);closed=read(tx/'completion.json');assert closed['passed'];assert all(sha(f)==h for f,h in closed['source_sha256'].items());resource_counts['scopes']+=1"
+        },
+        {
+          "line": 73,
+          "text": "assert row['status']=='legal_evaluated' and not row['native_reused'];state=Path(row['evaluation']);r=physical(state)"
+        }
+      ]
+    },
+    {
+      "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r3_raw_admission_v1.py",
+      "sha256": "d716208ad8d4bb3470964b06100cb803019789a5672b2211d35c25bb744c6952",
+      "relevant_lines": [
+        {
+          "line": 206,
+          "text": "closed = self.document(tx/'completion.json'); assert closed['passed']"
+        },
+        {
+          "line": 216,
+          "text": "assert not row.get('native_reused'), 'External/native reuse needs a separate explicit provenance adapter'"
+        },
+        {
+          "line": 274,
+          "text": "states = [self.state(p.parent,flow) for p in sorted(flow.rglob('endpoint_vector.json'))]"
+        }
+      ]
+    },
+    {
+      "source": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/queue_vertical_cost_baseline_priority_05.py",
+      "sha256": "85f20e70232967b885c9886494d1ec59757e01fd8b6203d0e11ad5092a7147db",
+      "relevant_lines": [
+        {
+          "line": 23,
+          "text": "while not (pred/'completion.json').exists():"
+        },
+        {
+          "line": 26,
+          "text": "while live(reg):time.sleep(2)"
+        }
+      ]
+    }
+  ],
+  "actual_closed_transactions_outside_frozen_admission_schema": [
+    {
+      "transaction": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00",
+      "closed_passed": false,
+      "native_reused_roles": [],
+      "unhandled_failure_statuses": [
+        {
+          "role": "reuse_on",
+          "status": "FULL_STA_failed"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    "Original complete verifier and unchanged supplemental replay demand closed.passed and disallow native_reused resource candidates. The registered owner-registration transition only replaces the owner preparation assertion; it does not add support for these other cases.",
+    "Raw v1 also demands closed.passed, disallows native_reused, and enumerates every endpoint_vector.json as a completed state. A failed evaluation can contain a vector without completion; its presence does not authorize quality admission.",
+    "The registered baseline queue waits for raw queue completion existence and owner termination, independently of all_roles_admitted. Preserve that actual scheduling policy. Quality failure must remain explicit, not hide or block unrelated registered mechanism execution.",
+    "Therefore queued completion must not be described as sufficient for an admitted LSTM complete pair. Existing frozen verifiers execute unchanged. Preserve their first actual failure; any later independent reconciliation must bind exact existing native reuse provenance, distinguish infrastructure failure from legitimate rejection, and report final physical quality separately from clean full-method confirmation/time. No historical completion is rewritten."
+  ],
+  "queue_changed": false,
+  "admission_claimed": false,
+  "native_or_STA_calls": 0,
+  "large_input_rehashes": 0,
+  "followup_trigger": "Actual registered verifier terminal or new substantive anomaly; do not repoll ordinary candidate leaves or create redundant audit queues."
+}

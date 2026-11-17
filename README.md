@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[六页投稿稿的接受条件与覆盖计数澄清](docs/GitHub_submission_clarifications_20261117.md)：另存叙事03版，明确端点域匹配与hold保护，消除搜索失败的可行性预设及覆盖计数歧义；摘要、数值主表、引用、贡献边界不变。原叙事02及投稿候选保留，未加入未完成确认收益。
+
 [LSTM归档干扰更正](docs/GitHub_LSTM_retention_incident_20261117.md)：助手的硬链接归档改变活动下游源文件ctime，造成一次最终封存失败。135项登记摘要与原最终重哈希一致；失败5项仅ctime变化。原失败、费用、预算及回退轨迹保留，不补造成功或重跑查询，运行期停止此类硬链接操作。LSTM完整配对尚未准入。
 
 [依赖感知重构：独立六页叙事稿](research/dac_v14_20261112/submission_narrative_02/build/main.pdf) · [机制图、证据与贡献边界](docs/GitHub_dependency_narrative_20261117.md) · [剩余实验影响清单](research/dac_v14_20261112/submission_narrative_02/EXPERIMENT_IMPACT.md) · [原生回退与最新条件性ETA](research/dac_v14_20261112/LSTM_closing_menu_ETA_01/ETA.md)。新稿按问题—洞察—设计—验证组织；原候选稿和paper19保留。CP1r3原批次继续，[简单跨层搜索代价对照](docs/GitHub_vertical_cost_queue_20261117.md)已按0/0.5/1/2四档实际排在原确认与raw准入之后、历史恢复之前；32项小型检查通过，实际构建与零强度等价尚待执行，不作为论文收益。
