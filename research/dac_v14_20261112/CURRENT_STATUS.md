@@ -137,6 +137,14 @@ Domain原臂已启动；按native668.98秒和相同工作量条件估计，仍�
 
 
 
+# clma显式I/O native整臂结束及条件性ETA
+
+原完整命令677.236256秒，独立原核验2.929917秒。CPD15.628016214→14.899788070ns；最终资源{'wirelength': 106117, 'SB_pairs': 1, 'CB_sources': 450}。setup3改善/0退化，新增hold违规0，分量数101/101。时序接受5，访问状态拒绝3，原资源阶段接受0。
+
+原核验通过，raw/完整配对仍待原队列。domain按相同工作量参考剩余约10.1分钟，加实际只读准入；轨迹/同机负载可能改变耗时，不推算正式比值。后续独立s38584.1输入准备排在所有必要核验后。旧SDC与新SDC的初始树不同，不把跨实例变化当作domain机制收益。投稿13保持。
+
+
+
 # Elliptic整臂判定与完整配对
 
 **实际配对：通过。**
@@ -167,7 +175,7 @@ Elliptic为当前CP1确认中的不同公开顺序电路，使用新生成的实
 CLSTM-SB完整配对已通过：D−N为+52线长/−1SB/同CPD及CB，单次N/D费用仅描述。已核验投稿稿可独立作者审阅。
 
 
-cp1r6_clma_io_pair_01: running_confirmation_arm；CLMA_IO_complete_admission_01: waiting_for_original_CLMA_IO_pair_terminal；CLMA_IO_postqueue_01: waiting_for_original_pair_and_three_admission_gates
+cp1r6_clma_io_pair_01: running_confirmation_arm；CLMA_IO_complete_admission_01: waiting_for_original_CLMA_IO_pair_terminal；CLMA_IO_postqueue_01: waiting_for_original_pair_and_three_admission_gates；VTR_s38584_input_01: waiting_for_clma_IO_pair_all_raw_and_terminal_decision
 
 [当前投稿稿](submission_narrative_13/build/main.pdf) · [证据影响与作者审阅](submission_narrative_13/EXPERIMENT_IMPACT.md) · [完整判定](LSTM_domain_whole_admission_03/admission_decision.json)。原06保留；本轮只把LSTM实际结论和已完成四档代价机制证据纳入对应位置。
 
