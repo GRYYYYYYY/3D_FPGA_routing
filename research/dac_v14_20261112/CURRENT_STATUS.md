@@ -24,6 +24,11 @@ domain完整命令受外部归档ctime干扰。只报告实测26657.726866秒，
 四档代价对照已完成：0/0.5为251140/9/654，1/2为251125/9/654；全部合法但违反CB≤653。共享域加失败释放给251160/9/653；机制增量仅限该同源固定组，不外推所有权重或输入。CLSTM历史恢复只留补充材料。
 
 
+[完整轨迹机制补充](LSTM_admitted_mechanism_synthesis_01/MECHANISM_RESULT.md)：11次guided接受合计−82SB/+2348wire，其中10次有释放事件；5次native回退再−5SB/−152wire，终结选点−12wire。该阶段加和不是独立消融，缺少LSTM同源no-release反事实；原失败/策略拒绝分开。投稿07保持。
+
+[TPU-OS输入预检](TPU_OS_input_preflight_01/STATUS.md)已实际通过：五项1.224GB字节、4100block坐标，2.261795秒，无native/STA。完整两臂尚未登记/启动，无合法根或新收益；不同数据流网表，同TPU家族/同架构族，不计新架构。
+
+
 当前登记的必要核验已终结；无存活执行owner。
 
 [当前投稿稿](submission_narrative_07/build/main.pdf) · [证据影响与作者审阅](submission_narrative_07/EXPERIMENT_IMPACT.md) · [完整判定](LSTM_domain_whole_admission_03/admission_decision.json)。原06保留；本轮只把LSTM实际结论和已完成四档代价机制证据纳入对应位置。

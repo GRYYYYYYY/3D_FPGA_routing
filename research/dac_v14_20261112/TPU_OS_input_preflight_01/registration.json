@@ -1,0 +1,77 @@
+{
+  "registered_at": "2026-11-17T16:24:18.511038+00:00",
+  "stage": "Actual TPU-OS input bytes and layout only; reuse existing GEMM reader with three input identity literals changed",
+  "selected_input": {
+    "id": "tpu_os_p0",
+    "source_name": "heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0",
+    "workload_family": "tpu",
+    "scope": "Different dataflow/netlist from TPU-WS; retain the same TPU workload-family label. Not a new architecture family.",
+    "source_manifest_exists": true,
+    "packing_manifest_exists": true,
+    "historical_QoR_used_for_selection": false,
+    "physical_bytes_verified": false,
+    "actual_placement_or_root_verified": false,
+    "execution_registered": false,
+    "independent_confirmed_samples_added": 0,
+    "status": "metadata_consistent_pending_serial_byte_admission",
+    "declared_sha256": {
+      "architecture": "d955f6de48e0458efc7ea1f2a2b7421ace821082c8c8673d1d62808793843583",
+      "circuit": "09a234fc53c32ade9e2f592938e7761eeae15cc9dbc444750d5d7b190313b40d",
+      "graph": "c3e14267d6971825ea7cf7d69c295b8efaead78de0bc22ec2bca0f0a95d67b9f",
+      "packed": "bf620e19b9e487a4574089250e53934aebb452dd3034472bcb0c5ff49513343d",
+      "placement": "a55908b360aae42962356574b2651bf1a0bb8e97c11ef91cd5ca79de75855ef3"
+    },
+    "outside_matrix_and_active_cohort_netlist": true,
+    "known_historical_input": true,
+    "source_packing_metadata_matches": true,
+    "physical_files": {
+      "architecture": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n60_w100/hybrid_o/import_only.xml",
+        "exists": true,
+        "bytes": 28917
+      },
+      "circuit": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/tpu_like.small.os.blif",
+        "exists": true,
+        "bytes": 9829606
+      },
+      "graph": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n60_w100/hybrid_o/rr_graph.xml",
+        "exists": true,
+        "bytes": 1154016185
+      },
+      "packed": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0_a0/packed.net",
+        "exists": true,
+        "bytes": 59434544
+      },
+      "placement": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0_a0/placed.place",
+        "exists": true,
+        "bytes": 295603
+      }
+    },
+    "declared_input_bytes": 1223604855,
+    "architecture_family": "two_layer_edge_encoded_Hybrid_O",
+    "different_size_is_new_architecture": false,
+    "explicit_SDC": false,
+    "application_timing_claim": false,
+    "source_route_will_be_imported": false
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/preflight_TPU_OS_input_01.py": "78bfebb592f8cd2317420ee1c882c84b045c88c97f65009097135873721b1ab0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/preflight_GEMM_input_01.py": "a79850afa0edbc433469496c2189d3b2948b5035d78a77948b7d8f0a32bf9366",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/verify_cp1r3_candidate_placement_01.py": "a113a24c9bfe07e24c542f9ddf4dd6a2ecccfd89027b163bdd0bb424c174306b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/independent_input_candidates_03/inputs.json": "90804f501f09da1cef4de0af8e796c4c1ec2cfa6874d3469a13dce9293624e35",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/LSTM_domain_whole_admission_03/queue/completion.json": "bd5f0ecf2e1b0a0bb2a13bdb36683c9ed2411a40fabca8c5bb2fff3328114acb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0_a0/manifest.json": "db6a0880052e586400b887a95ef511adb738e246dc60e99b8858d6452f5ed603"
+  },
+  "new_native_or_STA_calls": 0,
+  "full_route_or_method_admission": false,
+  "existing_batch_rules_or_budgets_changed": false,
+  "previous_LSTM_confirmation_terminal": true,
+  "public_prior_evidence_commit": "ef580ee8ade79b49d8af20b1dd2a2acea47bad72",
+  "selection_reason": "Different actual netlist/dataflow candidate already recorded before outcomes, no historical QoR selection. GEMM closed timeout, not rerun. DLA-medium is a scale variant and not preferred over different dataflow.",
+  "counterexamples_and_failed_roots_preserved": true,
+  "submission07_not_blocked_by_this_input": true
+}

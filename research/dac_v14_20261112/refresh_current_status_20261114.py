@@ -1262,6 +1262,18 @@ if (D/'submission_narrative_07/verification.json').exists():
     status['submission_candidate_latest']=proof07
     status['paper_pdf']=str(D/'submission_narrative_07/build/main.pdf')
     status['evidence']['submission_candidate_latest']='submission_narrative_07/verification.json'
+if (D/'LSTM_admitted_mechanism_synthesis_01/completion.json').exists():
+    status['LSTM_admitted_mechanism_synthesis']=read(D/'LSTM_admitted_mechanism_synthesis_01/completion.json')
+    status['evidence']['LSTM_admitted_mechanism_synthesis']='LSTM_admitted_mechanism_synthesis_01/MECHANISM_RESULT.md'
+if (D/'TPU_OS_input_preflight_01/completion.json').exists():
+    status['TPU_OS_input_preflight']=read(D/'TPU_OS_input_preflight_01/completion.json')
+    status['evidence']['TPU_OS_input_preflight']='TPU_OS_input_preflight_01/STATUS.md'
+    status['next_independent_input']=dict(id='tpu_os_p0',actual_bytes_and_coordinates_passed=status['TPU_OS_input_preflight']['passed'],
+        full_pair_registered=False,full_pair_started=False,new_native_or_STA_calls=0,
+        known_distinct_dataflow_netlist_same_TPU_family=True,new_architecture=False,
+        next='Use existing verified owner preparation/runtime identity logic in a frozen confirmation checker before registering the pair. Reuse completed CP1r4 algorithm/source evidence, no failed expensive-batch rerun.',
+        ETA='No current complete-run timer or queue. Input preflight measured2.261795s; new legal-root/full-role time unknown, not borrowed from LSTM or BNN.',
+        submission07_not_blocked=True)
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

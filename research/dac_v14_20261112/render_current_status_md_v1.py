@@ -5,6 +5,10 @@ def render(status,D):
     latest=status.get('LSTM_domain_whole_admission_03',{}).get('decision')
     if latest:
         decision_text=(D/'LSTM_domain_whole_admission_03/STATUS.md').read_text()
+        if status.get('LSTM_admitted_mechanism_synthesis'):
+            decision_text+='\n\n[完整轨迹机制补充](LSTM_admitted_mechanism_synthesis_01/MECHANISM_RESULT.md)：11次guided接受合计−82SB/+2348wire，其中10次有释放事件；5次native回退再−5SB/−152wire，终结选点−12wire。该阶段加和不是独立消融，缺少LSTM同源no-release反事实；原失败/策略拒绝分开。投稿07保持。\n'
+        if status.get('TPU_OS_input_preflight'):
+            decision_text+='\n[TPU-OS输入预检](TPU_OS_input_preflight_01/STATUS.md)已实际通过：五项1.224GB字节、4100block坐标，2.261795秒，无native/STA。完整两臂尚未登记/启动，无合法根或新收益；不同数据流网表，同TPU家族/同架构族，不计新架构。\n'
         live=[o for o in status['owners'] if o['verified_live']]
         jobs='；'.join(o['batch']+': '+o['phase_status'] for o in live) or '当前登记的必要核验已终结；无存活执行owner。'
         paper='submission_narrative_07' if (D/'submission_narrative_07/verification.json').exists() else 'submission_narrative_06'
