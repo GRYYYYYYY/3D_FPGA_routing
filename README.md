@@ -2,7 +2,7 @@
 
 ## Current research snapshot — 2026-11-17
 
-[TPU-OS确认已启动与实际新鲜合法根](docs/GitHub_TPU_OS_confirmation_20261117.md)：CP1r5只修正owner登记身份checker，算法预算/接受规则不变。native初始FULL/STA/物理门槛通过：7.812205993ns、360013wire/35SB/1563CB，正在资源阶段；domain按登记顺序接续。不同数据流/网表、同TPU家族和架构，尚无完整方法配对收益。确认后完整请求、raw STA、物理及实际图/起点配对列为最高优先准入；投稿07保持。以下预检记录中的“未启动”是历史状态。
+[当前交付：LSTM整臂通过、六页投稿07、TPU-OS附加准入具体缺口](docs/GitHub_LSTM_delivery_TPU_terminal_20261117.md)：LSTM实际配对通过，失败候选未提交；投稿07可独立作者审阅，四档代价对照已完成。TPU-OS原两臂和三项附加只读均已终结，raw因实际时序manifest缺少seed-order字段未通过，质量留空，尚无正式配对。原执行/核验费用照录，旧ETA作废。下方TPU-OS预检/运行描述为历史记录。
 
 [已准入LSTM完整机制归因与TPU-OS输入预检](docs/GitHub_LSTM_mechanisms_TPU_OS_preflight_20261117.md)：guided接受11步为−82SB/+2348wire，native回退5步为−5SB/−152wire，终结选点再−12wire；10个接受guided作用域有释放事件，但没有LSTM同源no-release反事实，不能作因果必要性主张。全候选保留原失败/策略拒绝与预算边界。[完整工作点图](research/dac_v14_20261112/LSTM_admitted_mechanism_synthesis_01/complete_wire_SB_points.pdf)。TPU-OS实际五项字节和4100block坐标预检通过，2.261795秒，无native/STA；尚未启动完整配对，不计新架构或收益。投稿07保持。
 
