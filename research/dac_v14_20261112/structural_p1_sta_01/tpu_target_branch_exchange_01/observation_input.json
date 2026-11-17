@@ -1,0 +1,68 @@
+{
+  "format": "standalone_native_observation_input_v1",
+  "files": {
+    "binary": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/native_observation_01/inputs/vpr",
+      "sha256": "cad1d5671ae5dbbe6c7fbdbf21243ed46f43a5d08dcd6b541d3f08b26b8c189a"
+    },
+    "architecture": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n60_w100/hybrid_o/import_only.xml",
+      "sha256": "d955f6de48e0458efc7ea1f2a2b7421ace821082c8c8673d1d62808793843583"
+    },
+    "circuit": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/tpu_like.small.os.blif",
+      "sha256": "09a234fc53c32ade9e2f592938e7761eeae15cc9dbc444750d5d7b190313b40d"
+    },
+    "graph": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n60_w100/hybrid_o/rr_graph.xml",
+      "sha256": "c3e14267d6971825ea7cf7d69c295b8efaead78de0bc22ec2bca0f0a95d67b9f"
+    },
+    "packed": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p1_a0/packed.net",
+      "sha256": "d73167ecb5f469d252ba98028401a56090a86d0fb320254fd13994dfe2720795"
+    },
+    "placement": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p1_a0/placed.place",
+      "sha256": "a71cde8dccb60153acabd79dc88e64554cd07950dd3d244b5929d13aa0b9afd0"
+    },
+    "route": {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/structural_p1_sta_01/tpu_target_branch_exchange_01/candidate.route",
+      "sha256": "a9e3e0d78966b6e57e590513855602275d59780cbc3ce6dd3dac8b8bd972a71c"
+    }
+  },
+  "analysis_arguments": [
+    "--analysis",
+    "--device",
+    "fixture",
+    "--route_chan_width",
+    "100",
+    "--seed",
+    "21",
+    "--num_workers",
+    "1",
+    "--clock_modeling",
+    "ideal",
+    "--check_route",
+    "full",
+    "--verify_file_digests",
+    "off",
+    "--verify_route_file_switch_id",
+    "on",
+    "--timing_report_npaths",
+    "10",
+    "--merge_constant_generators",
+    "off",
+    "--read_rr_graph",
+    "{graph}",
+    "--net_file",
+    "{packed}",
+    "--place_file",
+    "{placement}",
+    "--route_file",
+    "{route}"
+  ],
+  "full_graph_cache": {
+    "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/complete_serial_additional_circuits_01/robot_rl_native/flow/full_graph_cache",
+    "completion_sha256": "3253abf9130c4b0c571c4235d141df3ac924755250f21cc769b092f81a090d97"
+  }
+}
