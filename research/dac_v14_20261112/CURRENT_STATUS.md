@@ -1,12 +1,12 @@
 # 当前研究状态
 
-观察时间：2026-11-16T22:04:24.096924+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
+观察时间：2026-11-17T00:04:31.274412+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
 
 统一方法：当前STA、跨层冗余与容量阻塞用于选择完整连接组；在事务副本中使用跨层共享域、按网失败释放及阻塞owner协调；完整组合经物理/容量/FULL/STA检查，在固定根预算下接受或恢复。终结选点独立于中间提交；native享有相同选组、owner与收敛机会。
 
 | 当前登记批次 | 实际状态 | owner PID |
 |---|---|---:|
-| cp1r3_distinct_input_cohort_01 | running_confirmation_arm [lstm/native] → private_subreaper | 3149073 |
+| cp1r3_distinct_input_cohort_01 | running_confirmation_arm [lstm/domain] → fresh_route_and_complete_resource | 3149073 |
 | interrupted_stage_reconciliation_01 | priority_dependency: cp1r3_distinct_input_cohort_01 | 3149126 |
 | robot_p1_prefix_recovery_01 | priority_dependency: interrupted_stage_reconciliation_01 | 3149178 |
 | interrupted_flow_recovery_01 | priority_dependency: robot_p1_prefix_recovery_01 | 3149228 |
@@ -18,7 +18,17 @@
 
 独立证据没有增加：四次计时是同一电路、布局与架构的重复测量。CP1r3精度专用封装已实际完成，原三输入/六角色队列已接棒；[实际预检](cp1r3_distinct_input_cohort_01/preflight.json)记录冻结配置、公开源码重建、还原后保护程序/worker导入及迁移后的准入检查通过。大字节与完整输出门槛仍由逐输入准备和测量命令执行，不能将元数据准入当作结果通过。准备/公开重建8.494s、LSTM输入准备17.220s单独计费，不并入算法墙钟。逐臂实际状态以上表为准。LSTM与DLA-like.small为不同已知电路；eltwise SB-only仅为已知电路/架构的不同实际布局。保持冻结协议，不按结果替换输入或重复已完成角色。
 
-当前lstm/native新鲜初始路由通过原FULL/完整精度STA/物理门槛：14.600438192ns，2388086wire/509SB/8316CB。图构建397.084s、初始原生命令377.450s分别记录，不拼接为完整时间。该状态是初始准入证据，尚非完整方法结果或配对收益。
+当前lstm/domain新鲜初始路由通过原FULL/完整精度STA/物理门槛：14.600438192ns，2388086wire/509SB/8316CB。图构建395.045s、初始原生命令371.262s分别记录，不拼接为完整时间。该状态是初始准入证据，尚非完整方法结果或配对收益。
+
+资源前缀已接受1次，最新核验检查点为14.600438192ns、2388106wire/496SB/8316CB。最近接受的资源窗口事务相对其前态setup 16改善/0退化，新增hold违例退化0；该事务完整耗时505.055s。完整算法时间与配对确认仍不可用，不把资源阶段检查点冒充终态或域收益。
+
+最近完成尝试为round0/candidate0，接受=True，事务处理回执通过=True，完整事务耗时505.055s。原规则原因：reuse_on: Exact fixed-budget conditions satisfied；reuse_off: not_executed_domain_candidate_accepted。拒绝/失败费用同样保留；此处不替代接受检查点或完整流程费用。
+
+[已封存LSTM/native资源子流程](CP1r3_lstm_native_resource_phase_01/completion.json)：驱动6775.915s，接受4次、尝试12个作用域，owner提交0。按原精确变化记录沿接受链还原的初始到资源终态setup为20改善/5退化，新增hold违例退化0；未新增整向量重读。终结endpoint规则在6个同源候选中无合格选点，保留原资源终态；交接FULL/STA通过。该包仅封存资源子流程，完整方法是否准入须另查原独立核验终态；当前活动阶段以上表实际进程为准。
+
+LSTM/native完整命令已结束（returncode=0），实测7615.074177s；原冻结完整核验在74.441375s后失败，原角色状态仍为`execution_or_verification_failed`、quality=null。PSS峰值11816576KiB，缺失内存观察33次，observer CPU 901.393597s不扣减。
+
+[独立只读元数据诊断](CP1r3_lstm_native_binding_failure_audit_01/completion.json)确认：准备登记封存后，原控制器在执行前追加runtime路径/hash；仅撤销这两处追加即可精确还原三个owner的准备hash，实际执行登记则与追加后的字节匹配。原失败、原文件及冻结版本均保留。这不代替尚未完成的来源/字节/完整请求/FULL/STA/整向量/物理复核；该角色不进入论文收益或正式配对比值，不重跑原生查询。
 
 机制归因仍受原证据限制：BNN九个guided资源角色无失败释放；既有R1 owner联合修复N/D相同结果归于协调范围扩大。robot三臂只证明该事务中域/释放改变可行取舍，尚非完整确认。conv_hls确认无收益、TPU初始超时、SPMV/CB-only无切口、Robot SDC无接受收益、attention/conv-layer初始失败继续保留。
 

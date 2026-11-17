@@ -27,6 +27,25 @@ def render(status,D):
         paper_note=('paper19将四次匹配完整计时用两行汇总；主表42行，三行早期BNN工程明细完整移入补充材料。原paper18及prior-art、贡献边界、9篇引用保持；没有新增独立输入或CP1r3结果。' if status.get('paper_balanced_cost_update') else 'paper18的prior-art、贡献边界、43行主表与9篇引用保持不变。')
         if initial:
             initial_note=(f"当前{initial['input']}/{initial['arm']}新鲜初始路由通过原FULL/完整精度STA/物理门槛：{initial['CPD_ns']:.9f}ns，{initial['wirelength']}wire/{initial['SB_pairs']}SB/{initial['CB_sources']}CB。图构建{initial['graph_build_seconds']:.3f}s、初始原生命令{initial['initial_native_command_seconds']:.3f}s分别记录，不拼接为完整时间。该状态是初始准入证据，尚非完整方法结果或配对收益。\n\n")
+        checkpoint=status.get('actual_CP1r3_live_resource_checkpoint')
+        if checkpoint:
+            r=checkpoint['resources'];v=checkpoint['latest_endpoint_comparison']
+            mechanism='owner协调' if checkpoint.get('mechanism')=='capacity_certified_owner_coordination' else '资源窗口'
+            initial_note+=(f"资源前缀已接受{checkpoint['accepted_steps']}次，最新核验检查点为{checkpoint['CPD_ns']:.9f}ns、{r['wirelength']}wire/{r['SB_pairs']}SB/{r['CB_sources']}CB。最近接受的{mechanism}事务相对其前态setup {v['setup_improved']}改善/{v['setup_regressed']}退化，新增hold违例退化{v['hold_violation_regressions']}；该事务完整耗时{checkpoint['latest_complete_transaction_seconds']:.3f}s。完整算法时间与配对确认仍不可用，不把资源阶段检查点冒充终态或域收益。\n\n")
+        attempt=status.get('actual_CP1r3_latest_completed_resource_attempt')
+        if attempt:
+            seconds=attempt['complete_transaction_seconds'];cost=f'{seconds:.3f}s' if isinstance(seconds,(int,float)) else '未记录'
+            reasons='；'.join(role+': '+str(r['policies'].get('resources_under_timing',{}).get('reason',r['status'])) for role,r in attempt['roles'].items())
+            label='owner' if attempt.get('mechanism')=='capacity_certified_owner_coordination' else 'candidate'
+            initial_note+=(f"最近完成尝试为round{attempt['round']}/{label}{attempt['candidate_rank']}，接受={attempt['accepted']}，事务处理回执通过={attempt['transaction_workflow_passed']}，完整事务耗时{cost}。原规则原因：{reasons}。拒绝/失败费用同样保留；此处不替代接受检查点或完整流程费用。\n\n")
+        closed_phase=status.get('CP1r3_lstm_native_closed_resource_phase')
+        if closed_phase:
+            v=closed_phase['initial_to_resource_endpoint_delta']
+            initial_note+=(f"[已封存LSTM/native资源子流程](CP1r3_lstm_native_resource_phase_01/completion.json)：驱动{closed_phase['resource_complete_driver_seconds']:.3f}s，接受{closed_phase['accepted_resource_steps']}次、尝试{closed_phase['attempted_scopes']}个作用域，owner提交{closed_phase['owner_commits']}。按原精确变化记录沿接受链还原的初始到资源终态setup为{v['setup_improved']}改善/{v['setup_regressed']}退化，新增hold违例退化{v['hold_violation_regressions']}；未新增整向量重读。终结{closed_phase['terminal_mode']}规则在{closed_phase['terminal_same_source_candidates']}个同源候选中无合格选点，保留原资源终态；交接FULL/STA通过。该包仅封存资源子流程，完整方法是否准入须另查原独立核验终态；当前活动阶段以上表实际进程为准。\n\n")
+        failure=status.get('CP1r3_lstm_native_whole_verification_failure')
+        if failure:
+            initial_note+=(f"LSTM/native完整命令已结束（returncode={failure['command_returncode']}），实测{failure['complete_command_seconds']:.6f}s；原冻结完整核验在{failure['independent_failed_verification_seconds']:.6f}s后失败，原角色状态仍为`{failure['original_status']}`、quality=null。PSS峰值{failure['sampled_tree_PSS_peak_kib']}KiB，缺失内存观察{failure['missing_memory_observations']}次，observer CPU {failure['observer_CPU_seconds']:.6f}s不扣减。\n\n")
+            initial_note+=("[独立只读元数据诊断](CP1r3_lstm_native_binding_failure_audit_01/completion.json)确认：准备登记封存后，原控制器在执行前追加runtime路径/hash；仅撤销这两处追加即可精确还原三个owner的准备hash，实际执行登记则与追加后的字节匹配。原失败、原文件及冻结版本均保留。这不代替尚未完成的来源/字节/完整请求/FULL/STA/整向量/物理复核；该角色不进入论文收益或正式配对比值，不重跑原生查询。\n\n")
         return f'''# 当前研究状态
 
 观察时间：{status['observed_at']}。Goal active；公开证据基点9734eee及279bdb4后续更新保留。

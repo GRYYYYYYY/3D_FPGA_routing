@@ -6,6 +6,48 @@ import time
 from retained_prefix_workflow import D,read,write,sha
 from seed_census_analysis_pool_v2 import process_identity
 
+def evaluation_receipt_evidence(evaluation):
+    """Read existing worker/materializer gates, without re-running native work.
+
+    This is status evidence, not an adoption adapter or a new byte/STA audit.
+    The materializer's installed-candidate manifest must remain distinguishable
+    from the source LOAD that supplied its already executed callback.
+    """
+    evaluation=Path(evaluation);completion=evaluation/'completion.json';done=read(completion)
+    receipts=[completion];checks=done.get('checks')
+    if isinstance(checks,dict) and checks:
+        evidence=dict(schema='original_worker_checks',passed=bool(done['passed'] and all(checks.values())),original_checks=checks)
+    elif done.get('status')=='standalone_candidate_materialization_terminal':
+        gate_path=evaluation/'runs/state/analysis_gate.json'
+        audit_path=evaluation/'independent_native_analysis_audit.json'
+        manifest_path=evaluation/'runs/state/manifest.json'
+        registration_path=evaluation/'registration.json'
+        receipts.extend([gate_path,audit_path,manifest_path,registration_path])
+        gate=read(gate_path);audit=read(audit_path);manifest=read(manifest_path);registration=read(registration_path)
+        worker=Path(registration['source_worker']);worker_completion=worker/'completion.json';exports_path=worker/'candidate_exports.json'
+        receipts.extend([worker_completion,exports_path]);closed=read(worker_completion);exports=read(exports_path)
+        passed=(done['passed'] and done.get('native_analysis_calls')==0
+            and done.get('consumed_already_executed_worker_receipt') is True
+            and all(gate.get(k) is True for k in ['passed','native_candidate_FULL_fresh_STA','physical_capacity_audit','source_restored'])
+            and audit.get('passed') is True and audit.get('legal_count')==1 and audit.get('failed_count')==0
+            and manifest.get('status')=='completed' and manifest.get('observed_state_kind')=='installed_candidate'
+            and manifest.get('execution_scope')=='standalone_installed_candidate_callback'
+            and manifest.get('native_analysis_calls_new')==0
+            and manifest.get('source_worker_completion')==str(worker_completion)
+            and manifest.get('metrics',{}).get('native_full_check_passed') is True
+            and closed.get('passed') is True and exports.get('passed') is True and exports.get('candidate_gate_present') is True)
+        evidence=dict(schema='original_installed_candidate_materialization',passed=bool(passed),
+            original_analysis_gate=gate,original_independent_audit=dict(passed=audit.get('passed'),legal_count=audit.get('legal_count'),failed_count=audit.get('failed_count')),
+            manifest_execution_scope=manifest.get('execution_scope'),source_worker=str(worker),
+            consumed_already_executed_worker_receipt=done.get('consumed_already_executed_worker_receipt'),
+            new_native_analysis_calls=done.get('native_analysis_calls'),
+            complete_materialization_seconds=done.get('complete_materialization_seconds'))
+    else:
+        evidence=dict(schema=done.get('status'),passed=False,status_reason='Unsupported receipt schema; no validation inferred')
+    assert all(p.stat().st_size<4*1024**2 for p in receipts),'Status reader consumes small gate receipts only'
+    evidence['source_receipt_sha256']={str(p):sha(p) for p in receipts}
+    return evidence
+
 now=datetime.now(timezone.utc).isoformat()
 owners=[]
 for name in ['stable_seed_transfer_recovery_02','direct_scope_resource_equivalence_recovery_02',
@@ -36,7 +78,7 @@ for name in ['stable_seed_transfer_recovery_02','direct_scope_resource_equivalen
         if (flow/'active_child.json').exists():
             stage=read(flow/'active_child.json');actual=process_identity(stage['pid'])
             if actual and actual['state']!='Z' and actual['start_ticks']==stage['start_ticks']:
-                flow_stage=dict(phase=stage['phase'],pid=stage['pid'],start_ticks=stage['start_ticks'],verified_live=True,actual_process=actual)
+                flow_stage=dict(phase=stage.get('tag') or stage['phase'],supervision_phase=stage['phase'],pid=stage['pid'],start_ticks=stage['start_ticks'],verified_live=True,actual_process=actual)
         if (flow/'stages.json').exists():
             completed_flow_stages=[{k:v for k,v in row.items() if k in ['phase','status','returncode','complete_process_seconds']} for row in read(flow/'stages.json')]
     if name=='robot_p1_prefix_recovery_01':
@@ -195,7 +237,8 @@ sharing_position_publication=D.parents[1]/'docs/github_sharing_prior_art_publica
 if sharing_position_publication.exists():publication=sharing_position_publication
 for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_BNN_timing03_balanced_publication_receipt_20261116.json',
-             'github_balanced_cost_paper_publication_receipt_20261116.json']:
+             'github_balanced_cost_paper_publication_receipt_20261116.json',
+             'github_CP1r3_native_failure_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -720,6 +763,62 @@ if (D/'BNN_timing03_balanced_receipt_01/completion.json').exists():
                     measured_whole_algorithm_seconds=None,complete_confirmation_passed=False,
                     source_sha256={str(p):sha(p) for p in [proof,audit,manifest,graph]},
                     qualification='Original fresh initial-state gate only; not terminal method quality, paired confirmation or an application-SDC claim. Component times are not summed into a complete cost.')
+        repair=case/'flow/resource_flow/repair';checkpoint=repair/'current_state.json'
+        if checkpoint.exists() and (repair/'steps.json').exists():
+            before=read(checkpoint);steps=read(repair/'steps.json');after=read(checkpoint)
+            if before==after and steps and after['accepted_steps']==len(steps):
+                step=steps[-1]
+                if step['committed_evaluation']==after['state']:
+                    tx=Path(step['transaction']);role=step['accepted_role']
+                    completed=tx/'completion.json';decisions=tx/(role+'_decisions.json')
+                    evaluation=Path(after['state'])/'completion.json'
+                    done=read(completed);decision=read(decisions);checked=read(evaluation)
+                    evaluation_evidence=evaluation_receipt_evidence(evaluation.parent)
+                    if done['passed'] and evaluation_evidence['passed'] and decision['resources_under_timing']['accepted']:
+                        status['actual_CP1r3_live_resource_checkpoint']=dict(
+                            input=phase['input'],arm=phase['arm'],accepted_steps=len(steps),
+                            round=step['round'],state=after['state'],accepted_role=role,
+                            mechanism=step.get('mechanism','current_resource_rank_window'),
+                            CPD_ns=checked['full_precision_cpd_s']*1e9,
+                            resources=step['roles'][role]['resources'],
+                            latest_endpoint_comparison={k:v for k,v in decision['strict']['comparison'].items() if k!='changes'},
+                            latest_complete_transaction_seconds=done['complete_orchestrator_seconds'],
+                            evaluation_evidence=evaluation_evidence,
+                            complete_algorithm_cost=None,complete_confirmation_passed=False,
+                            source_sha256={str(p):sha(p) for p in [completed,decisions,evaluation]},
+                            qualification='Consistent original accepted resource checkpoint with original FULL/STA/physical checks. Not terminal method quality or a paired confirmation. Latest transaction cost is nested, not assembled into a whole.')
+        attempts_path=repair/'attempts.json'
+        if attempts_path.exists():
+            attempts=read(attempts_path)
+            if attempts:
+                latest=attempts[-1];tx=Path(latest['transaction']);completion=tx/'completion.json'
+                if completion.exists():
+                    done=read(completion);roles={};receipts=[completion]
+                    for role,observed in done.get('roles',{}).items():
+                        entry={k:observed.get(k) for k in ['status','scope','resources','cpd_s','native_core_seconds',
+                            'native_calls_new','native_reused','reused_FULL_STA','evaluation']}
+                        entry['policies']=observed.get('policies',{})
+                        if observed.get('evaluation'):
+                            prior_or_new_evaluation=Path(observed['evaluation'])/'completion.json'
+                            if prior_or_new_evaluation.exists():
+                                receipts.append(prior_or_new_evaluation)
+                                entry['evaluation_evidence']=evaluation_receipt_evidence(prior_or_new_evaluation.parent)
+                        decisions=tx/(role+'_decisions.json')
+                        if decisions.exists():
+                            decision=read(decisions);receipts.append(decisions)
+                            comparison=decision.get('strict',{}).get('comparison')
+                            if comparison is not None:entry['endpoint_comparison']={k:v for k,v in comparison.items() if k!='changes'}
+                        roles[role]=entry
+                    status['actual_CP1r3_latest_completed_resource_attempt']=dict(
+                        input=phase['input'],arm=phase['arm'],round=latest['round'],
+                        candidate_rank=latest['candidate_rank'],transaction=str(tx),
+                        mechanism=latest.get('mechanism','current_resource_rank_window'),
+                        transaction_workflow_passed=done.get('passed'),
+                        accepted=latest.get('accepted_role') is not None,accepted_role=latest.get('accepted_role'),
+                        complete_transaction_seconds=done.get('complete_orchestrator_seconds'),
+                        roles=roles,error=done.get('error'),complete_algorithm_cost=None,
+                        source_sha256={str(p):sha(p) for p in receipts},
+                        qualification='Latest completed original attempt, including policy rejection or execution failure; separate from last accepted checkpoint. No missing quality or cost is invented. Transaction/core costs are not whole algorithm time.')
 if (D/'balanced_cost_paper_binding_19.json').exists():
     paper=read(D/'balanced_cost_paper_binding_19.json');status['paper_pdf']=paper['pdf'];status['paper_pages']=6
     status['evidence'].update(current_paper='balanced_cost_paper_binding_19.json',
@@ -734,6 +833,49 @@ if (D/'CP1r3_lstm_native_progress_01/completion.json').exists():
     status['CP1r3_lstm_native_historical_resource_prefix']={k:prefix[k] for k in [
         'observed_at','summarized_prefix_steps','rows','whole_algorithm_cost','complete_confirmation_passed','qualification']}
     status['evidence']['CP1r3_lstm_native_historical_resource_prefix']='CP1r3_lstm_native_progress_01/completion.json'
+if (D/'CP1r3_lstm_native_resource_phase_01/completion.json').exists():
+    closed_phase=read(D/'CP1r3_lstm_native_resource_phase_01/completion.json')
+    status['CP1r3_lstm_native_closed_resource_phase']={k:closed_phase[k] for k in [
+        'observed_at','accepted_resource_steps','attempted_scopes','ordinary_scopes','owner_scopes','owner_commits',
+        'resource_final_CPD_ns','resource_final_resources','resource_complete_driver_seconds','nested_repair_seconds',
+        'initial_to_resource_endpoint_delta','terminal_mode','terminal_same_source_candidates','terminal_eligible_candidates',
+        'terminal_changed','timing_handoff_passed','absolute_timing_limits','whole_method_cost','complete_confirmation_passed']}
+    status['evidence']['CP1r3_lstm_native_closed_resource_phase']='CP1r3_lstm_native_resource_phase_01/completion.json'
+if (D/'CP1r3_lstm_native_binding_failure_audit_01/completion.json').exists():
+    audit_path=D/'CP1r3_lstm_native_binding_failure_audit_01/completion.json'
+    binding_audit=read(audit_path)
+    result_path=D/'cp1r3_distinct_input_cohort_01/lstm_results.json'
+    original_native=read(result_path)['native']
+    assert binding_audit['passed'] and binding_audit['kind']=='metadata_audit_only'
+    assert not binding_audit['is_experiment_completion'] and not binding_audit['complete_confirmation_passed']
+    assert original_native['status']=='execution_or_verification_failed' and original_native['quality'] is None
+    assert all(sha(p)==h for p,h in binding_audit['source_sha256'].items())
+    status['CP1r3_lstm_native_whole_verification_failure']=dict(
+        original_status=original_native['status'],quality=None,
+        command_returncode=original_native['command_returncode'],
+        complete_command_seconds=original_native['complete_seconds'],
+        independent_failed_verification_seconds=original_native['independent_research_verification_seconds'],
+        sampled_tree_PSS_peak_kib=original_native['sampled_PSS_kib'],
+        missing_memory_observations=original_native['missing_memory_observations'],
+        observer_CPU_seconds=binding_audit['observer_CPU_seconds'],
+        metadata_diagnosis_passed=True,diagnosed_owner_registration_transitions=len(binding_audit['rows']),
+        original_frozen_verifier_passed=False,complete_confirmation_passed=False,
+        remaining_full_reverification_performed=False,paper_benefit_claims_authorized=False,
+        new_native_or_STA_calls=0,original_history_unchanged=True,
+        source_sha256={str(p):sha(p) for p in [audit_path,result_path]},
+        qualification='The original command completed, but its frozen whole verifier failed at the owner preparation registration seal. A separate metadata audit proves exactly two documented pre-execution runtime-binding additions and the actual execution seal for all three owners. It does not replace remaining byte/request/FULL/STA/vector/physical verification or admit quality. Preserve original failed role; do not repeat native work. Original resource-phase receipts remain intermediate evidence only.')
+    status['evidence']['CP1r3_lstm_native_whole_failure']='CP1r3_lstm_native_binding_failure_audit_01/completion.json'
+    status['outstanding'].append('LSTM/native original command completed in7615.074177s but frozen whole verification failed in74.441375s at the pre-runtime versus execution registration seal. Separate readonly metadata audit reconstructs all3preparation hashes by removing only documented runtime path/hash additions and checks actual execution seals. Original failed result/quality null preserved; remaining full verification is outstanding under serial lock. No native replay, pair ratio, quality admission or paper benefit.')
+if (D/'CP1r3_supplemental_verifier_01/plan.json').exists():
+    supplemental=read(D/'CP1r3_supplemental_verifier_01/plan.json')
+    status['CP1r3_supplemental_verifier']=dict(
+        registered=True,queued=False,new_owner=False,actual_full_reverification_performed=False,
+        original_frozen_runtime_unchanged=True,registered_targets=len(supplemental['targets']),
+        preserved_original_assertions=supplemental['transformation']['assertions_retained'],
+        metadata_and_transform_negative_guards=read(D/'CP1r3_supplemental_verifier_validation_01/validation.json')['negative_guards'],
+        execution_requires_original_cohort_terminal=True,execution_requires_nonblocking_shared_lock=True,
+        complete_confirmation_passed=False,paper_benefit_claims_authorized=False)
+    status['evidence']['CP1r3_supplemental_verifier']='CP1r3_supplemental_verifier_01/plan.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
