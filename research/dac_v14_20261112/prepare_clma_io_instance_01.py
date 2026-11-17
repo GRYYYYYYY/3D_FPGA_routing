@@ -1,0 +1,27 @@
+"""Preregister one constraint-coverage instance on the exact existing placement."""
+from pathlib import Path
+import json,hashlib,re,datetime,fcntl
+D=Path(__file__).resolve().parent;OLD=D/'VTR_clma_input_01';NEW=D/'VTR_clma_io_input_01'
+def read(p):return json.loads(Path(p).read_text())
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def write(p,v):Path(p).write_text(json.dumps(v,indent=2,ensure_ascii=False)+'\n')
+lock=(D/'critical_scope_runner.lock').open();fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+assert read(D/'CLMA_complete_admission_01/admission_decision.json')['complete_pair_admission']=='passed';assert read(D/'CLMA_postqueue_01/queue/completion.json')['passed']
+old=read(OLD/'completion.json');assert old['passed'];assert all(sha(p)==h for p,h in old['source_sha256'].items())
+NEW.mkdir(exist_ok=False);(NEW/'inputs').mkdir();(NEW/'place_01').mkdir()
+blif=Path(old['physical_files']['circuit']['path']);text=blif.read_text().replace('\\\n',' ')
+ports={}
+for kind in ['inputs','outputs']:
+ lines=[l for l in text.splitlines() if l.startswith('.'+kind+' ')];assert len(lines)==1;ports[kind]=lines[0].split()[1:];assert len(set(ports[kind]))==len(ports[kind]);assert all(re.fullmatch(r'[A-Za-z0-9_]+',p) for p in ports[kind])
+assert 'pclk' in ports['inputs'];data_inputs=[p for p in ports['inputs'] if p!='pclk'];assert not set(ports['outputs'])&set(ports['inputs'])
+sdc=NEW/'inputs/clma_io_20ns.sdc';sdc.write_text('# Preregistered benchmark constraint-coverage intervention; no external application claim.\ncreate_clock -period 20 [get_ports {pclk}]\n'+''.join(f'set_{kind}_delay -clock pclk -{limit} {value} [get_ports {{'+ ' '.join(names)+'}]\n' for kind,names in [('input',data_inputs),('output',ports['outputs'])] for limit,value in [('max',1),('min',0)]))
+files=[Path(__file__).resolve(),OLD/'completion.json',OLD/'registration.json',OLD/'packing_provenance.json',OLD/'place_01/registration.json',D/'CLMA_initial_scope_boundary_01/rows.json',D/'CLMA_initial_scope_boundary_01/completion.json',D/'CLMA_complete_admission_01/admission_decision.json',blif,sdc]
+reg=dict(registered_at=datetime.datetime.now(datetime.timezone.utc).isoformat(),input='clma_io',original_input='clma',hypothesis='With explicit finite I/O timing constraints, structurally reusable branches previously excluded by +inf slack may enter unchanged finite-margin sharing selection. Complete N/D decides resource/timing tradeoffs; eligibility alone is not benefit.',treatment=dict(clock_port='pclk',period_ns=20,input_max_ns=1,input_min_ns=0,output_max_ns=1,output_min_ns=0,data_input_ports=len(data_inputs),output_ports=len(ports['outputs']),all_port_names_bound=True),parameter_origin='Reuse already tested robot20ns+max1/min0 benchmark settings, fixed before this new initial route. No penalty/threshold search or selection from new QoR.',same_circuit=True,same_actual_placement=True,same_architecture_and_graph=True,new_independent_circuit=False,new_independent_physical_start=False,new_architecture_family=False,new_constraint_instance=True,new_application_requirement=False,fresh_routing_required=True,historical_route_imported=False,repack_or_replace=False,all_failures_no_gain_and_constraint_violations_retained=True,existing_confirmation_rules_unchanged=True,source_sha256={str(p):sha(p) for p in files})
+write(NEW/'registration.json',reg)
+# Input derivation has no packing/placement execution; provenance explicitly retains actual source commands.
+physical={**old['physical_files'],'sdc':dict(path=str(sdc),bytes=sdc.stat().st_size,sha256=sha(sdc))}
+provenance=read(OLD/'packing_provenance.json');provenance.update(format='derived_constraint_instance_from_actual_upstream_receipts_v1',original_packing_provenance=str(OLD/'packing_provenance.json'),new_SDC_used_for_packing_or_placement=False,current_SDC_for_subsequent_fresh_routing=physical['sdc'],qualification='Original pack/place commands and actual bytes retained. Only a new subsequent routing/STA constraint instance; no fabricated pack/place execution, fresh placement, independent circuit or external application requirement.');provenance['source_sha256']={**provenance['source_sha256'],str(NEW/'registration.json'):sha(NEW/'registration.json')};write(NEW/'packing_provenance.json',provenance)
+(NEW/'place_01/registration.json').write_bytes((OLD/'place_01/registration.json').read_bytes());(NEW/'capacity_selection.json').write_bytes((OLD/'capacity_selection.json').read_bytes())
+bind={str(p):sha(p) for p in [NEW/'registration.json',NEW/'packing_provenance.json',NEW/'place_01/registration.json',NEW/'capacity_selection.json',OLD/'completion.json',sdc]}
+write(NEW/'completion.json',dict(passed=True,status='derived_new_constraint_instance_verified',physical_files=physical,actual_packed=old['actual_packed'],actual_layout=old['actual_layout'],costs=[],upstream_pack_place_costs_reused_only_not_new_execution=old['costs'],source_sha256=bind,route_quality_admitted=False,route_queries=0,explicit_SDC=True,application_timing_claim=False,new_independent_input=False,qualification='Exact previous physical files and actual placement; newly preregistered clock/I/O SDC. No old route/candidate reused. Same circuit/start, not independent generalization evidence; fresh matched N/D will measure changed constraint behavior under original CP1r6 rules.'))
+print(dict(registered=True,data_inputs=len(data_inputs),outputs=len(ports['outputs']),same_physical_start=True,new_native_calls=0))

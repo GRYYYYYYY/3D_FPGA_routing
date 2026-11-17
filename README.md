@@ -1,5 +1,7 @@
 # H3D-inspired native 3D FPGA routing
 
+[clma显式I/O覆盖实例已启动](docs/GitHub_clma_IO_coverage_20261117.md)：原实际电路/图/布局，新增20ns+输入/输出max1/min0基准约束；旧330pin slack全部有限，但fresh初始树同时改变、无冗余共享域组。完整N/D及后续准入继续；不是新独立输入，六页投稿13保持。
+
 [clma完整配对通过、六页投稿13](docs/GitHub_clma_admission_submission13_20261117.md)：N/D同14.713963381ns、106127wire/4SB/450CB及全部端点，完整668.98/659.82秒仅单次描述。3组有结构机会但+inf分支slack被原准入排除，没有domain增量。44行表保留全部负结果，[投稿13 PDF](research/dac_v14_20261112/submission_narrative_13/build/main.pdf)可独立审阅。
 
 [clma native整臂结束、原核验通过](docs/GitHub_clma_native_complete_20261117.md)：668.98秒，CPD15.0530→14.7140ns，+100线长，同4SB/450CB，setup2改善/0退化。domain继续；完整raw/配对通过前不进入收益，六页投稿12保持。

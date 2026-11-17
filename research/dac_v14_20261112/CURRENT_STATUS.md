@@ -125,6 +125,18 @@ Domain原臂已启动；按native668.98秒和相同工作量条件估计，仍�
 
 
 
+# clma显式I/O时序覆盖实例
+
+同clma电路、图、实际布局和打包，新增预登记20ns时钟+382输入/82输出max1ns/min0ns约束；不是独立电路/布局/架构或外部应用要求。原CP1r6算法、预算、有限余量screen及接受规则固定，fresh N→D后接原有raw/raw/配对。
+
+假设：此前+inf排除的结构机会可能在明确I/O时序下获得有限余量。新鲜路由也受SDC影响，跨实例比较需先检查实际初始树/资源，不把全部变化归给覆盖。结构机会、准入、合法候选、预算接受和最终domain增量逐层区分，负结果全部保留。原时钟型clma配对及六页投稿13保持。
+
+参考原完整native668.98s/domain659.82s，若新实例工作量相近，两臂约22分钟；I/O覆盖可能增加选组与搜索，参考不能作为上限。初始合法根和资源菜单实际形成后更新条件性ETA；全费用从各臂完整命令测量，不拼接组件。
+
+实际初始FULL/STA/物理和资源阶段已过：15.628016214ns、106025wire/1SB/450CB，101setup/hold分量均有限非负。此前3网的330pin slack均变为有限，但fresh初始路由树同时改变，冗余网变0；当前没有共享域组/资源接受，不能将全部变化归于旧组覆盖或当domain收益。后续原时序修复继续。
+
+
+
 # Elliptic整臂判定与完整配对
 
 **实际配对：通过。**
@@ -155,7 +167,7 @@ Elliptic为当前CP1确认中的不同公开顺序电路，使用新生成的实
 CLSTM-SB完整配对已通过：D−N为+52线长/−1SB/同CPD及CB，单次N/D费用仅描述。已核验投稿稿可独立作者审阅。
 
 
-当前登记的必要核验已终结；无存活执行owner。
+cp1r6_clma_io_pair_01: running_confirmation_arm；CLMA_IO_complete_admission_01: waiting_for_original_CLMA_IO_pair_terminal；CLMA_IO_postqueue_01: waiting_for_original_pair_and_three_admission_gates
 
 [当前投稿稿](submission_narrative_13/build/main.pdf) · [证据影响与作者审阅](submission_narrative_13/EXPERIMENT_IMPACT.md) · [完整判定](LSTM_domain_whole_admission_03/admission_decision.json)。原06保留；本轮只把LSTM实际结论和已完成四档代价机制证据纳入对应位置。
 
