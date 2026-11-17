@@ -1,5 +1,7 @@
 # H3D-inspired native 3D FPGA routing
 
+[LSTM单标志释放消融通过、六页投稿12](docs/GitHub_LSTM_release_submission12_20261117.md)：同源8请求组，关闭释放5/8后回滚，已有开启释放8/8且资源接受；实际释放前轨迹相同。新组件214.45秒与核验1.48秒独立列账，仅支持该组机制归因，不归因完整70SB。42行主表及原费用限制保持。[投稿12 PDF](research/dac_v14_20261112/submission_narrative_12/build/main.pdf)。
+
 [当前完整配对与六页投稿11](docs/GitHub_frisc_admission_submission11_20261117.md)：LSTM整臂通过（少70SB、多2187线长，同CPD/CB；归档干扰费用不作干净比值）；Frisc完整N/D通过但无domain增量。四档代价机制对照已完成。[投稿11 PDF](research/dac_v14_20261112/submission_narrative_11/build/main.pdf) · [42行配对表](research/dac_v14_20261112/submission_narrative_11/COMPLETE_PAIR_TABLE.md)。本批必要核验全部终结；下方运行描述为历史快照，研究继续。
 
 [Frisc独立电路与明确SDC确认](docs/GitHub_frisc_confirmation_20261117.md)：实际529块n25 Hybrid-O布局、共用20ns基准时钟。native资源阶段有256CB源占用但无多跨层冗余组；完整N/D及后续准入仍运行，不新增收益主张。投稿10保持。

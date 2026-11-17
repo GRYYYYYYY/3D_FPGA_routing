@@ -13,6 +13,8 @@ def render(status,D):
             decision_text+='\n[TPU-OS输入预检](TPU_OS_input_preflight_01/STATUS.md)已实际通过：五项1.224GB字节、4100block坐标，2.261795秒，无native/STA。完整两臂尚未登记/启动，无合法根或新收益；不同数据流网表，同TPU家族/同架构族，不计新架构。\n'
         if status.get('CP1r5_frisc_registered_pair'):
             decision_text+='\n\n'+(D/'cp1r5_frisc_pair_01/STATUS.md').read_text()+'\n'
+        if status.get('LSTM_release_ablation_01'):
+            decision_text+='\n\n'+(D/'LSTM_release_ablation_01/STATUS.md').read_text()+'\n'
         live=[o for o in status['owners'] if o['verified_live']]
         jobs='；'.join(o['batch']+': '+o['phase_status'] for o in live) or '当前登记的必要核验已终结；无存活执行owner。'
         paper=Path(status['paper_pdf']).parent.parent.name if status.get('paper_pdf') else 'submission_narrative_07'
