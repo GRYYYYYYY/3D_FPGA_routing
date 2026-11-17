@@ -8,6 +8,8 @@
 
 [投稿源包独立重建通过](docs/GitHub_submission_source_export_20261117.md)：三项稿件输入在独立目录生成六页PDF，文本和全部渲染像素与原稿一致；提供108KB最小源包及原PDF，仍需外部TeX工具链。
 
+[已有LSTM合法候选与0.1%边界](docs/GitHub_LSTM_existing_tradeoffs_20261117.md)：419 SB候选自身CPD14.600438191791909ns、线长2390877/CB8316，setup4改善/1退化；路由合法但超原预算402，拒绝保持。与同组native425 SB及共31条已有观察整理取舍图，不重跑查询、不解释为更宽预算完整结果。
+
 [独立六页投稿候选稿](research/dac_v14_20261112/submission_candidate_01/build/main.pdf) · [剩余实验的具体影响](research/dac_v14_20261112/submission_candidate_01/EXPERIMENT_IMPACT.md) · [最新条件性ETA](research/dac_v14_20261112/LSTM_budget_cost_progress_01/ETA.md)。稿件基于paper19已核验证据独立收束，当前实验继续；补充验证已安排在CP1r3确认终结后的首位。
 
 [LSTM已结束事务费用与排程更新](docs/GitHub_LSTM_cost_progress_20261117.md)：20个已结束事务的登记角色native内部计时占事务墙钟0.27%–3.84%，用于定位工程成本，不是完整配对加速或质量收益。CP1r3继续，新增原始证据准入已实际排队。

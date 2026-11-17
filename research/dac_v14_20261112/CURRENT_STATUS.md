@@ -1,6 +1,6 @@
 # 当前研究状态
 
-观察时间：2026-11-17T02:34:41.599908+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
+观察时间：2026-11-17T02:55:22.367861+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
 
 统一方法：当前STA、跨层冗余与容量阻塞用于选择完整连接组；在事务副本中使用跨层共享域、按网失败释放及阻塞owner协调；完整组合经物理/容量/FULL/STA检查，在固定根预算下接受或恢复。终结选点独立于中间提交；native享有相同选组、owner与收敛机会。
 
@@ -18,9 +18,9 @@
 
 当前lstm/domain新鲜初始路由通过原FULL/完整精度STA/物理门槛：14.600438192ns，2388086wire/509SB/8316CB。图构建395.045s、初始原生命令371.262s分别记录，不拼接为完整时间。该状态是初始准入证据，尚非完整方法结果或配对收益。
 
-资源前缀已接受12次，最新核验检查点为14.600438192ns、2390370wire/426SB/8316CB。最近接受的资源窗口事务相对其前态setup 4改善/1退化，新增hold违例退化0；该事务完整耗时1069.865s。完整算法时间与配对确认仍不可用，不把资源阶段检查点冒充终态或域收益。
+资源前缀已接受13次，最新核验检查点为14.600438192ns、2390322wire/425SB/8316CB。最近接受的资源窗口事务相对其前态setup 1改善/0退化，新增hold违例退化0；该事务完整耗时1035.855s。完整算法时间与配对确认仍不可用，不把资源阶段检查点冒充终态或域收益。
 
-最近完成尝试为round12/candidate1，接受=False，事务处理回执通过=True，完整事务耗时1035.376s。原规则原因：reuse_on: Fixed registered resource budget exceeded；reuse_off: No resource Pareto improvement within fixed CPD budget。拒绝/失败费用同样保留；此处不替代接受检查点或完整流程费用。
+最近完成尝试为round12/candidate2，接受=True，事务处理回执通过=True，完整事务耗时1035.855s。原规则原因：reuse_on: Fixed registered resource budget exceeded；reuse_off: Exact fixed-budget conditions satisfied。拒绝/失败费用同样保留；此处不替代接受检查点或完整流程费用。
 
 [已封存LSTM/native资源子流程](CP1r3_lstm_native_resource_phase_01/completion.json)：驱动6775.915s，接受4次、尝试12个作用域，owner提交0。按原精确变化记录沿接受链还原的初始到资源终态setup为20改善/5退化，新增hold违例退化0；未新增整向量重读。终结endpoint规则在6个同源候选中无合格选点，保留原资源终态；交接FULL/STA通过。该包仅封存资源子流程，完整方法是否准入须另查原独立核验终态；当前活动阶段以上表实际进程为准。
 

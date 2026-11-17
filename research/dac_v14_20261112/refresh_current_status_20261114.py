@@ -248,7 +248,8 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_owner_binding_development_publication_receipt_20261117.json',
              'github_dependency_narrative_publication_receipt_20261117.json',
              'github_vertical_cost_queue_publication_receipt_20261117.json',
-             'github_closing_menu_inputs_publication_receipt_20261117.json']:
+             'github_closing_menu_inputs_publication_receipt_20261117.json',
+             'github_submission_export_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -975,6 +976,10 @@ if (D/'LSTM_closing_menu_ETA_01/progress_and_eta.json').exists():
 if (D/'submission_narrative_export_01/completion.json').exists():
     status['submission_narrative_minimal_export']=read(D/'submission_narrative_export_01/completion.json')
     status['evidence']['submission_narrative_minimal_export']='submission_narrative_export_01/completion.json'
+if (D/'LSTM_existing_tradeoffs_02/completion.json').exists():
+    status['LSTM_existing_candidate_tradeoffs']=read(D/'LSTM_existing_tradeoffs_02/completion.json')
+    status['LSTM_focused_419_SB_candidate']=read(D/'LSTM_existing_tradeoffs_02/focused_419_SB_candidate.json')
+    status['evidence']['LSTM_existing_candidate_tradeoffs']='LSTM_existing_tradeoffs_02/TRADEOFFS.md'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
