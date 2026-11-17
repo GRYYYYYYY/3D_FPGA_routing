@@ -1,0 +1,77 @@
+--- admit_cp1r5_elliptic_base_01.py
++++ admit_cp1r5_frisc_base_01.py
+@@ -11,8 +11,8 @@
+ from recovery_prefix_v1 import Evidence, live_identity
+ from endpoint_timing_policy_streaming_v2 import compare
+ 
+-COHORT = D/'cp1r5_elliptic_pair_01'
+-ROOT = D/'ELLIPTIC_complete_admission_01'
++COHORT = D/'cp1r5_frisc_pair_01'
++ROOT = D/'FRISC_complete_admission_01'
+ OLD_ENTRY = """    supplement = SUPPLEMENT/'cases'/target['input']/target['arm']/'completion.json'
+     supplemental = self.document(supplement)
+     assert supplemental['passed'] and supplemental['original_frozen_result_unchanged']
+@@ -100,7 +100,7 @@
+         out=ROOT/arm;out.mkdir(exist_ok=False);start=time.monotonic();e=Evidence()
+         try:
+             plan=prerequisites(e);target=plan['targets'][arm]
+-            original_path=COHORT/'elliptic_results.json';e.bind(original_path);original=read(original_path)[arm]
++            original_path=COHORT/'frisc_results.json';e.bind(original_path);original=read(original_path)[arm]
+             if original['status']!='complete_legal_verified':
+                 result=dict(passed=False,status='original_full_verification_not_passed',quality=None,
+                     quality_admitted=False,original_status=original['status'],execution_ended=True,
+@@ -157,7 +157,7 @@
+             result=dict(passed=False,status='pair_admission_requires_reconciliation',matched_complete_quality_pair=False,quality=None,error=error)
+         result.update(complete_readonly_seconds=time.monotonic()-start,source_sha256=e.bound,
+                       new_native_or_STA_calls=0,automatic_paper_update=False,historical_failures_preserved=True,
+-                      qualification='One distinct public mapped sequential elliptic circuit, new to current CP1 confirmation, with a fresh actual placement on the existing Hybrid-O architecture family. No unseen-input or new-architecture claim. Original full checks plus unchanged raw methods, explicit state chain and actual graph/root/vector pair. Whole per-arm commands only; audits separate. Any time ratio is descriptive N/D, not interleaved/statistical speedup.')
++                      qualification='One distinct public mapped sequential frisc circuit, new to current CP1 confirmation, with a fresh actual placement on the existing Hybrid-O architecture family. No unseen-input or new-architecture claim. Original full checks plus unchanged raw methods, explicit state chain and actual graph/root/vector pair. Whole per-arm commands only; audits separate. Any time ratio is descriptive N/D, not interleaved/statistical speedup.')
+         write(out/'completion.json',result)
+ 
+ 
+--- admit_cp1r5_elliptic_pair_01.py
++++ admit_cp1r5_frisc_pair_01.py
+@@ -3,10 +3,10 @@
+ import inspect
+ import textwrap
+ from pathlib import Path
+-import admit_cp1r5_elliptic_base_01 as prior
++import admit_cp1r5_frisc_base_01 as prior
+ from retained_prefix_workflow import D, read
+ 
+-ROOT = D/'ELLIPTIC_complete_admission_01'
++ROOT = D/'FRISC_complete_admission_01'
+ BUILD = D/'resource_domain_stage_01'
+ BINARY_SHA = '25f24fc2d606dc2d551c460f89b8cffbbcd6e7b7642c4078a199007bea3735c2'
+ SOURCE_SHA = '4f91fccef49a0b147639799d968df855056db5a30052caf2a2ca6738f1ab3ce4'
+--- queue_elliptic_admission_01.py
++++ queue_frisc_admission_01.py
+@@ -9,8 +9,8 @@
+ from seed_census_analysis_pool_v2 import process_identity
+ from measure_process_tree_v1 import measure
+ 
+-ROOT=D/'ELLIPTIC_complete_admission_01'
+-COHORT=D/'cp1r5_elliptic_pair_01'
++ROOT=D/'FRISC_complete_admission_01'
++COHORT=D/'cp1r5_frisc_pair_01'
+ 
+ 
+ def main():
+@@ -22,7 +22,7 @@
+     started=time.monotonic();rows=[]
+     try:
+         predecessor=read(COHORT/'queue/registration.json')
+-        write(queue/'status.json',dict(status='waiting_for_original_ELLIPTIC_pair_terminal'))
++        write(queue/'status.json',dict(status='waiting_for_original_FRISC_pair_terminal'))
+         while not (COHORT/'queue/completion.json').exists():
+             assert live_identity(predecessor['pid'],predecessor['start_ticks']),'Original owner missing without terminal receipt'
+             time.sleep(15)
+@@ -35,7 +35,7 @@
+         for arm in ['native','domain','pair']:
+             write(queue/'status.json',dict(status='running_registered_readonly_admission',stage=arm))
+             command=['/usr/bin/prlimit','--as=68719476736','--',sys.executable,'-B',
+-                     str(D/'admit_cp1r5_elliptic_pair_01.py'),'--role',arm]
++                     str(D/'admit_cp1r5_frisc_pair_01.py'),'--role',arm]
+             measured=measure(command,ROOT/(arm+'_measurement'))
+             output=ROOT/arm/'completion.json';result=read(output) if output.exists() else {}
+             rows.append(dict(stage=arm,execution_ended=True,command_returncode=measured['returncode'],
