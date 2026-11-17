@@ -1606,8 +1606,17 @@ if (s38417_pair/'plan.json').exists():
             running_arm_exceeds_other_circuit_reference=age>estimate['reference_single_arm_seconds'][phase['arm']],
             remaining_seconds=None,
             qualification='Current elapsed time is measured from the actual process identity; another circuit is only a reference, and no valid remaining-time prediction is available while this arm runs.')
+        if phase['arm']=='domain' and 'native' in results and results['native']['status']=='complete_legal_verified':
+            native_seconds=results['native']['complete_seconds']
+            estimate.update(same_input_native_reference_seconds=native_seconds,
+                domain_reference_remaining_seconds=max(0.0,native_seconds-age) if age<native_seconds else None,
+                qualification='Conditional reference only: if domain takes the same complete time as this input native, the listed seconds remain for domain; the previous circuit needed about 6.35s for three raw checks. Domain work can differ and no upper bound or speedup follows.')
     status['outstanding']=['Continue registered frozen CP1r6 s38417 native/domain and original raw/pair/terminal checks. New circuit with one actual placement, same Hybrid-O architecture family; 20ns and IO SDC are benchmark constraints. Preserve failure/no-cut/no-gain, do not claim benefit before full admission.']
     status['evidence']['s38417_registration']='cp1r6_s38417_pair_01/plan.json'
+    native_checkpoint=s38417_pair/'NATIVE_COMPLETE_CHECKPOINT.json'
+    if native_checkpoint.exists():
+        status['CP1r6_s38417_registered_pair']['native_complete_checkpoint']=read(native_checkpoint)
+        status['evidence']['s38417_native_complete']='cp1r6_s38417_pair_01/NATIVE_COMPLETE_CHECKPOINT.md'
     scope_observation=s38417_pair/'NATIVE_INITIAL_SCOPE_OBSERVATION.json'
     if scope_observation.exists():
         status['CP1r6_s38417_registered_pair']['native_initial_scope_observation']=read(scope_observation)

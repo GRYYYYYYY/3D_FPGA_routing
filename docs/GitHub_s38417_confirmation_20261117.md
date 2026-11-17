@@ -13,3 +13,5 @@
 执行中初始选择器的原回执显示 2 个多次跨层网及 2 个通过结构和余量筛选的候选作用域；候选可能重叠。这是筛选机会，不证明域方法的实现性、可加收益或完整配对结果。native 当前已超过另一个电路的单臂参考时间，剩余时间未知。[局部观察](../research/dac_v14_20261112/cp1r6_s38417_pair_01/NATIVE_INITIAL_SCOPE_OBSERVATION.md)。
 
 原生首个资源事务原回执接受线长 −24、SB −2、CB 不变且 CPD 不变的候选；其 setup 有 14 项改善、4 项退化，新增 hold 违例为零。这是尚未通过整臂与配对准入的中间轨迹，不能归因于共享域或当作完整方法结果。[原生事务观察](../research/dac_v14_20261112/cp1r6_s38417_pair_01/NATIVE_INITIAL_TRANSACTION_OBSERVATION.md)。
+
+Native 完整命令结束且原完整验证通过：CPD 11.057135652 ns，47973 线长、0 SB、191 CB，完整命令 535.287 秒。相对自身根 setup 137 项改善、7 项退化，新增 hold 违例零；domain 与补充只读及配对检查仍待完成。以同输入 native 耗时为条件性参考，domain 可能不同，不能外推上限或时间收益。[native 完整检查点](../research/dac_v14_20261112/cp1r6_s38417_pair_01/NATIVE_COMPLETE_CHECKPOINT.md)。
