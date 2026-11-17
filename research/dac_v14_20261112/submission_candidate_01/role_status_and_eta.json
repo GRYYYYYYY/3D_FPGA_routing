@@ -1,0 +1,127 @@
+{
+  "observed_at": "2026-11-17T00:29:13.709429+00:00",
+  "rows": [
+    {
+      "input": "lstm",
+      "arm": "native",
+      "status": "execution_or_verification_failed",
+      "execution_ended": true,
+      "execution_returncode": 0,
+      "original_verification_passed": false,
+      "supplementary_verification_passed": false,
+      "quality_admitted": false,
+      "legal_no_gain": null,
+      "timeout": false,
+      "infrastructure_error": true,
+      "whole_seconds": 7615.074176583439
+    },
+    {
+      "input": "lstm",
+      "arm": "domain",
+      "status": "running",
+      "execution_ended": false,
+      "execution_returncode": null,
+      "original_verification_passed": false,
+      "supplementary_verification_passed": false,
+      "quality_admitted": false,
+      "legal_no_gain": null,
+      "timeout": false,
+      "infrastructure_error": false,
+      "whole_seconds": null
+    },
+    {
+      "input": "dla_small",
+      "arm": "native",
+      "status": "not_started",
+      "execution_ended": false,
+      "execution_returncode": null,
+      "original_verification_passed": false,
+      "supplementary_verification_passed": false,
+      "quality_admitted": false,
+      "legal_no_gain": null,
+      "timeout": false,
+      "infrastructure_error": false,
+      "whole_seconds": null
+    },
+    {
+      "input": "dla_small",
+      "arm": "domain",
+      "status": "not_started",
+      "execution_ended": false,
+      "execution_returncode": null,
+      "original_verification_passed": false,
+      "supplementary_verification_passed": false,
+      "quality_admitted": false,
+      "legal_no_gain": null,
+      "timeout": false,
+      "infrastructure_error": false,
+      "whole_seconds": null
+    },
+    {
+      "input": "eltwise_sb",
+      "arm": "native",
+      "status": "not_started",
+      "execution_ended": false,
+      "execution_returncode": null,
+      "original_verification_passed": false,
+      "supplementary_verification_passed": false,
+      "quality_admitted": false,
+      "legal_no_gain": null,
+      "timeout": false,
+      "infrastructure_error": false,
+      "whole_seconds": null
+    },
+    {
+      "input": "eltwise_sb",
+      "arm": "domain",
+      "status": "not_started",
+      "execution_ended": false,
+      "execution_returncode": null,
+      "original_verification_passed": false,
+      "supplementary_verification_passed": false,
+      "quality_admitted": false,
+      "legal_no_gain": null,
+      "timeout": false,
+      "infrastructure_error": false,
+      "whole_seconds": null
+    }
+  ],
+  "current_input": "lstm",
+  "current_arm": "domain",
+  "elapsed_seconds": 3234.239999998361,
+  "accepted_resource_steps": 4,
+  "observed_complete_resource_transaction_seconds": [
+    517.4832143075764,
+    518.4368496388197,
+    505.0548777580261,
+    509.1139677837491
+  ],
+  "remaining_roles_including_current": 5,
+  "unstarted_roles": 4,
+  "original_LSTM_native_complete_seconds": 7615.074176583439,
+  "original_LSTM_native_resource_seconds": 6775.915299233049,
+  "original_LSTM_native_tail_difference_seconds": 839.15887735039,
+  "ETA_scope": "conditional planning scenarios, not algorithm cost measurement or stopping condition",
+  "current_domain_remaining_scenario_minutes": [
+    30,
+    150
+  ],
+  "current_domain_assumptions": "2 to12 further ordinary scopes at observed about8.5min, 0to3owner scopes at prior native about11min, plus about14min native observed post-resource tail. Current partly executed scope makes bounds approximate. More accepted rounds or failed fallback probes extend beyond range.",
+  "four_unstarted_roles_scenario_minutes": [
+    120,
+    480
+  ],
+  "unstarted_assumptions": "Planning assumption30to120min per role, spanning smaller known complete controllers and current LSTM126.9min; DLA has no current-version measured calibration. Initial timeouts may end earlier; long adaptive trajectories may exceed range.",
+  "supplementary_checks_scenario_minutes": [
+    10,
+    40
+  ],
+  "supplementary_assumptions": "Original native verifier spent74.44s before failure; all remaining checks/raw admission are unmeasured.10to40min for six-role review is provisional and expands on errors; no native replay.",
+  "total_remaining_scenario_hours": [
+    2.7,
+    11.2
+  ],
+  "paper_candidate_available_now": true,
+  "recoveries_not_in_paper_ETA": true,
+  "hard_finish_date": null
+}

@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[独立六页投稿候选稿](research/dac_v14_20261112/submission_candidate_01/build/main.pdf) · [剩余实验的具体影响](research/dac_v14_20261112/submission_candidate_01/EXPERIMENT_IMPACT.md) · [条件性ETA](research/dac_v14_20261112/submission_candidate_01/ETA.md)。稿件基于paper19已核验证据独立收束，当前实验继续；补充验证已安排在CP1r3确认终结后的首位。
+
 [最新实验、结论与运行队列总览](docs/GitHub_research_status_20261117.md)：已完成BNN匹配计时、CP1r2确认、局部机制消融与负结果；CP1r3 LSTM/domain正在运行，native原验证失败及真实费用保留，后续审计与接续依次排队。
 
 Research remains active; public evidence base `9734eee`, subsequent `279bdb4` and local development are preserved. [Current status](research/dac_v14_20261112/CURRENT_STATUS.md) · [Closed confirmation, mechanism attribution and running work](docs/GitHub_cohort_mechanism_20261116.md) · [Current six-page paper](research/dac_v14_20261112/paper_snapshots/current_balanced_cost_20261116/build/current_repair_main.pdf) · [Paper evidence binding](research/dac_v14_20261112/balanced_cost_paper_binding_19.json).

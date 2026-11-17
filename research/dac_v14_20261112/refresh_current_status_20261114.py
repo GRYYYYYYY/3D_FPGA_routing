@@ -55,9 +55,10 @@ for name in ['stable_seed_transfer_recovery_02','direct_scope_resource_equivalen
              'rejection_feedback_controller_dev_01','complete_route_resource_measurements_01',
              'vector_then_strict_comparison_01','connection_budget_resource_dev_01',
              'complete_serial_resource_measurement_dev_01','complete_serial_resource_measurement_paired_dev_01',
-             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01','cp1r1_cross_circuit_cohort_01','cp1r2_cross_circuit_cohort_01','robot_union_mechanism_02','robot_union_verification_recovery_01','BNN_interleaved_timing_02','BNN_interleaved_timing_03','robot_owner_reentry_audit_01','robot_owner_reentry_audit_02','empty_query_patch_validation_01','confirmation_release_cp1r3_01','robot_p1_prefix_recovery_01','cp1r3_distinct_input_cohort_01','interrupted_stage_reconciliation_01','interrupted_flow_recovery_01']:
+             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01','cp1r1_cross_circuit_cohort_01','cp1r2_cross_circuit_cohort_01','robot_union_mechanism_02','robot_union_verification_recovery_01','BNN_interleaved_timing_02','BNN_interleaved_timing_03','robot_owner_reentry_audit_01','robot_owner_reentry_audit_02','empty_query_patch_validation_01','confirmation_release_cp1r3_01','robot_p1_prefix_recovery_01','cp1r3_distinct_input_cohort_01','interrupted_stage_reconciliation_01','interrupted_flow_recovery_01','CP1r3_supplemental_verifier_01']:
     q=D/name/('' if name.startswith('serial_fused_candidate_validation_') else 'queue')
     if (D/name/'queue_priority_02/registration.json').exists():q=D/name/'queue_priority_02'
+    if (D/name/'queue_priority_03/registration.json').exists():q=D/name/'queue_priority_03'
     reg=read(q/'registration.json')
     phase=read(q/'status.json') if (q/'status.json').exists() else dict(status='running')
     live=process_identity(reg['pid'])
@@ -87,7 +88,7 @@ for name in ['stable_seed_transfer_recovery_02','direct_scope_resource_equivalen
             stage=read(recovery_flow/'active_child.json');actual=process_identity(stage['pid'])
             if actual and actual['state']!='Z' and actual['start_ticks']==stage['start_ticks']:
                 flow_stage=dict(phase=stage.get('tag',stage.get('phase')),pid=stage['pid'],start_ticks=stage['start_ticks'],verified_live=True,actual_process=actual)
-    owners.append(dict(queue_directory=str(q),queue_generation='priority_02' if q.name=='queue_priority_02' else 'original',flow_active_stage=flow_stage,completed_flow_stages=completed_flow_stages,batch=name,wait_channel=wait_channel,effective_wait='shared_serial_slot' if wait_channel and wait_channel.startswith('locks_lock') and phase['status'].startswith('waiting') else None,registration=str(q/'registration.json'),pid=reg['pid'],start_ticks=reg['start_ticks'],
+    owners.append(dict(queue_directory=str(q),queue_generation=q.name.replace('queue_','') if q.name.startswith('queue_priority_') else 'original',flow_active_stage=flow_stage,completed_flow_stages=completed_flow_stages,batch=name,wait_channel=wait_channel,effective_wait='shared_serial_slot' if wait_channel and wait_channel.startswith('locks_lock') and phase['status'].startswith('waiting') else None,registration=str(q/'registration.json'),pid=reg['pid'],start_ticks=reg['start_ticks'],
         verified_live=live is not None,actual_process=live,actual_child=child,
         phase_status='terminal' if terminal else phase['status'],case_or_phase=phase.get('case',phase.get('phase')),terminal_receipt=None if terminal is None else str(q/'completion.json'),
         terminal_passed=None if terminal is None else terminal['passed'],observed_at=now))
@@ -239,7 +240,8 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_BNN_timing03_balanced_publication_receipt_20261116.json',
              'github_balanced_cost_paper_publication_receipt_20261116.json',
              'github_CP1r3_native_failure_publication_receipt_20261117.json',
-             'github_research_status_publication_receipt_20261117.json']:
+             'github_research_status_publication_receipt_20261117.json',
+             'github_submission_candidate_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -885,6 +887,28 @@ if (D/'LSTM_first_scope_mechanism_audit_01/completion.json').exists():
         'local_domain_minus_native','no_release_event_or_owner_coordination_in_this_scope',
         'whole_method_quality_admitted','paper_benefit_claims_authorized','qualification']}
     status['evidence']['LSTM_first_scope_mechanism_audit']='LSTM_first_scope_mechanism_audit_01/completion.json'
+if (D/'LSTM_domain_release_scope_01/completion.json').exists():
+    release_scope=read(D/'LSTM_domain_release_scope_01/completion.json')
+    status['LSTM_domain_release_scope']={k:release_scope[k] for k in [
+        'observed_at','round','accepted','released_net','trigger_pin','failed_restricted_attempts',
+        'post_release_attempts','CPD_ns','resources','source_to_candidate_resource_delta',
+        'endpoint_delta_summary','complete_transaction_seconds','nested_native_core_seconds',
+        'matched_no_release_counterfactual_available','is_complete_algorithm_result',
+        'paper_benefit_claims_authorized','qualification']}
+    status['evidence']['LSTM_domain_release_scope']='LSTM_domain_release_scope_01/completion.json'
+if (D/'confirmation_priority_handoff_03/completion.json').exists():
+    handoff03=read(D/'confirmation_priority_handoff_03/plan.json')
+    status['active_schedule_order']=['cp1r3_distinct_input_cohort_01','CP1r3_supplemental_verifier_01',*[n['batch'] for n in handoff03['stages']]]
+    pred03={n['batch']:n['predecessor'] for n in handoff03['stages']}
+    pred03['CP1r3_supplemental_verifier_01']=str(D/'cp1r3_distinct_input_cohort_01/queue_priority_02')
+    for owner in owners:
+        if owner['batch'] in pred03 and owner['queue_generation']=='priority_03':
+            owner['actual_predecessor_queue']=pred03[owner['batch']]
+            if owner['phase_status'].startswith('waiting'):owner['effective_wait']='priority_dependency: '+str(Path(pred03[owner['batch']]).parent.name)
+    status['evidence']['confirmation_supplemental_priority']='confirmation_priority_handoff_03/completion.json'
+    status['CP1r3_supplemental_verifier'].update(queued=True,new_owner=True,queue='CP1r3_supplemental_verifier_01/queue_priority_03')
+    status['submission_candidate']=dict(source='submission_candidate_01/main.tex',pdf='submission_candidate_01/build/main.pdf',independent_of_recovery_queue=True,evidence_scope='paper19 verified evidence only')
+    status['outstanding'].insert(0,'Priority03: original CP1r3 confirmation continues unchanged; supplementary verifier is the immediate next actual owner before historical audit/recoveries. Submission candidate is independently closed from paper19 evidence. Only relevant experiment rows/applicability/abstract/conclusions change with new admitted confirmation; unfinished recovery is not a paper prerequisite.')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

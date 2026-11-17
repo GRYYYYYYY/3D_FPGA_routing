@@ -42,6 +42,9 @@ def render(status,D):
         if closed_phase:
             v=closed_phase['initial_to_resource_endpoint_delta']
             initial_note+=(f"[已封存LSTM/native资源子流程](CP1r3_lstm_native_resource_phase_01/completion.json)：驱动{closed_phase['resource_complete_driver_seconds']:.3f}s，接受{closed_phase['accepted_resource_steps']}次、尝试{closed_phase['attempted_scopes']}个作用域，owner提交{closed_phase['owner_commits']}。按原精确变化记录沿接受链还原的初始到资源终态setup为{v['setup_improved']}改善/{v['setup_regressed']}退化，新增hold违例退化{v['hold_violation_regressions']}；未新增整向量重读。终结{closed_phase['terminal_mode']}规则在{closed_phase['terminal_same_source_candidates']}个同源候选中无合格选点，保留原资源终态；交接FULL/STA通过。该包仅封存资源子流程，完整方法是否准入须另查原独立核验终态；当前活动阶段以上表实际进程为准。\n\n")
+        release_scope=status.get('LSTM_domain_release_scope')
+        if release_scope:
+            initial_note+=(f"[LSTM/domain第三次接受事务中的失败释放](LSTM_domain_release_scope_01/completion.json)：网{release_scope['released_net']}的pin{release_scope['trigger_pin']}在域内九次搜索失败后触发按网释放，释放后第二次搜索成功；整组八请求完成，原候选FULL/STA/物理审计通过。完整事务{release_scope['complete_transaction_seconds']:.6f}s，相对前态+194线长/−7SB/CB不变，CPD同14.600438192ns，setup2改善/2退化、hold违例退化0。七个SB的变化属于整组事务，没有匹配的no-release反事实，不能全部归因于释放；也不是完整配对方法收益。\n\n")
         failure=status.get('CP1r3_lstm_native_whole_verification_failure')
         if failure:
             initial_note+=(f"LSTM/native完整命令已结束（returncode={failure['command_returncode']}），实测{failure['complete_command_seconds']:.6f}s；原冻结完整核验在{failure['independent_failed_verification_seconds']:.6f}s后失败，原角色状态仍为`{failure['original_status']}`、quality=null。PSS峰值{failure['sampled_tree_PSS_peak_kib']}KiB，缺失内存观察{failure['missing_memory_observations']}次，observer CPU {failure['observer_CPU_seconds']:.6f}s不扣减。\n\n")
@@ -64,7 +67,7 @@ def render(status,D):
 
 {initial_note}机制归因仍受原证据限制：BNN九个guided资源角色无失败释放；既有R1 owner联合修复N/D相同结果归于协调范围扩大。robot三臂只证明该事务中域/释放改变可行取舍，尚非完整确认。conv_hls确认无收益、TPU初始超时、SPMV/CB-only无切口、Robot SDC无接受收益、attention/conv-layer初始失败继续保留。
 
-之后按登记顺序执行四臂只读来源/字节/完整请求/FULL/STA/端点/物理审计，再做robot-p1及四臂阶段接续，最后开发空查询回放。reduction/native原成功日志与running manifest必须独立审计；不改写历史completion、不重复已完成原生查询。新执行阶段单独登记计费，接续费用不冒充冷启动完整费用。
+当前CP1r3确认终结后，Priority03首先执行已登记补充验证器，再执行四臂只读来源/字节/完整请求/FULL/STA/端点/物理审计、robot-p1及四臂阶段接续，最后开发空查询回放。独立投稿候选稿与逐项实验影响、条件性ETA见submission_candidate_01；历史恢复不是稿件统一前置条件。reduction/native原成功日志与running manifest必须独立审计；不改写历史completion、不重复已完成原生查询。新执行阶段单独登记计费，接续费用不冒充冷启动完整费用。
 
 论文：[当前六页正文]({paper})。{paper_note}[新增费用主张绑定](BNN_timing03_balanced_claim_binding_01.json)仅补充同一输入完整费用和复现性证据，不新增独立输入或跨输入收益。完整轨迹与审计留补充材料。最新已核验公开提交见CURRENT_STATUS.json的latest_incremental_publication。Goal不因计时完成、推送、普通负结果或日期终止。
 '''
