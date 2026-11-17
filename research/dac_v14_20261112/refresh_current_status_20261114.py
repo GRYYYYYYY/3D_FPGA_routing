@@ -242,7 +242,8 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_balanced_cost_paper_publication_receipt_20261116.json',
              'github_CP1r3_native_failure_publication_receipt_20261117.json',
              'github_research_status_publication_receipt_20261117.json',
-             'github_submission_candidate_publication_receipt_20261117.json']:
+             'github_submission_candidate_publication_receipt_20261117.json',
+             'github_CP1r3_raw_admission_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -922,6 +923,14 @@ if (D/'confirmation_priority_handoff_04/completion.json').exists():
     status['CP1r3_raw_admission']=dict(queued=True,queue='CP1r3_raw_admission_01/queue_priority_04',plan='CP1r3_raw_admission_01/plan.json',original_owners_preserved=True,actual_full_raw_admission_executed=(D/'CP1r3_raw_admission_01/execution/completion.json').exists(),new_native_or_STA_calls=0,ETA_calibrated=False)
     status['evidence']['confirmation_raw_admission_priority']='confirmation_priority_handoff_04/post_handoff_identity_check.json'
     status['outstanding'].insert(0,'Priority04: preserve original CP1r3 and supplemental owners; additional complete-request/raw-STA/actual-byte/physical-proof/paired-root admission follows the supplemental replay, before historical recovery. No native requery. Original failures and separate audit costs retained; unsupported schemas fail closed. Actual audit duration remains uncalibrated.')
+if (D/'LSTM_budget_cost_progress_01/completion.json').exists():
+    budget_progress=read(D/'LSTM_budget_cost_progress_01/completion.json')
+    status['LSTM_budget_and_conditional_ETA']={k:budget_progress[k] for k in ['observed_at','accepted_prefix_steps','remaining_resource_budget','ordinary_transaction_observed_range_seconds','conditional_scheduling_scenarios','additional_raw_admission_ETA','whole_domain_quality_admitted','complete_domain_seconds','paired_cost_ratio','qualification']}
+    status['evidence']['LSTM_budget_and_conditional_ETA']='LSTM_budget_cost_progress_01/completion.json'
+if (D/'LSTM_transaction_costs_01/completion.json').exists():
+    transaction_costs=read(D/'LSTM_transaction_costs_01/completion.json')
+    status['LSTM_transaction_cost_diagnostic']={k:transaction_costs[k] for k in ['observed_at','completed_transactions','groups','engineering_direction','whole_pair_quality_admitted','formal_pair_cost_ratio','qualification']}
+    status['evidence']['LSTM_transaction_cost_diagnostic']='LSTM_transaction_costs_01/completion.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

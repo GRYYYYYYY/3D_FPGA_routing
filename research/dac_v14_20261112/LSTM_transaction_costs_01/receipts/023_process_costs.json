@@ -1,0 +1,98 @@
+[
+  {
+    "tag": "source_serialization_control",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/run_crossing_source_seed_analysis_v1.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_003/candidate_02/reuse_off_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02/source_serialization_control",
+      "--native-cases",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02/source_empty_request.txt",
+      "--seed-order",
+      "delay_rr_id",
+      "--candidate-full-sta",
+      "--inputs",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02/source_serialization_control_inputs.json"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 222.54399149119854
+  },
+  {
+    "tag": "joint_native_native",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/run_crossing_source_seed_analysis_v1.py",
+      "--source",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_003/candidate_02/reuse_off_evaluation/runs/state",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02/joint_native",
+      "--native-cases",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02/request.txt",
+      "--objective",
+      "weighted_soft",
+      "--seed-order",
+      "delay_rr_id",
+      "--candidate-full-sta",
+      "--expected-loaded-source-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02/source_serialization_control/runs/state/candidate/routed.route",
+      "--inputs",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02/joint_native_native_inputs.json"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 222.84101421013474
+  },
+  {
+    "tag": "joint_native_audit",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/audit_native_feedback_objective_cached.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02",
+      "--role",
+      "joint_native",
+      "--cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/joint_graph_indexes/audit_cache",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02/joint_native_audit"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 39.418896678835154
+  },
+  {
+    "tag": "joint_native_domain_audit",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/audit_retained_crossing_domain.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02",
+      "--role",
+      "joint_native"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 0.24642052501440048
+  },
+  {
+    "tag": "joint_native_candidate_materialization",
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/materialize_crossing_source_candidate_v1.py",
+      "--worker",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02/joint_native",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02/joint_native_evaluation",
+      "--audited-route",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/repair/round_004/owner_02/joint_native_audit/candidate.route",
+      "--full-graph-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native/flow/resource_flow/joint_graph_indexes/full_cache"
+    ],
+    "returncode": 0,
+    "status": "completed",
+    "complete_process_seconds": 125.32858881354332
+  }
+]
