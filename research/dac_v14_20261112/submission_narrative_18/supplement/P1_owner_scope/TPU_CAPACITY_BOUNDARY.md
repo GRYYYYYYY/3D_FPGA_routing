@@ -1,0 +1,7 @@
+# TPU-small-OS P1 capacity boundary
+
+The historical Hybrid-O root supplies a fixed directed routing graph and legal occupancy. The target has eight unit-capacity same-layer exits, all occupied. For each of eight screened single-owner scopes, removing the target's local branch and the selected owner branch leaves exactly one exit. Every same-layer replacement must use it. All eight owner-first searches exhausted with that exit reserved, before adding the target path.
+
+With branches of owners 6335 and 6328 both removed, owner 6335 can reconnect while 6328 stays disconnected. Completing the three-net candidate fails in both tested owner orders, for either assignment of exits 974548 and 974554 to the target. The shared-node probe independently exhausts each owner's search with both exits excluded while the target remains disconnected. Therefore each owner requires the one remaining unit-capacity exit when the other is reserved for the target. This certificate applies to the fixed retained trees, removed branches, residual graph, and same-layer target choice. Larger scopes have an open feasibility question.
+
+The sequential search results are in TPU_TWO_OWNER_ORDER_CONTRAST.json and TPU_ALTERNATE_ESCAPE_CONTRAST.json. The exhaustive residual reachability receipts are indexed by TPU_SHARED_NODE_CUT.json and TPU_OWNER_FIRST_SUMMARY.json. TPU_OWNER_MANDATORY_ESCAPE.json binds the exit counts to the source route. These diagnostics made zero native routing or STA calls. Reported times are local structural construction times.
