@@ -1,6 +1,6 @@
 # s38584.1完整配对通过与六页投稿15
 
-[投稿15 PDF](../research/dac_v14_20261112/submission_narrative_15/build/main.pdf) · [48行完整配对表](../research/dac_v14_20261112/submission_narrative_15/COMPLETE_PAIR_TABLE.md) · [适用性汇总](../research/dac_v14_20261112/mechanism_applicability_current_03/APPLICABILITY.md) · [整臂及配对判定](../research/dac_v14_20261112/S38584_complete_admission_01/admission_decision.json)。投稿14保留，原46行、统一方法、prior-art和机制对照保持。
+[投稿15 PDF](../research/dac_v14_20261112/submission_narrative_15/build/main.pdf) · [48行完整配对表](../research/dac_v14_20261112/submission_narrative_15/COMPLETE_PAIR_TABLE.md) · [适用性汇总](../research/dac_v14_20261112/mechanism_applicability_current_04/APPLICABILITY.md) · [整臂及配对判定](../research/dac_v14_20261112/S38584_complete_admission_01/admission_decision.json)。投稿14保留，原46行、统一方法、prior-art和机制对照保持。
 
 ## 完整配对：通过，缺口为空
 
