@@ -54,6 +54,12 @@ def render(status,D):
     if status.get('CP1r4_GEMM_registered_pair'):
         note='\n[CP1r4 GEMM一输入两角色确认](cp1r4_gemm_pair_01/STATUS.md)：实际+inf donor故障及两个完整规划器回放已核验（8.218278秒；首次观测钩子失败10.608246秒保留），独立冻结5.043296秒，source+固定wheel重建及迁移checker通过。仅数值解析改变，预算/搜索/接受/终结规则继承。GEMM输入复制核验56.263702秒；登记native/domain顺序固定，实际角色/阶段以上表和原回执为准。已知历史不同电路，同架构族；完整方法与配对收益尚未准入，初始根门槛另见CURRENT_STATUS.json。后续整臂耗时尚无同电路样本，不借用BNN耗时；投稿05与原CP1r3失败保持。\n'
         first,rest=result.split('\n',1);result=first+'\n'+note+rest
+    if status.get('GEMM_native_initial_timeout'):
+        note='\n[GEMM/native原初始执行超时](GEMM_native_initial_timeout_01/STATUS.md)：完整命令2940.966587秒，原初始native1800.028913秒触发1800秒保护，FULL/STA合法根及QoR为空；PSS27678859KiB、缺测2、无残留后代。原日志第23次迭代打印0过用，但后续继续原收敛机会、最后第26次60383过用后超时，中间打印值不作完整结果。domain按原登记运行，剩1角色；若复现同源native超时路径，以整臂约49分钟作条件参照，获得合法根/更早结束会使该情景失效，不拼接组件或算失败比例。\n'
+        first,rest=result.split('\n',1);result=first+'\n'+note+rest
+    if status.get('CLSTM_domain_registered_recovery_02'):
+        note='\n[CLSTM/domain必要接续已登记](CLSTM_domain_recovery_02/STATUS.md)：11项小元数据/拒绝检查通过，独立副本仅处理已审计精确空监督文件的身份读取，保留原unknown退出与全部旧失败。实际owner在GEMM完整队列终结并退出后取串行槽，先复核实际来源字节，再复用旧23连接native阶段、执行缺失物理/domain/STA及原接受流程。当前候选/完整恢复尚未通过；旧CP1r3算法与预算不变，不抢占当前GEMM。\n'
+        first,rest=result.split('\n',1);result=first+'\n'+note+rest
     return result
 
 def _render(status,D):
@@ -74,7 +80,7 @@ def _render(status,D):
     paper=Path(status['paper_pdf']).relative_to(D)
     queue_note=('Priority05原顺序为确认、补充/raw、四档代价对照、历史来源审计及恢复、开发空查询。实际执行/验证是否终结以上述回执与进程表为准；历史费用不拼接成新鲜完整费用，新阶段单独登记，既有原生结果通过准入后复用。')
     if status.get('submission_candidate_latest'):
-        queue_note='原确认、原补充/raw、四档代价执行及三档必要只读准入、原四臂恢复和CLSTM来源阶段审计均已终结，原失败保持。CLSTM候选物理/domain/STA及完整接续尚未完成，后续需独立登记并复用已核验23连接原生结果；真正独立输入与实际新物理起点优先于BNN局部微调。未登记后继不写成正在运行，不为普通拒绝新增同类计划。稿件不依赖全部历史恢复，Goal不以队列终结为完成条件。'
+        queue_note='原确认、原补充/raw、四档代价执行及三档必要只读准入、原四臂恢复和CLSTM来源阶段审计均已终结，原失败保持。CLSTM候选物理/domain/STA及完整接续尚未完成；接续02已独立登记在GEMM两臂终结之后，取得串行槽后先复核字节、再按原门槛复用已核验23连接原生结果；真正独立输入与实际新物理起点优先于BNN局部微调。未登记后继不写成正在运行，不为普通拒绝新增同类计划。稿件不依赖全部历史恢复，Goal不以队列终结为完成条件。'
     if status.get('BNN_timing03_balanced_complete'):
         b=status['BNN_timing03_balanced_complete']
         times=' / '.join(f"{r['complete_command_seconds']:.6f}" for r in b['rows'])

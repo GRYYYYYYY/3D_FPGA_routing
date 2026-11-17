@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[GEMM native原预算超时与CLSTM已登记接续](docs/GitHub_GEMM_native_timeout_20261117.md)：native完整尝试2940.97秒，未获通过FULL/STA的合法根；domain已进入原初始路由。中间零过用打印不计合法候选，不重跑或放宽预算。CLSTM接续02的11项元数据检查通过，实际等待GEMM终结后先复核来源字节，复用既有23条native请求，缺失阶段新执行计费。当前没有新增完整收益；六页投稿05和BNN完整取舍保持。
+
 [CP1r4实际slack修复与GEMM匹配确认启动](docs/GitHub_CP1r4_GEMM_20261117.md)：实际"+inf"故障及双臂完整规划器回放通过，5连接仅为提案；独立冻结和source+固定wheel重建/迁移准入完成。GEMM约13.22GiB字节/实际布局预检及56.26秒输入复制复核通过，native已真实启动、domain随后；不同已知历史电路、同架构族，暂无完整配对收益。CP1r3原失败与六页投稿05保持，软件诊断费用和准备费用均单列。
 
 

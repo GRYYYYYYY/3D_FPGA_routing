@@ -1,0 +1,58 @@
+{
+  "registered_at": "2026-11-17T13:59:28.119474+00:00",
+  "parent_extension": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension",
+  "changed_extension_files": [
+    "same_actor_stage_reuse_v1.py"
+  ],
+  "added_helpers": [
+    "audited_empty_supervision_view_v1.py",
+    "empty_interrupted_supervision_identity_v1.py"
+  ],
+  "replacements": [
+    [
+      "from recovery_prefix_v1 import Evidence,compatible_roles,live_identity",
+      "from recovery_prefix_v1 import Evidence,compatible_roles,live_identity\nfrom audited_empty_supervision_view_v1 import supervision_identity_view"
+    ],
+    [
+      "for identity in read(path).values():",
+      "for identity in supervision_identity_view(path,self.plan,self._proof(),self.evidence,self.audited).values():"
+    ],
+    [
+      "source_sha256=self.evidence.bound,**details)",
+      "source_sha256=self.evidence.bound,supervision_corroboration=self.proof.get(\"supervision_corroboration\"),**details)"
+    ]
+  ],
+  "reversible_to_original_stage_reuse_body": true,
+  "all_other_original_dispatch_and_prefix_files_byte_identical": true,
+  "native_source_stage_admitted_by_actual_audit": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_empty_supervision_audit_02/audit.json",
+  "candidate_physical_domain_STA_not_admitted": true,
+  "new_native_calls": 0,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/resume_timing_transaction.py": "2e85198678994c797b8e8fa4866fde7b4d0975bb222a251158e02c92ae18f5b3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/resume_resource_controller.py": "3aa746f33fa4471d6187e6dc3632c1c0977c50e43e195c274ed9fea349af9944",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/resume_timing_controller.py": "48a95dcabc79d9c9d06e8ce2bdeacf50ea0a251942a4efc1dbabf0a0f820a525",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/same_actor_timing_prefix_v1.py": "8ae3b4412d1f7ca558628a019f757ca690f5c7b3d9da7ee66e337b134457814d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/same_actor_resource_prefix_v2.py": "8265dfa0c0693dd922f79c9dae8671b7ea4bcf649af74b97eea3fc9a8bd671b2",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/run_interrupted_full_flow_recovery_v1.py": "a6b3cfe1002382cc120e5a7a25411d6edf7fb37f8d5778e65666fca745b99dbf",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/resume_resource_transaction.py": "8a216d094ee4e3341f25e0e539f898b7fbd43b703ae888efd399d801b07653bb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/same_actor_stage_reuse_v1.py": "ebfc5953a02cb09f0d0ebef02ba35a4fc15ccf54ebdcaecaa6d8a59475f2b53b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/interrupted_flow_recovery_01/runtime_extension/recovery_prefix_v1.py": "b10ee592c9963c8484da7b5c9d2183f9654769f7b15d73bb6721b61e230a7243",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audited_empty_supervision_view_v1.py": "4c95ffbb7be72fe766a008dd5f731574474f39b0cd4a1485f13310b910a8abef",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/empty_interrupted_supervision_identity_v1.py": "10d2de5a117b2affc047f27e5549d80e9aae75d85c259c58ab7f87b566165140",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_empty_supervision_audit_02/audit.json": "292b1999449e3dcc6b91d1a2435193456b23bbe32f6ee9cf0a98f51d795005f7"
+  },
+  "new_extension_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/runtime_extension/resume_timing_transaction.py": "2e85198678994c797b8e8fa4866fde7b4d0975bb222a251158e02c92ae18f5b3",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/runtime_extension/resume_resource_controller.py": "3aa746f33fa4471d6187e6dc3632c1c0977c50e43e195c274ed9fea349af9944",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/runtime_extension/resume_timing_controller.py": "48a95dcabc79d9c9d06e8ce2bdeacf50ea0a251942a4efc1dbabf0a0f820a525",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/runtime_extension/empty_interrupted_supervision_identity_v1.py": "10d2de5a117b2affc047f27e5549d80e9aae75d85c259c58ab7f87b566165140",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/runtime_extension/same_actor_timing_prefix_v1.py": "8ae3b4412d1f7ca558628a019f757ca690f5c7b3d9da7ee66e337b134457814d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/runtime_extension/same_actor_resource_prefix_v2.py": "8265dfa0c0693dd922f79c9dae8671b7ea4bcf649af74b97eea3fc9a8bd671b2",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/runtime_extension/audited_empty_supervision_view_v1.py": "4c95ffbb7be72fe766a008dd5f731574474f39b0cd4a1485f13310b910a8abef",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/runtime_extension/run_interrupted_full_flow_recovery_v1.py": "a6b3cfe1002382cc120e5a7a25411d6edf7fb37f8d5778e65666fca745b99dbf",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/runtime_extension/resume_resource_transaction.py": "8a216d094ee4e3341f25e0e539f898b7fbd43b703ae888efd399d801b07653bb",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/runtime_extension/same_actor_stage_reuse_v1.py": "2d3253a96c4d5a0537370864fac17a31501e2f04f7243e0381ac2367f4049372",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/runtime_extension/recovery_prefix_v1.py": "b10ee592c9963c8484da7b5c9d2183f9654769f7b15d73bb6721b61e230a7243"
+  },
+  "qualification": "Only a bound metadata identity view changes. Exact old empty bytes/history and current dead identities required. Original CP1r3 algorithms and acceptance remain; missing physical/domain/STA still execute separately. Metadata preparation, not recovery execution or candidate admission."
+}
