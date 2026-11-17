@@ -1,0 +1,240 @@
+\RequirePackage[T1]{fontenc}
+\documentclass[conference,10pt]{IEEEtran}
+\usepackage{amsmath,amssymb,graphicx,url}
+\title{Dependency-Aware Reconstruction for Budgeted Cross-Layer Resource Release in 3D FPGA Routing}
+\author{\IEEEauthorblockN{Anonymous submission}}
+\begin{document}
+\maketitle
+\begin{abstract}
+Moving one connection need not release a shared cross-layer resource: every dependent branch must move, and other networks may block alternatives. We study dependency-aware reconstruction on fixed 3D FPGA architectures and placements under timing and resource budgets. Current timing selects complete branch groups; retained crossings guide restoration, failed nets relax domains, and blocking owners expand scope. Whole-candidate checks and fixed-budget acceptance select the final route. Matched BNN flows reduce SB occupancy from 82 to 43 and CB sources from 5062 to 5060 at equal CPD, spending 1786 wire units and 24.91\% additional complete time. SB and total vertical-count reductions are 47.56\% and 0.797\%. An audited LSTM pair exchanges 2187 wire for 70 SB at equal CPD/CB; archival interference precludes a clean overhead ratio. A matched LSTM ablation isolates release-enabled group completion. Endpoint regressions remain explicit. TPU-OS adds no domain saving; elliptic, frisc, clma and s38584 show common timing gains without eligible release groups. Known CLSTM on a different SB-only graph and placement exchanges 52 wire for one SB at equal CPD. All four matched crossing-cost controls reduce SB but exceed the CB cap; guidance with release reaches a CB-feasible point on that scope. Owner controls isolate coordination. No-gain, failure, timeout and unadmitted cases delimit applicability.
+\end{abstract}
+\begin{IEEEkeywords}
+3D FPGA, routing, shared branches, dependency-aware reconstruction, timing--resource tradeoffs
+\end{IEEEkeywords}
+
+\section{Introduction}
+Three-dimensional FPGAs extend programmable interconnect across logic layers, creating opportunities to improve connectivity and timing while introducing scarce cross-layer resources. Recent work explores configurable vertical architectures, multi-die routing models, and placement flows that account for layer crossings~\cite{lazagna,multidie,flatland}. These advances motivate a complementary routing question: once architecture, packing and placement are fixed, how can a legal route release redundant vertical occupancy without violating explicit timing and resource budgets?
+
+However, connection-level improvement and resource release are different events. A crossing shared by several sink paths remains occupied when only one path moves. Even a complete branch cut may have no useful replacement while other networks hold its same-layer escape routes. Finally, a locally shorter or cheaper connection need not improve final timing: a different endpoint can become critical, and noncritical endpoints can regress despite unchanged CPD. The central difficulty is therefore to identify and reconstruct the dependencies that keep a resource occupied, then judge the complete result under the intended budget.
+
+Prior work addresses several relevant levels. Architecture and placement methods change the available fabric or demand distribution~\cite{lazagna,flatland}. PathFinder and subsequent repair methods optimize congestion and timing~\cite{pathfinder,liurepair}; AIR retains useful routing and improves existing solutions, while CRoute explicitly negotiates same-net sharing and reroutes critical connections~\cite{air,croute}. Inter-die cost terms and die-aware router lookahead already guide paths according to crossing costs~\cite{nasiri,multidie}. Sharing, incremental repair and timing optimization are thus established ideas. Our task is budgeted release of existing cross-layer occupancy through complete branch and blocking-owner reconstruction. We evaluate matched native controls within our implementation; we neither reproduce these external routers nor claim that a crossing-cost penalty cannot obtain the same tradeoff.
+
+We develop a dependency-aware reconstruction method that combines complete branch-group selection, retained-crossing domains, per-net relaxation after failed search, blocking-owner coordination, and whole-group acceptance. The contribution is the relationship between the released dependency, the reconstructed scope and the final budgeted decision, together with controls that separate their effects. At equal BNN CPD, matched complete flows reduce SB occupancy by 47.56\% and total SB+CB occupancy by 0.797\%, spending 1786 wire units and 24.91\% additional complete time in symmetric repeats. Completed mechanism controls attribute equal native/domain owner results to coordination, and distinguish domain-induced tradeoffs from release-enabled feasibility. Negative results show where these dependencies do not yield useful reconstruction.
+
+\section{Problem and Dependency Insight}
+\subsection{Fixed-input budgeted reconstruction}
+The input fixes a directed routing-resource graph, packed netlist, placement, endpoint mapping, clock domains and timing constraints. A legal route $R$ connects every terminal using real graph edges and respects capacities. We measure CPD $D(R)$, planar wire $W(R)$, occupied vertical SB pairs $S(R)$ and occupied CB output sources $C(R)$. The two halves of an SB pair count once; several CB edges from one output do not become independent output resources. Complete execution time $T$ is an additional measured cost, not an edge weight.
+
+Given root $R_0$, resource reconstruction seeks lower vertical occupancy within
+\begin{equation}
+ \begin{aligned}
+ D(R)&\le D_{\max}, & W(R)&\le W_{\max},\\
+ S(R)&\le S_{\max}, & C(R)&\le C_{\max}.
+ \end{aligned}
+\label{eq:budget}
+\end{equation}
+Our principal resource experiments set $D_{\max}=D(R_0)$, $W_{\max}=\lceil1.001W(R_0)\rceil$, and vertical caps to the root counts. Another registered setting uses $1.02D(R_0)$. Within resource reconstruction, these limits never roll forward after a commit. They are experimental requirements, not claimed external application specifications. Strict CPD repair and endpoint-nonregression are separate policies for selecting other useful working points.
+
+\subsection{A crossing is released only when its dependencies leave}
+For a net $n$ and occupied crossing resource $r$, let $U_n(r)$ be the sinks whose current source-to-sink paths use $r$. In a route tree, moving a proper subset of $U_n(r)$ leaves $r$ necessary for a retained path. Releasing its occupancy requires removing every current dependency on it and restoring those sinks without reintroducing that resource. For paired or shared graph encodings, this condition is evaluated over the counted physical resource rather than over an individual edge.
+
+This gives a structural selection criterion, not a savings guarantee. Another retained crossing may serve the removed sinks, but capacity, directionality and timing can prevent the replacement. We therefore select whole crossing-dependent branches before searching and evaluate the realized resource counts afterward. Grouping changes which dependency can be removed; a path preference alone does not identify that group. Whether a simple cost change finds the same solution for a fixed group is a separate empirical question.
+
+\subsection{Some dependencies cross network boundaries}
+Consider a source whose sole OPIN has only unit-capacity same-layer exits, all occupied by other nets. With a same-layer sink, its legal route may be forced to cross outward and return through another vertical resource. Reconstructing only that target cannot free the occupied exits. A blocking owner's branch must also move if the same-layer escape is to become available. The observed R1 case has eight such occupied exits; coordinating one owner reaches the fixed terminal bound whereas the target-only scope retains excess occupancy.
+
+The two dependencies lead to different actions. Shared branches motivate a complete cut and retained-crossing guidance. Failure caused by that guidance motivates per-net relaxation. A capacity-certified blocker motivates a larger multi-net scope. None of these actions is required to improve CPD on its own; the complete reconstruction must satisfy the selected acceptance rule.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=.99\textwidth]{data/dependency_mechanisms.pdf}
+\caption{Three dependencies and their corresponding reconstruction actions. Drawings are schematic, not device-coordinate plots. (a) A crossing remains occupied until every dependent branch is removed; restoration can share a retained crossing. (b) A retained-crossing domain can block completion; relaxation changes only the failing net's permitted crossings. (c) Releasing an exit held by another net requires adding its owner branch. Existing shared-cut records, robot release controls and the R1 owner comparison ground these cases; Table~\ref{tab:attribution} states their separate attribution limits.}
+\label{fig:dependencies}
+\end{figure*}
+
+\section{Design: Reconstruct and Accept Complete Groups}
+\subsection{Select complete branches using current timing}
+Resource selection scans current route trees for a crossing-dependent subtree with structural release potential and a retained crossing alternative. It removes all selected descendant sinks while preserving paths to other sinks. Current slack screens proposals; deterministic ranking prefers released crossings per removed sink, fewer sinks, larger margin, then net and pin identifiers. A K8 group contains at most eight distinct nets. Connections are restored in descending current raw criticality with deterministic ties. Every accepted state receives a fresh selector, preventing historical criticalities from deciding later groups.
+
+The timing phase follows current native winning paths, including tied fan-ins. Its candidates may improve CPD or endpoint quality under their registered policy. This phase is also available to the native control; the complete BNN comparison includes three timing commits in each arm. We do not credit a common timing-repair opportunity to the sharing domain. At the resource-to-timing handoff $R_h$, strict CPD repair fixes $W_{\max}=\lceil1.001W(R_0)\rceil$, $S_{\max}=S(R_h)$ and $C_{\max}=C(R_h)$. These caps remain fixed during timing repair, preserving the achieved vertical counts.
+
+\subsection{Guide sharing, then relax only the failed net}
+For each selected group, the method copies its trees and prunes exactly the registered sinks. Retained paths remain intact. Native search uses the full device search box and the existing timing/congestion objective; physical switch delays and final STA are unchanged. Every private restoration updates occupancy before the next connection is searched.
+
+A retained-crossing domain permits cross-layer edges only through sources retained after pruning. This encourages the removed branch to share available structure. The matched unrestricted control has the same source, group, ordering, search range and objective. The integrated domain arm tries guidance first; only complete resource acceptance permits skipping its optional unrestricted diagnostic. A rejected or failed guided candidate retains a same-source unrestricted fallback. After a commit, the two complete arms may diverge and each reselects from its own current state.
+
+If a guided search fails to restore a selected branch, per-net relaxation resets that search's costs and removes only the affected net's domain. Earlier restorations remain private and other nets remain guided. Search failure itself is not an infeasibility proof. The robot and R1 diagnostics separately identify conditional domain obstructions; release repairs this restriction but does not move an outside blocking owner.
+
+\subsection{Coordinate a blocking owner when scope is insufficient}
+When ordinary resource groups stall, the method inspects current source escapes. A unit-capacity witness identifies a target whose same-layer exits are occupied and the owner nets holding those exits. Target and owner descendant cuts must pass current timing-margin screens. Groups are ranked using crossing excess, connection count, margin and identifiers, and the registered owner windows are evaluated without a crossing domain in both complete arms.
+
+Owner coordination is a separate scope expansion. In R1, unrestricted and target-CB-domain reconstruction produce the same complete route and endpoint vector after adding an owner. The benefit is therefore coordinated release of the blocking resource. In robot, a larger owner scope improves endpoints while spending wire and CB capacity, so the resource policy rejects it. A witness explains why to try a scope; acceptance determines whether that scope is useful.
+
+\subsection{Check the whole reconstruction and retain a final point}
+Independent checks verify real edges, preserved branches, terminals, global capacity and actual resource counts; native FULL and fresh STA evaluate the complete candidate. A resource commit requires matched endpoint/domain identities, no increased hold violation, Eq.~\ref{eq:budget}, and a strict decrease in at least one selected vertical count without increasing the others. Rejection or failure restores the source exactly. Private intermediates may spend slack or resources because only the complete group is accepted.
+
+Other policies remain explicit. Strict CPD requires $D(R')<D(R)$ with no numerical tolerance. Endpoint acceptance requires matching endpoint/launch/capture identities, nonworse setup components, a strict setup improvement and no increase in hold violation. Equal CPD alone does not imply endpoint equivalence. Terminal selection operates only on legal observations from that execution, using its fixed policy rather than a retrospectively chosen best historical state. In complete resource--timing flows, endpoint-safe wire selection precedes this handoff; the reported output is the terminal state of strict timing repair.
+
+\begin{figure}[t]
+\centering\footnotesize
+\fbox{\begin{minipage}{.93\columnwidth}
+\textbf{Dependency-aware reconstruction}\\
+Input: fixed graph, placement, root budgets, policies.\\
+1. Obtain a legal root; otherwise retain the failure.\\
+2. Observe current STA, sharing and capacity.\\
+3. Select complete branch groups; restore privately.\\
+4. Try retained domains; relax only a failed net.\\
+5. Evaluate same-source fallback when required.\\
+6. If the menu stalls, try diagnosed owner groups.\\
+7. Check the whole candidate; accept or restore.\\
+8. Reobserve after commits; on menu closure apply the fixed terminal rule and report complete cost.
+\end{minipage}}
+\caption{The mechanism order and acceptance budget are fixed before execution. The native arm receives the same selection and owner opportunities.}
+\label{fig:algorithm}
+\end{figure}
+
+\section{Validation and Matched Complete Results}
+\subsection{Experimental scope and measurement}
+VTR~\cite{vtr9paper} revision\newline\texttt{0b912334fdd83bb754b302146ac0d1ec9edc9a0e} runs serial clustered routing on two-layer Hybrid-O/SB-only/CB-only graphs. Matched arms share physical inputs and opportunities. BNN permits eight native convergence attempts at 1.01; without supplied SDC it retains default ideal clock and zero I/O/setup/hold constraints. Robot's extra placement uses 20-ns clock and max1/min0-ns I/O~\cite{vprsdc}, benchmark settings without application-closure guarantees.
+
+Complete time includes indexing, routing, repair, rejects, STA, checks and output; packing/placement and compilation are upstream. BNN, LSTM, TPU-OS, CLSTM-SB, elliptic, frisc, clma and s38584 include timing repair; earlier rows complete registered resource configurations. Imported-control costs are separate; comparisons use matched pairs.
+
+\begin{table*}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\caption{Complete native (N)/domain-first (D) pairs. Wire/SB/CB are occupancy; endpoints are setup better/worse and added hold violations versus own roots. PSS is sampled tree GiB. BNN times are two-repeat means; later variants are single pairs. Failures retain costs without quality. LSTM interference prevents a clean ratio; frisc has supplementary SDC-report admission.}
+\label{tab:completecost}
+\begin{tabular}{lrrrrr}\hline
+Circuit/role & CPD(ns) & Wire/SB/CB & Time(s) & PSS & Setup $+/-$/Hold$^-$\\\hline
+Eltwise N&6.018101&217050/26/968&290.19&1.274&23/2/0\\
+Eltwise D&6.018101&217183/24/965&289.21&1.302&26/25/0\\
+SPMV N&7.034698&148463/0/967&91.69&1.010&0/0/0\\
+SPMV D&7.034698&148463/0/967&91.55&1.034&0/0/0\\
+Softmax N&8.975747&169486/3/713&274.22&2.502&29/0/0\\
+Softmax D&8.975747&169486/3/713&336.68&2.534&29/0/0\\
+SB-only N&6.040485&227439/999/0&424.59&1.271&2/49/0\\
+SB-only D&6.040485&227459/999/0&533.57&1.282&0/27/0\\
+CB-only N&5.862299&212511/0/982&74.15&0.740&0/0/0\\
+CB-only D&5.862299&212511/0/982&72.46&0.740&0/0/0\\
+SB 102\% N&6.040485&227439/999/0&448.09&1.285&2/49/0\\
+SB 102\% D&6.114032&227583/995/0&581.65&1.257&90/482/0\\
+BNN balanced N&13.228146&2059631/82/5062&7308.61&11.062&14/17/0\\
+BNN balanced D&13.228146&2061417/43/5060&9129.25&11.063&547/820/0\\
+Robot N&13.354624&251116/9/653&377.71&2.517&209/0/0\\
+Robot D&13.354624&251136/9/652&424.45&2.509&209/32/0\\
+Conv-layer N (initial fail)&--&--&260.10&--&--\\
+Conv-layer D (initial fail)&--&--&254.57&--&--\\
+Robot SDC N&12.727250&250411/2/526&498.00&2.438&0/0/0\\
+Robot SDC D&12.727250&250411/2/526&504.09&2.421&0/0/0\\
+Attention N (initial fail)&--&--&794.67&--&--\\
+Attention D (initial fail)&--&--&792.69&--&--\\
+Conv-hls CP1r2 N&14.351002&84291/0/37&505.17&3.964&0/0/0\\
+Conv-hls CP1r2 D&14.351002&84291/0/37&500.90&3.964&0/0/0\\
+TPU-WS CP1r2 N (initial timeout)&--&--&1904.67&2.434&--\\
+TPU-WS CP1r2 D (initial timeout)&--&--&1906.23&2.433&--\\
+LSTM CP1r3 N (supp. admitted)&14.600438&2388083/492/8316&7615.07&11.269&20/5/0\\
+LSTM CP1r3 D (supp. admitted)&14.600438&2390270/422/8316&26657.73&11.498&71/27/0\\
+DLA-small CP1r3 N (initial fail)&--&--&709.74&6.746&--\\
+DLA-small CP1r3 D (initial fail)&--&--&702.41&6.746&--\\
+SB-layout CP1r3 N (execution error)&--&--&903.23&1.377&--\\
+SB-layout CP1r3 D (execution error)&--&--&1042.86&1.398&--\\
+GEMM CP1r4 N (initial timeout)&--&--&2940.97&26.397&--\\
+GEMM CP1r4 D (initial timeout)&--&--&2925.41&26.394&--\\
+TPU-OS CP1r5 N&7.812206&360117/17/1563&941.32&2.808&108/0/0\\
+TPU-OS CP1r5 D&7.812206&360121/17/1563&944.17&2.831&108/0/0\\
+CLSTM-SB CP1r5 N&6.590324&234918/941/0&1430.08&2.778&176/652/0\\
+CLSTM-SB CP1r5 D&6.590324&234970/940/0&918.13&2.770&193/644/0\\
+Elliptic CP1r5 N&12.419320&37962/0/0&286.70&1.167&260/0/0\\
+Elliptic CP1r5 D&12.419320&37962/0/0&282.94&1.143&260/0/0\\
+Frisc CP1r5 N (supp. admitted)&16.198166&41576/0/256&103.28&0.580&192/0/0\\
+Frisc CP1r5 D (supp. admitted)&16.198166&41576/0/256&103.23&0.594&192/0/0\\
+Clma CP1r6 N&14.713963&106127/4/450&668.98&1.197&2/0/0\\
+Clma CP1r6 D&14.713963&106127/4/450&659.82&1.196&2/0/0\\
+Clma IO CP1r6 N&14.899788&106117/1/450&677.24&1.196&3/0/0\\
+Clma IO CP1r6 D&14.899788&106117/1/450&681.11&1.182&3/0/0\\
+S38584 CP1r6 N&10.684766&48338/0/183&278.23&1.159&5/0/0\\
+S38584 CP1r6 D&10.684766&48338/0/183&280.16&1.185&5/0/0\\
+\hline\end{tabular}
+\end{table*}
+
+\subsection{BNN: release occupancy at a measurable cost}
+BNN starts from identical trees and endpoint vectors. Native/domain commit five/nine resource groups and three timing steps each, reaching 13.228145690 ns. Domain trades 1786 wire for 39 SB and two CB (Table~\ref{tab:completecost}). Final setup has 534 improvements/803 regressions, with no added hold violation.
+
+The SB reduction is $(82-43)/82=47.56\%$, whereas the total vertical-count reduction is $(5144-5103)/5144\simeq0.797\%$. Scarce SB occupancy may matter even when CB sources dominate the total. These are occupancy savings on the same fabricated graph, not measured area or power reductions. Fixed terminal layers require 5103 counted nonglobal nets to cross. With the audited unit-capacity CB sources and paired SB resources, $S+C\ge5103$; the domain route attains this bound, and under $C\le5060$ also attains $S\ge43$. This conditional occupancy bound does not establish optimal placement, wire or timing.
+
+Symmetric N/D/D/N execution yields mean complete times 7308.61/9129.25 s, or 24.91\% additional domain time. Same-role trajectories, full requests, native work, graph payloads and fresh paired roots match; final endpoint comparisons are compatible. Paired time ratios are 1.24796 and 1.25026. The original cold pair costs 7933.25/9754.31 s, or 22.95\% overhead, retained separately. Neither result is assembled from component times. The four repeats add no independent circuit, and two samples per arm on a shared host support descriptive cost rather than a statistical speedup claim.
+
+\subsection{Where the tradeoff transfers, and where it does not}
+Eltwise trades 133 additional wire for two fewer SB and three fewer CB at equal CPD. Robot trades 20 wire and 46.74 s for one CB at equal CPD, with endpoint regressions. These observations demonstrate additional resource--timing working points, not uniform improvement of every metric.
+
+LSTM exchanges 2187 wire for 70 SB at equal CPD/CB. Final setup improves/regresses by 51/23, with no added hold violation. Matched roots/graph bytes and state checks retain the failed guided attempt and native fallback. Complete 7615.07/26657.73-s costs retain external archival interference: no clean ratio or interference-free time is inferred. Original failures and read-only costs remain supplementary.
+
+SPMV has no eligible cut and both arms retain 148463 wire, zero SB and 967 CB. Softmax reaches the same final quality in both arms; domain adds a transaction and 62.46 s. CB-only attains its 982-source terminal bound without evidence of optimal wire or CPD. The fixed-version conv-hls pair retains identical initial/final routes and all 4491 timing components: no eligible improvement among 18 selected connections, including seven conflicting relaxed witnesses. This is a legal fixed-menu no-op, not proof of global optimality.
+
+The additional robot placement retains identical initial/final timing vectors and resources in both arms. Its fastest legal timing proposal, 12.671110383 ns, spends 8 wire, one SB and one CB beyond the fixed caps, so both retain 12.727250365 ns and 250411/2/526. A tighter resource budget therefore prevents a local timing improvement from becoming a final result.
+
+Conv-layer and attention fail initial routing after 200 iterations; attention ends with 231 overused nodes. TPU-WS reaches the 1800-s initial limit. DLA-small fails with 525 overused nodes; SB-layout fails timing-group planning. GEMM times out: transient zero-overuse logs do not establish a persisted FULL/STA root. Table~\ref{tab:completecost} retains costs without quality. All 37 original attempts, six CP1r3 attempts and later GEMM, TPU-OS, CLSTM-SB, elliptic, frisc and clma pairs remain accounted for; recovery and infrastructure records are supplementary. Failure does not prove infeasibility.
+
+TPU-OS differs in netlist/dataflow from TPU-WS within the same family. Both arms reduce 35 to 17 SB at unchanged CPD/CB and identical final vectors; domain adds four wire. Each accepts four resource groups without release or owner events. Complete costs are 941.32/944.17 s (single D/N 1.00303): grouped native reconstruction suffices. Audit failures remain supplementary.
+
+CLSTM-small uses a known circuit on a different SB-only graph and actual placement. Domain exchanges 52 wire for one SB (941 to 940) at unchanged 6.590324286-ns CPD and zero CB; paired setup improves/regresses by 85/22, with no added hold violation. Native/domain attempt seven/two resource groups and accept four/two, with no release or owner event. The first matched group gives 945/941 SB for 36 extra domain wire. Complete 1430.08/918.13-s costs (single D/N 0.64201) are descriptive, not an interleaved speedup. Timing failures and budget rejections remain; architecture and placement effects are not isolated.
+
+Elliptic, frisc, clma and s38584 are distinct public circuits with actual placements; their matched final N/D vectors agree. Elliptic has no crossings, and frisc and s38584 have no redundant crossing nets. Clock-only clma excludes three structurally reusable scopes via unconstrained slack. Explicit benchmark I/O makes 330 pin slacks finite, but changes the initial tree and removes redundancy; this is no fixed-tree causal comparison or new circuit. S38584 uses explicit benchmark clock/I/O and has 1544 observed setup/hold components. Complete s38584 N/D costs 278.23/280.16 s, with no domain increment. Original failures and rejections remain supplementary.
+
+\section{Mechanism Attribution and Budget Sensitivity}
+\subsection{Dependency controls and the cost baseline}
+Table~\ref{tab:attribution} separates structural sharing, per-net relaxation and expanded owner scope. All nine guided BNN resource groups have zero release events, so release cannot explain that trajectory. Existing shared-cut records identify full dependent sink sets and retained alternatives; they establish the selection structure, while matched full flows establish the resulting tradeoff.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\caption{Completed mechanism evidence and attribution boundaries. Fixed-scope comparisons are not complete-controller or external-router comparisons.}
+\label{tab:attribution}
+\begin{tabular}{p{.20\columnwidth}p{.72\columnwidth}}\hline
+Dependency & Completed control and supported inference\\\hline
+Shared branches & BNN: nine domain accepts, no release. The complete matched saving does not isolate grouping from guidance; fixed-scope controls below separate guidance/release.\\
+Domain obstruction & Robot and one matched LSTM group roll back without release and complete with release. LSTM retains the identical search prefix before relaxation; this isolates completion of that group, not the complete 70-SB difference.\\
+Blocking owner & R1 target-only retains excess crossings; adding an owner gives 32 SB/5071 CB and identical endpoints for native and domain. Equal outcomes attribute the improvement to enlarged coordination scope.\\
+Crossing cost & Robot fixed group: all four tested penalties give 9 SB/654 CB and violate the 653-CB cap; guidance plus release gives 9 SB/653 CB. The increment is CB-feasible reconstruction on this scope, not advantage over all weights or inputs.\\\hline
+\end{tabular}
+\end{table}
+
+The robot union shares one source, 25 connections and five nets: 251161 wire/10 SB/653 CB at 13.354624073 ns. No-release rolls back; release reaches 251160/9/653 with setup 240 better/32 worse and no increased hold violation, passing resource but failing endpoint acceptance. Unrestricted search reaches 251140/9/654 with setup 240 better/zero worse, but exceeds the CB cap. Domains change the tradeoff; release enables completion. The shared imported command costs 194.52 s, not three complete flows.
+
+In LSTM's earliest accepted releasing group, disabling only release preserves eight requests, domains, native options and the search prefix. Nine constrained attempts fail on one connection; no-release finishes five queries and rolls back. Reused release saves eight SB for 206 wire at equal CPD/CB, with setup three better/five worse. The new component costs 214.45 s plus 1.48 s checking. This retrospective group control does not explain the whole 70-SB difference.
+
+A separate robot control multiplies cross-layer congestion cost by $1+\lambda$ for the registered strengths $\lambda\in\{0,0.5,1,2\}$, keeping physical delays unchanged. Source, 25 requests, ordering, search range, acceptance and budgets match; zero weight reproduces unrestricted native behavior. All four candidates are legal but violate the 653-CB cap (Table~\ref{tab:costcontrol}). Stronger penalties save another 15 wire while introducing 37 setup regressions. The tested penalties therefore remove an SB without reproducing the release-enabled CB-feasible point. This establishes a scoped tradeoff, not superiority over other weights or external routers. The four-strength imported command costs 353.24 s; later independent admission costs 80.74 s separately, with no repeated native/STA execution. Neither is complete-controller timing.
+
+\begin{table}[t]
+\centering\footnotesize\setlength{\tabcolsep}{4pt}
+\caption{Matched robot crossing-cost controls. All have CPD 13.354624073 ns and zero increased hold violations. Setup counts compare each candidate with the common root. All four exceed the original CB cap; policy rejection is not routing failure. These probes add no independent input.}
+\label{tab:costcontrol}
+\begin{tabular}{lrr}\hline
+$\lambda$ & Wire/SB/CB & Setup better/worse\\\hline
+0 & 251140/9/654 & 240/0\\
+0.5 & 251140/9/654 & 240/0\\
+1 & 251125/9/654 & 205/37\\
+2 & 251125/9/654 & 205/37\\\hline
+\end{tabular}
+\end{table}
+
+R1 provides a different dependency. Capacity analysis finds no same-layer escape while outside owners remain fixed. Adding one owner branch yields 2070653 wire/32 SB/5071 CB, unchanged full endpoint timing and the 5103 vertical-resource bound. Native and target-CB-domain results are identical. A same-source robot owner contrast gives a negative resource outcome: adding an owner improves 31 setup components but spends 12 wire and one CB. Endpoint acceptance permits that observation; fixed-resource acceptance rejects it. Coordination is useful only when the realized complete trade satisfies the intended policy.
+
+\subsection{Timing budgets and whole-group decisions}
+The existing SB-only comparison isolates the timing budget: strict and 102\% settings share the same initial trees and all 48 initial candidate records. With the 102\% cap, domain reaches 995 SB/227583 wire/6.114032 ns versus native 999 SB/227439 wire/6.040485 ns. Four fewer SB cost 144 wire, 1.218\% CPD and 133.56 s. This is budget sensitivity on one input, not independent-input replication.
+
+Complete combinations also matter. A three-net terminal composition saves 24 wire at fixed CPD and vertical counts with two setup improvements and no regression, although a separate 80-wire-saving candidate regresses four setup components. Tied-path grouping can improve setup when a smaller subgroup is flat and rejected. These observations support whole-group evaluation, without requiring every intermediate branch to improve CPD or claiming that larger groups are always better. Grouping controls with equal query multisets show that more transactions can increase cost without improving quality; detailed trajectories remain supplementary.
+
+\section{Complete Cost, Scope and Conclusions}
+\subsection{Engineering value depends on the whole flow}
+In the original BNN pair, resource transactions account for 1692.84 s of the 1821.07-s total difference, or 92.96\%. Native/domain execute 70/1361 connection queries; repeated queries count separately. Nested native-core times of 38.23/1207.26 s are already inside complete execution and cannot be added again. This work difference explains much of the observed overhead, rather than establishing an implementation-independent lower bound on cost.
+
+Engineering must preserve both arms. Lazy scheduling skips optional diagnostics after domain acceptance; source snapshots reduce repeated observation. SPMV has no such work, while fused FULL/STA slows eltwise. The 24.91\% comparison uses symmetric engineering and complete commands, retaining observer CPU. Sampled PSS may miss peaks; host activity and caches are uncontrolled.
+
+\subsection{Applicability and interpretation}
+Reconstruction needs removable dependencies, alternatives or movable owners, and sufficient budget. Table~\ref{tab:completecost} retains no cut, no gain, initial failure and timeout; local obstruction is not global unroutability. LSTM interference limits cost interpretation. CLSTM-SB changes graph and placement for a known circuit, isolating neither architecture nor a new family. Elliptic/frisc/clma delimit occupancy, redundancy and timing coverage. Clma constraint variants change fresh routes; their differences do not isolate a domain effect. Historical recovery remains supplementary.
+
+Measurements cover two-layer edge-encoded Hybrid-O/SB-only/CB-only routing, excluding flat routing, CHANZ, general multilayer fabrics and broad application-SDC suites. Both matched arms reset imported congestion prices, unlike AIR's retained history. These scoped controls establish neither cross-paper runtime rankings nor general superiority over vertical weighting.
+
+\subsection{Conclusions}
+Dependency-aware reconstruction links complete branch/owner scopes to current timing and budgeted acceptance. BNN exchanges 1786 wire for 39 SB and two CB at equal CPD with 24.91\% overhead. LSTM and CLSTM-SB add conditional tradeoffs with endpoint regressions and qualified costs. Robot/LSTM/R1 controls distinguish guidance, release and coordination; tested penalties miss robot's CB-feasible point. TPU-OS, elliptic, frisc, clma variants and s38584 add no domain benefit.
+
+\input{data/references.tex}
+\end{document}

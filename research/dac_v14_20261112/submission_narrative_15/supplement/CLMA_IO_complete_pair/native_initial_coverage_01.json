@@ -1,0 +1,78 @@
+{
+  "observed_at": "2026-11-17T20:21:34.141794+00:00",
+  "stage": "native_initial_and_resource_terminal",
+  "initial_FULL_STA_physical_passed": true,
+  "CPD_ns": 15.628016214463969,
+  "resources": {
+    "planar_wirelength_excluding_sb_half_nodes": 106025,
+    "sb_pairs_used": 1,
+    "sb_pair_net_occupancy": 1,
+    "cb_crossing_output_sources_used": 450,
+    "cb_crossing_output_source_net_occupancy": 450
+  },
+  "multi_crossing_nets": 0,
+  "candidate_scopes": 0,
+  "resource_accepted_steps": 0,
+  "native_endpoint_counts": {
+    "setup": {
+      "components": 101,
+      "finite": 101,
+      "negative": 0
+    },
+    "hold": {
+      "components": 101,
+      "finite": 101,
+      "negative": 0
+    }
+  },
+  "former_unknown_net_pin_coverage": [
+    {
+      "net": 147,
+      "name": "pi23",
+      "observed_pins": 95,
+      "setup_slack_finite": 95,
+      "setup_slack_nonfinite": 0,
+      "setup_slack_min_s": 6.568669164153107e-09,
+      "qualification": "Same packed net/pin identifiers, but this is a newly routed tree; not a fixed-route constraint ablation."
+    },
+    {
+      "net": 515,
+      "name": "pi19",
+      "observed_pins": 154,
+      "setup_slack_finite": 154,
+      "setup_slack_nonfinite": 0,
+      "setup_slack_min_s": 4.629225891505939e-09,
+      "qualification": "Same packed net/pin identifiers, but this is a newly routed tree; not a fixed-route constraint ablation."
+    },
+    {
+      "net": 778,
+      "name": "[182]",
+      "observed_pins": 81,
+      "setup_slack_finite": 81,
+      "setup_slack_nonfinite": 0,
+      "setup_slack_min_s": 6.067335522885742e-09,
+      "qualification": "Same packed net/pin identifiers, but this is a newly routed tree; not a fixed-route constraint ablation."
+    }
+  ],
+  "previous_initial_route_body_sha256": "48e94db8efe71ec41a1c802c42bbf77c49d9c34f4779dabeb182aed8d13dd228",
+  "current_initial_route_body_sha256": "b62f32204e7a9342663458366356baa8d081e922f767ae91adb15ac4818506ca",
+  "same_actual_initial_tree": false,
+  "same_physical_inputs_except_SDC": true,
+  "new_independent_input": false,
+  "full_arm_admission_pending": true,
+  "full_pair_admission_pending": true,
+  "new_native_or_STA_calls": 0,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/observe_clma_io_initial_01.py": "73f95d2b234be83f4651b43e78ef2cf3af91a864858a945d19a704e870ac3c1d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_io_pair_01/clma_io/native/flow/resource_flow/repair/round_000/selection/completion.json": "c8c83b32ac2cda2ac893cdbafc97d3a03113e8ae0909410a5be3a93f390d892a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_io_pair_01/clma_io/native/flow/resource_flow/repair/completion.json": "38d5326f719fbfa3e20c40641964f30994667d99e6427897e65ffcc279011ca7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_io_pair_01/clma_io/native/flow/resource_flow/initial/completion.json": "a84afcf663a2374c6c1d9a8c6ee307edca07c2399e2b4f7cbf558c36b9a2e561",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_io_pair_01/clma_io/native/flow/resource_flow/initial/endpoint_vector.json": "ac86accd4d30f3d06e6aa36709fa7f20cf319825dacb1adbc0917fb72ae9019a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_io_pair_01/clma_io/native/flow/resource_flow/initial/runs/state/manifest.json": "0f44472f19ce76568f6e58196c5efebe50edd9ca9829a2494ab972a124429d49",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_io_pair_01/clma_io/native/flow/resource_flow/initial/runs/state/native_sta_frontier.jsonl.constraints.echo": "049d400d85117ea5d837f9b9d840b94f15d2bac2645483ad38d12b9ca832e131",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLMA_initial_scope_boundary_01/rows.json": "a0af492a1e5b3fb43ed9dd3c48e94bc10fbb6e7e56fb12b3252513bae6dda2a0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_pair_01/clma/native/flow/resource_flow/initial/completion.json": "36150ff56713475fe56cdfb3683763557c20da76dda91d5e6125bfa8732f0b92",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_clma_io_input_01/registration.json": "0e76c8273c0781869839a82a751e257d796f1f856b5919fd8124abd007b02f8a"
+  },
+  "qualification": "Preregistered I/O coverage became finite for the old target pins, but fresh routing also changed and removed prior redundancy. Thus this new initial-stage observation cannot establish that coverage alone unlocks the same old groups or that domain improves the complete flow. All quality remains stage-scoped until whole/pair admission."
+}

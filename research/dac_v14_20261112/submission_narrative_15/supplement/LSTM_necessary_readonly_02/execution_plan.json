@@ -1,0 +1,84 @@
+{
+  "registered_at": "2026-11-17T14:48:12.608127+00:00",
+  "status": "registered_necessary_existing_LSTM_readonly_checks",
+  "predecessor": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/queue",
+  "release": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3",
+  "native_target": {
+    "input": "lstm",
+    "arm": "native",
+    "case": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native",
+    "config": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/native_config.json",
+    "config_sha256": "918c92c1503269cb4a72df274cd42bb696cf6d447fb6db01bb6d743a860bacc8"
+  },
+  "stages": [
+    {
+      "id": "native_supplement",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "-B",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r3_supplemental_verifier_v2.py",
+        "--execute-case",
+        "lstm",
+        "native"
+      ],
+      "result": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CP1r3_supplemental_verifier_02/cases/lstm/native/completion.json"
+    },
+    {
+      "id": "native_raw",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "-B",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_lstm_native_raw_02.py"
+      ],
+      "result": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/LSTM_necessary_readonly_02/native_raw/completion.json",
+      "requires_native_supplement_passed": true
+    },
+    {
+      "id": "domain_failed_evaluation",
+      "command": [
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/.venv-lazagna/bin/python",
+        "-B",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_lstm_failed_evaluation_01.py",
+        "--output",
+        "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/LSTM_necessary_readonly_02/domain_failed_evaluation"
+      ],
+      "result": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/LSTM_necessary_readonly_02/domain_failed_evaluation/audit.json"
+    }
+  ],
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r3_supplemental_verifier_v2.py": "107d3153356f8d2800c250a858d51d4cc1bb2777eb8fee208e3d68d4891fe67c",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r3_supplemental_verifier_v1.py": "664c725fb7a9b84097f220c71ae215d39e11eec153ef85d87f6ac952b03f3980",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/owner_registration_transition_v1.py": "689e95ba0a8b3c2f33204f223bbba05bb8b08c4ff3f3b68b65f00aa4c6687b05",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_lstm_native_raw_02.py": "f99cbe3e9ca46fe82a3ea84ceda943c13e68e575be3d6e659a2e36db05aab952",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/audit_lstm_failed_evaluation_01.py": "8678c79aead3cce7ed7856f82836072710c9aec05b93e66e4517a6e372eb0e59",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/queue_lstm_necessary_readonly_02.py": "38e751c0342f843e597682216048c1100f0086bb2de0e89dd8273d3c131c6e07",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r3_raw_admission_v1.py": "d716208ad8d4bb3470964b06100cb803019789a5672b2211d35c25bb744c6952",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/recovery_prefix_v1.py": "b10ee592c9963c8484da7b5c9d2183f9654769f7b15d73bb6721b61e230a7243",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/retained_prefix_workflow.py": "0ceaf39cc96af7dfd775d0a909bb4cd3265b66301afab36aa7f63962f67e5ba7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/endpoint_timing_policy_streaming_v2.py": "aac1214c369123f831f702a45aefa99ed8025bc40e9254d1fd32bf34562fcba7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/observation_timing_identity_v2.py": "2bf1d5d4569a4074e5fa90024f4fd99445984cdfecd8a92e87f32a627394fad4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/measure_process_tree_v1.py": "7267538ee1bf25c395445011fbb1144eff554da9425a2ef87da350b88357c0b4",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/seed_census_analysis_pool_v2.py": "0b2b2edb22d882505332cdf4f1292c22ca01ade788a608145b88da146928fba9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/LSTM_necessary_readonly_02/metadata_fix_validation.json": "00b98886c540b52e0c3dce16d1b76733a8117d936084322b624207c4adc87f17",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CP1r3_supplemental_verifier_02/plan.json": "f912ac8b1c50c72e4056af4aea35830b3fcceac31878c37469da6a215893d27d",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CP1r3_supplemental_verifier_01/plan.json": "86d9ac71a230a0e9cdb0e34600e14f11c2d2b95aba4499bd8d76508caefd8d6a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CP1r3_supplemental_verifier_01/cases/lstm/native/completion.json": "5a90a6df4ed8886e636e9ef05b3f1a43175ac4dd082bbf5a9b4371b4957e8c02",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CP1r3_supplemental_verifier_01/cases/lstm/domain/completion.json": "f8dc80736d4db0bdadbac8fb1a97447cb7d7050ad07ff39397a9c0f8fb6fceb6",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CP1r3_raw_admission_01/plan.json": "7e54d3104d9dae05fa0e8be9230863b4169b6c8fbab888316ec0559e7c6f6b26",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CP1r3_raw_admission_01/queue_priority_04/completion.json": "2e7d58d69f4157b6315960a8126e06dd5f29452f1eca393264a20fdd9d9b32b7",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r3_distinct_input_cohort_01/lstm_results.json": "775c3d8a9be495420b9ac4137f0f4cd8d298d7dcc4ccca8a35743f73b728eec0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r3_distinct_input_cohort_01/queue_priority_02/completion.json": "666c11ec2a970c2f8fb7066174b7f305366bcc1ad3d775cb2b1e702a2b933f37",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/LSTM_retention_metadata_incident_01/incident.json": "20592853351714fd19f20485a3d5c6940225cd6c624fabac427d08c01c66135e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_domain_recovery_02/queue/registration.json": "db8c9522b07cffcfeaec813ea30c963ad5de851156713782deacb5ef6540c5fc",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/verify_complete_unified_method_v1.py": "6cb7aba8fa27e4f994e8561ee6294382e9673c9cd523eae6f6dee56c6132e7b0"
+  },
+  "new_native_or_STA_calls": 0,
+  "no_original_history_writes": true,
+  "whole_pair_admission_not_inferred": true,
+  "conditional_ETA": {
+    "native_supplement_previous_failed_command_seconds": 104.039414499,
+    "raw_full_admission_uncalibrated": true,
+    "domain_incident_actual_large_byte_audit_uncalibrated": true,
+    "qualification": "Previous supplement is a component reference only, not complete queue ETA. Waiting for CLSTM is not calibrated. New observed closures supersede estimates; no date/count Goal stop."
+  }
+}

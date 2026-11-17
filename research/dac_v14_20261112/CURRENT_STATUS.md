@@ -152,13 +152,30 @@ D−N：{"wirelength": 0, "SB_pairs": 0, "CB_sources": 0, "CPD_ns": 0.0}
 
 
 
-# s38584.1独立电路固定确认
+# S38584.1整臂判定与完整配对
 
-1260锁存器的不同公开电路，726CLB/342IO共1068实际块；n40 Hybrid-O，一次seed21布局层0/1为635/433。38输入/304输出采用预登记20ns+IOmax1/min0基准SDC；新电路、新实际布局，同既有架构族，非未见留出集/外部应用要求。
+**配对：通过。**
 
-实际源字节、打包/布局、固定CP1r6原入口及迁移准入均过，已启动N→D及后续raw/raw/配对和终结汇总。原算法、预算、接受和终结规则保持，不补造结果。上游pack2.474271/place15.306222秒单列，无重复打包/布局。当前没有完整臂耗时，不能从其他电路或上游时间给出可靠完整ETA；以首个native实际终态更新。阶段超时仅作保护，不是完工预测。
+| 角色 | 准入 | CPD(ns) | 线长/SB/CB | 自身根setup改善/退化/新增hold | 完整秒数 | PSS(GiB) |
+|---|---|---:|---|---|---:|---:|
+| native | passed | 10.684765961 | 48338/0/183 | 5/0/0 | 278.225786 | 1.159 |
+| domain | passed | 10.684765961 | 48338/0/183 | 5/0/0 | 280.156821 | 1.185 |
 
-原clma显式IO完整配对已通过且无domain增量，六页投稿14不依赖本次未完成结果。
+D−N：{"wirelength": 0, "SB_pairs": 0, "CB_sources": 0, "CPD_ns": 0.0}
+
+最终全端点向量及质量相同：True。共同原生时序改善与domain增量须区分；单次费用仅描述。
+
+完整费用属于实际同一臂命令；上游打包/布局、独立核验和只读准入单列，不拼接完整时间。新SDC报告来自实际文件，不补造I/O延迟。保留所有负结果、失败、策略拒绝及超时；不将局部出口未阻塞或无共享域组当全局不可行。研究Goal保持active。
+
+原两臂、三项raw/配对及终结汇总已终结，剩余0；同一输入的新公开电路、实际布局，同架构族。六页投稿15可独立作者审阅。
+
+
+
+# s38584.1 native整臂结束及条件性ETA
+
+原完整命令278.225786秒，独立原核验2.125500秒。CPD10.692404295→10.684765961ns；最终资源{'wirelength': 48338, 'SB_pairs': 0, 'CB_sources': 183}。setup5改善/0退化，新增hold违规0，分量数1544/1544。时序接受1，访问状态拒绝1，原资源阶段接受0。
+
+原核验通过，raw/完整配对仍待原队列。domain按相同工作量参考剩余约4.1分钟，加实际只读准入；轨迹/同机负载可能改变耗时，不推算正式比值。同一对照两臂共享此实际布局与显式I/O SDC；原始输入为新电路，不是新架构或外部应用要求。投稿13保持。
 
 
 
@@ -192,9 +209,9 @@ Elliptic为当前CP1确认中的不同公开顺序电路，使用新生成的实
 CLSTM-SB完整配对已通过：D−N为+52线长/−1SB/同CPD及CB，单次N/D费用仅描述。已核验投稿稿可独立作者审阅。
 
 
-cp1r6_s38584_pair_01: running_confirmation_arm；S38584_complete_admission_01: waiting_for_original_S38584_pair_terminal；S38584_postqueue_01: waiting_for_original_pair_and_three_admission_gates
+当前登记的必要核验已终结；无存活执行owner。
 
-[当前投稿稿](submission_narrative_14/build/main.pdf) · [证据影响与作者审阅](submission_narrative_14/EXPERIMENT_IMPACT.md) · [完整判定](LSTM_domain_whole_admission_03/admission_decision.json)。原06保留；本轮只把LSTM实际结论和已完成四档代价机制证据纳入对应位置。
+[当前投稿稿](submission_narrative_15/build/main.pdf) · [证据影响与作者审阅](submission_narrative_15/EXPERIMENT_IMPACT.md) · [完整判定](LSTM_domain_whole_admission_03/admission_decision.json)。原06保留；本轮只把LSTM实际结论和已完成四档代价机制证据纳入对应位置。
 
 BNN完整配对保持：CPD13.228145690ns，N/D为2059631/82/5062与2061417/43/5060；SB减少47.56%，SB+CB减少约0.797%，线长增加1786。对称N/D/D/N完整均值7308.61/9129.25秒，+24.91%；冷启动22.95%分列。
 
