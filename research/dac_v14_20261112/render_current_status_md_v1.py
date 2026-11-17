@@ -11,9 +11,15 @@ def render(status,D):
             decision_text+='\n'+(D/'cp1r5_tpu_os_pair_01/STATUS.md').read_text()+'\n'
         elif status.get('TPU_OS_input_preflight'):
             decision_text+='\n[TPU-OS输入预检](TPU_OS_input_preflight_01/STATUS.md)已实际通过：五项1.224GB字节、4100block坐标，2.261795秒，无native/STA。完整两臂尚未登记/启动，无合法根或新收益；不同数据流网表，同TPU家族/同架构族，不计新架构。\n'
+        if status.get('CP1r5_frisc_registered_pair'):
+            decision_text+='\n\n'+(D/'cp1r5_frisc_pair_01/STATUS.md').read_text()+'\n'
         live=[o for o in status['owners'] if o['verified_live']]
         jobs='；'.join(o['batch']+': '+o['phase_status'] for o in live) or '当前登记的必要核验已终结；无存活执行owner。'
-        paper='submission_narrative_07' if (D/'submission_narrative_07/verification.json').exists() else 'submission_narrative_06'
+        paper=Path(status['paper_pdf']).parent.parent.name if status.get('paper_pdf') else 'submission_narrative_07'
+        if status.get('CP1r5_elliptic_registered_pair'):
+            decision_text+='\n\n'+(D/'cp1r5_elliptic_pair_01/STATUS.md').read_text()+'\n'
+        if status.get('CP1r5_CLSTM_SB_complete_admission'):
+            decision_text+='\nCLSTM-SB完整配对已通过：D−N为+52线长/−1SB/同CPD及CB，单次N/D费用仅描述。已核验投稿稿可独立作者审阅。\n'
         return ('# 当前研究状态\n\n'+decision_text.split('\n',1)[1]+
             '\n\n'+jobs+'\n\n'+
             f'[当前投稿稿]({paper}/build/main.pdf) · [证据影响与作者审阅]({paper}/EXPERIMENT_IMPACT.md) · '
@@ -94,6 +100,16 @@ def render(status,D):
         first,rest=result.split('\n',1);result=first+'\n'+note+rest
     if status.get('CLSTM_domain_complete_recovery03'):
         note='\n[CLSTM/domain完整历史恢复03终结](CLSTM_domain_complete_recovery_03/STATUS.md)：6.849416589ns、226919wire/3SB/915CB，自身根setup153/10、hold新增违例0。后缀453.124382秒，旧346.660494秒失败及02失败26.922516秒、审计费用分列；PSS2843271KiB、缺测7。旧23条查询实际复用，新时序worker18条查询；1步旧资源前缀+1步新增、时序接受1、owner0。不是新独立输入、新鲜完整费用或新增配对收益，投稿06不等待本恢复。当前所有已登记阶段终结，下一必要门槛是LSTM/domain完整作用域与回退/字节/请求/FULL/STA/端点/物理准入，尚未登记执行、耗时未校准；Goal仍active。\n'
+        first,rest=result.split('\n',1);result=first+'\n'+note+rest
+    if status.get('TPU_OS_complete_admission_decision'):
+        note='\n最新终态：LSTM整臂与实际配对通过，六页投稿07可独立作者审阅；原ctime失败、原生回退与费用保留。TPU-OS原两臂和三项附加只读均已结束，附加raw因时序manifest缺失VPR_JOINT_NATIVE_SEED_ORDER未通过，完整配对未准入、质量保持空。旧domain完成ETA已失效，缺口核对耗时未校准，无活动owner。四档代价对照已完成。详见[本次交付](../../docs/GitHub_LSTM_delivery_TPU_terminal_20261117.md)和[完整费用/缺口](TPU_OS_complete_admission_01/PAIR_TABLE.md)。以下旧观察按各自时点保留。\n'
+        first,rest=result.split('\n',1);result=first+'\n'+note+rest
+    if status.get('TPU_OS_complete_admission02'):
+        note='\n最新准入02已通过：TPU-OS实际完整配对N360117/17/1563、D360121/17/1563，同7.812205993ns且完整端点向量相同；domain无资源—时序增量，多4wire。完整941.32/944.17秒，仅单次D/N描述。原raw失败01保留；精确时序worker格式核验02与完整配对已闭合，无native/STA重跑。两臂均4次资源接受，无失败释放或owner事件。六页[投稿08](submission_narrative_08/build/main.pdf)另存并保留07；当前登记剩余0角色、0核验阶段，旧ETA与下方未通过01均为历史状态。\n'
+        first,rest=result.split('\n',1);result=first+'\n'+note+rest
+    if status.get('CP1r5_CLSTM_SB_registered_pair'):
+        row=status['CP1r5_CLSTM_SB_registered_pair']
+        note='\n当前CLSTM-small SB-only实际配置已登记N→D确认及终结后3项必要只读，冻结CP1r5预算/接受规则保持。实际2927块坐标与历史Hybrid-O起点不同，但仍是同一CLSTM电路，不计新电路或新架构家族。真实阶段：'+str(row['phase'])+'；旧TPU-OS已终结，投稿08保持。详见[登记与实际起点](cp1r5_clstm_sb_pair_01/STATUS.md)。\n'
         first,rest=result.split('\n',1);result=first+'\n'+note+rest
     return result
 

@@ -55,7 +55,7 @@ for name in ['stable_seed_transfer_recovery_02','direct_scope_resource_equivalen
              'rejection_feedback_controller_dev_01','complete_route_resource_measurements_01',
              'vector_then_strict_comparison_01','connection_budget_resource_dev_01',
              'complete_serial_resource_measurement_dev_01','complete_serial_resource_measurement_paired_dev_01',
-             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01','cp1r1_cross_circuit_cohort_01','cp1r2_cross_circuit_cohort_01','robot_union_mechanism_02','robot_union_verification_recovery_01','BNN_interleaved_timing_02','BNN_interleaved_timing_03','robot_owner_reentry_audit_01','robot_owner_reentry_audit_02','empty_query_patch_validation_01','confirmation_release_cp1r3_01','robot_p1_prefix_recovery_01','cp1r3_distinct_input_cohort_01','interrupted_stage_reconciliation_01','interrupted_flow_recovery_01','CP1r3_supplemental_verifier_01','CP1r3_raw_admission_01','vertical_cost_baseline_dev_01','cp1r4_gemm_pair_01','CLSTM_domain_recovery_02','LSTM_necessary_readonly_02','CLSTM_domain_recovery_03','LSTM_domain_whole_admission_03','cp1r5_tpu_os_pair_01']:
+             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01','cp1r1_cross_circuit_cohort_01','cp1r2_cross_circuit_cohort_01','robot_union_mechanism_02','robot_union_verification_recovery_01','BNN_interleaved_timing_02','BNN_interleaved_timing_03','robot_owner_reentry_audit_01','robot_owner_reentry_audit_02','empty_query_patch_validation_01','confirmation_release_cp1r3_01','robot_p1_prefix_recovery_01','cp1r3_distinct_input_cohort_01','interrupted_stage_reconciliation_01','interrupted_flow_recovery_01','CP1r3_supplemental_verifier_01','CP1r3_raw_admission_01','vertical_cost_baseline_dev_01','cp1r4_gemm_pair_01','CLSTM_domain_recovery_02','LSTM_necessary_readonly_02','CLSTM_domain_recovery_03','LSTM_domain_whole_admission_03','cp1r5_tpu_os_pair_01','TPU_OS_complete_admission_01','cp1r5_clstm_sb_pair_01','CLSTM_SB_complete_admission_01','cp1r5_elliptic_pair_01','ELLIPTIC_complete_admission_01','cp1r5_frisc_pair_01','FRISC_complete_admission_01','FRISC_sdc_readonly_02']:
     q=D/name/('' if name.startswith('serial_fused_candidate_validation_') else 'queue')
     if (D/name/'queue_priority_02/registration.json').exists():q=D/name/'queue_priority_02'
     if (D/name/'queue_priority_03/registration.json').exists():q=D/name/'queue_priority_03'
@@ -279,6 +279,25 @@ latest_LSTM_admission_publication=D.parents[1]/'docs/github_LSTM_admission_publi
 if latest_LSTM_admission_publication.exists():publication=latest_LSTM_admission_publication
 latest_LSTM_mechanisms_publication=D.parents[1]/'docs/github_LSTM_mechanisms_publication_receipt_20261117.json'
 if latest_LSTM_mechanisms_publication.exists():publication=latest_LSTM_mechanisms_publication
+latest_TPU_OS_publication=D.parents[1]/'docs/github_TPU_OS_confirmation_publication_receipt_20261117.json'
+if latest_TPU_OS_publication.exists():publication=latest_TPU_OS_publication
+latest_delivery_publication=D.parents[1]/'docs/github_LSTM_delivery59_publication_receipt_20261117.json'
+if latest_delivery_publication.exists():publication=latest_delivery_publication
+latest_tpu_admission_publication=D.parents[1]/'docs/github_TPU_OS_admission60_publication_receipt_20261117.json'
+if latest_tpu_admission_publication.exists():publication=latest_tpu_admission_publication
+latest_clstm_sb_publication=D.parents[1]/'docs/github_CLSTM_SB_confirmation61_publication_receipt_20261117.json'
+if latest_clstm_sb_publication.exists():publication=latest_clstm_sb_publication
+latest_applicability_publication=D.parents[1]/'docs/github_mechanism_applicability62_publication_receipt_20261117.json'
+if latest_applicability_publication.exists():publication=latest_applicability_publication
+latest_clstm_submission_publication=D.parents[1]/'docs/github_CLSTM_SB_admission63_publication_receipt_20261117.json'
+if latest_clstm_submission_publication.exists():publication=latest_clstm_submission_publication
+latest_elliptic_publication=D.parents[1]/'docs/github_elliptic_confirmation64_publication_receipt_20261117.json'
+if latest_elliptic_publication.exists():publication=latest_elliptic_publication
+latest_elliptic_admission_publication=D.parents[1]/'docs/github_elliptic_admission65_publication_receipt_20261117.json'
+if latest_elliptic_admission_publication.exists():publication=latest_elliptic_admission_publication
+for pub in ['github_frisc_confirmation66_publication_receipt_20261117.json','github_frisc_admission67_publication_receipt_20261117.json']:
+    candidate=D.parents[1]/'docs'/pub
+    if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -1296,6 +1315,168 @@ if (tpu_pair/'plan.json').exists():
     status['evidence']['CP1r5_TPU_OS_registered_pair']='cp1r5_tpu_os_pair_01/STATUS.md'
     status['active_schedule_order']=['cp1r5_tpu_os_pair_01','cp1r5_tpu_os_pair_01/post_queue_admission_plan.json']
     status['outstanding']=['Complete fixed TPU-OS native/domain arms, then priority readonly actual request/FULL/raw-STA/vector/physical and six-payload paired admission before any paper claim. Retain every original failure and measured fee; no repeated completed native query. Submission07 remains independently reviewable.']
+tpu_admission=D/'TPU_OS_complete_admission_01'
+if (tpu_admission/'queue/registration.json').exists():
+    status['TPU_OS_priority_actual_admission_queue']=dict(
+        actual_owner=next(o for o in owners if o['batch']=='TPU_OS_complete_admission_01'),
+        phase=read(tpu_admission/'queue/status.json'),
+        stages=read(tpu_admission/'stages.json') if (tpu_admission/'stages.json').exists() else [],
+        terminal=read(tpu_admission/'queue/completion.json') if (tpu_admission/'queue/completion.json').exists() else None)
+    status['active_schedule_order']=['cp1r5_tpu_os_pair_01','TPU_OS_complete_admission_01']
+    status['evidence']['TPU_OS_priority_actual_admission_queue']='TPU_OS_complete_admission_01/plan.json'
+    if (tpu_pair/'native_resource_terminal_checkpoint_01.json').exists():
+        status['TPU_OS_native_resource_terminal']=read(tpu_pair/'native_resource_terminal_checkpoint_01.json')
+        status['submission_candidate_latest_conditional_ETA']=status['TPU_OS_native_resource_terminal']['conditional_ETA']
+if (tpu_pair/'native_complete_checkpoint_01.json').exists():
+    status['TPU_OS_native_complete']=read(tpu_pair/'native_complete_checkpoint_01.json')
+    status['submission_candidate_latest_conditional_ETA']=status['TPU_OS_native_complete']['conditional_ETA']
+    status['evidence']['TPU_OS_native_complete']='cp1r5_tpu_os_pair_01/native_complete_checkpoint_01.json'
+if (tpu_admission/'admission_decision.json').exists():
+    status['TPU_OS_complete_admission_decision']=read(tpu_admission/'admission_decision.json')
+    status['submission_candidate_latest_conditional_ETA']=dict(
+        remaining_execution_roles=0,remaining_registered_readonly_stages=0,
+        complete_pair_admitted=status['TPU_OS_complete_admission_decision']['complete_pair_admission']=='passed',
+        unresolved_gate='Actual timing-transaction environment omits VPR_JOINT_NATIVE_SEED_ORDER; exact recorded execution/default semantics require reconciliation.',
+        further_admission_ETA_seconds=None,
+        qualification='Both original arms and all three registered read-only stages have ended. Previous domain completion ETA is superseded by actual terminal receipts. No correction is yet validated or scheduled; no repeated native/STA calls.')
+    status['active_schedule_order']=[]
+    status['outstanding']=['Reconcile the exact TPU-OS timing-transaction environment receipt using executed command/log and frozen binary defaults; preserve failed raw gates and null quality until all gates pass. No native rerun. LSTM whole pair and six-page submission07 are already admitted and ready for author review.']
+    status['evidence']['TPU_OS_complete_admission_decision']='TPU_OS_complete_admission_01/PAIR_TABLE.md'
+if (D/'TPU_OS_complete_admission_02/admission_decision.json').exists():
+    status['TPU_OS_complete_admission02']=read(D/'TPU_OS_complete_admission_02/admission_decision.json')
+    status['submission_candidate_latest_conditional_ETA']=dict(remaining_execution_roles=0,
+        remaining_registered_readonly_stages=0,complete_pair_admitted=True,
+        actual_readonly_queue_seconds=read(D/'TPU_OS_complete_admission_02/queue/completion.json')['complete_queue_seconds'],
+        qualification='Original pair and precise timing-schema reconciliation are terminal. No remaining ETA for this batch; future studies are separate registrations.')
+    status['outstanding']=['Use admitted TPU-OS no-domain-increment evidence to refine mechanism applicability. Inspect genuinely different available input provenance/physical starts before the next matched confirmation; do not rerun this pair to optimize four wire units. Preserve negative results and all original audit failures.']
+    status['evidence']['TPU_OS_complete_admission02']='TPU_OS_complete_admission_02/PAIR_TABLE.md'
+if (D/'submission_narrative_08/verification.json').exists():
+    status['submission_candidate_latest']=read(D/'submission_narrative_08/verification.json')
+    status['paper_pdf']=str(D/'submission_narrative_08/build/main.pdf');status['paper_pages']=6
+    status['evidence']['submission_candidate_latest']='submission_narrative_08/verification.json'
+clstm_sb=D/'cp1r5_clstm_sb_pair_01'
+if (clstm_sb/'queue/registration.json').exists():
+    clstm_results=read(clstm_sb/'clstm_sb_results.json') if (clstm_sb/'clstm_sb_results.json').exists() else {}
+    status['CP1r5_CLSTM_SB_registered_pair']=dict(
+        plan=str(clstm_sb/'plan.json'),phase=read(clstm_sb/'queue/status.json'),
+        actual_owner=next(o for o in owners if o['batch']=='cp1r5_clstm_sb_pair_01'),
+        original_results=clstm_results,
+        necessary_admission_owner=next(o for o in owners if o['batch']=='CLSTM_SB_complete_admission_01'),
+        necessary_admission_phase=read(D/'CLSTM_SB_complete_admission_01/queue/status.json'))
+    status['submission_candidate_latest_conditional_ETA']=dict(
+        remaining_original_roles=2-len(clstm_results),remaining_registered_readonly_stages=3,
+        same_scale_TPU_OS_index_reference_seconds=[90.9526031203568,90.5429003238678],
+        whole_new_SB_input_flow_ETA_seconds=None,
+        qualification='Different circuit and SB-only graph from TPU-OS: index costs are context only, not a whole-flow estimate. Use first actual native terminal cost for conditional domain ETA; original per-task limits remain guards, not completion predictions.')
+    status['active_schedule_order']=['cp1r5_clstm_sb_pair_01','CLSTM_SB_complete_admission_01']
+    status['outstanding']=['Complete fixed CLSTM-small SB-only native/domain confirmation and queued necessary admission. This is the same known CLSTM circuit on a different actual graph/layout, not a new circuit or architecture family. Keep no-cut/no-gain/failure/timeout. Submission08 remains independently reviewable; no changes to running budgets or algorithm rules.']
+    status['evidence']['CP1r5_CLSTM_SB_registered_pair']='cp1r5_clstm_sb_pair_01/STATUS.md'
+    resource_checkpoint=clstm_sb/'native_resource_terminal_01.json'
+    if resource_checkpoint.exists():
+        status['CP1r5_CLSTM_SB_registered_pair']['native_resource_terminal_observation']=read(resource_checkpoint)
+        status['evidence']['CLSTM_SB_native_resource_terminal']='cp1r5_clstm_sb_pair_01/native_resource_terminal_01.json'
+    native_checkpoint=clstm_sb/'native_complete_checkpoint_01.json'
+    if native_checkpoint.exists():
+        native_observed=read(native_checkpoint)
+        status['CP1r5_CLSTM_SB_registered_pair']['native_complete_observation']=native_observed
+        status['submission_candidate_latest_conditional_ETA']={
+            **native_observed['conditional_ETA'],
+            'remaining_original_roles':2-len(clstm_results),
+            'remaining_registered_readonly_stages':3,
+            'qualification':'Native full command measured; domain reference assumes comparable work only. Extra fallbacks or accepted rounds may extend it. Original per-stage limits remain guards, and final raw/pair admission is still required.'}
+        status['evidence']['CLSTM_SB_native_complete']='cp1r5_clstm_sb_pair_01/native_complete_checkpoint_01.json'
+    domain_checkpoint=clstm_sb/'domain_resource_terminal_01.json'
+    if domain_checkpoint.exists():
+        domain_observed=read(domain_checkpoint)
+        status['CP1r5_CLSTM_SB_registered_pair']['domain_resource_terminal_observation']=domain_observed
+        status['submission_candidate_latest_conditional_ETA']=domain_observed['conditional_ETA']
+        status['evidence']['CLSTM_SB_domain_resource_terminal']='cp1r5_clstm_sb_pair_01/domain_resource_terminal_01.json'
+draft09=D/'submission_narrative_09_draft/REVISION_STATUS.json'
+if draft09.exists():
+    status['submission_source_draft']=read(draft09)
+    status['evidence']['submission09_budget_clarification_draft']='submission_narrative_09_draft/REVISION_STATUS.json'
+    status['outstanding'].append('Submission09 source draft clarifies the already implemented resource-to-timing caps, checked against six completed BNN/LSTM flow records. Compile and visually verify after the existing confirmation/admission queue releases the serial slot. Submission08 remains the verified manuscript; no pending CLSTM quality has been added.')
+clstm_admission=D/'CLSTM_SB_complete_admission_01/admission_decision.json'
+if clstm_admission.exists():
+    status['CP1r5_CLSTM_SB_complete_admission']=read(clstm_admission)
+    status['submission_candidate_latest_conditional_ETA']=dict(remaining_original_roles=0,remaining_registered_readonly_stages=0,completion_ETA_seconds=0,qualification='Both original roles and all three existing raw/pair stages have terminal receipts; no future experiment is required for the current manuscript.')
+    status['active_schedule_order']=[]
+    status['outstanding']=['CLSTM-SB full pair admitted: preserve single-sequence complete cost, endpoint regressions and all timing failures/policy rejections. Continue applicability-driven research using distinct actual input provenance; do not repeat this pair to chase one SB or infer universal speedup. The research Goal remains active.']
+    status['evidence']['CLSTM_SB_complete_pair']='CLSTM_SB_complete_admission_01/PAIR_TABLE.md'
+paper09=D/'submission_narrative_09/verification.json'
+if paper09.exists():
+    status['submission_candidate_latest']=read(paper09)
+    status['paper_pdf']=str(D/'submission_narrative_09/build/main.pdf');status['paper_pages']=6
+    status['submission_source_draft']['superseded_by_verified_submission']='submission_narrative_09/verification.json'
+    status['evidence']['submission_candidate_latest']='submission_narrative_09/verification.json'
+    paper=dict(pdf=status['paper_pdf'],pages=6,verification=str(paper09),submission='09',scope='Verified standalone submission; research Goal remains active')
+elliptic=D/'cp1r5_elliptic_pair_01'
+if (elliptic/'plan.json').exists():
+    preparation=read(D/'VTR_elliptic_input_01/completion.json')
+    phase=read(elliptic/'queue/status.json')
+    results=read(elliptic/'elliptic_results.json') if (elliptic/'elliptic_results.json').exists() else {}
+    audit=D/'ELLIPTIC_complete_admission_01'
+    audit_stages=read(audit/'stages.json') if (audit/'stages.json').exists() else []
+    status['CP1r5_elliptic_registered_pair']=dict(phase=phase,results=results,
+        input_preparation=preparation,readonly_stages=audit_stages,
+        remaining_original_roles=2-len(results),remaining_readonly_stages=3-len(audit_stages),
+        qualification='Distinct public mapped sequential circuit, fresh actual placement, same Hybrid-O family. Unchanged CP1r5 rules. No quality claim before actual whole-arm and pair admission.')
+    status['active_schedule_order']=['elliptic native','elliptic domain','elliptic native raw','elliptic domain raw','elliptic pair matching']
+    status['outstanding']=['Complete the registered elliptic full N/D pair and immediate three-stage raw/pair admission, preserving every failure and no-gain outcome. Do not rerun packing/placement or change frozen rules. Submission09 remains independently ready; update only claims supported by admitted results.']
+    status['research_next_pair_conditional_ETA']=dict(remaining_original_roles=2-len(results),
+        remaining_readonly_stages=3-len(audit_stages),point_estimate_seconds=None,
+        reference_full_arm_seconds=results.get('native',{}).get('complete_seconds'),
+        qualification='No same-input complete-arm observation before native ends; upstream pack/place time is not a routing-time predictor. Use native actual full time for a conditional domain estimate once available. Existing phase timeout is a guard, not a complete-flow ETA.')
+    if (elliptic/'native_complete_checkpoint_01.json').exists():
+        observed=read(elliptic/'native_complete_checkpoint_01.json')
+        status['CP1r5_elliptic_registered_pair']['native_complete']=observed
+        status['research_next_pair_conditional_ETA']=observed['conditional_ETA']
+    status['evidence']['elliptic_registered_pair']='cp1r5_elliptic_pair_01/STATUS.md'
+    if (elliptic/'native_resource_terminal_01.json').exists():
+        status['CP1r5_elliptic_registered_pair']['native_resource_terminal']=read(elliptic/'native_resource_terminal_01.json')
+elliptic_decision=D/'ELLIPTIC_complete_admission_01/admission_decision.json'
+if elliptic_decision.exists():
+    status['ELLIPTIC_complete_admission']=read(elliptic_decision)
+    status['research_next_pair_conditional_ETA']=dict(remaining_original_roles=0,remaining_readonly_stages=0,completion_ETA_seconds=0,qualification='Both original arms and three raw/pair gates terminal; previous similar-work ETA superseded by actual costs.')
+    status['active_schedule_order']=[]
+    status['outstanding']=['Elliptic full pair admitted with no counted vertical occupancy or domain increment; shared native timing improvement must not be attributed to release. Preserve the actual placement and all failures. Continue research on dependency/owner/budget applicability using distinct inputs rather than rerolling elliptic or optimizing tiny BNN differences; submission10 is independently ready.']
+    status['evidence']['ELLIPTIC_complete_pair']='ELLIPTIC_complete_admission_01/PAIR_TABLE.md'
+paper10=D/'submission_narrative_10/verification.json'
+if paper10.exists():
+    status['submission_candidate_latest']=read(paper10)
+    status['paper_pdf']=str(D/'submission_narrative_10/build/main.pdf');status['paper_pages']=6
+    status['evidence']['submission_candidate_latest']='submission_narrative_10/verification.json'
+    paper=dict(pdf=status['paper_pdf'],pages=6,verification=str(paper10),submission='10',scope='Verified independent author-review candidate; elliptic absent-crossing boundary admitted, no domain-increment claim')
+frisc=D/'cp1r5_frisc_pair_01'
+if (frisc/'plan.json').exists():
+    results=read(frisc/'frisc_results.json') if (frisc/'frisc_results.json').exists() else {}
+    audit=D/'FRISC_complete_admission_01'
+    stages=read(audit/'stages.json') if (audit/'stages.json').exists() else []
+    status['CP1r5_frisc_registered_pair']=dict(phase=read(frisc/'queue/status.json'),results=results,
+        input_preparation=read(D/'VTR_frisc_input_01/completion.json'),readonly_stages=stages,
+        remaining_original_roles=2-len(results),remaining_readonly_stages=3-len(stages),
+        qualification='Different public circuit, actual n25 Hybrid-O placement, explicit20ns benchmark SDC. No new architecture or external application requirement. CP1r5 unchanged.')
+    status['active_schedule_order']=['frisc native','frisc domain','frisc native raw','frisc domain raw','frisc pair matching']
+    status['research_next_pair_conditional_ETA']=dict(remaining_original_roles=2-len(results),remaining_readonly_stages=3-len(stages),point_estimate_seconds=None,reference_full_arm_seconds=results.get('native',{}).get('complete_seconds'),qualification='No same-input complete-arm observation before native terminal; do not infer runtime from upstream preparation or elliptic. Update using actual native full command once available.')
+    status['outstanding']=['Continue fixed frisc N/D and original raw/pair gates. Test whether actual cross-layer placement creates removable dependencies under the explicit benchmark clock. Preserve all outcomes and do not reroll placement or resize based on QoR. Submission10 remains independently reviewable.']
+    status['evidence']['frisc_registered_pair']='cp1r5_frisc_pair_01/STATUS.md'
+    if (frisc/'native_resource_terminal_01.json').exists():
+        status['CP1r5_frisc_registered_pair']['native_resource_terminal']=read(frisc/'native_resource_terminal_01.json')
+frisc_decision=D/'FRISC_sdc_readonly_02/admission_decision.json'
+if frisc_decision.exists():
+    status['FRISC_complete_admission']=read(frisc_decision)
+    status['active_schedule_order']=[]
+    eta=dict(remaining_original_roles=0,remaining_readonly_stages=0,completion_ETA_seconds=0,qualification='Both original arms and supplementary replay/raw/pair gates terminal. Original report failures and failed duplicate-lock wrapper retained. No remaining work for this batch; future research not assigned an invented ETA.')
+    status['research_next_pair_conditional_ETA']=eta
+    status['submission_candidate_latest_conditional_ETA']=eta
+    status['outstanding']=['LSTM and Frisc full pairs admitted. Preserve all original failed/rejected attempts, endpoint regressions and qualified costs. The verified manuscript is independently ready for author review. Continue applicability-driven research; before any new explicit-SDC batch correct report metadata in a separate release, preserving all checks. Do not rerun Frisc or BNN local queries or make historical CLSTM recovery a manuscript prerequisite. Research Goal remains active.']
+    status['evidence']['FRISC_complete_pair']='FRISC_sdc_readonly_02/PAIR_TABLE.md'
+paper11=D/'submission_narrative_11/verification.json'
+if paper11.exists():
+    status['submission_candidate_latest']=read(paper11)
+    status['paper_pdf']=str(D/'submission_narrative_11/build/main.pdf');status['paper_pages']=6
+    status['evidence']['submission_candidate_latest']='submission_narrative_11/verification.json'
+    paper=dict(pdf=status['paper_pdf'],pages=6,verification=str(paper11),submission='11',scope='Verified independent author-review candidate; LSTM admitted, Frisc occupied-crossing but absent-redundancy boundary admitted; four-strength control complete.')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
