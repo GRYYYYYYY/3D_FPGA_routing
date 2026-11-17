@@ -125,15 +125,22 @@ Domain原臂已启动；按native668.98秒和相同工作量条件估计，仍�
 
 
 
-# clma显式I/O时序覆盖实例
+# Clma I/O整臂判定与完整配对
 
-同clma电路、图、实际布局和打包，新增预登记20ns时钟+382输入/82输出max1ns/min0ns约束；不是独立电路/布局/架构或外部应用要求。原CP1r6算法、预算、有限余量screen及接受规则固定，fresh N→D后接原有raw/raw/配对。
+**配对：通过。**
 
-假设：此前+inf排除的结构机会可能在明确I/O时序下获得有限余量。新鲜路由也受SDC影响，跨实例比较需先检查实际初始树/资源，不把全部变化归给覆盖。结构机会、准入、合法候选、预算接受和最终domain增量逐层区分，负结果全部保留。原时钟型clma配对及六页投稿13保持。
+| 角色 | 准入 | CPD(ns) | 线长/SB/CB | 自身根setup改善/退化/新增hold | 完整秒数 | PSS(GiB) |
+|---|---|---:|---|---|---:|---:|
+| native | passed | 14.899788070 | 106117/1/450 | 3/0/0 | 677.236256 | 1.196 |
+| domain | passed | 14.899788070 | 106117/1/450 | 3/0/0 | 681.109201 | 1.182 |
 
-参考原完整native668.98s/domain659.82s，若新实例工作量相近，两臂约22分钟；I/O覆盖可能增加选组与搜索，参考不能作为上限。初始合法根和资源菜单实际形成后更新条件性ETA；全费用从各臂完整命令测量，不拼接组件。
+D−N：{"wirelength": 0, "SB_pairs": 0, "CB_sources": 0, "CPD_ns": 0.0}
 
-实际初始FULL/STA/物理和资源阶段已过：15.628016214ns、106025wire/1SB/450CB，101setup/hold分量均有限非负。此前3网的330pin slack均变为有限，但fresh初始路由树同时改变，冗余网变0；当前没有共享域组/资源接受，不能将全部变化归于旧组覆盖或当domain收益。后续原时序修复继续。
+最终全端点向量及质量相同：True。共同原生时序改善与domain增量须区分；单次费用仅描述。
+
+完整费用属于实际同一臂命令；上游打包/布局、独立核验和只读准入单列，不拼接完整时间。新SDC包含预登记382数据输入与82输出延迟，来自实际文件；不称外部应用要求。保留所有负结果、失败、策略拒绝及超时；不将局部出口未阻塞或无共享域组当全局不可行。研究Goal保持active。
+
+显式IO两臂及全部必要核验已终结，剩余0，配对通过且无domain增量。330pin覆盖扩大但fresh初始树同时变化，不作跨SDC固定树因果推断。最新六页投稿14可独立作者审阅。
 
 
 
@@ -142,6 +149,16 @@ Domain原臂已启动；按native668.98秒和相同工作量条件估计，仍�
 原完整命令677.236256秒，独立原核验2.929917秒。CPD15.628016214→14.899788070ns；最终资源{'wirelength': 106117, 'SB_pairs': 1, 'CB_sources': 450}。setup3改善/0退化，新增hold违规0，分量数101/101。时序接受5，访问状态拒绝3，原资源阶段接受0。
 
 原核验通过，raw/完整配对仍待原队列。domain按相同工作量参考剩余约10.1分钟，加实际只读准入；轨迹/同机负载可能改变耗时，不推算正式比值。后续独立s38584.1输入准备排在所有必要核验后。旧SDC与新SDC的初始树不同，不把跨实例变化当作domain机制收益。投稿13保持。
+
+
+
+# s38584.1独立电路固定确认
+
+1260锁存器的不同公开电路，726CLB/342IO共1068实际块；n40 Hybrid-O，一次seed21布局层0/1为635/433。38输入/304输出采用预登记20ns+IOmax1/min0基准SDC；新电路、新实际布局，同既有架构族，非未见留出集/外部应用要求。
+
+实际源字节、打包/布局、固定CP1r6原入口及迁移准入均过，已启动N→D及后续raw/raw/配对和终结汇总。原算法、预算、接受和终结规则保持，不补造结果。上游pack2.474271/place15.306222秒单列，无重复打包/布局。当前没有完整臂耗时，不能从其他电路或上游时间给出可靠完整ETA；以首个native实际终态更新。阶段超时仅作保护，不是完工预测。
+
+原clma显式IO完整配对已通过且无domain增量，六页投稿14不依赖本次未完成结果。
 
 
 
@@ -175,9 +192,9 @@ Elliptic为当前CP1确认中的不同公开顺序电路，使用新生成的实
 CLSTM-SB完整配对已通过：D−N为+52线长/−1SB/同CPD及CB，单次N/D费用仅描述。已核验投稿稿可独立作者审阅。
 
 
-cp1r6_clma_io_pair_01: running_confirmation_arm；CLMA_IO_complete_admission_01: waiting_for_original_CLMA_IO_pair_terminal；CLMA_IO_postqueue_01: waiting_for_original_pair_and_three_admission_gates；VTR_s38584_input_01: waiting_for_clma_IO_pair_all_raw_and_terminal_decision
+cp1r6_s38584_pair_01: running_confirmation_arm；S38584_complete_admission_01: waiting_for_original_S38584_pair_terminal；S38584_postqueue_01: waiting_for_original_pair_and_three_admission_gates
 
-[当前投稿稿](submission_narrative_13/build/main.pdf) · [证据影响与作者审阅](submission_narrative_13/EXPERIMENT_IMPACT.md) · [完整判定](LSTM_domain_whole_admission_03/admission_decision.json)。原06保留；本轮只把LSTM实际结论和已完成四档代价机制证据纳入对应位置。
+[当前投稿稿](submission_narrative_14/build/main.pdf) · [证据影响与作者审阅](submission_narrative_14/EXPERIMENT_IMPACT.md) · [完整判定](LSTM_domain_whole_admission_03/admission_decision.json)。原06保留；本轮只把LSTM实际结论和已完成四档代价机制证据纳入对应位置。
 
 BNN完整配对保持：CPD13.228145690ns，N/D为2059631/82/5062与2061417/43/5060；SB减少47.56%，SB+CB减少约0.797%，线长增加1786。对称N/D/D/N完整均值7308.61/9129.25秒，+24.91%；冷启动22.95%分列。
 

@@ -1,5 +1,7 @@
 # H3D-inspired native 3D FPGA routing
 
+[显式I/O配对通过、六页投稿14](docs/GitHub_clma_IO_admission_submission14_20261117.md)：N/D同14.899788070ns、106117wire/1SB/450CB及全端点，完整677.24/681.11秒；无domain增量，覆盖扩大且初始树改变的限制保留。46行表及全部失败照录。下一不同电路s38584.1真实打包/布局及准入过，N→D确认已启动、尚无完整结果。[投稿14 PDF](research/dac_v14_20261112/submission_narrative_14/build/main.pdf)。
+
 [clma显式I/O native整臂与下一独立输入](docs/GitHub_clma_IO_native_next_input_20261117.md)：native完整677.24秒，原核验通过；domain及配对继续。s38584.1（1260锁存器）只排队当前全部必要核验后的实际输入准备，尚无新结果，投稿13保持。
 
 [clma显式I/O覆盖实例已启动](docs/GitHub_clma_IO_coverage_20261117.md)：原实际电路/图/布局，新增20ns+输入/输出max1/min0基准约束；旧330pin slack全部有限，但fresh初始树同时改变、无冗余共享域组。完整N/D及后续准入继续；不是新独立输入，六页投稿13保持。
