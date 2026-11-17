@@ -265,6 +265,10 @@ vertical_terminal_publication=D.parents[1]/'docs/github_vertical_cost_terminal_p
 if vertical_terminal_publication.exists():publication=vertical_terminal_publication
 legacy_recovery_publication=D.parents[1]/'docs/github_legacy_recovery_publication_receipt_20261117.json'
 if legacy_recovery_publication.exists():publication=legacy_recovery_publication
+reduction_native_publication=D.parents[1]/'docs/github_reduction_native_publication_receipt_20261117.json'
+if reduction_native_publication.exists():publication=reduction_native_publication
+confirmed_cost_publication=D.parents[1]/'docs/github_confirmed_cost_publication_receipt_20261117.json'
+if confirmed_cost_publication.exists():publication=confirmed_cost_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -1106,6 +1110,32 @@ if (D/'reduction_native_complete_recovery_01/checkpoint.json').exists():
     status['submission_candidate_latest_conditional_ETA']=recovered_native['conditional_ETA']
     status['evidence']['submission_candidate_latest_conditional_ETA']='reduction_native_complete_recovery_01/checkpoint.json'
     status['outstanding'].insert(0,'reduction/native recovered development full method is terminal at12.606378164ns,1241199wire/72SB/3058CB; own-root setup1746better286worse,hold0. New suffix5161.457547s and old failed6147.846396s stay separate; original269-query native work reused without rewriting running manifest. Original reduction/domain suffix now runs. No frozen confirmation, independent input, fresh whole cost or full N/D ratio; main paper benefits unchanged.')
+if (D/'reduction_domain_complete_recovery_01/checkpoint.json').exists():
+    recovered_domain=read(D/'reduction_domain_complete_recovery_01/checkpoint.json')
+    status['reduction_domain_complete_recovery']=recovered_domain
+    status['evidence']['reduction_domain_complete_recovery']='reduction_domain_complete_recovery_01/checkpoint.json'
+    status['evidence']['reduction_domain_closed_resource']='reduction_domain_resource_phase_terminal_01/checkpoint.json'
+    status['outstanding']=[x for x in status['outstanding'] if not x.startswith('reduction/native recovered development full method')]
+if (D/'vertical_cost_confirmed_controls_01/checkpoint.json').exists():
+    confirmed_cost=read(D/'vertical_cost_confirmed_controls_01/checkpoint.json')
+    status['simple_vertical_cost_confirmed_controls']=confirmed_cost
+    status['evidence']['simple_vertical_cost_confirmed_controls']='vertical_cost_confirmed_controls_01/checkpoint.json'
+    status['simple_vertical_cost_baseline'].update(positive_weights_independently_admitted=3,all_four_candidates_legal=True,resource_policy_accepted_weights=0)
+    status['outstanding']=[x.replace('Original crossing-cost baseline now executes with frozen rules before historical recovery.','Original four-strength baseline and its three positive readonly admissions are terminal; all four legal candidates exceed the original CB cap.') for x in status['outstanding'] if not x.startswith('Original four-strength crossing-cost execution terminal')]
+if (empty_audit/'queue/completion.json').exists():
+    empty_terminal=read(empty_audit/'queue/completion.json')
+    status['CLSTM_empty_supervision_source_stage_terminal']=dict(queue_completion=empty_terminal,audit=read(empty_audit/'audit.json'))
+    status['evidence']['CLSTM_empty_supervision_source_stage_terminal']='CLSTM_domain_empty_supervision_audit_02/audit.json'
+if (D/'submission_narrative_05/verification.json').exists():
+    status['submission_candidate_latest']=dict(verification='submission_narrative_05/verification.json',pdf='submission_narrative_05/build/main.pdf',impact='submission_narrative_05/EXPERIMENT_IMPACT.md',pages=6,matched_fixed_scope_cost_controls=4,new_complete_method_pairs=0,new_independent_inputs=0)
+    status['evidence']['submission_candidate_latest']='submission_narrative_05/verification.json'
+    status['paper_pdf']=str(D/'submission_narrative_05/build/main.pdf')
+    status['submission_candidate_latest_conditional_ETA']=dict(original_recovery_remaining_roles=0,baseline_execution_remaining_roles=0,baseline_readonly_remaining_roles=0,CLSTM_source_stage_audit_remaining_roles=0,CLSTM_candidate_and_full_recovery_complete=False,CP1r3_admitted_pairs=0,qualification='Registered recovery and necessary readonly stages are terminal. New independent-input admission and separately registered remaining candidate recovery have no measured ETA yet; no queue or date/count Goal stopping condition.')
+    status['evidence']['submission_candidate_latest_conditional_ETA']='submission_narrative_05/EXPERIMENT_IMPACT.md'
+    status['outstanding'].insert(0,'Submission05 is independently verified at six pages. Four matched crossing-cost controls are admitted but all exceed CB653; update only TableIII/SectionV-A and related scope claims. Reduction N/D development suffixes ended with unequal historical prefixes, no fresh complete-time ratio. CLSTM23-query source stage passed, candidate physical/domain/STA and full recovery remain separately chargeable. Prioritize true independent input/actual physical-start evidence; do not repeat BNN local queries or rewrite original failures.')
+if (D/'empty_query_patch_validation_01/completion.json').exists():
+    status['empty_query_development_replay_terminal']=read(D/'empty_query_patch_validation_01/completion.json')
+    status['evidence']['empty_query_development_replay_terminal']='empty_query_patch_validation_01/completion.json'
 active_arm_pointer=Path('/tmp/dac_cp1r3_active_arm_pidfd_wait_01.json')
 if active_arm_pointer.exists():
     status['active_CP1r3_arm_wait']=read(active_arm_pointer)

@@ -5,3 +5,9 @@
 21项小型检查通过，包括真实元数据、错误路径、非空或改变的摘要、身份不匹配、活进程、缺失FULL、失败物理检查和封存失败等拒绝条件。它们不替代完整字节检查，也不提供缺失的候选STA或整个恢复结果。不会写入历史监督退出状态，不补造completion，不重跑原生查询。
 
 新唯一owner已排在vertical_cost_admission_reconciliation_01终结之后，再等待现有串行槽；当前活动恢复规则、预算和接受条件不变。每次实际审计单独计费，原失败和原费用保留。此核验只影响补充材料的阶段准入与失败解释，不是六页投稿04稿成立的前置条件，也不扩大主表或摘要收益。
+
+## 实际终结更新
+
+原队列在三档基线只读准入终结后执行，本次完整审计命令6.000503898秒，内部只读5.858842213秒，return0。23个已执行连接的完整有序请求/成功日志及原生来源FULL/STA、端点和输入证明已通过；new_native_or_STA_calls=0。原空监督回执和原失败未改，没有补造监督退出码或历史completion。
+
+只准入既有native_source_control阶段；候选物理审计、domain审计和candidate STA尚无完成载荷，complete_candidate_admitted=false、full_method_complete=false、adoption_implemented=false。后续接续须单独登记新执行阶段和费用，不重复原23连接原生查询；当前通过不自动使原CLSTM/domain完整方法或四臂原队列passed=true。

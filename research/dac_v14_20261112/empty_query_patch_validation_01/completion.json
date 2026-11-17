@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "fixture": "actual_conv_hls_empty",
+      "kind": "protected",
+      "passed": true,
+      "mode": "empty",
+      "empty_branch_completed": true,
+      "new_query_processes": 0,
+      "new_native_routes": 0,
+      "graph_maps": 0,
+      "actual_empty_rows_and_metadata_preserved": true
+    },
+    {
+      "fixture": "actual_conv_hls_empty",
+      "kind": "exchange",
+      "passed": true,
+      "mode": "empty",
+      "empty_branch_completed": true,
+      "new_query_processes": 0,
+      "new_native_routes": 0,
+      "graph_maps": 0,
+      "actual_empty_rows_and_metadata_preserved": true
+    },
+    {
+      "fixture": "actual_BNN_nonempty",
+      "kind": "protected",
+      "passed": true,
+      "mode": "nonempty",
+      "original_nonempty_graph_path_reached": true,
+      "new_query_processes": 0,
+      "new_native_routes": 0,
+      "scope": "Dispatch only; no nonempty query result recomputed or inferred."
+    },
+    {
+      "fixture": "actual_BNN_nonempty",
+      "kind": "exchange",
+      "passed": true,
+      "mode": "nonempty",
+      "original_nonempty_graph_path_reached": true,
+      "new_query_processes": 0,
+      "new_native_routes": 0,
+      "scope": "Dispatch only; no nonempty query result recomputed or inferred."
+    }
+  ],
+  "original_nonempty_bodies_retained_byte_exact": true,
+  "new_native_routes": 0,
+  "new_query_processes": 0,
+  "full_method_equivalence_verified": false,
+  "whole_time_saving_established": false,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/validate_empty_query_patch_01.py": "da390afcd0ee62acb9558a00c336c37684d9f6f319716ebd2456a95994965acf",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/replay_empty_query_worker_01.py": "7358e4c6ac220835669c45cc6056780bd454292cba7e9a7bdd999a67428945e8",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/empty_query_patch_validation_01/plan.json": "cab6ac55018b083aa899ed5b11ccedcd3a470e2c51842a1d258e557e03c0eebf",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/empty_query_patch_01/preparation.json": "034bf96e82366e81ca49d4668952fe28082668b66d13f909bd43e6f04dec317b",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/empty_query_patch_01/query_current_protected_critical.py": "14f445052cb9a354ed5367c069d3ce9b5dcc9b8df8cef8df1458b7bcd5eea2ac",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/empty_query_patch_01/query_critical_owner_exchange.py": "5de9c0c690fc343ed37925d7b3d632d15571371e69ab2bae7d19e4470066cb92"
+  },
+  "qualification": "Real completed conv_hls empty data and BNN nonempty data used. Empty workers execute original upstream digest/state checks and new argument/driver guards with mapping/process launches forbidden. Nonempty paths stop at the original graph-map boundary. Not independent new routing evidence, full nonempty replay, candidate/proposal equivalence or complete speedup. Future package and symmetric complete controls required."
+}

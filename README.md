@@ -2,6 +2,12 @@
 
 ## Current research snapshot — 2026-11-17
 
+[四档代价对照独立准入与六页投稿05](docs/GitHub_confirmed_cost_submission_20261117.md)：0/0.5/1/2全部路由合法、完整同组核验通过，但均因CB654>653策略拒绝；1/2另有37项setup退化。测试权重减少SB，却未复现release分支的CB预算内工作点，不外推普遍优势。原四档尝试353.24秒、后续只读核验80.74秒分列，未重跑native/STA。[最新PDF](research/dac_v14_20261112/submission_narrative_05/build/main.pdf) · [剩余证据影响](research/dac_v14_20261112/submission_narrative_05/EXPERIMENT_IMPACT.md)。
+
+reduction原N/D开发接续均终结：同CPD、72SB/3058CB，线长1241199/1241281；各自后缀5161.46/10116.16秒和旧失败费用单列，不以不同前缀的后缀比冒充完整费用。CLSTM既有23连接来源阶段独立审计通过，候选物理/域/STA及完整接续尚未完成；原空回执与失败保留。CP1r3仍无新增完整准入配对，Goal继续。[实际状态](research/dac_v14_20261112/CURRENT_STATUS.md)。
+
+以下为历史发布快照，角色是否终结及当前稿件以上述入口和实际回执为准。
+
 [reduction/native开发恢复完整终结；原domain接续](docs/GitHub_reduction_native_recovered_20261117.md)：12.606378ns、1241199wire/72SB/3058CB，setup1746改善/286退化、hold退化0；恢复后缀5161.46秒与原失败6147.85秒单列。旧269连接原生阶段实际复用、原running manifest不改。不是新鲜完整费用、冻结确认或配对域收益；正文主张保持。
 
 [CLSTM/native与robot-p1历史恢复终态、必要只读核验](docs/GitHub_legacy_recovery_readonly_queue_20261117.md)：后缀费用分别206.33/705.29秒，原失败费用单列，不拼接完整时间或配对收益。CLSTM/domain原空监督回执及失败保留；21项元数据检查通过，完整独立阶段核验已排在三档代价基线只读协调之后。原reduction恢复继续，投稿04稿和主张不变。
