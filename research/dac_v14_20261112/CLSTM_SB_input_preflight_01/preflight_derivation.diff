@@ -1,0 +1,31 @@
+--- preflight_TPU_OS_input_01.py
++++ preflight_CLSTM_SB_input_01.py
+@@ -7,7 +7,7 @@
+ from pathlib import Path
+ from retained_prefix_workflow import D, read, write, sha
+ 
+-root = D / 'TPU_OS_input_preflight_01'
++root = D / 'CLSTM_SB_input_preflight_01'
+ 
+ 
+ def main():
+@@ -20,8 +20,8 @@
+         try:
+             assert all(sha(p) == h for p, h in registration['source_sha256'].items())
+             chosen = registration['selected_input']
+-            assert chosen['id'] == 'tpu_os_p0'
+-            assert chosen['outside_matrix_and_active_cohort_netlist']
++            assert chosen['id'] == 'clstm_sb_p0'
++            assert chosen['not_previously_registered_complete_confirmation']
+             for key in ['architecture', 'circuit', 'graph', 'packed', 'placement']:
+                 item = chosen['physical_files'][key]
+                 path = Path(item['path'])
+@@ -60,7 +60,7 @@
+                   physical_inputs=rows, actual_layout=layout,
+                   complete_internal_preflight_seconds=time.monotonic()-started,
+                   new_native_or_STA_calls=0, new_independent_confirmed_samples=0,
+-                  source_route_imported=False, source='known historical TPU-OS source; distinct dataflow/netlist from TPU-WS, same TPU family',
++                  source_route_imported=False, source='known historical CLSTM-small on SB-only configuration; same circuit as Hybrid-O recovery, distinct physical configuration, no new architecture family',
+                   new_architecture=False, full_input_or_route_admission=False,
+                   source_sha256={str(root/'registration.json'): sha(root/'registration.json'), **registration['source_sha256']},
+                   qualification='One read of each declared input for byte binding, plus existing coordinate parsing. Full graph/packing/placement compatibility, fresh legal roots, frozen next-version methods and matched full outputs remain required. No QoR selection or application-SDC claim.'))

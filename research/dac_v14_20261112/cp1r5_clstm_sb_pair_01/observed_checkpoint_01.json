@@ -1,0 +1,111 @@
+{
+  "observed_at": "2026-11-17T17:39:05.758147+00:00",
+  "previous_goal_turn_classification": "progress",
+  "owners": {
+    "cp1r5_clstm_sb_pair_01": {
+      "owner": {
+        "pid": 3550475,
+        "state": "S",
+        "start_ticks": "1970977924"
+      },
+      "phase": {
+        "status": "running_confirmation_arm",
+        "input": "clstm_sb",
+        "arm": "native",
+        "case": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_clstm_sb_pair_01/clstm_sb/native",
+        "pid": 3551591,
+        "state": "R",
+        "start_ticks": "1970978593"
+      }
+    },
+    "CLSTM_SB_complete_admission_01": {
+      "owner": {
+        "pid": 3551177,
+        "state": "S",
+        "start_ticks": "1970978044"
+      },
+      "phase": {
+        "status": "waiting_for_original_CLSTM_SB_pair_terminal"
+      }
+    }
+  },
+  "actual_phases": [
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_clstm_sb_pair_01/clstm_sb/native/flow/active_child.json",
+      "record": {
+        "pid": 3553991,
+        "start_ticks": "1970979100",
+        "tag": "fresh_route_and_complete_resource",
+        "command": [
+          "/usr/bin/python3",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r5/runtime/supervise_method_phase.py",
+          "--receipt",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_clstm_sb_pair_01/clstm_sb/native/flow/fresh_route_and_complete_resource_supervision.json",
+          "--",
+          "/usr/bin/python3",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r5/runtime/run_complete_unified_resource_flow_v1.py",
+          "--config",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_clstm_sb_pair_01/clstm_sb/native/config.json",
+          "--output",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_clstm_sb_pair_01/clstm_sb/native/flow/resource_flow"
+        ],
+        "phase": "private_subreaper"
+      },
+      "actual_process": {
+        "pid": 3553991,
+        "state": "S",
+        "start_ticks": "1970979100"
+      },
+      "identity_matches": true
+    },
+    {
+      "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_clstm_sb_pair_01/clstm_sb/native/flow/resource_flow/active_child.json",
+      "record": {
+        "pid": 3555076,
+        "start_ticks": "1970979526",
+        "tag": "joint_graph_index_generation",
+        "command": [
+          "/usr/bin/python3",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r5/runtime/supervise_method_phase.py",
+          "--receipt",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_clstm_sb_pair_01/clstm_sb/native/flow/resource_flow/joint_graph_index_generation_supervision.json",
+          "--seconds",
+          "1800",
+          "--",
+          "/usr/bin/python3",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r5/runtime/build_joint_graph_indexes_v1.py",
+          "--graph",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_clstm_sb_pair_01/clstm_sb/inputs/graph.xml",
+          "--output",
+          "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r5_clstm_sb_pair_01/clstm_sb/native/flow/resource_flow/joint_graph_indexes"
+        ],
+        "phase": "private_subreaper"
+      },
+      "actual_process": null,
+      "identity_matches": false
+    }
+  ],
+  "session_handles": {
+    "original_pair": 88032,
+    "necessary_readonly_queue": 3088
+  },
+  "actual_initial_legal_receipt": null,
+  "index_completed": true,
+  "input_preflight_seconds": 2.1797442957758904,
+  "input_provision_seconds": 6.306022591888905,
+  "new_paired_quality_admitted": false,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/cp1r5_clstm_sb_pair_01/plan.json": "dc36a2f6250779c7de5c5c5881697921144fe82afcf5ea0be35b1642ce7589ce",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_SB_input_preflight_01/completion.json": "998e07de065c60a7718dccbfeab9dfff48c8cc6fad35f56b488cab3176be707a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_SB_input_preflight_01/actual_start_comparison.json": "8f2d1d7963365911818717c48df19e76361a7dccb0dc80cafabffcfca46d5496",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/CLSTM_SB_complete_admission_01/plan.json": "df47e1c9e5a80530fcc271e9d850ead6f22b11ad418b4401a998e43aabbd3081"
+  },
+  "conditional_ETA": {
+    "remaining_original_roles": 2,
+    "remaining_readonly_stages": 3,
+    "whole_flow_reference_for_this_input": null,
+    "qualification": "Index in-progress/completed from actual receipt; prior same-scale TPU index about90s is only context. Remaining original route/repair/menu work is uncalibrated until first native outcome. No fixed research stopping date/call count."
+  },
+  "next": "Observe actual stage completion or anomaly; no restart, budget/rule edit or heavy concurrent audit. Priority readonly queue waits on this exact original owner and terminal receipt.",
+  "Goal_active": true
+}
