@@ -1,0 +1,262 @@
+{
+  "observed_at": "2026-11-17T07:51:58.554968+00:00",
+  "passed": true,
+  "tests": 22,
+  "rows": [
+    {
+      "name": "legacy_finite_eligible",
+      "passed": true,
+      "legacy_equivalent": true,
+      "original": {
+        "value": true,
+        "error": null
+      },
+      "development": {
+        "value": true,
+        "error": null
+      }
+    },
+    {
+      "name": "legacy_finite_worse",
+      "passed": true,
+      "legacy_equivalent": true,
+      "original": {
+        "value": false,
+        "error": null
+      },
+      "development": {
+        "value": false,
+        "error": null
+      }
+    },
+    {
+      "name": "legacy_finite_tie",
+      "passed": true,
+      "legacy_equivalent": true,
+      "original": {
+        "value": false,
+        "error": null
+      },
+      "development": {
+        "value": false,
+        "error": null
+      }
+    },
+    {
+      "name": "legacy_multiple_eligible",
+      "passed": true,
+      "legacy_equivalent": true,
+      "original": {
+        "value": true,
+        "error": null
+      },
+      "development": {
+        "value": true,
+        "error": null
+      }
+    },
+    {
+      "name": "legacy_one_ineligible",
+      "passed": true,
+      "legacy_equivalent": true,
+      "original": {
+        "value": false,
+        "error": null
+      },
+      "development": {
+        "value": false,
+        "error": null
+      }
+    },
+    {
+      "name": "legacy_numeric_infinity",
+      "passed": true,
+      "legacy_equivalent": true,
+      "original": {
+        "value": true,
+        "error": null
+      },
+      "development": {
+        "value": true,
+        "error": null
+      }
+    },
+    {
+      "name": "legacy_numeric_negative_infinity",
+      "passed": true,
+      "legacy_equivalent": true,
+      "original": {
+        "value": false,
+        "error": null
+      },
+      "development": {
+        "value": false,
+        "error": null
+      }
+    },
+    {
+      "name": "legacy_numeric_nan_rejected",
+      "passed": true,
+      "legacy_equivalent": true,
+      "original": {
+        "value": false,
+        "error": null
+      },
+      "development": {
+        "value": false,
+        "error": null
+      }
+    },
+    {
+      "name": "legacy_empty_donors",
+      "passed": true,
+      "legacy_equivalent": true,
+      "original": {
+        "value": true,
+        "error": null
+      },
+      "development": {
+        "value": true,
+        "error": null
+      }
+    },
+    {
+      "name": "numeric_string",
+      "passed": true,
+      "legacy_equivalent": false,
+      "original": {
+        "value": null,
+        "error": true
+      },
+      "development": {
+        "value": true,
+        "error": null
+      }
+    },
+    {
+      "name": "positive_infinity_string",
+      "passed": true,
+      "legacy_equivalent": false,
+      "original": {
+        "value": null,
+        "error": true
+      },
+      "development": {
+        "value": true,
+        "error": null
+      }
+    },
+    {
+      "name": "negative_infinity_string",
+      "passed": true,
+      "legacy_equivalent": false,
+      "original": {
+        "value": null,
+        "error": true
+      },
+      "development": {
+        "value": false,
+        "error": null
+      }
+    },
+    {
+      "name": "nan_string_donor_rejected",
+      "passed": true,
+      "legacy_equivalent": false,
+      "original": {
+        "value": null,
+        "error": true
+      },
+      "development": {
+        "value": false,
+        "error": null
+      }
+    },
+    {
+      "name": "none_donor_fails_closed",
+      "passed": true,
+      "legacy_equivalent": false,
+      "original": {
+        "value": null,
+        "error": true
+      },
+      "development": {
+        "value": null,
+        "error": true
+      }
+    },
+    {
+      "name": "unknown_string_fails_closed",
+      "passed": true,
+      "legacy_equivalent": false,
+      "original": {
+        "value": null,
+        "error": true
+      },
+      "development": {
+        "value": null,
+        "error": true
+      }
+    },
+    {
+      "name": "object_donor_fails_closed",
+      "passed": true,
+      "legacy_equivalent": false,
+      "original": {
+        "value": null,
+        "error": true
+      },
+      "development": {
+        "value": null,
+        "error": true
+      }
+    },
+    {
+      "name": "one_unknown_donor_fails_closed",
+      "passed": true,
+      "legacy_equivalent": false,
+      "original": {
+        "value": null,
+        "error": true
+      },
+      "development": {
+        "value": null,
+        "error": true
+      }
+    },
+    {
+      "name": "numeric_string_cutoff",
+      "passed": true
+    },
+    {
+      "name": "finite_order_and_tie_break_unchanged",
+      "passed": true,
+      "legacy_equivalent": true
+    },
+    {
+      "name": "numeric_string_order_not_lexical",
+      "passed": true,
+      "legacy_equivalent": false
+    },
+    {
+      "name": "mixed_numeric_and_infinite_order",
+      "passed": true,
+      "legacy_equivalent": false
+    },
+    {
+      "name": "malformed_target_order_fails_closed",
+      "passed": true
+    }
+  ],
+  "complete_validation_seconds": 0.014817584306001663,
+  "original_frozen_planner_unchanged": true,
+  "tested_actual_changed_AST_expressions": true,
+  "installed_in_running_or_queued_code": false,
+  "native_calls": 0,
+  "STA_calls": 0,
+  "graph_or_raw_vector_reads": 0,
+  "actual_failing_serialized_token_checked": false,
+  "actual_full_planner_replay_executed": false,
+  "quality_admission": false,
+  "qualification": "Expression and compatibility guards only. Invalid/NaN donor values produce no positive strict comparison. These checks do not establish that the actual failed donor is a supported numeric string, or that the full planner/candidate/controller succeeds."
+}

@@ -1,0 +1,150 @@
+[
+  {
+    "tag": "000_current_STA_selection",
+    "status": "completed",
+    "returncode": 0,
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/current_sta_arrival_cone_compact.py",
+      "--state",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing_initial",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/cone.json"
+    ],
+    "complete_process_seconds": 2.511896513402462
+  },
+  {
+    "tag": "000_capacity_query",
+    "status": "completed",
+    "returncode": 0,
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/run_current_cone_capacity_queries_cold_v1.py",
+      "--reuse-root",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing",
+      "--state",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing_initial",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/capacity",
+      "--query-graph",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/resource_flow/joint_graph_indexes/query_graph",
+      "--audit-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/resource_flow/joint_graph_indexes/audit_cache",
+      "--cone",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/cone.json"
+    ],
+    "complete_process_seconds": 11.033918403089046
+  },
+  {
+    "tag": "000_capacity_audit",
+    "status": "completed",
+    "returncode": 0,
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/audit_current_cone_queries.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/capacity",
+      "--query-graph",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/resource_flow/joint_graph_indexes/query_graph",
+      "--audit-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/resource_flow/joint_graph_indexes/audit_cache"
+    ],
+    "complete_process_seconds": 4.681123934686184
+  },
+  {
+    "tag": "000_relaxed_query",
+    "status": "completed",
+    "returncode": 0,
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/run_current_graph_relaxed_queries_cold_v1.py",
+      "--reuse-root",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing",
+      "--capacity-batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/capacity",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/relaxed",
+      "--query-graph",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/resource_flow/joint_graph_indexes/query_graph"
+    ],
+    "complete_process_seconds": 5.943482652306557
+  },
+  {
+    "tag": "000_relaxed_audit",
+    "status": "completed",
+    "returncode": 0,
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/audit_current_cone_queries.py",
+      "--batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/relaxed",
+      "--query-graph",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/resource_flow/joint_graph_indexes/query_graph",
+      "--audit-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/resource_flow/joint_graph_indexes/audit_cache"
+    ],
+    "complete_process_seconds": 4.528527285903692
+  },
+  {
+    "tag": "000_current_owner_feedback",
+    "status": "completed",
+    "returncode": 0,
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/derive_current_release_opportunities.py",
+      "--capacity-batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/capacity",
+      "--relaxed-batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/relaxed",
+      "--state",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing_initial",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/owners",
+      "--audit-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/resource_flow/joint_graph_indexes/audit_cache"
+    ],
+    "complete_process_seconds": 3.320655081421137
+  },
+  {
+    "tag": "000_protected_query",
+    "status": "completed",
+    "returncode": 0,
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/query_current_protected_critical.py",
+      "--capacity-batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/capacity",
+      "--opportunities",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/owners/completion.json",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/protected",
+      "--audit-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/resource_flow/joint_graph_indexes/audit_cache",
+      "--query-graph",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/resource_flow/joint_graph_indexes/query_graph"
+    ],
+    "complete_process_seconds": 5.586261663585901
+  },
+  {
+    "tag": "000_current_group_plan",
+    "status": "failed",
+    "returncode": 1,
+    "command": [
+      "/usr/bin/python3",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/plan_current_critical_group.py",
+      "--cone",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/cone.json",
+      "--capacity-batch",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/capacity",
+      "--protected",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/protected/completion.json",
+      "--audit-cache",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/resource_flow/joint_graph_indexes/audit_cache",
+      "--output",
+      "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/eltwise_sb/domain/flow/timing/round_000/feedback/proposal",
+      "--fraction",
+      "0.9"
+    ],
+    "complete_process_seconds": 2.9686997309327126
+  }
+]

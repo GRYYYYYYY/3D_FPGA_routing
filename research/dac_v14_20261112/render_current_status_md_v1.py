@@ -5,7 +5,7 @@ def render(status,D):
     result = _render(status,D)
     if status.get('DLA_small_initial_failure'):
         if status['DLA_small_initial_failure']['status']=='both_original_arms_initial_route_failed_no_legal_root':
-            note='\n[DLA-small原N/D初始路由失败](DLA_small_initial_failure_01/STATUS.md)：完整命令分别709.742677/702.413717秒，原日志在W100/200次迭代后均仍有525个过用节点；没有合法起点，未进入修复，不是超时或合法无收益。初始命令仅替换arm输出路径后逐项相同，共同binary/arch/BLIF/RRG登记摘要匹配；未新增大字节独立准入。失败路由打印的CPD不进入质量结果，也不计算算法收益或费用比例。实际队列接续eltwise-SB/native；这是已知电路/架构的新布局，不计新电路/新架构。剩余两臂及原补充规划约1.17–4.67小时，raw/基线/事件审计另计未校准。\n'
+            note='\n[DLA-small原N/D初始路由失败](DLA_small_initial_failure_01/STATUS.md)：完整命令分别709.742677/702.413717秒，原日志在W100/200次迭代后均仍有525个过用节点；没有合法起点，未进入修复，不是超时或合法无收益。初始命令仅替换arm输出路径后逐项相同，共同binary/arch/BLIF/RRG登记摘要匹配；未新增大字节独立准入。失败路由打印的CPD不进入质量结果，也不计算算法收益或费用比例。后续实际角色以上表进程身份为准；eltwise-SB是已知电路/架构的新布局，不计新电路/新架构。当前条件ETA见最新阶段记录，旧两臂规划仅作历史记录。\n'
         else:
             note='\n[DLA-small初始路由失败记录](DLA_small_initial_failure_01/STATUS.md)：native完整命令709.742677秒后返回1，原日志在W100/200次迭代后仍有525个过用节点；未进入修复，不是超时或合法无收益。失败路由打印的CPD不进入质量结果。domain原批次继续，实际角色状态以上表进程身份为准；条件ETA及后续核验范围见记录，未修改预算或重试。\n'
         first,rest=result.split('\n',1)
@@ -13,13 +13,21 @@ def render(status,D):
     if status.get('LSTM_complete_execution_verification'):
         latest=status['LSTM_complete_execution_verification']
         native=latest['roles']['native'];domain=latest['roles']['domain']
-        note=(f"\n[LSTM完整执行与原验证失败](LSTM_complete_execution_01/STATUS.md)：N/D完整命令均返回0，分别实测{native['complete_command_wall_seconds']:.6f}/{domain['complete_command_wall_seconds']:.6f}秒；原独立验证分别{native['independent_research_verification_seconds']:.6f}/{domain['independent_research_verification_seconds']:.6f}秒后失败，quality均为null，正式配对比例仍不可用。domain原line64首次失败定位到attempt_index15、round013/candidate00原passed=false；此前155个小型来源哈希均匹配，未重跑native/STA或改历史完成记录。实际队列已接续DLA-small/native，后续以本页进程表为准。完整费用保留ctime事件，不称干净算法开销；正文收益主张不变。剩余四角色与原补充规划约2.17–8.67小时，raw/基线/事件审计另计未校准；此前菜单ETA仅是历史情景。\n")
+        note=(f"\n[LSTM完整执行与原验证失败](LSTM_complete_execution_01/STATUS.md)：N/D完整命令均返回0，分别实测{native['complete_command_wall_seconds']:.6f}/{domain['complete_command_wall_seconds']:.6f}秒；原独立验证分别{native['independent_research_verification_seconds']:.6f}/{domain['independent_research_verification_seconds']:.6f}秒后失败，quality均为null，正式配对比例仍不可用。domain原line64首次失败定位到attempt_index15、round013/candidate00原passed=false；此前155个小型来源哈希均匹配，未重跑native/STA或改历史完成记录。后续以本页实际进程表为准。完整费用保留ctime事件，不称干净算法开销；正文收益主张不变。旧四角色和菜单ETA只作历史情景，当前条件ETA见最新阶段记录。\n")
+        first,rest=result.split('\n',1)
+        result=first+'\n'+note+rest
+    if status.get('eltwise_SB_native_execution_failure') and not status.get('CP1r3_complete_execution'):
+        note='\n[eltwise-SB/native原执行失败](eltwise_SB_native_execution_failure_01/STATUS.md)：完整命令903.226738秒，资源阶段6次接受后在时序规划器发生str/float比较TypeError；原独立质量验证未启动。资源前缀不作为完整方法结果，正式配对比例不可用。原domain角色及后续补充/raw/代价基线规则保持；若domain在与native相当的阶段结束，domain起算约25–55分钟含原补充验证，后续新接受会使此情景失效，raw/基线/事件审计另计且未校准。隔离开发副本22项表达式检查通过，实际出错字符串及完整规划器回放未验证，未部署到运行或排队版本。\n'
         first,rest=result.split('\n',1)
         result=first+'\n'+note+rest
     if status.get('LSTM_retention_metadata_incident'):
         note = '\n[LSTM归档干扰更正](../../docs/GitHub_LSTM_retention_incident_20261117.md)：助手硬链接归档改变活动源ctime，触发round013/candidate00一次封存失败；135项登记摘要与原最终重哈希一致，失败5项仅ctime变化。保留原失败及费用，不补造成功、不重跑查询、不改预算；当前运行期禁止对上游输入创建/删除硬链接或改元数据。完整LSTM配对及干净计时尚未准入。\n'
         first, rest = result.split('\n',1)
         result = first + '\n' + note + rest
+    if status.get('CP1r3_complete_execution'):
+        note='\n[CP1r3六角色与已登记准入终结](CP1r3_complete_execution_01/STATUS.md)：完整质量0/6、配对0/3。LSTM执行结束但原/补充验证失败；DLA两臂初始路由失败；SB-layout两臂时序planner执行错误，均保留实际费用，不计算正式比值。native补充主体payload写出后因输出目录缺失报错，raw在前置门槛拒绝、未执行昂贵字节/向量审计。确认/原补充剩余角色均为0；旧确认ETA作废，实际基线构建/四档执行费用另计。[六页投稿04稿](submission_narrative_04/build/main.pdf)只增加失败覆盖与费用，原方法、BNN数值和prior-art不变；[剩余证据影响](submission_narrative_04/EXPERIMENT_IMPACT.md)。\n'
+        first,rest=result.split('\n',1)
+        result=first+'\n'+note+rest
     return result
 
 def _render(status,D):

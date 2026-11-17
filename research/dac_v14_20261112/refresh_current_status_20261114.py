@@ -1051,6 +1051,28 @@ if (D/'DLA_small_initial_failure_01/checkpoint.json').exists():
         status['outstanding'].insert(0,'DLA-small N/D both failed initial routing under frozen W100/200-iteration settings with525 overused nodes; actual whole command costs709.742677/702.413717s retained, no legal quality or method-cost ratio. Original cohort continues eltwise-SB; no DLA retry or budget change.')
     else:
         status['outstanding'].insert(0,'DLA-small/native initial routing failed under frozen W100/200-iteration settings, with525 overused nodes; retain709.742677s actual cost and no quality CPD. Original domain arm continues; keep original budget and classify its own terminal outcome before paired applicability claims.')
+if (D/'eltwise_SB_native_execution_failure_01/checkpoint.json').exists():
+    latest_eltwise=read(D/'eltwise_SB_native_execution_failure_01/checkpoint.json')
+    status['eltwise_SB_native_execution_failure']=latest_eltwise
+    status['evidence']['eltwise_SB_native_execution_failure']='eltwise_SB_native_execution_failure_01/checkpoint.json'
+    status['submission_candidate_latest_conditional_ETA']=latest_eltwise['conditional_ETA']
+    status['evidence']['submission_candidate_latest_conditional_ETA']='eltwise_SB_native_execution_failure_01/checkpoint.json'
+    status['outstanding'].insert(0,'eltwise-SB/native ended with timing-planner str/float TypeError after resource-prefix success; complete command903.226738s retained, no whole-method quality admission or paired ratio. Original domain arm continues with frozen rules. Isolated expression-level development checks do not repair historical failure or admit actual evidence.')
+if (D/'planner_numeric_slack_dev_01/validation.json').exists():
+    status['prospective_planner_numeric_slack_validation']=read(D/'planner_numeric_slack_dev_01/validation.json')
+    status['evidence']['prospective_planner_numeric_slack_validation']='planner_numeric_slack_dev_01/validation.json'
+if (D/'CP1r3_complete_execution_01/admission_terminal.json').exists():
+    status['CP1r3_complete_execution']=read(D/'CP1r3_complete_execution_01/checkpoint.json')
+    status['CP1r3_registered_admission_terminal']=read(D/'CP1r3_complete_execution_01/admission_terminal.json')
+    status['evidence']['CP1r3_complete_execution']='CP1r3_complete_execution_01/checkpoint.json'
+    status['evidence']['CP1r3_registered_admission_terminal']='CP1r3_complete_execution_01/admission_terminal.json'
+    status['submission_candidate_latest_conditional_ETA']=dict(confirmation_remaining_roles=0,supplement_remaining_roles=0,raw_queue_terminal=True,quality_admitted_pairs=0,baseline_phase='See actual original owner and execution stage; no completed baseline timing yet',baseline_time_uncalibrated=True,qualification='Previous confirmation ETA scenarios have ended. Frozen build/link guards are stage limits, not measured ETA or Goal stopping conditions.')
+    status['evidence']['submission_candidate_latest_conditional_ETA']='CP1r3_complete_execution_01/admission_terminal.json'
+    status['outstanding']=[x for x in status['outstanding'] if not x.startswith(('eltwise-SB/native ended','DLA-small N/D both','DLA-small/native initial','LSTM N/D commands are complete'))]
+    status['outstanding'].insert(0,'CP1r3 six executions, original supplement and raw queue are terminal; zero admitted pairs. Raw failed prerequisites before large-byte audit. Native supplemental main payload exists but subsequent output-directory failure remains an unsuccessful audit command. Reconcile saved actual evidence separately without repeating native calls or rewriting historical completion. Original crossing-cost baseline now executes with frozen rules before historical recovery.')
+if (D/'submission_narrative_04/verification.json').exists():
+    status['submission_narrative_terminal_coverage']=dict(verification='submission_narrative_04/verification.json',pdf='submission_narrative_04/build/main.pdf',pages=6,added_unadmitted_attempt_rows=6,BNN_method_prior_art_and_mechanisms_unchanged=True,new_admitted_benefits=0)
+    status['evidence']['submission_narrative_terminal_coverage']='submission_narrative_04/verification.json'
 active_arm_pointer=Path('/tmp/dac_cp1r3_active_arm_pidfd_wait_01.json')
 if active_arm_pointer.exists():
     status['active_CP1r3_arm_wait']=read(active_arm_pointer)

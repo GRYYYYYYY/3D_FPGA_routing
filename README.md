@@ -2,6 +2,10 @@
 
 ## Current research snapshot — 2026-11-17
 
+[CP1r3六角色及原准入终结；六页投稿叙事04](docs/GitHub_CP1r3_terminal_submission_20261117.md)：完整质量0/6、配对0/3，所有真实费用及失败保留；新稿仅更新失败覆盖和适用范围，BNN、方法与prior-art不变。原跨层代价0/0.5/1/2队列已进入实际构建，未修改规则。[投稿PDF](research/dac_v14_20261112/submission_narrative_04/build/main.pdf) · [剩余证据影响清单](research/dac_v14_20261112/submission_narrative_04/EXPERIMENT_IMPACT.md)。
+
+以下角色进度入口为历史快照；最新真实状态以上述记录与CURRENT_STATUS为准。
+
 [DLA-small N/D初始路由失败；接续eltwise-SB](docs/GitHub_DLA_initial_failure_20261117.md)：原完整费用709.74/702.41秒，两臂均未获得合法起点，失败路由时序不计QoR；原预算和日志保留。eltwise-SB属于既有电路/架构的新布局；剩余核验及基线队列不变。
 
 [LSTM完整执行与原验证失败；CP1r3接续DLA-small](docs/GitHub_LSTM_complete_execution_20261117.md)：N/D完整命令分别7615.07/26657.73秒，原独立验证均失败，正式配对比例不发布。保存原失败、具体断言定位、完整费用及下一角色状态；六页叙事03和既有收益边界不变。

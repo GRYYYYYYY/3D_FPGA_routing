@@ -1,0 +1,17 @@
+--- /inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r3/runtime/plan_current_critical_group.py
++++ research/dac_v14_20261112/planner_numeric_slack_dev_01/plan_current_critical_group.py
+@@ -42,12 +42,12 @@
+   for net,nodes in conflicts.items():
+    tree=from_trace(traces[net]['trace'],switches)
+    for node in nodes:donors.update((net,pin) for pin in downstream_pins(tree,node))
+-  assert all(sta[x]['setup_slack_s']>cone['worst_slack_s'] for x in donors)
++  assert all(float(sta[x]['setup_slack_s'])>float(cone['worst_slack_s']) for x in donors)
+  actions.append(dict(target=target,optimistic_gain_ns=gain,donors=sorted(donors),atom_nodes=sorted({a['tnode_external'] for a in connections[target]['atoms']})))
+ pattern_data=patterns(cone,actions);selection=select(pattern_data,actions,a.fraction,a.planning_seconds);selected=[actions[i] for i in selection['selected']]
+ chosen={tuple(x['target']) for x in selected};pins=set(chosen)
+ for x in selected:pins.update(map(tuple,x['donors']))
+-ordered=sorted(chosen,key=lambda x:(sta[x]['setup_slack_s'],x))+[x for x in sorted(pins) if x not in chosen]
++ordered=sorted(chosen,key=lambda x:(float(sta[x]['setup_slack_s']),x))+[x for x in sorted(pins) if x not in chosen]
+ write(b/'plan.json',dict(passed=True,source_state=str(state),actions=actions,selection=selection,ordered_queries=[dict(net=n,pin=pin,raw_criticality=sta[n,pin]['setup_criticality_raw']) for n,pin in ordered],
+  repair_pins=sorted(pins),compressed_winning_paths=dict(edge_paths=pattern_data['edge_paths'],patterns=pattern_data['distinct_patterns']),
+  complete_planning_workflow_seconds=time.monotonic()-start,source_sha256=bindings,native_calls=0,accepted=False,
