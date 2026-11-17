@@ -1,0 +1,355 @@
+{
+  "observed_at": "2026-11-17T02:01:09.506893+00:00",
+  "accepted_prefix_steps": 12,
+  "current_state": {
+    "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_off_evaluation",
+    "accepted_steps": 12,
+    "anchor": {
+      "CPD_s": 1.4600438191791909e-08,
+      "wirelength": 2388086,
+      "SB_pairs": 509,
+      "CB_sources": 8316
+    },
+    "resource_limits": {
+      "wirelength": 2390475,
+      "SB_pairs": 509,
+      "CB_sources": 8316
+    }
+  },
+  "completed_round": "round_011/candidate_00",
+  "completed_transaction_seconds": 1069.8645901493728,
+  "roles": [
+    {
+      "input": "lstm",
+      "arm": "native",
+      "execution_ended": true,
+      "command_returncode": 0,
+      "original_result_status": "execution_or_verification_failed",
+      "original_verification_passed": false,
+      "additional_verification_passed": null,
+      "quality_admitted": false,
+      "legal_no_gain": null,
+      "timeout": null,
+      "infrastructure_error": "original_owner_registration_binding_verification_failure",
+      "complete_command_seconds": 7615.074176583439,
+      "current_state": "ended_original_verification_failed"
+    },
+    {
+      "input": "lstm",
+      "arm": "domain",
+      "execution_ended": false,
+      "command_returncode": null,
+      "original_result_status": null,
+      "original_verification_passed": null,
+      "additional_verification_passed": null,
+      "quality_admitted": false,
+      "legal_no_gain": null,
+      "timeout": null,
+      "infrastructure_error": null,
+      "complete_command_seconds": null,
+      "current_state": "running_resource_phase"
+    },
+    {
+      "input": "dla_small",
+      "arm": "native",
+      "execution_ended": false,
+      "command_returncode": null,
+      "original_result_status": null,
+      "original_verification_passed": null,
+      "additional_verification_passed": null,
+      "quality_admitted": false,
+      "legal_no_gain": null,
+      "timeout": null,
+      "infrastructure_error": null,
+      "complete_command_seconds": null,
+      "current_state": "not_started"
+    },
+    {
+      "input": "dla_small",
+      "arm": "domain",
+      "execution_ended": false,
+      "command_returncode": null,
+      "original_result_status": null,
+      "original_verification_passed": null,
+      "additional_verification_passed": null,
+      "quality_admitted": false,
+      "legal_no_gain": null,
+      "timeout": null,
+      "infrastructure_error": null,
+      "complete_command_seconds": null,
+      "current_state": "not_started"
+    },
+    {
+      "input": "eltwise_sb",
+      "arm": "native",
+      "execution_ended": false,
+      "command_returncode": null,
+      "original_result_status": null,
+      "original_verification_passed": null,
+      "additional_verification_passed": null,
+      "quality_admitted": false,
+      "legal_no_gain": null,
+      "timeout": null,
+      "infrastructure_error": null,
+      "complete_command_seconds": null,
+      "current_state": "not_started"
+    },
+    {
+      "input": "eltwise_sb",
+      "arm": "domain",
+      "execution_ended": false,
+      "command_returncode": null,
+      "original_result_status": null,
+      "original_verification_passed": null,
+      "additional_verification_passed": null,
+      "quality_admitted": false,
+      "legal_no_gain": null,
+      "timeout": null,
+      "infrastructure_error": null,
+      "complete_command_seconds": null,
+      "current_state": "not_started"
+    }
+  ],
+  "checkpoint_arms": {
+    "domain": {
+      "status": "legal_evaluated",
+      "scope": "own_current_resource_K8",
+      "baseline": "fresh_serial_current",
+      "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_on_evaluation",
+      "reused_FULL_STA": false,
+      "cpd_s": 1.4600438191791909e-08,
+      "resources": {
+        "wirelength": 2390802,
+        "SB_pairs": 421,
+        "CB_sources": 8316
+      },
+      "native_reused": false,
+      "native_calls_new": 1,
+      "native_core_seconds_new": 34.909160259,
+      "reused_creation_native_core_seconds": null,
+      "native_core_seconds": 34.909160259,
+      "changed_connections": [
+        {
+          "net": 44,
+          "pin": 6,
+          "before_s": 5.033970601475701e-09,
+          "after_s": 1.9872110901264506e-09
+        },
+        {
+          "net": 51996,
+          "pin": 488,
+          "before_s": 5.090110138938897e-09,
+          "after_s": 2.4885489502413094e-09
+        },
+        {
+          "net": 78102,
+          "pin": 3,
+          "before_s": 4.8481448022830165e-09,
+          "after_s": 4.596411279367274e-09
+        },
+        {
+          "net": 101889,
+          "pin": 2,
+          "before_s": 4.871061803912724e-09,
+          "after_s": 4.3953074790881175e-09
+        },
+        {
+          "net": 101891,
+          "pin": 2,
+          "before_s": 5.056887603105409e-09,
+          "after_s": 4.3953074790881175e-09
+        },
+        {
+          "net": 103590,
+          "pin": 2,
+          "before_s": 5.041609602018937e-09,
+          "after_s": 5.347353476681249e-09
+        }
+      ],
+      "policies": {
+        "strict": {
+          "accepted": false,
+          "reason": "No full-precision strict CPD improvement"
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "reason": "Setup endpoint/domain vector has regressions"
+        },
+        "timing_under_resources": {
+          "accepted": false,
+          "reason": "Fixed registered resource budget exceeded"
+        },
+        "resources_under_timing": {
+          "accepted": false,
+          "reason": "Fixed registered resource budget exceeded"
+        }
+      }
+    },
+    "native_fallback": {
+      "status": "legal_evaluated",
+      "scope": "own_current_resource_K8",
+      "baseline": "fresh_serial_current",
+      "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_off_evaluation",
+      "reused_FULL_STA": false,
+      "cpd_s": 1.4600438191791909e-08,
+      "resources": {
+        "wirelength": 2390370,
+        "SB_pairs": 426,
+        "CB_sources": 8316
+      },
+      "native_reused": false,
+      "native_calls_new": 1,
+      "native_core_seconds_new": 8.604028729,
+      "reused_creation_native_core_seconds": null,
+      "native_core_seconds": 8.604028729,
+      "changed_connections": [
+        {
+          "net": 44,
+          "pin": 6,
+          "before_s": 5.033970601475701e-09,
+          "after_s": 3.725551006583672e-09
+        },
+        {
+          "net": 51996,
+          "pin": 488,
+          "before_s": 5.090110138938897e-09,
+          "after_s": 2.4885489502413094e-09
+        },
+        {
+          "net": 78102,
+          "pin": 3,
+          "before_s": 4.8481448022830165e-09,
+          "after_s": 5.0263316009324654e-09
+        },
+        {
+          "net": 101891,
+          "pin": 2,
+          "before_s": 5.056887603105409e-09,
+          "after_s": 4.863422803369488e-09
+        },
+        {
+          "net": 103590,
+          "pin": 2,
+          "before_s": 5.041609602018937e-09,
+          "after_s": 4.855783802826252e-09
+        }
+      ],
+      "policies": {
+        "strict": {
+          "accepted": false,
+          "reason": "No full-precision strict CPD improvement"
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "reason": "Setup endpoint/domain vector has regressions"
+        },
+        "timing_under_resources": {
+          "accepted": false,
+          "reason": "No exact CPD reduction within resource limits"
+        },
+        "resources_under_timing": {
+          "accepted": true,
+          "reason": "Exact fixed-budget conditions satisfied"
+        }
+      }
+    }
+  },
+  "endpoint_comparisons": {
+    "reuse_on": {
+      "compatible": true,
+      "cpd_before_s": 1.4600438191791909e-08,
+      "cpd_after_s": 1.4600438191791909e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 5,
+      "setup_regressed": 1,
+      "hold_violation_regressions": 0,
+      "setup_components": 111876,
+      "hold_components": 111876
+    },
+    "reuse_off": {
+      "compatible": true,
+      "cpd_before_s": 1.4600438191791909e-08,
+      "cpd_after_s": 1.4600438191791909e-08,
+      "cpd_strictly_better": false,
+      "cpd_nonworse": true,
+      "setup_improved": 4,
+      "setup_regressed": 1,
+      "hold_violation_regressions": 0,
+      "setup_components": 111876,
+      "hold_components": 111876
+    }
+  },
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/completion.json": "ab03606d9996ae0ee8041498cdf6cdd07cb4a305be06524f408794459c2c6495",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/registration.json": "f88f141c0e141430ec5b8be539a16e129d76cf9d28798ff3286161064be51f76",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/execution_registration.json": "f2c45ce8b2d5cc568b1106384f263c8b074c261aff95ca6b87c3c8461f50020a",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/process_costs.json": "d75cee72f5574d5de51c10dd91b2f36a8880dd6ead050559758957c26a469cf9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/progress.json": "d7b4e3709190fa016d679fd5dd95bf457671a05c0a36dba4f599e85372391047",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_on_decisions.json": "1eca256c9e7b20d2fdd7ac8ab2530e59e613a019781bf246c2a1c9377bc971ca",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_off_decisions.json": "a63cf94e66cf643daa345f3a4ff18b2394ab543a7c3c632e47adedb207c55931",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_on_endpoint_vector_state.json": "a250ac7c30e7446af2d0ffdc21b4067f47d72ec638470d0bdbf5037744842fba",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_off_strict_state.json": "e678b5ea655a4e4854af4d9fadb62acea26fd9f86ccb97a4463cddcb88508f58",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_off_timing_under_resources_state.json": "e678b5ea655a4e4854af4d9fadb62acea26fd9f86ccb97a4463cddcb88508f58",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_on_strict_state.json": "a250ac7c30e7446af2d0ffdc21b4067f47d72ec638470d0bdbf5037744842fba",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_on_timing_under_resources_state.json": "a250ac7c30e7446af2d0ffdc21b4067f47d72ec638470d0bdbf5037744842fba",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_on_resources_under_timing_state.json": "a250ac7c30e7446af2d0ffdc21b4067f47d72ec638470d0bdbf5037744842fba",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_off_endpoint_vector_state.json": "e678b5ea655a4e4854af4d9fadb62acea26fd9f86ccb97a4463cddcb88508f58",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_011/candidate_00/reuse_off_resources_under_timing_state.json": "497dbb56751c082d3b5b7a6dc7ac2ed54ae9e2c449107c49beca86c31135220e"
+  },
+  "attribution": "Domain candidate violates wire cap by327. Native fallback saves64wire/1SB from prior state, remaining wire105. This transition is native fallback, not evidence of a domain benefit.",
+  "conditional_scenarios": [
+    {
+      "hypothetical_further_accepts": 0,
+      "remaining_domain_minutes": [
+        72.02163912123463,
+        118.41709444329152
+      ],
+      "confirmation_and_supplement_hours": [
+        3.3670273186872435,
+        10.64028490738819
+      ]
+    },
+    {
+      "hypothetical_further_accepts": 3,
+      "remaining_domain_minutes": [
+        97.27438300913595,
+        171.91032395076016
+      ],
+      "confirmation_and_supplement_hours": [
+        3.787906383485599,
+        11.53183873251267
+      ]
+    },
+    {
+      "hypothetical_further_accepts": 6,
+      "remaining_domain_minutes": [
+        122.52712689703725,
+        225.4035534582288
+      ],
+      "confirmation_and_supplement_hours": [
+        4.208785448283955,
+        12.423392557637145
+      ]
+    }
+  ],
+  "ordinary_single_pass_seconds": [
+    505.0548777580261,
+    530.2649465538561
+  ],
+  "double_pass_seconds": 1069.8645901493728,
+  "additional_raw_admission_eta": null,
+  "assumptions": [
+    "Current transaction residual0..one double-pass duration, not a measured remaining runtime.",
+    "Three closing probes and three owner windows as in native menu; no new success count limit.",
+    "Remaining four roles2..8hours provisional; DLA not calibrated.",
+    "Supplemental original-check replay10..40min provisional; raw admission uncalibrated.",
+    "Any further accepted scopes, timeouts, additional owner work or infrastructure diagnosis extend ETA."
+  ],
+  "whole_role_quality_admitted": false,
+  "whole_role_seconds": null,
+  "formal_paired_ratio": null,
+  "new_native_or_STA_calls": 0,
+  "running_rules_changed": false,
+  "original_failures_preserved": true
+}

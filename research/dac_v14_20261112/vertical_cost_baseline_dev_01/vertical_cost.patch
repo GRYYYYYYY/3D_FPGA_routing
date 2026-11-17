@@ -1,0 +1,48 @@
+--- a/h3d_joint_native_repair.h
++++ b/h3d_joint_native_repair.h
+@@ -1,6 +1,9 @@
+ #pragma once
+ /** @file Native restoration of a precisely specified joint repair transaction. */
+ #include <map>
++#include <cerrno>
++#include <cmath>
++#include <cstdlib>
+ #include <functional>
+ #include <exception>
+ #include <set>
+@@ -55,6 +58,26 @@
+                || objective == "physical_soft" || objective == "physical_capacity");
+     const bool physical = objective == "physical_soft" || objective == "physical_capacity";
+     const bool hard_capacity = objective == "weighted_capacity" || objective == "physical_capacity";
++    // Independent simple baseline: congestion preference only, never Tdel.
++    const char* vertical_cost_text = std::getenv("VPR_JOINT_NATIVE_VERTICAL_COST_WEIGHT");
++    float vertical_cost_weight = 0.f;
++    if (vertical_cost_text && *vertical_cost_text) {
++        char* end = nullptr;
++        errno = 0;
++        vertical_cost_weight = std::strtof(vertical_cost_text, &end);
++        if (errno || end == vertical_cost_text || *end || !std::isfinite(vertical_cost_weight)
++            || !(vertical_cost_weight == 0.f || vertical_cost_weight == .5f
++                 || vertical_cost_weight == 1.f || vertical_cost_weight == 2.f))
++            VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Unregistered vertical cost weight");
++    }
++    if (vertical_cost_weight > 0.f && physical)
++        VPR_FATAL_ERROR(VPR_ERROR_ROUTE, "Vertical cost baseline requires weighted objective");
++    t_h3d_connection_guide vertical_cost_guide;
++    vertical_cost_guide.edge_encoding = true;
++    vertical_cost_guide.miss_weight = vertical_cost_weight;
++    // Empty preferred set charges every configurable crossing in edge encoding.
++    // Defaults leave timing penalty, bounded-critical behavior and domains off.
++
+     out << "MODE " << objective << '\n';
+     const char* order_text = std::getenv("VPR_JOINT_NATIVE_SEED_ORDER");
+     const std::string seed_order = order_text && *order_text ? order_text : "native";
+@@ -230,6 +253,8 @@
+         costs.astar_fac = costs.astar_offset = costs.post_target_prune_offset = 0.f;
+         costs.post_target_prune_fac = 1.f;
+         costs.bend_cost = opts.bend_cost;
++        // A null guide at zero keeps the original arithmetic and control path.
++        if (vertical_cost_weight > 0.f) costs.h3d_guide = &vertical_cost_guide;
+         if (physical) {
+             costs.criticality = 1.f;
+             costs.bend_cost = 0.f;

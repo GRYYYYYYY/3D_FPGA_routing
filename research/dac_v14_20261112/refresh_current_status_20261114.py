@@ -244,7 +244,9 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_research_status_publication_receipt_20261117.json',
              'github_submission_candidate_publication_receipt_20261117.json',
              'github_CP1r3_raw_admission_publication_receipt_20261117.json',
-             'github_LSTM_cost_progress_publication_receipt_20261117.json']:
+             'github_LSTM_cost_progress_publication_receipt_20261117.json',
+             'github_owner_binding_development_publication_receipt_20261117.json',
+             'github_dependency_narrative_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -932,6 +934,11 @@ if (D/'LSTM_transaction_costs_01/completion.json').exists():
     transaction_costs=read(D/'LSTM_transaction_costs_01/completion.json')
     status['LSTM_transaction_cost_diagnostic']={k:transaction_costs[k] for k in ['observed_at','completed_transactions','groups','engineering_direction','whole_pair_quality_admitted','formal_pair_cost_ratio','qualification']}
     status['evidence']['LSTM_transaction_cost_diagnostic']='LSTM_transaction_costs_01/completion.json'
+if (D/'submission_narrative_02/verification.json').exists():
+    status['submission_narrative_candidate']=dict(source='submission_narrative_02/main.tex',pdf='submission_narrative_02/build/main.pdf',verification='submission_narrative_02/verification.json',passed=True,pages=6,original_candidate_preserved=True,matching_rows=28,relocated_rows=14,new_experiment_results=0)
+    status['research_priority_after_narrative_request']=read(D/'submission_narrative_02/research_priority.json')
+    status['simple_vertical_cost_baseline']=dict(plan='vertical_cost_baseline_dev_01/plan.json',source_patch_prepared=True,built=False,queued=False,weights=[0,0.5,1,2],new_native_calls=0)
+    status['outstanding'].insert(0,'Current user priority: finish unchanged CP1r3 then registered supplementary/raw admission; next implement/build/validate and queue the preregistered same-scope vertical-cost baseline before optional historical recovery. New six-page problem-insight-design-validation draft is independently verified; original candidate preserved. No uncompleted checkpoints or future baseline benefit in paper.')
 if (D/'owner_registration_development_fix_02/completion.json').exists():
     status['prospective_owner_registration_fix']=read(D/'owner_registration_development_fix_02/completion.json')
     status['evidence']['prospective_owner_registration_fix']='owner_registration_development_fix_02/completion.json'
@@ -942,6 +949,10 @@ if (D/'LSTM_observation_cost_layers_01/completion.json').exists():
 if (D/'submission_candidate_followup_02/role_status_and_eta.json').exists():
     status['submission_candidate_latest_conditional_ETA']=read(D/'submission_candidate_followup_02/role_status_and_eta.json')
     status['evidence']['submission_candidate_latest_conditional_ETA']='submission_candidate_followup_02/role_status_and_eta.json'
+if (D/'LSTM_native_fallback_progress_01/progress_and_eta.json').exists():
+    status['submission_candidate_latest_conditional_ETA']=read(D/'LSTM_native_fallback_progress_01/progress_and_eta.json')
+    status['evidence']['submission_candidate_latest_conditional_ETA']='LSTM_native_fallback_progress_01/progress_and_eta.json'
+    status['simple_vertical_cost_baseline']['worker_preparation']='vertical_cost_baseline_dev_01/worker_preparation.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
