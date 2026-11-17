@@ -1,0 +1,38 @@
+--- submission08/main.tex
++++ submission09_draft/main.tex
+@@ -33,7 +33,7 @@
+  \end{aligned}
+ \label{eq:budget}
+ \end{equation}
+-Our principal resource experiments set $D_{\max}=D(R_0)$, $W_{\max}=\lceil1.001W(R_0)\rceil$, and vertical caps to the root counts. Another registered setting uses $1.02D(R_0)$. These limits never roll forward after a commit. They are experimental requirements, not claimed external application specifications. Strict CPD repair and endpoint-nonregression are separate policies for selecting other useful working points.
++Our principal resource experiments set $D_{\max}=D(R_0)$, $W_{\max}=\lceil1.001W(R_0)\rceil$, and vertical caps to the root counts. Another registered setting uses $1.02D(R_0)$. Within resource reconstruction, these limits never roll forward after a commit. They are experimental requirements, not claimed external application specifications. Strict CPD repair and endpoint-nonregression are separate policies for selecting other useful working points.
+ 
+ \subsection{A crossing is released only when its dependencies leave}
+ For a net $n$ and occupied crossing resource $r$, let $U_n(r)$ be the sinks whose current source-to-sink paths use $r$. In a route tree, moving a proper subset of $U_n(r)$ leaves $r$ necessary for a retained path. Releasing its occupancy requires removing every current dependency on it and restoring those sinks without reintroducing that resource. For paired or shared graph encodings, this condition is evaluated over the counted physical resource rather than over an individual edge.
+@@ -55,7 +55,7 @@
+ \subsection{Select complete branches using current timing}
+ Resource selection scans current route trees for a crossing-dependent subtree with structural release potential and a retained crossing alternative. It removes all selected descendant sinks while preserving paths to other sinks. Current slack screens proposals; deterministic ranking prefers released crossings per removed sink, fewer sinks, larger margin, then net and pin identifiers. A K8 group contains at most eight distinct nets. Connections are restored in descending current raw criticality with deterministic ties. Every accepted state receives a fresh selector, preventing historical criticalities from deciding later groups.
+ 
+-The timing phase follows current native winning paths, including tied fan-ins. Its candidates may improve CPD or endpoint quality under their registered policy. This phase is also available to the native control; the complete BNN comparison includes three timing commits in each arm. We do not credit a common timing-repair opportunity to the sharing domain.
++The timing phase follows current native winning paths, including tied fan-ins. Its candidates may improve CPD or endpoint quality under their registered policy. This phase is also available to the native control; the complete BNN comparison includes three timing commits in each arm. We do not credit a common timing-repair opportunity to the sharing domain. At the resource-to-timing handoff $R_h$, strict CPD repair fixes $W_{\max}=\lceil1.001W(R_0)\rceil$, $S_{\max}=S(R_h)$ and $C_{\max}=C(R_h)$. These caps remain fixed during timing repair, preserving the achieved vertical counts.
+ 
+ \subsection{Guide sharing, then relax only the failed net}
+ For each selected group, the method copies its trees and prunes exactly the registered sinks. Retained paths remain intact. Native search uses the full device search box and the existing timing/congestion objective; physical switch delays and final STA are unchanged. Every private restoration updates occupancy before the next connection is searched.
+@@ -72,7 +72,7 @@
+ \subsection{Check the whole reconstruction and retain a final point}
+ Independent checks verify real edges, preserved branches, terminals, global capacity and actual resource counts; native FULL and fresh STA evaluate the complete candidate. A resource commit requires matched endpoint/domain identities, no increased hold violation, Eq.~\ref{eq:budget}, and a strict decrease in at least one selected vertical count without increasing the others. Rejection or failure restores the source exactly. Private intermediates may spend slack or resources because only the complete group is accepted.
+ 
+-Other policies remain explicit. Strict CPD requires $D(R')<D(R)$ with no numerical tolerance. Endpoint acceptance requires matching endpoint/launch/capture identities, nonworse setup components, a strict setup improvement and no increase in hold violation. Equal CPD alone does not imply endpoint equivalence. Terminal selection operates only on legal observations from that execution, using its fixed policy rather than a retrospectively chosen best historical state.
++Other policies remain explicit. Strict CPD requires $D(R')<D(R)$ with no numerical tolerance. Endpoint acceptance requires matching endpoint/launch/capture identities, nonworse setup components, a strict setup improvement and no increase in hold violation. Equal CPD alone does not imply endpoint equivalence. Terminal selection operates only on legal observations from that execution, using its fixed policy rather than a retrospectively chosen best historical state. In complete resource--timing flows, endpoint-safe wire selection precedes this handoff; the reported output is the terminal state of strict timing repair.
+ 
+ \begin{figure}[t]
+ \centering\footnotesize
+@@ -96,7 +96,7 @@
+ \subsection{Experimental scope and measurement}
+ The implementation uses VTR~\cite{vtr9paper}, revision \texttt{0b912334fdd83bb754b302146ac0d1ec9edc9a0e}, with serial clustered routing on two-layer edge-encoded Hybrid-O, SB-only and CB-only graphs. Native and domain arms share physical inputs and stated opportunities. Strong BNN roots permit eight native convergence attempts with a 1.01 threshold. BNN has no supplied SDC: its default ideal clock and zero I/O/setup/hold constraints are explicitly retained. Robot's additional placement uses a 20-ns clock and 1/0-ns maximum/minimum I/O constraints~\cite{vprsdc}; these benchmark settings establish no application timing-closure guarantee.
+ 
+-Complete timing starts from supplied architecture, graph, BLIF, packed netlist and placement. It includes index construction, fresh routing, repair, rejected candidates, STA, checks, restoration and final output; packing, placement and compilation are upstream. BNN and LSTM include resource and subsequent timing repair; the other admitted full-flow rows complete resource-repair configurations. Comparisons stay within each registered configuration. Imported mechanism comparisons have separate scope costs. Two roles on one physical input are one pair, and repeated seeds on identical trees are not independent starts. New placement is distinguished from a new circuit or architecture.
++Complete timing starts from supplied architecture, graph, BLIF, packed netlist and placement. It includes index construction, fresh routing, repair, rejected candidates, STA, checks, restoration and final output; packing, placement and compilation are upstream. BNN, LSTM and TPU-OS include resource and subsequent timing repair; earlier admitted rows complete their registered resource-repair configurations. Comparisons stay within each registered configuration. Imported mechanism comparisons have separate scope costs. Two roles on one physical input are one pair, and repeated seeds on identical trees are not independent starts. New placement is distinguished from a new circuit or architecture.
+ 
+ \begin{table*}[t]
+ \centering\footnotesize\setlength{\tabcolsep}{3pt}

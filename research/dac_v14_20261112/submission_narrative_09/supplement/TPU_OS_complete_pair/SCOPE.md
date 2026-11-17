@@ -1,0 +1,9 @@
+# TPU-OS evidence and limits
+
+Both original commands and original checkers passed. Raw attempt01 failed because the resource-only environment schema was applied to the separate timing worker. Attempt02 reconciles only that exact timing branch against the executed command, binary and source; resource checks, full requests, states, FULL/STA/physical gates and pair gates remain. The older timing binary does not implement resource seed-order or per-net-release variables; no missing values were invented. The inherited pair receipt phrase "unchanged raw methods" refers to the retained scientific checks; its timing-schema branch is explicitly adapted in attempt02.
+
+Original failures remain unmodified. Attempt01 costs native22.034798/domain21.227776/pair0.155744 seconds and wait1231.207077 seconds. Attempt02 costs native21.580909/domain22.075162/pair12.896291 seconds, queue56.586478 seconds. Original checker costs11.896344/11.670919 seconds are separate from algorithm commands941.321435/944.174382 seconds. No native/STA query was repeated for these audits.
+
+Initial tree/vector, constraints, packed/place and six actual graph payloads match. Initial360013wire/35SB/1563CB; N360117/17/1563, D360121/17/1563, both7.812205993218413ns. Each improves108 setup components versus its own root, regresses0, hold violation increases0. Full final endpoint vectors are identical. Both resource arms improve their own roots; domain has no additional vertical/timing benefit and spends4 extra wire. Four accepted groups per arm, no failure release, no owner coordination. No causal group-selection ablation or global optimum is claimed.
+
+This is another known netlist/dataflow in the TPU family, same two-layer architecture, no new architecture or application SDC. Single N/D cost ratio is descriptive, not statistical or symmetric interleaved timing. No rerun is proposed to chase4 wire units.

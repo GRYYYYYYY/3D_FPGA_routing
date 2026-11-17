@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[CLSTM-SB完整配对通过、六页投稿09](docs/GitHub_CLSTM_SB_admission_submission09_20261117.md)：同6.590324286ns，N/D为234918/941/0与234970/940/0；少1SB、多52wire，配对setup85改善/22退化。完整1430.08/918.13秒为单次描述，无一般加速主张。无释放/owner事件，所有搜索失败及预算拒绝保留。已知CLSTM的不同SB-only图/实际布局，不计新电路家族。[投稿09 PDF](research/dac_v14_20261112/submission_narrative_09/build/main.pdf)；当前两臂与三项准入全部终结，下面运行/阶段描述是历史状态。
+
 [机制适用性与CLSTM-SB资源阶段](docs/GitHub_mechanism_applicability_CLSTM_stage_20261117.md)：已准入配置说明切口数量不足以预测domain增量，预算及实际失败/阻塞条件需分别考虑。CLSTM-SB native资源阶段4组接受、3组合法策略拒绝，234918wire/941SB/0CB、CPD不变；后续时序修复及完整配对仍待原队列终结，不将阶段结果计入正文收益。投稿08保持。
 
 [CLSTM-small SB-only固定确认已启动](docs/GitHub_CLSTM_SB_confirmation_20261117.md)：同已知CLSTM网表，实际SB-only图/2927块坐标不同于历史Hybrid-O，不计新电路或新架构家族。五项字节预检通过；N→D及终结后3项必要只读保持CP1r5规则。native新鲜初始根通过FULL/STA/物理检查：6.590324286ns、234982wire/948SB/0CB，已进入资源修复，尚无新配对质量。投稿08保持；完整ETA待首个native真实终态校准。
