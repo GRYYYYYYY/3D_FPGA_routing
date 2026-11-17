@@ -1,0 +1,9 @@
+# CLSTM接续02：来源manifest覆盖缺口拦截
+
+独立来源字节复核4.383877秒通过；新接续完整命令26.922516秒后失败，PSS229972KiB、缺失观察0，原失败346.660494秒、等待2788.977885秒与本轮active queue31.342002秒分别保留。
+
+原一个已接受前缀的消费seal通过，但新事务在消费native前被StageReuse.bind拦住：157个消费必需输入中，唯一缺失的是原worker runs/state/manifest.json；其余已记录摘要没有不一致。没有新reuse_on输出、stage_reuse_index或stage_reuse封存；实际旧23条native请求消费0，新增native/STA0、接受0，quality为空。不是预算拒绝、合法无收益或超时，是来源闭合基础设施错误。
+
+生产者result.json中的source_native_stage_reused_without_historical_receipt_rewrite=true是无条件策略标记，本轮没有实际消费证据，不能按该标记汇报成功。原JSON和失败都保持，派生状态明确更正为未消费。不能删除manifest准入要求；必须在独立来源审计中补齐并实际验证后，才可安排新接续。原空监督文件、未知历史退出、原审计02及前两次失败均保持。
+
+LSTM已按登记依赖接棒；这项历史恢复不阻塞独立投稿，正文不增加收益。

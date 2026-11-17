@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[TPU-OS完整配对通过与六页投稿08](docs/GitHub_TPU_OS_admission_submission08_20261117.md)：N/D同7.812205993ns、17SB/1563CB和完整端点向量，线长360117/360121；domain无增量。两臂各4次资源接受，无失败释放/owner事件。完整941.32/944.17秒，仅单次描述；原核验01失败保留，02精确时序worker格式核验及完整配对通过，无native/STA重跑。[投稿08 PDF](research/dac_v14_20261112/submission_narrative_08/build/main.pdf)，原07保留。下面“TPU-OS缺口未闭合”是早期历史状态。
+
 [当前交付：LSTM整臂通过、六页投稿07、TPU-OS附加准入具体缺口](docs/GitHub_LSTM_delivery_TPU_terminal_20261117.md)：LSTM实际配对通过，失败候选未提交；投稿07可独立作者审阅，四档代价对照已完成。TPU-OS原两臂和三项附加只读均已终结，raw因实际时序manifest缺少seed-order字段未通过，质量留空，尚无正式配对。原执行/核验费用照录，旧ETA作废。下方TPU-OS预检/运行描述为历史记录。
 
 [已准入LSTM完整机制归因与TPU-OS输入预检](docs/GitHub_LSTM_mechanisms_TPU_OS_preflight_20261117.md)：guided接受11步为−82SB/+2348wire，native回退5步为−5SB/−152wire，终结选点再−12wire；10个接受guided作用域有释放事件，但没有LSTM同源no-release反事实，不能作因果必要性主张。全候选保留原失败/策略拒绝与预算边界。[完整工作点图](research/dac_v14_20261112/LSTM_admitted_mechanism_synthesis_01/complete_wire_SB_points.pdf)。TPU-OS实际五项字节和4100block坐标预检通过，2.261795秒，无native/STA；尚未启动完整配对，不计新架构或收益。投稿07保持。

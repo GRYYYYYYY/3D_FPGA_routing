@@ -1,0 +1,1 @@
+当前表I以main.tex和current_main_table_rows.tex为准。LSTM_complete_pair_admission.json及TPU_OS_complete_pair_admission.json分别给已完成准入。其他继承自07/06的数据保留历史版本，不能覆盖最新准入或改写原失败。BNN冷启动两行移至supplement/BNN_cold_relocated_rows.tex，正文仍保留冷启动费用及交错费用。
