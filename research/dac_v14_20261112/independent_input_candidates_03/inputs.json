@@ -1,0 +1,188 @@
+[
+  {
+    "id": "gemm_p0",
+    "source_name": "training_gemm_layer_s11_hybrid_o_n200_w100_p0",
+    "workload_family": "gemm",
+    "scope": "Different declared netlist/workload from the matched matrix and current cohort; known historical training source, not unseen.",
+    "source_manifest_exists": true,
+    "packing_manifest_exists": true,
+    "historical_QoR_used_for_selection": false,
+    "physical_bytes_verified": false,
+    "actual_placement_or_root_verified": false,
+    "execution_registered": false,
+    "independent_confirmed_samples_added": 0,
+    "status": "metadata_consistent_pending_serial_byte_admission",
+    "declared_sha256": {
+      "architecture": "b6fdf70e6da91b34bfb01ac212ebc20e6141216b5130c980e5ab513d23e66e83",
+      "circuit": "351572ff1d5af340fcf517cdb74c4320eef6cef74a7672d0ff56cc0909f5b37c",
+      "graph": "f9992444df427c56a037d73a0e1344e96b010cb731f656dfe8a9f961eb0210fd",
+      "packed": "aace09ac33ae011ad128a5e63b03d63ceb09d17a195ddf325f385baea882b5ee",
+      "placement": "33652521e9c853b11ef7c97c7532371ec34ba4b3cab62faab2693de739a8a0f8"
+    },
+    "outside_matrix_and_active_cohort_netlist": true,
+    "known_historical_input": true,
+    "source_packing_metadata_matches": true,
+    "physical_files": {
+      "architecture": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/import_only.xml",
+        "exists": true,
+        "bytes": 28919
+      },
+      "circuit": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/gemm_layer.blif",
+        "exists": true,
+        "bytes": 149474058
+      },
+      "graph": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/rr_graph.xml",
+        "exists": true,
+        "bytes": 13382215196
+      },
+      "packed": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_a0/packed.net",
+        "exists": true,
+        "bytes": 656348772
+      },
+      "placement": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/training_gemm_layer_s11_hybrid_o_n200_w100_p0_a0/placed.place",
+        "exists": true,
+        "bytes": 3572873
+      }
+    },
+    "declared_input_bytes": 14191639818,
+    "architecture_family": "two_layer_edge_encoded_Hybrid_O",
+    "different_size_is_new_architecture": false,
+    "explicit_SDC": false,
+    "application_timing_claim": false,
+    "source_route_will_be_imported": false
+  },
+  {
+    "id": "gemm_p1",
+    "source_name": "training_gemm_layer_s11_hybrid_o_n200_w100_p1",
+    "workload_family": "gemm",
+    "scope": "Same-circuit alternate placement candidate; only actual placement/root proof could establish a different start.",
+    "source_manifest_exists": false,
+    "packing_manifest_exists": false,
+    "historical_QoR_used_for_selection": false,
+    "physical_bytes_verified": false,
+    "actual_placement_or_root_verified": false,
+    "execution_registered": false,
+    "independent_confirmed_samples_added": 0,
+    "status": "missing_source_provenance",
+    "reason": "Specified p1 source/packing manifests absent; no silent seed or placement substitution."
+  },
+  {
+    "id": "tpu_os_p0",
+    "source_name": "heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0",
+    "workload_family": "tpu",
+    "scope": "Different dataflow/netlist from TPU-WS; retain the same TPU workload-family label. Not a new architecture family.",
+    "source_manifest_exists": true,
+    "packing_manifest_exists": true,
+    "historical_QoR_used_for_selection": false,
+    "physical_bytes_verified": false,
+    "actual_placement_or_root_verified": false,
+    "execution_registered": false,
+    "independent_confirmed_samples_added": 0,
+    "status": "metadata_consistent_pending_serial_byte_admission",
+    "declared_sha256": {
+      "architecture": "d955f6de48e0458efc7ea1f2a2b7421ace821082c8c8673d1d62808793843583",
+      "circuit": "09a234fc53c32ade9e2f592938e7761eeae15cc9dbc444750d5d7b190313b40d",
+      "graph": "c3e14267d6971825ea7cf7d69c295b8efaead78de0bc22ec2bca0f0a95d67b9f",
+      "packed": "bf620e19b9e487a4574089250e53934aebb452dd3034472bcb0c5ff49513343d",
+      "placement": "a55908b360aae42962356574b2651bf1a0bb8e97c11ef91cd5ca79de75855ef3"
+    },
+    "outside_matrix_and_active_cohort_netlist": true,
+    "known_historical_input": true,
+    "source_packing_metadata_matches": true,
+    "physical_files": {
+      "architecture": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n60_w100/hybrid_o/import_only.xml",
+        "exists": true,
+        "bytes": 28917
+      },
+      "circuit": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/tpu_like.small.os.blif",
+        "exists": true,
+        "bytes": 9829606
+      },
+      "graph": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n60_w100/hybrid_o/rr_graph.xml",
+        "exists": true,
+        "bytes": 1154016185
+      },
+      "packed": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0_a0/packed.net",
+        "exists": true,
+        "bytes": 59434544
+      },
+      "placement": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/heldout_tpu_like.small.os_s21_hybrid_o_n60_w100_p0_a0/placed.place",
+        "exists": true,
+        "bytes": 295603
+      }
+    },
+    "declared_input_bytes": 1223604855,
+    "architecture_family": "two_layer_edge_encoded_Hybrid_O",
+    "different_size_is_new_architecture": false,
+    "explicit_SDC": false,
+    "application_timing_claim": false,
+    "source_route_will_be_imported": false
+  },
+  {
+    "id": "dla_medium_p0",
+    "source_name": "heldout_dla_like.medium_s21_hybrid_o_n200_w100_p0",
+    "workload_family": "dla",
+    "scope": "Scale variant of active DLA-small; not an independent new workload-family or architecture sample.",
+    "source_manifest_exists": true,
+    "packing_manifest_exists": true,
+    "historical_QoR_used_for_selection": false,
+    "physical_bytes_verified": false,
+    "actual_placement_or_root_verified": false,
+    "execution_registered": false,
+    "independent_confirmed_samples_added": 0,
+    "status": "metadata_consistent_pending_serial_byte_admission",
+    "declared_sha256": {
+      "architecture": "b6fdf70e6da91b34bfb01ac212ebc20e6141216b5130c980e5ab513d23e66e83",
+      "circuit": "d3103dbbbb18a45013d9b28e96a159e5ef3f1d5f94b866c3d4426416936c30e2",
+      "graph": "f9992444df427c56a037d73a0e1344e96b010cb731f656dfe8a9f961eb0210fd",
+      "packed": "2ea1fb074d713d88373fac78ca7f2b33433b30a682493a06b7530712251dfab0",
+      "placement": "31ee814f4f5178a95591080e921ab00707583469fc1b7f987e939fe56c2464c1"
+    },
+    "outside_matrix_and_active_cohort_netlist": true,
+    "known_historical_input": true,
+    "source_packing_metadata_matches": true,
+    "physical_files": {
+      "architecture": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/import_only.xml",
+        "exists": true,
+        "bytes": 28919
+      },
+      "circuit": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/benchmarks/downloads/beyond_flatland/dla_like.medium.blif",
+        "exists": true,
+        "bytes": 113880749
+      },
+      "graph": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/hybrid_o/rr_graph.xml",
+        "exists": true,
+        "bytes": 13382215196
+      },
+      "packed": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/heldout_dla_like.medium_s21_hybrid_o_n200_w100_p0_a0/packed.net",
+        "exists": true,
+        "bytes": 546056484
+      },
+      "placement": {
+        "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/runs/heldout_dla_like.medium_s21_hybrid_o_n200_w100_p0_a0/placed.place",
+        "exists": true,
+        "bytes": 3899022
+      }
+    },
+    "declared_input_bytes": 14046080370,
+    "architecture_family": "two_layer_edge_encoded_Hybrid_O",
+    "different_size_is_new_architecture": false,
+    "explicit_SDC": false,
+    "application_timing_claim": false,
+    "source_route_will_be_imported": false
+  }
+]

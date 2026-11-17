@@ -2,7 +2,9 @@
 
 ## Current research snapshot — 2026-11-17
 
-[依赖感知重构：独立六页叙事稿](research/dac_v14_20261112/submission_narrative_02/build/main.pdf) · [机制图、证据与贡献边界](docs/GitHub_dependency_narrative_20261117.md) · [剩余实验影响清单](research/dac_v14_20261112/submission_narrative_02/EXPERIMENT_IMPACT.md) · [原生回退与最新条件性ETA](research/dac_v14_20261112/LSTM_native_fallback_progress_01/ETA.md)。新稿按问题—洞察—设计—验证组织；原候选稿和paper19保留。CP1r3原批次继续，[简单跨层搜索代价对照](docs/GitHub_vertical_cost_queue_20261117.md)已按0/0.5/1/2四档实际排在原确认与raw准入之后、历史恢复之前；32项小型检查通过，实际构建与零强度等价尚待执行，不作为论文收益。
+[依赖感知重构：独立六页叙事稿](research/dac_v14_20261112/submission_narrative_02/build/main.pdf) · [机制图、证据与贡献边界](docs/GitHub_dependency_narrative_20261117.md) · [剩余实验影响清单](research/dac_v14_20261112/submission_narrative_02/EXPERIMENT_IMPACT.md) · [原生回退与最新条件性ETA](research/dac_v14_20261112/LSTM_closing_menu_ETA_01/ETA.md)。新稿按问题—洞察—设计—验证组织；原候选稿和paper19保留。CP1r3原批次继续，[简单跨层搜索代价对照](docs/GitHub_vertical_cost_queue_20261117.md)已按0/0.5/1/2四档实际排在原确认与raw准入之后、历史恢复之前；32项小型检查通过，实际构建与零强度等价尚待执行，不作为论文收益。
+
+[闭菜单阶段费用与后续输入范围](docs/GitHub_closing_menu_inputs_20261117.md)：当前第三候选运行中，条件性无新增提交情景约2.9–9.7小时完成剩余确认与原补充重审，另加raw准入；新提交可重新打开菜单。GEMM-p0来源元数据一致、约13.22GiB，待后续物理准入；TPU-OS和DLA-medium仍按数据流/规模变体记述。
 
 [独立六页投稿候选稿](research/dac_v14_20261112/submission_candidate_01/build/main.pdf) · [剩余实验的具体影响](research/dac_v14_20261112/submission_candidate_01/EXPERIMENT_IMPACT.md) · [最新条件性ETA](research/dac_v14_20261112/LSTM_budget_cost_progress_01/ETA.md)。稿件基于paper19已核验证据独立收束，当前实验继续；补充验证已安排在CP1r3确认终结后的首位。
 

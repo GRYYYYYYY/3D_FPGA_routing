@@ -246,7 +246,8 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_CP1r3_raw_admission_publication_receipt_20261117.json',
              'github_LSTM_cost_progress_publication_receipt_20261117.json',
              'github_owner_binding_development_publication_receipt_20261117.json',
-             'github_dependency_narrative_publication_receipt_20261117.json']:
+             'github_dependency_narrative_publication_receipt_20261117.json',
+             'github_vertical_cost_queue_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -964,6 +965,12 @@ if (D/'confirmation_priority_handoff_05/completion.json').exists():
     status['evidence']['simple_cost_queue_handoff']='confirmation_priority_handoff_05/completion.json'
     status['outstanding']=[x for x in status['outstanding'] if not x.startswith(('Priority04:','Current user priority:'))]
     status['outstanding'].insert(0,'Priority05 applied: original CP1r3, supplemental and raw-admission owners preserved. Preregistered same-source simple crossing-cost0/.5/1/2 control is now queued after raw admission and before historical audit/recovery. Actual source-control proof, private build and zero equivalence remain execution gates. Thirty-two small parser/controller checks passed; no actual baseline result yet.')
+if (D/'independent_input_candidates_03/completion.json').exists():
+    status['next_input_provenance']=read(D/'independent_input_candidates_03/completion.json')
+    status['evidence']['next_input_provenance']='independent_input_candidates_03/INPUT_SCOPE.md'
+if (D/'LSTM_closing_menu_ETA_01/progress_and_eta.json').exists():
+    status['submission_candidate_latest_conditional_ETA']=read(D/'LSTM_closing_menu_ETA_01/progress_and_eta.json')
+    status['evidence']['submission_candidate_latest_conditional_ETA']='LSTM_closing_menu_ETA_01/progress_and_eta.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
