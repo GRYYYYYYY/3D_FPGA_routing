@@ -28,6 +28,10 @@ def render(status,D):
         note='\n[CP1r3六角色与已登记准入终结](CP1r3_complete_execution_01/STATUS.md)：完整质量0/6、配对0/3。LSTM执行结束但原/补充验证失败；DLA两臂初始路由失败；SB-layout两臂时序planner执行错误，均保留实际费用，不计算正式比值。native补充主体payload写出后因输出目录缺失报错，raw在前置门槛拒绝、未执行昂贵字节/向量审计。确认/原补充剩余角色均为0；旧确认ETA作废，实际基线构建/四档执行费用另计。[六页投稿04稿](submission_narrative_04/build/main.pdf)只增加失败覆盖与费用，原方法、BNN数值和prior-art不变；[剩余证据影响](submission_narrative_04/EXPERIMENT_IMPACT.md)。\n'
         first,rest=result.split('\n',1)
         result=first+'\n'+note+rest
+    if status.get('simple_vertical_cost_baseline_terminal'):
+        note='\n[已登记四档代价基线执行终结](vertical_cost_baseline_terminal_01/STATUS.md)：完整实际尝试353.244486秒，0档等价通过；正强度0.5/1/2的独立准入均因可变progress摘要失败，仍不进入收益。精确旧进度重建与19项小型检查通过；新只读owner等待原串行槽，仅复用已有候选，不重跑native/STA。实际执行剩余0，独立正强度准入剩余3；槽位可用后按原0档33.07秒参照规划2–5分钟，等待槽位未校准。不是完整方法时间或新独立输入。\n'
+        first,rest=result.split('\n',1)
+        result=first+'\n'+note+rest
     return result
 
 def _render(status,D):

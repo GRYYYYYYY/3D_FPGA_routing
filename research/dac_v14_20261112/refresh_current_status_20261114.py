@@ -259,6 +259,8 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_dla_initial_failure_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
+terminal_publication=D.parents[1]/'docs/github_CP1r3_terminal_publication_receipt_20261117.json'
+if terminal_publication.exists():publication=terminal_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -1073,6 +1075,18 @@ if (D/'CP1r3_complete_execution_01/admission_terminal.json').exists():
 if (D/'submission_narrative_04/verification.json').exists():
     status['submission_narrative_terminal_coverage']=dict(verification='submission_narrative_04/verification.json',pdf='submission_narrative_04/build/main.pdf',pages=6,added_unadmitted_attempt_rows=6,BNN_method_prior_art_and_mechanisms_unchanged=True,new_admitted_benefits=0)
     status['evidence']['submission_narrative_terminal_coverage']='submission_narrative_04/verification.json'
+if (D/'vertical_cost_baseline_terminal_01/checkpoint.json').exists():
+    baseline_terminal=read(D/'vertical_cost_baseline_terminal_01/checkpoint.json')
+    status['simple_vertical_cost_baseline_terminal']=baseline_terminal
+    status['evidence']['simple_vertical_cost_baseline_terminal']='vertical_cost_baseline_terminal_01/checkpoint.json'
+    status['simple_vertical_cost_baseline'].update(built=True,execution_terminal=True,zero_equivalence_passed=True,positive_weights_original_admitted=0)
+    status['submission_candidate_latest_conditional_ETA']=baseline_terminal['conditional_ETA']
+    status['evidence']['submission_candidate_latest_conditional_ETA']='vertical_cost_baseline_terminal_01/checkpoint.json'
+    status['outstanding'].insert(0,'Original four-strength crossing-cost execution terminal353.244486s; zero equivalence passed. All three positive-weight independent admissions failed on the mutable progress file bound by zero proof. Exact old progress preimage reconstructed,19 bounded guards passed; original failures retained. New independent readonly owner waits for serial slot and reuses existing candidates, no native/STA queries. No positive baseline superiority or complete-method cost claim.')
+    audit_queue=D/'vertical_cost_admission_reconciliation_01/execution'
+    if (audit_queue/'registration.json').exists():
+        registration=read(audit_queue/'registration.json');actual=process_identity(registration['pid'])
+        status['weighted_admission_readonly_owner']=dict(registration=registration,actual_process=actual,verified_live=bool(actual and actual['state']!='Z' and actual['start_ticks']==registration['start_ticks']),phase=read(audit_queue/'status.json'),completion=read(audit_queue/'completion.json') if (audit_queue/'completion.json').exists() else None)
 active_arm_pointer=Path('/tmp/dac_cp1r3_active_arm_pidfd_wait_01.json')
 if active_arm_pointer.exists():
     status['active_CP1r3_arm_wait']=read(active_arm_pointer)

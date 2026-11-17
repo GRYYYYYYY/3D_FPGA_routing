@@ -1,5 +1,7 @@
 # 当前研究状态
 
+[已登记四档代价基线执行终结](vertical_cost_baseline_terminal_01/STATUS.md)：完整实际尝试353.244486秒，0档等价通过；正强度0.5/1/2的独立准入均因可变progress摘要失败，仍不进入收益。精确旧进度重建与19项小型检查通过；新只读owner等待原串行槽，仅复用已有候选，不重跑native/STA。实际执行剩余0，独立正强度准入剩余3；槽位可用后按原0档33.07秒参照规划2–5分钟，等待槽位未校准。不是完整方法时间或新独立输入。
+
 [CP1r3六角色与已登记准入终结](CP1r3_complete_execution_01/STATUS.md)：完整质量0/6、配对0/3。LSTM执行结束但原/补充验证失败；DLA两臂初始路由失败；SB-layout两臂时序planner执行错误，均保留实际费用，不计算正式比值。native补充主体payload写出后因输出目录缺失报错，raw在前置门槛拒绝、未执行昂贵字节/向量审计。确认/原补充剩余角色均为0；旧确认ETA作废，实际基线构建/四档执行费用另计。[六页投稿04稿](submission_narrative_04/build/main.pdf)只增加失败覆盖与费用，原方法、BNN数值和prior-art不变；[剩余证据影响](submission_narrative_04/EXPERIMENT_IMPACT.md)。
 
 [LSTM归档干扰更正](../../docs/GitHub_LSTM_retention_incident_20261117.md)：助手硬链接归档改变活动源ctime，触发round013/candidate00一次封存失败；135项登记摘要与原最终重哈希一致，失败5项仅ctime变化。保留原失败及费用，不补造成功、不重跑查询、不改预算；当前运行期禁止对上游输入创建/删除硬链接或改元数据。完整LSTM配对及干净计时尚未准入。
@@ -8,15 +10,13 @@
 
 [DLA-small原N/D初始路由失败](DLA_small_initial_failure_01/STATUS.md)：完整命令分别709.742677/702.413717秒，原日志在W100/200次迭代后均仍有525个过用节点；没有合法起点，未进入修复，不是超时或合法无收益。初始命令仅替换arm输出路径后逐项相同，共同binary/arch/BLIF/RRG登记摘要匹配；未新增大字节独立准入。失败路由打印的CPD不进入质量结果，也不计算算法收益或费用比例。后续实际角色以上表进程身份为准；eltwise-SB是已知电路/架构的新布局，不计新电路/新架构。当前条件ETA见最新阶段记录，旧两臂规划仅作历史记录。
 
-观察时间：2026-11-17T08:06:55.824884+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
+观察时间：2026-11-17T08:18:03.362464+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
 
 统一方法：当前STA、跨层冗余与容量阻塞用于选择完整连接组；在事务副本中使用跨层共享域、按网失败释放及阻塞owner协调；完整组合经物理/容量/FULL/STA检查，在固定根预算下接受或恢复。终结选点独立于中间提交；native享有相同选组、owner与收敛机会。
 
 | 当前登记批次 | 实际状态 | owner PID |
 |---|---|---:|
-| vertical_cost_baseline_dev_01 | executing_registered_four_strength_control | 306102 |
-| interrupted_stage_reconciliation_01 | priority_dependency: vertical_cost_baseline_dev_01 | 306103 |
-| robot_p1_prefix_recovery_01 | priority_dependency: interrupted_stage_reconciliation_01 | 306104 |
+| robot_p1_prefix_recovery_01 | running_recovery_suffix → continue_resource_from_original_checkpoint | 306104 |
 | interrupted_flow_recovery_01 | priority_dependency: robot_p1_prefix_recovery_01 | 306105 |
 | empty_query_patch_validation_01 | priority_dependency: interrupted_flow_recovery_01 | 306106 |
 

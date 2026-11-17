@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[四档跨层代价基线实际执行终结](docs/GitHub_vertical_cost_terminal_20261117.md)：完整尝试353.24秒，0档等价通过；0.5/1/2原独立准入被可变进度摘要拦住，真实候选与原拒绝保留。只读协调已登记并等待原串行槽，不重跑native/STA；正强度结果尚不进入论文主张。
+
 [CP1r3六角色及原准入终结；六页投稿叙事04](docs/GitHub_CP1r3_terminal_submission_20261117.md)：完整质量0/6、配对0/3，所有真实费用及失败保留；新稿仅更新失败覆盖和适用范围，BNN、方法与prior-art不变。原跨层代价0/0.5/1/2队列已进入实际构建，未修改规则。[投稿PDF](research/dac_v14_20261112/submission_narrative_04/build/main.pdf) · [剩余证据影响清单](research/dac_v14_20261112/submission_narrative_04/EXPERIMENT_IMPACT.md)。
 
 以下角色进度入口为历史快照；最新真实状态以上述记录与CURRENT_STATUS为准。
