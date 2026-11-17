@@ -9,3 +9,5 @@
 条件性参考：前一个不同电路 s38584 的 native/domain 命令分别为 278.23/280.16 秒，三项只读检查合计约 6.35 秒。s38417 的复杂度和结果可能不同，该参考不是预计上限；失败或超时按原回执处理。投稿15继续独立作者审阅，当前未产生新的可写入收益。
 
 [输入登记](../research/dac_v14_20261112/VTR_s38417_input_01/registration.json) · [打包布局完成回执](../research/dac_v14_20261112/VTR_s38417_input_01/completion.json) · [冻结配对计划](../research/dac_v14_20261112/cp1r6_s38417_pair_01/plan.json) · [投稿15](../research/dac_v14_20261112/submission_narrative_15/build/main.pdf)。
+
+执行中初始选择器的原回执显示 2 个多次跨层网及 2 个通过结构和余量筛选的候选作用域；候选可能重叠。这是筛选机会，不证明域方法的实现性、可加收益或完整配对结果。native 当前已超过另一个电路的单臂参考时间，剩余时间未知。[局部观察](../research/dac_v14_20261112/cp1r6_s38417_pair_01/NATIVE_INITIAL_SCOPE_OBSERVATION.md)。

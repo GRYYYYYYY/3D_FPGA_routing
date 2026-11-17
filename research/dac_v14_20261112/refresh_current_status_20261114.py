@@ -3,6 +3,7 @@ from datetime import datetime,timezone
 from pathlib import Path
 import shutil
 import time
+import os
 from retained_prefix_workflow import D,read,write,sha
 from seed_census_analysis_pool_v2 import process_identity
 
@@ -1598,8 +1599,19 @@ if (s38417_pair/'plan.json').exists():
     remaining=[a for a in ['native','domain'] if a not in results]
     status['active_schedule_order']=['s38417 '+a for a in remaining]+['s38417 raw '+a for a in ['native','domain','pair'] if not any(row['stage']==a for row in stages)]+['s38417 terminal decision']
     status['research_next_pair_conditional_ETA']=dict(remaining_algorithm_roles=remaining,remaining_readonly_stages=[a for a in ['native','domain','pair'] if not any(row['stage']==a for row in stages)],reference_input='s38584, different circuit; not a prediction guarantee',reference_single_arm_seconds={'native':278.2257857359946,'domain':280.156821385026},reference_three_readonly_seconds=6.35,qualification='Only a rough same-workload reference; s38417 is a different circuit and may take longer, fail or time out. No clean interleaved time ratio.')
+    if phase.get('status')=='running_confirmation_arm' and phase.get('start_ticks'):
+        age=max(0.0,time.monotonic()-int(phase['start_ticks'])/os.sysconf('SC_CLK_TCK'))
+        estimate=status['research_next_pair_conditional_ETA']
+        estimate.update(running_arm=phase['arm'],running_arm_elapsed_seconds=age,
+            running_arm_exceeds_other_circuit_reference=age>estimate['reference_single_arm_seconds'][phase['arm']],
+            remaining_seconds=None,
+            qualification='Current elapsed time is measured from the actual process identity; another circuit is only a reference, and no valid remaining-time prediction is available while this arm runs.')
     status['outstanding']=['Continue registered frozen CP1r6 s38417 native/domain and original raw/pair/terminal checks. New circuit with one actual placement, same Hybrid-O architecture family; 20ns and IO SDC are benchmark constraints. Preserve failure/no-cut/no-gain, do not claim benefit before full admission.']
     status['evidence']['s38417_registration']='cp1r6_s38417_pair_01/plan.json'
+    scope_observation=s38417_pair/'NATIVE_INITIAL_SCOPE_OBSERVATION.json'
+    if scope_observation.exists():
+        status['CP1r6_s38417_registered_pair']['native_initial_scope_observation']=read(scope_observation)
+        status['evidence']['s38417_native_initial_scope_observation']='cp1r6_s38417_pair_01/NATIVE_INITIAL_SCOPE_OBSERVATION.md'
     decision=D/'S38417_complete_admission_01/admission_decision.json'
     if decision.exists():
         status['S38417_complete_pair_admission']=read(decision);status['active_schedule_order']=[]
