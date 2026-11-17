@@ -247,7 +247,8 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_LSTM_cost_progress_publication_receipt_20261117.json',
              'github_owner_binding_development_publication_receipt_20261117.json',
              'github_dependency_narrative_publication_receipt_20261117.json',
-             'github_vertical_cost_queue_publication_receipt_20261117.json']:
+             'github_vertical_cost_queue_publication_receipt_20261117.json',
+             'github_closing_menu_inputs_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -971,6 +972,9 @@ if (D/'independent_input_candidates_03/completion.json').exists():
 if (D/'LSTM_closing_menu_ETA_01/progress_and_eta.json').exists():
     status['submission_candidate_latest_conditional_ETA']=read(D/'LSTM_closing_menu_ETA_01/progress_and_eta.json')
     status['evidence']['submission_candidate_latest_conditional_ETA']='LSTM_closing_menu_ETA_01/progress_and_eta.json'
+if (D/'submission_narrative_export_01/completion.json').exists():
+    status['submission_narrative_minimal_export']=read(D/'submission_narrative_export_01/completion.json')
+    status['evidence']['submission_narrative_minimal_export']='submission_narrative_export_01/completion.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
