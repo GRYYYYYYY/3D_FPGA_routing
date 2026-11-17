@@ -1,0 +1,135 @@
+{
+  "registered_at": "2026-11-17T18:33:58.362918+00:00",
+  "input": "elliptic",
+  "source_repository": "https://github.com/verilog-to-routing/vtr-verilog-to-routing",
+  "source_commit": "0b912334fdd83bb754b302146ac0d1ec9edc9a0e",
+  "source_path": "vtr_flow/benchmarks/blif/elliptic.blif",
+  "actual_source_sha256": "5cc3a708720002c0e114c36312721ac7dd3b85ae2fd05f311d780fc11212b175",
+  "source_checkout_bytes_equal_commit": true,
+  "names": 3602,
+  "latches": 1122,
+  "max_LUT_inputs": 4,
+  "latch_control": "re pclk",
+  "new_to_current_CP1_confirmation": true,
+  "unseen_design_claim": false,
+  "architecture_family": "two_layer_edge_encoded_Hybrid_O",
+  "new_architecture_family": false,
+  "application_timing_claim": false,
+  "explicit_SDC": false,
+  "selection_reason": "A mapped sequential public circuit outside the current neural/linear algebra matched inputs, with no incompatible hard macros; selected without historical QoR.",
+  "known_unmapped_candidate_not_selected": "libblifparse sha.eblif contains unmapped $add/$dff/$mux cells; not directly used as a routed benchmark.",
+  "pack_command": [
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/flatland-buildfix/vpr",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/census_architecture.xml",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_elliptic_input_01/inputs/elliptic.blif",
+    "--pack",
+    "--device",
+    "controlled_150",
+    "--seed",
+    "11",
+    "--num_workers",
+    "1",
+    "--clock_modeling",
+    "ideal",
+    "--route_chan_width",
+    "100",
+    "--merge_constant_generators",
+    "off",
+    "--net_file",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_elliptic_input_01/pack/packed.net"
+  ],
+  "pack_binary": {
+    "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/flatland-buildfix/vpr",
+    "sha256": "ed73dc31b0ae01ed321a3e76f139c35df6afc0c2a7503408bbf19a525b229ee3"
+  },
+  "placement_binary": {
+    "path": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/artifacts/bin/baseline/vpr",
+    "sha256": "37cc22c8b1b5d9d378e25379e85afcb7e56b5f1f6f72e3e9186e5e107ed5ce62"
+  },
+  "pack_timeout_seconds": 3600,
+  "memory_limit_bytes": 68719476736,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/research/dac_v14_20261112/VTR_elliptic_input_01/inputs/elliptic.blif": "5cc3a708720002c0e114c36312721ac7dd3b85ae2fd05f311d780fc11212b175",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/census_architecture.xml": "9b34ff1bcf743baa0bdfcc6d73fc0c71cbb7a8fdde5b3459556bcf01065b4ea1",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_protocol.json": "a21af6c1a5d9462d9baaeef60d606913e0aa9b441166b4dfded7f1ba891beb74"
+  },
+  "capacity_selection": {
+    "rule": "Smallest already validated W100 device whose actual packed count in every logical class is <=80% capacity; do not resize on CPD/routing outcome.",
+    "models": [
+      {
+        "size": 40,
+        "manifest": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n40_w100/manifest.json",
+        "manifest_sha256": "ec70dfa392a5d1763708768f94717af5ee22877dde010f614ed289cf906ce762",
+        "logical_slots": {
+          "clb": 2128,
+          "complex_dsp": 380,
+          "spram": 380,
+          "io": 2432
+        }
+      },
+      {
+        "size": 60,
+        "manifest": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n60_w100/manifest.json",
+        "manifest_sha256": "f46250ad48cd4f37264863dcfad42a86ffe159fa3399edd23eca44d58ed21ae9",
+        "logical_slots": {
+          "clb": 4988,
+          "complex_dsp": 928,
+          "spram": 812,
+          "io": 3712
+        }
+      },
+      {
+        "size": 80,
+        "manifest": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n80_w100/manifest.json",
+        "manifest_sha256": "52d687f4dd164f177938fa0ef2b8ef8ebe15b1bd121e1ddf281517520a80584f",
+        "logical_slots": {
+          "clb": 9048,
+          "complex_dsp": 1560,
+          "spram": 1560,
+          "io": 4992
+        }
+      },
+      {
+        "size": 100,
+        "manifest": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n100_w100/manifest.json",
+        "manifest_sha256": "f98af128eae0e71f807a791f035d4827faaa664b53aeab0a6de771c25117c8c9",
+        "logical_slots": {
+          "clb": 14308,
+          "complex_dsp": 2548,
+          "spram": 2352,
+          "io": 6272
+        }
+      },
+      {
+        "size": 125,
+        "manifest": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n125_w100/manifest.json",
+        "manifest_sha256": "4b13c459aa637c48a81868e4dffac20868916f88957c6d178cae8376554c987c",
+        "logical_slots": {
+          "clb": 22632,
+          "complex_dsp": 3936,
+          "spram": 3690,
+          "io": 7872
+        }
+      },
+      {
+        "size": 200,
+        "manifest": "/inspire/hdd/global_user/guoruiyuan-253208540291/FPGA_routing_acceleration/3D_FPGA_routing/results/architecture_flow_20261027/benchmark_models/n200_w100/manifest.json",
+        "manifest_sha256": "de7704de1a4a41ba23295ef76eeb6272f467ae6152ce9a42c2757f519e5b26b8",
+        "logical_slots": {
+          "clb": 58608,
+          "complex_dsp": 9900,
+          "spram": 9900,
+          "io": 12672
+        }
+      }
+    ],
+    "distinction": "The historical size25 model is not in the ready benchmark-model set; this new input explicitly selects among existing fully validated models rather than claiming the old full candidate-size protocol."
+  },
+  "intended_followup": {
+    "placement": "one actual fresh A0 placement, seed21, fixed selected graph, merge_constant_generators off",
+    "confirmation": "unchanged CP1r5 native/domain full flow and existing raw/pair gates after source admission",
+    "route_queries_in_input_preparation": 0,
+    "retain_failures": true
+  },
+  "full_confirmation_registered": false
+}

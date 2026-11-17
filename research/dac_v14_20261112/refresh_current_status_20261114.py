@@ -1631,6 +1631,13 @@ if (s38417_pair/'plan.json').exists():
         status['research_next_pair_conditional_ETA']=dict(remaining_algorithm_roles=[],remaining_readonly_stages=[],qualification='Registered pair and gates terminal; no ETA for unregistered future work.')
         status['outstanding']=['s38417 registered confirmation and admission ended; inspect decision and preserve all outcomes. Submission15 remains independent; update only supported claims.']
         status['evidence']['s38417_complete_pair']='S38417_complete_admission_01/PAIR_TABLE.md'
+paper16=D/'submission_narrative_16/verification.json'
+if paper16.exists() and read(paper16)['passed']:
+    status['submission_candidate_latest']=read(paper16);status['paper_pdf']=str(D/'submission_narrative_16/build/main.pdf');status['paper_pages']=6
+    status['evidence']['submission_candidate_latest']='submission_narrative_16/verification.json'
+    status['evidence']['current_applicability']='mechanism_applicability_current_06/APPLICABILITY.md'
+    status['submission_candidate_latest_conditional_ETA']=dict(remaining_manuscript_prerequisites=0,qualification='Verified standalone submission16; future experiments do not block author review.')
+    paper=dict(pdf=status['paper_pdf'],pages=6,verification=str(paper16),submission='16',scope='Verified50-row manuscript; admitted distinct s38417 no domain increment despite eligible scopes; no new architecture or interleaved cost extrapolation.')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
