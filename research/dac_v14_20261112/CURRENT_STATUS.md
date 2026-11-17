@@ -1,6 +1,6 @@
 # 当前研究状态
 
-观察时间：2026-11-17T02:02:14.728760+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
+观察时间：2026-11-17T02:19:11.016493+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
 
 统一方法：当前STA、跨层冗余与容量阻塞用于选择完整连接组；在事务副本中使用跨层共享域、按网失败释放及阻塞owner协调；完整组合经物理/容量/FULL/STA检查，在固定根预算下接受或恢复。终结选点独立于中间提交；native享有相同选组、owner与收敛机会。
 
@@ -9,10 +9,6 @@
 | cp1r3_distinct_input_cohort_01 | running_confirmation_arm [lstm/domain] → fresh_route_and_complete_resource | 3149073 |
 | CP1r3_supplemental_verifier_01 | priority_dependency: cp1r3_distinct_input_cohort_01 | 1993735 |
 | CP1r3_raw_admission_01 | priority_dependency: CP1r3_supplemental_verifier_01 | 2488794 |
-| interrupted_stage_reconciliation_01 | priority_dependency: CP1r3_raw_admission_01 | 2488847 |
-| robot_p1_prefix_recovery_01 | priority_dependency: interrupted_stage_reconciliation_01 | 2488900 |
-| interrupted_flow_recovery_01 | priority_dependency: robot_p1_prefix_recovery_01 | 2488979 |
-| empty_query_patch_validation_01 | priority_dependency: interrupted_flow_recovery_01 | 2489030 |
 
 [BNN N/D/D/N完整对称计时](BNN_timing03_balanced_receipt_01/completion.json)已终结，原独立完整核验及四臂匹配均通过。完整命令时间按登记顺序为7329.044554 / 9146.351492 / 9112.139276 / 7288.184845s；D0/N0=1.24795960，D1/N1=1.25026182；N均值7308.614699s，D均值9129.245384s，均值之比1.24910749（约+24.91%）。使用原始完整计时区间，未拼接阶段或扣减observer CPU。所有同角色轨迹、请求、原生工作及六个实际图载荷字节一致；配对新鲜初始树、完整CPD/setup/hold/端点ID/约束匹配，终态完整端点比较兼容。共享主机/OS缓存未受控，两次每臂仅支持描述性费用。缺失内存观察依次22/28/27/29，保留采样局限。
 
@@ -24,7 +20,7 @@
 
 资源前缀已接受12次，最新核验检查点为14.600438192ns、2390370wire/426SB/8316CB。最近接受的资源窗口事务相对其前态setup 4改善/1退化，新增hold违例退化0；该事务完整耗时1069.865s。完整算法时间与配对确认仍不可用，不把资源阶段检查点冒充终态或域收益。
 
-最近完成尝试为round11/candidate0，接受=True，事务处理回执通过=True，完整事务耗时1069.865s。原规则原因：reuse_on: Fixed registered resource budget exceeded；reuse_off: Exact fixed-budget conditions satisfied。拒绝/失败费用同样保留；此处不替代接受检查点或完整流程费用。
+最近完成尝试为round12/candidate0，接受=False，事务处理回执通过=True，完整事务耗时1039.784s。原规则原因：reuse_on: Fixed registered resource budget exceeded；reuse_off: No resource Pareto improvement within fixed CPD budget。拒绝/失败费用同样保留；此处不替代接受检查点或完整流程费用。
 
 [已封存LSTM/native资源子流程](CP1r3_lstm_native_resource_phase_01/completion.json)：驱动6775.915s，接受4次、尝试12个作用域，owner提交0。按原精确变化记录沿接受链还原的初始到资源终态setup为20改善/5退化，新增hold违例退化0；未新增整向量重读。终结endpoint规则在6个同源候选中无合格选点，保留原资源终态；交接FULL/STA通过。该包仅封存资源子流程，完整方法是否准入须另查原独立核验终态；当前活动阶段以上表实际进程为准。
 

@@ -953,6 +953,17 @@ if (D/'LSTM_native_fallback_progress_01/progress_and_eta.json').exists():
     status['submission_candidate_latest_conditional_ETA']=read(D/'LSTM_native_fallback_progress_01/progress_and_eta.json')
     status['evidence']['submission_candidate_latest_conditional_ETA']='LSTM_native_fallback_progress_01/progress_and_eta.json'
     status['simple_vertical_cost_baseline']['worker_preparation']='vertical_cost_baseline_dev_01/worker_preparation.json'
+if (D/'vertical_cost_baseline_dev_01/development_status.json').exists():
+    status['simple_vertical_cost_baseline_development']=read(D/'vertical_cost_baseline_dev_01/development_status.json')
+    status['evidence']['simple_vertical_cost_baseline_development']='vertical_cost_baseline_dev_01/development_status.json'
+if (D/'LSTM_round012_rejection_01/summary.json').exists():
+    status['latest_closed_LSTM_rejection']=read(D/'LSTM_round012_rejection_01/summary.json')
+if (D/'confirmation_priority_handoff_05/completion.json').exists():
+    status['active_schedule']='confirmation_priority_handoff_05/plan.json'
+    status['simple_vertical_cost_baseline'].update(queued=True,execution_plan='vertical_cost_baseline_dev_01/execution_plan.json',checks=32)
+    status['evidence']['simple_cost_queue_handoff']='confirmation_priority_handoff_05/completion.json'
+    status['outstanding']=[x for x in status['outstanding'] if not x.startswith(('Priority04:','Current user priority:'))]
+    status['outstanding'].insert(0,'Priority05 applied: original CP1r3, supplemental and raw-admission owners preserved. Preregistered same-source simple crossing-cost0/.5/1/2 control is now queued after raw admission and before historical audit/recovery. Actual source-control proof, private build and zero equivalence remain execution gates. Thirty-two small parser/controller checks passed; no actual baseline result yet.')
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
