@@ -249,7 +249,8 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
              'github_dependency_narrative_publication_receipt_20261117.json',
              'github_vertical_cost_queue_publication_receipt_20261117.json',
              'github_closing_menu_inputs_publication_receipt_20261117.json',
-             'github_submission_export_publication_receipt_20261117.json']:
+             'github_submission_export_publication_receipt_20261117.json',
+             'github_LSTM_tradeoffs_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/name
     if candidate.exists():publication=candidate
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
@@ -980,6 +981,13 @@ if (D/'LSTM_existing_tradeoffs_02/completion.json').exists():
     status['LSTM_existing_candidate_tradeoffs']=read(D/'LSTM_existing_tradeoffs_02/completion.json')
     status['LSTM_focused_419_SB_candidate']=read(D/'LSTM_existing_tradeoffs_02/focused_419_SB_candidate.json')
     status['evidence']['LSTM_existing_candidate_tradeoffs']='LSTM_existing_tradeoffs_02/TRADEOFFS.md'
+if (D/'LSTM_retention_metadata_incident_01/incident.json').exists():
+    status['LSTM_retention_metadata_incident']='LSTM_retention_metadata_incident_01/incident.json'
+    status['evidence']['LSTM_retention_metadata_incident']='../../docs/GitHub_LSTM_retention_incident_20261117.md'
+    status['outstanding'].insert(0,'Preserve round013/candidate00 guided FULL_STA_failed caused by archival hardlink ctime interference. No synthetic completion or replay; existing supplemental/raw admission must retain infrastructure classification. Do not link/unlink/chmod/touch/replace live upstream inputs. Full LSTM pair and clean timing remain unadmitted.')
+if (D/'LSTM_native_fallback_progress_02/progress_and_eta.json').exists():
+    status['submission_candidate_latest_conditional_ETA']=read(D/'LSTM_native_fallback_progress_02/progress_and_eta.json')
+    status['evidence']['submission_candidate_latest_conditional_ETA']='LSTM_native_fallback_progress_02/progress_and_eta.json'
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:

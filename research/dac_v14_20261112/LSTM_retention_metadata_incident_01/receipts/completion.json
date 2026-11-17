@@ -1,0 +1,77 @@
+{
+  "status": "development_batch_terminal",
+  "passed": false,
+  "roles": {
+    "reuse_on": {
+      "status": "FULL_STA_failed",
+      "scope": "own_current_resource_K8",
+      "baseline": "fresh_serial_current",
+      "accepted": false
+    },
+    "reuse_off": {
+      "status": "legal_evaluated",
+      "scope": "own_current_resource_K8",
+      "baseline": "fresh_serial_current",
+      "evaluation": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/reuse_off_evaluation",
+      "reused_FULL_STA": false,
+      "cpd_s": 1.4600438191791909e-08,
+      "resources": {
+        "wirelength": 2390314,
+        "SB_pairs": 425,
+        "CB_sources": 8316
+      },
+      "native_reused": false,
+      "native_calls_new": 1,
+      "native_core_seconds_new": 8.731681409,
+      "reused_creation_native_core_seconds": null,
+      "native_core_seconds": 8.731681409,
+      "changed_connections": [
+        {
+          "net": 44,
+          "pin": 6,
+          "before_s": 3.725551006583672e-09,
+          "after_s": 4.468854203354411e-09
+        },
+        {
+          "net": 2254,
+          "pin": 6,
+          "before_s": 4.112480606055513e-09,
+          "after_s": 4.855783802826252e-09
+        }
+      ],
+      "policies": {
+        "strict": {
+          "accepted": false,
+          "reason": "No full-precision strict CPD improvement"
+        },
+        "endpoint_vector": {
+          "accepted": false,
+          "reason": "Setup endpoint/domain vector has regressions"
+        },
+        "timing_under_resources": {
+          "accepted": false,
+          "reason": "No exact CPD reduction within resource limits"
+        },
+        "resources_under_timing": {
+          "accepted": false,
+          "reason": "No resource Pareto improvement within fixed CPD budget"
+        }
+      }
+    }
+  },
+  "complete_orchestrator_seconds": 1034.7893796414137,
+  "complete_child_process_seconds": 939.3687971197069,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/registration.json": "e077032213dd6f500453d6ae4028133f760f47f74a7b7b0fb43ba368267b43b9",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/execution_registration.json": "f089f80635cc3f0a48ec1d8c5786d15245b7454e701dce301ec2fb809941a3ed",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/process_costs.json": "8cbdbaab5c2777944a43fca989a8a3529b4c91baa014bcd2862efdbef9811ebd",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/progress.json": "e2a72b8bcc9849216f7d840760408421eff14f916d8524fe1411de7ca94cde26",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/reuse_off_decisions.json": "7217d142991b675fba6b6f984ae87cd91fcc363bfbc3c691dd9db908ffe52996",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/reuse_off_strict_state.json": "24e8870ccb8e6a9bf66f4928fb47be2217ed810fcea1a079c8918dbb6af99350",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/reuse_off_timing_under_resources_state.json": "24e8870ccb8e6a9bf66f4928fb47be2217ed810fcea1a079c8918dbb6af99350",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/reuse_off_endpoint_vector_state.json": "24e8870ccb8e6a9bf66f4928fb47be2217ed810fcea1a079c8918dbb6af99350",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r3_distinct_input_cohort_01/lstm/domain/flow/resource_flow/repair/round_013/candidate_00/reuse_off_resources_under_timing_state.json": "24e8870ccb8e6a9bf66f4928fb47be2217ed810fcea1a079c8918dbb6af99350"
+  },
+  "execution_policy": "domain_first_stop_on_resource_accept",
+  "qualification": "Domain-first resource acceptance suppresses only the optional OFF diagnostic after a fully checked ON candidate passes. Skipped outcomes have no inferred metrics or rejection decision. Cross-batch exact free-native reuse is explicit; acceptance is fresh. Historical creation/core time is not newly executed time. Complete shared multi-arm development workflow cost, not a standalone configuration runtime. Individual failures do not stop other arms or the research goal. Further searches must use each accepted current state and updated occupancy/STA."
+}

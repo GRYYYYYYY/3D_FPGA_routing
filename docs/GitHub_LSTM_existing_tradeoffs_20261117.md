@@ -1,5 +1,7 @@
 # 已有合法LSTM候选与原0.1%预算边界
 
+**归档影响更正：** [后续事务封存失败的只读归因](GitHub_LSTM_retention_incident_20261117.md)确认，本文所述硬链接保留改变了活动下游输入的ctime。原候选字节与原拒绝不变，但归档并非对活动计算无影响；原失败保留，后续停止此类运行期硬链接操作。
+
 [线长—SB图](../research/dac_v14_20261112/LSTM_existing_tradeoffs_02/wire_SB_working_points.pdf) · [候选明细CSV](../research/dac_v14_20261112/LSTM_existing_tradeoffs_02/candidate_rows.csv) · [419 SB自身证据摘要](../research/dac_v14_20261112/LSTM_existing_tradeoffs_02/focused_419_SB_candidate.json) · [完整分析](../research/dac_v14_20261112/LSTM_existing_tradeoffs_02/TRADEOFFS.md)
 
 419 SB候选的路由合法性、预算接受性和取舍价值分别保留。该候选自己的完成回执、端点记录及物理汇总给出CPD **14.600438191791909 ns**、线长2390877、SB419、CB8316；相对自己的直接源，setup4改善/1退化，hold违例不增加。已有候选FULL、新STA与独立物理/容量检查通过。原线长上限为2390475，超出402，所以原资源策略拒绝判定不变。它是已观察到的合法低SB/高线长工作点，不是路由失败，也不是更宽预算的完整实验结果。

@@ -2,6 +2,14 @@
 from pathlib import Path
 
 def render(status,D):
+    result = _render(status,D)
+    if status.get('LSTM_retention_metadata_incident'):
+        note = '\n[LSTM归档干扰更正](../../docs/GitHub_LSTM_retention_incident_20261117.md)：助手硬链接归档改变活动源ctime，触发round013/candidate00一次封存失败；135项登记摘要与原最终重哈希一致，失败5项仅ctime变化。保留原失败及费用，不补造成功、不重跑查询、不改预算；当前运行期禁止对上游输入创建/删除硬链接或改元数据。完整LSTM配对及干净计时尚未准入。\n'
+        first, rest = result.split('\n',1)
+        result = first + '\n' + note + rest
+    return result
+
+def _render(status,D):
     rows=[]
     order=status.get('active_schedule_order',[])
     for owner in sorted(status['owners'],key=lambda row:order.index(row['batch']) if row['batch'] in order else len(order)):
