@@ -26,10 +26,21 @@ domain完整命令受外部归档ctime干扰。只报告实测26657.726866秒，
 
 [完整轨迹机制补充](LSTM_admitted_mechanism_synthesis_01/MECHANISM_RESULT.md)：11次guided接受合计−82SB/+2348wire，其中10次有释放事件；5次native回退再−5SB/−152wire，终结选点−12wire。该阶段加和不是独立消融，缺少LSTM同源no-release反事实；原失败/策略拒绝分开。投稿07保持。
 
-[TPU-OS输入预检](TPU_OS_input_preflight_01/STATUS.md)已实际通过：五项1.224GB字节、4100block坐标，2.261795秒，无native/STA。完整两臂尚未登记/启动，无合法根或新收益；不同数据流网表，同TPU家族/同架构族，不计新架构。
+# TPU-OS CP1r5 当前确认
+
+已登记一个输入、两个角色，顺序native→domain；当前native完整命令已启动。输入为实际不同于TPU-WS的数据流/网表，仍属同TPU家族、同两层Hybrid-O架构，不计新架构或未见过的留出样本。没有导入历史route。
+
+CP1r5只修正独立checker的owner准备/运行登记绑定；算法、原生二进制、预算、接受和终结规则保持CP1r4。3份实际owner记录与9项反例通过；原88个assert中只替换已定位的登记身份assert。未装入LSTM特例。冻结4.429645秒、源包迁移准入5.163727秒、实际物理输入复制核验5.922692秒，均不拼入算法完整时间。旧版本、旧失败和投稿07保持。
+
+确认队列结束后，优先执行[已登记只读准入](post_queue_admission_plan.json)：完整请求/执行查询、状态连续性、FULL/raw STA/端点/物理证明以及实际根和六项图字节配对；复用现有核验方法，无新native/STA查询。当前该后续工作已登记但尚未启动进程。原checker通过也不直接替代这些准入，缺项时质量仍为空。
+
+当前第一臂没有完成的同输入完整轨迹，完整两臂ETA尚不能校准。以实际索引/初始路由终结更新；1800秒是单阶段保护上限，不是完成预测。保留两臂完整时间，核验费用另计，不借用不同规模GEMM或BNN/LSTM时间。本批次只在全部准入后更新支持的实验行、适用性和结论，不阻塞投稿07作者审阅。
+
+最新实际阶段：native已取得新鲜合法根，FULL/STA/物理门槛通过，CPD7.812205993ns、360013wire/35SB/1563CB；索引90.952603秒。资源控制器实际存活，固定wire上限360374，SB/CB上限35/1563。该初态不是完整方法收益。先前初始路由超时情景已失效；等待实际资源菜单/候选终结来校准后续ETA。剩余完整执行2角色、整臂raw准入2角色；没有已校准的整对结束时间。
 
 
-当前登记的必要核验已终结；无存活执行owner。
+
+cp1r5_tpu_os_pair_01: running_confirmation_arm
 
 [当前投稿稿](submission_narrative_07/build/main.pdf) · [证据影响与作者审阅](submission_narrative_07/EXPERIMENT_IMPACT.md) · [完整判定](LSTM_domain_whole_admission_03/admission_decision.json)。原06保留；本轮只把LSTM实际结论和已完成四档代价机制证据纳入对应位置。
 

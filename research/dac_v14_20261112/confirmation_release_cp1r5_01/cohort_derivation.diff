@@ -1,0 +1,204 @@
+--- cp1r4_confirmation_cohort_v1.py
++++ cp1r5_confirmation_cohort_v1.py
+@@ -5,7 +5,7 @@
+ from seed_census_analysis_pool_v2 import process_identity
+ from endpoint_timing_policy_streaming_v2 import compare
+ from packed_input_contract_v1 import classify_initial_failure
+-ROOT=D/'cp1r4_gemm_pair_01'
++ROOT=D/'cp1r5_tpu_os_pair_01'
+ 
+ class InputAdmissionError(Exception):pass
+ 
+@@ -101,7 +101,7 @@
+             n=quality['native']['resources'];denom=n['SB_pairs']+n['CB_sources']
+             paired.update(delta_domain_minus_native=delta,endpoint_changes=endpoint,SB_reduction_percent=None if n['SB_pairs']==0 else -100*delta['SB_pairs']/n['SB_pairs'],SB_plus_CB_reduction_percent=None if denom==0 else -100*(delta['SB_pairs']+delta['CB_sources'])/denom)
+         else:paired['qualification']='Different actual roots: retain both outputs but no causal domain/release delta.'
+-    result=dict(passed=True,input=item['id'],release_manifest_sha256=plan['release_manifest_sha256'],registered_roles=2,verified_legal_roles=len(own_root),results=results,own_initial_to_final_endpoint_changes=own_root,matched_comparison=paired,source_sha256={str(f):sha(f) for f in files},qualification='Prospective CP1r4 pair on one known historical physical input. Two arms are one input. Not unseen holdout, external application timing or interleaved speedup. Domain+release treatment remains combined; separate ablations identify mechanisms. Scientific failures are retained.')
++    result=dict(passed=True,input=item['id'],release_manifest_sha256=plan['release_manifest_sha256'],registered_roles=2,verified_legal_roles=len(own_root),results=results,own_initial_to_final_endpoint_changes=own_root,matched_comparison=paired,source_sha256={str(f):sha(f) for f in files},qualification='Prospective CP1r5 pair on one known historical physical input. Two arms are one input. Not unseen holdout, external application timing or interleaved speedup. Domain+release treatment remains combined; separate ablations identify mechanisms. Scientific failures are retained.')
+     write(ROOT/(item['id']+'_comparison.json'),result);return result
+ 
+ def execute(plan):
+--- package_cp1r4_public_source_01.py
++++ package_cp1r5_public_source_01.py
+@@ -1,25 +1,25 @@
+-"""Reconstruct the new numeric-slack release before any new confirmation arm."""
++"""Reconstruct the new checker-only owner identity release before any new confirmation arm."""
+ import argparse,json,os,re,subprocess,tarfile
+ from pathlib import Path
+ from retained_prefix_workflow import D,read,write,sha
+ 
+ def package(plan):
+-    release=Path(plan['release']);out=D/'confirmation_release_cp1r4_01'
+-    archive=out/'current_sta_cp1r4_source.tar.gz';assert not archive.exists()
++    release=Path(plan['release']);out=D/'confirmation_release_cp1r5_01'
++    archive=out/'current_sta_cp1r5_source.tar.gz';assert not archive.exists()
+     vendor={'numpy','numpy.libs','lxml'}
+     with tarfile.open(archive,'w:gz',compresslevel=1) as tar:
+         for p in sorted(release.rglob('*')):
+             if not p.is_file():continue
+             rel=p.relative_to(release)
+             if len(rel.parts)>1 and rel.parts[0]=='runtime' and rel.parts[1] in vendor:continue
+-            tar.add(p,arcname=str(Path('current_sta_cp1r4')/rel))
++            tar.add(p,arcname=str(Path('current_sta_cp1r5')/rel))
+     template=D/'restore_confirmation_cp1r3_dependencies.py'
+-    text=template.read_text().replace('current_sta_cp1r3','current_sta_cp1r4')
++    text=template.read_text().replace('current_sta_cp1r3','current_sta_cp1r5')
+     text,count=re.subn(r"^SOURCE_SHA='[^']+'",f"SOURCE_SHA='{sha(archive)}'",text,flags=re.M);assert count==1
+     text,count=re.subn(r"^MANIFEST_SHA='[^']+'",f"MANIFEST_SHA='{sha(release/'release_manifest.json')}'",text,flags=re.M);assert count==1
+-    restorer=D/'restore_confirmation_cp1r4_dependencies.py'
++    restorer=D/'restore_confirmation_cp1r5_dependencies.py'
+     with restorer.open('x') as f:f.write(text)
+-    home=release.parents[1];base=home/'confirmation_releases/cp1r4_public_source_restore_01';base.mkdir(exist_ok=False)
++    home=release.parents[1];base=home/'confirmation_releases/cp1r5_public_source_restore_01';base.mkdir(exist_ok=False)
+     rebuilt=base/'rebuilt';wheels=home/'confirmation_releases/cp1_public_source_restore_01/wheels'
+     env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1','OMP_NUM_THREADS':'1','OPENBLAS_NUM_THREADS':'1'}
+     restored=subprocess.run(['/usr/bin/python3',str(restorer),'--source-archive',str(archive),'--wheel-dir',str(wheels),'--output',str(rebuilt)],capture_output=True,text=True,env=env,timeout=60)
+@@ -39,7 +39,7 @@
+             write(dest/(arm+'.json'),c)
+         result=subprocess.run(['/usr/bin/python3',str(rebuilt/'confirmation.py'),'check','--native',str(dest/'native.json'),'--domain',str(dest/'domain.json'),'--packing-manifest',str(provenance),'--forbid-prefix',str(D.parents[1])],cwd=base,env=env,capture_output=True,text=True,timeout=120)
+         assert result.returncode==0,result.stderr;checks[item['id']]=json.loads(result.stdout)
+-        assert checks[item['id']]['passed'] and checks[item['id']]['release_id']=='current_sta_cp1r4'
++        assert checks[item['id']]['passed'] and checks[item['id']]['release_id']=='current_sta_cp1r5'
+     write(out/'public_source_reconstruction.json',dict(passed=True,source_archive_sha256=sha(archive),source_archive_bytes=archive.stat().st_size,
+         restoration=restoration,actual_extension_and_worker_imports=json.loads(imports.stdout),actual_relocated_admission=checks,
+         actual_restored_guard_execution=dict(passed=True,stdout=guard.stdout),executable_modes_preserved=True,
+--- activate_cp1r4_gemm_pair_01.py
++++ activate_cp1r5_tpu_os_pair_01.py
+@@ -1,4 +1,4 @@
+-"""Bind the selected GEMM pair and reconstruct CP1r4 before any native execution."""
++"""Bind the selected TPU-OS pair and reconstruct CP1r5 before any native execution."""
+ import copy
+ import fcntl
+ import hashlib
+@@ -7,20 +7,20 @@
+ import time
+ from pathlib import Path
+ from retained_prefix_workflow import D, read, write, sha
+-from cp1r4_confirmation_cohort_v1 import ROOT, confirmation_arguments, environment
+-from package_cp1r4_public_source_01 import package
++from cp1r5_confirmation_cohort_v1 import ROOT, confirmation_arguments, environment
++from package_cp1r5_public_source_01 import package
+ 
+ 
+ def activate():
+     started = time.monotonic()
+     home = Path('/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home')
+-    release = home/'confirmation_releases/current_sta_cp1r4'
+-    workspace = home/'confirmation_workspaces/cp1r4_gemm_pair_01'
++    release = home/'confirmation_releases/current_sta_cp1r5'
++    workspace = home/'confirmation_workspaces/cp1r5_tpu_os_pair_01'
+     assert not ROOT.exists() and not workspace.exists()
+-    assert read(D/'confirmation_release_cp1r4_01/completion.json')['passed']
+-    preflight = read(D/'GEMM_input_preflight_01/completion.json')
++    assert read(D/'confirmation_release_cp1r5_01/completion.json')['passed']
++    preflight = read(D/'TPU_OS_input_preflight_01/completion.json')
+     assert preflight['passed']
+-    selected = next(x for x in read(D/'independent_input_candidates_03/inputs.json') if x['id']=='gemm_p0')
++    selected = next(x for x in read(D/'independent_input_candidates_03/inputs.json') if x['id']=='tpu_os_p0')
+     source = Path(selected['physical_files']['packed']['path']).parent
+     provenance_source = source.with_name(source.name.removesuffix('_a0')+'_place')/'manifest.json'
+     manifest_path = source/'manifest.json'
+@@ -35,7 +35,7 @@
+         assert next(x for x in preflight['physical_inputs'] if x['kind']==name)['sha256']==digest
+     ROOT.mkdir()
+     workspace.mkdir()
+-    w = workspace/'gemm'
++    w = workspace/'tpu_os'
+     w.mkdir()
+     copies = {k:dict(source=row['path'], destination=str(w/'inputs'/(k+Path(row['path']).suffix)),
+                      sha256=selected['declared_sha256'][k], bytes=row['bytes'])
+@@ -67,20 +67,20 @@
+         write(path,current)
+         configs[arm] = str(path)
+         (ROOT/path.name).write_bytes(path.read_bytes())
+-    item = dict(id='gemm',workspace=str(w),source_name=source.name,copies=copies,
++    item = dict(id='tpu_os',workspace=str(w),source_name=source.name,copies=copies,
+                 configs=configs,packing_manifest=str(packing),
+                 physical_identity=dict(selected['declared_sha256'],
+                     normalized_coordinates_sha256=preflight['actual_layout']['coordinate_semantic_sha256'],
+                     placed_blocks=preflight['actual_layout']['placed_blocks'],
+                     known_historical_input=True,explicit_SDC=False),
+-                purpose='Different GEMM circuit, same architecture family; known historical source, no old route import')
+-    files = [Path(__file__).resolve(),D/'cp1r4_confirmation_cohort_v1.py',D/'run_cp1r4_gemm_pair_01.py',
+-             D/'package_cp1r4_public_source_01.py',D/'packed_input_contract_v1.py',
++                purpose='Different TPU-OS dataflow/netlist from TPU-WS; same TPU family and architecture; known source, no old route import')
++    files = [Path(__file__).resolve(),D/'cp1r5_confirmation_cohort_v1.py',D/'run_cp1r5_tpu_os_pair_01.py',
++             D/'package_cp1r5_public_source_01.py',D/'packed_input_contract_v1.py',
+              D/'seed_census_analysis_pool_v2.py',D/'retained_prefix_workflow.py',
+-             D/'endpoint_timing_policy_streaming_v2.py',D/'GEMM_input_preflight_01/completion.json',
+-             D/'GEMM_input_preflight_01/measurement/completion.json',
++             D/'endpoint_timing_policy_streaming_v2.py',D/'TPU_OS_input_preflight_01/completion.json',
++             D/'TPU_OS_input_preflight_01/measurement/completion.json',
+              D/'independent_input_candidates_03/inputs.json',
+-             D/'confirmation_release_cp1r4_01/completion.json',release/'release_manifest.json',
++             D/'confirmation_release_cp1r5_01/completion.json',release/'release_manifest.json',
+              release/'contract.json',manifest_path,provenance_source,template,phase,packing,
+              *map(Path,configs.values())]
+     bound = {str(p):sha(p) for p in files}
+@@ -94,8 +94,8 @@
+                 requires_exclusive_serial_slot=True,full_method_time_cap=None,research_total_call_cap=None,
+                 source_runtime_or_algorithm_selected_from_outcomes=False,
+                 explicit_application_timing_claim=False,source_route_will_be_imported=False,
+-                independence='One different GEMM circuit at its fixed actual packed placement; two roles are one input. Known historical training source, not unseen or new architecture. Fresh roots and complete matched admission remain required.',
+-                qualification='Frozen numeric-only CP1r4 correction; CP1r3 budgets, acceptance, search/owner/domain/release and terminal rules retained. Seed11/constant-merge off follow actual upstream command. All failure, timeout, no-cut/no-gain and degraded outcomes retained. Provisioning, reconstruction and research verification costs are separate from measured complete run-arm. No date/call/matrix Goal stopping condition.')
++                independence='One different TPU-OS dataflow/netlist at its actual packed placement; same TPU workload family as TPU-WS. Two roles are one input. Known historical source, not unseen or new architecture. Fresh roots and complete matched admission remain required.',
++                qualification='Frozen CP1r5 checker-only owner identity correction over CP1r4 numeric planner; CP1r3 budgets, acceptance, search/owner/domain/release and terminal rules retained. Seed21/constant-merge off follow actual upstream command. All failure, timeout, no-cut/no-gain and degraded outcomes retained. Provisioning, reconstruction and research verification costs are separate from measured complete run-arm. No date/call/matrix Goal stopping condition.')
+     check = subprocess.run(['/usr/bin/python3',str(release/'confirmation.py'),'check',
+                             *confirmation_arguments(plan,item)],cwd=release,env=environment(),
+                            capture_output=True,text=True,timeout=120)
+@@ -107,8 +107,8 @@
+     write(draft,plan)
+     reconstruction = package(plan)
+     assert read(reconstruction)['passed']
+-    for p in [draft,reconstruction,D/'restore_confirmation_cp1r4_dependencies.py',
+-              D/'confirmation_release_cp1r4_01/current_sta_cp1r4_source.tar.gz']:
++    for p in [draft,reconstruction,D/'restore_confirmation_cp1r5_dependencies.py',
++              D/'confirmation_release_cp1r5_01/current_sta_cp1r5_source.tar.gz']:
+         bound[str(p)] = sha(p)
+     plan['source_sha256'] = bound
+     write(ROOT/'plan.json',plan)
+--- run_cp1r4_gemm_pair_01.py
++++ run_cp1r5_tpu_os_pair_01.py
+@@ -1,10 +1,10 @@
+-"""Single serial owner for the preregistered GEMM native/domain pair."""
++"""Single serial owner for the preregistered TPU-OS native/domain pair."""
+ import fcntl
+ import os
+ import time
+ from retained_prefix_workflow import D, read, write, sha
+ from seed_census_analysis_pool_v2 import process_identity
+-from cp1r4_confirmation_cohort_v1 import ROOT, execute
++from cp1r5_confirmation_cohort_v1 import ROOT, execute
+ 
+ 
+ def main():
+@@ -12,25 +12,25 @@
+     queue.mkdir(exist_ok=False)
+     owner = process_identity(os.getpid())
+     write(queue/'registration.json', dict(**owner, plan=str(ROOT/'plan.json'),
+-          plan_sha256=sha(ROOT/'plan.json'), ownership='Only registered CP1r4 GEMM pair owner'))
++          plan_sha256=sha(ROOT/'plan.json'), ownership='Only registered CP1r5 TPU-OS pair owner'))
+     write(queue/'status.json', dict(status='waiting_for_shared_serial_slot'))
+     with (D/'critical_scope_runner.lock').open('r') as lock:
+         fcntl.flock(lock, fcntl.LOCK_EX)
+         plan = read(ROOT/'plan.json')
+         assert all(sha(p)==h for p,h in plan['source_sha256'].items())
+-        assert read(D/'confirmation_release_cp1r4_01/public_source_reconstruction.json')['passed']
++        assert read(D/'confirmation_release_cp1r5_01/public_source_reconstruction.json')['passed']
+         started = time.monotonic()
+         try:
+             execute(plan)
+             comparison = read(ROOT/'comparison.json')
+-            write(queue/'completion.json', dict(passed=True, status='registered_GEMM_pair_terminal',
++            write(queue/'completion.json', dict(passed=True, status='registered_TPU-OS_pair_terminal',
+                   scientific_quality_admitted_roles=comparison['verified_legal_roles'],
+                   complete_queue_scope_seconds=time.monotonic()-started,
+                   comparison=str(ROOT/'comparison.json'),
+                   qualification='All two registered roles accounted; execution terminal is distinct from scientific admission. No research completion condition.'))
+             write(queue/'status.json', dict(status='terminal'))
+         except BaseException as error:
+-            write(queue/'completion.json', dict(passed=False, status='GEMM_owner_requires_reconciliation',
++            write(queue/'completion.json', dict(passed=False, status='TPU-OS_owner_requires_reconciliation',
+                   error=repr(error), complete_queue_scope_seconds=time.monotonic()-started,
+                   automatic_retry=False, original_receipts_preserved=True))
+             write(queue/'status.json', dict(status='terminal_reconciliation_required'))

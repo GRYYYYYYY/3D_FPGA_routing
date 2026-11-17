@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[TPU-OS确认已启动与实际新鲜合法根](docs/GitHub_TPU_OS_confirmation_20261117.md)：CP1r5只修正owner登记身份checker，算法预算/接受规则不变。native初始FULL/STA/物理门槛通过：7.812205993ns、360013wire/35SB/1563CB，正在资源阶段；domain按登记顺序接续。不同数据流/网表、同TPU家族和架构，尚无完整方法配对收益。确认后完整请求、raw STA、物理及实际图/起点配对列为最高优先准入；投稿07保持。以下预检记录中的“未启动”是历史状态。
+
 [已准入LSTM完整机制归因与TPU-OS输入预检](docs/GitHub_LSTM_mechanisms_TPU_OS_preflight_20261117.md)：guided接受11步为−82SB/+2348wire，native回退5步为−5SB/−152wire，终结选点再−12wire；10个接受guided作用域有释放事件，但没有LSTM同源no-release反事实，不能作因果必要性主张。全候选保留原失败/策略拒绝与预算边界。[完整工作点图](research/dac_v14_20261112/LSTM_admitted_mechanism_synthesis_01/complete_wire_SB_points.pdf)。TPU-OS实际五项字节和4100block坐标预检通过，2.261795秒，无native/STA；尚未启动完整配对，不计新架构或收益。投稿07保持。
 
 [LSTM整臂与实际配对通过、六页投稿07](docs/GitHub_LSTM_admission_submission_20261117.md)：同14.600438192ns，N/D为2388083/492/8316与2390270/422/8316；少70SB、增加2187wire、CB不变，配对setup51改善/23退化、hold新增0。原ctime失败、native回退拒绝和后续轨迹保留；完整7615.07/26657.73秒照录，domain受外部归档干扰，不推算无干扰时间或正式开销比。[PDF](research/dac_v14_20261112/submission_narrative_07/build/main.pdf) · [完整配对表](research/dac_v14_20261112/submission_narrative_07/LSTM_PAIR_TABLE.md) · [作者审阅/证据影响](research/dac_v14_20261112/submission_narrative_07/EXPERIMENT_IMPACT.md)。四档代价对照已经完成并突出为同组CB预算可行性增量，非所有权重/输入优势；CLSTM历史恢复不阻塞主稿。原06和更早版本保留。
