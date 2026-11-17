@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[机制适用性与CLSTM-SB资源阶段](docs/GitHub_mechanism_applicability_CLSTM_stage_20261117.md)：已准入配置说明切口数量不足以预测domain增量，预算及实际失败/阻塞条件需分别考虑。CLSTM-SB native资源阶段4组接受、3组合法策略拒绝，234918wire/941SB/0CB、CPD不变；后续时序修复及完整配对仍待原队列终结，不将阶段结果计入正文收益。投稿08保持。
+
 [CLSTM-small SB-only固定确认已启动](docs/GitHub_CLSTM_SB_confirmation_20261117.md)：同已知CLSTM网表，实际SB-only图/2927块坐标不同于历史Hybrid-O，不计新电路或新架构家族。五项字节预检通过；N→D及终结后3项必要只读保持CP1r5规则。native新鲜初始根通过FULL/STA/物理检查：6.590324286ns、234982wire/948SB/0CB，已进入资源修复，尚无新配对质量。投稿08保持；完整ETA待首个native真实终态校准。
 
 [TPU-OS完整配对通过与六页投稿08](docs/GitHub_TPU_OS_admission_submission08_20261117.md)：N/D同7.812205993ns、17SB/1563CB和完整端点向量，线长360117/360121；domain无增量。两臂各4次资源接受，无失败释放/owner事件。完整941.32/944.17秒，仅单次描述；原核验01失败保留，02精确时序worker格式核验及完整配对通过，无native/STA重跑。[投稿08 PDF](research/dac_v14_20261112/submission_narrative_08/build/main.pdf)，原07保留。下面“TPU-OS缺口未闭合”是早期历史状态。
