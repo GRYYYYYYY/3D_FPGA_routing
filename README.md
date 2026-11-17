@@ -1,5 +1,7 @@
 # H3D-inspired native 3D FPGA routing
 
+[Elliptic完整配对通过、六页投稿10](docs/GitHub_elliptic_admission_submission10_20261117.md)：N/D均为12.419319795ns、37962wire/0SB/0CB，全端点向量一致。两臂共有原生时序收益，但没有跨层域增量；完整286.70/282.94秒仅单次描述。全部40行结果与失败类别保留，[投稿10 PDF](research/dac_v14_20261112/submission_narrative_10/build/main.pdf)可独立作者审阅。以下启动阶段文字为历史记录。
+
 [Elliptic独立电路完整确认已启动](docs/GitHub_elliptic_confirmation_20261117.md)：已核验640块真实打包/布局，固定CP1r5 native→domain及后续三项只读准入。不同公开电路、同Hybrid-O架构族；当前不新增完整质量主张，六页投稿09可独立审阅。下方各实验状态以对应记录时间为准。
 
 ## Current research snapshot — 2026-11-17
