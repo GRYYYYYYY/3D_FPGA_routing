@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[CLSTM/native与robot-p1历史恢复终态、必要只读核验](docs/GitHub_legacy_recovery_readonly_queue_20261117.md)：后缀费用分别206.33/705.29秒，原失败费用单列，不拼接完整时间或配对收益。CLSTM/domain原空监督回执及失败保留；21项元数据检查通过，完整独立阶段核验已排在三档代价基线只读协调之后。原reduction恢复继续，投稿04稿和主张不变。
+
 [四档跨层代价基线实际执行终结](docs/GitHub_vertical_cost_terminal_20261117.md)：完整尝试353.24秒，0档等价通过；0.5/1/2原独立准入被可变进度摘要拦住，真实候选与原拒绝保留。只读协调已登记并等待原串行槽，不重跑native/STA；正强度结果尚不进入论文主张。
 
 [CP1r3六角色及原准入终结；六页投稿叙事04](docs/GitHub_CP1r3_terminal_submission_20261117.md)：完整质量0/6、配对0/3，所有真实费用及失败保留；新稿仅更新失败覆盖和适用范围，BNN、方法与prior-art不变。原跨层代价0/0.5/1/2队列已进入实际构建，未修改规则。[投稿PDF](research/dac_v14_20261112/submission_narrative_04/build/main.pdf) · [剩余证据影响清单](research/dac_v14_20261112/submission_narrative_04/EXPERIMENT_IMPACT.md)。

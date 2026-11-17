@@ -1,0 +1,132 @@
+{
+  "observed_at": "2026-11-17T08:39:17.759230+00:00",
+  "passed": true,
+  "tests": 21,
+  "rows": [
+    {
+      "name": "actual_exact_empty_file_and_sealed_dead_identities",
+      "passed": true
+    },
+    {
+      "name": "wrong_path",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "nonempty_bytes",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "historical_digest_changed",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "missing_supervisor",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "changed_child_pid",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "changed_child_ticks",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "aliased_supervisor",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "missing_dead_identity",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "live_supervisor",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "live_child",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "live_worker",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "live_actor",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "unsealed_worker",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "incomplete_worker",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "not_observation",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "missing_FULL",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "failed_FULL",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "failed_physical",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "failed_input_seal",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "name": "malformed_dead_flag",
+      "passed": true,
+      "rejected": true
+    }
+  ],
+  "actual_metadata_corroboration": {
+    "kind": "independent_dead_identity_corroboration",
+    "original_empty_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "supervisor_identity": {
+      "pid": 155153,
+      "state": "R",
+      "start_ticks": "1959449597"
+    },
+    "worker_identity": {
+      "pid": 155222,
+      "state": "R",
+      "start_ticks": "1959449605"
+    },
+    "original_supervisor_exit_status": "unknown",
+    "original_supervisor_completion_created": false,
+    "complete_actual_byte_and_candidate_admission": false
+  },
+  "full_stage_byte_request_STA_vector_audit_executed": false,
+  "quality_or_candidate_admitted": false,
+  "new_native_or_STA_calls": 0,
+  "qualification": "Identity and sealed metadata guards only. No raw graph/STA/vector read, no replacement of the original empty or failed records."
+}

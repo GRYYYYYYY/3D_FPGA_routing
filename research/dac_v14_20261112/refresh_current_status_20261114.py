@@ -261,6 +261,8 @@ for name in ['github_BNN_timing03_domain1_publication_receipt_20261116.json',
     if candidate.exists():publication=candidate
 terminal_publication=D.parents[1]/'docs/github_CP1r3_terminal_publication_receipt_20261117.json'
 if terminal_publication.exists():publication=terminal_publication
+vertical_terminal_publication=D.parents[1]/'docs/github_vertical_cost_terminal_publication_receipt_20261117.json'
+if vertical_terminal_publication.exists():publication=vertical_terminal_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -1087,6 +1089,13 @@ if (D/'vertical_cost_baseline_terminal_01/checkpoint.json').exists():
     if (audit_queue/'registration.json').exists():
         registration=read(audit_queue/'registration.json');actual=process_identity(registration['pid'])
         status['weighted_admission_readonly_owner']=dict(registration=registration,actual_process=actual,verified_live=bool(actual and actual['state']!='Z' and actual['start_ticks']==registration['start_ticks']),phase=read(audit_queue/'status.json'),completion=read(audit_queue/'completion.json') if (audit_queue/'completion.json').exists() else None)
+empty_audit=D/'CLSTM_domain_empty_supervision_audit_02'
+if (empty_audit/'queue/registration.json').exists():
+    registration=read(empty_audit/'queue/registration.json');actual=process_identity(registration['pid'])
+    status['CLSTM_empty_supervision_readonly_owner']=dict(registration=registration,actual_process=actual,verified_live=bool(actual and actual['state']!='Z' and actual['start_ticks']==registration['start_ticks']),phase=read(empty_audit/'queue/status.json'),completion=read(empty_audit/'queue/completion.json') if (empty_audit/'queue/completion.json').exists() else None)
+    status['evidence']['CLSTM_empty_supervision_readonly_audit']='CLSTM_domain_empty_supervision_audit_02/execution_plan.json'
+    status['evidence']['CLSTM_empty_supervision_identity_guards']='CLSTM_domain_empty_supervision_audit_02/identity_validation.json'
+    status['evidence']['legacy_recovered_development_outcomes']='legacy_recovery_progress_02/checkpoint.json'
 active_arm_pointer=Path('/tmp/dac_cp1r3_active_arm_pidfd_wait_01.json')
 if active_arm_pointer.exists():
     status['active_CP1r3_arm_wait']=read(active_arm_pointer)
