@@ -1,10 +1,16 @@
 # 当前研究状态
 
-[CLSTM/domain必要接续已登记](CLSTM_domain_recovery_02/STATUS.md)：11项小元数据/拒绝检查通过，独立副本仅处理已审计精确空监督文件的身份读取，保留原unknown退出与全部旧失败。实际owner在GEMM完整队列终结并退出后取串行槽，先复核实际来源字节，再复用旧23连接native阶段、执行缺失物理/domain/STA及原接受流程。当前候选/完整恢复尚未通过；旧CP1r3算法与预算不变，不抢占当前GEMM。
+[CLSTM/domain完整历史恢复03终结](CLSTM_domain_complete_recovery_03/STATUS.md)：6.849416589ns、226919wire/3SB/915CB，自身根setup153/10、hold新增违例0。后缀453.124382秒，旧346.660494秒失败及02失败26.922516秒、审计费用分列；PSS2843271KiB、缺测7。旧23条查询实际复用，新时序worker18条查询；1步旧资源前缀+1步新增、时序接受1、owner0。不是新独立输入、新鲜完整费用或新增配对收益，投稿06不等待本恢复。当前所有已登记阶段终结，下一必要门槛是LSTM/domain完整作用域与回退/字节/请求/FULL/STA/端点/物理准入，尚未登记执行、耗时未校准；Goal仍active。
 
-[GEMM/native原初始执行超时](GEMM_native_initial_timeout_01/STATUS.md)：完整命令2940.966587秒，原初始native1800.028913秒触发1800秒保护，FULL/STA合法根及QoR为空；PSS27678859KiB、缺测2、无残留后代。原日志第23次迭代打印0过用，但后续继续原收敛机会、最后第26次60383过用后超时，中间打印值不作完整结果。domain按原登记运行，剩1角色；若复现同源native超时路径，以整臂约49分钟作条件参照，获得合法根/更早结束会使该情景失效，不拼接组件或算失败比例。
+[CLSTM接续03已实际登记](CLSTM_domain_recovery_03/STATUS.md)：仅使用实际manifest完整来源审计03，运行扩展与02逐字节一致，原CP1r3根/预算/接受/owner/终结不变。取得原串行槽后实际复核字节，旧23查询的消费以阶段回执与reuse seal判定，缺失候选物理/domain/STA新执行计费。原失败保持，新后缀ETA未校准，不影响投稿06独立成立。当前真实阶段以上表为准。
 
-[CP1r4 GEMM一输入两角色确认](cp1r4_gemm_pair_01/STATUS.md)：实际+inf donor故障及两个完整规划器回放已核验（8.218278秒；首次观测钩子失败10.608246秒保留），独立冻结5.043296秒，source+固定wheel重建及迁移checker通过。仅数值解析改变，预算/搜索/接受/终结规则继承。GEMM输入复制核验56.263702秒；登记native/domain顺序固定，实际角色/阶段以上表和原回执为准。已知历史不同电路，同架构族；完整方法与配对收益尚未准入，初始根门槛另见CURRENT_STATUS.json。后续整臂耗时尚无同电路样本，不借用BNN耗时；投稿05与原CP1r3失败保持。
+[CLSTM接续02真实失败](CLSTM_domain_recovery_failure_02/STATUS.md)：4.383877秒来源字节复核通过，26.922516秒接续被缺少worker manifest审计绑定拦住；实际旧23查询消费0、新native/STA0、质量为空。原result无条件策略标记true不算消费证据；原失败/未知退出保持。独立审计03随后实际通过并绑定缺失manifest，完整命令5.744289秒、175项来源，157项native消费依赖全部覆盖；尚不代表候选或完整恢复通过。
+
+[六页投稿06与实际终态](submission_narrative_06/build/main.pdf)：表I现36行；LSTM/native通过88原断言重放及831绑定原raw完整准入，14.600438192ns、2388083/492/8316、setup20/5/0，原完整7615.074177秒与新只读104.646081/199.303328秒分列。domain只通过原ctime候选来源审计34.337272秒，整臂仍未准入，无新增完整配对。该候选2390832/419/8316超357，与原2390877/419/8316超402的策略拒绝点不同。GEMM原两臂初始1800秒保护超时，完整2940.966587/2925.412056秒，质量0/2、无正式比例。原方法、BNN、机制表及四档代价主张保持；[具体剩余证据影响](submission_narrative_06/EXPERIMENT_IMPACT.md)。
+
+[LSTM必要只读核验02](LSTM_necessary_readonly_02/STATUS.md)：已实际排在CLSTM恢复owner终结之后。独立v2仅修复补充输出queue目录和namespace，88个原断言及owner来源检查保持；三阶段为native原检查重放、通过后原raw完整准入、domain原ctime候选来源审计。没有新native/STA或完整配对通过，所有新只读命令分别实测，旧失败与费用不改；DLA初始失败不能靠只读补造合法根。
+
+[CP1r4 GEMM一输入两角色确认](cp1r4_gemm_pair_01/STATUS.md)：实际+inf donor故障及两个完整规划器回放已核验（8.218278秒；首次观测钩子失败10.608246秒保留），独立冻结5.043296秒，source+固定wheel重建及迁移checker通过。仅数值解析改变，预算/搜索/接受/终结规则继承。GEMM输入复制核验56.263702秒；登记native/domain顺序固定，实际角色/阶段以上表和原回执为准。已知历史不同电路，同架构族；完整方法与配对收益尚未准入，初始根门槛另见CURRENT_STATUS.json。native超时后已有同源整臂失败路径参照，当前条件ETA另列，不借用BNN耗时；投稿05与原CP1r3失败保持。
 
 [GEMM-p0实际字节/坐标预检](GEMM_input_preflight_01/STATUS.md)：五项输入14,191,639,818字节的SHA256及38567个实际block坐标读取通过，完整预检17.272952秒、native/STA调用0。已知历史来源的不同电路、同架构族；这项只证明输入字节和坐标读取，不自动建立完整graph/packing/placement兼容性、合法新鲜路由根或完整方法配对。公开范围以最新发布回执为准，不新增确认收益。
 
@@ -16,7 +22,7 @@
 
 [reduction原N/D完整开发恢复终态](reduction_domain_complete_recovery_01/STATUS.md)：N/D均为12.606378164ns、72SB/3058CB，线长1241199/1241281；各自根setup1746/286与1760/272，hold退化0。新后缀5161.457547/10116.160052秒与原失败6147.846396/3211.957338秒分列；前缀10/4步不同，不计算完整算法比例。原四臂队列3个完整恢复、1个CLSTM/domain准入未执行，原passed=false不改。不是新独立输入或冻结确认。
 
-[CP1r3六角色与已登记准入终结](CP1r3_complete_execution_01/STATUS.md)：完整质量0/6、配对0/3。LSTM执行结束但原/补充验证失败；DLA两臂初始路由失败；SB-layout两臂时序planner执行错误，均保留实际费用，不计算正式比值。native补充主体payload写出后因输出目录缺失报错，raw在前置门槛拒绝、未执行昂贵字节/向量审计。确认/原补充剩余角色均为0；旧确认ETA作废，实际基线构建/四档执行费用另计。[六页投稿04稿](submission_narrative_04/build/main.pdf)只增加失败覆盖与费用，原方法、BNN数值和prior-art不变；[剩余证据影响](submission_narrative_04/EXPERIMENT_IMPACT.md)。
+[CP1r3六角色与已登记准入终结](CP1r3_complete_execution_01/STATUS.md)：原完整质量0/6、配对0/3；最新独立native补充准入另列。LSTM执行结束但原核验与首次补充验证失败；DLA两臂初始路由失败；SB-layout两臂时序planner执行错误，均保留实际费用，不计算正式比值。native补充主体payload写出后因输出目录缺失报错，raw在前置门槛拒绝、未执行昂贵字节/向量审计。确认/原补充剩余角色均为0；旧确认ETA作废，实际基线构建/四档执行费用另计。[六页投稿04稿](submission_narrative_04/build/main.pdf)只增加失败覆盖与费用，原方法、BNN数值和prior-art不变；[剩余证据影响](submission_narrative_04/EXPERIMENT_IMPACT.md)。
 
 [LSTM归档干扰更正](../../docs/GitHub_LSTM_retention_incident_20261117.md)：助手硬链接归档改变活动源ctime，触发round013/candidate00一次封存失败；135项登记摘要与原最终重哈希一致，失败5项仅ctime变化。保留原失败及费用，不补造成功、不重跑查询、不改预算；当前运行期禁止对上游输入创建/删除硬链接或改元数据。完整LSTM配对及干净计时尚未准入。
 
@@ -24,14 +30,13 @@
 
 [DLA-small原N/D初始路由失败](DLA_small_initial_failure_01/STATUS.md)：完整命令分别709.742677/702.413717秒，原日志在W100/200次迭代后均仍有525个过用节点；没有合法起点，未进入修复，不是超时或合法无收益。初始命令仅替换arm输出路径后逐项相同，共同binary/arch/BLIF/RRG登记摘要匹配；未新增大字节独立准入。失败路由打印的CPD不进入质量结果，也不计算算法收益或费用比例。后续实际角色以上表进程身份为准；eltwise-SB是已知电路/架构的新布局，不计新电路/新架构。当前条件ETA见最新阶段记录，旧两臂规划仅作历史记录。
 
-观察时间：2026-11-17T14:39:17.683246+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
+观察时间：2026-11-17T15:23:56.714846+00:00。Goal active；公开证据基点9734eee及279bdb4后续更新保留。
 
 统一方法：当前STA、跨层冗余与容量阻塞用于选择完整连接组；在事务副本中使用跨层共享域、按网失败释放及阻塞owner协调；完整组合经物理/容量/FULL/STA检查，在固定根预算下接受或恢复。终结选点独立于中间提交；native享有相同选组、owner与收敛机会。
 
 | 当前登记批次 | 实际状态 | owner PID |
 |---|---|---:|
-| cp1r4_gemm_pair_01 | running_confirmation_arm [gemm/domain] → fresh_route_and_complete_resource | 2564268 |
-| CLSTM_domain_recovery_02 | waiting_for_original_GEMM_owner_terminal | 3631077 |
+
 
 [BNN N/D/D/N完整对称计时](BNN_timing03_balanced_receipt_01/completion.json)已终结，原独立完整核验及四臂匹配均通过。完整命令时间按登记顺序为7329.044554 / 9146.351492 / 9112.139276 / 7288.184845s；D0/N0=1.24795960，D1/N1=1.25026182；N均值7308.614699s，D均值9129.245384s，均值之比1.24910749（约+24.91%）。使用原始完整计时区间，未拼接阶段或扣减observer CPU。所有同角色轨迹、请求、原生工作及六个实际图载荷字节一致；配对新鲜初始树、完整CPD/setup/hold/端点ID/约束匹配，终态完整端点比较兼容。共享主机/OS缓存未受控，两次每臂仅支持描述性费用。缺失内存观察依次22/28/27/29，保留采样局限。
 
@@ -51,6 +56,6 @@ LSTM/native完整命令已结束（returncode=0），实测7615.074177s；原冻
 
 机制归因仍受原证据限制：BNN九个guided资源角色无失败释放；既有R1 owner联合修复N/D相同结果归于协调范围扩大。robot三臂只证明该事务中域/释放改变可行取舍，尚非完整确认。conv_hls确认无收益、TPU初始超时、SPMV/CB-only无切口、Robot SDC无接受收益、attention/conv-layer初始失败继续保留。
 
-原确认、原补充/raw、四档代价执行及三档必要只读准入、原四臂恢复和CLSTM来源阶段审计均已终结，原失败保持。CLSTM候选物理/domain/STA及完整接续尚未完成；接续02已独立登记在GEMM两臂终结之后，取得串行槽后先复核字节、再按原门槛复用已核验23连接原生结果；真正独立输入与实际新物理起点优先于BNN局部微调。未登记后继不写成正在运行，不为普通拒绝新增同类计划。稿件不依赖全部历史恢复，Goal不以队列终结为完成条件。
+原GEMM两角色和LSTM三项必要只读核验均终结，CLSTM接续02失败保持，接续03按实际补齐的来源审计启动；真实结果与费用另记。LSTM/native补充完整准入不使domain整臂通过，后者仍无配对收益。投稿06独立成立，历史恢复不作为统一前置条件；Goal不因负结果或队列终结完成。
 
-论文：[当前六页正文](submission_narrative_05/build/main.pdf)。paper19将四次匹配完整计时用两行汇总；主表42行，三行早期BNN工程明细完整移入补充材料。原paper18及prior-art、贡献边界、9篇引用保持；没有新增独立输入或CP1r3结果。[新增费用主张绑定](BNN_timing03_balanced_claim_binding_01.json)仅补充同一输入完整费用和复现性证据，不新增独立输入或跨输入收益。完整轨迹与审计留补充材料。最新已核验公开提交见CURRENT_STATUS.json的latest_incremental_publication。Goal不因计时完成、推送、普通负结果或日期终止。
+论文：[当前六页正文](submission_narrative_06/build/main.pdf)。独立投稿06保持六页，表I36行，加入LSTM/native实际补充完整准入与GEMM两条超时；方法/prior-art/BNN及机制表和代价表不变，无新增完整配对收益。原始失败与费用在补充材料保留。[新增费用主张绑定](BNN_timing03_balanced_claim_binding_01.json)仅补充同一输入完整费用和复现性证据，不新增独立输入或跨输入收益。完整轨迹与审计留补充材料。最新已核验公开提交见CURRENT_STATUS.json的latest_incremental_publication。Goal不因计时完成、推送、普通负结果或日期终止。

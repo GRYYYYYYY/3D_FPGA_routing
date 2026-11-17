@@ -55,7 +55,7 @@ for name in ['stable_seed_transfer_recovery_02','direct_scope_resource_equivalen
              'rejection_feedback_controller_dev_01','complete_route_resource_measurements_01',
              'vector_then_strict_comparison_01','connection_budget_resource_dev_01',
              'complete_serial_resource_measurement_dev_01','complete_serial_resource_measurement_paired_dev_01',
-             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01','cp1r1_cross_circuit_cohort_01','cp1r2_cross_circuit_cohort_01','robot_union_mechanism_02','robot_union_verification_recovery_01','BNN_interleaved_timing_02','BNN_interleaved_timing_03','robot_owner_reentry_audit_01','robot_owner_reentry_audit_02','empty_query_patch_validation_01','confirmation_release_cp1r3_01','robot_p1_prefix_recovery_01','cp1r3_distinct_input_cohort_01','interrupted_stage_reconciliation_01','interrupted_flow_recovery_01','CP1r3_supplemental_verifier_01','CP1r3_raw_admission_01','vertical_cost_baseline_dev_01','cp1r4_gemm_pair_01','CLSTM_domain_recovery_02']:
+             'complete_serial_reusable_graph_dev_01','complete_serial_seed_policy_dev_01','serial_fused_candidate_validation_01','serial_fused_candidate_validation_02','complete_serial_fused_dev_01','complete_serial_transfer_dev_01','complete_serial_fused_dev_03','complete_serial_lazy_dev_01','connection_budget_scope_probe_01','complete_serial_lazy_transfer_dev_01','complete_serial_architecture_transfer_01','budget47_current_timing_composition_01','complete_serial_seed_transfer_01','complete_serial_source_snapshot_01','complete_serial_timing_budget_01','complete_resource_timing_full_flow_01','R1_whole_net_residual_probe_01','R1_crossing_source_probe_01','native_checkpoint_recovery_02','complete_route_resource_measurements_02','vector_then_strict_comparison_02','connection_budget_resource_dev_02','R1_owner_release_joint_probe_01','complete_serial_additional_circuits_01','complete_serial_lazy_source_snapshot_01','partial_escape_owner_intervention_01','complete_BNN_joint_index_flow_01','complete_BNN_closed_stream_flow_01','BNN_wire_timing_native_validation_01','native_checkpoint_recovery_03','complete_route_resource_measurements_03','vector_then_strict_comparison_04','robot_domain_release_ablation_01','complete_BNN_terminal_wire_flow_01','query_reduction_resource_dev_01','unexecuted_recovery_20261115_01','unified_input_integration_01','standalone_native_observation_equivalence_01','standalone_transaction_native_check_01','standalone_whole_method_check_01','portable_clstm_pair_01','robot_owner_scope_pair_01','portable_robot_p1_pair_01','complete_BNN_domain_engineering_01','portable_reduction_pair_01','clstm_input_contract_pair_02','robot_p1_input_contract_pair_02','cp1_cross_circuit_cohort_01','robot_union_mechanism_01','BNN_interleaved_timing_01','cp1r1_cross_circuit_cohort_01','cp1r2_cross_circuit_cohort_01','robot_union_mechanism_02','robot_union_verification_recovery_01','BNN_interleaved_timing_02','BNN_interleaved_timing_03','robot_owner_reentry_audit_01','robot_owner_reentry_audit_02','empty_query_patch_validation_01','confirmation_release_cp1r3_01','robot_p1_prefix_recovery_01','cp1r3_distinct_input_cohort_01','interrupted_stage_reconciliation_01','interrupted_flow_recovery_01','CP1r3_supplemental_verifier_01','CP1r3_raw_admission_01','vertical_cost_baseline_dev_01','cp1r4_gemm_pair_01','CLSTM_domain_recovery_02','LSTM_necessary_readonly_02','CLSTM_domain_recovery_03']:
     q=D/name/('' if name.startswith('serial_fused_candidate_validation_') else 'queue')
     if (D/name/'queue_priority_02/registration.json').exists():q=D/name/'queue_priority_02'
     if (D/name/'queue_priority_03/registration.json').exists():q=D/name/'queue_priority_03'
@@ -273,6 +273,8 @@ cp1r4_gemm_publication=D.parents[1]/'docs/github_CP1r4_GEMM_publication_receipt_
 if cp1r4_gemm_publication.exists():publication=cp1r4_gemm_publication
 gemm_timeout_publication=D.parents[1]/'docs/github_GEMM_native_timeout_publication_receipt_20261117.json'
 if gemm_timeout_publication.exists():publication=gemm_timeout_publication
+latest_GEMM_LSTM_publication=D.parents[1]/'docs/github_GEMM_LSTM_submission_publication_receipt_20261117.json'
+if latest_GEMM_LSTM_publication.exists():publication=latest_GEMM_LSTM_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -1170,12 +1172,75 @@ if (D/'cp1r4_gemm_pair_01/plan.json').exists():
         status['GEMM_native_initial_timeout']=read(D/'GEMM_native_initial_timeout_01/checkpoint.json')
         status['evidence']['GEMM_native_initial_timeout']='GEMM_native_initial_timeout_01/checkpoint.json'
         status['submission_candidate_latest_conditional_ETA'].update(status['GEMM_native_initial_timeout']['conditional_ETA'])
+        eta=status['submission_candidate_latest_conditional_ETA']
+        eta['remaining_execution_roles']=2-len(gemm_results)
+        current=status['CP1r4_GEMM_registered_pair']['phase']
+        if current.get('arm')=='domain' and 'domain' not in gemm_results:
+            current_identity=process_identity(current['pid'])
+            if current_identity and current_identity['start_ticks']==current['start_ticks']:
+                elapsed=float(Path('/proc/uptime').read_text().split()[0])-int(current['start_ticks'])/100
+                eta.update(observed_at=status['observed_at'],observed_domain_command_elapsed_seconds_approx=elapsed,
+                           conditional_remaining_seconds_approx=max(0,eta['domain_complete_command_reference_seconds']-elapsed),
+                           domain_initial_start_utc=read(gemm_work/'domain/flow/resource_flow/initial/runs/state/manifest.json')['start_utc'] if (gemm_work/'domain/flow/resource_flow/initial/runs/state/manifest.json').exists() else None)
+        elif 'domain' in gemm_results:
+            eta.update(conditional_remaining_seconds_approx=None,condition='Original GEMM roles terminal; historical timeout-path ETA superseded by actual receipts.')
     if (D/'CLSTM_domain_recovery_02/queue/registration.json').exists():
         recovery_root=D/'CLSTM_domain_recovery_02'
         status['CLSTM_domain_registered_recovery_02']=dict(validation=read(recovery_root/'validation.json'),phase=read(recovery_root/'queue/status.json'),plan='CLSTM_domain_recovery_02/arm/plan.json',candidate_or_full_method_admitted=False)
         status['active_schedule_order'].append('CLSTM_domain_recovery_02')
         status['evidence']['CLSTM_domain_registered_recovery_02']='CLSTM_domain_recovery_02/execution_plan.json'
+    if (D/'LSTM_necessary_readonly_02/queue/registration.json').exists():
+        lstm_readonly=D/'LSTM_necessary_readonly_02'
+        status['LSTM_necessary_readonly_02']=dict(phase=read(lstm_readonly/'queue/status.json'),
+            metadata_fix_validation=read(lstm_readonly/'metadata_fix_validation.json'),
+            stages=read(lstm_readonly/'stages.json') if (lstm_readonly/'stages.json').exists() else [],
+            terminal=read(lstm_readonly/'queue/completion.json') if (lstm_readonly/'queue/completion.json').exists() else None,
+            full_native_domain_pair_admitted=False,new_native_or_STA_calls=0)
+        status['active_schedule_order'].append('LSTM_necessary_readonly_02')
+        status['evidence']['LSTM_necessary_readonly_02']='LSTM_necessary_readonly_02/execution_plan.json'
     status['outstanding'].insert(0,'CP1r4 GEMM one-input/two-role confirmation now runs with fixed configs after actual +inf two-arm planner replay, independent freeze and source+wheel reconstruction. Native/domain order fixed; retain every result and independently admit source/bytes/requests/FULL/STA/full endpoints/physical gates before paper claims. Do not modify active source or budgets; original CP1r3 failures and first diagnostic observer failure/cost remain.')
+if (D/'submission_narrative_06/verification.json').exists():
+    paper06=read(D/'submission_narrative_06/verification.json')
+    assert paper06['passed'] and paper06['pages']==6
+    status['submission_candidate_latest']=paper06
+    status['paper_pdf']=str(D/'submission_narrative_06/build/main.pdf')
+    status['evidence']['submission_candidate_latest']='submission_narrative_06/verification.json'
+    status['GEMM_complete_execution']=read(D/'GEMM_complete_execution_01/checkpoint.json')
+    status['evidence']['GEMM_complete_execution']='GEMM_complete_execution_01/checkpoint.json'
+    status['LSTM_native_supplementary_full_admission']=read(D/'LSTM_necessary_readonly_02/native_raw/completion.json')
+    status['LSTM_domain_failed_candidate_raw_evidence']=read(D/'LSTM_necessary_readonly_02/domain_failed_evaluation/audit.json')
+    status['evidence']['LSTM_native_supplementary_full_admission']='LSTM_necessary_readonly_02/native_raw/completion.json'
+    status['evidence']['LSTM_domain_failed_candidate_raw_evidence']='LSTM_necessary_readonly_02/domain_failed_evaluation/audit.json'
+    status['CLSTM_recovery02_actual_failure']=read(D/'CLSTM_domain_recovery_failure_02/checkpoint.json')
+    status['evidence']['CLSTM_recovery02_actual_failure']='CLSTM_domain_recovery_failure_02/checkpoint.json'
+    status['submission_candidate_latest_conditional_ETA']=dict(original_GEMM_remaining_roles=0,
+        LSTM_necessary_readonly_remaining_stages=0,CLSTM_recovery02_remaining_stages=0,
+        newly_admitted_complete_native_domain_pairs=0,old_GEMM_timeout_path_ETA_superseded=True,
+        qualification='Use actual successor phase/receipts below. GEMM original roles and three LSTM readonly stages terminal; LSTM native full supplementary admission is one arm, domain source candidate audit is not whole-role admission. No full future suffix ETA calibrated, no date/count/matrix Goal stop.')
+    status['evidence']['submission_candidate_latest_conditional_ETA']='submission_narrative_06/EXPERIMENT_IMPACT.md'
+    status['outstanding']=[x for x in status['outstanding'] if not x.startswith('CP1r4 GEMM one-input/two-role confirmation now runs')]
+    status['outstanding'].insert(0,'Submission06 verified at six pages/36 main rows; method/prior-art/BNN and mechanism/cost controls unchanged. LSTM native passed full supplementary raw admission, domain whole role still unadmitted, no new pair. GEMM both initial-timeout records retained. CLSTM02 source closure failed before consuming old native; retain old failure and only use a separately completed manifest-complete source audit for any new adapter.')
+if (D/'CLSTM_domain_manifest_audit_03/audit.json').exists():
+    status['CLSTM_manifest_source_audit03']=read(D/'CLSTM_domain_manifest_audit_03/audit.json')
+    status['evidence']['CLSTM_manifest_source_audit03']='CLSTM_domain_manifest_audit_03/audit.json'
+if (D/'CLSTM_domain_recovery_03/queue/registration.json').exists():
+    recovery03=D/'CLSTM_domain_recovery_03'
+    status['CLSTM_domain_registered_recovery03']=dict(phase=read(recovery03/'queue/status.json'),
+        validation=read(recovery03/'validation.json'),
+        result=read(recovery03/'result.json') if (recovery03/'result.json').exists() else None,
+        byte_revalidation=read(recovery03/'byte_revalidation.json') if (recovery03/'byte_revalidation.json').exists() else None)
+    status['active_schedule_order']=['CLSTM_domain_recovery_03',*status.get('active_schedule_order',[])]
+    status['evidence']['CLSTM_domain_registered_recovery03']='CLSTM_domain_recovery_03/execution_plan.json'
+    status['submission_candidate_latest_conditional_ETA']['current_CLSTM_recovery03_phase']=status['CLSTM_domain_registered_recovery03']['phase']
+    status['submission_candidate_latest_conditional_ETA']['whole_suffix_reference_unavailable']=True
+if (D/'CLSTM_domain_complete_recovery_03/checkpoint.json').exists():
+    status['CLSTM_domain_complete_recovery03']=read(D/'CLSTM_domain_complete_recovery_03/checkpoint.json')
+    status['evidence']['CLSTM_domain_complete_recovery03']='CLSTM_domain_complete_recovery_03/checkpoint.json'
+    status['submission_candidate_latest_conditional_ETA']=dict(all_registered_current_stages_terminal=True,
+        GEMM_remaining_roles=0,LSTM_necessary_readonly_remaining_stages=0,CLSTM_recovery03_remaining_stages=0,
+        next_required_gate='LSTM/domain whole-role failed-scope/rollback/frozen-check and raw admission, not yet registered/executed',
+        next_required_gate_duration_uncalibrated=True,new_complete_native_domain_pairs=0,
+        qualification='Actual latest terminal receipts supersede all earlier role/suffix ETAs. Next full-domain readonly scope depends on exact failed-scope handling and actual raw coverage, not a borrowed duration or stop date. Goal active.')
 if active_arm_pointer.exists():
     status['active_CP1r3_arm_wait']=read(active_arm_pointer)
     status['active_CP1r3_arm_wait_qualification']='Handoff locator only; actual queue and process identities above determine liveness.'

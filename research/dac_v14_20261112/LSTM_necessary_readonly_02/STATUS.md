@@ -1,0 +1,11 @@
+# LSTM必要只读核验02
+
+实际登记三阶段，顺序为native补充原检查重放、通过后执行原完整raw准入、domain原ctime失败候选独立审计。只在已登记CLSTM恢复owner真实退出并留下终结记录后执行；每个子命令自己取得原全局串行锁，不与当前GEMM或CLSTM重活重叠。无新native/STA、无预算/接受规则修改、无自动重试。
+
+独立v2副本只更换补充输出namespace并在原冻结write前创建缺失queue目录，逐字节逆变换等于原v1，保留原全部断言和原owner身份核验。原v1输出payload通过后抛FileNotFoundError的失败和104.039414499秒不改。元数据形状与编译检查通过不算实际完整重放。
+
+native raw直接复用原Audit全部方法，只重定向独立补充结果namespace；仍核验来源、实际字节、完整有序请求、FULL、raw-STA/约束、完整端点向量、物理证据和六项图载荷。原graph等大字节只在自己的串行槽读取，所有新只读费用单列。未通过则quality为空，不推断配对。
+
+domain使用已准备的audit_lstm_failed_evaluation_01.py原文件，精确审计原五项仅ctime变化失败及其原候选字节/STA/物理证据；原completion和analysis_gate缺失保持。即使该候选来源审计通过，也不替代完整domain准入或干净完整费用。DLA原初始失败不能靠只读补造合法根，不重跑其两臂。
+
+旧native补充完整失败命令约104.04秒，仅作该组件参照；实际raw完整核验、domain事件审计及CLSTM等待尚无可信整队ETA。每项区分命令结束、验证通过、前置条件未满足和基础设施错误；不是新电路或新确认角色。稿件05和原所有失败均保留。

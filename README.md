@@ -2,6 +2,8 @@
 
 ## Current research snapshot — 2026-11-17
 
+[六页投稿06、LSTM必要准入与GEMM真实终态](docs/GitHub_GEMM_LSTM_submission_20261117.md)：[投稿PDF](research/dac_v14_20261112/submission_narrative_06/build/main.pdf) · [剩余证据影响](research/dac_v14_20261112/submission_narrative_06/EXPERIMENT_IMPACT.md)。LSTM/native补充完整准入通过，domain仅原失败候选来源通过，尚无完整配对收益；两个419候选分别保留超402的原策略拒绝与超357的原ctime失败。GEMM两臂完整2940.97/2925.41秒后原初始超时，质量为空。CLSTM02来源闭合失败保持，03补齐实际manifest审计后已封存旧23请求真实复用及新候选FULL/STA；历史恢复终态另记，不阻塞六页稿。
+
 [GEMM native原预算超时与CLSTM已登记接续](docs/GitHub_GEMM_native_timeout_20261117.md)：native完整尝试2940.97秒，未获通过FULL/STA的合法根；domain已进入原初始路由。中间零过用打印不计合法候选，不重跑或放宽预算。CLSTM接续02的11项元数据检查通过，实际等待GEMM终结后先复核来源字节，复用既有23条native请求，缺失阶段新执行计费。当前没有新增完整收益；六页投稿05和BNN完整取舍保持。
 
 [CP1r4实际slack修复与GEMM匹配确认启动](docs/GitHub_CP1r4_GEMM_20261117.md)：实际"+inf"故障及双臂完整规划器回放通过，5连接仅为提案；独立冻结和source+固定wheel重建/迁移准入完成。GEMM约13.22GiB字节/实际布局预检及56.26秒输入复制复核通过，native已真实启动、domain随后；不同已知历史电路、同架构族，暂无完整配对收益。CP1r3原失败与六页投稿05保持，软件诊断费用和准备费用均单列。
