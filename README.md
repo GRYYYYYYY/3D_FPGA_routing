@@ -1,5 +1,7 @@
 # H3D-inspired native 3D FPGA routing
 
+[clma native整臂结束、原核验通过](docs/GitHub_clma_native_complete_20261117.md)：668.98秒，CPD15.0530→14.7140ns，+100线长，同4SB/450CB，setup2改善/0退化。domain继续；完整raw/配对通过前不进入收益，六页投稿12保持。
+
 [CP1r6报告修复与clma独立输入确认](docs/GitHub_CP1r6_clma_confirmation_20261117.md)：88条原断言及算法规则保持；clma真实1089块两层布局已完成，native资源阶段有3个冗余网但无可选共享域/owner组，后续时序、domain及配对仍按原队列。尚无新增完整收益，[六页投稿12](research/dac_v14_20261112/submission_narrative_12/build/main.pdf)保持。
 
 [LSTM单标志释放消融通过、六页投稿12](docs/GitHub_LSTM_release_submission12_20261117.md)：同源8请求组，关闭释放5/8后回滚，已有开启释放8/8且资源接受；实际释放前轨迹相同。新组件214.45秒与核验1.48秒独立列账，仅支持该组机制归因，不归因完整70SB。42行主表及原费用限制保持。[投稿12 PDF](research/dac_v14_20261112/submission_narrative_12/build/main.pdf)。

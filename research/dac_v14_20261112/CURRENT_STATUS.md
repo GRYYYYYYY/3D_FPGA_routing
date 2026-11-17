@@ -108,6 +108,16 @@ CP1r6仅将核验器缺失报告字段换成已绑定实际SDC文本；原88断�
 
 
 
+# clma native整臂已执行结束并通过原核验
+
+完整命令668.982553秒；原独立核验4.460384秒单列。原88断言检查通过，但后续raw/配对仍待原队列。
+
+CPD 15.053021940→14.713963381ns（降低2.2524%）；106027→106127线长，SB/CB同4/450。5次时序接受、3次访问状态拒绝，资源接受0。自身根setup2改善/0退化，新增hold违规0；观察到33个setup/hold分量，不能扩大为所有I/O均被显式约束。
+
+Domain原臂已启动；按native668.98秒和相同工作量条件估计，仍需约9.6分钟，加实际raw/配对及既有选择器解释费用。不同搜索轨迹或同机活动会改变时间，不承诺固定完成时刻。只有完整配对通过后才进入正文主表。
+
+
+
 # Elliptic整臂判定与完整配对
 
 **实际配对：通过。**
@@ -138,7 +148,7 @@ Elliptic为当前CP1确认中的不同公开顺序电路，使用新生成的实
 CLSTM-SB完整配对已通过：D−N为+52线长/−1SB/同CPD及CB，单次N/D费用仅描述。已核验投稿稿可独立作者审阅。
 
 
-cp1r6_clma_pair_01: running_confirmation_arm；CLMA_complete_admission_01: waiting_for_original_CLMA_pair_terminal
+cp1r6_clma_pair_01: running_confirmation_arm；CLMA_complete_admission_01: waiting_for_original_CLMA_pair_terminal；CLMA_postqueue_01: waiting_for_original_pair_and_three_admission_gates
 
 [当前投稿稿](submission_narrative_12/build/main.pdf) · [证据影响与作者审阅](submission_narrative_12/EXPERIMENT_IMPACT.md) · [完整判定](LSTM_domain_whole_admission_03/admission_decision.json)。原06保留；本轮只把LSTM实际结论和已完成四档代价机制证据纳入对应位置。
 

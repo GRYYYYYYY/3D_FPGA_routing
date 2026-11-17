@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "state": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_pair_01/clma/native/flow/resource_flow/initial",
+  "native_calls_new": 0,
+  "routed_nets": 4622,
+  "positive_excess_same_layer_target_nets": 3,
+  "certified_escape_cuts": 0,
+  "eligible_joint_groups": 0,
+  "selected_group": null,
+  "ranking": "decreasing crossing excess, increasing total connections, decreasing owner margin, decreasing target margin, target net, owner net, escape node",
+  "minimum_current_margin_ns": 0.2,
+  "resource_assurance": {
+    "passed": true,
+    "assurance_kind": "independent_physical_audit",
+    "independent_physical_audit": true,
+    "physical_metrics": {
+      "planar_wirelength_excluding_sb_half_nodes": 106027,
+      "sb_pairs_used": 4,
+      "sb_pair_net_occupancy": 4,
+      "cb_crossing_output_sources_used": 450,
+      "cb_crossing_output_source_net_occupancy": 450,
+      "actual_crossing_edge_traversals": {
+        "OPIN->CHANX": 331,
+        "OPIN->CHANY": 178,
+        "CHANX->CHANX": 4
+      },
+      "qualification": "CB edges share source OPIN and destination channel capacity; no independent per-edge via count"
+    },
+    "resource_axes": {
+      "wirelength": 106027,
+      "SB_pairs": 4,
+      "CB_sources": 450
+    },
+    "evidence": "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_pair_01/clma/native/flow/resource_flow/initial/runs/state/independent_audit.json",
+    "evidence_sha256": "9f4f750872ba46b7f7d4b2f9e27f146532246ffc9a9a0832b722bb750652263e"
+  },
+  "complete_read_only_seconds": 1.4048334285616875,
+  "source_sha256": {
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_releases/current_sta_cp1r6/runtime/current_escape_owner_selector_v1.py": "5a94142fa529bea1ce38498b9c3ea19e8981b924ce8a1830b47c0f70789400d0",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_pair_01/clma/native/flow/resource_flow/initial/completion.json": "36150ff56713475fe56cdfb3683763557c20da76dda91d5e6125bfa8732f0b92",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_pair_01/clma/native/flow/resource_flow/initial/endpoint_vector.json": "cf770ba01bbb4e5bfa4369bf54aa1faad2281b1c622ede7fc964b35d6e4e732f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_pair_01/clma/native/flow/resource_flow/initial/runs/state/manifest.json": "7b84917fb799ef6d1c1abd1db04615af7cec5569d00e248b445d36c2400bbb87",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_pair_01/clma/native/flow/resource_flow/initial/runs/state/routed.route": "ab44a93d0cefaa21a77aa4078f669b341d05a15146d91562d363cd9813a6624f",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_pair_01/clma/native/flow/resource_flow/initial/runs/state/native_sta_frontier.jsonl": "a7460203d8d5b0506eccdc344b2801668077512431061494be32cea55b2bb054",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_pair_01/clma/native/flow/resource_flow/initial/runs/state/independent_audit.json": "9f4f750872ba46b7f7d4b2f9e27f146532246ffc9a9a0832b722bb750652263e",
+    "/inspire/hdd/global_user/guoruiyuan-253208540291/codex/home/confirmation_workspaces/cp1r6_clma_pair_01/clma/native/flow/resource_flow/joint_graph_indexes/full_cache/completion.json": "261e8a22c91d49bc8ebfeba16864cb75d1708f9fad05e654799db5a33a4915fc"
+  },
+  "artifact_sha256": {
+    "certificates.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "screens.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "groups.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "classifications.json": "8fe4ac035fe9434253aaf223e72d20a5dffcc634b1a1a149a54ccb9958c60595",
+    "cache_identity.json": "a38ec2edea3870aa90fd9351e7999337cea49c773367ccb53b8b5ce08aa53bf6"
+  },
+  "qualification": "Circuit-independent diagnostic selector over actual current route/graph/STA. Supported cut requires a SOURCE with one OPIN and unit-capacity same-layer channel exits all held by other nets; remaining exits cross away. A source-layer target then needs a distinct return crossing while others are frozen. Shared terminal classes are never treated as unit-capacity conflicts. Unsupported topology and unblocked/screen-rejected cases remain explicit. This does not certify global optimality, replacement feasibility or native QoR; all accepted transactions still require real complete native/capacity/FULL/STA checks. Ownership census/cache verification and screening are one-time research costs here, not measured complete algorithm times. No net/RR IDs or benchmark-specific thresholds hardcoded; no existing actor/rule changed."
+}
