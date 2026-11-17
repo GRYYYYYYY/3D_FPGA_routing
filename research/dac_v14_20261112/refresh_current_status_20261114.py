@@ -1612,6 +1612,10 @@ if (s38417_pair/'plan.json').exists():
     if scope_observation.exists():
         status['CP1r6_s38417_registered_pair']['native_initial_scope_observation']=read(scope_observation)
         status['evidence']['s38417_native_initial_scope_observation']='cp1r6_s38417_pair_01/NATIVE_INITIAL_SCOPE_OBSERVATION.md'
+    transaction_observation=s38417_pair/'NATIVE_INITIAL_TRANSACTION_OBSERVATION.json'
+    if transaction_observation.exists():
+        status['CP1r6_s38417_registered_pair']['native_initial_transaction_observation']=read(transaction_observation)
+        status['evidence']['s38417_native_initial_transaction_observation']='cp1r6_s38417_pair_01/NATIVE_INITIAL_TRANSACTION_OBSERVATION.md'
     decision=D/'S38417_complete_admission_01/admission_decision.json'
     if decision.exists():
         status['S38417_complete_pair_admission']=read(decision);status['active_schedule_order']=[]
