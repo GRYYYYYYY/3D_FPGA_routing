@@ -300,6 +300,8 @@ if latest_elliptic_admission_publication.exists():publication=latest_elliptic_ad
 for pub in ['github_frisc_confirmation66_publication_receipt_20261117.json','github_frisc_admission67_publication_receipt_20261117.json','github_LSTM_release68_publication_receipt_20261117.json','github_clma_confirmation69_publication_receipt_20261117.json','github_clma_native70_publication_receipt_20261117.json','github_clma_admission71_publication_receipt_20261117.json','github_clma_io72_publication_receipt_20261117.json','github_clma_IO_native73_publication_receipt_20261117.json','github_clma_IO_admission74_publication_receipt_20261117.json','github_s38584_admission75_publication_receipt_20261117.json','github_s38584_applicability76_publication_receipt_20261117.json']:
     candidate=D.parents[1]/'docs'/pub
     if candidate.exists():publication=candidate
+latest_submission16_publication=D.parents[1]/'docs/github_s38417_admission_submission81_publication_receipt_20261117.json'
+if latest_submission16_publication.exists():publication=latest_submission16_publication
 status['latest_incremental_publication']=read(publication if publication.exists() else D.parents[1]/'docs/github_resource_controller_publication_receipt_20261115.json')
 analysis=D/'orphaned_BNN_quality_analysis_01'
 areg=read(analysis/'registration.json');ap=process_identity(areg['pid'])
@@ -1638,6 +1640,12 @@ if paper16.exists() and read(paper16)['passed']:
     status['evidence']['current_applicability']='mechanism_applicability_current_06/APPLICABILITY.md'
     status['submission_candidate_latest_conditional_ETA']=dict(remaining_manuscript_prerequisites=0,qualification='Verified standalone submission16; future experiments do not block author review.')
     paper=dict(pdf=status['paper_pdf'],pages=6,verification=str(paper16),submission='16',scope='Verified50-row manuscript; admitted distinct s38417 no domain increment despite eligible scopes; no new architecture or interleaved cost extrapolation.')
+lstm_owner=D/'LSTM_existing_owner_outcomes_01/completion.json'
+if lstm_owner.exists() and read(lstm_owner)['passed']:
+    status['LSTM_existing_owner_outcomes']=read(lstm_owner)
+    status['evidence']['LSTM_existing_owner_outcomes']='LSTM_existing_owner_outcomes_01/ANALYSIS.md'
+    if not status['active_schedule_order']:
+        status['outstanding']=['LSTM existing owner receipts: each differing arm state has 5 certified cuts and 40 eligible groups; three tested joint groups rejected in each. Preserve two legal wire/endpoint alternatives without changing original policy or manuscript claims. Prioritize different real inputs and actual layouts; do not treat robot-p1 as an independent circuit.']
 write(D/'CURRENT_STATUS.json',status)
 rows=[]
 for o in owners:
